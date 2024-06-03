@@ -8,7 +8,6 @@
   "types": "./dist/main.d.ts",
   "author": "Conner Shannon",
   "license": "MIT",
-  "private": false,
   "files": [
     "examples/*",
     "dist/*",
@@ -77,9 +76,6 @@
     "terser-webpack-plugin": "^5.1.1",
     "url-loader": "^4.1.1",
     "webpack-merge": "^5.8.0"
-  },
-  "peerDependencies": {
-
   },
   "volta": {
     "extends": "../../package.json"

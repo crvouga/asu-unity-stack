@@ -71,8 +71,10 @@ const HeaderPropTypes = {
 };
 
 export {
-  ButtonPropTypes, HeaderPropTypes,
+  ButtonPropTypes,
+  HeaderPropTypes,
   LoginPropTypes,
-  LogoPropTypes, NavTreePropTypes, TitlePropTypes
+  LogoPropTypes,
+  NavTreePropTypes,
+  TitlePropTypes,
 };
-

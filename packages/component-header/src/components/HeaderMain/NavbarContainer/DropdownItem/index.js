@@ -26,7 +26,14 @@ import { DropdownWrapper } from "./index.styles";
  * @returns {JSX.Element}
  */
 
-const DropdownItem = ({ dropdownName, items, renderContent, buttons, classes, listId }) => {
+const DropdownItem = ({
+  dropdownName,
+  items,
+  renderContent,
+  buttons,
+  classes,
+  listId,
+}) => {
   const { breakpoint } = useAppContext();
   const isMega = items?.length > 2;
   const dropdownRef = useRef(null);

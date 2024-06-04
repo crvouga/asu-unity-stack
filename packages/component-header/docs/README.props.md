@@ -103,6 +103,7 @@
 | [type] | <code>string</code> | 
 | [selected] | <code>boolean</code> | 
 | [items] | <code>Array.&lt;object&gt;</code> | 
+| [renderContent] | <code>function</code> | 
 | [buttons] | [<code>Array.&lt;Button&gt;</code>](#Button) | 
 | [class] | <code>string</code> | 
 | [onClick] | <code>function</code> | 

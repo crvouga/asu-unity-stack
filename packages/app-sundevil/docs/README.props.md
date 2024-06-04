@@ -1,3 +1,19 @@
+## Constants
+
+<dl>
+<dt><a href="#HeaderContentSportLinks">HeaderContentSportLinks</a> : <code>React.FC.&lt;Props&gt;</code></dt>
+<dd></dd>
+</dl>
+
+## Functions
+
+<dl>
+<dt><a href="#SportLinks">SportLinks()</a> : <code>React.FC.&lt;{sport: Sport}&gt;</code></dt>
+<dd></dd>
+<dt><a href="#Sport">Sport()</a> : <code>React.FC.&lt;{sport: Sport}&gt;</code></dt>
+<dd></dd>
+</dl>
+
 ## Typedefs
 
 <dl>
@@ -61,6 +77,18 @@
 <dd></dd>
 </dl>
 
+<a name="HeaderContentSportLinks"></a>
+
+## HeaderContentSportLinks : <code>React.FC.&lt;Props&gt;</code>
+**Kind**: global constant  
+<a name="SportLinks"></a>
+
+## SportLinks() : <code>React.FC.&lt;{sport: Sport}&gt;</code>
+**Kind**: global function  
+<a name="Sport"></a>
+
+## Sport() : <code>React.FC.&lt;{sport: Sport}&gt;</code>
+**Kind**: global function  
 <a name="ArticleProps"></a>
 
 ## ArticleProps : <code>Object</code>

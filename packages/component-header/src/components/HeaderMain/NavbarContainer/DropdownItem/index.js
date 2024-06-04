@@ -1,5 +1,6 @@
+// @ts-check
 import PropTypes from "prop-types";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { idGenerator, trackGAEvent } from "../../../../../../../shared";
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -13,6 +14,7 @@ import { DropdownWrapper } from "./index.styles";
  * @typedef {{
  *  dropdownName: string
  *  items: [object][]
+ *  renderContent?: () => JSX.Element
  *  buttons: Button[]
  *  classes?: string,
  * }} DropdownItemProps
@@ -24,7 +26,7 @@ import { DropdownWrapper } from "./index.styles";
  * @returns {JSX.Element}
  */
 
-const DropdownItem = ({ dropdownName, items, buttons, classes, listId }) => {
+const DropdownItem = ({ dropdownName, items, renderContent, buttons, classes, listId }) => {
   const { breakpoint } = useAppContext();
   const isMega = items?.length > 2;
   const dropdownRef = useRef(null);
@@ -91,6 +93,7 @@ const DropdownItem = ({ dropdownName, items, buttons, classes, listId }) => {
       // @ts-ignore
       breakpoint={breakpoint}
     >
+      {renderContent?.()}
       <div
         id={MULTIPLE_SUBMENUS ? listId : null}
         className="dropdown-container"
@@ -128,6 +131,7 @@ DropdownItem.propTypes = {
   dropdownName: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
   buttons: PropTypes.arrayOf(PropTypes.shape(ButtonPropTypes)),
+  renderContent: PropTypes.func,
   classes: PropTypes.string,
   listId: PropTypes.string,
 };

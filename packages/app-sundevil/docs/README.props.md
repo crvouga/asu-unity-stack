@@ -1,8 +1,6 @@
 ## Typedefs
 
 <dl>
-<dt><a href="#AppType">AppType</a> : <code>Object</code></dt>
-<dd></dd>
 <dt><a href="#ArticleProps">ArticleProps</a> : <code>Object</code></dt>
 <dd></dd>
 <dt><a href="#CardProps">CardProps</a> : <code>Object</code></dt>
@@ -62,16 +60,6 @@
 <dt><a href="#AppType">AppType</a> : <code>Object</code></dt>
 <dd></dd>
 </dl>
-
-<a name="AppType"></a>
-
-## AppType : <code>Object</code>
-**Kind**: global typedef  
-**Properties**
-
-| Name | Type |
-| --- | --- |
-| [numItems] | <code>number</code> | 
 
 <a name="ArticleProps"></a>
 

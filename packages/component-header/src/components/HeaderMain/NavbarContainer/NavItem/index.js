@@ -2,7 +2,7 @@
 import { faChevronDown, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
-import React, { useRef, useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 
 import { trackGAEvent } from "../../../../../../../shared";
 import { useAppContext } from "../../../../core/context/app-context";
@@ -73,7 +73,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
     return (
       <span>
         {link.text}
-        {!!link.items?.length && (
+        {(!!link.items?.length || link.renderContent) && (
           <FontAwesomeIcon
             // @ts-ignore
             icon={faChevronDown}
@@ -105,7 +105,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
   };
 
   const handleClick = e => {
-    if (link.items) {
+    if (link.items || link.renderContent) {
       e.preventDefault();
       if (!expandOnHover && !isMobile) {
         setItemOpened();
@@ -137,7 +137,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
         onClick={handleClick}
         href={link.href}
         aria-expanded={() => "true"} // eslint-disable-line no-nested-ternary
-        aria-owns={link.items ? `dropdown-${link.id}` : null}
+        aria-owns={(link.items || link.renderContent) ? `dropdown-${link.id}` : null}
         className={`${link.class ? link.class : ""}${
           link.selected ? " nav-item-selected" : ""
         }${opened ? " open-link" : ""}`}
@@ -149,6 +149,20 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
       >
         {renderNavLinks}
       </a>
+
+      {link.renderContent && (
+        <DropdownItem
+          items={[]}
+          renderContent={link.renderContent}
+          // @ts-ignore
+          buttons={link.buttons}
+          // @ts-ignore
+          dropdownName={link.text}
+          classes={`header-dropdown-${link.id} ${opened ? "opened" : ""}`}
+          listId={`dropdown-${link.id}`}
+        />
+      )}
+
       {link.items && (
         <DropdownItem
           items={link.items}

@@ -1,5 +1,6 @@
 // @ts-check
 
+
 // @ts-check
 
 /**
@@ -29,6 +30,7 @@
  * @property {string} [type]
  * @property {boolean} [selected]
  * @property {object[]} [items]
+ * @property {() => JSX.Element} [renderContent]
  * @property {Button[]} [buttons]
  * @property {string} [class]
  * @property {function} [onClick]

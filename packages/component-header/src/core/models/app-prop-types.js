@@ -39,6 +39,7 @@ const NavTreePropTypes = PropTypes.shape({
   type: PropTypes.string,
   selected: PropTypes.bool,
   items: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
+  renderContent: PropTypes.func,
   buttons: PropTypes.arrayOf(PropTypes.shape(ButtonPropTypes)),
   class: PropTypes.string,
 });
@@ -70,10 +71,8 @@ const HeaderPropTypes = {
 };
 
 export {
-  HeaderPropTypes,
+  ButtonPropTypes, HeaderPropTypes,
   LoginPropTypes,
-  LogoPropTypes,
-  TitlePropTypes,
-  ButtonPropTypes,
-  NavTreePropTypes,
+  LogoPropTypes, NavTreePropTypes, TitlePropTypes
 };
+

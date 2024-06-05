@@ -14,7 +14,7 @@ import { DropdownWrapper } from "./index.styles";
  * @typedef {{
  *  dropdownName: string
  *  items: [object][]
- *  renderContent?: () => JSX.Element
+ *  renderContent?: Function
  *  buttons: Button[]
  *  classes?: string,
  * }} DropdownItemProps
@@ -101,20 +101,25 @@ const DropdownItem = ({
       breakpoint={breakpoint}
     >
       {renderContent?.()}
-      <div
-        id={MULTIPLE_SUBMENUS ? listId : null}
-        className="dropdown-container"
-      >
-        {items?.map((item, index0) => {
-          const genKey = idGenerator(`dropdown-item-${index0}-`);
-          const key = genKey.next().value;
-          return (
-            <ul id={MULTIPLE_SUBMENUS ? `${listId}-${key}` : listId} key={key}>
-              {item.map((link, index) => renderItem(link, index))}
-            </ul>
-          );
-        })}
-      </div>
+      {items?.length > 0 && (
+        <div
+          id={MULTIPLE_SUBMENUS ? listId : null}
+          className="dropdown-container"
+        >
+          {items?.map((item, index0) => {
+            const genKey = idGenerator(`dropdown-item-${index0}-`);
+            const key = genKey.next().value;
+            return (
+              <ul
+                id={MULTIPLE_SUBMENUS ? `${listId}-${key}` : listId}
+                key={key}
+              >
+                {item.map((link, index) => renderItem(link, index))}
+              </ul>
+            );
+          })}
+        </div>
+      )}
       {buttons && (
         <div className="dropdown-button-container">
           <div>

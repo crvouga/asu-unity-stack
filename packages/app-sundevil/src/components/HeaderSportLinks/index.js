@@ -9,35 +9,21 @@ const sportLinkItemSchema = PropTypes.shape({
   label: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 });
-
-/**
- * @typedef {import('prop-types').InferProps<typeof sportLinkItemSchema>['isRequired']} SportLinkItem
- */
+/** @typedef {import('prop-types').InferProps<typeof sportLinkItemSchema>['isRequired']} SportLinkItem */
 
 const sportSchema = PropTypes.shape({
   sportName: PropTypes.string.isRequired,
   sportLinks: PropTypes.arrayOf(sportLinkItemSchema.isRequired).isRequired,
 });
+/** @typedef {import('prop-types').InferProps<typeof sportSchema>['isRequired']} Sport */
 
-/**
- * @typedef {import('prop-types').InferProps<typeof sportSchema>['isRequired']} Sport
- */
-
-const propTypesSchema = {
-  sports: PropTypes.arrayOf(sportSchema.isRequired).isRequired,
-};
-
-/**
- * @typedef {import('prop-types').InferProps<typeof propTypesSchema>} Props
- */
-
-const StyledSportLink = styled.a`
+const SportLinkItemLink = styled.a`
   color: var(--text-color-muted);
   text-decoration: underline !important;
   font-size: var(--font-size-small);
 `;
 
-const StyledSportLinkItem = styled.li`
+const SportLinkItemRoot = styled.li`
   margin-bottom: 0.5em;
   display: flex;
   flex-direction: row;
@@ -45,23 +31,21 @@ const StyledSportLinkItem = styled.li`
   justify-content: space-between;
 `;
 
-/**
- * @type {React.FC<{sportLinkItem: SportLinkItem}>}
- */
+/** @type {React.FC<{sportLinkItem: SportLinkItem}>} */
 const SportLinkItem = ({ sportLinkItem }) => {
   return (
-    <StyledSportLinkItem key={sportLinkItem.label}>
-      <StyledSportLink href={sportLinkItem.url}>
+    <SportLinkItemRoot key={sportLinkItem.label}>
+      <SportLinkItemLink href={sportLinkItem.url}>
         {sportLinkItem.label}
-      </StyledSportLink>
-    </StyledSportLinkItem>
+      </SportLinkItemLink>
+    </SportLinkItemRoot>
   );
 };
 SportLinkItem.propTypes = {
   sportLinkItem: sportLinkItemSchema.isRequired,
 };
 
-const SportLinkList = styled.ul`
+const SportItemLinksRoot = styled.ul`
   list-style: none;
   padding: 0;
   display: flex;
@@ -71,37 +55,35 @@ const SportLinkList = styled.ul`
   gap: 1rem;
 `;
 
-/**
- * @type {React.FC<{sport: Sport}>}
- */
-const SportLinks = ({ sport }) => {
+/** @type {React.FC<{sport: Sport}>} */
+const SportItemLinks = ({ sport }) => {
   return (
-    <SportLinkList>
+    <SportItemLinksRoot>
       {sport.sportLinks.map(sportLinkItem => (
         <SportLinkItem
           key={sportLinkItem.label}
           sportLinkItem={sportLinkItem}
         />
       ))}
-    </SportLinkList>
+    </SportItemLinksRoot>
   );
 };
-SportLinks.propTypes = {
+SportItemLinks.propTypes = {
   sport: sportSchema.isRequired,
 };
 
-const SportRootWrapper = styled.li`
-  padding-bottom: 1em;
+const SportGridListItemRoot = styled.li`
   display: flex;
   flex-direction: row;
   align-items: start;
   justify-content: start;
-  gap: 0.5rem;
+  gap: 0.75rem;
 `;
 
-const SportLinksContainer = styled.div`
+const SportLinksRoot = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 0.25rem;
 `;
 
 const StyledSportName = styled.p`
@@ -115,24 +97,22 @@ const SportIconWrapper = styled.div`
   padding-top: 2px;
 `;
 
-/**
- * @type {React.FC<{sport: Sport}>}
- */
-const Sport = ({ sport }) => {
+/** @type {React.FC<{sport: Sport}>} */
+const SportGridListItem = ({ sport }) => {
   const sportName = stringToClosestSportName(sport.sportName);
   return (
-    <SportRootWrapper>
+    <SportGridListItemRoot>
       <SportIconWrapper>
         <SportIcon sportName={sportName} />
       </SportIconWrapper>
-      <SportLinksContainer>
+      <SportLinksRoot>
         <StyledSportName>{sport.sportName}</StyledSportName>
-        <SportLinks sport={sport} />
-      </SportLinksContainer>
-    </SportRootWrapper>
+        <SportItemLinks sport={sport} />
+      </SportLinksRoot>
+    </SportGridListItemRoot>
   );
 };
-Sport.propTypes = {
+SportGridListItem.propTypes = {
   sport: sportSchema.isRequired,
 };
 
@@ -147,11 +127,48 @@ const Vars = createGlobalStyle`
   }
 `;
 
-const Root = styled.div`
+const Root = styled.div``;
+
+const SportGridList = styled.div`
   color: var(--text-color-primary);
   font-size: var(--font-size-normal);
-  padding: 2rem;
+  padding: 2rem 0rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  & > * + * {
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  & > * + *::before {
+    content: '';
+    position: absolute;
+    top: 3%;
+    bottom: 3%;
+    left: 0;
+    width: 1px;
+    background-color: var(--divider-color, #ccc);
+  }
 `;
+
+const SportGridListColumn = styled.div`
+  color: var(--text-color-primary);
+  font-size: var(--font-size-normal);
+  gap: 2rem;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+`;
+
+const propTypesSchema = {
+  sports: PropTypes.arrayOf(sportSchema.isRequired).isRequired,
+};
+
+/** @typedef {import('prop-types').InferProps<typeof propTypesSchema>} Props */
+
+const COLUMN_HEIGHT = 5;
 
 /**
  * @type {React.FC<Props>}
@@ -161,13 +178,32 @@ const Root = styled.div`
  * @link https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-108411&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width
  */
 export const HeaderContentSportLinks = ({ sports }) => {
+  const columns = chunk(sports, COLUMN_HEIGHT);
   return (
     <Root>
       <Vars />
-      {sports?.map((sport, index) => (
-        <Sport key={index} sport={sport} />
-      ))}
+      <SportGridList>
+        {columns.map((column, index) => (
+          <SportGridListColumn key={index}>
+            {column.map(sport => (
+              <SportGridListItem key={sport.sportName} sport={sport} />
+            ))}
+          </SportGridListColumn>
+        ))}
+      </SportGridList>
     </Root>
   );
 };
 HeaderContentSportLinks.propTypes = propTypesSchema;
+
+/**
+ * @template T
+ * @param {T[]} array
+ * @param {number} chunkSize
+ * @returns {T[][]}
+ */
+const chunk = (array, chunkSize) => {
+  return Array.from({ length: Math.ceil(array.length / chunkSize) }, (_, i) =>
+    array.slice(i * chunkSize, i * chunkSize + chunkSize)
+  );
+};

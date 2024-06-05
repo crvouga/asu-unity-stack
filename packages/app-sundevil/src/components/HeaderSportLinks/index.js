@@ -22,6 +22,9 @@ const SportLinkItemLink = styled.a`
   color: var(--text-color-muted);
   text-decoration: underline !important;
   font-size: var(--font-size-small);
+  &:hover {
+    color: var(--text-color-primary);
+  }
 `;
 
 const SportLinkItemRoot = styled.li`
@@ -75,26 +78,34 @@ SportItemLinks.propTypes = {
 
 const SportGridListItemRoot = styled.li`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: start;
   justify-content: start;
-  gap: 0.75rem;
+  gap: 0.25rem;
 `;
 
 const SportLinksRoot = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
+  flex-direction: row;
 `;
 
-const StyledSportName = styled.p`
+const SportNameLink = styled.a`
   margin: 0;
-`;
-
-const SportIconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  &:hover {
+    color: var(--text-color-brand);
+  }
+`;
+
+const SportIconWrapper = styled.span`
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  width: 28px;
+  height: 100%;
   padding-top: 2px;
 `;
 
@@ -103,11 +114,15 @@ const SportGridListItem = ({ sport }) => {
   const sportName = stringToClosestSportName(sport.sportName);
   return (
     <SportGridListItemRoot>
-      <SportIconWrapper>
-        <SportIcon sportName={sportName} />
-      </SportIconWrapper>
+      <SportNameLink>
+        <SportIconWrapper>
+          <SportIcon sportName={sportName} />
+        </SportIconWrapper>
+        {sport.sportName}
+      </SportNameLink>
+      
       <SportLinksRoot>
-        <StyledSportName>{sport.sportName}</StyledSportName>
+        <SportIconWrapper />
         <SportItemLinks sport={sport} />
       </SportLinksRoot>
     </SportGridListItemRoot>
@@ -148,10 +163,14 @@ const FooterTicketMaster = styled.div`
 const SportGridList = styled.div`
   color: var(--text-color-primary);
   font-size: var(--font-size-normal);
-  padding: 1rem 0rem;
+  padding: 2rem 0rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  
+  gap: 2rem;
+
+  /* Horizontal Divider */
   & > * + * {
     position: relative;
     padding-left: 1rem;
@@ -162,7 +181,8 @@ const SportGridList = styled.div`
     position: absolute;
     top: 3%;
     bottom: 3%;
-    left: 0;
+    /* So it's in middle of the gap for this component */
+    left: -1rem;
     width: 1px;
     background-color: var(--divider-color);
   }

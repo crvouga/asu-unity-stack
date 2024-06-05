@@ -2,6 +2,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
+import { Button } from "../../../../component-header/src/components/Button";
 import { SportIcon } from "../SportIcon";
 import { stringToClosestSportName } from "../sport-name";
 
@@ -116,23 +117,38 @@ SportGridListItem.propTypes = {
   sport: sportSchema.isRequired,
 };
 
-const Vars = createGlobalStyle`
-  :root {
-    --text-color-primary: #191919;
-    --text-color-muted: #747474;
-    --text-color-brand: #8C1D40;
-
-    --font-size-normal: 1rem;
-    --font-size-small: 0.875rem;
-  }
+const FooterRoot = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-top: 1px solid var(--divider-color);
 `;
 
-const Root = styled.div``;
+/** @type {React.FC} */
+const Footer = () => {
+  return (
+    <>
+      <FooterRoot>
+        <Button text="Buy tickets" href="" color="gold" />
+      </FooterRoot>
+      <FooterTicketMaster />
+    </>
+  );
+};
+Footer.propTypes = {};
+
+const FooterTicketMaster = styled.div`
+  display: flex;
+  width: 100%;
+  background-color: #191919;
+  height: 64px;
+`;
 
 const SportGridList = styled.div`
   color: var(--text-color-primary);
   font-size: var(--font-size-normal);
-  padding: 2rem 0rem;
+  padding: 1rem 0rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -142,13 +158,13 @@ const SportGridList = styled.div`
   }
 
   & > * + *::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 3%;
     bottom: 3%;
     left: 0;
     width: 1px;
-    background-color: var(--divider-color, #ccc);
+    background-color: var(--divider-color);
   }
 `;
 
@@ -161,6 +177,21 @@ const SportGridListColumn = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
 `;
+
+const Vars = createGlobalStyle`
+  :root {
+    --text-color-primary: #191919;
+    --text-color-muted: #747474;
+    --text-color-brand: #8C1D40;
+
+    --divider-color: #ccc;
+
+    --font-size-normal: 1rem;
+    --font-size-small: 0.875rem;
+  }
+`;
+
+const Root = styled.div``;
 
 const propTypesSchema = {
   sports: PropTypes.arrayOf(sportSchema.isRequired).isRequired,
@@ -191,6 +222,7 @@ export const HeaderContentSportLinks = ({ sports }) => {
           </SportGridListColumn>
         ))}
       </SportGridList>
+      <Footer />
     </Root>
   );
 };

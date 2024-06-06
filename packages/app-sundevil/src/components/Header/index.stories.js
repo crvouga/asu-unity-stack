@@ -1,9 +1,7 @@
 // @ts-check
 import React from "react";
-
-import * as HeaderContentSportLinks from "./index";
-
 import { ASUHeader } from "../../../../component-header/src";
+import * as HeaderContentSportLinks from "../HeaderSportLinks/index";
 
 // https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-105787&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width
 
@@ -163,7 +161,7 @@ const navTree = [
     ),
   },
   {
-    text: "Two Column 1",
+    text: "Tickets",
     href: "/",
     items: [
       [
@@ -227,7 +225,7 @@ const navTree = [
     ],
   },
   {
-    text: "Mega Menu (5 Col)",
+    text: "Fans and Community",
     href: "#",
     buttons: [
       {
@@ -388,6 +386,38 @@ const navTree = [
       ],
     ],
   },
+  {
+    text: "Ways to Support",
+    href: "#",
+    items: [
+      [
+        {
+          type: "heading",
+          text: "Column 1",
+        },
+        {
+          href: "https://www.asu.edu/",
+          text: "Pellentesque ornare",
+        },
+      ]
+    ],
+  },
+  {
+    "text": "About",
+    "href": "#",
+    items: [
+      [
+        {
+          type: "heading",
+          text: "Column 1",
+        },
+        {
+          href: "https://www.asu.edu/",
+          text: "Pellentesque ornare",
+        },
+      ]
+    ],
+  }
 ];
 
 const headerProps = {
@@ -408,24 +438,12 @@ const headerProps = {
       "https://live-asuocms.ws.asu.edu/sites/default/files/asu-vertical-logo.png",
     brandLink: "/",
   },
-  buttons: [
-    {
-      href: "/",
-      text: "CTA Button 1",
-      color: "gold",
-    },
-    {
-      text: "CTA Button 2",
-      href: "#",
-      color: "maroon",
-    },
-  ],
   searchUrl: "https://search.asu.edu/search",
   site: "subdomain",
 };
 
 export default {
-  title: "Header/Sport Links",
+  title: "Header/Header",
   component: args => <ASUHeader {...{ ...args, ...headerProps }} />,
   parameters: {
     docs: {

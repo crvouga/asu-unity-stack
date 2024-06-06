@@ -21,11 +21,13 @@ const sportLinkItemSchema = PropTypes.shape({
 const sportSchema = PropTypes.shape({
   sportName: PropTypes.string.isRequired,
   sportLinks: PropTypes.arrayOf(sportLinkItemSchema.isRequired).isRequired,
+  faClassName: PropTypes.string,
 });
 /**
  * @typedef {Object} Sport
  * @property {string} sportName
  * @property {SportLinkItem[]} sportLinks
+ * @property {string | null | undefined} [faClassName]
  */
 
 const SportLinkItemLink = styled.a`
@@ -121,8 +123,14 @@ const SportIconWrapper = styled.span`
   justify-content: start;
   width: 28px;
   height: 100%;
-  padding-top: 2px;
+  padding-top: 4px;
 `;
+
+const Icon = styled.i`
+  width: 16px;
+  height: 16px;
+  color: var(--text-color-primary);
+`
 
 /**
  * @param {{sport: Sport}} props
@@ -133,7 +141,11 @@ const SportGridListItem = ({ sport }) => {
     <SportGridListItemRoot>
       <SportNameLink>
         <SportIconWrapper>
-          <SportIcon sportName={sportName} />
+          {sport.faClassName ? (
+            <Icon className={sport.faClassName} />
+          ) : (
+            <SportIcon sportName={sportName} />
+          )}
         </SportIconWrapper>
         {sport.sportName}
       </SportNameLink>
@@ -169,12 +181,12 @@ const Footer = () => {
           color="gold"
           label="Get tickets"
           size="small"
-          renderIcon={() => <FontAwesomeIcon style={{paddingRight: "8px"}} icon={faTicket} />}
+          renderIcon={() => (
+            <FontAwesomeIcon style={{ paddingRight: "8px" }} icon={faTicket} />
+          )}
         />
       </FooterRoot>
-      <FooterTicketMaster>
-        ticketmaster
-      </FooterTicketMaster>
+      <FooterTicketMaster>ticketmaster</FooterTicketMaster>
     </>
   );
 };

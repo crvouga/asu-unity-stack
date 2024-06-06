@@ -36,6 +36,7 @@ const mensSports = {
     {
       sportName: "Baseball",
       sportLinks,
+      faClassName: 'fas fa-check-circle'
     },
     {
       sportName: "M. Basketball",
@@ -82,10 +83,12 @@ const womansSports = {
     {
       sportName: "W. Basketball",
       sportLinks,
+      faClassName: "fas fa-basketball-ball",
     },
     {
       sportName: "Beach Volleyball",
       sportLinks,
+      faClassName: "fas fa-volleyball-ball",
     },
     {
       sportName: "W. Cross Country",

@@ -1,5 +1,6 @@
 // @ts-check
 import React from "react";
+
 import { ASUHeader } from "../../../../component-header/src";
 import * as HeaderContentSportLinks from "../HeaderSportLinks/index";
 
@@ -148,13 +149,21 @@ const navTree = [
   {
     text: "Men's Sports",
     href: "#",
-    renderContent: () => React.createElement(HeaderContentSportLinks.HeaderContentSportLinks, mensSports)
+    renderContent: () =>
+      React.createElement(
+        HeaderContentSportLinks.HeaderContentSportLinks,
+        mensSports
+      ),
   },
   {
     text: "Woman's Sports",
     href: "#",
     isMega: false,
-    renderContent: () => React.createElement(HeaderContentSportLinks.HeaderContentSportLinks, womansSports)
+    renderContent: () =>
+      React.createElement(
+        HeaderContentSportLinks.HeaderContentSportLinks,
+        womansSports
+      ),
   },
   {
     text: "Tickets",
@@ -395,12 +404,12 @@ const navTree = [
           href: "https://www.asu.edu/",
           text: "Pellentesque ornare",
         },
-      ]
+      ],
     ],
   },
   {
-    "text": "About",
-    "href": "#",
+    text: "About",
+    href: "#",
     items: [
       [
         {
@@ -411,9 +420,9 @@ const navTree = [
           href: "https://www.asu.edu/",
           text: "Pellentesque ornare",
         },
-      ]
+      ],
     ],
-  }
+  },
 ];
 
 const headerProps = {
@@ -429,9 +438,10 @@ const headerProps = {
   logo: {
     alt: "Arizona State University",
     title: "Arizona State University",
-    src: "https://live-asuocms.ws.asu.edu/sites/default/files/asu-vertical-logo.png",
-    mobileSrc:
-      "https://live-asuocms.ws.asu.edu/sites/default/files/asu-vertical-logo.png",
+    // src: "https://live-asuocms.ws.asu.edu/sites/default/files/asu-vertical-logo.png",
+    src:  "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/asu.sidearmsports.com/images/responsive/primary_logo.svg",
+    // mobileSrc: "https://live-asuocms.ws.asu.edu/sites/default/files/asu-vertical-logo.png",
+    mobileSrc:  "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/asu.sidearmsports.com/images/responsive/primary_logo.svg",
     brandLink: "/",
   },
   searchUrl: "https://search.asu.edu/search",

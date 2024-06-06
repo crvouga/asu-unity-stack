@@ -3,7 +3,6 @@
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import React from "react";
-
 import { trackGAEvent } from "../../../../../shared";
 
 const gaDefaultObject = {
@@ -37,6 +36,7 @@ export const Button = ({
   size,
   classes,
   target,
+  renderIcon,
   ...props
 }) => {
   const btnClasses = classNames("btn", {
@@ -68,6 +68,7 @@ export const Button = ({
       aria-label={ariaLabel}
       target={Tag === "a" ? target : null}
     >
+      {renderIcon && renderIcon()}
       {icon && <i className={`${icon?.[0]} fa-${icon?.[1]} me-1`} />}
       {label}
     </Tag>

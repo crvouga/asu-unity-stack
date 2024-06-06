@@ -1,11 +1,12 @@
 // @ts-check
+import { faTicket } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-
-import { Button } from "../../../../components-core/src/components/Button";
-import { stringToClosestSportName } from "../sport-name";
+import { Button } from "../../../../components-core/src";
 import { SportIcon } from "../SportIcon";
+import { stringToClosestSportName } from "../sport-name";
 
 const sportLinkItemSchema = PropTypes.shape({
   label: PropTypes.string.isRequired,
@@ -108,6 +109,7 @@ const SportNameLink = styled.a`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  color: var(--text-color-primary);
   &:hover {
     color: var(--text-color-brand);
   }
@@ -163,13 +165,16 @@ const Footer = () => {
     <>
       <FooterRoot>
         <Button
-          icon={["fa-tickets"]}
           href=""
           color="gold"
           label="Get tickets"
+          size="small"
+          renderIcon={() => <FontAwesomeIcon style={{paddingRight: "8px"}} icon={faTicket} />}
         />
       </FooterRoot>
-      <FooterTicketMaster />
+      <FooterTicketMaster>
+        ticketmaster
+      </FooterTicketMaster>
     </>
   );
 };
@@ -180,6 +185,11 @@ const FooterTicketMaster = styled.div`
   width: 100%;
   background-color: #191919;
   height: 64px;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
 `;
 
 const SportGridList = styled.div`

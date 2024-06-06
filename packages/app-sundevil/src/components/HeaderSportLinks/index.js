@@ -11,13 +11,21 @@ const sportLinkItemSchema = PropTypes.shape({
   label: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 });
-/** @typedef {import('prop-types').InferProps<typeof sportLinkItemSchema>['isRequired']} SportLinkItem */
+/**
+ * @typedef {Object} SportLinkItem
+ * @property {string} label
+ * @property {string} url
+ */
 
 const sportSchema = PropTypes.shape({
   sportName: PropTypes.string.isRequired,
   sportLinks: PropTypes.arrayOf(sportLinkItemSchema.isRequired).isRequired,
 });
-/** @typedef {import('prop-types').InferProps<typeof sportSchema>['isRequired']} Sport */
+/**
+ * @typedef {Object} Sport
+ * @property {string} sportName
+ * @property {SportLinkItem[]} sportLinks
+ */
 
 const SportLinkItemLink = styled.a`
   color: var(--text-color-muted);
@@ -36,7 +44,9 @@ const SportLinkItemRoot = styled.li`
   justify-content: space-between;
 `;
 
-/** @type {React.FC<{sportLinkItem: SportLinkItem}>} */
+/**
+ * @param {{sportLinkItem: SportLinkItem}} props
+ */
 const SportLinkItem = ({ sportLinkItem }) => {
   return (
     <SportLinkItemRoot key={sportLinkItem.label}>
@@ -60,7 +70,9 @@ const SportItemLinksRoot = styled.ul`
   gap: 1rem;
 `;
 
-/** @type {React.FC<{sport: Sport}>} */
+/**
+ * @param {{sport: Sport}} props
+ */
 const SportItemLinks = ({ sport }) => {
   return (
     <SportItemLinksRoot>
@@ -110,7 +122,9 @@ const SportIconWrapper = styled.span`
   padding-top: 2px;
 `;
 
-/** @type {React.FC<{sport: Sport}>} */
+/**
+ * @param {{sport: Sport}} props
+ */
 const SportGridListItem = ({ sport }) => {
   const sportName = stringToClosestSportName(sport.sportName);
   return (
@@ -141,7 +155,9 @@ const FooterRoot = styled.div`
   border-top: 1px solid var(--divider-color);
 `;
 
-/** @type {React.FC} */
+/**
+ * @returns {React.ReactElement}
+ */
 const Footer = () => {
   return (
     <>
@@ -173,7 +189,6 @@ const SportGridList = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-
   gap: 2rem;
 
   /* Horizontal Divider */
@@ -223,7 +238,10 @@ const propTypesSchema = {
   sports: PropTypes.arrayOf(sportSchema.isRequired).isRequired,
 };
 
-/** @typedef {import('prop-types').InferProps<typeof propTypesSchema>} Props */
+/**
+ * @typedef {Object} Props
+ * @property {Sport[]} sports
+ */
 
 const COLUMN_HEIGHT = 5;
 
@@ -240,7 +258,8 @@ const chunk = (array, chunkSize) => {
 };
 
 /**
- * @type {React.FC<Props>}
+ * @param {Props} props
+ * @returns {React.ReactElement}
  * @link https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-105787&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width
  * @link https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-105743&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width
  * @link https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-108410&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width

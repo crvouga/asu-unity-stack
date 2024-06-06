@@ -32,7 +32,7 @@ const sportLinks = [
 ];
 
 /** @type {HeaderContentSportLinks.Props} */
-const headerContentSportLinksProps = {
+const mensSports = {
   sports: [
     {
       sportName: "Baseball",
@@ -89,9 +89,7 @@ const navTree = [
     text: "Men's Sports",
     href: "#",
     renderContent: () => (
-      <HeaderContentSportLinks.HeaderContentSportLinks
-        {...headerContentSportLinksProps}
-      />
+      <HeaderContentSportLinks.HeaderContentSportLinks {...mensSports} />
     ),
   },
   {

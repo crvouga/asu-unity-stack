@@ -2,9 +2,10 @@
 import PropTypes from "prop-types";
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
-import { Button } from "../../../../component-header/src/components/Button";
-import { SportIcon } from "../SportIcon";
+
+import { Button } from "../../../../components-core/src/components/Button";
 import { stringToClosestSportName } from "../sport-name";
+import { SportIcon } from "../SportIcon";
 
 const sportLinkItemSchema = PropTypes.shape({
   label: PropTypes.string.isRequired,
@@ -120,7 +121,7 @@ const SportGridListItem = ({ sport }) => {
         </SportIconWrapper>
         {sport.sportName}
       </SportNameLink>
-      
+
       <SportLinksRoot>
         <SportIconWrapper />
         <SportItemLinks sport={sport} />
@@ -145,7 +146,12 @@ const Footer = () => {
   return (
     <>
       <FooterRoot>
-        <Button text="Buy tickets" href="" color="gold" />
+        <Button
+          icon={["fa-tickets"]}
+          href=""
+          color="gold"
+          label="Get tickets"
+        />
       </FooterRoot>
       <FooterTicketMaster />
     </>
@@ -167,7 +173,7 @@ const SportGridList = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  
+
   gap: 2rem;
 
   /* Horizontal Divider */
@@ -222,6 +228,18 @@ const propTypesSchema = {
 const COLUMN_HEIGHT = 5;
 
 /**
+ * @template T
+ * @param {T[]} array
+ * @param {number} chunkSize
+ * @returns {T[][]}
+ */
+const chunk = (array, chunkSize) => {
+  return Array.from({ length: Math.ceil(array.length / chunkSize) }, (_, i) =>
+    array.slice(i * chunkSize, i * chunkSize + chunkSize)
+  );
+};
+
+/**
  * @type {React.FC<Props>}
  * @link https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-105787&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width
  * @link https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-105743&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width
@@ -234,8 +252,10 @@ export const HeaderContentSportLinks = ({ sports }) => {
     <Root>
       <Vars />
       <SportGridList>
-        {columns.map((column, index) => (
-          <SportGridListColumn key={index}>
+        {columns.map(column => (
+          <SportGridListColumn
+            key={column.map(sport => sport.sportName).join("")}
+          >
             {column.map(sport => (
               <SportGridListItem key={sport.sportName} sport={sport} />
             ))}
@@ -247,15 +267,3 @@ export const HeaderContentSportLinks = ({ sports }) => {
   );
 };
 HeaderContentSportLinks.propTypes = propTypesSchema;
-
-/**
- * @template T
- * @param {T[]} array
- * @param {number} chunkSize
- * @returns {T[][]}
- */
-const chunk = (array, chunkSize) => {
-  return Array.from({ length: Math.ceil(array.length / chunkSize) }, (_, i) =>
-    array.slice(i * chunkSize, i * chunkSize + chunkSize)
-  );
-};

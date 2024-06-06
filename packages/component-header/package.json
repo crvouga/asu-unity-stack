@@ -87,5 +87,8 @@
   },
   "volta": {
     "extends": "../../package.json"
+  },
+  "dependencies": {
+    "@floating-ui/react": "^0.26.16"
   }
 }

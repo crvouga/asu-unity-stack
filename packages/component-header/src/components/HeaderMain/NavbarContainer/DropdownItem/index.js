@@ -1,6 +1,6 @@
 // @ts-check
 import PropTypes from "prop-types";
-import React, { useEffect, useRef, useState } from "react";
+import React, { forwardRef, useEffect, useRef, useState } from "react";
 
 import { idGenerator, trackGAEvent } from "../../../../../../../shared";
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -17,23 +17,23 @@ import { DropdownWrapper } from "./index.styles";
  *  renderContent?: Function
  *  buttons: Button[]
  *  classes?: string,
+ *  listId?: string
+ *  style?: object
  * }} DropdownItemProps
  */
 
 /**
- *
- * @param {DropdownItemProps} props
- * @returns {JSX.Element}
+ * @type {React.ForwardRefExoticComponent<DropdownItemProps>}
  */
-
-const DropdownItem = ({
+const DropdownItem = forwardRef(({
   dropdownName,
   items,
   renderContent,
   buttons,
   classes,
   listId,
-}) => {
+  style
+}, ref) => {
   const { breakpoint } = useAppContext();
   const isMega = items?.length > 2;
   const dropdownRef = useRef(null);
@@ -93,7 +93,9 @@ const DropdownItem = ({
 
   return (
     <DropdownWrapper
-      ref={dropdownRef}
+      // ref={dropdownRef}
+      style={style}
+      ref={ref}
       className={`${classes}${alignedRight ? " aligned-right" : ""}${
         isMega ? " mega" : ""
       }`}
@@ -137,7 +139,7 @@ const DropdownItem = ({
       )}
     </DropdownWrapper>
   );
-};
+});
 
 DropdownItem.propTypes = {
   dropdownName: PropTypes.string,
@@ -145,6 +147,7 @@ DropdownItem.propTypes = {
   buttons: PropTypes.arrayOf(PropTypes.shape(ButtonPropTypes)),
   renderContent: PropTypes.func,
   classes: PropTypes.string,
+  style: PropTypes.object,
   listId: PropTypes.string,
 };
 

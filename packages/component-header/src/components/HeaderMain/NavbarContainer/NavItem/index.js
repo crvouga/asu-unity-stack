@@ -1,9 +1,9 @@
 // @ts-check
+import { autoUpdate, shift, useFloating } from "@floating-ui/react";
 import { faChevronDown, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import React, { useEffect, useMemo, useRef } from "react";
-
 import { trackGAEvent } from "../../../../../../../shared";
 import { useAppContext } from "../../../../core/context/app-context";
 import { useIsMobile } from "../../../../core/hooks/isMobile";
@@ -53,6 +53,17 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
   const opened = link.id === itemOpened;
   const { breakpoint, expandOnHover, title } = useAppContext();
   const isMobile = useIsMobile(breakpoint);
+  const {refs, floatingStyles} = useFloating({
+    strategy: 'fixed',
+    // placement: 'bottom-start',
+    whileElementsMounted: autoUpdate,
+    middleware: [shift({
+
+      crossAxis: false,
+      mainAxis: true,
+    })]
+  });
+
 
   useEffect(() => {
     const handleClickOutside = event => {
@@ -135,6 +146,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
     >
       {/* @ts-ignore */}
       <a
+        ref={refs.setReference}
         onClick={handleClick}
         href={link.href}
         aria-expanded={() => "true"} // eslint-disable-line no-nested-ternary
@@ -164,6 +176,8 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
           dropdownName={link.text}
           classes={`header-dropdown-${link.id} ${opened ? "opened" : ""}`}
           listId={`dropdown-${link.id}`}
+          ref={refs.setFloating}
+          style={floatingStyles}
         />
       )}
 
@@ -177,6 +191,8 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
           dropdownName={link.text}
           classes={`header-dropdown-${link.id} ${opened ? "opened" : ""}`}
           listId={`dropdown-${link.id}`}
+          style={floatingStyles}
+          ref={refs.setFloating}
         />
       )}
     </NavItemWrapper>

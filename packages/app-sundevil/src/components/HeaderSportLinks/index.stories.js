@@ -135,7 +135,7 @@ const womansSports = {
     {
       sportName: "Water Polo",
       sportLinks,
-    }
+    },
   ],
 };
 

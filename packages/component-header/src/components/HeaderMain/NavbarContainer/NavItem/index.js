@@ -4,6 +4,7 @@ import { faChevronDown, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import React, { useEffect, useMemo, useRef } from "react";
+
 import { trackGAEvent } from "../../../../../../../shared";
 import { useAppContext } from "../../../../core/context/app-context";
 import { useIsMobile } from "../../../../core/hooks/isMobile";
@@ -53,17 +54,17 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
   const opened = link.id === itemOpened;
   const { breakpoint, expandOnHover, title } = useAppContext();
   const isMobile = useIsMobile(breakpoint);
-  const {refs, floatingStyles} = useFloating({
-    strategy: 'fixed',
+  const { refs, floatingStyles } = useFloating({
+    strategy: "fixed",
     // placement: 'bottom-start',
     whileElementsMounted: autoUpdate,
-    middleware: [shift({
-
-      crossAxis: false,
-      mainAxis: true,
-    })]
+    middleware: [
+      shift({
+        crossAxis: false,
+        mainAxis: true,
+      }),
+    ],
   });
-
 
   useEffect(() => {
     const handleClickOutside = event => {

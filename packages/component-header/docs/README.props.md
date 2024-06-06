@@ -1,9 +1,14 @@
+## Constants
+
+<dl>
+<dt><a href="#DropdownItem">DropdownItem</a> : <code>React.ForwardRefExoticComponent.&lt;DropdownItemProps&gt;</code></dt>
+<dd></dd>
+</dl>
+
 ## Components
 
 <dl>
 <dt><a href="#Button">Button(props)</a> ⇒ <code>JSX.Element</code></dt>
-<dd></dd>
-<dt><a href="#DropdownItem">DropdownItem(props)</a> ⇒ <code>JSX.Element</code></dt>
 <dd></dd>
 <dt><a href="#NavLinkIcon">NavLinkIcon(props)</a> ⇒ <code>JSX.Element</code></dt>
 <dd></dd>
@@ -24,6 +29,10 @@
 <dd></dd>
 </dl>
 
+<a name="DropdownItem"></a>
+
+## DropdownItem : <code>React.ForwardRefExoticComponent.&lt;DropdownItemProps&gt;</code>
+**Kind**: global constant  
 <a name="Button"></a>
 
 ## Button(props) ⇒ <code>JSX.Element</code>
@@ -32,15 +41,6 @@
 | Param | Type |
 | --- | --- |
 | props | <code>ButtonProps</code> | 
-
-<a name="DropdownItem"></a>
-
-## DropdownItem(props) ⇒ <code>JSX.Element</code>
-**Kind**: global function  
-
-| Param | Type |
-| --- | --- |
-| props | <code>DropdownItemProps</code> | 
 
 <a name="NavLinkIcon"></a>
 
@@ -104,6 +104,7 @@
 | [selected] | <code>boolean</code> | 
 | [items] | <code>Array.&lt;object&gt;</code> | 
 | [renderContent] | <code>function</code> | 
+| [isMega] | <code>boolean</code> | 
 | [buttons] | [<code>Array.&lt;Button&gt;</code>](#Button) | 
 | [class] | <code>string</code> | 
 | [onClick] | <code>function</code> | 

@@ -167,6 +167,7 @@ const FooterRoot = styled.div`
   align-items: center;
   padding: 1rem 2rem;
   border-top: 1px solid var(--divider-color);
+  width: 100%;
 `;
 
 /**
@@ -210,8 +211,14 @@ const SportGridList = styled.div`
   padding: 2rem 0rem;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 2rem;
+  max-width: 100%;
+  overflow: hidden;
+
+  @media (max-width: 1222px) {
+    flex-wrap: wrap;
+  }
 
   /* Horizontal Divider */
   & > * + * {
@@ -254,7 +261,15 @@ const Vars = createGlobalStyle`
   }
 `;
 
-const Root = styled.div``;
+const Root = styled.div`
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+`;
 
 const propTypesSchema = {
   sports: PropTypes.arrayOf(sportSchema.isRequired).isRequired,

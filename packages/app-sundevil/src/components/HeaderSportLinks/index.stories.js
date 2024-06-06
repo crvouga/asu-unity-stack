@@ -77,6 +77,68 @@ const mensSports = {
   ],
 };
 
+/** @type {HeaderContentSportLinks.Props} */
+const womansSports = {
+  sports: [
+    {
+      sportName: "W. Basketball",
+      sportLinks,
+    },
+    {
+      sportName: "Beach Volleyball",
+      sportLinks,
+    },
+    {
+      sportName: "W. Cross Country",
+      sportLinks,
+    },
+    {
+      sportName: "W. Golf",
+      sportLinks,
+    },
+    {
+      sportName: "Gymnastics",
+      sportLinks,
+    },
+    {
+      sportName: "Lacrosse",
+      sportLinks,
+    },
+    {
+      sportName: "W. Soccer",
+      sportLinks,
+    },
+    {
+      sportLinks,
+      sportName: "Softball",
+    },
+    {
+      sportName: "W. Swimming and Diving",
+      sportLinks,
+    },
+    {
+      sportName: "W. Tennis",
+      sportLinks,
+    },
+    {
+      sportName: "W. Track and Field",
+      sportLinks,
+    },
+    {
+      sportName: "Triathlon",
+      sportLinks,
+    },
+    {
+      sportName: "Volleyball",
+      sportLinks,
+    },
+    {
+      sportName: "Water Polo",
+      sportLinks,
+    }
+  ],
+};
+
 const navTree = [
   {
     href: "/",
@@ -90,6 +152,14 @@ const navTree = [
     href: "#",
     renderContent: () => (
       <HeaderContentSportLinks.HeaderContentSportLinks {...mensSports} />
+    ),
+  },
+  {
+    text: "Woman's Sports",
+    href: "#",
+    isMega: false,
+    renderContent: () => (
+      <HeaderContentSportLinks.HeaderContentSportLinks {...womansSports} />
     ),
   },
   {

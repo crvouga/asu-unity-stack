@@ -56,6 +56,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
 
   useEffect(() => {
     const handleClickOutside = event => {
+      // @ts-ignore
       if (opened && !clickRef?.current?.contains(event.target)) {
         setItemOpened();
       }
@@ -156,6 +157,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
         <DropdownItem
           items={[]}
           renderContent={link.renderContent}
+          isMega={link.isMega}
           // @ts-ignore
           buttons={link.buttons}
           // @ts-ignore
@@ -168,6 +170,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
       {link.items && (
         <DropdownItem
           items={link.items}
+          isMega={link.isMega}
           // @ts-ignore
           buttons={link.buttons}
           // @ts-ignore

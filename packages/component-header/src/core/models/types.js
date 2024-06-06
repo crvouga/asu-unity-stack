@@ -30,6 +30,7 @@
  * @property {boolean} [selected]
  * @property {object[]} [items]
  * @property {function} [renderContent]
+ * @property {boolean} [isMega]
  * @property {Button[]} [buttons]
  * @property {string} [class]
  * @property {function} [onClick]

@@ -148,17 +148,13 @@ const navTree = [
   {
     text: "Men's Sports",
     href: "#",
-    renderContent: () => (
-      <HeaderContentSportLinks.HeaderContentSportLinks {...mensSports} />
-    ),
+    renderContent: () => React.createElement(HeaderContentSportLinks.HeaderContentSportLinks, mensSports)
   },
   {
     text: "Woman's Sports",
     href: "#",
     isMega: false,
-    renderContent: () => (
-      <HeaderContentSportLinks.HeaderContentSportLinks {...womansSports} />
-    ),
+    renderContent: () => React.createElement(HeaderContentSportLinks.HeaderContentSportLinks, womansSports)
   },
   {
     text: "Tickets",

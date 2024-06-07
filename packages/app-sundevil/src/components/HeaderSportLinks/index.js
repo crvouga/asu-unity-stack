@@ -7,6 +7,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import { Button } from "../../../../components-core/src";
 import { SportIcon } from "../SportIcon";
 import { stringToClosestSportName } from "../sport-name";
+import { TicketmasterLogo } from "./TicketmasterLogo";
 
 const sportLinkItemSchema = PropTypes.shape({
   label: PropTypes.string.isRequired,
@@ -187,7 +188,9 @@ const Footer = () => {
           )}
         />
       </FooterRoot>
-      <FooterTicketMaster>ticketmaster</FooterTicketMaster>
+      <FooterTicketMaster>
+        <TicketmasterLogo />
+      </FooterTicketMaster>
     </>
   );
 };

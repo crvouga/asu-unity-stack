@@ -36,6 +36,12 @@
  * @property {function} [onClick]
  */
 
+
+/**
+ * @typedef {object} UniversalNavBarProps
+ * @property {function} [renderStart]
+ */
+
 /**
  * @typedef {object} HeaderProps
  * @property {boolean} isPartner
@@ -61,6 +67,7 @@
  * @property {string} searchUrl
  * @property {string} site
  * @property {string} renderDiv - Can be either "true" or "false".
+ * @property {UniversalNavBarProps} [universalNavbar]
  */
 
 export const JSDOC = "jsdoc";

@@ -2,6 +2,7 @@
 import React from "react";
 import { ASUHeader } from "../../../../component-header/src";
 import * as HeaderContentSportLinks from "../HeaderSportLinks/index";
+import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
 
 // https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-105787&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width
 
@@ -35,7 +36,7 @@ const mensSports = {
     {
       sportName: "Baseball",
       sportLinks,
-      faClassName: 'fas fa-check-circle'
+      faClassName: "fas fa-check-circle",
     },
     {
       sportName: "M. Basketball",
@@ -443,9 +444,10 @@ const headerProps = {
     alt: "Arizona State University",
     title: "Arizona State University",
     // src: "https://live-asuocms.ws.asu.edu/sites/default/files/asu-vertical-logo.png",
-    src:  "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/asu.sidearmsports.com/images/responsive/primary_logo.svg",
+    src: "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/asu.sidearmsports.com/images/responsive/primary_logo.svg",
     // mobileSrc: "https://live-asuocms.ws.asu.edu/sites/default/files/asu-vertical-logo.png",
-    mobileSrc:  "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/asu.sidearmsports.com/images/responsive/primary_logo.svg",
+    mobileSrc:
+      "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/asu.sidearmsports.com/images/responsive/primary_logo.svg",
     brandLink: "/",
   },
   // https://upload.wikimedia.org/wikipedia/commons/1/1b/Adidas_2022_logo.svg
@@ -455,9 +457,14 @@ const headerProps = {
     alt: "Sponsor Logo",
     title: "Sponsor",
     src: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Adidas_2022_logo.svg",
-    mobileSrc: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Adidas_2022_logo.svg",
+    mobileSrc:
+      "https://upload.wikimedia.org/wikipedia/commons/1/1b/Adidas_2022_logo.svg",
     brandLink: "/",
-  }
+  },
+  universalNavbar: {
+    renderStart: () =>
+      React.createElement(OfficialAthleticsSite, { href: "#" }),
+  },
 };
 
 export default {

@@ -44,6 +44,10 @@ const NavTreePropTypes = PropTypes.shape({
   class: PropTypes.string,
 });
 
+const UniversalNavbarPropTypes = PropTypes.shape({
+  renderStart: PropTypes.func,
+})
+
 const HeaderPropTypes = {
   isPartner: PropTypes.bool,
   navTree: PropTypes.arrayOf(NavTreePropTypes),
@@ -69,6 +73,7 @@ const HeaderPropTypes = {
   searchUrl: PropTypes.string,
   site: PropTypes.string,
   renderDiv: PropTypes.oneOf(["true", "false"]),
+  universalNavbar: UniversalNavbarPropTypes,
 };
 
 export {

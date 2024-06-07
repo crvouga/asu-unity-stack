@@ -20,7 +20,15 @@ const Header = ({title, subtitle, tabs, presentedBy, social}) => {
     <div className="container">
       <div className="row">
         <div className="col-md-8 col-sm-12">
-          <h2>{title}</h2>
+          <div className={"d-flex flex-row align-items-center justify-content-between gap-2"}>
+            <h2>{title}</h2>
+            <div className="mt-auto mr-auto d-block d-sm-block d-md-none">
+              <div className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-0">
+                <h5>Presented by:</h5>
+                <Logo src={presentedBy.logo} alt={presentedBy.name}/>
+              </div>
+            </div>
+          </div>
           <p
             style={{
               display: `${subtitle && subtitle !== "" ? "block" : "none"}`,
@@ -29,7 +37,7 @@ const Header = ({title, subtitle, tabs, presentedBy, social}) => {
             {subtitle}
           </p>
           {
-            tabs && <nav className="nav nav-pills">
+            tabs && tabs.length > 0 && <nav className="nav nav-pills">
               {
                 tabs.map((tab, index) => (
                   <a key={index} className={`text-sm-center nav-link ${tab.active ? "active" : ""}`}
@@ -39,7 +47,7 @@ const Header = ({title, subtitle, tabs, presentedBy, social}) => {
             </nav>
           }
           {
-            social && <div className="col-md-6" id="social-media">
+            social && social.length > 0 && <div className="col-md-6" id="social-media">
               <h5>Join the Conversation:</h5>
               <nav aria-label="Social Media">
                 {social.map((socialItem, index) => (
@@ -54,7 +62,7 @@ const Header = ({title, subtitle, tabs, presentedBy, social}) => {
             </div>
           }
         </div>
-        <div className="col-md-4 mt-auto">
+        <div className="col-md-4 col-sm-0 mt-auto d-none d-sm-none d-md-block">
           <div className="d-flex flex-row align-items-center gap-2">
             <h5>Presented by:</h5>
             <Logo src={presentedBy.logo} alt={presentedBy.name}/>

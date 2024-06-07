@@ -3,7 +3,7 @@ import React from "react";
 
 import { Header } from "../../core/components/Header";
 import { SportsTable } from "../../core/components/Table";
-import { SportsNavigation } from "../../core/components/Tabs";
+import { SportsNavigation } from "../../core/components/Navigation";
 
 const GameList = ({ ...props }) => {
   return (

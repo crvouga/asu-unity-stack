@@ -260,6 +260,7 @@
 | [element] | <code>any</code> | 
 | [href] | <code>string</code> | 
 | [icon] | <code>Array.&lt;string&gt;</code> | 
+| [renderIcon] | <code>function</code> | 
 | [innerRef] | <code>any</code> | 
 | [classes] | <code>Array.&lt;string&gt;</code> | 
 | [onClick] | <code>function</code> | 

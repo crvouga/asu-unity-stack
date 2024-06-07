@@ -46,7 +46,7 @@ const NavTreePropTypes = PropTypes.shape({
 
 const UniversalNavbarPropTypes = PropTypes.shape({
   renderStart: PropTypes.func,
-})
+});
 
 const HeaderPropTypes = {
   isPartner: PropTypes.bool,
@@ -82,6 +82,5 @@ export {
   LoginPropTypes,
   LogoPropTypes,
   NavTreePropTypes,
-  TitlePropTypes
+  TitlePropTypes,
 };
-

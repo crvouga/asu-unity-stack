@@ -51,7 +51,7 @@ const UniversalNavbar = () => {
 
               {universalNavbar?.renderStart?.()}
 
-              <div className="links-whitespace"></div>
+              <div className="links-whitespace" />
 
               <a
                 className="nav-link"

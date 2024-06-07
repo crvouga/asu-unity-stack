@@ -3,6 +3,7 @@
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import React from "react";
+
 import { trackGAEvent } from "../../../../../shared";
 
 const gaDefaultObject = {
@@ -153,6 +154,10 @@ Button.propTypes = {
    Link target type
    */
   target: PropTypes.oneOf(["_blank", "_self", "_top", "_parent"]),
+  /**
+   * Function to render an icon
+   */
+  renderIcon: PropTypes.func,
 };
 
 Button.defaultProps = {

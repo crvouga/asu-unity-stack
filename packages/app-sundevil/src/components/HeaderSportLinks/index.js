@@ -4,9 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
+
 import { Button } from "../../../../components-core/src";
-import { SportIcon } from "../SportIcon";
 import { stringToClosestSportName } from "../sport-name";
+import { SportIcon } from "../SportIcon";
 import { TicketmasterLogo } from "./TicketmasterLogo";
 
 const sportLinkItemSchema = PropTypes.shape({
@@ -131,7 +132,7 @@ const Icon = styled.i`
   width: 16px;
   height: 16px;
   color: var(--text-color-primary);
-`
+`;
 
 /**
  * @param {{sport: Sport}} props

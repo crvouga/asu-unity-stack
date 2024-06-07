@@ -178,7 +178,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
           classes={`header-dropdown-${link.id} ${opened ? "opened" : ""}`}
           listId={`dropdown-${link.id}`}
           ref={refs.setFloating}
-          style={isMobile ? {}: floatingStyles}
+          style={isMobile ? {} : floatingStyles}
         />
       )}
 
@@ -192,7 +192,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
           dropdownName={link.text}
           classes={`header-dropdown-${link.id} ${opened ? "opened" : ""}`}
           listId={`dropdown-${link.id}`}
-          style={isMobile ? {}: floatingStyles}
+          style={isMobile ? {} : floatingStyles}
           ref={refs.setFloating}
         />
       )}

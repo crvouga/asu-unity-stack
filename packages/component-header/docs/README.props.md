@@ -25,6 +25,8 @@
 <dd></dd>
 <dt><a href="#NavTreeProps">NavTreeProps</a> : <code>object</code></dt>
 <dd></dd>
+<dt><a href="#UniversalNavBarProps">UniversalNavBarProps</a> : <code>object</code></dt>
+<dd></dd>
 <dt><a href="#HeaderProps">HeaderProps</a> : <code>object</code></dt>
 <dd></dd>
 </dl>
@@ -109,6 +111,16 @@
 | [class] | <code>string</code> | 
 | [onClick] | <code>function</code> | 
 
+<a name="UniversalNavBarProps"></a>
+
+## UniversalNavBarProps : <code>object</code>
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type |
+| --- | --- |
+| [renderStart] | <code>function</code> | 
+
 <a name="HeaderProps"></a>
 
 ## HeaderProps : <code>object</code>
@@ -125,6 +137,7 @@
 | [parentOrgUrl] | <code>string</code> |  |
 | partnerLogo | [<code>Logo</code>](#Logo) |  |
 | logo | [<code>Logo</code>](#Logo) |  |
+| sponsorLogo | [<code>Logo</code>](#Logo) |  |
 | loggedIn | <code>boolean</code> |  |
 | userName | <code>string</code> |  |
 | loginLink | <code>string</code> |  |
@@ -139,4 +152,5 @@
 | searchUrl | <code>string</code> |  |
 | site | <code>string</code> |  |
 | renderDiv | <code>string</code> | Can be either "true" or "false". |
+| [universalNavbar] | [<code>UniversalNavBarProps</code>](#UniversalNavBarProps) |  |
 

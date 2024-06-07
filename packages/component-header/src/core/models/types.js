@@ -36,7 +36,6 @@
  * @property {function} [onClick]
  */
 
-
 /**
  * @typedef {object} UniversalNavBarProps
  * @property {function} [renderStart]

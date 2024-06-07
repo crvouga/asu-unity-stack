@@ -12,7 +12,7 @@ const horizLogo = `${currentScriptPath}/assets/img/arizona-state-university-logo
 const LogoSponsor = () => {
   const { sponsorLogo } = useAppContext();
 
-  if(!sponsorLogo) {
+  if (!sponsorLogo) {
     return null;
   }
 
@@ -25,7 +25,7 @@ const LogoSponsor = () => {
     >
       <img
         className="vert"
-        style={{ transform: "scale(0.55)", }}
+        style={{ transform: "scale(0.55)" }}
         src={sponsorLogo?.src ?? vertLogo}
         alt={sponsorLogo?.alt ?? "Arizona State University"}
         title={sponsorLogo?.title ?? "ASU home page"}

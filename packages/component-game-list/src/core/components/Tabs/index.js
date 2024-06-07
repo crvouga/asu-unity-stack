@@ -11,33 +11,24 @@ import {
   PresentedBy,
 } from "./index.styles";
 
-const SportsNavigation = ({ sports }) => {
+const SportsNavigation = ({sports}) => {
   sports.sort((a, b) => a.position - b.position);
   return (
-    <NavContainer>
-      <SportsList>
+    <div className="container mt-4">
+      <nav className="nav nav-pills nav-fill mr-auto flex-column d-md-flex flex-md-row" aria-label="Sports Navigation">
         {sports
           .filter(sport => !sport.more)
           .map((sport, index) => (
-            <SportItem key={index} className={sport.active ? "active" : ""}>
-              {sport.icon}
-              <span>{sport.name}</span>
-            </SportItem>
+            <a className={`nav-item nav-link ${sport.active ? "active" : ""}`} href="#">
+                        <span
+                          title={sport.name}
+                          className={sport.icon}
+                        ></span>
+              <div>{sport.name}</div>
+            </a>
           ))}
-        <MoreDropdown>
-          More
-          <MoreMenu>
-            {sports
-              .filter(sport => sport.more)
-              .map((sport, index) => (
-                <MoreMenuItem key={index}>
-                  <span>{sport.name}</span>
-                </MoreMenuItem>
-              ))}
-          </MoreMenu>
-        </MoreDropdown>
-      </SportsList>
-    </NavContainer>
+      </nav>
+    </div>
   );
 };
 
@@ -45,12 +36,11 @@ SportsNavigation.propTypes = {
   sports: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      icon: PropTypes.element.isRequired,
+      icon: PropTypes.string.isRequired,
       active: PropTypes.bool,
-      position: PropTypes.number,
-      more: PropTypes.bool,
+      position: PropTypes.number
     })
   ).isRequired,
 };
 
-export { SportsNavigation };
+export {SportsNavigation};

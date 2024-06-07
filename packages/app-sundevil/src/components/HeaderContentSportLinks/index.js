@@ -126,6 +126,7 @@ const SportIconWrapper = styled.span`
   width: 28px;
   height: 100%;
   padding-top: 4px;
+  color: inherit !important;
 `;
 
 const Icon = styled.i`
@@ -144,7 +145,7 @@ const SportGridListItem = ({ sport }) => {
       <SportNameLink>
         <SportIconWrapper>
           {sport.faClassName ? (
-            <Icon className={sport.faClassName} />
+            <Icon className={sport.faClassName} style={{color: "inherit"}} />
           ) : (
             <SportIcon sportName={sportName} />
           )}

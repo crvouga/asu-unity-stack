@@ -46,6 +46,7 @@
  * @property {string} [parentOrgUrl]
  * @property {Logo} partnerLogo
  * @property {Logo} logo
+ * @property {Logo} sponsorLogo
  * @property {boolean} loggedIn
  * @property {string} userName
  * @property {string} loginLink

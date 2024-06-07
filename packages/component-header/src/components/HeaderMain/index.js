@@ -7,11 +7,12 @@ import { trackGAEvent } from "../../../../../shared";
 import { useAppContext } from "../../core/context/app-context";
 import { useIsMobile } from "../../core/hooks/isMobile";
 import { UniversalNavbar } from "../UniversalNavbar";
-import { HeaderMainWrapper } from "./index.styles";
 import { Logo } from "./Logo";
+import { LogoSponsor } from "./LogoSponsor";
 import { NavbarContainer } from "./NavbarContainer";
 import { Partner } from "./Partner";
 import { Title } from "./Title";
+import { HeaderMainWrapper } from "./index.styles";
 
 const HeaderMain = () => {
   const { breakpoint, isPartner, hasNavigation } = useAppContext();
@@ -67,6 +68,7 @@ const HeaderMain = () => {
                 {isPartner ? <Partner /> : <Title />}
                 {!isMobile && <NavbarContainer />}
               </div>
+              <LogoSponsor />
               {mobileMenuOpen && isMobile && <NavbarContainer />}
             </div>
           </div>

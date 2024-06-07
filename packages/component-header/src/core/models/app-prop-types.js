@@ -49,6 +49,7 @@ const HeaderPropTypes = {
   navTree: PropTypes.arrayOf(NavTreePropTypes),
   partnerLogo: PropTypes.shape(LogoPropTypes),
   logo: PropTypes.shape(LogoPropTypes),
+  sponsorLogo: PropTypes.shape(LogoPropTypes),
   title: PropTypes.string,
   parentOrg: TitlePropTypes.parentOrg,
   parentOrgUrl: TitlePropTypes.parentOrgUrl,
@@ -76,5 +77,6 @@ export {
   LoginPropTypes,
   LogoPropTypes,
   NavTreePropTypes,
-  TitlePropTypes,
+  TitlePropTypes
 };
+

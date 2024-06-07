@@ -428,6 +428,7 @@ const navTree = [
   },
 ];
 
+/** @type {import("../../../../component-header/src/header").HeaderProps} */
 const headerProps = {
   loggedIn: false,
   logoutLink: "/caslogout",
@@ -447,8 +448,16 @@ const headerProps = {
     mobileSrc:  "https://dxbhsrqyrr690.cloudfront.net/sidearm.nextgen.sites/asu.sidearmsports.com/images/responsive/primary_logo.svg",
     brandLink: "/",
   },
+  // https://upload.wikimedia.org/wikipedia/commons/1/1b/Adidas_2022_logo.svg
   searchUrl: "https://search.asu.edu/search",
   site: "subdomain",
+  sponsorLogo: {
+    alt: "Sponsor Logo",
+    title: "Sponsor",
+    src: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Adidas_2022_logo.svg",
+    mobileSrc: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Adidas_2022_logo.svg",
+    brandLink: "/",
+  }
 };
 
 export default {

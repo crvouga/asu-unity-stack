@@ -306,7 +306,7 @@ const chunk = (array, chunkSize) => {
  * @link https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-108410&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width
  * @link https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-108411&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width
  */
-export const HeaderContentSportLinks = ({ sports }) => {
+const HeaderContentSportLinks = ({ sports }) => {
   const columns = chunk(sports, COLUMN_HEIGHT);
   return (
     <Root>
@@ -327,3 +327,5 @@ export const HeaderContentSportLinks = ({ sports }) => {
   );
 };
 HeaderContentSportLinks.propTypes = propTypesSchema;
+
+export { HeaderContentSportLinks };

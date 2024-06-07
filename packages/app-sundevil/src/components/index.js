@@ -1,4 +1,4 @@
 // ts-check
-export * from "./HeaderSportLinks";
+export * from "./HeaderContentSportLinks";
 export * from "./MyComponent";
 export * from "./OfficialAthleticsSite";

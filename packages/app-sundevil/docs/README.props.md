@@ -1,8 +1,6 @@
 ## Constants
 
 <dl>
-<dt><a href="#HeaderContentSportLinks">HeaderContentSportLinks</a> ⇒ <code>React.ReactElement</code></dt>
-<dd></dd>
 <dt><a href="#SportIcon">SportIcon</a> : <code>React.FC.&lt;SportIconProps&gt;</code></dt>
 <dd></dd>
 </dl>
@@ -19,6 +17,8 @@
 <dt><a href="#Footer">Footer()</a> ⇒ <code>React.ReactElement</code></dt>
 <dd></dd>
 <dt><a href="#chunk">chunk(array, chunkSize)</a> ⇒ <code>Array.&lt;Array.&lt;T&gt;&gt;</code></dt>
+<dd></dd>
+<dt><a href="#HeaderContentSportLinks">HeaderContentSportLinks(props)</a> ⇒ <code>React.ReactElement</code></dt>
 <dd></dd>
 </dl>
 
@@ -91,19 +91,6 @@
 <dd></dd>
 </dl>
 
-<a name="HeaderContentSportLinks"></a>
-
-## HeaderContentSportLinks ⇒ <code>React.ReactElement</code>
-**Kind**: global constant  
-**Link**: https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-105787&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width  
-**Link**: https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-105743&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width  
-**Link**: https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-108410&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width  
-**Link**: https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-108411&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width  
-
-| Param | Type |
-| --- | --- |
-| props | [<code>Props</code>](#Props) | 
-
 <a name="SportIcon"></a>
 
 ## SportIcon : <code>React.FC.&lt;SportIconProps&gt;</code>
@@ -148,6 +135,19 @@
 | --- | --- |
 | array | <code>Array.&lt;T&gt;</code> | 
 | chunkSize | <code>number</code> | 
+
+<a name="HeaderContentSportLinks"></a>
+
+## HeaderContentSportLinks(props) ⇒ <code>React.ReactElement</code>
+**Kind**: global function  
+**Link**: https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-105787&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width  
+**Link**: https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-105743&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width  
+**Link**: https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-108410&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width  
+**Link**: https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-108411&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width  
+
+| Param | Type |
+| --- | --- |
+| props | [<code>Props</code>](#Props) | 
 
 <a name="ArticleProps"></a>
 

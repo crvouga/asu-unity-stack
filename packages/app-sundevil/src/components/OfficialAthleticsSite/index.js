@@ -9,7 +9,7 @@ const Root = styled.p`
   font-weight: bold;
 `;
 
-export const OfficialAthleticsSite = ({ href }) => {
+const OfficialAthleticsSite = ({ href }) => {
   return (
     <Root>
       The official athletics site of <a href={href}>Arizona State University</a>
@@ -19,3 +19,4 @@ export const OfficialAthleticsSite = ({ href }) => {
 OfficialAthleticsSite.propTypes = {
   href: PropTypes.string,
 };
+export { OfficialAthleticsSite };

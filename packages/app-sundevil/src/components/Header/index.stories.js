@@ -2,7 +2,7 @@
 import React from "react";
 
 import { ASUHeader } from "../../../../component-header/src";
-import * as HeaderContentSportLinks from "../HeaderSportLinks/index";
+import * as HeaderContentSportLinks from "../HeaderContentSportLinks/index";
 import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
 
 // https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-105787&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width

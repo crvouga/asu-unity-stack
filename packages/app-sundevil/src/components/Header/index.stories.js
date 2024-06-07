@@ -1,6 +1,5 @@
 // @ts-check
 import React from "react";
-
 import { ASUHeader } from "../../../../component-header/src";
 import * as HeaderContentSportLinks from "../HeaderSportLinks/index";
 
@@ -434,6 +433,7 @@ const headerProps = {
   logoutLink: "/caslogout",
   loginLink: "/cas",
   userName: "",
+  // @ts-ignore
   navTree,
   title: "Sun Devil Athletics",
   // parentOrg: "Ira A. Fulton Schools of Engineering",

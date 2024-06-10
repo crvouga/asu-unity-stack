@@ -24,8 +24,6 @@
 
     <!-- *************************************************************** -->
     <!-- include bundled scripts from packages -->
-    <script src="../../component-header/dist/vendor.umd.js"></script>
-    <script src="../../component-header/dist/asuHeader.umd.js"></script>
     <script src="../dist/vendor.umd.js"></script>
     <script src="../dist/sunDevil.umd.js"></script>
   </head>
@@ -503,7 +501,7 @@
         },
       };
 
-      AsuHeader.initGlobalHeader({
+      initSunDevilsHeader({
         targetSelector: "#header-container",
         props: headerProps,
       });

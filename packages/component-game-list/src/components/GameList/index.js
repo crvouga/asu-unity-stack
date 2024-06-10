@@ -2,8 +2,8 @@
 import React from "react";
 
 import { Header } from "../../core/components/Header";
-import { SportsTable } from "../../core/components/Table";
 import { SportsNavigation } from "../../core/components/Navigation";
+import { SportsTable } from "../../core/components/Table";
 
 const GameList = ({ ...props }) => {
   return (

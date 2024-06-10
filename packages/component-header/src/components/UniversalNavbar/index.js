@@ -3,6 +3,7 @@ import React from "react";
 
 import { trackGAEvent } from "../../../../../shared";
 import { useAppContext } from "../../core/context/app-context";
+import { useIsMobile } from "../../core/hooks/isMobile";
 import { Wrapper } from "./index.styles";
 import { Login } from "./Login";
 import { Search } from "./Search";
@@ -13,12 +14,15 @@ const DEFAUL_GA_EVENT = {
 
 const UniversalNavbar = () => {
   const { breakpoint, universalNavbar } = useAppContext();
+  const isMobile = useIsMobile(breakpoint);
+  const isDesktop = !isMobile;
 
   function getURL() {
     try {
       const URL = window.location.href;
       return URL;
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
       return "";
     }
@@ -49,9 +53,12 @@ const UniversalNavbar = () => {
                 Report an accessibility problem
               </a>
 
-              {universalNavbar?.renderStart?.()}
-
-              <div className="links-whitespace" />
+              {isDesktop && (
+                <>
+                  {universalNavbar?.renderStart?.({ isMobile, isDesktop })}
+                  <div className="links-whitespace" />
+                </>
+              )}
 
               <a
                 className="nav-link"

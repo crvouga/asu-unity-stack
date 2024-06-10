@@ -1,7 +1,8 @@
 // @ts-check
 import React from "react";
 
-import { ASUHeader } from "../../../../component-header/src";
+import { SunDevilsHeader } from ".";
+
 import * as HeaderContentSportLinks from "../HeaderContentSportLinks/index";
 import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
 
@@ -465,11 +466,14 @@ const headerProps = {
     renderStart: () =>
       React.createElement(OfficialAthleticsSite, { href: "#" }),
   },
+  mobile: {
+    variant: "minimal",
+  },
 };
 
 export default {
-  title: "Header/Header",
-  component: args => <ASUHeader {...{ ...args, ...headerProps }} />,
+  title: "Header/SunDevilsHeader",
+  component: args => <SunDevilsHeader {...{ ...args, ...headerProps }} />,
   parameters: {
     docs: {
       description: {
@@ -480,7 +484,7 @@ export default {
 };
 
 const Template = args => {
-  return <ASUHeader {...{ ...args, ...headerProps }} />;
+  return <SunDevilsHeader {...{ ...args, ...headerProps }} />;
 };
 
 export const Default = Template.bind({});

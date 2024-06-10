@@ -15,9 +15,10 @@ import { Partner } from "./Partner";
 import { Title } from "./Title";
 
 const HeaderMain = () => {
-  const { breakpoint, isPartner, hasNavigation } = useAppContext();
+  const { breakpoint, isPartner, hasNavigation, mobile } = useAppContext();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile(breakpoint);
+  const isDesktop = !isMobile;
 
   const handleChangeMenuVisibility = () => {
     setMobileMenuOpen(prevState => !prevState);
@@ -32,10 +33,9 @@ const HeaderMain = () => {
       text: "menu button tablet",
     });
   };
-
   return (
     <>
-      {!isMobile && <UniversalNavbar />}
+      {isDesktop && <UniversalNavbar />}
       {/* @ts-ignore */}
       <HeaderMainWrapper breakpoint={breakpoint}>
         <div className="container-xl">
@@ -60,17 +60,20 @@ const HeaderMain = () => {
                   alt=""
                 />
               </button>
-              <div
-                className={`${!isPartner ? "expand-title" : ""}${
-                  !hasNavigation ? " no-navigation" : ""
-                }`}
-              >
-                {isPartner ? <Partner /> : <Title />}
-                {!isMobile && <NavbarContainer />}
-              </div>
-              <LogoSponsor />
-              {mobileMenuOpen && isMobile && <NavbarContainer />}
+              {isDesktop && (
+                <div
+                  className={`${!isPartner ? "expand-title" : ""}${
+                    !hasNavigation ? " no-navigation" : ""
+                  }`}
+                >
+                  {isPartner && <Partner />}
+                  {!isPartner && <Title />}
+                  <NavbarContainer />
+                </div>
+              )}
+              {isDesktop && <LogoSponsor />}
             </div>
+            {isMobile && mobileMenuOpen && <NavbarContainer />}
           </div>
         </div>
       </HeaderMainWrapper>

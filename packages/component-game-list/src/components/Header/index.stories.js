@@ -39,5 +39,5 @@ Default.args = {
     { label: "Facebook", url: "https://www.facebook.com" },
     { label: "Twitter", url: "https://www.twitter.com" },
     { label: "Instagram", url: "https://www.instagram.com" },
-  ]
+  ],
 };

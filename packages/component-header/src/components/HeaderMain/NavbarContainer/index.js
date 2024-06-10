@@ -28,6 +28,7 @@ const NavbarContainer = () => {
         key={key}
         link={item}
         setItemOpened={() => handleSetItemOpened(index)}
+        // @ts-ignore
         itemOpened={itemOpened}
       />
     );

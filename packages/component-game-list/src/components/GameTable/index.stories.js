@@ -28,7 +28,7 @@ Default.args = {
         day: "12",
         month: "Mar",
       },
-      sport: {name: "Sport Name", icon: "fa fa-rocket"},
+      sport: { name: "Sport Name", icon: "fa fa-rocket" },
 
       homeTeam: {
         name: "Sun Devils",
@@ -46,7 +46,7 @@ Default.args = {
         day: "12",
         month: "Mar",
       },
-      sport: {name: "Sport Name", icon: "fa fa-rocket"},
+      sport: { name: "Sport Name", icon: "fa fa-rocket" },
       homeTeam: {
         name: "Sun Devils",
         logo: "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",

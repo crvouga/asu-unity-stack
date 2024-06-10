@@ -17,6 +17,7 @@
     "test-update-snapshot": "yarn test -- -u",
     "build": "webpack -c webpack/webpack.prod.js",
     "build:stats": "webpack -c webpack/webpack.prod.js --profile --json=compilation-stats.json",
+    "build-examples": "yarn build && rm -rf ./examples/dist && cp -r ./dist ./examples/ && zip -r examples.zip examples/",
     "postbuild": "cp ./types/main.d.ts ./dist/main.d.ts",
     "start:dev": "webpack-dashboard -- webpack serve -c webpack/webpack.dev.js",
     "storybook": "storybook dev -p 9090",

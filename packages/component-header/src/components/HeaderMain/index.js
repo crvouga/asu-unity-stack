@@ -15,7 +15,7 @@ import { Partner } from "./Partner";
 import { Title } from "./Title";
 
 const HeaderMain = () => {
-  const { breakpoint, isPartner, hasNavigation, mobile } = useAppContext();
+  const { breakpoint, isPartner, hasNavigation } = useAppContext();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile(breakpoint);
   const isDesktop = !isMobile;
@@ -61,17 +61,18 @@ const HeaderMain = () => {
                 />
               </button>
               {isDesktop && (
-                <div
-                  className={`${!isPartner ? "expand-title" : ""}${
-                    !hasNavigation ? " no-navigation" : ""
-                  }`}
-                >
-                  {isPartner && <Partner />}
-                  {!isPartner && <Title />}
-                  <NavbarContainer />
-                </div>
+                <>
+                  <div
+                    className={`${!isPartner ? "expand-title" : ""}${
+                      !hasNavigation ? " no-navigation" : ""
+                    }`}
+                  >
+                    {isPartner ? <Partner /> : <Title />}
+                    <NavbarContainer />
+                  </div>
+                  <LogoSponsor />
+                </>
               )}
-              {isDesktop && <LogoSponsor />}
             </div>
             {isMobile && mobileMenuOpen && <NavbarContainer />}
           </div>

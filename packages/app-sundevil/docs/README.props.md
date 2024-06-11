@@ -1,16 +1,24 @@
 ## Constants
 
 <dl>
-<dt><a href="#HeaderContentSportLinks">HeaderContentSportLinks</a> : <code>React.FC.&lt;Props&gt;</code></dt>
+<dt><a href="#SportIcon">SportIcon</a> : <code>React.FC.&lt;SportIconProps&gt;</code></dt>
 <dd></dd>
 </dl>
 
 ## Functions
 
 <dl>
-<dt><a href="#SportLinks">SportLinks()</a> : <code>React.FC.&lt;{sport: Sport}&gt;</code></dt>
+<dt><a href="#SportLinkItem">SportLinkItem(props)</a></dt>
 <dd></dd>
-<dt><a href="#Sport">Sport()</a> : <code>React.FC.&lt;{sport: Sport}&gt;</code></dt>
+<dt><a href="#SportItemLinks">SportItemLinks(props)</a></dt>
+<dd></dd>
+<dt><a href="#SportGridListItem">SportGridListItem(props)</a></dt>
+<dd></dd>
+<dt><a href="#Footer">Footer()</a> ⇒ <code>React.ReactElement</code></dt>
+<dd></dd>
+<dt><a href="#chunk">chunk(array, chunkSize)</a> ⇒ <code>Array.&lt;Array.&lt;T&gt;&gt;</code></dt>
+<dd></dd>
+<dt><a href="#HeaderContentSportLinks">HeaderContentSportLinks(props)</a> ⇒ <code>React.ReactElement</code></dt>
 <dd></dd>
 </dl>
 
@@ -75,20 +83,72 @@
 <dd></dd>
 <dt><a href="#AppType">AppType</a> : <code>Object</code></dt>
 <dd></dd>
+<dt><a href="#SportLinkItem">SportLinkItem</a> : <code>Object</code></dt>
+<dd></dd>
+<dt><a href="#Sport">Sport</a> : <code>Object</code></dt>
+<dd></dd>
+<dt><a href="#Props">Props</a> : <code>Object</code></dt>
+<dd></dd>
 </dl>
+
+<a name="SportIcon"></a>
+
+## SportIcon : <code>React.FC.&lt;SportIconProps&gt;</code>
+**Kind**: global constant  
+<a name="SportLinkItem"></a>
+
+## SportLinkItem(props)
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| props | <code>Object</code> | 
+
+<a name="SportItemLinks"></a>
+
+## SportItemLinks(props)
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| props | <code>Object</code> | 
+
+<a name="SportGridListItem"></a>
+
+## SportGridListItem(props)
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| props | <code>Object</code> | 
+
+<a name="Footer"></a>
+
+## Footer() ⇒ <code>React.ReactElement</code>
+**Kind**: global function  
+<a name="chunk"></a>
+
+## chunk(array, chunkSize) ⇒ <code>Array.&lt;Array.&lt;T&gt;&gt;</code>
+**Kind**: global function  
+
+| Param | Type |
+| --- | --- |
+| array | <code>Array.&lt;T&gt;</code> | 
+| chunkSize | <code>number</code> | 
 
 <a name="HeaderContentSportLinks"></a>
 
-## HeaderContentSportLinks : <code>React.FC.&lt;Props&gt;</code>
-**Kind**: global constant  
-<a name="SportLinks"></a>
-
-## SportLinks() : <code>React.FC.&lt;{sport: Sport}&gt;</code>
+## HeaderContentSportLinks(props) ⇒ <code>React.ReactElement</code>
 **Kind**: global function  
-<a name="Sport"></a>
+**Link**: https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-105787&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width  
+**Link**: https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-105743&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width  
+**Link**: https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-108410&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width  
+**Link**: https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-108411&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width  
 
-## Sport() : <code>React.FC.&lt;{sport: Sport}&gt;</code>
-**Kind**: global function  
+| Param | Type |
+| --- | --- |
+| props | [<code>Props</code>](#Props) | 
+
 <a name="ArticleProps"></a>
 
 ## ArticleProps : <code>Object</code>
@@ -252,6 +312,7 @@
 | [element] | <code>any</code> | 
 | [href] | <code>string</code> | 
 | [icon] | <code>Array.&lt;string&gt;</code> | 
+| [renderIcon] | <code>function</code> | 
 | [innerRef] | <code>any</code> | 
 | [classes] | <code>Array.&lt;string&gt;</code> | 
 | [onClick] | <code>function</code> | 
@@ -514,4 +575,37 @@
 | Name | Type |
 | --- | --- |
 | [numItems] | <code>number</code> | 
+
+<a name="SportLinkItem"></a>
+
+## SportLinkItem : <code>Object</code>
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type |
+| --- | --- |
+| label | <code>string</code> | 
+| url | <code>string</code> | 
+
+<a name="Sport"></a>
+
+## Sport : <code>Object</code>
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type |
+| --- | --- |
+| sportName | <code>string</code> | 
+| sportLinks | [<code>Array.&lt;SportLinkItem&gt;</code>](#SportLinkItem) | 
+| [faClassName] | <code>string</code> \| <code>null</code> \| <code>undefined</code> | 
+
+<a name="Props"></a>
+
+## Props : <code>Object</code>
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type |
+| --- | --- |
+| sports | [<code>Array.&lt;Sport&gt;</code>](#Sport) | 
 

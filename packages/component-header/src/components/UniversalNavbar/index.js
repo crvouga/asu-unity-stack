@@ -12,7 +12,7 @@ const DEFAUL_GA_EVENT = {
 };
 
 const UniversalNavbar = () => {
-  const { breakpoint } = useAppContext();
+  const { breakpoint, universalNavbar } = useAppContext();
 
   function getURL() {
     try {
@@ -48,6 +48,11 @@ const UniversalNavbar = () => {
               >
                 Report an accessibility problem
               </a>
+
+              {universalNavbar?.renderStart?.()}
+
+              <div className="links-whitespace" />
+
               <a
                 className="nav-link"
                 href="https://asu.edu"

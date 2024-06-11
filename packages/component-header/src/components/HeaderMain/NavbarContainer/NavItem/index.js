@@ -1,4 +1,5 @@
 // @ts-check
+import { autoUpdate, shift, useFloating } from "@floating-ui/react";
 import { faChevronDown, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
@@ -53,9 +54,21 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
   const opened = link.id === itemOpened;
   const { breakpoint, expandOnHover, title } = useAppContext();
   const isMobile = useIsMobile(breakpoint);
+  const { refs, floatingStyles } = useFloating({
+    strategy: "fixed",
+    // placement: 'bottom-start',
+    whileElementsMounted: autoUpdate,
+    middleware: [
+      shift({
+        crossAxis: false,
+        mainAxis: true,
+      }),
+    ],
+  });
 
   useEffect(() => {
     const handleClickOutside = event => {
+      // @ts-ignore
       if (opened && !clickRef?.current?.contains(event.target)) {
         setItemOpened();
       }
@@ -134,6 +147,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
     >
       {/* @ts-ignore */}
       <a
+        ref={refs.setReference}
         onClick={handleClick}
         href={link.href}
         aria-expanded={() => "true"} // eslint-disable-line no-nested-ternary
@@ -156,24 +170,30 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
         <DropdownItem
           items={[]}
           renderContent={link.renderContent}
+          isMega={link.isMega}
           // @ts-ignore
           buttons={link.buttons}
           // @ts-ignore
           dropdownName={link.text}
           classes={`header-dropdown-${link.id} ${opened ? "opened" : ""}`}
           listId={`dropdown-${link.id}`}
+          ref={refs.setFloating}
+          style={isMobile ? {} : floatingStyles}
         />
       )}
 
       {link.items && (
         <DropdownItem
           items={link.items}
+          isMega={link.isMega}
           // @ts-ignore
           buttons={link.buttons}
           // @ts-ignore
           dropdownName={link.text}
           classes={`header-dropdown-${link.id} ${opened ? "opened" : ""}`}
           listId={`dropdown-${link.id}`}
+          style={isMobile ? {} : floatingStyles}
+          ref={refs.setFloating}
         />
       )}
     </NavItemWrapper>

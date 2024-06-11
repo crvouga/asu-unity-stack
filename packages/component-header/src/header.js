@@ -27,6 +27,7 @@ const ASUHeader = ({
   parentOrgUrl,
   partnerLogo,
   logo,
+  sponsorLogo,
   loggedIn,
   userName,
   loginLink,
@@ -41,6 +42,7 @@ const ASUHeader = ({
   searchUrl,
   site,
   renderDiv = "false",
+  universalNavbar,
 }) => {
   const navTree = tryAddActivePage(rawNavTree);
   const mobileNavTree = tryAddActivePage(rawMobileNavTree);
@@ -102,6 +104,7 @@ const ASUHeader = ({
         parentOrgUrl,
         partnerLogo,
         logo,
+        sponsorLogo,
         loggedIn,
         userName,
         loginLink,
@@ -116,6 +119,7 @@ const ASUHeader = ({
         hasNavigation: !!navTree?.length || !!mobileNavTree?.length,
         searchUrl,
         site,
+        universalNavbar,
       }}
     >
       {renderHeader()}

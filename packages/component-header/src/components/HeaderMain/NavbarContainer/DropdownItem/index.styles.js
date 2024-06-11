@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const DropdownWrapper = styled.div`
   position: fixed;
+  width: fit-content;
   background-color: #ffffff;
   border: 1px solid #d0d0d0;
   margin: 0;

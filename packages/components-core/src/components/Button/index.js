@@ -37,6 +37,7 @@ export const Button = ({
   size,
   classes,
   target,
+  renderIcon,
   ...props
 }) => {
   const btnClasses = classNames("btn", {
@@ -68,6 +69,7 @@ export const Button = ({
       aria-label={ariaLabel}
       target={Tag === "a" ? target : null}
     >
+      {renderIcon && renderIcon()}
       {icon && <i className={`${icon?.[0]} fa-${icon?.[1]} me-1`} />}
       {label}
     </Tag>
@@ -152,6 +154,10 @@ Button.propTypes = {
    Link target type
    */
   target: PropTypes.oneOf(["_blank", "_self", "_top", "_parent"]),
+  /**
+   * Function to render an icon
+   */
+  renderIcon: PropTypes.func,
 };
 
 Button.defaultProps = {

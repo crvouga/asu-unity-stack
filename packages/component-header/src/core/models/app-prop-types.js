@@ -44,11 +44,16 @@ const NavTreePropTypes = PropTypes.shape({
   class: PropTypes.string,
 });
 
+const UniversalNavbarPropTypes = PropTypes.shape({
+  renderStart: PropTypes.func,
+});
+
 const HeaderPropTypes = {
   isPartner: PropTypes.bool,
   navTree: PropTypes.arrayOf(NavTreePropTypes),
   partnerLogo: PropTypes.shape(LogoPropTypes),
   logo: PropTypes.shape(LogoPropTypes),
+  sponsorLogo: PropTypes.shape(LogoPropTypes),
   title: PropTypes.string,
   parentOrg: TitlePropTypes.parentOrg,
   parentOrgUrl: TitlePropTypes.parentOrgUrl,
@@ -68,6 +73,7 @@ const HeaderPropTypes = {
   searchUrl: PropTypes.string,
   site: PropTypes.string,
   renderDiv: PropTypes.oneOf(["true", "false"]),
+  universalNavbar: UniversalNavbarPropTypes,
 };
 
 export {

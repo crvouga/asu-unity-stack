@@ -9,6 +9,7 @@ import { useIsMobile } from "../../core/hooks/isMobile";
 import { UniversalNavbar } from "../UniversalNavbar";
 import { HeaderMainWrapper } from "./index.styles";
 import { Logo } from "./Logo";
+import { LogoSponsor } from "./LogoSponsor";
 import { NavbarContainer } from "./NavbarContainer";
 import { Partner } from "./Partner";
 import { Title } from "./Title";
@@ -67,6 +68,7 @@ const HeaderMain = () => {
                 {isPartner ? <Partner /> : <Title />}
                 {!isMobile && <NavbarContainer />}
               </div>
+              <LogoSponsor />
               {mobileMenuOpen && isMobile && <NavbarContainer />}
             </div>
           </div>

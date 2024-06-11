@@ -2,7 +2,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import { TabsContainer, TabItem, Logo } from "./index.styles";
+import { NavItem } from "../Navigation/index.styles";
+import { Logo } from "./index.styles";
 
 /**
  * @typedef {import("../../types/app-types").AppType} AppType
@@ -11,7 +12,14 @@ import { TabsContainer, TabItem, Logo } from "./index.styles";
 /**
  * @param {AppType & {children: object}} props
  */
-const Header = ({ title, subtitle, tabs, presentedBy, social }) => {
+const Header = ({
+  title,
+  subtitle,
+  tabs,
+  presentedBy,
+  social,
+  onTabItemClick,
+}) => {
   return (
     <div className="container">
       <div className="row">
@@ -34,16 +42,18 @@ const Header = ({ title, subtitle, tabs, presentedBy, social }) => {
           </p>
           {tabs && tabs.length > 0 && (
             <nav className="nav nav-pills">
-              {tabs.map((tab, index) => (
-                <a
-                  key={index}
+              {tabs.map(tab => (
+                <NavItem
+                  onClick={onTabItemClick(tab.id)}
+                  active={!!tab.active}
+                  key={tab.id}
                   className={`text-sm-center nav-link ${
                     tab.active ? "active" : ""
                   }`}
                   href="#"
                 >
                   {tab.label}
-                </a>
+                </NavItem>
               ))}
             </nav>
           )}
@@ -51,8 +61,12 @@ const Header = ({ title, subtitle, tabs, presentedBy, social }) => {
             <div className="col-md-6" id="social-media">
               <h5>Join the Conversation:</h5>
               <nav aria-label="Social Media">
-                {social.map((socialItem, index) => (
-                  <a className="btn btn-lg" href={socialItem.url}>
+                {social.map(socialItem => (
+                  <a
+                    key={socialItem.label}
+                    className="btn btn-lg"
+                    href={socialItem.url}
+                  >
                     <span
                       title={socialItem.label}
                       className={`fab fa-${socialItem.label.toLowerCase()} fa-2x`}
@@ -75,7 +89,7 @@ const Header = ({ title, subtitle, tabs, presentedBy, social }) => {
 };
 
 Header.propTypes = {
-  title: PropTypes.number,
+  title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
   presentedBy: PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -83,6 +97,7 @@ Header.propTypes = {
   }).isRequired,
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
       active: PropTypes.bool.isRequired,
     })
@@ -93,6 +108,7 @@ Header.propTypes = {
       url: PropTypes.string.isRequired,
     })
   ),
+  onTabItemClick: PropTypes.func.isRequired,
 };
 
 export { Header };

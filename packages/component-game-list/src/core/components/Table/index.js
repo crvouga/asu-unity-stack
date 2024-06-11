@@ -3,16 +3,7 @@ import { Button } from "@asu/components-core";
 import PropTypes from "prop-types";
 import React from "react";
 
-import { Logo } from "../Header/index.styles";
-import {
-  GamesTable,
-  TableHeader,
-  TableCell,
-  GetTicketsButton,
-  Footer,
-  ScheduleButton,
-  UpcomingGamesWrapper,
-} from "./index.styles";
+import { Footer, UpcomingGamesWrapper } from "./index.styles";
 
 /**
  * @typedef {import("../../types/app-types").AppType} AppType
@@ -27,8 +18,8 @@ const SportsTable = ({ games }) => {
     <UpcomingGamesWrapper>
       <table className="table table-bordered">
         <tbody>
-          {games.map((game, index) => (
-            <tr key={index}>
+          {games.map(game => (
+            <tr key={game.id}>
               <td className="d-flex flex-column py-3 px-2 ">
                 <h5 className="m-0 lh-1">{game.date.month}.</h5>
                 <h2 className="m-0">{game.date.day}</h2>
@@ -69,10 +60,10 @@ const SportsTable = ({ games }) => {
                 </div>
               </td>
               <td className="py-4 px-3 btn-ticket text-center align-middle">
-                <a href="#" className="btn btn-dark btn-sm" role="button">
+                <button type="button" className="btn btn-dark btn-sm">
                   <span className="fas fa-rocket" />
                   &nbsp;&nbsp;Get Tickets
-                </a>
+                </button>
               </td>
             </tr>
           ))}

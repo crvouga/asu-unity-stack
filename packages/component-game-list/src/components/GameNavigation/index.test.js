@@ -2,11 +2,11 @@
 import { render, cleanup, act } from "@testing-library/react";
 import React from "react";
 
-import { MyComponent } from "./index";
+import { GameNavigation } from "./index";
 
-const defaultArgs = {
-  numItems: 6,
-};
+import { Default } from "./index.stories";
+
+const defaultArgs = Default.args;
 
 describe("#Cards Carousel News", () => {
   /** @type {import("@testing-library/react").RenderResult} */
@@ -14,7 +14,7 @@ describe("#Cards Carousel News", () => {
 
   const renderCardsCarouselNews = async props => {
     await act(async () => {
-      component = await render(<MyComponent {...{ ...props }} />);
+      component = await render(<GameNavigation {...{ ...props }} />);
     });
   };
 

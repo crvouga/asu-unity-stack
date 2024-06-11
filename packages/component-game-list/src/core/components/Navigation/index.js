@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-const SportsNavigation = ({ sports }) => {
+import { NavItem } from "./index.styles";
+
+const SportsNavigation = ({ sports, onSportItemClick }) => {
   sports.sort((a, b) => a.position - b.position);
   // get first 10 sports and other sports into variable
   const firstTenSports = sports.filter((sport, index) => index < 9);
   const moreSports = sports.filter((sport, index) => index >= 9);
-  const activeSports = sports.filter(sport => sport.active);
   return (
     <>
       <div className="container mt-4">
@@ -16,34 +17,36 @@ const SportsNavigation = ({ sports }) => {
         >
           {firstTenSports
             .filter(sport => !sport.more)
-            .map((sport, index) => (
-              <a
+            .map(sport => (
+              <NavItem
+                key={sport.id}
+                onClick={onSportItemClick(sport.id)}
+                active={!!sport.active}
                 className={`nav-item nav-link ${sport.active ? "active" : ""}`}
                 href="#"
               >
                 <span title={sport.name} className={sport.icon} />
                 <div>{sport.name}</div>
-              </a>
+              </NavItem>
             ))}
           {moreSports.length > 0 && (
             <li className="nav-item dropdown">
-              <a
+              <button
+                type="button"
                 className="nav-item dropdown nav-link"
                 data-bs-toggle="dropdown"
-                href="#"
-                role="button"
                 aria-expanded="false"
               >
                 <span className="fas fa-chevron-down" />
                 <div>More</div>
-              </a>
+              </button>
               <ul className="dropdown-menu">
-                {moreSports.map((sport, index) => (
-                  <li key={index} className="dropdown-item">
-                    <a href="#">
+                {moreSports.map(sport => (
+                  <li key={sport.id} className="dropdown-item">
+                    <button type="button" onClick={onSportItemClick(sport.id)}>
                       <span title={sport.name} className={sport.icon} />
                       <div>{sport.name}</div>
-                    </a>
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -58,12 +61,14 @@ const SportsNavigation = ({ sports }) => {
 SportsNavigation.propTypes = {
   sports: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       icon: PropTypes.string.isRequired,
       active: PropTypes.bool,
       position: PropTypes.number,
     })
   ).isRequired,
+  onSportItemClick: PropTypes.func.isRequired,
 };
 
 export { SportsNavigation };

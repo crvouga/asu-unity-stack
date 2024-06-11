@@ -1,4 +1,4 @@
 // ts-check
-export * from "./GameList";
+export * from "./GameNavigation";
 export * from "./GameTable";
 export * from "./Header";

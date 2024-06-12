@@ -34,6 +34,13 @@ const Root = styled.div`
     width: auto;
     padding: 0 12px;
   }
+
+  @media (max-width: 768px) {
+    swiper-slide {
+      width: auto;
+      padding: 0 6px;
+    }
+  }
 `;
 
 const ArrowButtonsWrapper = styled.div`

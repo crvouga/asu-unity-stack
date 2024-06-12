@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
+import { APP_CONFIG } from "../../config";
 import { Avatar } from "./Avatar";
 import * as SocialMediaPost from "./social-media-post";
 
@@ -10,6 +12,11 @@ const Root = styled.a`
   width: 282px;
   height: 534px;
   position: relative;
+  @media (max-width: 768px) {
+    width: 158px;
+    height: 300px;
+    font-size: 43.97%;
+  }
 `;
 
 const Image = styled.img`
@@ -28,6 +35,8 @@ const BackdropRoot = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
+  width: 100%;
+  max-width: 100%;
   height: 50%;
   padding: 16px;
   background: linear-gradient(
@@ -54,30 +63,44 @@ const ContentTextRoot = styled.div`
   align-items: start;
   gap: 10px;
   color: #fafafa;
+  with: 100%;
+  max-width: 100%;
+  @media (max-width: ${APP_CONFIG.breakpoint}) {
+    gap: 5px;
+  }
 `;
 
 const Username = styled.p`
-  font-size: 1rem;
   margin: 0;
   font-weight: bold;
   font-size: 12px;
-  line-height: 14.4px;
+  @media (max-width: ${APP_CONFIG.breakpoint}) {
+    font-size: 6px;
+  }
 `;
 
 const Caption = styled.p`
-  font-size: 12px;
-  line-height: 16.8px;
   margin: 0;
+  font-size: 12px;
+  @media (max-width: ${APP_CONFIG.breakpoint}) {
+    font-size: 6px;
+  }
 `;
 
 /** @typedef {React.FC<{socialMediaPost: SocialMediaPost.SocialMediaPost }>} */
 export const SocialMediaPostCardTall = ({ socialMediaPost }) => {
+  const isMobile = useIsMobile(APP_CONFIG.breakpoint);
+  const avatarSize = isMobile ? "sm" : "lg";
   return (
     <Root href={socialMediaPost.href}>
       <Image src={socialMediaPost.imageSrc} alt="Post Image" />
       <BackdropRoot>
         <ContentRoot>
-          <Avatar src={socialMediaPost.avatarSrc} alt="Avatar" />
+          <Avatar
+            src={socialMediaPost.avatarSrc}
+            alt="Avatar"
+            size={avatarSize}
+          />
           <ContentTextRoot>
             <Username>{socialMediaPost.username}</Username>
             {socialMediaPost.caption && (

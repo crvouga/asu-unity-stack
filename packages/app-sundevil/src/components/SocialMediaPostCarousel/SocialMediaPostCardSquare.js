@@ -9,6 +9,10 @@ const Root = styled.a`
   width: 282px;
   height: 282px;
   position: relative;
+  @media (max-width: 768px) {
+    width: 158px;
+    height: 158px;
+  }
 `;
 
 const Image = styled.img`

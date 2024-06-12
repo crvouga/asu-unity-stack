@@ -3,8 +3,8 @@ import React from "react";
 import styled from "styled-components";
 
 const AvatarImage = styled.img`
-  width: 51px;
-  height: 51px;
+  width: ${props => (props.size === "sm" ? "28px" : "51px")};
+  height: ${props => (props.size === "sm" ? "28px" : "51px")};
   border-radius: 50%;
   background-color: #e8e7e8;
   object-fit: cover;
@@ -12,8 +12,8 @@ const AvatarImage = styled.img`
 `;
 
 const PlaceholderAvatar = styled.div`
-  width: 51px;
-  height: 51px;
+  width: ${props => (props.size === "sm" ? "28px" : "51px")};
+  height: ${props => (props.size === "sm" ? "28px" : "51px")};
   border-radius: 50%;
   background-color: white;
   flex-shrink: 0;
@@ -28,17 +28,25 @@ const PlaceholderAvatar = styled.div`
 /**
  * @type {React.FC<AvatarProps>}
  */
-export const Avatar = ({ src, alt }) => {
+export const Avatar = ({ src, alt, size }) => {
   const [error, setError] = React.useState(false);
 
   if (!src || error) {
-    return <PlaceholderAvatar />;
+    return <PlaceholderAvatar size={size} />;
   }
 
-  return <AvatarImage src={src} alt={alt} onError={() => setError(true)} />;
+  return (
+    <AvatarImage
+      size={size}
+      src={src}
+      alt={alt}
+      onError={() => setError(true)}
+    />
+  );
 };
 
 Avatar.propTypes = {
   src: PropTypes.string,
   alt: PropTypes.string,
+  size: PropTypes.oneOf(["sm", "lg"]),
 };

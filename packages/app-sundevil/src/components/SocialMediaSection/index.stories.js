@@ -45,6 +45,7 @@ Square.args = {
 export const Tall = Template.bind({});
 Tall.args = {
   sectionHeader: {
+    ...socialMediaSectionProps.sectionHeader,
     title: "Sun Devil Nation",
     subtitle:
       "Share your Sun Devil love! The Sun Devil Nation is a global community that bleeds maroon and gold.",

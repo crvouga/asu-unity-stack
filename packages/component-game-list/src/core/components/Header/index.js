@@ -1,18 +1,30 @@
 // @ts-check
 import PropTypes from "prop-types";
 import React, { forwardRef } from "react";
+import styled from "styled-components";
 
 import { NavItem } from "../Navigation/index.styles";
 import { Logo } from "./index.styles";
+import { JoinTheConversation } from "./JoinTheConversation";
 
 /**
  * @typedef {import("../../types/app-types").AppType} AppType
  */
 
+const Subtitle = styled.p`
+  width: 100%;
+  max-width: 520px;
+  padding: 0;
+  margin: 0;
+  color: #191919;
+  padding-bottom: 48px;
+`;
+
 /**
  * @param {AppType & {children: object}} props
  */
 const Header = forwardRef(
+  // @ts-ignore
   ({ title, subtitle, tabs, presentedBy, social, onTabItemClick }, ref) => {
     return (
       <div className="container" ref={ref}>
@@ -27,18 +39,13 @@ const Header = forwardRef(
                 </div>
               </div>
             </div>
-            <p
-              style={{
-                display: `${subtitle && subtitle !== "" ? "block" : "none"}`,
-              }}
-            >
-              {subtitle}
-            </p>
+            {subtitle && <Subtitle>{subtitle}</Subtitle>}
             {tabs && tabs.length > 0 && (
               <nav className="nav nav-pills">
                 {tabs.map(tab => (
                   <NavItem
                     onClick={onTabItemClick(tab.id)}
+                    // @ts-ignore
                     active={!!tab.active}
                     key={tab.id}
                     className={`text-sm-center nav-link ${
@@ -52,23 +59,7 @@ const Header = forwardRef(
               </nav>
             )}
             {social && social.length > 0 && (
-              <div className="col-md-6" id="social-media">
-                <h5>Join the Conversation:</h5>
-                <nav aria-label="Social Media">
-                  {social.map(socialItem => (
-                    <a
-                      key={socialItem.label}
-                      className="btn btn-lg"
-                      href={socialItem.url}
-                    >
-                      <span
-                        title={socialItem.label}
-                        className={`fab fa-${socialItem.label.toLowerCase()} fa-2x`}
-                      />
-                    </a>
-                  ))}
-                </nav>
-              </div>
+              <JoinTheConversation social={social} />
             )}
           </div>
           <div className="col-md-4 col-sm-0 mt-auto d-none d-sm-none d-md-block">
@@ -84,6 +75,7 @@ const Header = forwardRef(
 );
 
 Header.propTypes = {
+  // @ts-ignore
   title: PropTypes.string.isRequired,
   subtitle: PropTypes.string,
   presentedBy: PropTypes.shape({

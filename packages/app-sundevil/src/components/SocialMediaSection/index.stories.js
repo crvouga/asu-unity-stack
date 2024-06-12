@@ -20,8 +20,41 @@ export default {
 };
 
 const Template = args => {
-  return <SocialMediaSection {...{ ...args }} {...socialMediaSectionProps} />;
+  return <SocialMediaSection {...args} />;
 };
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Square = Template.bind({});
+Square.args = {
+  ...socialMediaSectionProps,
+  sectionHeader: {
+    ...socialMediaSectionProps.sectionHeader,
+    title: "Connect with your Sun Devil Football team",
+    subtitle:
+      "Join fellow Sun Devil football fans  the latest updates about the program, games, your favorite players and more!",
+    presentedBy: {
+      name: "Ford",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Ford_logo_flat.svg/2560px-Ford_logo_flat.svg.png",
+    },
+  },
+  postCarousel: {
+    ...socialMediaSectionProps.postCarousel,
+    variant: "square",
+  },
+};
+
+export const Tall = Template.bind({});
+Tall.args = {
+  sectionHeader: {
+    title: "Sun Devil Nation",
+    subtitle:
+      "Share your Sun Devil love! The Sun Devil Nation is a global community that bleeds maroon and gold.",
+    presentedBy: {
+      name: "Ford",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Ford_logo_flat.svg/2560px-Ford_logo_flat.svg.png",
+    },
+  },
+  postCarousel: {
+    ...socialMediaSectionProps.postCarousel,
+    variant: "tall",
+  },
+};

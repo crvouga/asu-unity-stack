@@ -3,7 +3,7 @@ import React, { useMemo } from "react";
 import styled from "styled-components";
 
 import { ArrowButtons } from "../ArrowButtons";
-import { Carousel, CarouselItem } from "../Carousel";
+import { Carousel, CarouselController, CarouselItem } from "../Carousel";
 import { socialMediaPostSchema } from "./social-media-post";
 import { SocialMediaPostCard } from "./SocialMediaPostCard";
 
@@ -53,6 +53,7 @@ export const SocialMediaPostCarousel = ({
   initialSlide,
   variant,
 }) => {
+  const [carouselController] = React.useState(() => new CarouselController());
   const [index, setIndex] = React.useState(initialSlide ?? 0);
 
   const postsFinal = useMemo(() => {
@@ -71,12 +72,13 @@ export const SocialMediaPostCarousel = ({
   return (
     <Root>
       <Carousel
-        index={index}
-        onIndexChanged={setIndex}
         slidesPerView="auto"
         loop={loop ?? false}
         slidesOffsetBefore={slidesOffsetBefore}
         initialSlide={initialSlide}
+        controller={carouselController}
+        index={index}
+        onIndexChanged={setIndex}
       >
         {postsFinal.map(post => (
           <CarouselItem key={post.id}>
@@ -87,8 +89,8 @@ export const SocialMediaPostCarousel = ({
 
       <ArrowButtonsWrapper className="container">
         <ArrowButtons
-          onLeft={() => setIndex(i => i - 1)}
-          onRight={() => setIndex(i => i + 1)}
+          onLeft={() => carouselController.slidePrev()}
+          onRight={() => carouselController.slideNext()}
         />
       </ArrowButtonsWrapper>
     </Root>

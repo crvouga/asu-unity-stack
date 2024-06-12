@@ -9,7 +9,7 @@ const propTypes = {
   // eslint-disable-next-line react/forbid-foreign-prop-types
   sectionHeader: SectionHeader.propTypes,
   // eslint-disable-next-line react/forbid-foreign-prop-types
-  socialMediaPostCarousel: SocialMediaPostCarousel.propTypes,
+  postCarousel: SocialMediaPostCarousel.propTypes,
 };
 
 const Root = styled.section`
@@ -18,10 +18,7 @@ const Root = styled.section`
   gap: 48px;
 `;
 
-export const SocialMediaSection = ({
-  sectionHeader,
-  socialMediaPostCarousel,
-}) => {
+export const SocialMediaSection = ({ sectionHeader, postCarousel }) => {
   const sectionHeaderRef = useRef();
   const sectionHeaderPosition = useElementPosition(sectionHeaderRef);
   return (
@@ -29,10 +26,10 @@ export const SocialMediaSection = ({
       <SectionHeader {...sectionHeader} ref={sectionHeaderRef} />
 
       <SocialMediaPostCarousel
-        {...socialMediaPostCarousel}
+        {...postCarousel}
         loop
         slidesOffsetBefore={sectionHeaderPosition.left}
-        initialSlide={socialMediaPostCarousel.posts.length}
+        initialSlide={postCarousel.posts.length}
       />
     </Root>
   );

@@ -28,5 +28,5 @@ const sectionHeaderProps = {
 
 export const socialMediaSectionProps = {
   sectionHeader: sectionHeaderProps,
-  socialMediaPostCarousel: socialMediaPostCarouselProps,
+  postCarousel: socialMediaPostCarouselProps,
 };

@@ -5,49 +5,87 @@ import { register } from "swiper/element/bundle";
 
 register();
 
+export class CarouselController {
+  constructor() {
+    this.swiper = null;
+  }
+
+  setSwiper(swiper) {
+    this.swiper = swiper;
+  }
+
+  slideNext() {
+    this.swiper.slideNext();
+  }
+
+  slidePrev() {
+    this.swiper.slidePrev();
+  }
+}
+
 export function Carousel(props) {
   const swiperRef = useRef(null);
-  const { children, index, onIndexChanged, ...rest } = props;
+  const {
+    children,
+    index,
+    onIndexChanged,
+    controller,
+    initialSlide,
+    loop = false,
+    ...rest
+  } = props;
 
   useLayoutEffect(() => {
-    if (!swiperRef.current) return;
+    if (!swiperRef.current) {
+      return;
+    }
 
     const params = {
+      initialSlide,
+      loop,
       ...rest,
     };
 
     Object.assign(swiperRef.current, params);
     swiperRef.current.initialize();
 
-    window.swiperRef = swiperRef.current;
+    const swiperInstance = swiperRef.current.swiper;
+
+    controller?.setSwiper(swiperInstance);
 
     const handleSlideChange = () => {
-      if (swiperRef.current) {
-        const { realIndex } = swiperRef.current.swiper;
+      if (swiperInstance) {
+        const { realIndex } = swiperInstance;
         if (realIndex !== index) {
           onIndexChanged(realIndex);
         }
       }
     };
 
-    swiperRef.current.addEventListener("slideChange", handleSlideChange);
+    swiperInstance?.off("slideChange", handleSlideChange);
+    swiperInstance.on("slideChange", handleSlideChange);
 
     // eslint-disable-next-line consistent-return
     return () => {
-      if (swiperRef.current) {
-        swiperRef.current.removeEventListener("slideChange", handleSlideChange);
-      }
+      swiperInstance?.off("slideChange", handleSlideChange);
     };
-  }, [rest, index, onIndexChanged]);
+  }, [rest, index, onIndexChanged, loop]);
 
   useEffect(() => {
     if (swiperRef.current && swiperRef.current.swiper) {
       const { realIndex } = swiperRef.current.swiper;
       if (realIndex !== index) {
-        swiperRef.current.swiper.slideTo(index);
+        if (loop) {
+          const adjustedIndex =
+            (index + swiperRef.current.swiper.slides.length) %
+            swiperRef.current.swiper.slides.length;
+          swiperRef.current.swiper.slideToLoop(adjustedIndex);
+        } else {
+          swiperRef.current.swiper.slideToLoop(index);
+        }
       }
     }
-  }, [index]);
+  }, [index, loop]);
 
   return (
     <swiper-container init="false" ref={swiperRef}>
@@ -62,6 +100,8 @@ Carousel.propTypes = {
   children: PropTypes.node.isRequired,
   slidesPerView: PropTypes.number,
   initialSlide: PropTypes.number,
+  loop: PropTypes.bool,
+  controller: PropTypes.instanceOf(CarouselController),
 };
 
 export function CarouselItem(props) {

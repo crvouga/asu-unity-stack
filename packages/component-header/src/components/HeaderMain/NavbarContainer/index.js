@@ -16,7 +16,7 @@ const NavbarContainer = () => {
   const [itemOpened, setItemOpened] = useState(undefined);
 
   const handleSetItemOpened = itemId => {
-    setItemOpened(prev => (itemOpened === itemId ? undefined : itemId));
+    setItemOpened(() => (itemOpened === itemId ? undefined : itemId));
   };
 
   const renderItem = (link, index) => {
@@ -28,6 +28,7 @@ const NavbarContainer = () => {
         key={key}
         link={item}
         setItemOpened={() => handleSetItemOpened(index)}
+        // @ts-ignore
         itemOpened={itemOpened}
       />
     );

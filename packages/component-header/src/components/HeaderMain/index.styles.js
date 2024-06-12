@@ -40,9 +40,14 @@ const HeaderMainWrapper = styled.div`
   @media (max-width: ${({ breakpoint }) => breakpoint}) {
     padding: 0;
     .navbar {
-      padding: 1.5rem 0 0 0;
+      /* padding: 1.5rem 0 0 0; */
+      display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+      align-items: center;
+      height: 54px;
+      min-height: 54px;
+      padding: 0 1rem;
       &.partner {
         flex-direction: row-reverse;
       }
@@ -60,10 +65,9 @@ const HeaderMainWrapper = styled.div`
 
       .horiz {
         display: block;
-        height: 32px;
+
+        height: 48px;
         width: auto;
-        margin-bottom: 1rem;
-        margin-left: 2rem;
       }
     }
     .navbar-toggler {
@@ -73,7 +77,7 @@ const HeaderMainWrapper = styled.div`
       border: 0;
       border-radius: 50%;
       font-size: 1.25rem;
-      margin-right: 2rem;
+      /* margin-right: 2rem; */
       padding: 0.25rem 0.45rem;
       &.collapsed {
         border-radius: 0;

@@ -5,3 +5,4 @@ package-lock.json
 yarn-lock.json
 docs/**
 !docs/README.props.md
+examples.zip

@@ -6,8 +6,8 @@ import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 
 import { Button } from "../../../../components-core/src";
-import { stringToClosestSportName } from "../sport-name";
 import { SportIcon } from "../SportIcon";
+import { stringToClosestSportName } from "../SportIcon/sport-name";
 import { TicketmasterLogo } from "./TicketmasterLogo";
 
 const sportLinkItemSchema = PropTypes.shape({

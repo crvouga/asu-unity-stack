@@ -6,6 +6,7 @@ export const socialMediaPostSchema = PropsTypes.shape({
   username: PropsTypes.string.isRequired,
   caption: PropsTypes.string,
   avatarSrc: PropsTypes.string,
+  href: PropsTypes.string,
 });
 /**
  * @typedef {Object} SocialMediaPost
@@ -14,4 +15,5 @@ export const socialMediaPostSchema = PropsTypes.shape({
  * @property {string} imageSrc
  * @property {string} [caption]
  * @property {string} [avatarSrc]
+ * @property {string} [href]
  */

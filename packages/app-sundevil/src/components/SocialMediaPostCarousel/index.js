@@ -2,15 +2,17 @@ import PropTypes from "prop-types";
 import React, { useMemo } from "react";
 import styled from "styled-components";
 
+import { ArrowButtons } from "../ArrowButtons";
 import { Carousel, CarouselItem } from "../Carousel";
 import { socialMediaPostSchema } from "./social-media-post";
-import { SocialMediaPostCardTall } from "./SocialMediaPostCardTall";
+import { SocialMediaPostCard } from "./SocialMediaPostCard";
 
 const propTypes = {
   posts: PropTypes.arrayOf(socialMediaPostSchema.isRequired).isRequired,
   loop: PropTypes.bool,
   slidesOffsetBefore: PropTypes.number,
   initialSlide: PropTypes.number,
+  variant: PropTypes.oneOf(["tall", "square"]),
 };
 
 /**
@@ -19,6 +21,7 @@ const propTypes = {
  * @property {boolean} [loop]
  * @property {number} [slidesOffsetBefore]
  * @property {number} [initialSlide]
+ * @property {"tall" | "square"} variant
  */
 
 const Root = styled.div`
@@ -33,6 +36,13 @@ const Root = styled.div`
   }
 `;
 
+const ArrowButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 52px;
+`;
+
 /**
  * @type {React.FC<SocialMediaPostCarouselProps>}
  */
@@ -41,6 +51,7 @@ export const SocialMediaPostCarousel = ({
   loop,
   slidesOffsetBefore,
   initialSlide,
+  variant,
 }) => {
   const [index, setIndex] = React.useState(initialSlide ?? 0);
 
@@ -69,10 +80,17 @@ export const SocialMediaPostCarousel = ({
       >
         {postsFinal.map(post => (
           <CarouselItem key={post.id}>
-            <SocialMediaPostCardTall socialMediaPost={post} />
+            <SocialMediaPostCard variant={variant} socialMediaPost={post} />
           </CarouselItem>
         ))}
       </Carousel>
+
+      <ArrowButtonsWrapper className="container">
+        <ArrowButtons
+          onLeft={() => setIndex(i => i - 1)}
+          onRight={() => setIndex(i => i + 1)}
+        />
+      </ArrowButtonsWrapper>
     </Root>
   );
 };

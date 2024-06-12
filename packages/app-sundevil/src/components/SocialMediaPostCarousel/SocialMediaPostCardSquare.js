@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Avatar } from "./Avatar";
 import * as SocialMediaPost from "./social-media-post";
 
 const Root = styled.a`
   display: flex;
   flex-direction: column;
   width: 282px;
-  height: 534px;
+  height: 282px;
   position: relative;
 `;
 
@@ -29,31 +28,25 @@ const BackdropRoot = styled.div`
   left: 0;
   right: 0;
   height: 50%;
-  padding: 16px;
   background: linear-gradient(
     to top,
-    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.8),
     transparent
   ); /* Apply linear gradient */
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  justify-content: flex-end;
-`;
-
-const ContentRoot = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: start;
-  gap: 10px;
+  justify-content: flex-start;
 `;
 
 const ContentTextRoot = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
+  justify-content: flex-start;
   gap: 10px;
   color: #fafafa;
+  padding: 24px;
 `;
 
 const Username = styled.p`
@@ -64,32 +57,20 @@ const Username = styled.p`
   line-height: 14.4px;
 `;
 
-const Caption = styled.p`
-  font-size: 12px;
-  line-height: 16.8px;
-  margin: 0;
-`;
-
 /** @typedef {React.FC<{socialMediaPost: SocialMediaPost.SocialMediaPost }>} */
-export const SocialMediaPostCardTall = ({ socialMediaPost }) => {
+export const SocialMediaPostCardSquare = ({ socialMediaPost }) => {
   return (
     <Root href={socialMediaPost.href}>
       <Image src={socialMediaPost.imageSrc} alt="Post Image" />
       <BackdropRoot>
-        <ContentRoot>
-          <Avatar src={socialMediaPost.avatarSrc} alt="Avatar" />
-          <ContentTextRoot>
-            <Username>{socialMediaPost.username}</Username>
-            {socialMediaPost.caption && (
-              <Caption>{socialMediaPost.caption}</Caption>
-            )}
-          </ContentTextRoot>
-        </ContentRoot>
+        <ContentTextRoot>
+          <Username>{socialMediaPost.username}</Username>
+        </ContentTextRoot>
       </BackdropRoot>
     </Root>
   );
 };
 
-SocialMediaPostCardTall.propTypes = {
+SocialMediaPostCardSquare.propTypes = {
   socialMediaPost: SocialMediaPost.socialMediaPostSchema.isRequired,
 };

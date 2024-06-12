@@ -13,10 +13,10 @@ const propTypes = {
 };
 
 const Root = styled.section`
-  display: flex:
+  display: flex;
   flex-direction: column;
-  gap: 1rem;
-~`;
+  gap: 48px;
+`;
 
 export const SocialMediaSection = ({
   sectionHeader,
@@ -27,6 +27,7 @@ export const SocialMediaSection = ({
   return (
     <Root>
       <SectionHeader {...sectionHeader} ref={sectionHeaderRef} />
+
       <SocialMediaPostCarousel
         {...socialMediaPostCarousel}
         loop

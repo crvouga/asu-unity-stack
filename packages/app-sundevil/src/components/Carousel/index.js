@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 // eslint-disable-next-line import/no-unresolved
 import { register } from "swiper/element/bundle";
 
@@ -7,14 +7,13 @@ register();
 
 export function Carousel(props) {
   const swiperRef = useRef(null);
-  const { children, index, onIndexChanged, slidesPerView, ...rest } = props;
+  const { children, index, onIndexChanged, ...rest } = props;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!swiperRef.current) return;
 
     const params = {
       ...rest,
-      slidesPerView,
     };
 
     Object.assign(swiperRef.current, params);
@@ -62,6 +61,7 @@ Carousel.propTypes = {
   onIndexChanged: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
   slidesPerView: PropTypes.number,
+  initialSlide: PropTypes.number,
 };
 
 export function CarouselItem(props) {

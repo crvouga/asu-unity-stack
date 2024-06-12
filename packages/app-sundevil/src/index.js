@@ -3,7 +3,9 @@
 import {
   HeaderContentSportLinks,
   OfficialAthleticsSite,
+  SocialMediaSection,
   SunDevilsHeader,
+  initSocialMediaSection,
   initSunDevilsHeader,
 } from "./components";
 
@@ -15,10 +17,17 @@ window.OfficialAthleticsSite = OfficialAthleticsSite;
 window.SunDevilsHeader = SunDevilsHeader;
 // @ts-ignore
 window.initSunDevilsHeader = initSunDevilsHeader;
+// @ts-ignore
+window.SocialMediaSection = SocialMediaSection;
+// @ts-ignore
+window.initSocialMediaSection = initSocialMediaSection;
 
 export {
   HeaderContentSportLinks,
   OfficialAthleticsSite,
+  SocialMediaSection,
   SunDevilsHeader,
+  initSocialMediaSection,
   initSunDevilsHeader
 };
+

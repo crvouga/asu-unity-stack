@@ -1,7 +1,7 @@
 // @ts-check
 import PropTypes from "prop-types";
 
-import { levenshteinDistance } from "../utils/levenshtein-distance";
+import { levenshteinDistance } from "../../utils/levenshtein-distance";
 
 /**
  * @typedef {'baseball' | 'basketball' | 'cross-country'| 'football'| 'golf'| 'ice-hockey'| 'swimming-and-diving'| 'tennis'| 'track-and-field'| 'wrestling'| 'beach-volleyball'| 'gymnastics'| 'lacrosse'| 'soccer'| 'softball'| 'triathlon'| 'volleyball'| 'water-polo'} SportName

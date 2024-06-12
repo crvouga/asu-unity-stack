@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 
+import { RenderReact } from "../../utils/react-render";
 import { useElementPosition } from "../../utils/use-element-position";
 import { SectionHeader } from "../SectionHeader";
 import { SocialMediaPostCarousel } from "../SocialMediaPostCarousel";
@@ -36,3 +37,11 @@ export const SocialMediaSection = ({ sectionHeader, postCarousel }) => {
 };
 
 SocialMediaSection.propTypes = propTypes;
+
+export const initSocialMediaSection = ({ targetSelector, props }) => {
+  RenderReact(
+    SocialMediaSection,
+    props,
+    document.querySelector(targetSelector)
+  );
+};

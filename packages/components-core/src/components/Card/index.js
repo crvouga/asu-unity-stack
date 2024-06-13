@@ -34,12 +34,14 @@ export const Card = ({
   image,
   imageAltText,
   title,
+  topic,
   icon,
   body,
   eventFormat,
   eventLocation,
   eventTime,
   buttons,
+  buttonsOrientation = "vertical",
   linkLabel,
   linkUrl,
   tags,
@@ -54,12 +56,14 @@ export const Card = ({
       image={image}
       imageAltText={imageAltText}
       title={title}
+      topic={topic}
       icon={icon}
       body={body}
       eventFormat={eventFormat}
       eventLocation={eventLocation}
       eventTime={eventTime}
       buttons={buttons}
+      buttonsOrientation={buttonsOrientation}
       linkLabel={linkLabel}
       linkUrl={linkUrl}
       tags={tags}
@@ -86,6 +90,10 @@ Card.propTypes = {
    * Card title
    */
   title: PropTypes.string.isRequired,
+  /**
+   * Card topic
+   */
+  topic: PropTypes.string,
   /**
     React Font Awesome icon prefix and name string to be rendered in button label. Ex: ['fab', 'drupal']
   */
@@ -131,6 +139,7 @@ Card.propTypes = {
   ),
   linkLabel: PropTypes.string,
   linkUrl: PropTypes.string,
+  buttonsOrientation: PropTypes.oneOf(["vertical", "horizontal"]),
   /**
    * Tags
    */
@@ -181,12 +190,14 @@ const BaseCard = ({
   image,
   imageAltText,
   title,
+  topic,
   icon,
   body,
   eventFormat,
   eventLocation,
   eventTime,
   buttons,
+  buttonsOrientation = "vertical",
   linkLabel,
   linkUrl,
   tags,
@@ -230,7 +241,9 @@ const BaseCard = ({
               eventLocation={eventLocation}
               eventTime={eventTime}
               title={title}
+              topic={topic}
               buttons={buttons}
+              buttonsOrientation={buttonsOrientation}
               linkLabel={linkLabel}
               linkUrl={linkUrl}
               tags={tags}
@@ -245,7 +258,9 @@ const BaseCard = ({
             eventLocation={eventLocation}
             eventTime={eventTime}
             title={title}
+            topic={topic}
             buttons={buttons}
+            buttonsOrientation={buttonsOrientation}
             linkLabel={linkLabel}
             linkUrl={linkUrl}
             tags={tags}
@@ -262,6 +277,7 @@ BaseCard.propTypes = {
   width: PropTypes.oneOf(["25%", "50%", "75%", "100%"]),
   horizontal: PropTypes.bool,
   title: PropTypes.string.isRequired,
+  topic: PropTypes.string,
   icon: PropTypes.arrayOf(PropTypes.string), // React Font Awesome icon prefix and name string to be rendered in button label. Ex: ['fab', 'drupal']
   body: PropTypes.string,
   eventFormat: PropTypes.oneOf(["stack", "inline"]),
@@ -281,6 +297,7 @@ BaseCard.propTypes = {
       target: PropTypes.oneOf(["_blank", "_self", "_top", "_parent"]),
     })
   ),
+  buttonsOrientation: PropTypes.oneOf(["vertical", "horizontal"]),
   linkLabel: PropTypes.string,
   linkUrl: PropTypes.string,
   tags: PropTypes.arrayOf(
@@ -321,15 +338,24 @@ const CardContent = ({
   eventLocation,
   eventTime,
   title,
+  topic,
   buttons,
+  buttonsOrientation = "vertical",
   linkLabel,
   linkUrl,
   tags,
   cardLink,
 }) => (
   <>
+    {topic && (
+      <div className="card-event-details pt-3 pb-0">
+        {console.log(sanitizeDangerousMarkup(topic))}
+        {/* eslint-disable-next-line react/no-danger */}
+        <div className="card-event-icons" dangerouslySetInnerHTML={sanitizeDangerousMarkup(topic)} />
+      </div>
+    )}
     {!!title && (
-      <div className="card-header" data-testid="card-title">
+      <div className="card-header pt-3" data-testid="card-title">
         <h3 className="card-title">
           {cardLink ? <a href={cardLink}>{title}</a> : title}
         </h3>
@@ -348,11 +374,35 @@ const CardContent = ({
         eventLocation={eventLocation}
       />
     )}
-    {buttons && (
+    {buttons && buttonsOrientation === "vertical" && (
       <div className="card-buttons">
         {buttons.map(button => (
           <div
             className="card-button"
+            data-testid="card-button"
+            key={`${button.label}-${button.href}`}
+          >
+            {/* @ts-ignore */}
+            <Button
+              ariaLabel={button.ariaLabel}
+              color={button.color}
+              icon={button.icon}
+              href={button.href}
+              label={button.label}
+              onClick={button.onClick}
+              size={button.size}
+              target={button.target}
+              cardTitle={title}
+            />
+          </div>
+        ))}
+      </div>
+    )}
+    {buttons && buttonsOrientation === "horizontal" && (
+      <div className="d-flex flex-md-row flex-wrap flex-column">
+        {buttons.map(button => (
+          <div
+            className="card-button d-inline pe-0"
             data-testid="card-button"
             key={`${button.label}-${button.href}`}
           >
@@ -414,6 +464,7 @@ CardContent.propTypes = {
   eventLocation: PropTypes.string,
   eventTime: PropTypes.string,
   title: PropTypes.string.isRequired,
+  topic: PropTypes.string,
   buttons: PropTypes.arrayOf(
     PropTypes.shape({
       ariaLabel: PropTypes.string,
@@ -426,6 +477,7 @@ CardContent.propTypes = {
       target: PropTypes.oneOf(["_blank", "_self", "_top", "_parent"]),
     })
   ),
+  buttonsOrientation: PropTypes.oneOf(["vertical", "horizontal"]),
   linkLabel: PropTypes.string,
   linkUrl: PropTypes.string,
   tags: PropTypes.arrayOf(

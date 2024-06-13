@@ -28,7 +28,14 @@ const Wrapper = ({ children }) => (
 
 export const ThreeItemCarousel = () => (
   <Wrapper>
-    <CardCarousel perView="3" cardItems={cardCarouselItems} />
+    <CardCarousel
+      perView="3"
+      cardItems={cardCarouselItems}
+      hasPositionIndicators={false}
+      prevIcon="fa-arrow-left"
+      nextIcon="fa-arrow-right"
+      additionalNavBtnCss="btn btn-circle btn-circle-large btn-circle-alt-gray"
+    />
   </Wrapper>
 );
 

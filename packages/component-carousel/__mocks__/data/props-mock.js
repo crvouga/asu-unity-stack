@@ -1,4 +1,5 @@
 import { testimonialWithImage } from "../../src/components/TestimonialCarousel/examples";
+import React from "react";
 
 const imageFormats = [
   "500x400",
@@ -41,8 +42,20 @@ for (let index = 0; index < 8; index += 1) {
         ariaLabel: "dummy button",
         color: "maroon",
         href: "#",
-        label: `Button ${index + 1} link here`,
-        size: "default",
+        label: `Learn More`,
+        size: "small",
+        onClick: () => {
+          // eslint-disable-next-line no-alert
+          window.alert("Hola Amigo 😃.");
+          return false;
+        },
+      },
+      {
+        ariaLabel: "dummy button",
+        color: "dark",
+        href: "#",
+        label: `More Info`,
+        size: "small",
         onClick: () => {
           // eslint-disable-next-line no-alert
           window.alert("Hola Amigo 😃.");
@@ -52,6 +65,43 @@ for (let index = 0; index < 8; index += 1) {
     ],
   });
 }
+
+cardCarouselItems.push({
+  id: 8,
+  imageSource: "https://source.unsplash.com/random/400x400?a=8",
+  imageAltText: "Card image cap",
+  title: `Don’t miss the Maroon and Gold Spring Game`,
+  content: `Join us for the Maroon and Gold Spring Game on Saturday, April 10 at 12:00 p.m. at TCF Bank Stadium. Admission is free, but tickets are required. Reserve your tickets today!`,
+  buttons: [
+    {
+      ariaLabel: "dummy button",
+      color: "maroon",
+      href: "#",
+      label: `Learn More`,
+      size: "small",
+      onClick: () => {
+        // eslint-disable-next-line no-alert
+        window.alert("Hola Amigo 😃.");
+        return false;
+      },
+    },
+    {
+      ariaLabel: "dummy button",
+      color: "dark",
+      href: "#",
+      label: `More Info`,
+      size: "small",
+      onClick: () => {
+        // eslint-disable-next-line no-alert
+        window.alert("Hola Amigo 😃.");
+        return false;
+      },
+    },
+  ],
+  buttonOrientation: "horizontal",
+  topic:
+    '<div> <i class="far fa-calendar"></i> </div> <div><span>Football </span></div>',
+});
 
 const imageCarouselItems = [
   {

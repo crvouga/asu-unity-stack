@@ -16,7 +16,7 @@ const defaultGAEvent = {
 
 const BaseNavButtonContainer = ({ children = null }) => (
   <div
-    className="glide__arrows"
+    className="glide__arrows align-self-start"
     data-glide-el="controls"
     data-testid="arrows-container"
   >
@@ -35,9 +35,17 @@ BaseNavButtonContainer.propTypes = {
  * }} props
  * @returns
  */
-const NavButtons = ({ onClick = () => null, children = null }) => (
+const NavButtons = ({
+  onClick = () => null,
+  children = null,
+  prevBtnIcon,
+  nextBtnIcon,
+  additionalBtnCss,
+}) => (
   <BaseNavButtonContainer>
     <PrevButton
+      additionalCss={additionalBtnCss}
+      icon={prevBtnIcon}
       onClick={() => {
         onClick();
         trackGAEvent({ ...defaultGAEvent, text: "left chevron" });
@@ -45,6 +53,8 @@ const NavButtons = ({ onClick = () => null, children = null }) => (
     />
     {children}
     <NextButton
+      additionalCss={additionalBtnCss}
+      icon={nextBtnIcon}
       onClick={() => {
         onClick();
         trackGAEvent({ ...defaultGAEvent, text: "right chevron" });
@@ -56,6 +66,9 @@ const NavButtons = ({ onClick = () => null, children = null }) => (
 NavButtons.propTypes = {
   children: PropTypes.element,
   onClick: PropTypes.func,
+  prevBtnIcon: PropTypes.string,
+  nextBtnIcon: PropTypes.string,
+  additionalBtnCss: PropTypes.string,
 };
 
 export { BaseNavButtonContainer, NavButtons };

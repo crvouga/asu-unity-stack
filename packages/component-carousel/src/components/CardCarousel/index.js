@@ -1,8 +1,8 @@
 // @ts-check
-import { Card } from "@asu/components-core";
 import PropTypes from "prop-types";
 import React from "react";
 
+import { Card } from "../../../../components-core/src/components/Card";
 import { BaseCarousel } from "../../core/components/BaseCarousel";
 
 /**
@@ -31,10 +31,12 @@ const htmlTemplate = (
     imageSource,
     imageAltText,
     title,
+    topic,
     content,
     eventLocation,
     eventTime,
     buttons,
+    buttonOrientation,
     linkLabel,
     linkUrl,
     tags,
@@ -51,11 +53,13 @@ const htmlTemplate = (
       image={imageSource}
       imageAltText={imageAltText}
       title={title}
+      topic={topic}
       body={content}
       eventFormat={cardEventFormat}
       eventLocation={eventLocation}
       eventTime={eventTime}
       buttons={buttons}
+      buttonsOrientation={buttonOrientation}
       linkLabel={linkLabel}
       linkUrl={linkUrl || buttons?.[0]?.href}
       tags={tags}
@@ -76,6 +80,11 @@ const CardCarousel = ({
   width = undefined,
   maxWidth = undefined,
   imageAutoSize = true,
+  hasPositionIndicators = true,
+  hasNavButtons = true,
+  prevIcon = undefined,
+  nextIcon = undefined,
+  additionalNavBtnCss = undefined,
 }) => {
   const carouselItems = cardItems.map(item =>
     htmlTemplate(item, cardType, cardHorizontal, cardEventFormat)
@@ -91,10 +100,13 @@ const CardCarousel = ({
       cssClass="aligned-carousel"
       imageAutoSize={imageAutoSize}
       removeSideBackground={cardItems.length <= perView}
-      hasPositionIndicators={activateGlideActions}
-      hasNavButtons={activateGlideActions}
+      hasPositionIndicators={activateGlideActions && hasPositionIndicators}
+      hasNavButtons={activateGlideActions && hasNavButtons}
       isDraggable={activateGlideActions}
       hasShadow
+      navPrevIcon={prevIcon}
+      navNextIcon={nextIcon}
+      additionalNavBtnCss={additionalNavBtnCss}
     />
   );
 };
@@ -121,6 +133,11 @@ CardCarousel.propTypes = {
   width: PropTypes.string,
   maxWidth: PropTypes.string,
   imageAutoSize: PropTypes.bool,
+  hasPositionIndicators: PropTypes.bool,
+  hasNavButtons: PropTypes.bool,
+  prevIcon: PropTypes.string,
+  nextIcon: PropTypes.string,
+  additionalNavBtnCss: PropTypes.string,
 };
 
 export { CardCarousel };

@@ -17,7 +17,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-import { sportNameSchema } from "../sport-name";
+import { sportNameSchema } from "./sport-name";
 
 const sportIconSchema = {
   sportName: sportNameSchema.isRequired,

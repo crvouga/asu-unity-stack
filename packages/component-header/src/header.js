@@ -51,9 +51,12 @@ const ASUHeader = ({
 
   const handleWindowScroll = () => {
     const curPos = window.scrollY;
+    // @ts-ignore
     if (curPos > headerRef.current.getBoundingClientRect().top) {
+      // @ts-ignore
       headerRef.current.classList.add("scrolled");
     } else {
+      // @ts-ignore
       headerRef.current.classList.remove("scrolled");
     }
   };
@@ -87,7 +90,12 @@ const ASUHeader = ({
     const Wrapper = renderDiv === "true" ? HeaderDiv : Header;
 
     return (
-      <Wrapper id="asuHeader" ref={headerRef} breakpoint={breakpoint}>
+      <Wrapper
+        id="asuHeader"
+        ref={headerRef}
+        // @ts-ignore
+        breakpoint={breakpoint}
+      >
         <HeaderMain />
       </Wrapper>
     );
@@ -108,9 +116,12 @@ const ASUHeader = ({
         loggedIn,
         userName,
         loginLink,
+        // @ts-ignore
         onLoginClick,
         logoutLink,
+        // @ts-ignore
         onLogoutClick,
+        // @ts-ignore
         buttons,
         breakpoint,
         animateTitle,
@@ -119,6 +130,7 @@ const ASUHeader = ({
         hasNavigation: !!navTree?.length || !!mobileNavTree?.length,
         searchUrl,
         site,
+        // @ts-ignore
         universalNavbar,
       }}
     >

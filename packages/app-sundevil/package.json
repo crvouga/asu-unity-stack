@@ -17,6 +17,7 @@
     "test-update-snapshot": "yarn test -- -u",
     "build": "webpack -c webpack/webpack.prod.js",
     "build:stats": "webpack -c webpack/webpack.prod.js --profile --json=compilation-stats.json",
+    "build-examples": "yarn build && rm -rf ./examples/dist && cp -r ./dist ./examples/ && zip -r examples.zip examples/",
     "postbuild": "cp ./types/main.d.ts ./dist/main.d.ts",
     "start:dev": "webpack-dashboard -- webpack serve -c webpack/webpack.dev.js",
     "storybook": "storybook dev -p 9090",
@@ -40,7 +41,8 @@
     "prop-types": "^15.7.2",
     "react": ">= 16.14.0 < 18",
     "react-dom": ">= 16.14.0 < 18",
-    "styled-components": "^5.3.0"
+    "styled-components": "^5.3.0",
+    "swiper": "^11.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",

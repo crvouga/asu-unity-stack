@@ -6,7 +6,7 @@ import { SunDevilsHeader } from ".";
 import { testHeaderProps } from "./test-props-v2";
 
 export default {
-  title: "Header/SunDevilsHeader",
+  title: "Header/Sun Devils Header",
   component: args => <SunDevilsHeader {...{ ...args, ...testHeaderProps }} />,
   parameters: {
     docs: {

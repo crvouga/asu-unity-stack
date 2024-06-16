@@ -45,8 +45,22 @@ const mapNavTreeItem = navTreeItem => {
         type: navTreeItem.type,
         text: navTreeItem.text,
         renderContent: () => {
+          const buttons = Array.isArray(navTreeItem.buttons)
+            ? navTreeItem.buttons
+            : [];
           return (
             <HeaderContentSportLinks
+              buttons={buttons.map(button => {
+                return {
+                  color: button.color ?? "gold",
+                  faClassName: iconToFaClassName(
+                    // @ts-ignore
+                    button.icon
+                  ),
+                  href: button.href,
+                  label: button.text,
+                };
+              })}
               sports={(navTreeItem.items ?? []).flatMap(column =>
                 column.map(item => {
                   const extraLinks = Array.isArray(item.extra_links)

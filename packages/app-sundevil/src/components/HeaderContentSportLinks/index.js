@@ -1,6 +1,4 @@
 // @ts-check
-import { faTicket } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
@@ -9,6 +7,21 @@ import { Button } from "../../../../components-core/src";
 import { SportIcon } from "../SportIcon";
 import { stringToClosestSportName } from "../SportIcon/sport-name";
 import { TicketmasterLogo } from "./TicketmasterLogo";
+
+const buttonSchema = PropTypes.shape({
+  label: PropTypes.string.isRequired,
+  href: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  faClassName: PropTypes.string.isRequired,
+});
+
+/**
+ * @typedef {Object} ButtonProp
+ * @property {string} label
+ * @property {string} href
+ * @property {string} color
+ * @property {string} faClassName
+ */
 
 const sportLinkItemSchema = PropTypes.shape({
   label: PropTypes.string.isRequired,
@@ -74,8 +87,9 @@ const SportItemLinksRoot = styled.ul`
   flex-direction: row;
   align-items: start;
   justify-content: flex-start;
-  gap: 0px 18px;
+  gap: 0px 16px;
   flex-wrap: wrap;
+  height: fit-content;
 `;
 
 /**
@@ -102,7 +116,7 @@ const SportGridListItemRoot = styled.li`
   flex-direction: column;
   align-items: start;
   justify-content: start;
-  gap: 6px;
+  gap: 2px;
 `;
 
 const SportLinksRoot = styled.div`
@@ -178,30 +192,50 @@ const FooterRoot = styled.div`
   width: 100%;
 `;
 
+/** @type {(color: unknown) => "gold" | "maroon" | "dark" | "gray"} */
+const toButtonColor = color => {
+  const cleaned = (typeof color === "string" ? color : "").toLowerCase().trim();
+  if (cleaned.includes("gold")) return "gold";
+  if (cleaned.includes("maroon")) return "maroon";
+  if (cleaned.includes("dark")) return "dark";
+  if (cleaned.includes("gray")) return "gray";
+  return "gold";
+};
+
 /**
- * @returns {React.ReactElement}
+ *
+ * @type {React.FC<{ buttons: ButtonProp[] }>}
  */
-const Footer = () => {
+const Footer = ({ buttons }) => {
   return (
     <>
-      <FooterRoot>
-        <Button
-          href=""
-          color="gold"
-          label="Get tickets"
-          size="small"
-          renderIcon={() => (
-            <FontAwesomeIcon style={{ paddingRight: "8px" }} icon={faTicket} />
-          )}
-        />
-      </FooterRoot>
+      {buttons.length > 0 && (
+        <FooterRoot>
+          {buttons.map(button => (
+            <Button
+              href={button.href}
+              color={toButtonColor(button.color)}
+              label={button.label}
+              size="small"
+              renderIcon={() => (
+                <i
+                  className={button.faClassName}
+                  style={{ paddingRight: "8px" }}
+                />
+              )}
+            />
+          ))}
+        </FooterRoot>
+      )}
       <FooterTicketMaster>
         <TicketmasterLogo />
       </FooterTicketMaster>
     </>
   );
 };
-Footer.propTypes = {};
+Footer.propTypes = {
+  buttons: PropTypes.arrayOf(buttonSchema.isRequired).isRequired,
+};
 
 const FooterTicketMaster = styled.div`
   display: flex;
@@ -252,7 +286,7 @@ const SportGridList = styled.div`
 const SportGridListColumn = styled.div`
   color: var(--text-color-primary);
   font-size: var(--font-size-normal);
-  gap: 24px;
+  gap: 16px;
   padding: 0 32px;
   display: flex;
   flex-direction: column;
@@ -283,11 +317,13 @@ const Root = styled.div`
 
 const propTypesSchema = {
   sports: PropTypes.arrayOf(sportSchema.isRequired).isRequired,
+  buttons: PropTypes.arrayOf(buttonSchema.isRequired),
 };
 
 /**
  * @typedef {Object} Props
  * @property {Sport[]} sports
+ * @property {ButtonProp[]} buttons
  */
 
 const COLUMN_HEIGHT = 5;
@@ -312,7 +348,7 @@ const chunk = (array, chunkSize) => {
  * @link https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-108410&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width
  * @link https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-108411&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width
  */
-const HeaderContentSportLinks = ({ sports }) => {
+const HeaderContentSportLinks = ({ sports, buttons }) => {
   const columns = chunk(sports, COLUMN_HEIGHT);
   return (
     <Root>
@@ -330,7 +366,7 @@ const HeaderContentSportLinks = ({ sports }) => {
         ))}
       </SportGridList>
 
-      <Footer />
+      <Footer buttons={buttons} />
     </Root>
   );
 };

@@ -31,6 +31,14 @@ const sportLinks = [
 
 /** @type {HeaderContentSportLinks.Props} */
 const mensSports = {
+  buttons: [
+    {
+      color: "gold",
+      faClassName: "fas fa-ticket",
+      href: "#",
+      label: "Buy Tickets",
+    },
+  ],
   sports: [
     {
       sportName: "Baseball",
@@ -78,6 +86,14 @@ const mensSports = {
 
 /** @type {HeaderContentSportLinks.Props} */
 const womansSports = {
+  buttons: [
+    {
+      color: "gold",
+      faClassName: "fas fa-ticket",
+      href: "#",
+      label: "Buy Tickets",
+    },
+  ],
   sports: [
     {
       sportName: "W. Basketball",

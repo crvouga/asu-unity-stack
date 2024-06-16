@@ -5,7 +5,10 @@ import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { idGenerator, trackGAEvent } from "../../../../../../../shared";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useAppContext } from "../../../../core/context/app-context";
-import { ButtonPropTypes } from "../../../../core/models/app-prop-types";
+import {
+  ButtonPropTypes,
+  NavTreeItemsConfig,
+} from "../../../../core/models/app-prop-types";
 import { Button } from "../../../Button";
 import { DropdownWrapper } from "./index.styles";
 
@@ -19,6 +22,7 @@ import { DropdownWrapper } from "./index.styles";
  *  classes?: string,
  *  listId?: string
  *  style?: object
+ *  mobile?: import("../../../../core/models/types").NavTreeItemsConfig
  * }} DropdownItemProps
  */
 
@@ -27,7 +31,16 @@ import { DropdownWrapper } from "./index.styles";
  */
 const DropdownItem = forwardRef(
   (
-    { dropdownName, items, renderContent, buttons, classes, listId, style },
+    {
+      dropdownName,
+      items,
+      renderContent,
+      buttons,
+      classes,
+      listId,
+      style,
+      mobile,
+    },
     ref
   ) => {
     const { breakpoint } = useAppContext();
@@ -38,6 +51,7 @@ const DropdownItem = forwardRef(
 
     useEffect(() => {
       if (window && dropdownRef.current) {
+        // @ts-ignore
         const elPosition = dropdownRef.current.getBoundingClientRect().left;
         const breakpointPosition = window.innerWidth * 0.55;
         setAlignedRight(elPosition > breakpointPosition);
@@ -51,6 +65,14 @@ const DropdownItem = forwardRef(
     const renderItem = (link, index) => {
       const key = `${link.text}-${link.href || index}`;
       if (link.type === "heading") {
+        if (link.size === "md") {
+          return (
+            <h3 key={key} className="ul-heading-md">
+              {link.text}
+            </h3>
+          );
+        }
+
         return (
           <h3 key={key} className="ul-heading">
             {link.text}
@@ -96,12 +118,14 @@ const DropdownItem = forwardRef(
           isMega ? " mega" : ""
         }`}
         // @ts-ignore
+        mobile={mobile}
+        // @ts-ignore
         breakpoint={breakpoint}
       >
         {renderContent?.()}
         {items?.length > 0 && (
           <div
-            id={MULTIPLE_SUBMENUS ? listId : null}
+            id={MULTIPLE_SUBMENUS ? listId : undefined}
             className="dropdown-container"
           >
             {items?.map((item, index0) => {
@@ -139,13 +163,18 @@ const DropdownItem = forwardRef(
 );
 
 DropdownItem.propTypes = {
+  // @ts-ignore
   dropdownName: PropTypes.string,
+  // @ts-ignore
   items: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
+  // @ts-ignore
   buttons: PropTypes.arrayOf(PropTypes.shape(ButtonPropTypes)),
   renderContent: PropTypes.func,
   classes: PropTypes.string,
   style: PropTypes.objectOf(PropTypes.string),
   listId: PropTypes.string,
+  // @ts-ignore
+  mobile: NavTreeItemsConfig,
 };
 
 export { DropdownItem };

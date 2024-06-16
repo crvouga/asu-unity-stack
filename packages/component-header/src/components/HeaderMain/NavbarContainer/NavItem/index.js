@@ -13,6 +13,7 @@ import { DropdownItem } from "../DropdownItem";
 import { NavItemWrapper } from "./index.styles";
 
 // TODO: why did we stop using this class and should we remove
+// eslint-disable-next-line no-unused-vars
 const DROPDOWN_CONTAINER_CLASS = "dropdown-container";
 
 export const DROPDOWNS_GA_EVENTS = {
@@ -179,6 +180,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
           listId={`dropdown-${link.id}`}
           ref={refs.setFloating}
           style={isMobile ? {} : floatingStyles}
+          mobile={link.mobile ?? undefined}
         />
       )}
 
@@ -194,6 +196,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
           listId={`dropdown-${link.id}`}
           style={isMobile ? {} : floatingStyles}
           ref={refs.setFloating}
+          mobile={link.mobile ?? undefined}
         />
       )}
     </NavItemWrapper>

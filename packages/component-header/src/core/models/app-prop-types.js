@@ -32,6 +32,10 @@ const ButtonPropTypes = {
   onFocus: PropTypes.func,
 };
 
+const NavTreeItemsConfig = PropTypes.shape({
+  navTreeItemVariant: PropTypes.oneOf(["underline", "none"]),
+});
+
 const NavTreePropTypes = PropTypes.shape({
   id: PropTypes.number,
   href: PropTypes.string,
@@ -42,6 +46,7 @@ const NavTreePropTypes = PropTypes.shape({
   renderContent: PropTypes.func,
   buttons: PropTypes.arrayOf(PropTypes.shape(ButtonPropTypes)),
   class: PropTypes.string,
+  mobile: NavTreeItemsConfig,
 });
 
 const UniversalNavbarPropTypes = PropTypes.shape({
@@ -83,4 +88,5 @@ export {
   LogoPropTypes,
   NavTreePropTypes,
   TitlePropTypes,
+  NavTreeItemsConfig,
 };

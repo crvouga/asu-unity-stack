@@ -1,3 +1,6 @@
+/**
+ * @type {import(".").HeaderProps}
+ */
 export const testHeaderProps = {
   baseUrl: "https://web-sda.ddev.site:8443/",
   title: "Sun Devils",
@@ -459,6 +462,94 @@ export const testHeaderProps = {
       ],
       extra_section: "",
       is_sports_type: true,
+    },
+    {
+      text: "Ways to Support",
+      href: "#",
+      buttons: [
+        {
+          href: "#",
+          text: "Support Sun Devils",
+          color: "gold",
+        },
+      ],
+      mobile: {
+        navTreeItemVariant: "none",
+      },
+      items: [
+        [
+          {
+            type: "heading",
+            text: "Name, Image, Likeness (NIL)",
+            size: "md",
+          },
+          {
+            href: "#",
+            text: "Request an Autograph, Photo, or Shoutout",
+          },
+          {
+            href: "#",
+            text: "Book an Appearance",
+          },
+          {
+            href: "#",
+            text: "Maximize Your Brand",
+          },
+        ],
+        [
+          {
+            type: "heading",
+            text: "Become Involved",
+            size: "md",
+          },
+          {
+            href: "#",
+            text: "Buy Tickets to a Game",
+          },
+          {
+            href: "#",
+            text: "Join the Sun Devil Club",
+          },
+          {
+            href: "#",
+            text: "Join the Junior Sun Devil Club",
+          },
+          {
+            href: "#",
+            text: "Join the Sun Angle Collective",
+          },
+        ],
+        [
+          {
+            type: "heading",
+            text: "Ways To Give",
+            size: "md",
+          },
+          {
+            href: "#",
+            text: "Give Now",
+          },
+          {
+            href: "#",
+            text: "Give Over Time",
+          },
+          {
+            href: "#",
+            text: "Plan Your Gift",
+          },
+        ],
+        [
+          {
+            type: "heading",
+            text: "Corporate Sponsorships",
+            size: "md",
+          },
+          {
+            href: "#",
+            text: "Connect with Sun Devil Athletics",
+          },
+        ],
+      ],
     },
   ],
   isSponsor: true,

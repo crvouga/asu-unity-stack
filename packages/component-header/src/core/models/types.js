@@ -22,6 +22,11 @@
  */
 
 /**
+ * @typedef {object} NavTreeItemsConfig
+ * @property {"underline" | "none"} [navTreeItemVariant]
+ */
+
+/**
  * @typedef {object} NavTreeProps
  * @property {number} id
  * @property {string} [href]
@@ -34,6 +39,7 @@
  * @property {Button[]} [buttons]
  * @property {string} [class]
  * @property {function} [onClick]
+ * @property {NavTreeItemsConfig | null} [mobile]
  */
 
 /**
@@ -66,7 +72,7 @@
  * @property {string} searchUrl
  * @property {string} site
  * @property {string} renderDiv - Can be either "true" or "false".
- * @property {UniversalNavBarProps} [universalNavbar]
+ * @property {UniversalNavBarProps | null} [universalNavbar]
  */
 
 export const JSDOC = "jsdoc";

@@ -1,11 +1,14 @@
 // @ts-check
+import PropTypes from "prop-types";
 import React from "react";
 
 import { ASUHeader } from "../../../../component-header/src";
 import { RenderReact } from "../../utils/react-render";
 import { HeaderContentSportLinks } from "../HeaderContentSportLinks";
+import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
 
-/** @typedef {import("../../../../component-header/src/header").HeaderProps} HeaderProps */
+/** @typedef {import("../../../../component-header/src/header").HeaderProps} BaseHeaderProps */
+/** @typedef {BaseHeaderProps & {officialSiteHref: string}} HeaderProps */
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps['navTree'][0]} NavTreeItem */
 
@@ -96,12 +99,21 @@ const mapNavTreeItem = navTreeItem => {
 const mapNavTree = navTree => navTree.map(toNavTreeVariant).map(mapNavTreeItem);
 
 /** @type {(props: HeaderProps) => HeaderProps}  */
-const mapProps = props => ({ ...props, navTree: mapNavTree(props.navTree) });
+const mapProps = props => ({
+  ...props,
+  navTree: mapNavTree(props.navTree),
+  universalNavbar: {
+    renderStart: () => <OfficialAthleticsSite href={props.officialSiteHref} />,
+  },
+});
 
 export const SunDevilsHeader = props => {
   return <ASUHeader {...mapProps(props)} />;
 };
-SunDevilsHeader.propTypes = ASUHeader.propTypes;
+SunDevilsHeader.propTypes = {
+  ...ASUHeader.propTypes,
+  officialSiteHref: PropTypes.string.isRequired,
+};
 
 export const initSunDevilsHeader = ({ targetSelector, props }) => {
   RenderReact(SunDevilsHeader, props, document.querySelector(targetSelector));

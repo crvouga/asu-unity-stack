@@ -8,6 +8,7 @@ export const testHeaderProps = {
   logoutLink: "/caslogout",
   loggedIn: true,
   userName: "You are logged in",
+  officialSiteHref: "#",
   navTree: [
     {
       href: "/",

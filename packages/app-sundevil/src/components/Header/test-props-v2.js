@@ -13,6 +13,7 @@ export const testHeaderProps = {
   userName: "You are logged in",
   officialSiteHref: "#",
   navTree: [
+    // Home
     {
       href: "/",
       text: "Home",
@@ -24,6 +25,7 @@ export const testHeaderProps = {
       type: "icon-home",
       class: "home",
     },
+    // Men's Sports
     {
       href: "/sports",
       text: "Men's Sports",
@@ -205,6 +207,7 @@ export const testHeaderProps = {
       ],
       is_sports_type: true,
     },
+    // Woman's Sports
     {
       href: "/sports",
       text: "Woman's Sports",
@@ -463,6 +466,7 @@ export const testHeaderProps = {
       extra_section: "",
       is_sports_type: true,
     },
+    // Tickets
     {
       text: "Tickets",
       href: "#",
@@ -667,6 +671,7 @@ export const testHeaderProps = {
         ],
       ],
     },
+    // Ways to Support
     {
       text: "Ways to Support",
       href: "#",

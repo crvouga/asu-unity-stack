@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
  *
  * @param {number} numElements
  * @returns {{
- *  elementRefs: React.MutableRefObject<HTMLElement[]>,
+ *  elementsRef: React.MutableRefObject<HTMLElement[]>,
  *  maxWidth: number
  * }}
  */
@@ -14,17 +14,17 @@ export const useMaxWidth = numElements => {
   /**
    * @type {React.MutableRefObject<HTMLElement[]>}
    */
-  const elementRefs = useRef([]);
+  const elementsRef = useRef([]);
 
   useEffect(() => {
-    if (elementRefs.current.length) {
-      const widths = elementRefs.current.map(ref => ref.offsetWidth);
+    if (elementsRef.current.length) {
+      const widths = elementsRef.current.map(ref => ref.offsetWidth);
       setMaxWidth(Math.max(...widths));
     }
   }, [numElements]);
 
   return {
-    elementRefs,
+    elementsRef,
     maxWidth,
   };
 };

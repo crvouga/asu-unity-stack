@@ -351,7 +351,7 @@ const chunk = (array, chunkSize) => {
  */
 const HeaderContentSportLinks = ({ sports, buttons }) => {
   const columns = chunk(sports, COLUMN_HEIGHT);
-  const { elementRefs, maxWidth } = useMaxWidth(columns.length);
+  const { elementsRef, maxWidth } = useMaxWidth(columns.length);
   return (
     <Root>
       <Vars />
@@ -360,7 +360,7 @@ const HeaderContentSportLinks = ({ sports, buttons }) => {
           <SportGridListColumn
             key={column.map(sport => sport.sportName).join("")}
             ref={el => {
-              if (el) elementRefs.current[columnIndex] = el;
+              if (el) elementsRef.current[columnIndex] = el;
             }}
             style={{
               minWidth: maxWidth ? `${maxWidth}px` : undefined,

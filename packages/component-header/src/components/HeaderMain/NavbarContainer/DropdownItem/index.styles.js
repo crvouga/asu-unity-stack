@@ -12,7 +12,6 @@ const DropdownWrapper = styled.div`
   &.opened {
     visibility: visible;
   }
-
   &.mega {
     width: 100%;
     left: 0;
@@ -79,6 +78,17 @@ const DropdownWrapper = styled.div`
           padding-top: 2rem;
           & + .nav-button {
             margin-top: 1rem;
+          }
+        }
+      }
+
+      .nav-link-variant-muted {
+        a {
+          color: #747474;
+          text-decoration: underline;
+          font-size: 0.9rem;
+          &:hover {
+            color: #191919;
           }
         }
       }

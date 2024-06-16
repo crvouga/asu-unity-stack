@@ -4,6 +4,7 @@ import React, { forwardRef, useEffect, useRef, useState } from "react";
 
 import { idGenerator, trackGAEvent } from "../../../../../../../shared";
 // eslint-disable-next-line import/no-extraneous-dependencies
+import classNames from "classnames";
 import { useAppContext } from "../../../../core/context/app-context";
 import {
   ButtonPropTypes,
@@ -95,7 +96,13 @@ const DropdownItem = forwardRef(
         );
       }
       return (
-        <li key={key} className="nav-link">
+        <li
+          key={key}
+          className={classNames(
+            "nav-link",
+            link?.variant === "muted" && "nav-link-variant-muted"
+          )}
+        >
           <a
             href={link.href}
             onClick={stopPropagation}

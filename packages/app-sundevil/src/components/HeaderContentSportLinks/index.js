@@ -4,6 +4,7 @@ import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 
 import { Button } from "../../../../components-core/src";
+import useMaxWidth from "../../utils/use-max-width";
 import { SportIcon } from "../SportIcon";
 import { stringToClosestSportName } from "../SportIcon/sport-name";
 import { TicketmasterLogo } from "./TicketmasterLogo";
@@ -293,7 +294,7 @@ const SportGridListColumn = styled.div`
   flex-wrap: wrap;
   width: 100%;
   flex: 1;
-  min-width: 270px;
+  min-width: fit-content;
 `;
 
 const Vars = createGlobalStyle`
@@ -350,14 +351,20 @@ const chunk = (array, chunkSize) => {
  */
 const HeaderContentSportLinks = ({ sports, buttons }) => {
   const columns = chunk(sports, COLUMN_HEIGHT);
+  const { elementRefs, maxWidth } = useMaxWidth(columns.length);
   return (
     <Root>
       <Vars />
-
       <SportGridList>
-        {columns.map(column => (
+        {columns.map((column, columnIndex) => (
           <SportGridListColumn
             key={column.map(sport => sport.sportName).join("")}
+            ref={el => {
+              if (el) elementRefs.current[columnIndex] = el;
+            }}
+            style={{
+              minWidth: maxWidth ? `${maxWidth}px` : undefined,
+            }}
           >
             {column.map(sport => (
               <SportGridListItem key={sport.sportName} sport={sport} />
@@ -365,7 +372,6 @@ const HeaderContentSportLinks = ({ sports, buttons }) => {
           </SportGridListColumn>
         ))}
       </SportGridList>
-
       <Footer buttons={buttons} />
     </Root>
   );

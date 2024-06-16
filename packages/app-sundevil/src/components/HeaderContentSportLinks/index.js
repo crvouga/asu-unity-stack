@@ -72,9 +72,10 @@ const SportItemLinksRoot = styled.ul`
   padding: 0;
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
+  align-items: start;
+  justify-content: flex-start;
+  gap: 0px 18px;
+  flex-wrap: wrap;
 `;
 
 /**
@@ -112,10 +113,12 @@ const SportLinksRoot = styled.div`
 const SportNameLink = styled.a`
   margin: 0;
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   cursor: pointer;
   color: var(--text-color-primary);
+  overflow: hidden;
+  whitespace: nowrap;
   &:hover {
     color: var(--text-color-brand);
   }
@@ -210,6 +213,7 @@ const FooterTicketMaster = styled.div`
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
+  min-width: 100%;
 `;
 
 const SportGridList = styled.div`
@@ -218,16 +222,16 @@ const SportGridList = styled.div`
   padding: 32px 0px;
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: start;
+  text-align: start;
   gap: 24px;
   max-width: 100%;
   overflow: hidden;
+  with: 100%;
 
-  @media (max-width: 1222px) {
-    flex-wrap: wrap;
-  }
-
-  /* Horizontal Divider */
+  /* Column Dividers */
   & > * + * {
     position: relative;
     padding-left: 12px;
@@ -253,6 +257,9 @@ const SportGridListColumn = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  width: 100%;
+  flex: 1;
+  min-width: 270px;
 `;
 
 const Vars = createGlobalStyle`
@@ -271,10 +278,6 @@ const Vars = createGlobalStyle`
 const Root = styled.div`
   width: 100%;
   max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
 `;
 
@@ -314,6 +317,7 @@ const HeaderContentSportLinks = ({ sports }) => {
   return (
     <Root>
       <Vars />
+
       <SportGridList>
         {columns.map(column => (
           <SportGridListColumn
@@ -325,6 +329,7 @@ const HeaderContentSportLinks = ({ sports }) => {
           </SportGridListColumn>
         ))}
       </SportGridList>
+
       <Footer />
     </Root>
   );

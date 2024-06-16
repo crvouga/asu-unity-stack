@@ -11,9 +11,14 @@ import { HeaderContentSportLinks } from "../HeaderContentSportLinks";
 
 /** @typedef {NavTreeItem & ({type: "builtin"} | {type: "sport-links"})} NavTreeItemVariant */
 
+const isSportLinksItem = item =>
+  item.text &&
+  item.text.toLowerCase()?.includes("sport") &&
+  typeof item.renderContent !== "function";
+
 /** @type {(props: NavTreeItem) => NavTreeItemVariant}  */
 const toNavTreeVariant = navTreeItem => {
-  if (navTreeItem.text && navTreeItem.text.toLowerCase()?.includes("sport")) {
+  if (isSportLinksItem(navTreeItem)) {
     return {
       ...navTreeItem,
       type: "sport-links",
@@ -38,12 +43,19 @@ const mapNavTreeItem = navTreeItem => {
             <HeaderContentSportLinks
               sports={(navTreeItem.items ?? []).flatMap(column =>
                 column.map(item => {
-                  // const extraLinks = Array.isArray(item.extra_links) ? item?.extra_links : [];
+                  const extraLinks = Array.isArray(item.extra_links)
+                    ? item?.extra_links
+                    : [];
                   return {
                     href: item.href,
                     sportName: item.text,
-                    sportLinks: [],
-                    faClassName: "fa fa-soccer-ball-o",
+                    sportLinks: extraLinks.map(extraLink => {
+                      return {
+                        label: extraLink.text,
+                        url: extraLink.href,
+                      };
+                    }),
+                    faClassName: "fa fa-soccer-ball",
                   };
                 })
               )}

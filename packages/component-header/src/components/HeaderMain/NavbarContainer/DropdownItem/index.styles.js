@@ -12,6 +12,7 @@ const DropdownWrapper = styled.div`
   &.opened {
     visibility: visible;
   }
+
   &.mega {
     width: 100%;
     left: 0;
@@ -88,6 +89,7 @@ const DropdownWrapper = styled.div`
     max-height: unset;
     visibility: visible;
     display: none;
+    width: 100%;
     &.opened {
       display: block;
     }

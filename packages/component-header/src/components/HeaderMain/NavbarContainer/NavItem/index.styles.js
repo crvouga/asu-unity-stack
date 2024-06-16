@@ -8,6 +8,7 @@ const NavItemWrapper = styled.li`
   &:hover > a:after {
     width: calc(100% + 24px);
   }
+  width: 100%;
   > a {
     display: inline-block;
     padding: 0.5rem 0.75rem;

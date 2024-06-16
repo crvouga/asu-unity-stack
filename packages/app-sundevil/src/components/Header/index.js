@@ -30,6 +30,12 @@ const toNavTreeVariant = navTreeItem => {
   };
 };
 
+/** @type {(icon: {icon_name: string, style: string}) => string} */
+const iconToFaClassName = icon => {
+  if (!icon) return "";
+  return `fa ${icon.style} fa-${icon.icon_name}`;
+};
+
 /** @type {(props: NavTreeItemVariant) => NavTreeItemVariant}  */
 const mapNavTreeItem = navTreeItem => {
   switch (navTreeItem.type) {
@@ -55,7 +61,7 @@ const mapNavTreeItem = navTreeItem => {
                         url: extraLink.href,
                       };
                     }),
-                    faClassName: "fa fa-soccer-ball",
+                    faClassName: iconToFaClassName(item.icon),
                   };
                 })
               )}

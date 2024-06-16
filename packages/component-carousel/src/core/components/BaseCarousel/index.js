@@ -61,6 +61,9 @@ const BaseCarousel = ({
   hasPeek = true,
   isDraggable = true,
   hasShadow = true,
+  navPrevIcon,
+  navNextIcon,
+  additionalNavBtnCss,
 }) => {
   // Only prop for the slider configs we expose is perView. Everything else is
   // considered locked down for Web Standards 2.
@@ -123,7 +126,13 @@ const BaseCarousel = ({
       ) : (
         <>
           {hasPositionIndicators && <BulletItems buttonCount={buttonCount} />}
-          {hasNavButtons && <NavButtons />}
+          {hasNavButtons && (
+            <NavButtons
+              prevBtnIcon={navPrevIcon}
+              nextBtnIcon={navNextIcon}
+              additionalBtnCss={additionalNavBtnCss}
+            />
+          )}
         </>
       )}
     </div>
@@ -149,6 +158,9 @@ BaseCarousel.propTypes = {
   hasPeek: PropTypes.bool,
   isDraggable: PropTypes.bool,
   hasShadow: PropTypes.bool,
+  navPrevIcon: PropTypes.string,
+  navNextIcon: PropTypes.string,
+  additionalNavBtnCss: PropTypes.string,
 };
 
 export { BaseCarousel, calcualteViewItems };

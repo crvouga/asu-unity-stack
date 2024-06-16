@@ -341,6 +341,9 @@ const chunk = (array, chunkSize) => {
   );
 };
 
+/** @type {(column: Sport[]) => string} */
+const toColumnKey = column => column.map(sport => sport.sportName).join("");
+
 /**
  * @param {Props} props
  * @returns {React.ReactElement}
@@ -358,7 +361,7 @@ const HeaderContentSportLinks = ({ sports, buttons }) => {
       <SportGridList>
         {columns.map((column, columnIndex) => (
           <SportGridListColumn
-            key={column.map(sport => sport.sportName).join("")}
+            key={toColumnKey(column)}
             ref={el => {
               if (el) elementsRef.current[columnIndex] = el;
             }}

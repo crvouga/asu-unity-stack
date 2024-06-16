@@ -24,9 +24,11 @@ const sportSchema = PropTypes.shape({
   sportName: PropTypes.string.isRequired,
   sportLinks: PropTypes.arrayOf(sportLinkItemSchema.isRequired).isRequired,
   faClassName: PropTypes.string,
+  href: PropTypes.string,
 });
 /**
  * @typedef {Object} Sport
+ * @property {string} href
  * @property {string} sportName
  * @property {SportLinkItem[]} sportLinks
  * @property {string | null | undefined} [faClassName]
@@ -142,7 +144,7 @@ const SportGridListItem = ({ sport }) => {
   const sportName = stringToClosestSportName(sport.sportName);
   return (
     <SportGridListItemRoot>
-      <SportNameLink>
+      <SportNameLink href={sport.href}>
         <SportIconWrapper>
           {sport.faClassName ? (
             <Icon className={sport.faClassName} style={{ color: "inherit" }} />

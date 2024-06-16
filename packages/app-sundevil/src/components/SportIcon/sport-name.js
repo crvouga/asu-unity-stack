@@ -34,8 +34,8 @@ export const SPORT_NAME = [
 
 export const sportNameSchema = PropTypes.oneOf(SPORT_NAME);
 
-/** @type {(str: string) => string} */
-const normalize = str => str.toLowerCase().replace(/[^a-z]/g, "");
+/** @type {(str: string | null | undefined) => string} */
+const normalize = str => str?.toLowerCase().replace(/[^a-z]/g, "") ?? "";
 
 /**
  * @type {(maybeSportName: string) => SportName}

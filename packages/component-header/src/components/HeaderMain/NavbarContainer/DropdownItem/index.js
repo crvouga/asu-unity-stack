@@ -103,6 +103,9 @@ const DropdownItem = forwardRef(
               trackGAEvent({ text: link.text, component: dropdownName })
             }
           >
+            {link.faClassName && (
+              <i className={link.faClassName} aria-hidden="true" />
+            )}
             {link.text}
           </a>
         </li>

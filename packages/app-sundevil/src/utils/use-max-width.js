@@ -28,5 +28,3 @@ export const useMaxWidth = numElements => {
     maxWidth,
   };
 };
-
-export default useMaxWidth;

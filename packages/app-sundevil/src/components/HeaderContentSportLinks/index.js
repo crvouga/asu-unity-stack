@@ -4,7 +4,7 @@ import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 
 import { Button } from "../../../../components-core/src";
-import useMaxWidth from "../../utils/use-max-width";
+import { useMaxWidth } from "../../utils/use-max-width";
 import { SportIcon } from "../SportIcon";
 import { stringToClosestSportName } from "../SportIcon/sport-name";
 import { TicketmasterLogo } from "./TicketmasterLogo";

@@ -61,8 +61,10 @@ const DropdownWrapper = styled.div`
       .nav-link {
         padding: 0;
         a {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
           width: 100%;
-          display: inline-block;
           margin: 0.75rem 0;
           position: relative;
           line-height: 1rem;

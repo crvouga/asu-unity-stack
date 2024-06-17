@@ -53,6 +53,13 @@ const UniversalNavbarPropTypes = PropTypes.shape({
   renderStart: PropTypes.func,
 });
 
+const NavTreePropFooter = PropTypes.shape({
+  type: PropTypes.oneOf(["button-with-text"]),
+  text: PropTypes.string,
+  buttonHref: PropTypes.string,
+  buttonText: PropTypes.string,
+});
+
 const HeaderPropTypes = {
   isPartner: PropTypes.bool,
   navTree: PropTypes.arrayOf(NavTreePropTypes),
@@ -79,6 +86,7 @@ const HeaderPropTypes = {
   site: PropTypes.string,
   renderDiv: PropTypes.oneOf(["true", "false"]),
   universalNavbar: UniversalNavbarPropTypes,
+  footers: PropTypes.arrayOf(NavTreePropFooter),
 };
 
 export {
@@ -86,7 +94,9 @@ export {
   HeaderPropTypes,
   LoginPropTypes,
   LogoPropTypes,
-  NavTreePropTypes,
-  TitlePropTypes,
   NavTreeItemsConfig,
+  NavTreePropFooter,
+  NavTreePropTypes,
+  TitlePropTypes
 };
+

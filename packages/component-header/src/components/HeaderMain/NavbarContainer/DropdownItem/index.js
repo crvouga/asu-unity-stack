@@ -1,16 +1,18 @@
 // @ts-check
+// eslint-disable-next-line import/no-extraneous-dependencies
+import classNames from "classnames";
 import PropTypes from "prop-types";
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 
 import { idGenerator, trackGAEvent } from "../../../../../../../shared";
-// eslint-disable-next-line import/no-extraneous-dependencies
-import classNames from "classnames";
 import { useAppContext } from "../../../../core/context/app-context";
 import {
   ButtonPropTypes,
   NavTreeItemsConfig,
+  NavTreePropFooter,
 } from "../../../../core/models/app-prop-types";
 import { Button } from "../../../Button";
+import { DropdownItemFooter } from "./DropdownItemFooter";
 import { DropdownWrapper } from "./index.styles";
 
 /**
@@ -24,6 +26,7 @@ import { DropdownWrapper } from "./index.styles";
  *  listId?: string
  *  style?: object
  *  mobile?: import("../../../../core/models/types").NavTreeItemsConfig
+ *  footer?: import("../../../../core/models/types").NavTreePropFooter
  * }} DropdownItemProps
  */
 
@@ -41,6 +44,7 @@ const DropdownItem = forwardRef(
       listId,
       style,
       mobile,
+      footers,
     },
     ref
   ) => {
@@ -167,6 +171,11 @@ const DropdownItem = forwardRef(
             </div>
           </div>
         )}
+
+        {footers &&
+          footers.map(footer => (
+            <DropdownItemFooter key={footer.text} footer={footer} />
+          ))}
       </DropdownWrapper>
     );
   }
@@ -185,6 +194,8 @@ DropdownItem.propTypes = {
   listId: PropTypes.string,
   // @ts-ignore
   mobile: NavTreeItemsConfig,
+  // @ts-ignore
+  footers: PropTypes.arrayOf(NavTreePropFooter),
 };
 
 export { DropdownItem };

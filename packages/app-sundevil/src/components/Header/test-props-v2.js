@@ -671,6 +671,153 @@ export const testHeaderProps = {
         ],
       ],
     },
+    // Fans and Community
+    {
+      text: "Fans and Community",
+      href: "#",
+      mobile: {
+        navTreeItemVariant: "none",
+      },
+      extra_section: [
+        {
+          button_uri: "#",
+          button_text: "Request now",
+          extra_text:
+            "Request an autograph, appearance, shoutout, social post and more from your favorite athletes.",
+          type: "text_with_button",
+        },
+      ],
+      footers: [
+        {
+          type: "button-with-text",
+          buttonHref: "#",
+          buttonText: "Request now",
+          text: "Request an autograph, appearance, shoutout, social post and more from your favorite athletes.",
+        },
+      ],
+      items: [
+        [
+          {
+            type: "heading",
+            text: "We've Got Spirit",
+            size: "md",
+          },
+          {
+            href: "#",
+            text: "Shop Sun Devil Gear",
+          },
+          {
+            href: "#",
+            text: "Sparky the Sun Devil",
+          },
+          {
+            href: "#",
+            text: "Athletic Brands",
+          },
+          {
+            href: "#",
+            text: "Spirit Squad",
+          },
+          {
+            href: "#",
+            text: "Downloads",
+          },
+        ],
+        [
+          {
+            type: "heading",
+            text: "For Kids",
+            size: "md",
+          },
+          {
+            href: "#",
+            text: "Sports Camps",
+          },
+          {
+            href: "#",
+            text: "Join Sun Devil Club",
+          },
+        ],
+        [
+          {
+            type: "heading",
+            text: "Game Day Logistics",
+            size: "md",
+          },
+          {
+            href: "#",
+            text: "Your A-Z Guide",
+          },
+          {
+            href: "#",
+            text: "Directions",
+          },
+          {
+            href: "#",
+            text: "Parking",
+          },
+          {
+            href: "#",
+            text: "Clear Bag Policy",
+          },
+          {
+            href: "#",
+            text: "Fan Safety Protocols",
+          },
+          {
+            href: "#",
+            text: "Sun Devil Radio Network",
+          },
+          {
+            href: "#",
+            text: "Downloads",
+          },
+        ],
+        [
+          {
+            type: "heading",
+            text: "History and Traditions",
+            size: "md",
+          },
+          {
+            href: "#",
+            text: "Sun Devil Traditions",
+          },
+          {
+            href: "#",
+            text: "Sun Devil Hall of Fame and Hall of Distinction",
+          },
+          {
+            href: "#",
+            text: "Olympians",
+          },
+          {
+            href: "#",
+            text: "Sports Hall of Fame",
+          },
+          {
+            href: "#",
+            text: "All-Americans",
+          },
+          {
+            href: "#",
+            text: "Scholar-Athletes of the Year",
+          },
+          {
+            href: "#",
+            text: "Distinguished Alumni",
+          },
+          {
+            href: "#",
+            text: "National Champions",
+          },
+          {
+            href: "#",
+            text: "Elite 90 Winners",
+          },
+        ],
+      ],
+    },
     // Ways to Support
     {
       text: "Ways to Support",

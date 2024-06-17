@@ -100,22 +100,55 @@ const mapNavTreeItemToSportLinks = navTreeItem => {
 };
 
 /** @type {(props: NavTreeItemVariant) => NavTreeItemVariant}  */
+const mapNavTreeItemItems = navTreeItem => {
+  const items = Array.isArray(navTreeItem.items) ? navTreeItem.items : [];
+  return {
+    ...navTreeItem,
+    items: items.map(item => {
+      if (Array.isArray(item)) {
+        return item.map(mapNavTreeItemItem);
+      }
+      return mapNavTreeItemItem(item);
+    }),
+  };
+};
+
+/** @type {(props: NavTreeItemVariant) => NavTreeItemVariant}  */
+const mapNavTreeFooters = navTreeItem => {
+  if (Array.isArray(navTreeItem.footers) && navTreeItem.footers.length > 0) {
+    return navTreeItem;
+  }
+
+  // Drupal team are passing weird props
+  if (
+    "extra_section" in navTreeItem &&
+    Array.isArray(navTreeItem.extra_section) &&
+    navTreeItem.extra_section.length > 0
+  ) {
+    return {
+      ...navTreeItem,
+      footers: navTreeItem.extra_section.map(extraSection => {
+        return {
+          type: "button-with-text",
+          text: extraSection.extra_text,
+          buttonHref: extraSection.button_uri,
+          buttonText: extraSection.button_text,
+        };
+      }),
+    };
+  }
+
+  return navTreeItem;
+};
+
+/** @type {(props: NavTreeItemVariant) => NavTreeItemVariant}  */
 const mapNavTreeItem = navTreeItem => {
   switch (navTreeItem.type) {
     case "sport-links": {
       return mapNavTreeItemToSportLinks(navTreeItem);
     }
     default: {
-      const items = Array.isArray(navTreeItem.items) ? navTreeItem.items : [];
-      return {
-        ...navTreeItem,
-        items: items.map(item => {
-          if (Array.isArray(item)) {
-            return item.map(mapNavTreeItemItem);
-          }
-          return mapNavTreeItemItem(item);
-        }),
-      };
+      return mapNavTreeFooters(mapNavTreeItemItems(navTreeItem));
     }
   }
 };

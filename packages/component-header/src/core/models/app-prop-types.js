@@ -97,6 +97,5 @@ export {
   NavTreeItemsConfig,
   NavTreePropFooter,
   NavTreePropTypes,
-  TitlePropTypes
+  TitlePropTypes,
 };
-

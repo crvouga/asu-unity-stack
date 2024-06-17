@@ -687,7 +687,7 @@ export const testHeaderProps = {
           type: "text_with_button",
         },
       ],
-      footers: [
+      desktopFooters: [
         {
           type: "button-with-text",
           buttonHref: "#",

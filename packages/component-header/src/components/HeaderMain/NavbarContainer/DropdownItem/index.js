@@ -6,6 +6,7 @@ import React, { forwardRef, useEffect, useRef, useState } from "react";
 
 import { idGenerator, trackGAEvent } from "../../../../../../../shared";
 import { useAppContext } from "../../../../core/context/app-context";
+import { useIsMobile } from "../../../../core/hooks/isMobile";
 import {
   ButtonPropTypes,
   NavTreeItemsConfig,
@@ -26,7 +27,7 @@ import { DropdownWrapper } from "./index.styles";
  *  listId?: string
  *  style?: object
  *  mobile?: import("../../../../core/models/types").NavTreeItemsConfig
- *  footer?: import("../../../../core/models/types").NavTreePropFooter
+ *  footers?: import("../../../../core/models/types").NavTreePropFooter[]
  * }} DropdownItemProps
  */
 
@@ -49,6 +50,8 @@ const DropdownItem = forwardRef(
     ref
   ) => {
     const { breakpoint } = useAppContext();
+    const isMobile = useIsMobile(breakpoint);
+    const isDesktop = !isMobile;
     const isMega = items?.length > 2;
     const dropdownRef = useRef(null);
     const [alignedRight, setAlignedRight] = useState(false);
@@ -172,7 +175,8 @@ const DropdownItem = forwardRef(
           </div>
         )}
 
-        {footers &&
+        {isDesktop &&
+          footers &&
           footers.map(footer => (
             <DropdownItemFooter key={footer.text} footer={footer} />
           ))}

@@ -24,12 +24,13 @@ export const testHeaderProps = {
     {
       href: "/sports",
       text: "Men\u0027s Sports",
-      icon: {
-        icon_name: "ticket",
-        style: "fa-fas",
-        settings:
-          "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:6:\u0022fa-fas\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-      },
+      // REMOVE PROP
+      // icon: {
+      //   icon_name: "ticket",
+      //   style: "fa-fas",
+      //   settings:
+      //     "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:6:\u0022fa-fas\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+      // },
       items: [
         [
           {
@@ -193,7 +194,7 @@ export const testHeaderProps = {
             href: "/sports/wrestling",
             text: "Wrestling",
             icon: {
-              icon_name: "luchador",
+              icon_name: "luchador", // ALTER PROP luchador -> luchador-mask
               style: "fa-solid",
               settings:
                 "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
@@ -208,7 +209,20 @@ export const testHeaderProps = {
           },
         ],
       ],
-      buttons: [{ href: "/tickets", text: "Buy tickets", color: "gold" }],
+      buttons: [
+        {
+          href: "/tickets",
+          text: "Buy tickets",
+          color: "gold",
+          // ADD PROP
+          icon: {
+            icon_name: "ticket",
+            style: "fa-fas",
+            settings:
+              'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+          },
+        },
+      ],
       extra_section: "",
       is_sports_type: true,
     },
@@ -471,6 +485,13 @@ export const testHeaderProps = {
           href: "/link",
           text: "Buy Tickets",
           color: "gold",
+          // ADD PROP
+          icon: {
+            icon_name: "ticket",
+            style: "fa-fas",
+            settings:
+              'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+          },
         },
       ],
       extra_section: "",
@@ -588,7 +609,8 @@ export const testHeaderProps = {
             href: "/tickets/wrestling",
             text: "Wrestling",
             icon: {
-              icon_name: "luchador",
+              // ALTER PROP luchador -> luchador-mask
+              icon_name: "luchador", // ALTER PROP luchador -> luchador-mask
               style: "fa-solid",
               settings:
                 "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",

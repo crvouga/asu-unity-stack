@@ -22,6 +22,11 @@
  */
 
 /**
+ * @typedef {object} NavTreeItemsConfig
+ * @property {"underline" | "none"} [navTreeItemVariant]
+ */
+
+/**
  * @typedef {object} NavTreeProps
  * @property {number} id
  * @property {string} [href]
@@ -29,9 +34,17 @@
  * @property {string} [type]
  * @property {boolean} [selected]
  * @property {object[]} [items]
+ * @property {function} [renderContent]
+ * @property {boolean} [isMega]
  * @property {Button[]} [buttons]
  * @property {string} [class]
  * @property {function} [onClick]
+ * @property {NavTreeItemsConfig | null} [mobile]
+ */
+
+/**
+ * @typedef {object} UniversalNavBarProps
+ * @property {function} [renderStart]
  */
 
 /**
@@ -44,6 +57,7 @@
  * @property {string} [parentOrgUrl]
  * @property {Logo} partnerLogo
  * @property {Logo} logo
+ * @property {Logo} sponsorLogo
  * @property {boolean} loggedIn
  * @property {string} userName
  * @property {string} loginLink
@@ -58,6 +72,7 @@
  * @property {string} searchUrl
  * @property {string} site
  * @property {string} renderDiv - Can be either "true" or "false".
+ * @property {UniversalNavBarProps | null} [universalNavbar]
  */
 
 export const JSDOC = "jsdoc";

@@ -32,6 +32,10 @@ const ButtonPropTypes = {
   onFocus: PropTypes.func,
 };
 
+const NavTreeItemsConfig = PropTypes.shape({
+  navTreeItemVariant: PropTypes.oneOf(["underline", "none"]),
+});
+
 const NavTreePropTypes = PropTypes.shape({
   id: PropTypes.number,
   href: PropTypes.string,
@@ -39,8 +43,14 @@ const NavTreePropTypes = PropTypes.shape({
   type: PropTypes.string,
   selected: PropTypes.bool,
   items: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.object)),
+  renderContent: PropTypes.func,
   buttons: PropTypes.arrayOf(PropTypes.shape(ButtonPropTypes)),
   class: PropTypes.string,
+  mobile: NavTreeItemsConfig,
+});
+
+const UniversalNavbarPropTypes = PropTypes.shape({
+  renderStart: PropTypes.func,
 });
 
 const HeaderPropTypes = {
@@ -48,6 +58,7 @@ const HeaderPropTypes = {
   navTree: PropTypes.arrayOf(NavTreePropTypes),
   partnerLogo: PropTypes.shape(LogoPropTypes),
   logo: PropTypes.shape(LogoPropTypes),
+  sponsorLogo: PropTypes.shape(LogoPropTypes),
   title: PropTypes.string,
   parentOrg: TitlePropTypes.parentOrg,
   parentOrgUrl: TitlePropTypes.parentOrgUrl,
@@ -67,13 +78,15 @@ const HeaderPropTypes = {
   searchUrl: PropTypes.string,
   site: PropTypes.string,
   renderDiv: PropTypes.oneOf(["true", "false"]),
+  universalNavbar: UniversalNavbarPropTypes,
 };
 
 export {
+  ButtonPropTypes,
   HeaderPropTypes,
   LoginPropTypes,
   LogoPropTypes,
-  TitlePropTypes,
-  ButtonPropTypes,
   NavTreePropTypes,
+  TitlePropTypes,
+  NavTreeItemsConfig,
 };

@@ -1,8 +1,9 @@
 // @ts-check
+import { autoUpdate, shift, useFloating } from "@floating-ui/react";
 import { faChevronDown, faHome } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
-import React, { useRef, useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 
 import { trackGAEvent } from "../../../../../../../shared";
 import { useAppContext } from "../../../../core/context/app-context";
@@ -12,6 +13,7 @@ import { DropdownItem } from "../DropdownItem";
 import { NavItemWrapper } from "./index.styles";
 
 // TODO: why did we stop using this class and should we remove
+// eslint-disable-next-line no-unused-vars
 const DROPDOWN_CONTAINER_CLASS = "dropdown-container";
 
 export const DROPDOWNS_GA_EVENTS = {
@@ -53,9 +55,21 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
   const opened = link.id === itemOpened;
   const { breakpoint, expandOnHover, title } = useAppContext();
   const isMobile = useIsMobile(breakpoint);
+  const { refs, floatingStyles } = useFloating({
+    strategy: "fixed",
+    // placement: 'bottom-start',
+    whileElementsMounted: autoUpdate,
+    middleware: [
+      shift({
+        crossAxis: false,
+        mainAxis: true,
+      }),
+    ],
+  });
 
   useEffect(() => {
     const handleClickOutside = event => {
+      // @ts-ignore
       if (opened && !clickRef?.current?.contains(event.target)) {
         setItemOpened();
       }
@@ -73,7 +87,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
     return (
       <span>
         {link.text}
-        {!!link.items?.length && (
+        {(!!link.items?.length || link.renderContent) && (
           <FontAwesomeIcon
             // @ts-ignore
             icon={faChevronDown}
@@ -105,7 +119,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
   };
 
   const handleClick = e => {
-    if (link.items) {
+    if (link.items || link.renderContent) {
       e.preventDefault();
       if (!expandOnHover && !isMobile) {
         setItemOpened();
@@ -134,10 +148,13 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
     >
       {/* @ts-ignore */}
       <a
+        ref={refs.setReference}
         onClick={handleClick}
         href={link.href}
         aria-expanded={() => "true"} // eslint-disable-line no-nested-ternary
-        aria-owns={link.items ? `dropdown-${link.id}` : null}
+        aria-owns={
+          link.items || link.renderContent ? `dropdown-${link.id}` : null
+        }
         className={`${link.class ? link.class : ""}${
           link.selected ? " nav-item-selected" : ""
         }${opened ? " open-link" : ""}`}
@@ -149,15 +166,37 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
       >
         {renderNavLinks}
       </a>
-      {link.items && (
+
+      {link.renderContent && (
         <DropdownItem
-          items={link.items}
+          items={[]}
+          renderContent={link.renderContent}
+          isMega={link.isMega}
           // @ts-ignore
           buttons={link.buttons}
           // @ts-ignore
           dropdownName={link.text}
           classes={`header-dropdown-${link.id} ${opened ? "opened" : ""}`}
           listId={`dropdown-${link.id}`}
+          ref={refs.setFloating}
+          style={isMobile ? {} : floatingStyles}
+          mobile={link.mobile ?? undefined}
+        />
+      )}
+
+      {link.items && (
+        <DropdownItem
+          items={link.items}
+          isMega={link.isMega}
+          // @ts-ignore
+          buttons={link.buttons}
+          // @ts-ignore
+          dropdownName={link.text}
+          classes={`header-dropdown-${link.id} ${opened ? "opened" : ""}`}
+          listId={`dropdown-${link.id}`}
+          style={isMobile ? {} : floatingStyles}
+          ref={refs.setFloating}
+          mobile={link.mobile ?? undefined}
         />
       )}
     </NavItemWrapper>

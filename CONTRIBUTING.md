@@ -157,6 +157,29 @@ We are using Webpack to statically bundle React component modules for universal 
 
 Note: The PostCSS plugin is used alongside Webpack for some advanced CSS processing, but is not required for all packages.
 
+### Additional resources
+
+---
+
+To create a new package, copy the `examples/new-component-template` directory to the `packages/` directory. This template includes a basic package structure with configurations for Storybook, Webpack, and PostCSS.
+
+1. **Update the Package Name**:
+   - Open the `package.json` file and change the `"name"` field to your new package name.
+2. **Update the Webpack Configuration**:
+  - In `webpack/webpack.common.js`, update the `entry` point to the main file of your new package.
+  - Also, in `webpack/webpack.common.js`, change the `entry component` name to the main component of your new package.
+---
+
+### Running new package
+
+To run the new package, follow the steps below:
+
+```bash
+# from the root of the package
+yarn install
+yarn storybook
+```
+
 ### Testing configuration
 
 Jest configuration is included in the package.json for most packages. See testing [requirements](./tests/README.md), and also example [test](./examples/example-package/src/components/Example/Example.test.js).

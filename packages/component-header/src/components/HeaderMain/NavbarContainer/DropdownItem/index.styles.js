@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const DropdownWrapper = styled.div`
   position: fixed;
+  width: fit-content;
   background-color: #ffffff;
   border: 1px solid #d0d0d0;
   margin: 0;
@@ -11,6 +12,7 @@ const DropdownWrapper = styled.div`
   &.opened {
     visibility: visible;
   }
+
   &.mega {
     width: 100%;
     left: 0;
@@ -46,6 +48,16 @@ const DropdownWrapper = styled.div`
         margin: 1rem 0;
         line-height: calc(100% + 0.12em);
       }
+      .ul-heading-md {
+        margin-top: 0;
+        font-size: 20px;
+        letter-spacing: -0.035em;
+        font-weight: 700;
+        text-align: left;
+        opacity: 1;
+        margin: 1rem 0;
+        line-height: 24px;
+      }
       .nav-link {
         padding: 0;
         a {
@@ -78,7 +90,7 @@ const DropdownWrapper = styled.div`
       max-width: 1200px;
       margin: 0 auto;
       display: flex;
-      padding: 1rem 0;
+      padding: 1rem 2rem;
     }
   }
   @media (max-width: ${({ breakpoint }) => breakpoint}) {
@@ -87,6 +99,7 @@ const DropdownWrapper = styled.div`
     max-height: unset;
     visibility: visible;
     display: none;
+    width: 100%;
     &.opened {
       display: block;
     }
@@ -111,12 +124,17 @@ const DropdownWrapper = styled.div`
           padding-top: 1.5rem;
         }
         .nav-link {
-          padding: 0 1rem;
-          &:not(:last-child) {
-            border-bottom: 1px solid #d0d0d0;
-          }
+          ${({ mobile }) =>
+            mobile?.navTreeItemVariant === "none"
+              ? ""
+              : `
+            padding: 0 1rem;
+            &:not(:last-child) {
+              border-bottom: 1px solid #d0d0d0;
+            }
+          `}
           a {
-            padding: 1rem 0;
+            padding: 0.8rem 0;
             margin: 0;
           }
         }

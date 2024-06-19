@@ -9,10 +9,17 @@ const Wrapper = styled.div`
     .nav {
       height: 100%;
       display: flex;
-      justify-content: flex-end;
+      justify-content: flex-start;
+      padding: 0 0.5rem;
       align-items: center;
       .links-container {
         display: flex;
+        flex: 1;
+
+        .links-whitespace {
+          flex: 1;
+        }
+
         .nav-link {
           color: #484848;
           font-size: 0.75rem;
@@ -66,15 +73,20 @@ const Wrapper = styled.div`
         align-items: center;
         flex-direction: column-reverse;
         .links-container {
+          width: 100%;
           display: grid;
           grid-template-columns: 1fr 1fr;
           grid-auto-flow: row;
           justify-items: start;
           width: 100%;
           .nav-link {
+            display: flex;
+            align-items: center;
+            height: 100%;
             white-space: normal;
             color: #191919;
             margin-right: 0;
+            margin: 0;
             text-align: center;
             width: 100%;
             font-size: 0.875rem;

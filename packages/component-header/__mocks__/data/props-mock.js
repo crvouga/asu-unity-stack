@@ -76,8 +76,5 @@ const onHoverState = {
 export {
   defaultState,
   defaultStateLoggedIn,
-  emptyState,
-  withButtonsState,
-  partnersState,
-  onHoverState,
+  emptyState, onHoverState, partnersState, withButtonsState
 };

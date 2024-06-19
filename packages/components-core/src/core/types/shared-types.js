@@ -10,6 +10,7 @@
  * @property {any}      [element]
  * @property {string}   [href]
  * @property {string[]} [icon]
+ * @property {Function} [renderIcon]
  * @property {any}      [innerRef]
  * @property {string[]} [classes]
  * @property {function():void} [onClick]

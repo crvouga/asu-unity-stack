@@ -9,20 +9,22 @@ import React from "react";
  * }} props
  * @returns
  */
-const NextButton = ({ onClick = () => null }) => (
+const NextButton = ({ onClick = () => null, icon, additionalCss }) => (
   <button
     type="button"
-    className="glide__arrow glide__arrow--next"
+    className={`glide__arrow glide__arrow--next ${additionalCss}`}
     data-glide-dir=">"
     aria-label="Next slide"
     onClick={onClick}
   >
-    <i className="fas fa-chevron-right arrow-icon" />
+    <i className={`fas ${icon || "fa-chevron-right"} arrow-icon`} />
   </button>
 );
 
 NextButton.propTypes = {
   onClick: PropTypes.func,
+  icon: PropTypes.string,
+  additionalCss: PropTypes.string,
 };
 
 export { NextButton };

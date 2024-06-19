@@ -259,12 +259,11 @@ const SportGridList = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  align-items: start;
+  align-items: stretch;
   text-align: start;
   gap: 24px;
   max-width: 100%;
   overflow: hidden;
-  with: 100%;
 
   /* Column Dividers */
   & > * + * {

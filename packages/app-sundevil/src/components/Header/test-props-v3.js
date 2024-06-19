@@ -1666,12 +1666,10 @@ export const testHeaderProps = {
     title: "ASU home page",
     brandLink: "https://www.asu.edu",
     src: "https://thesundevils.com/images/responsive/primary_logo.svg",
-    mobileSrc:
-      "https://thesundevils.com/images/responsive/primary_logo.svg",
+    mobileSrc: "https://thesundevils.com/images/responsive/primary_logo.svg",
   },
   searchUrl: "https://search.asu.edu/search",
   site: "web-sda.ddev.site",
   // ADD PROP
   officialSiteHref: "#",
 };
-

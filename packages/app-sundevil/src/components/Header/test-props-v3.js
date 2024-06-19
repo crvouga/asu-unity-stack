@@ -472,6 +472,7 @@ export const testHeaderProps = {
     {
       href: "/tickets",
       text: "Tickets",
+      // REMOVE PROP
       icon: {
         icon_name: "lacrosse-stick",
         style: "fa-solid",
@@ -821,6 +822,10 @@ export const testHeaderProps = {
       ],
       extra_section: "",
       is_sports_type: true,
+      // ADD PROP
+      mobile: {
+        navTreeItemVariant: "none",
+      },
     },
     {
       href: "/fans-and-community",
@@ -836,6 +841,7 @@ export const testHeaderProps = {
           {
             href: "/fans-and-community/weve-got-spirit",
             text: "We\u0027ve Got Spirit",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -848,6 +854,7 @@ export const testHeaderProps = {
           {
             href: "/fans-and-community/shop-sun-devil-gear",
             text: "Shop Sun Devil Gear",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -860,6 +867,7 @@ export const testHeaderProps = {
           {
             href: "/fans-and-community/sparky-the-sun-devil",
             text: "Sparky the Sun Devil",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -872,6 +880,7 @@ export const testHeaderProps = {
           {
             href: "/fans-and-community/athletic-bands",
             text: "Athletic Bands",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -884,6 +893,7 @@ export const testHeaderProps = {
           {
             href: "/fans-and-community/spirit-squad",
             text: "Spirit Squad",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -896,6 +906,7 @@ export const testHeaderProps = {
           {
             href: "/fans-and-community/downloads",
             text: "Downloads",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -910,6 +921,7 @@ export const testHeaderProps = {
           {
             href: "/for-kids",
             text: "For Kids",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -922,6 +934,7 @@ export const testHeaderProps = {
           {
             href: "/for-kids/sports-camps",
             text: "Sports Camps",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -934,6 +947,7 @@ export const testHeaderProps = {
           {
             href: "/for-kids/junior-sun-devil-club",
             text: "Junior Sun Devil Club",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -948,6 +962,7 @@ export const testHeaderProps = {
           {
             href: "/game-day-logistics",
             text: "Game Day Logistics",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -960,6 +975,7 @@ export const testHeaderProps = {
           {
             href: "/game-day-logistics/your-a-z-guide",
             text: "Your A-z Guide",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -972,6 +988,7 @@ export const testHeaderProps = {
           {
             href: "/game-day-logistics/directions",
             text: "Directions",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -984,6 +1001,7 @@ export const testHeaderProps = {
           {
             href: "/game-day-logistics/parking",
             text: "Parking",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -996,6 +1014,7 @@ export const testHeaderProps = {
           {
             href: "/game-day-logistics/clear-bag-policy",
             text: "Clear Bag Policy",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1008,6 +1027,7 @@ export const testHeaderProps = {
           {
             href: "/game-day-logistics/fan-safety-protocols",
             text: "Fan Safety Protocols",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1020,6 +1040,7 @@ export const testHeaderProps = {
           {
             href: "/game-day-logistics/sun-devil-radio-network",
             text: "Sun Devil Radio Network",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1032,6 +1053,7 @@ export const testHeaderProps = {
           {
             href: "/game-day-logistics/downloads",
             text: "Downloads",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1046,6 +1068,7 @@ export const testHeaderProps = {
           {
             href: "/history-and-traditions",
             text: "History and Traditions",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1058,6 +1081,7 @@ export const testHeaderProps = {
           {
             href: "/history-and-traditions/sun-devil-traditions",
             text: "Sun Devil Traditions",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1070,6 +1094,7 @@ export const testHeaderProps = {
           {
             href: "/history-and-traditions/sun-devil-hall-of-fame-and-hall-of-distinction",
             text: "Sun Devil Hall of Fame and Hall of Distinction",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1082,6 +1107,7 @@ export const testHeaderProps = {
           {
             href: "/history-and-traditions/olympians",
             text: "Olympians",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1094,6 +1120,7 @@ export const testHeaderProps = {
           {
             href: "/history-and-traditions/sports-hall-of-fame",
             text: "Sports Hall of Fame",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1106,6 +1133,7 @@ export const testHeaderProps = {
           {
             href: "/history-and-traditions/all-americans",
             text: "All-Americans",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1118,6 +1146,7 @@ export const testHeaderProps = {
           {
             href: "/history-and-traditions/scholar-athletes-of-the-year",
             text: "Scholar-Athletes of the Year",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1130,6 +1159,7 @@ export const testHeaderProps = {
           {
             href: "/history-and-traditions/distinguished-alumni",
             text: "Distinguished Alumni",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1142,6 +1172,7 @@ export const testHeaderProps = {
           {
             href: "/history-and-traditions/national-champions",
             text: "National Champions",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1154,6 +1185,7 @@ export const testHeaderProps = {
           {
             href: "/history-and-traditions/elite-90-winners",
             text: "Elite 90 Winners",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1176,10 +1208,15 @@ export const testHeaderProps = {
         },
       ],
       is_sports_type: true,
+      // ADD PROP
+      mobile: {
+        navTreeItemVariant: "none",
+      },
     },
     {
       href: "/ways-to-support",
       text: "Ways to Support",
+      // REMOVE PROP
       icon: {
         icon_name: "lacrosse-stick",
         style: "fa-solid",
@@ -1191,6 +1228,7 @@ export const testHeaderProps = {
           {
             href: "/ways-to-support/name-image-likeness-nil",
             text: "Name, Image, Likeness (NIL)",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1203,6 +1241,7 @@ export const testHeaderProps = {
           {
             href: "/ways-to-support/request-an-autograph-photo-shoutout",
             text: "Request an Autograph, Photo, Shoutout",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1215,6 +1254,7 @@ export const testHeaderProps = {
           {
             href: "/ways-to-support/book-an-appearance",
             text: "Book an Appearance",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1227,6 +1267,7 @@ export const testHeaderProps = {
           {
             href: "/ways-to-support/maximize-your-brand-through-nil",
             text: "Maximize Your Brand Through NIL",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1241,6 +1282,7 @@ export const testHeaderProps = {
           {
             href: "/become-involved",
             text: "Become Involved",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1253,6 +1295,7 @@ export const testHeaderProps = {
           {
             href: "/become-involved/buy-tickets-to-a-game",
             text: "Buy Tickets to a Game",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1265,6 +1308,7 @@ export const testHeaderProps = {
           {
             href: "/become-involved/join-the-sun-devil-club",
             text: "Join the Sun Devil Club",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1277,6 +1321,7 @@ export const testHeaderProps = {
           {
             href: "/become-involved/join-the-junior-sun-devil-club",
             text: "Join the Junior Sun Devil Club",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1289,6 +1334,7 @@ export const testHeaderProps = {
           {
             href: "/become-involved/join-the-sun-angel-collective",
             text: "Join the Sun Angel Collective",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1303,6 +1349,7 @@ export const testHeaderProps = {
           {
             href: "/ways-to-give",
             text: "Ways to Give",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1315,6 +1362,7 @@ export const testHeaderProps = {
           {
             href: "/ways-to-give/give-now",
             text: "Give NOW",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1327,6 +1375,7 @@ export const testHeaderProps = {
           {
             href: "/ways-to-give/give-over-time",
             text: "Give Over Time",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1339,6 +1388,7 @@ export const testHeaderProps = {
           {
             href: "/ways-to-give/plan-your-gift",
             text: "Plan Your Gift",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1353,6 +1403,7 @@ export const testHeaderProps = {
           {
             href: "/corporate-sponsorships",
             text: "Corporate Sponsorships",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1365,6 +1416,7 @@ export const testHeaderProps = {
           {
             href: "/corporate-sponsorships/connect-your-brand-with-sun-devil-nation",
             text: "Connect Your Brand with Sun Devil Nation",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",
@@ -1385,6 +1437,10 @@ export const testHeaderProps = {
       ],
       extra_section: "",
       is_sports_type: true,
+      // ADD PROP
+      mobile: {
+        navTreeItemVariant: "none",
+      },
     },
     {
       href: "/about",
@@ -1527,6 +1583,10 @@ export const testHeaderProps = {
         },
       ],
       is_sports_type: true,
+      // ADD PROP
+      mobile: {
+        navTreeItemVariant: "none",
+      },
     },
   ],
   isSponsor: true,

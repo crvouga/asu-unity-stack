@@ -181,6 +181,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
           ref={refs.setFloating}
           style={isMobile ? {} : floatingStyles}
           mobile={link.mobile ?? undefined}
+          footers={link.footers}
         />
       )}
 
@@ -197,6 +198,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
           style={isMobile ? {} : floatingStyles}
           ref={refs.setFloating}
           mobile={link.mobile ?? undefined}
+          footers={link.footers}
         />
       )}
     </NavItemWrapper>

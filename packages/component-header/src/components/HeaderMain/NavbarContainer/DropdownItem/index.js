@@ -1,15 +1,19 @@
 // @ts-check
+// eslint-disable-next-line import/no-extraneous-dependencies
+import classNames from "classnames";
 import PropTypes from "prop-types";
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 
 import { idGenerator, trackGAEvent } from "../../../../../../../shared";
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { useAppContext } from "../../../../core/context/app-context";
+import { useIsMobile } from "../../../../core/hooks/isMobile";
 import {
   ButtonPropTypes,
   NavTreeItemsConfig,
+  NavTreePropFooter,
 } from "../../../../core/models/app-prop-types";
 import { Button } from "../../../Button";
+import { DropdownItemFooter } from "./DropdownItemFooter";
 import { DropdownWrapper } from "./index.styles";
 
 /**
@@ -23,6 +27,7 @@ import { DropdownWrapper } from "./index.styles";
  *  listId?: string
  *  style?: object
  *  mobile?: import("../../../../core/models/types").NavTreeItemsConfig
+ *  footers?: import("../../../../core/models/types").NavTreePropFooter[]
  * }} DropdownItemProps
  */
 
@@ -40,10 +45,13 @@ const DropdownItem = forwardRef(
       listId,
       style,
       mobile,
+      footers,
     },
     ref
   ) => {
     const { breakpoint } = useAppContext();
+    const isMobile = useIsMobile(breakpoint);
+    const isDesktop = !isMobile;
     const isMega = items?.length > 2;
     const dropdownRef = useRef(null);
     const [alignedRight, setAlignedRight] = useState(false);
@@ -95,7 +103,13 @@ const DropdownItem = forwardRef(
         );
       }
       return (
-        <li key={key} className="nav-link">
+        <li
+          key={key}
+          className={classNames(
+            "nav-link",
+            link?.variant === "muted" && "nav-link-variant-muted"
+          )}
+        >
           <a
             href={link.href}
             onClick={stopPropagation}
@@ -103,6 +117,9 @@ const DropdownItem = forwardRef(
               trackGAEvent({ text: link.text, component: dropdownName })
             }
           >
+            {link.faClassName && (
+              <i className={link.faClassName} aria-hidden="true" />
+            )}
             {link.text}
           </a>
         </li>
@@ -157,6 +174,12 @@ const DropdownItem = forwardRef(
             </div>
           </div>
         )}
+
+        {isDesktop &&
+          footers &&
+          footers.map(footer => (
+            <DropdownItemFooter key={footer.text} footer={footer} />
+          ))}
       </DropdownWrapper>
     );
   }
@@ -175,6 +198,8 @@ DropdownItem.propTypes = {
   listId: PropTypes.string,
   // @ts-ignore
   mobile: NavTreeItemsConfig,
+  // @ts-ignore
+  footers: PropTypes.arrayOf(NavTreePropFooter),
 };
 
 export { DropdownItem };

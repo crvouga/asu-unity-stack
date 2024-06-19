@@ -20,7 +20,7 @@ const isSportLinksItem = item =>
   typeof item.renderContent !== "function";
 
 /** @type {(props: NavTreeItem) => NavTreeItemVariant}  */
-const toNavTreeVariant = navTreeItem => {
+const assocNavTreeVariant = navTreeItem => {
   if (isSportLinksItem(navTreeItem)) {
     return {
       ...navTreeItem,
@@ -32,71 +32,130 @@ const toNavTreeVariant = navTreeItem => {
     type: "builtin",
   };
 };
+/** @type {(icon: unknown) => icon is {icon_name: string, style: string}} */
+const isIcon = icon =>
+  Boolean(
+    icon && typeof icon === "object" && "icon_name" in icon && "style" in icon
+  );
 
-/** @type {(icon: {icon_name: string, style: string}) => string} */
+/** @type {(icon: unknown) => string} */
 const iconToFaClassName = icon => {
-  if (!icon) return "";
+  if (!isIcon(icon)) return "";
   return `fa ${icon.style} fa-${icon.icon_name}`;
+};
+
+/** @type {(item: object) => object} */
+const mapNavTreeItemItem = item => {
+  return {
+    ...item,
+    faClassName: iconToFaClassName(item.icon),
+  };
+};
+
+/** @type {(props: NavTreeItemVariant) => NavTreeItemVariant} */
+const mapNavTreeItemToSportLinks = navTreeItem => {
+  return {
+    id: navTreeItem.id,
+    type: navTreeItem.type,
+    text: navTreeItem.text,
+    renderContent: () => {
+      const buttons = Array.isArray(navTreeItem.buttons)
+        ? navTreeItem.buttons
+        : [];
+      return (
+        <HeaderContentSportLinks
+          buttons={buttons.map(button => {
+            return {
+              color: button.color ?? "gold",
+              faClassName: iconToFaClassName(
+                // @ts-ignore
+                button.icon
+              ),
+              href: button.href,
+              label: button.text,
+            };
+          })}
+          sports={(navTreeItem.items ?? []).flatMap(column =>
+            column.map(item => {
+              const extraLinks = Array.isArray(item.extra_links)
+                ? item?.extra_links
+                : [];
+              return {
+                href: item.href,
+                sportName: item.text,
+                sportLinks: extraLinks.map(extraLink => {
+                  return {
+                    label: extraLink.text,
+                    url: extraLink.href,
+                  };
+                }),
+                faClassName: iconToFaClassName(item.icon),
+              };
+            })
+          )}
+        />
+      );
+    },
+  };
+};
+
+/** @type {(props: NavTreeItemVariant) => NavTreeItemVariant}  */
+const mapNavTreeItemItems = navTreeItem => {
+  const items = Array.isArray(navTreeItem.items) ? navTreeItem.items : [];
+  return {
+    ...navTreeItem,
+    items: items.map(item => {
+      if (Array.isArray(item)) {
+        return item.map(mapNavTreeItemItem);
+      }
+      return mapNavTreeItemItem(item);
+    }),
+  };
+};
+
+/** @type {(props: NavTreeItemVariant) => NavTreeItemVariant}  */
+const mapNavTreeFooters = navTreeItem => {
+  if (Array.isArray(navTreeItem.footers) && navTreeItem.footers.length > 0) {
+    return navTreeItem;
+  }
+
+  // Drupal team are passing weird props
+  if (
+    "extra_section" in navTreeItem &&
+    Array.isArray(navTreeItem.extra_section) &&
+    navTreeItem.extra_section.length > 0
+  ) {
+    return {
+      ...navTreeItem,
+      footers: navTreeItem.extra_section.map(extraSection => {
+        return {
+          type: "button-with-text",
+          text: extraSection.extra_text,
+          buttonHref: extraSection.button_uri,
+          buttonText: extraSection.button_text,
+        };
+      }),
+    };
+  }
+
+  return navTreeItem;
 };
 
 /** @type {(props: NavTreeItemVariant) => NavTreeItemVariant}  */
 const mapNavTreeItem = navTreeItem => {
   switch (navTreeItem.type) {
     case "sport-links": {
-      return {
-        id: navTreeItem.id,
-        type: navTreeItem.type,
-        text: navTreeItem.text,
-        renderContent: () => {
-          const buttons = Array.isArray(navTreeItem.buttons)
-            ? navTreeItem.buttons
-            : [];
-          return (
-            <HeaderContentSportLinks
-              buttons={buttons.map(button => {
-                return {
-                  color: button.color ?? "gold",
-                  faClassName: iconToFaClassName(
-                    // @ts-ignore
-                    button.icon
-                  ),
-                  href: button.href,
-                  label: button.text,
-                };
-              })}
-              sports={(navTreeItem.items ?? []).flatMap(column =>
-                column.map(item => {
-                  const extraLinks = Array.isArray(item.extra_links)
-                    ? item?.extra_links
-                    : [];
-                  return {
-                    href: item.href,
-                    sportName: item.text,
-                    sportLinks: extraLinks.map(extraLink => {
-                      return {
-                        label: extraLink.text,
-                        url: extraLink.href,
-                      };
-                    }),
-                    faClassName: iconToFaClassName(item.icon),
-                  };
-                })
-              )}
-            />
-          );
-        },
-      };
+      return mapNavTreeItemToSportLinks(navTreeItem);
     }
     default: {
-      return {
-        ...navTreeItem,
-      };
+      return mapNavTreeFooters(mapNavTreeItemItems(navTreeItem));
     }
   }
 };
 
 /** @type {(props: HeaderProps['navTree']) => HeaderProps['navTree']}  */
-const mapNavTree = navTree => navTree.map(toNavTreeVariant).map(mapNavTreeItem);
+const mapNavTree = navTree =>
+  navTree.map(assocNavTreeVariant).map(mapNavTreeItem);
 
 /** @type {(props: HeaderProps) => HeaderProps}  */
 const mapProps = props => ({

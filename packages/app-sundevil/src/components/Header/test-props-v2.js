@@ -13,6 +13,7 @@ export const testHeaderProps = {
   userName: "You are logged in",
   officialSiteHref: "#",
   navTree: [
+    // Home
     {
       href: "/",
       text: "Home",
@@ -24,6 +25,7 @@ export const testHeaderProps = {
       type: "icon-home",
       class: "home",
     },
+    // Men's Sports
     {
       href: "/sports",
       text: "Men's Sports",
@@ -205,6 +207,7 @@ export const testHeaderProps = {
       ],
       is_sports_type: true,
     },
+    // Woman's Sports
     {
       href: "/sports",
       text: "Woman's Sports",
@@ -463,6 +466,359 @@ export const testHeaderProps = {
       extra_section: "",
       is_sports_type: true,
     },
+    // Tickets
+    {
+      text: "Tickets",
+      href: "#",
+      buttons: [
+        {
+          href: "#",
+          text: "See all ticketing info",
+          color: "gold",
+        },
+      ],
+      mobile: {
+        navTreeItemVariant: "none",
+      },
+      items: [
+        [
+          {
+            type: "heading",
+            text: "Single Game Tickets",
+            size: "md",
+          },
+          {
+            href: "#",
+            text: "Football",
+            icon: {
+              icon_name: "basketball",
+              style: "fa-fas",
+              settings:
+                'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+            },
+            faClassName: "fas fa-basketball-ball",
+          },
+          {
+            href: "#",
+            text: "M. Basketball",
+            icon: {
+              icon_name: "basketball",
+              style: "fa-fas",
+              settings:
+                'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+            },
+          },
+          {
+            href: "#",
+            text: "W. Basketball",
+            icon: {
+              icon_name: "basketball",
+              style: "fa-fas",
+              settings:
+                'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+            },
+          },
+          {
+            href: "#",
+            text: "Ice Hockey",
+            icon: {
+              icon_name: "basketball",
+              style: "fa-fas",
+              settings:
+                'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+            },
+          },
+          {
+            href: "#",
+            text: "Baseball",
+            icon: {
+              icon_name: "basketball",
+              style: "fa-fas",
+              settings:
+                'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+            },
+          },
+          {
+            href: "#",
+            text: "Softball",
+            icon: {
+              icon_name: "basketball",
+              style: "fa-fas",
+              settings:
+                'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+            },
+          },
+          {
+            href: "#",
+            text: "Volleyball",
+            icon: {
+              icon_name: "basketball",
+              style: "fa-fas",
+              settings:
+                'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+            },
+          },
+          {
+            href: "#",
+            text: "Wrestling",
+            icon: {
+              icon_name: "basketball",
+              style: "fa-fas",
+              settings:
+                'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+            },
+          },
+          {
+            href: "#",
+            text: "Gymnastics",
+            icon: {
+              icon_name: "basketball",
+              style: "fa-fas",
+              settings:
+                'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+            },
+          },
+          {
+            href: "#",
+            text: "Soccer",
+            icon: {
+              icon_name: "basketball",
+              style: "fa-fas",
+              settings:
+                'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+            },
+          },
+          {
+            href: "#",
+            text: "Lacrosse",
+            icon: {
+              icon_name: "basketball",
+              style: "fa-fas",
+              settings:
+                'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+            },
+          },
+          {
+            href: "#",
+            text: "See a List of Free Sporting Events",
+            variant: "muted",
+          },
+        ],
+        [
+          {
+            type: "heading",
+            text: "Season and Group Ticket Sales",
+            size: "md",
+          },
+          {
+            href: "#",
+            text: "Season Tickets",
+          },
+          {
+            href: "#",
+            text: "Group Tickets",
+          },
+          {
+            href: "#",
+            text: "Mini Plans",
+          },
+        ],
+        [
+          {
+            type: "heading",
+            text: "Tickets Just for You",
+            size: "md",
+          },
+          {
+            href: "#",
+            text: "ASU Students",
+          },
+          {
+            href: "#",
+            text: "ASU Young Alumni",
+          },
+          {
+            href: "#",
+            text: "ASU Faculty and Staff",
+          },
+          {
+            href: "#",
+            text: "Military and First Responders",
+          },
+        ],
+        [
+          {
+            type: "heading",
+            text: "Help with Tickets",
+            size: "md",
+          },
+          {
+            href: "#",
+            text: "Manage Your Account",
+          },
+          {
+            href: "#",
+            text: "Transfer or Donate your Tickets",
+          },
+          {
+            href: "#",
+            text: "Ticket Policies",
+          },
+          {
+            href: "#",
+            text: "Contact the Ticket Office",
+          },
+        ],
+      ],
+    },
+    // Fans and Community
+    {
+      text: "Fans and Community",
+      href: "#",
+      mobile: {
+        navTreeItemVariant: "none",
+      },
+      extra_section: [
+        {
+          button_uri: "#",
+          button_text: "Request now",
+          extra_text:
+            "Request an autograph, appearance, shoutout, social post and more from your favorite athletes.",
+          type: "text_with_button",
+        },
+      ],
+      desktopFooters: [
+        {
+          type: "button-with-text",
+          buttonHref: "#",
+          buttonText: "Request now",
+          text: "Request an autograph, appearance, shoutout, social post and more from your favorite athletes.",
+        },
+      ],
+      items: [
+        [
+          {
+            type: "heading",
+            text: "We've Got Spirit",
+            size: "md",
+          },
+          {
+            href: "#",
+            text: "Shop Sun Devil Gear",
+          },
+          {
+            href: "#",
+            text: "Sparky the Sun Devil",
+          },
+          {
+            href: "#",
+            text: "Athletic Brands",
+          },
+          {
+            href: "#",
+            text: "Spirit Squad",
+          },
+          {
+            href: "#",
+            text: "Downloads",
+          },
+        ],
+        [
+          {
+            type: "heading",
+            text: "For Kids",
+            size: "md",
+          },
+          {
+            href: "#",
+            text: "Sports Camps",
+          },
+          {
+            href: "#",
+            text: "Join Sun Devil Club",
+          },
+        ],
+        [
+          {
+            type: "heading",
+            text: "Game Day Logistics",
+            size: "md",
+          },
+          {
+            href: "#",
+            text: "Your A-Z Guide",
+          },
+          {
+            href: "#",
+            text: "Directions",
+          },
+          {
+            href: "#",
+            text: "Parking",
+          },
+          {
+            href: "#",
+            text: "Clear Bag Policy",
+          },
+          {
+            href: "#",
+            text: "Fan Safety Protocols",
+          },
+          {
+            href: "#",
+            text: "Sun Devil Radio Network",
+          },
+          {
+            href: "#",
+            text: "Downloads",
+          },
+        ],
+        [
+          {
+            type: "heading",
+            text: "History and Traditions",
+            size: "md",
+          },
+          {
+            href: "#",
+            text: "Sun Devil Traditions",
+          },
+          {
+            href: "#",
+            text: "Sun Devil Hall of Fame and Hall of Distinction",
+          },
+          {
+            href: "#",
+            text: "Olympians",
+          },
+          {
+            href: "#",
+            text: "Sports Hall of Fame",
+          },
+          {
+            href: "#",
+            text: "All-Americans",
+          },
+          {
+            href: "#",
+            text: "Scholar-Athletes of the Year",
+          },
+          {
+            href: "#",
+            text: "Distinguished Alumni",
+          },
+          {
+            href: "#",
+            text: "National Champions",
+          },
+          {
+            href: "#",
+            text: "Elite 90 Winners",
+          },
+        ],
+      ],
+    },
+    // Ways to Support
     {
       text: "Ways to Support",
       href: "#",

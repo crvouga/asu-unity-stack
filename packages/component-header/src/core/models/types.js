@@ -27,6 +27,14 @@
  */
 
 /**
+ * @typedef {object} NavTreePropFooter
+ * @property {"button-with-text"} [type]
+ * @property {string} [text]
+ * @property {string} [buttonHref]
+ * @property {string} [buttonText]
+ */
+
+/**
  * @typedef {object} NavTreeProps
  * @property {number} id
  * @property {string} [href]
@@ -37,6 +45,7 @@
  * @property {function} [renderContent]
  * @property {boolean} [isMega]
  * @property {Button[]} [buttons]
+ * @property {NavTreePropFooter[]} [footers]
  * @property {string} [class]
  * @property {function} [onClick]
  * @property {NavTreeItemsConfig | null} [mobile]

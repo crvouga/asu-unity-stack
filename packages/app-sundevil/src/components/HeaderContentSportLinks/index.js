@@ -114,7 +114,7 @@ SportItemLinks.propTypes = {
 
 const SportGridListItemRoot = styled.li`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: start;
   justify-content: start;
   gap: 2px;
@@ -155,6 +155,14 @@ const Icon = styled.i`
   color: var(--text-color-primary);
 `;
 
+const SportGridListItemLinksRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 0px;
+`;
+
 /**
  * @param {{sport: Sport}} props
  */
@@ -162,21 +170,19 @@ const SportGridListItem = ({ sport }) => {
   const sportName = stringToClosestSportName(sport.sportName);
   return (
     <SportGridListItemRoot>
-      <SportNameLink href={sport.href}>
-        <SportIconWrapper>
-          {sport.faClassName ? (
-            <Icon className={sport.faClassName} style={{ color: "inherit" }} />
-          ) : (
-            <SportIcon sportName={sportName} />
-          )}
-        </SportIconWrapper>
-        {sport.sportName}
-      </SportNameLink>
-
-      <SportLinksRoot>
-        <SportIconWrapper />
-        <SportItemLinks sport={sport} />
-      </SportLinksRoot>
+      <SportIconWrapper>
+        {sport.faClassName ? (
+          <Icon className={sport.faClassName} style={{ color: "inherit" }} />
+        ) : (
+          <SportIcon sportName={sportName} />
+        )}
+      </SportIconWrapper>
+      <SportGridListItemLinksRoot>
+        <SportNameLink href={sport.href}>{sport.sportName}</SportNameLink>
+        <SportLinksRoot>
+          <SportItemLinks sport={sport} />
+        </SportLinksRoot>
+      </SportGridListItemLinksRoot>
     </SportGridListItemRoot>
   );
 };
@@ -259,12 +265,11 @@ const SportGridList = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  align-items: start;
+  align-items: stretch;
   text-align: start;
   gap: 24px;
   max-width: 100%;
   overflow: hidden;
-  with: 100%;
 
   /* Column Dividers */
   & > * + * {
@@ -366,7 +371,7 @@ const HeaderContentSportLinks = ({ sports, buttons }) => {
               if (el) elementsRef.current[columnIndex] = el;
             }}
             style={{
-              minWidth: maxWidth ? `${maxWidth}px` : undefined,
+              minWidth: maxWidth ? `${maxWidth + 24}px` : undefined,
             }}
           >
             {column.map(sport => (

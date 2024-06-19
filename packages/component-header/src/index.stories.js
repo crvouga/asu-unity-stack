@@ -3,9 +3,9 @@ import React from "react";
 import { Button } from "./components/Button";
 import {
   basicNavTree,
-  navTreeWithButtons,
-  navTreeMega,
   mobileNavTree,
+  navTreeMega,
+  navTreeWithButtons,
 } from "./core/utils";
 import { ASUHeader } from "./header";
 

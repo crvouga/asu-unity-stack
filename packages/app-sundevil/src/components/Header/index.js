@@ -12,7 +12,7 @@ import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps['navTree'][0]} NavTreeItem */
 
-/** @typedef {NavTreeItem & ({type: "builtin"} | {type: "sport-links"})} NavTreeItemVariant */
+/** @typedef {NavTreeItem & ({type: "builtin"} | {type: "sport-links"} | {type: string & {}})} NavTreeItemVariant */
 
 const isSportLinksItem = item =>
   item.text &&
@@ -29,7 +29,7 @@ const assocNavTreeVariant = navTreeItem => {
   }
   return {
     ...navTreeItem,
-    type: "builtin",
+    type: navTreeItem.type ?? "builtin",
   };
 };
 /** @type {(icon: unknown) => icon is {icon_name: string, style: string}} */
@@ -113,13 +113,31 @@ const mapNavTreeItemItems = navTreeItem => {
   };
 };
 
+/** @type {(extraSection: unknown) => "image-only" | "button-with-text"} */
+const extraSectionToFooterType = extraSection => {
+  // Drupal team passing weird props
+  if (
+    typeof extraSection === "object" &&
+    extraSection &&
+    "type" in extraSection &&
+    extraSection.type &&
+    typeof extraSection.type === "string" &&
+    extraSection.type.toLowerCase().includes("image") &&
+    extraSection.type.toLowerCase().includes("only")
+  ) {
+    return "image-only";
+  }
+
+  return "button-with-text";
+};
+
 /** @type {(props: NavTreeItemVariant) => NavTreeItemVariant}  */
 const mapNavTreeFooters = navTreeItem => {
   if (Array.isArray(navTreeItem.footers) && navTreeItem.footers.length > 0) {
     return navTreeItem;
   }
 
-  // Drupal team are passing weird props
+  // Drupal team passing weird props
   if (
     "extra_section" in navTreeItem &&
     Array.isArray(navTreeItem.extra_section) &&
@@ -129,10 +147,15 @@ const mapNavTreeFooters = navTreeItem => {
       ...navTreeItem,
       footers: navTreeItem.extra_section.map(extraSection => {
         return {
-          type: "button-with-text",
+          ...extraSection,
+          type: extraSectionToFooterType(extraSection),
           text: extraSection.extra_text,
           buttonHref: extraSection.button_uri,
           buttonText: extraSection.button_text,
+          imageSrc: extraSection.url,
+          imageWidth: extraSection.image_width,
+          imageHeight: extraSection.image_height,
+          imageAlt: extraSection.alt,
         };
       }),
     };

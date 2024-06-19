@@ -51,11 +51,14 @@ const DropdownItem = forwardRef(
   ) => {
     const { breakpoint } = useAppContext();
     const isMobile = useIsMobile(breakpoint);
-    const isDesktop = !isMobile;
     const isMega = items?.length > 2;
     const dropdownRef = useRef(null);
     const [alignedRight, setAlignedRight] = useState(false);
     const MULTIPLE_SUBMENUS = items?.length > 1;
+
+    const mobileHideFooter = Boolean(mobile?.hideFooter ?? false);
+    const mobileShowFooter = !mobileHideFooter;
+    const showFooter = isMobile ? mobileShowFooter : true;
 
     useEffect(() => {
       if (window && dropdownRef.current) {
@@ -175,7 +178,7 @@ const DropdownItem = forwardRef(
           </div>
         )}
 
-        {isDesktop &&
+        {showFooter &&
           footers &&
           footers.map(footer => (
             <DropdownItemFooter key={footer.text} footer={footer} />

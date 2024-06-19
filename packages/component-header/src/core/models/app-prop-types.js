@@ -34,6 +34,7 @@ const ButtonPropTypes = {
 
 const NavTreeItemsConfig = PropTypes.shape({
   navTreeItemVariant: PropTypes.oneOf(["underline", "none"]),
+  hideFooter: PropTypes.bool,
 });
 
 const NavTreePropTypes = PropTypes.shape({
@@ -54,8 +55,12 @@ const UniversalNavbarPropTypes = PropTypes.shape({
 });
 
 const NavTreePropFooter = PropTypes.shape({
-  type: PropTypes.oneOf(["button-with-text"]),
+  type: PropTypes.oneOf(["button-with-text", "image-only"]),
   text: PropTypes.string,
+  imageSrc: PropTypes.string,
+  imageAlt: PropTypes.string,
+  imageWidth: PropTypes.string,
+  imageHeight: PropTypes.string,
   buttonHref: PropTypes.string,
   buttonText: PropTypes.string,
 });

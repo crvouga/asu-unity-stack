@@ -1609,4 +1609,6 @@ export const testHeaderProps = {
   },
   searchUrl: "https://search.asu.edu/search",
   site: "web-sda.ddev.site",
+  // ADD PROP
+  officialSiteHref: "#",
 };

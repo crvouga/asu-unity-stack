@@ -24,12 +24,17 @@
 /**
  * @typedef {object} NavTreeItemsConfig
  * @property {"underline" | "none"} [navTreeItemVariant]
+ * @property {boolean} [hideFooter]
  */
 
 /**
  * @typedef {object} NavTreePropFooter
- * @property {"button-with-text"} [type]
+ * @property {"button-with-text" | "image-only"} [type]
  * @property {string} [text]
+ * @property {string} [imageSrc]
+ * @property {string} [imageAlt]
+ * @property {string} [imageHeight]
+ * @property {string} [imageWidth]
  * @property {string} [buttonHref]
  * @property {string} [buttonText]
  */

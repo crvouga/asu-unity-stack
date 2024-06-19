@@ -22,6 +22,11 @@ const Text = styled.p`
   padding: 0;
   font-size: 1.15rem;
   font-weight: bold;
+  /* NOTE: These styles fix a bug found in the deployed site not seen inside the storybooks in this repo */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 `;
 
 /**

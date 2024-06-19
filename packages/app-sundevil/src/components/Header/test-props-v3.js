@@ -628,6 +628,9 @@ export const testHeaderProps = {
           {
             href: "/tickets/see-a-list-of-free-sporting-events",
             text: "See a List of Free Sporting Events",
+            // ADD PROP
+            variant: "muted",
+            // REMOVE PROP
             icon: {
               icon_name: "lacrosse-stick",
               style: "fa-solid",

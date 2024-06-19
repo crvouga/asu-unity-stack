@@ -12,7 +12,7 @@ import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps['navTree'][0]} NavTreeItem */
 
-/** @typedef {NavTreeItem & ({type: "builtin"} | {type: "sport-links"})} NavTreeItemVariant */
+/** @typedef {NavTreeItem & ({type: "builtin"} | {type: "sport-links"} | {type: string & {}})} NavTreeItemVariant */
 
 const isSportLinksItem = item =>
   item.text &&
@@ -29,7 +29,7 @@ const assocNavTreeVariant = navTreeItem => {
   }
   return {
     ...navTreeItem,
-    type: "builtin",
+    type: navTreeItem.type ?? "builtin",
   };
 };
 /** @type {(icon: unknown) => icon is {icon_name: string, style: string}} */

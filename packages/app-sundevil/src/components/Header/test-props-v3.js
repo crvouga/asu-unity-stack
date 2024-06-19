@@ -216,12 +216,12 @@ export const testHeaderProps = {
       href: "/sports",
       text: "Woman\u0027s Sports",
       // REMOVE PROP
-      icon: {
-        icon_name: "ticket",
-        style: "fa-fas",
-        settings:
-          "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:6:\u0022fa-fas\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-      },
+      // icon: {
+      //   icon_name: "ticket",
+      //   style: "fa-fas",
+      //   settings:
+      //     "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:6:\u0022fa-fas\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+      // },
       items: [
         [
           {
@@ -480,12 +480,12 @@ export const testHeaderProps = {
       href: "/tickets",
       text: "Tickets",
       // REMOVE PROP
-      icon: {
-        icon_name: "lacrosse-stick",
-        style: "fa-solid",
-        settings:
-          "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-      },
+      // icon: {
+      //   icon_name: "lacrosse-stick",
+      //   style: "fa-solid",
+      //   settings:
+      //     "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+      // },
       items: [
         [
           {
@@ -1224,235 +1224,235 @@ export const testHeaderProps = {
         hideFooter: true,
       },
     },
-    // {
-    //   href: "/ways-to-support",
-    //   text: "Ways to Support",
-    //   // REMOVE PROP
-    //   icon: {
-    //     icon_name: "lacrosse-stick",
-    //     style: "fa-solid",
-    //     settings:
-    //       "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-    //   },
-    //   items: [
-    //     [
-    //       {
-    //         href: "/ways-to-support/name-image-likeness-nil",
-    //         text: "Name, Image, Likeness (NIL)",
-    //         // REMOVE PROP
-    //         icon: {
-    //           icon_name: "lacrosse-stick",
-    //           style: "fa-solid",
-    //           settings:
-    //             "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-    //         },
-    //         type: "heading",
-    //         extra_links: "",
-    //       },
-    //       {
-    //         href: "/ways-to-support/request-an-autograph-photo-shoutout",
-    //         text: "Request an Autograph, Photo, Shoutout",
-    //         // REMOVE PROP
-    //         icon: {
-    //           icon_name: "lacrosse-stick",
-    //           style: "fa-solid",
-    //           settings:
-    //             "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-    //         },
-    //         type: null,
-    //         extra_links: "",
-    //       },
-    //       {
-    //         href: "/ways-to-support/book-an-appearance",
-    //         text: "Book an Appearance",
-    //         // REMOVE PROP
-    //         icon: {
-    //           icon_name: "lacrosse-stick",
-    //           style: "fa-solid",
-    //           settings:
-    //             "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-    //         },
-    //         type: null,
-    //         extra_links: "",
-    //       },
-    //       {
-    //         href: "/ways-to-support/maximize-your-brand-through-nil",
-    //         text: "Maximize Your Brand Through NIL",
-    //         // REMOVE PROP
-    //         icon: {
-    //           icon_name: "lacrosse-stick",
-    //           style: "fa-solid",
-    //           settings:
-    //             "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-    //         },
-    //         type: null,
-    //         extra_links: "",
-    //       },
-    //     ],
-    //     [
-    //       {
-    //         href: "/become-involved",
-    //         text: "Become Involved",
-    //         // REMOVE PROP
-    //         icon: {
-    //           icon_name: "lacrosse-stick",
-    //           style: "fa-solid",
-    //           settings:
-    //             "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-    //         },
-    //         type: "heading",
-    //         extra_links: "",
-    //       },
-    //       {
-    //         href: "/become-involved/buy-tickets-to-a-game",
-    //         text: "Buy Tickets to a Game",
-    //         // REMOVE PROP
-    //         icon: {
-    //           icon_name: "lacrosse-stick",
-    //           style: "fa-solid",
-    //           settings:
-    //             "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-    //         },
-    //         type: null,
-    //         extra_links: "",
-    //       },
-    //       {
-    //         href: "/become-involved/join-the-sun-devil-club",
-    //         text: "Join the Sun Devil Club",
-    //         // REMOVE PROP
-    //         icon: {
-    //           icon_name: "lacrosse-stick",
-    //           style: "fa-solid",
-    //           settings:
-    //             "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-    //         },
-    //         type: null,
-    //         extra_links: "",
-    //       },
-    //       {
-    //         href: "/become-involved/join-the-junior-sun-devil-club",
-    //         text: "Join the Junior Sun Devil Club",
-    //         // REMOVE PROP
-    //         icon: {
-    //           icon_name: "lacrosse-stick",
-    //           style: "fa-solid",
-    //           settings:
-    //             "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-    //         },
-    //         type: null,
-    //         extra_links: "",
-    //       },
-    //       {
-    //         href: "/become-involved/join-the-sun-angel-collective",
-    //         text: "Join the Sun Angel Collective",
-    //         // REMOVE PROP
-    //         icon: {
-    //           icon_name: "lacrosse-stick",
-    //           style: "fa-solid",
-    //           settings:
-    //             "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-    //         },
-    //         type: null,
-    //         extra_links: "",
-    //       },
-    //     ],
-    //     [
-    //       {
-    //         href: "/ways-to-give",
-    //         text: "Ways to Give",
-    //         // REMOVE PROP
-    //         icon: {
-    //           icon_name: "lacrosse-stick",
-    //           style: "fa-solid",
-    //           settings:
-    //             "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-    //         },
-    //         type: "heading",
-    //         extra_links: "",
-    //       },
-    //       {
-    //         href: "/ways-to-give/give-now",
-    //         text: "Give NOW",
-    //         // REMOVE PROP
-    //         icon: {
-    //           icon_name: "lacrosse-stick",
-    //           style: "fa-solid",
-    //           settings:
-    //             "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-    //         },
-    //         type: null,
-    //         extra_links: "",
-    //       },
-    //       {
-    //         href: "/ways-to-give/give-over-time",
-    //         text: "Give Over Time",
-    //         // REMOVE PROP
-    //         icon: {
-    //           icon_name: "lacrosse-stick",
-    //           style: "fa-solid",
-    //           settings:
-    //             "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-    //         },
-    //         type: null,
-    //         extra_links: "",
-    //       },
-    //       {
-    //         href: "/ways-to-give/plan-your-gift",
-    //         text: "Plan Your Gift",
-    //         // REMOVE PROP
-    //         icon: {
-    //           icon_name: "lacrosse-stick",
-    //           style: "fa-solid",
-    //           settings:
-    //             "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-    //         },
-    //         type: null,
-    //         extra_links: "",
-    //       },
-    //     ],
-    //     [
-    //       {
-    //         href: "/corporate-sponsorships",
-    //         text: "Corporate Sponsorships",
-    //         // REMOVE PROP
-    //         icon: {
-    //           icon_name: "lacrosse-stick",
-    //           style: "fa-solid",
-    //           settings:
-    //             "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-    //         },
-    //         type: "heading",
-    //         extra_links: "",
-    //       },
-    //       {
-    //         href: "/corporate-sponsorships/connect-your-brand-with-sun-devil-nation",
-    //         text: "Connect Your Brand with Sun Devil Nation",
-    //         // REMOVE PROP
-    //         icon: {
-    //           icon_name: "lacrosse-stick",
-    //           style: "fa-solid",
-    //           settings:
-    //             "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
-    //         },
-    //         type: null,
-    //         extra_links: "",
-    //       },
-    //     ],
-    //   ],
-    //   buttons: [
-    //     {
-    //       href: "/",
-    //       text: "Support the Sun Devils",
-    //       color: "gold",
-    //     },
-    //   ],
-    //   extra_section: "",
-    //   is_sports_type: true,
-    //   // ADD PROP
-    //   mobile: {
-    //     navTreeItemVariant: "none",
-    //   },
-    // },
+    {
+      href: "/ways-to-support",
+      text: "Ways to Support",
+      // REMOVE PROP
+      // icon: {
+      //   icon_name: "lacrosse-stick",
+      //   style: "fa-solid",
+      //   settings:
+      //     "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+      // },
+      items: [
+        [
+          {
+            href: "/ways-to-support/name-image-likeness-nil",
+            text: "Name, Image, Likeness (NIL)",
+            // REMOVE PROP
+            // icon: {
+            //   icon_name: "lacrosse-stick",
+            //   style: "fa-solid",
+            //   settings:
+            //     "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+            // },
+            type: "heading",
+            extra_links: "",
+          },
+          {
+            href: "/ways-to-support/request-an-autograph-photo-shoutout",
+            text: "Request an Autograph, Photo, Shoutout",
+            // REMOVE PROP
+            // icon: {
+            //   icon_name: "lacrosse-stick",
+            //   style: "fa-solid",
+            //   settings:
+            //     "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+            // },
+            type: null,
+            extra_links: "",
+          },
+          {
+            href: "/ways-to-support/book-an-appearance",
+            text: "Book an Appearance",
+            // REMOVE PROP
+            // icon: {
+            //   icon_name: "lacrosse-stick",
+            //   style: "fa-solid",
+            //   settings:
+            //     "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+            // },
+            type: null,
+            extra_links: "",
+          },
+          {
+            href: "/ways-to-support/maximize-your-brand-through-nil",
+            text: "Maximize Your Brand Through NIL",
+            // REMOVE PROP
+            // icon: {
+            //   icon_name: "lacrosse-stick",
+            //   style: "fa-solid",
+            //   settings:
+            //     "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+            // },
+            type: null,
+            extra_links: "",
+          },
+        ],
+        [
+          {
+            href: "/become-involved",
+            text: "Become Involved",
+            // REMOVE PROP
+            // icon: {
+            //   icon_name: "lacrosse-stick",
+            //   style: "fa-solid",
+            //   settings:
+            //     "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+            // },
+            type: "heading",
+            extra_links: "",
+          },
+          {
+            href: "/become-involved/buy-tickets-to-a-game",
+            text: "Buy Tickets to a Game",
+            // REMOVE PROP
+            // icon: {
+            //   icon_name: "lacrosse-stick",
+            //   style: "fa-solid",
+            //   settings:
+            //     "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+            // },
+            type: null,
+            extra_links: "",
+          },
+          {
+            href: "/become-involved/join-the-sun-devil-club",
+            text: "Join the Sun Devil Club",
+            // REMOVE PROP
+            // icon: {
+            //   icon_name: "lacrosse-stick",
+            //   style: "fa-solid",
+            //   settings:
+            //     "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+            // },
+            type: null,
+            extra_links: "",
+          },
+          {
+            href: "/become-involved/join-the-junior-sun-devil-club",
+            text: "Join the Junior Sun Devil Club",
+            // REMOVE PROP
+            // icon: {
+            //   icon_name: "lacrosse-stick",
+            //   style: "fa-solid",
+            //   settings:
+            //     "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+            // },
+            type: null,
+            extra_links: "",
+          },
+          {
+            href: "/become-involved/join-the-sun-angel-collective",
+            text: "Join the Sun Angel Collective",
+            // REMOVE PROP
+            // icon: {
+            //   icon_name: "lacrosse-stick",
+            //   style: "fa-solid",
+            //   settings:
+            //     "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+            // },
+            type: null,
+            extra_links: "",
+          },
+        ],
+        [
+          {
+            href: "/ways-to-give",
+            text: "Ways to Give",
+            // REMOVE PROP
+            icon: {
+              icon_name: "lacrosse-stick",
+              style: "fa-solid",
+              settings:
+                "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+            },
+            type: "heading",
+            extra_links: "",
+          },
+          {
+            href: "/ways-to-give/give-now",
+            text: "Give NOW",
+            // REMOVE PROP
+            icon: {
+              icon_name: "lacrosse-stick",
+              style: "fa-solid",
+              settings:
+                "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+            },
+            type: null,
+            extra_links: "",
+          },
+          {
+            href: "/ways-to-give/give-over-time",
+            text: "Give Over Time",
+            // REMOVE PROP
+            icon: {
+              icon_name: "lacrosse-stick",
+              style: "fa-solid",
+              settings:
+                "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+            },
+            type: null,
+            extra_links: "",
+          },
+          {
+            href: "/ways-to-give/plan-your-gift",
+            text: "Plan Your Gift",
+            // REMOVE PROP
+            icon: {
+              icon_name: "lacrosse-stick",
+              style: "fa-solid",
+              settings:
+                "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+            },
+            type: null,
+            extra_links: "",
+          },
+        ],
+        [
+          {
+            href: "/corporate-sponsorships",
+            text: "Corporate Sponsorships",
+            // REMOVE PROP
+            icon: {
+              icon_name: "lacrosse-stick",
+              style: "fa-solid",
+              settings:
+                "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+            },
+            type: "heading",
+            extra_links: "",
+          },
+          {
+            href: "/corporate-sponsorships/connect-your-brand-with-sun-devil-nation",
+            text: "Connect Your Brand with Sun Devil Nation",
+            // REMOVE PROP
+            icon: {
+              icon_name: "lacrosse-stick",
+              style: "fa-solid",
+              settings:
+                "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+            },
+            type: null,
+            extra_links: "",
+          },
+        ],
+      ],
+      buttons: [
+        {
+          href: "/",
+          text: "Support the Sun Devils",
+          color: "gold",
+        },
+      ],
+      extra_section: "",
+      is_sports_type: true,
+      // ADD PROP
+      mobile: {
+        navTreeItemVariant: "none",
+      },
+    },
     {
       href: "/about",
       text: "About",

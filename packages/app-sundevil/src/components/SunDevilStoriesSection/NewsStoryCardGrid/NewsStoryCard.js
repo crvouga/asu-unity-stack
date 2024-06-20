@@ -32,7 +32,6 @@ const Root = styled.a`
   &:hover {
     opacity: 0.9;
   }
-  z-index: -1;
 `;
 
 const BackgroundImage = styled.img`
@@ -71,9 +70,9 @@ const Content = styled.div`
     circle,
     transparent 0%,
     transparent 10%,
-    rgba(0, 0, 0, 0.7) 100%
+    rgba(0, 0, 0, 0.8) 100%
   );
-  padding: 24px;
+  padding: 18px 24px;
 `;
 
 const WhiteSpaceFill = styled.div`

@@ -11,6 +11,7 @@ import { Button } from "../../../../components-core/src/index";
 import { APP_CONFIG } from "../../config";
 import { useElementPosition } from "../../utils/use-element-position";
 import { SectionHeader } from "../SectionHeader";
+import { SportTabs } from "../SportsTabs/SportsTabs";
 import { newsStorySchema } from "./NewsStoryCardGrid/NewsStoryCard";
 import { NewsStoryCardGridDesktop } from "./NewsStoryCardGrid/NewsStoryCardGridDesktop";
 import { NewsStoryCardGridMobile } from "./NewsStoryCardGrid/NewsStoryCardGridMobile";
@@ -89,6 +90,14 @@ export const SunDevilStoriesSection = ({
           sports={sportsWithSelectedTab}
           onSportItemClick={sportId => () => setSelectedTab(sportId)}
         />
+      )}
+      {true && (
+        <div className="container">
+          <SportTabs
+            sports={sportsWithSelectedTab}
+            onSportItemClick={sportId => () => setSelectedTab(sportId)}
+          />
+        </div>
       )}
       {selectedSport && isMobile && (
         <NewsStoryCardGridMobile

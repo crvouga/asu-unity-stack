@@ -2,11 +2,15 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { GameNavigation } from "../../../../component-game-list/src/components/GameNavigation";
 import { sportSchema } from "../../../../component-game-list/src/core/components/Navigation";
+import {
+  SportsTabsDesktop,
+  SportsTabsMobile,
+} from "../../../../component-game-list/src/core/components/SportsTabs";
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { Button } from "../../../../components-core/src/index";
 import { APP_CONFIG } from "../../config";
+import { RenderReact } from "../../utils/react-render";
 import { useElementContentPosition } from "../../utils/use-element-position";
 import { SectionHeader } from "../SectionHeader";
 import { newsStorySchema } from "./NewsStoryCardGrid/NewsStoryCard";
@@ -86,14 +90,15 @@ export const SunDevilStoriesSection = ({
       {selectedSport && isMobile && (
         <>
           <div className="container">
-            <GameNavigation
+            <SportsTabsMobile
               sports={sportsWithSelectedTab}
               onSportItemClick={sportId => () => setSelectedTab(sportId)}
             />
           </div>
           <NewsStoryCardGridMobile
             newsStories={selectedSport.newsStories}
-            slideOffsetBefore={sectionHeaderPosition.left}
+            slidesOffsetBefore={sectionHeaderPosition.left}
+            slidesOffsetAfter={window.innerWidth - sectionHeaderPosition.right}
             cardWidth={cardWidth}
             renderBottomRightContent={() => (
               <Button
@@ -109,9 +114,11 @@ export const SunDevilStoriesSection = ({
       {selectedSport && isDesktop && (
         <>
           <div className="container">
-            <GameNavigation
+            <SportsTabsDesktop
               sports={sportsWithSelectedTab}
               onSportItemClick={sportId => () => setSelectedTab(sportId)}
+              moreTabOrientation="horizontal"
+              moreTabColor="muted"
             />
           </div>
           <div className="container">
@@ -136,4 +143,12 @@ SunDevilStoriesSection.propTypes = {
   sports: PropTypes.arrayOf(sportWithNewsStoriesSchema).isRequired,
   allStoriesLabel: PropTypes.string.isRequired,
   allStoriesHref: PropTypes.string.isRequired,
+};
+
+export const initSunDevilsStoriesSection = ({ targetSelector, props }) => {
+  RenderReact(
+    SunDevilStoriesSection,
+    props,
+    document.querySelector(targetSelector)
+  );
 };

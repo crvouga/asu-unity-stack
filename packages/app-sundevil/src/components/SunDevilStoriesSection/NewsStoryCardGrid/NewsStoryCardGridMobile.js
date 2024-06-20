@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import { ArrowButtons } from "../../ArrowButtons";
@@ -42,18 +42,29 @@ const WhitespaceFill = styled.div`
 `;
 
 /**
- * @typedef {{newsStories: NewsStory[]; slideOffsetBefore; number; cardWidth?: number; renderBottomRightContent?: () => React.ReactNode }} Props
+ * @typedef {{
+ * newsStories: NewsStory[];
+ * slidesOffsetBefore; number;
+ * slidesOffsetAfter?: number;
+ * cardWidth?: number;
+ * renderBottomRightContent?: () => React.ReactNode
+ * }} Props
  */
 
 /** @type {React.FC<Props>} */
 export const NewsStoryCardGridMobile = ({
   newsStories,
-  slideOffsetBefore,
+  slidesOffsetBefore,
+  slidesOffsetAfter,
   cardWidth,
   renderBottomRightContent,
 }) => {
   const [carouselController] = React.useState(() => new CarouselController());
   const [index, setIndex] = React.useState(0);
+
+  useEffect(() => {
+    carouselController.reset();
+  }, [newsStories]);
 
   return (
     <Root>
@@ -63,7 +74,8 @@ export const NewsStoryCardGridMobile = ({
         controller={carouselController}
         index={index}
         onIndexChanged={setIndex}
-        slidesOffsetBefore={slideOffsetBefore ?? 0}
+        slidesOffsetBefore={slidesOffsetBefore ?? 0}
+        slidesOffsetAfter={slidesOffsetAfter ?? 0}
       >
         {newsStories.map(newsStory => (
           <CarouselItem key={newsStory.title} style={{ width: "fit-content" }}>
@@ -86,7 +98,8 @@ export const NewsStoryCardGridMobile = ({
 };
 NewsStoryCardGridMobile.propTypes = {
   newsStories: PropTypes.arrayOf(newsStorySchema).isRequired,
-  slideOffsetBefore: PropTypes.number,
+  slidesOffsetAfter: PropTypes.number,
+  slidesOffsetBefore: PropTypes.number,
   cardWidth: PropTypes.number,
   renderBottomRightContent: PropTypes.func.isRequired,
 };

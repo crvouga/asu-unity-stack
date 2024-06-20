@@ -45,7 +45,7 @@ const newsStories = [
     category: "News",
     imageSrc:
       "https://s3-alpha-sig.figma.com/img/f9f1/f62f/87c68b75cb042655b9dbf6c51643f8cb?Expires=1719792000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=F-gvLfWe2beVM-~wa~fiSyLtKMN1kr9r8oDO6jGVxnVj94O8E6sYJBsfEvRpisevNyXOIvQfoWbuG5abg53KgVVNy2ynaodcqL1UZbIbqvte00rOUQsFGNO~BxpFWUjYw6mJM19XXII9KOstUY75A55FfSQHZoduAY-0L~FPFi~-eP17IuBKaN3rtcYJDglrHmkK6e3GbE3tW4e0Oz36fB2Wrj~1I5hI~Q7CrDw0p0wVQg7vhntL1YbXbBLQqKOUft~Dn479Dd091kLEUv21tI2WjMEBUJHyCPC7EulDsGvXiN~qfDGX~J0izjuPe0c5EDFaBd8iurmrd9Zn7su4yw__",
-    sportName: "Volleball",
+    sportName: "Vollyball",
     sportIconFaClassName: "fas fa-volleyball-ball",
     title: "Rohr Pac-12 Coach of the Year, Kensinger Honored",
   },

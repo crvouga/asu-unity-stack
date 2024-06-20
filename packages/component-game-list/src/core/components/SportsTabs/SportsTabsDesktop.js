@@ -1,30 +1,18 @@
 // @ts-check
-import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
 import { DropDown } from "../../../../../app-sundevil/src/components/DropDown/DropDown";
 import { DropDownSurface } from "../../../../../app-sundevil/src/components/DropDown/DropDownSurface";
+import { basePropTypes } from "./sports-tabs";
 import { SportsTab } from "./SportsTab";
 import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 
 /**
- * @typedef {{
- *  id: string;
- *  name: string;
- *  icon: string;
- *  active?: boolean;
- *  position: number;
- * }} Sport
+ * @typedef {import("./sports-tabs").Sport} Sport
+ * @typedef {import("./sports-tabs").BaseProps} BaseProps
+ * @typedef {BaseProps & {moreTabOrientation?: "vertical" | "horizontal", moreTabColor?: "default" | "muted"}} Props
  */
-
-export const sportSchema = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  active: PropTypes.bool,
-  position: PropTypes.number,
-});
 
 const Root = styled.div`
   display: flex;
@@ -36,18 +24,20 @@ const Root = styled.div`
 `;
 
 /**
- * @type {React.FC<{
- *  sports: Sport[];
- *  onSportItemClick: (sportId: string) => () => void;
- * }>}
+ * @type {React.FC<Props>}
  * */
-export const SportsTabsDesktop = ({ sports, onSportItemClick }) => {
+export const SportsTabsDesktop = ({
+  sports,
+  onSportItemClick,
+  moreTabOrientation,
+  moreTabColor,
+}) => {
   sports.sort((a, b) => a.position - b.position);
   const firstTenSports = sports
     .filter((_sport, index) => index < 9)
     // @ts-ignore
     .filter(sport => !sport.more);
-  // @ts-ignore
+
   const moreSports = sports.filter((sport, index) => index >= 9);
   const isMoreSportsActive = moreSports.some(sport => Boolean(sport.active));
 
@@ -64,6 +54,7 @@ export const SportsTabsDesktop = ({ sports, onSportItemClick }) => {
           key={sport.id}
           onClick={onSportItemClick(sport.id)}
           active={Boolean(sport.active)}
+          orientation="vertical"
         >
           <span title={sport.name} className={sport.icon} />
           <div>{sport.name}</div>
@@ -87,7 +78,9 @@ export const SportsTabsDesktop = ({ sports, onSportItemClick }) => {
                       currentState.opened === "dropdown" ? null : "dropdown",
                   }))
                 }
+                orientation={moreTabOrientation ?? "vertical"}
                 active={isMoreSportsActive}
+                color={moreTabColor ?? "default"}
               >
                 {input.open ? (
                   <span className="fas fa-chevron-up" />
@@ -123,8 +116,7 @@ export const SportsTabsDesktop = ({ sports, onSportItemClick }) => {
   );
 };
 
+// @ts-ignore
 SportsTabsDesktop.propTypes = {
-  // @ts-ignore
-  sports: PropTypes.arrayOf(sportSchema).isRequired,
-  onSportItemClick: PropTypes.func.isRequired,
+  ...basePropTypes,
 };

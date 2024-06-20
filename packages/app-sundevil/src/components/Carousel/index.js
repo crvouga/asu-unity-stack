@@ -21,6 +21,10 @@ export class CarouselController {
   slidePrev() {
     this.swiper.slidePrev();
   }
+
+  reset() {
+    this.swiper.slideTo(0);
+  }
 }
 
 export function Carousel(props) {

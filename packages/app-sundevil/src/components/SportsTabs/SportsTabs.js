@@ -1,8 +1,12 @@
+// @ts-check
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { DropDown } from "../DropDown/DropDown";
+import { DropDownSurface } from "../DropDown/DropDownSurface";
 import { SportsTab } from "./SportsTab";
+import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 
 /**
  * @typedef {{
@@ -41,8 +45,18 @@ export const SportTabs = ({ sports, onSportItemClick }) => {
   sports.sort((a, b) => a.position - b.position);
   const firstTenSports = sports
     .filter((_sport, index) => index < 9)
+    // @ts-ignore
     .filter(sport => !sport.more);
+  // @ts-ignore
   const moreSports = sports.filter((sport, index) => index >= 9);
+  const isMoreSportsActive = moreSports.some(sport => Boolean(sport.active));
+
+  /** @type {Record<string, unknown>} */
+  const initialState = {
+    opened: null,
+  };
+  const [state, setState] = React.useState(initialState);
+
   return (
     <Root>
       {firstTenSports.map(sport => (
@@ -56,39 +70,61 @@ export const SportTabs = ({ sports, onSportItemClick }) => {
         </SportsTab>
       ))}
       {moreSports.length > 0 && (
-        <SportsTab>
-          <span className="fas fa-chevron-down" />
-          <div>More</div>
-        </SportsTab>
-      )}
-      {false && moreSports.length > 0 && (
-        <li className="nav-item dropdown">
-          <button
-            type="button"
-            className="nav-item dropdown nav-link"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <span className="fas fa-chevron-down" />
-            <div>More</div>
-          </button>
-          <ul className="dropdown-menu">
-            {moreSports.map(sport => (
-              <li key={sport.id} className="dropdown-item">
-                <button type="button" onClick={onSportItemClick(sport.id)}>
-                  <span title={sport.name} className={sport.icon} />
-                  <div>{sport.name}</div>
-                </button>
-              </li>
-            ))}
-          </ul>
-        </li>
+        <DropDown
+          open={state.opened === "dropdown"}
+          onClose={() =>
+            setState(currentState => ({ ...currentState, opened: null }))
+          }
+          renderReference={input => {
+            return (
+              <SportsTab
+                // @ts-ignore
+                ref={input.ref}
+                onClick={() =>
+                  setState(currentState => ({
+                    ...currentState,
+                    opened:
+                      currentState.opened === "dropdown" ? null : "dropdown",
+                  }))
+                }
+                active={isMoreSportsActive}
+              >
+                {input.open ? (
+                  <span className="fas fa-chevron-up" />
+                ) : (
+                  <span className="fas fa-chevron-down" />
+                )}
+                <div>More</div>
+              </SportsTab>
+            );
+          }}
+          renderContent={() => {
+            return (
+              <DropDownSurface>
+                {moreSports.map(sport => (
+                  <SportsTabDropDownItem
+                    label={sport.name}
+                    active={Boolean(sport.active)}
+                    onClick={() => {
+                      setState(currentState => ({
+                        ...currentState,
+                        opened: null,
+                      }));
+                      onSportItemClick(sport.id)();
+                    }}
+                  />
+                ))}
+              </DropDownSurface>
+            );
+          }}
+        />
       )}
     </Root>
   );
 };
 
 SportTabs.propTypes = {
+  // @ts-ignore
   sports: PropTypes.arrayOf(sportSchema).isRequired,
   onSportItemClick: PropTypes.func.isRequired,
 };

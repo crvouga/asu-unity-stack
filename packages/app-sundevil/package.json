@@ -42,7 +42,8 @@
     "react": ">= 16.14.0 < 18",
     "react-dom": ">= 16.14.0 < 18",
     "styled-components": "^5.3.0",
-    "swiper": "^11.1.4"
+    "swiper": "^11.1.4",
+    "@floating-ui/react": "^0.26.16"
   },
   "devDependencies": {
     "@babel/core": "^7.13.14",

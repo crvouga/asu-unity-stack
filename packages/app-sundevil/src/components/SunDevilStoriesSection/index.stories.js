@@ -152,6 +152,20 @@ const props = {
       position: 10,
       newsStories: [...newsStories].sort(() => Math.random() - 0.5),
     },
+    {
+      name: "Tennis",
+      icon: "fas fa-table-tennis",
+      id: "tennis",
+      position: 11,
+      newsStories: [...newsStories].sort(() => Math.random() - 0.5),
+    },
+    {
+      name: "W. Lacrosse",
+      icon: "fas fa-lacrosse",
+      id: "w-lacrosse",
+      position: 12,
+      newsStories: [...newsStories].sort(() => Math.random() - 0.5),
+    },
   ],
 };
 

@@ -6,8 +6,6 @@ import { AspectRatioSquare } from "./AspectRatioSquare";
 
 const Root = styled.div`
   flex: 1;
-  outline: none !important;
-  border: none !important;
   &.inactive {
     background-color: transparent;
     color: inherit;
@@ -16,6 +14,8 @@ const Root = styled.div`
     background-color: #191919;
     color: #fafafa;
   }
+  outline: none !important;
+  border: none !important;
   &:focus {
     outline: none !important;
     box-shadow: none !important;
@@ -44,7 +44,7 @@ const propsSchema = {
 /**
  * @typedef {{
  * children: React.ReactNode;
- * active: boolean;
+ * active?: boolean;
  * onClick: () => void;
  * }} Props
  */
@@ -52,28 +52,32 @@ const propsSchema = {
 /**
  * @type {React.FC<Props>}
  */
-export const SportsTab = ({ children, active, onClick }) => {
-  const className = active ? "active" : "inactive";
-  return (
-    <Root
-      onClick={onClick}
-      className={className}
-      role="button"
-      tabIndex={0}
-      onKeyDown={e => {
-        if (e.key === "Enter") {
-          onClick();
-        }
-        if (e.key === " ") {
-          e.preventDefault();
-          onClick();
-        }
-      }}
-    >
-      <AspectRatioSquare>
-        <Content>{children}</Content>
-      </AspectRatioSquare>
-    </Root>
-  );
-};
+export const SportsTab = React.forwardRef(
+  ({ children, active, onClick }, ref) => {
+    const className = active ? "active" : "inactive";
+    return (
+      <Root
+        onClick={onClick}
+        className={className}
+        role="button"
+        tabIndex={0}
+        ref={ref}
+        onKeyDown={e => {
+          if (e.key === "Enter") {
+            onClick();
+          }
+          if (e.key === " ") {
+            e.preventDefault();
+            onClick();
+          }
+        }}
+      >
+        <AspectRatioSquare>
+          <Content>{children}</Content>
+        </AspectRatioSquare>
+      </Root>
+    );
+  }
+);
+
 SportsTab.propTypes = propsSchema;

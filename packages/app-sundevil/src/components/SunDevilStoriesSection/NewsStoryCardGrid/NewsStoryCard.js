@@ -32,6 +32,7 @@ const Root = styled.a`
   &:hover {
     opacity: 0.9;
   }
+  z-index: -1;
 `;
 
 const BackgroundImage = styled.img`
@@ -41,7 +42,7 @@ const BackgroundImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1;
+  z-index: -2;
 `;
 
 const Title = styled.div`

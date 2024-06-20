@@ -31,4 +31,8 @@ const initHeaderComponent = ({ targetSelector, props }) => {
   RenderReact(Header, props, document.querySelector(targetSelector));
 };
 
-export { initGamesNavigationComponent, initGameTableComponent, initHeaderComponent };
+export {
+  initGamesNavigationComponent,
+  initGameTableComponent,
+  initHeaderComponent,
+};

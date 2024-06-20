@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import React, { useMemo } from "react";
 import styled from "styled-components";
 
-import { ArrowButtons } from "../ArrowButtons";
-import { Carousel, CarouselController, CarouselItem } from "../Carousel";
+import { ArrowButtons } from "../../ArrowButtons";
+import { Carousel, CarouselController, CarouselItem } from "../../Carousel";
 import { socialMediaPostSchema } from "./social-media-post";
 import { SocialMediaPostCard } from "./SocialMediaPostCard";
 

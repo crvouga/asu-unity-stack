@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 import { ArrowButtons } from "../../ArrowButtons";
@@ -54,6 +54,10 @@ export const NewsStoryCardGridMobile = ({
 }) => {
   const [carouselController] = React.useState(() => new CarouselController());
   const [index, setIndex] = React.useState(0);
+
+  useEffect(() => {
+    carouselController.reset();
+  }, [newsStories]);
 
   return (
     <Root>

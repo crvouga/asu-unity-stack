@@ -115,6 +115,8 @@ export const SunDevilStoriesSection = ({
             <SportsTabsDesktop
               sports={sportsWithSelectedTab}
               onSportItemClick={sportId => () => setSelectedTab(sportId)}
+              moreTabOrientation="horizontal"
+              moreTabColor="muted"
             />
           </div>
           <div className="container">

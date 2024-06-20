@@ -11,7 +11,7 @@ import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 /**
  * @typedef {import("./sports-tabs").Sport} Sport
  * @typedef {import("./sports-tabs").BaseProps} BaseProps
- * @typedef {BaseProps} Props
+ * @typedef {BaseProps & {moreTabOrientation?: "vertical" | "horizontal", moreTabColor?: "default" | "muted"}} Props
  */
 
 const Root = styled.div`
@@ -26,7 +26,12 @@ const Root = styled.div`
 /**
  * @type {React.FC<Props>}
  * */
-export const SportsTabsDesktop = ({ sports, onSportItemClick }) => {
+export const SportsTabsDesktop = ({
+  sports,
+  onSportItemClick,
+  moreTabOrientation,
+  moreTabColor,
+}) => {
   sports.sort((a, b) => a.position - b.position);
   const firstTenSports = sports
     .filter((_sport, index) => index < 9)
@@ -49,6 +54,7 @@ export const SportsTabsDesktop = ({ sports, onSportItemClick }) => {
           key={sport.id}
           onClick={onSportItemClick(sport.id)}
           active={Boolean(sport.active)}
+          orientation="vertical"
         >
           <span title={sport.name} className={sport.icon} />
           <div>{sport.name}</div>
@@ -72,7 +78,9 @@ export const SportsTabsDesktop = ({ sports, onSportItemClick }) => {
                       currentState.opened === "dropdown" ? null : "dropdown",
                   }))
                 }
+                orientation={moreTabOrientation ?? "vertical"}
                 active={isMoreSportsActive}
+                color={moreTabColor ?? "default"}
               >
                 {input.open ? (
                   <span className="fas fa-chevron-up" />

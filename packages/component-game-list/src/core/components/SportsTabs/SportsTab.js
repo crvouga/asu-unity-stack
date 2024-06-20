@@ -8,10 +8,10 @@ const Root = styled.div`
   flex: 1;
   &.inactive {
     background-color: transparent;
-    color: inherit;
     &:hover {
       background-color: rgba(25, 25, 25, 0.1);
     }
+    color: ${({ color }) => (color === "muted" ? "#747474" : "inherit")};
   }
   &.active {
     background-color: #191919;
@@ -29,7 +29,8 @@ const Root = styled.div`
 const Content = styled.div`
   padding: 1rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: ${({ orientation }) =>
+    orientation === "horizontal" ? "row-reverse" : "column"};
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -42,6 +43,8 @@ const propsSchema = {
   active: PropTypes.bool,
   children: PropTypes.node,
   onClick: PropTypes.func,
+  orientation: PropTypes.oneOf(["horizontal", "vertical"]),
+  color: PropTypes.oneOf(["default", "muted"]),
 };
 
 /**
@@ -49,6 +52,8 @@ const propsSchema = {
  * children: React.ReactNode;
  * active?: boolean;
  * onClick: () => void;
+ * orientation: "horizontal" | "vertical";
+ * color?: "default" | "muted";
  * }} Props
  */
 
@@ -56,7 +61,7 @@ const propsSchema = {
  * @type {React.FC<Props>}
  */
 export const SportsTab = React.forwardRef(
-  ({ children, active, onClick }, ref) => {
+  ({ children, active, onClick, orientation, color }, ref) => {
     const className = active ? "active" : "inactive";
     return (
       <Root
@@ -65,6 +70,7 @@ export const SportsTab = React.forwardRef(
         role="button"
         tabIndex={0}
         ref={ref}
+        color={color}
         onKeyDown={e => {
           if (e.key === "Enter") {
             onClick();
@@ -76,7 +82,7 @@ export const SportsTab = React.forwardRef(
         }}
       >
         <AspectRatioSquare>
-          <Content>{children}</Content>
+          <Content orientation={orientation}>{children}</Content>
         </AspectRatioSquare>
       </Root>
     );

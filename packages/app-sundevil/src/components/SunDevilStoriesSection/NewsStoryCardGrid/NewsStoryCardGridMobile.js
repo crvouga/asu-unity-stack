@@ -42,13 +42,19 @@ const WhitespaceFill = styled.div`
 `;
 
 /**
- * @typedef {{newsStories: NewsStory[]; slideOffsetBefore; number; cardWidth?: number; renderBottomRightContent?: () => React.ReactNode }} Props
+ * @typedef {{
+ * newsStories: NewsStory[];
+ * slidesOffsetBefore; number;
+ * slidesOffsetAfter?: number;
+ * cardWidth?: number;
+ * renderBottomRightContent?: () => React.ReactNode
+ * }} Props
  */
 
 /** @type {React.FC<Props>} */
 export const NewsStoryCardGridMobile = ({
   newsStories,
-  slideOffsetBefore,
+  slidesOffsetBefore,
   slidesOffsetAfter,
   cardWidth,
   renderBottomRightContent,
@@ -68,7 +74,7 @@ export const NewsStoryCardGridMobile = ({
         controller={carouselController}
         index={index}
         onIndexChanged={setIndex}
-        slidesOffsetBefore={slideOffsetBefore ?? 0}
+        slidesOffsetBefore={slidesOffsetBefore ?? 0}
         slidesOffsetAfter={slidesOffsetAfter ?? 0}
       >
         {newsStories.map(newsStory => (
@@ -93,7 +99,7 @@ export const NewsStoryCardGridMobile = ({
 NewsStoryCardGridMobile.propTypes = {
   newsStories: PropTypes.arrayOf(newsStorySchema).isRequired,
   slidesOffsetAfter: PropTypes.number,
-  slideOffsetBefore: PropTypes.number,
+  slidesOffsetBefore: PropTypes.number,
   cardWidth: PropTypes.number,
   renderBottomRightContent: PropTypes.func.isRequired,
 };

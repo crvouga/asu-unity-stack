@@ -96,7 +96,8 @@ export const SunDevilStoriesSection = ({
           </div>
           <NewsStoryCardGridMobile
             newsStories={selectedSport.newsStories}
-            slideOffsetBefore={sectionHeaderPosition.left}
+            slidesOffsetBefore={sectionHeaderPosition.left}
+            slidesOffsetAfter={window.innerWidth - sectionHeaderPosition.right}
             cardWidth={cardWidth}
             renderBottomRightContent={() => (
               <Button

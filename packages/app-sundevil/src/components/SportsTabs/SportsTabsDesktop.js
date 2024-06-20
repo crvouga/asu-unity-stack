@@ -41,7 +41,7 @@ const Root = styled.div`
  *  onSportItemClick: (sportId: string) => () => void;
  * }>}
  * */
-export const SportTabs = ({ sports, onSportItemClick }) => {
+export const SportsTabsDesktop = ({ sports, onSportItemClick }) => {
   sports.sort((a, b) => a.position - b.position);
   const firstTenSports = sports
     .filter((_sport, index) => index < 9)
@@ -123,7 +123,7 @@ export const SportTabs = ({ sports, onSportItemClick }) => {
   );
 };
 
-SportTabs.propTypes = {
+SportsTabsDesktop.propTypes = {
   // @ts-ignore
   sports: PropTypes.arrayOf(sportSchema).isRequired,
   onSportItemClick: PropTypes.func.isRequired,

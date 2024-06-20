@@ -2,11 +2,13 @@ import { autoUpdate, shift, useFloating } from "@floating-ui/react";
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 
+import { useElementPosition } from "../../utils/use-element-position";
+
 /**
  * @typedef {{
  * open: boolean
  * onClose: () => void
- * renderContent: () => React.ReactNode
+ * renderContent: (input: {referenceWidth: number}) => React.ReactNode
  * renderReference: (input: {open: boolean, ref: React.RefObject<HTMLElement>}) => React.ReactNode
  * }}  Props
  */
@@ -57,12 +59,17 @@ export const DropDown = ({ open, onClose, renderContent, renderReference }) => {
     };
   }, [open]);
 
+  const referencePosition = useElementPosition(refs.reference);
+  const referenceWidth = Math.abs(
+    referencePosition.left - referencePosition.right
+  );
+
   return (
     <>
       {renderReference({ ref: refs.setReference, open })}
       {open && (
-        <div ref={refs.setFloating} style={floatingStyles}>
-          {renderContent(floatingStyles)}
+        <div ref={refs.setFloating} style={{ ...floatingStyles, zIndex: 9999 }}>
+          {renderContent({ referenceWidth })}
         </div>
       )}
     </>

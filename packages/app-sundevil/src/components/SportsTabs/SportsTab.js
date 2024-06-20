@@ -9,6 +9,9 @@ const Root = styled.div`
   &.inactive {
     background-color: transparent;
     color: inherit;
+    &:hover {
+      background-color: rgba(25, 25, 25, 0.1);
+    }
   }
   &.active {
     background-color: #191919;

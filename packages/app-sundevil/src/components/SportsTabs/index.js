@@ -1,1 +1,1 @@
-export * from "./SportsTabs";
+export * from "./SportsTabsDesktop";

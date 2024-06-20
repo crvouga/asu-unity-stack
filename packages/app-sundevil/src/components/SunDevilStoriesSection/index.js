@@ -9,9 +9,10 @@ import {
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { Button } from "../../../../components-core/src/index";
 import { APP_CONFIG } from "../../config";
-import { useElementPosition } from "../../utils/use-element-position";
+import { useElementContentPosition } from "../../utils/use-element-position";
 import { SectionHeader } from "../SectionHeader";
-import { SportTabs } from "../SportsTabs/SportsTabs";
+import { SportsTabsDesktop } from "../SportsTabs/SportsTabsDesktop";
+import { SportsTabsMobile } from "../SportsTabs/SportsTabsMobile";
 import { newsStorySchema } from "./NewsStoryCardGrid/NewsStoryCard";
 import { NewsStoryCardGridDesktop } from "./NewsStoryCardGrid/NewsStoryCardGridDesktop";
 import { NewsStoryCardGridMobile } from "./NewsStoryCardGrid/NewsStoryCardGridMobile";
@@ -74,7 +75,7 @@ export const SunDevilStoriesSection = ({
   const selectedSport = sports.find(sport => sport.id === selectedTab);
 
   const sectionHeaderRef = React.useRef();
-  const sectionHeaderPosition = useElementPosition(sectionHeaderRef);
+  const sectionHeaderPosition = useElementContentPosition(sectionHeaderRef);
   const cardWidth = Math.abs(
     sectionHeaderPosition.left - sectionHeaderPosition.right
   );
@@ -91,41 +92,52 @@ export const SunDevilStoriesSection = ({
           onSportItemClick={sportId => () => setSelectedTab(sportId)}
         />
       )}
-      {true && (
-        <div className="container">
-          <SportTabs
-            sports={sportsWithSelectedTab}
-            onSportItemClick={sportId => () => setSelectedTab(sportId)}
-          />
-        </div>
-      )}
+
       {true && selectedSport && isMobile && (
-        <NewsStoryCardGridMobile
-          newsStories={selectedSport.newsStories}
-          slideOffsetBefore={sectionHeaderPosition.left}
-          cardWidth={cardWidth}
-          renderBottomRightContent={() => (
-            <Button
-              color="maroon"
-              size="small"
-              label={allStoriesLabel}
-              href={allStoriesHref}
+        <>
+          <div className="container">
+            <SportsTabsMobile
+              sports={sportsWithSelectedTab}
+              onSportItemClick={sportId => () => setSelectedTab(sportId)}
             />
-          )}
-        />
+          </div>
+          <NewsStoryCardGridMobile
+            newsStories={selectedSport.newsStories}
+            slideOffsetBefore={sectionHeaderPosition.left}
+            cardWidth={cardWidth}
+            renderBottomRightContent={() => (
+              <Button
+                color="maroon"
+                size="small"
+                label={allStoriesLabel}
+                href={allStoriesHref}
+              />
+            )}
+          />
+        </>
       )}
       {true && selectedSport && isDesktop && (
-        <div className="container">
-          <NewsStoryCardGridDesktop newsStories={selectedSport.newsStories} />
-          <AllStoriesRoot>
-            <Button
-              color="maroon"
-              size="small"
-              label={allStoriesLabel}
-              href={allStoriesHref}
-            />
-          </AllStoriesRoot>
-        </div>
+        <>
+          {true && (
+            <div className="container">
+              <SportsTabsDesktop
+                sports={sportsWithSelectedTab}
+                onSportItemClick={sportId => () => setSelectedTab(sportId)}
+              />
+            </div>
+          )}
+          <div className="container">
+            <NewsStoryCardGridDesktop newsStories={selectedSport.newsStories} />
+            <AllStoriesRoot>
+              <Button
+                color="maroon"
+                size="small"
+                label={allStoriesLabel}
+                href={allStoriesHref}
+              />
+            </AllStoriesRoot>
+          </div>
+        </>
       )}
     </Root>
   );

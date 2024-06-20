@@ -35,6 +35,17 @@ const Root = styled.button`
     box-shadow: none !important;
     border: none !important;
   }
+  &.inactive {
+    background-color: transparent;
+    color: #191919;
+    &:hover {
+      background-color: rgba(25, 25, 25, 0.1);
+    }
+  }
+  &.active {
+    background-color: #191919;
+    color: #fafafa;
+  }
 `;
 
 /**
@@ -42,8 +53,9 @@ const Root = styled.button`
  * @type {React.FC<Props>}
  */
 export const SportsTabDropDownItem = ({ active, label, onClick }) => {
+  const className = active ? "active" : "inactive";
   return (
-    <Root onClick={onClick} active={active}>
+    <Root onClick={onClick} active={active} className={className}>
       {label}
     </Root>
   );

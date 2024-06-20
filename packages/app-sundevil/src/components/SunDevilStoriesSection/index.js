@@ -9,9 +9,7 @@ import {
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { Button } from "../../../../components-core/src/index";
 import { APP_CONFIG } from "../../config";
-import {
-  useElementPosition
-} from "../../utils/use-element-position";
+import { useElementPosition } from "../../utils/use-element-position";
 import { SectionHeader } from "../SectionHeader";
 import { newsStorySchema } from "./NewsStoryCardGrid/NewsStoryCard";
 import { NewsStoryCardGridDesktop } from "./NewsStoryCardGrid/NewsStoryCardGridDesktop";

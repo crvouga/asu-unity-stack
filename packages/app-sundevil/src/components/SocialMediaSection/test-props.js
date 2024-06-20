@@ -1,4 +1,4 @@
-import { socialMediaPostCarouselProps } from "../SocialMediaPostCarousel/test-props";
+import { socialMediaPostCarouselProps } from "./SocialMediaPostCarousel/test-props";
 
 const sectionHeaderProps = {
   title: "Sun Devil Nation",

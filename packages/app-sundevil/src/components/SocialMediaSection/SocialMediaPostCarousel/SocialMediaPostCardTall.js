@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
-import { APP_CONFIG } from "../../config";
+import { useIsMobile } from "../../../../../component-header/src/core/hooks/isMobile";
+import { APP_CONFIG } from "../../../config";
 import { Avatar } from "./Avatar";
 import * as SocialMediaPost from "./social-media-post";
 

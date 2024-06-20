@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { RenderReact } from "../../utils/react-render";
 import { useElementPosition } from "../../utils/use-element-position";
 import { SectionHeader } from "../SectionHeader";
-import { SocialMediaPostCarousel } from "../SocialMediaPostCarousel";
+import { SocialMediaPostCarousel } from "./SocialMediaPostCarousel";
 
 const propTypes = {
   // eslint-disable-next-line react/forbid-foreign-prop-types

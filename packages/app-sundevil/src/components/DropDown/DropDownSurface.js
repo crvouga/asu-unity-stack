@@ -12,4 +12,6 @@ export const DropDownSurface = styled.div`
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  max-height: 80vh;
+  overflow-y: auto;
 `;

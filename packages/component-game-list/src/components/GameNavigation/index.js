@@ -6,6 +6,7 @@ import { SportsNavigation } from "../../core/components/Navigation";
 const GameNavigation = ({ ...props }) => {
   return (
     <>
+      {/* @ts-ignore */}
       <SportsNavigation {...{ ...props }} />
     </>
   );

@@ -351,7 +351,10 @@ const CardContent = ({
       <div className="card-event-details pt-3 pb-0">
         {console.log(sanitizeDangerousMarkup(topic))}
         {/* eslint-disable-next-line react/no-danger */}
-        <div className="card-event-icons" dangerouslySetInnerHTML={sanitizeDangerousMarkup(topic)} />
+        <div
+          className="card-event-icons"
+          dangerouslySetInnerHTML={sanitizeDangerousMarkup(topic)}
+        />
       </div>
     )}
     {!!title && (

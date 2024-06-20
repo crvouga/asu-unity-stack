@@ -3,6 +3,30 @@ import React from "react";
 
 import { NavItem } from "./index.styles";
 
+/**
+ * @typedef {{
+ *  id: string;
+ *  name: string;
+ *  icon: string;
+ *  active?: boolean;
+ *  position: number;
+ * }} Sport
+ */
+
+export const sportSchema = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  active: PropTypes.bool,
+  position: PropTypes.number,
+});
+
+/**
+ * @type {React.FC<{
+ *  sports: Sport[];
+ *  onSportItemClick: (sportId: string) => () => void;
+ * }>}
+ * */
 const SportsNavigation = ({ sports, onSportItemClick }) => {
   sports.sort((a, b) => a.position - b.position);
   // get first 10 sports and other sports into variable
@@ -59,15 +83,7 @@ const SportsNavigation = ({ sports, onSportItemClick }) => {
 };
 
 SportsNavigation.propTypes = {
-  sports: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      icon: PropTypes.string.isRequired,
-      active: PropTypes.bool,
-      position: PropTypes.number,
-    })
-  ).isRequired,
+  sports: PropTypes.arrayOf(sportSchema).isRequired,
   onSportItemClick: PropTypes.func.isRequired,
 };
 

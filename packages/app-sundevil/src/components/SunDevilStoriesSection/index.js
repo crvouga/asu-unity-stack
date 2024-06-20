@@ -2,17 +2,13 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import {
-  SportsNavigation,
-  sportSchema,
-} from "../../../../component-game-list/src/core/components/Navigation";
+import { GameNavigation } from "../../../../component-game-list/src/components/GameNavigation";
+import { sportSchema } from "../../../../component-game-list/src/core/components/Navigation";
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { Button } from "../../../../components-core/src/index";
 import { APP_CONFIG } from "../../config";
 import { useElementContentPosition } from "../../utils/use-element-position";
 import { SectionHeader } from "../SectionHeader";
-import { SportsTabsDesktop } from "../SportsTabs/SportsTabsDesktop";
-import { SportsTabsMobile } from "../SportsTabs/SportsTabsMobile";
 import { newsStorySchema } from "./NewsStoryCardGrid/NewsStoryCard";
 import { NewsStoryCardGridDesktop } from "./NewsStoryCardGrid/NewsStoryCardGridDesktop";
 import { NewsStoryCardGridMobile } from "./NewsStoryCardGrid/NewsStoryCardGridMobile";
@@ -86,17 +82,11 @@ export const SunDevilStoriesSection = ({
   return (
     <Root>
       <SectionHeader {...sectionHeader} ref={sectionHeaderRef} />
-      {false && (
-        <SportsNavigation
-          sports={sportsWithSelectedTab}
-          onSportItemClick={sportId => () => setSelectedTab(sportId)}
-        />
-      )}
 
-      {true && selectedSport && isMobile && (
+      {selectedSport && isMobile && (
         <>
           <div className="container">
-            <SportsTabsMobile
+            <GameNavigation
               sports={sportsWithSelectedTab}
               onSportItemClick={sportId => () => setSelectedTab(sportId)}
             />
@@ -116,16 +106,14 @@ export const SunDevilStoriesSection = ({
           />
         </>
       )}
-      {true && selectedSport && isDesktop && (
+      {selectedSport && isDesktop && (
         <>
-          {true && (
-            <div className="container">
-              <SportsTabsDesktop
-                sports={sportsWithSelectedTab}
-                onSportItemClick={sportId => () => setSelectedTab(sportId)}
-              />
-            </div>
-          )}
+          <div className="container">
+            <GameNavigation
+              sports={sportsWithSelectedTab}
+              onSportItemClick={sportId => () => setSelectedTab(sportId)}
+            />
+          </div>
           <div className="container">
             <NewsStoryCardGridDesktop newsStories={selectedSport.newsStories} />
             <AllStoriesRoot>

@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { DropDown } from "../DropDown/DropDown";
-import { DropDownSurface } from "../DropDown/DropDownSurface";
+import { DropDown } from "../../../../../app-sundevil/src/components/DropDown/DropDown";
+import { DropDownSurface } from "../../../../../app-sundevil/src/components/DropDown/DropDownSurface";
 import { SportsTab } from "./SportsTab";
 import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 

@@ -13,6 +13,15 @@ import { SunDevilStoriesSection } from "./index";
 
 /** @type {Props} */
 const props = {
+  allStoriesHref: "#",
+  allStoriesLabel: "All Stories",
+  sectionHeader: {
+    title: "Sun Devil Stories",
+    presentedBy: {
+      name: "Desert Financial",
+      logo: "https://www.desertfinancial.com/globalassets/images/logos/desert-financial/df-logo_fullcolor_tm-cropped.svg",
+    },
+  },
   sports: [
     {
       name: "All Sports",

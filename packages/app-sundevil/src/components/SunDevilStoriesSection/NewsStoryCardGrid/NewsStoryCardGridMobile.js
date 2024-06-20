@@ -33,7 +33,7 @@ const Root = styled.div`
 const BottomContent = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   padding-top: 52px;
 `;
 
@@ -58,7 +58,7 @@ export const NewsStoryCardGridMobile = ({
   return (
     <Root>
       <Carousel
-        slidesPerView={1}
+        slidesPerView="auto"
         initialSlide={index}
         controller={carouselController}
         index={index}
@@ -66,12 +66,14 @@ export const NewsStoryCardGridMobile = ({
         slidesOffsetBefore={slideOffsetBefore ?? 0}
       >
         {newsStories.map(newsStory => (
-          <CarouselItem cardWidth={cardWidth} key={newsStory.title}>
-            <NewsStoryCard newsStory={newsStory} />
+          <CarouselItem key={newsStory.title} style={{ width: "fit-content" }}>
+            <div style={{ width: cardWidth, height: "100%" }}>
+              <NewsStoryCard newsStory={newsStory} />
+            </div>
           </CarouselItem>
         ))}
       </Carousel>
-      <BottomContent>
+      <BottomContent className="container">
         <ArrowButtons
           onLeft={() => carouselController.slidePrev()}
           onRight={() => carouselController.slideNext()}

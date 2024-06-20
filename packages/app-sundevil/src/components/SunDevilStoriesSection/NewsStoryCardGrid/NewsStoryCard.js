@@ -115,13 +115,13 @@ const ContentBottom = styled.div`
 
 /**
  *
- * @type {React.FC<{newsStory: NewsStory}>}
+ * @type {React.FC<{newsStory: NewsStory, style: StyleSheet}>}
  * @link {https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=728-26483&t=nNPd77JTpPWPBY9Q-0}
  *
  */
-export const NewsStoryCard = ({ newsStory }) => {
+export const NewsStoryCard = ({ newsStory, style }) => {
   return (
-    <Root href={newsStory.href}>
+    <Root href={newsStory.href} style={style}>
       <BackgroundImage alt=" " src={newsStory.imageSrc} />
       <Content>
         <SportName>
@@ -141,4 +141,6 @@ export const NewsStoryCard = ({ newsStory }) => {
 };
 NewsStoryCard.propTypes = {
   newsStory: newsStorySchema.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  style: PropTypes.object,
 };

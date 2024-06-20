@@ -10,6 +10,7 @@ import {
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { Button } from "../../../../components-core/src/index";
 import { APP_CONFIG } from "../../config";
+import { RenderReact } from "../../utils/react-render";
 import { useElementContentPosition } from "../../utils/use-element-position";
 import { SectionHeader } from "../SectionHeader";
 import { newsStorySchema } from "./NewsStoryCardGrid/NewsStoryCard";
@@ -142,4 +143,12 @@ SunDevilStoriesSection.propTypes = {
   sports: PropTypes.arrayOf(sportWithNewsStoriesSchema).isRequired,
   allStoriesLabel: PropTypes.string.isRequired,
   allStoriesHref: PropTypes.string.isRequired,
+};
+
+export const initSunDevilsStoriesSection = ({ targetSelector, props }) => {
+  RenderReact(
+    SunDevilStoriesSection,
+    props,
+    document.querySelector(targetSelector)
+  );
 };

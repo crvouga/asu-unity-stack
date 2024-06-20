@@ -33,7 +33,7 @@ const Header = forwardRef(
             <div className="d-flex flex-row align-items-end justify-content-between gap-2 py-2">
               <h2 className="m-0">{title}</h2>
               <div className="mt-auto mr-auto d-block d-sm-block d-md-none">
-                <div className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-0">
+                <div className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1">
                   <h5 className="m-0">Presented by:</h5>
                   <Logo src={presentedBy.logo} alt={presentedBy.name} />
                 </div>
@@ -63,7 +63,7 @@ const Header = forwardRef(
             )}
           </div>
           <div className="col-md-4 col-sm-0 mt-auto d-none d-sm-none d-md-block">
-            <div className="d-flex flex-row align-items-center gap-2">
+            <div className="d-flex flex-row align-items-center justify-content-end gap-2">
               <h5>Presented by:</h5>
               <Logo src={presentedBy.logo} alt={presentedBy.name} />
             </div>

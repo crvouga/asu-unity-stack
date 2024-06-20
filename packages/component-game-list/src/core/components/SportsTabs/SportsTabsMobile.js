@@ -2,9 +2,9 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import { DropDown } from "../DropDown/DropDown";
-import { DropDownSurface } from "../DropDown/DropDownSurface";
-import { SelectBase } from "../Select/SelectBase";
+import { DropDown } from "../../../../../app-sundevil/src/components/DropDown/DropDown";
+import { DropDownSurface } from "../../../../../app-sundevil/src/components/DropDown/DropDownSurface";
+import { SelectBase } from "../../../../../app-sundevil/src/components/Select/SelectBase";
 import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 
 /**

@@ -8,7 +8,7 @@ export const DropDownSurface = styled.div`
   position: relative;
   z-index: 99999 !important;
   color: #000; /* Ensure text color is not transparent */
-  border: 1px solid #000; /* Ensure border color is not transparent */
+  border: 1px solid #d0d0d0;
   display: flex;
   flex-direction: column;
   overflow: hidden;

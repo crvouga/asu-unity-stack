@@ -1,30 +1,18 @@
 // @ts-check
-import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
 import { DropDown } from "../../../../../app-sundevil/src/components/DropDown/DropDown";
 import { DropDownSurface } from "../../../../../app-sundevil/src/components/DropDown/DropDownSurface";
+import { basePropTypes } from "./sports-tabs";
 import { SportsTab } from "./SportsTab";
 import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 
 /**
- * @typedef {{
- *  id: string;
- *  name: string;
- *  icon: string;
- *  active?: boolean;
- *  position: number;
- * }} Sport
+ * @typedef {import("./sports-tabs").Sport} Sport
+ * @typedef {import("./sports-tabs").BaseProps} BaseProps
+ * @typedef {BaseProps} Props
  */
-
-export const sportSchema = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  active: PropTypes.bool,
-  position: PropTypes.number,
-});
 
 const Root = styled.div`
   display: flex;
@@ -36,10 +24,7 @@ const Root = styled.div`
 `;
 
 /**
- * @type {React.FC<{
- *  sports: Sport[];
- *  onSportItemClick: (sportId: string) => () => void;
- * }>}
+ * @type {React.FC<Props>}
  * */
 export const SportsTabsDesktop = ({ sports, onSportItemClick }) => {
   sports.sort((a, b) => a.position - b.position);
@@ -47,7 +32,7 @@ export const SportsTabsDesktop = ({ sports, onSportItemClick }) => {
     .filter((_sport, index) => index < 9)
     // @ts-ignore
     .filter(sport => !sport.more);
-  // @ts-ignore
+
   const moreSports = sports.filter((sport, index) => index >= 9);
   const isMoreSportsActive = moreSports.some(sport => Boolean(sport.active));
 
@@ -123,8 +108,7 @@ export const SportsTabsDesktop = ({ sports, onSportItemClick }) => {
   );
 };
 
+// @ts-ignore
 SportsTabsDesktop.propTypes = {
-  // @ts-ignore
-  sports: PropTypes.arrayOf(sportSchema).isRequired,
-  onSportItemClick: PropTypes.func.isRequired,
+  ...basePropTypes,
 };

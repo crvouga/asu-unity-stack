@@ -2,8 +2,11 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { GameNavigation } from "../../../../component-game-list/src/components/GameNavigation";
 import { sportSchema } from "../../../../component-game-list/src/core/components/Navigation";
+import {
+  SportsTabsDesktop,
+  SportsTabsMobile,
+} from "../../../../component-game-list/src/core/components/SportsTabs";
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { Button } from "../../../../components-core/src/index";
 import { APP_CONFIG } from "../../config";
@@ -86,7 +89,7 @@ export const SunDevilStoriesSection = ({
       {selectedSport && isMobile && (
         <>
           <div className="container">
-            <GameNavigation
+            <SportsTabsMobile
               sports={sportsWithSelectedTab}
               onSportItemClick={sportId => () => setSelectedTab(sportId)}
             />
@@ -109,7 +112,7 @@ export const SunDevilStoriesSection = ({
       {selectedSport && isDesktop && (
         <>
           <div className="container">
-            <GameNavigation
+            <SportsTabsDesktop
               sports={sportsWithSelectedTab}
               onSportItemClick={sportId => () => setSelectedTab(sportId)}
             />

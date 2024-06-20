@@ -49,6 +49,7 @@ const WhitespaceFill = styled.div`
 export const NewsStoryCardGridMobile = ({
   newsStories,
   slideOffsetBefore,
+  slidesOffsetAfter,
   cardWidth,
   renderBottomRightContent,
 }) => {
@@ -68,6 +69,7 @@ export const NewsStoryCardGridMobile = ({
         index={index}
         onIndexChanged={setIndex}
         slidesOffsetBefore={slideOffsetBefore ?? 0}
+        slidesOffsetAfter={slidesOffsetAfter ?? 0}
       >
         {newsStories.map(newsStory => (
           <CarouselItem key={newsStory.title} style={{ width: "fit-content" }}>
@@ -90,6 +92,7 @@ export const NewsStoryCardGridMobile = ({
 };
 NewsStoryCardGridMobile.propTypes = {
   newsStories: PropTypes.arrayOf(newsStorySchema).isRequired,
+  slidesOffsetAfter: PropTypes.number,
   slideOffsetBefore: PropTypes.number,
   cardWidth: PropTypes.number,
   renderBottomRightContent: PropTypes.func.isRequired,

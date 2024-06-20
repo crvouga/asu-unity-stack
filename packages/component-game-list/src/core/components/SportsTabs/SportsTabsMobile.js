@@ -1,35 +1,19 @@
 // @ts-check
-import PropTypes from "prop-types";
 import React from "react";
 
 import { DropDown } from "../../../../../app-sundevil/src/components/DropDown/DropDown";
 import { DropDownSurface } from "../../../../../app-sundevil/src/components/DropDown/DropDownSurface";
 import { SelectBase } from "../../../../../app-sundevil/src/components/Select/SelectBase";
+import { basePropTypes } from "./sports-tabs";
 import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
-
 /**
- * @typedef {{
- *  id: string;
- *  name: string;
- *  icon: string;
- *  active?: boolean;
- *  position: number;
- * }} Sport
+ * @typedef {import("./sports-tabs").Sport} Sport
+ * @typedef {import("./sports-tabs").BaseProps} BaseProps
+ * @typedef {BaseProps} Props
  */
 
-export const sportSchema = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  active: PropTypes.bool,
-  position: PropTypes.number,
-});
-
 /**
- * @type {React.FC<{
- *  sports: Sport[];
- *  onSportItemClick: (sportId: string) => () => void;
- * }>}
+ * @type {React.FC<Props>}
  * */
 export const SportsTabsMobile = ({ sports, onSportItemClick }) => {
   sports.sort((a, b) => a.position - b.position);
@@ -88,8 +72,7 @@ export const SportsTabsMobile = ({ sports, onSportItemClick }) => {
   );
 };
 
+// @ts-ignore
 SportsTabsMobile.propTypes = {
-  // @ts-ignore
-  sports: PropTypes.arrayOf(sportSchema).isRequired,
-  onSportItemClick: PropTypes.func.isRequired,
+  ...basePropTypes,
 };

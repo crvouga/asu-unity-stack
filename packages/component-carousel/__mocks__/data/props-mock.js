@@ -71,7 +71,20 @@ cardCarouselItems.push({
   imageSource: "https://source.unsplash.com/random/400x400?a=8",
   imageAltText: "Card image cap",
   title: `Don’t miss the Maroon and Gold Spring Game`,
-  content: `Join us for the Maroon and Gold Spring Game on Saturday, April 10 at 12:00 p.m. at TCF Bank Stadium. Admission is free, but tickets are required. Reserve your tickets today!`,
+  content:
+    '<div style="\n' +
+    "                display: flex;\n" +
+    "                justify-content: space-between;\n" +
+    "        font-family: Arial, sans-serif;\n" +
+    "        font-weight: 700;\n" +
+    "        font-size: 16px;\n" +
+    "        line-height: 19px;\n" +
+    "        color: #747474;\n" +
+    "        text-align: left;\n" +
+    '        margin-bottom: 8px;">\n' +
+    "      <span>April 26, 2024</span><span>Free Admission</span>\n" +
+    "    </div> " +
+    "Join us for the Maroon and Gold Spring Game on Saturday, April 10 at 12:00 p.m. at TCF Bank Stadium. Admission is free, but tickets are required. Reserve your tickets today!",
   buttons: [
     {
       ariaLabel: "dummy button",
@@ -100,7 +113,7 @@ cardCarouselItems.push({
   ],
   buttonOrientation: "horizontal",
   topic:
-    '<div> <i class="far fa-calendar"></i> </div> <div><span>Football </span></div>',
+    '<div><i class="far fa-calendar"></i> </div> <div><span>Football </span></div>',
 });
 
 const imageCarouselItems = [

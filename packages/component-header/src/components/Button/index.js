@@ -33,7 +33,7 @@ const Button = ({
       {typeof faClassName === "string" && faClassName.length > 0 && (
         <i className={faClassName} />
       )}
-      {text}
+      <span>{text}</span>
     </ButtonWrapper>
   );
 };

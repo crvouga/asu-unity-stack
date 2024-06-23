@@ -156,14 +156,6 @@ const Icon = styled.i`
   color: var(--text-color-primary);
 `;
 
-const SportGridListItemLinksRoot = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: start;
-  gap: 0px;
-`;
-
 /**
  * @param {{sport: Sport}} props
  */

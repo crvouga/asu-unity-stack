@@ -114,7 +114,7 @@ SportItemLinks.propTypes = {
 
 const SportGridListItemRoot = styled.li`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: start;
   justify-content: start;
   gap: 2px;
@@ -123,6 +123,7 @@ const SportGridListItemRoot = styled.li`
 const SportLinksRoot = styled.div`
   display: flex;
   flex-direction: row;
+  padding-left: 28px;
 `;
 
 const SportNameLink = styled.a`
@@ -170,19 +171,19 @@ const SportGridListItem = ({ sport }) => {
   const sportName = stringToClosestSportName(sport.sportName);
   return (
     <SportGridListItemRoot>
-      <SportIconWrapper>
-        {sport.faClassName ? (
-          <Icon className={sport.faClassName} style={{ color: "inherit" }} />
-        ) : (
-          <SportIcon sportName={sportName} />
-        )}
-      </SportIconWrapper>
-      <SportGridListItemLinksRoot>
-        <SportNameLink href={sport.href}>{sport.sportName}</SportNameLink>
-        <SportLinksRoot>
-          <SportItemLinks sport={sport} />
-        </SportLinksRoot>
-      </SportGridListItemLinksRoot>
+      <SportNameLink href={sport.href}>
+        <SportIconWrapper>
+          {sport.faClassName ? (
+            <Icon className={sport.faClassName} style={{ color: "inherit" }} />
+          ) : (
+            <SportIcon sportName={sportName} />
+          )}
+        </SportIconWrapper>
+        {sport.sportName}
+      </SportNameLink>
+      <SportLinksRoot>
+        <SportItemLinks sport={sport} />
+      </SportLinksRoot>
     </SportGridListItemRoot>
   );
 };
@@ -382,7 +383,7 @@ const HeaderContentSportLinks = ({ sports, buttons }) => {
           </SportGridListColumn>
         ))}
       </SportGridList>
-      <Footer buttons={buttons} />
+      {false && <Footer buttons={buttons} />}
     </Root>
   );
 };

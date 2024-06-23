@@ -13,14 +13,26 @@ import { ButtonWrapper } from "./index.styles";
  * @returns {JSX.Element}
  */
 
-const Button = ({ href, color, text, classes, onClick, onFocus }) => {
+const Button = ({
+  href,
+  color,
+  text,
+  classes,
+  onClick,
+  onFocus,
+  faClassName,
+}) => {
   return (
+    // @ts-ignore
     <ButtonWrapper
       href={href}
       className={`button-${color} ${classes ?? ""}`}
       onClick={onClick}
       onFocus={onFocus}
     >
+      {typeof faClassName === "string" && faClassName.length > 0 && (
+        <i className={faClassName} />
+      )}
       {text}
     </ButtonWrapper>
   );

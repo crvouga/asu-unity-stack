@@ -223,8 +223,19 @@ export const testHeaderProps = {
           },
         },
       ],
-      extra_section: "",
       is_sports_type: true,
+      extra_section: [
+        {
+          url: "https://cdn.freebiesupply.com/logos/large/2x/ticketmaster-5-logo-black-and-white.png",
+          type: "image_only",
+          // ADD PROP
+          alt: " ",
+          // ADD PROP
+          image_width: "175",
+          // ADD PROP
+          image_height: "25",
+        },
+      ],
     },
     {
       href: "/sports",
@@ -494,7 +505,18 @@ export const testHeaderProps = {
           },
         },
       ],
-      extra_section: "",
+      extra_section: [
+        {
+          url: "https://cdn.freebiesupply.com/logos/large/2x/ticketmaster-5-logo-black-and-white.png",
+          type: "image_only",
+          // ADD PROP
+          alt: " ",
+          // ADD PROP
+          image_width: "175",
+          // ADD PROP
+          image_height: "25",
+        },
+      ],
       is_sports_type: true,
     },
     {
@@ -866,7 +888,6 @@ export const testHeaderProps = {
           color: "gold",
         },
       ],
-      extra_section: "",
       is_sports_type: true,
       // ADD PROP
       mobile: {

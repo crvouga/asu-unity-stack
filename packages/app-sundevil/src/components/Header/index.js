@@ -53,28 +53,40 @@ const mapNavTreeItemItem = item => {
 };
 
 /** @type {(props: NavTreeItemVariant) => NavTreeItemVariant} */
+const mapNavTreeItemButtons = navTreeItem => {
+  const buttons = Array.isArray(navTreeItem.buttons) ? navTreeItem.buttons : [];
+  return {
+    ...navTreeItem,
+    buttons: buttons.map(button => {
+      const icon =
+        "icon" in button &&
+        typeof button.icon === "object" &&
+        isIcon(button.icon)
+          ? button.icon
+          : null;
+
+      const faClassName = iconToFaClassName(icon);
+
+      return {
+        ...button,
+        faClassName,
+      };
+    }),
+  };
+};
+
+/** @type {(props: NavTreeItemVariant) => NavTreeItemVariant} */
 const mapNavTreeItemToSportLinks = navTreeItem => {
   return {
     id: navTreeItem.id,
     type: navTreeItem.type,
     text: navTreeItem.text,
+    footers: navTreeItem.footers,
+    buttons: navTreeItem.buttons,
     renderContent: () => {
-      const buttons = Array.isArray(navTreeItem.buttons)
-        ? navTreeItem.buttons
-        : [];
       return (
         <HeaderContentSportLinks
-          buttons={buttons.map(button => {
-            return {
-              color: button.color ?? "gold",
-              faClassName: iconToFaClassName(
-                // @ts-ignore
-                button.icon
-              ),
-              href: button.href,
-              label: button.text,
-            };
-          })}
+          buttons={[]}
           sports={(navTreeItem.items ?? []).flatMap(column =>
             column.map(item => {
               const extraLinks = Array.isArray(item.extra_links)
@@ -164,14 +176,26 @@ const mapNavTreeFooters = navTreeItem => {
   return navTreeItem;
 };
 
+const pipe = (data, ...fns) => fns.reduce((acc, fn) => fn(acc), data);
+
 /** @type {(props: NavTreeItemVariant) => NavTreeItemVariant}  */
 const mapNavTreeItem = navTreeItem => {
   switch (navTreeItem.type) {
     case "sport-links": {
-      return mapNavTreeItemToSportLinks(navTreeItem);
+      return pipe(
+        navTreeItem,
+        mapNavTreeFooters,
+        mapNavTreeItemToSportLinks,
+        mapNavTreeItemButtons
+      );
     }
     default: {
-      return mapNavTreeFooters(mapNavTreeItemItems(navTreeItem));
+      return pipe(
+        navTreeItem,
+        mapNavTreeItemItems,
+        mapNavTreeFooters,
+        mapNavTreeItemButtons
+      );
     }
   }
 };
@@ -190,7 +214,9 @@ const mapProps = props => ({
 });
 
 export const SunDevilsHeader = props => {
-  return <ASUHeader {...mapProps(props)} />;
+  const mappedProps = { ...mapProps(props) };
+  console.log(mappedProps);
+  return <ASUHeader {...mappedProps} />;
 };
 SunDevilsHeader.propTypes = {
   ...ASUHeader.propTypes,

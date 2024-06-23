@@ -32,6 +32,9 @@ const ButtonWrapper = styled.a`
     background-color: #8c1d40 !important;
     color: #ffffff !important;
   }
+  i {
+    margin-right: 0.5rem;
+  }
 `;
 
 export { ButtonWrapper };

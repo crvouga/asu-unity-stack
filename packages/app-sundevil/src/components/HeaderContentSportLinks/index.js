@@ -216,7 +216,7 @@ const toButtonColor = color => {
 const Footer = ({ buttons }) => {
   return (
     <>
-      {buttons.length > 0 && (
+      {false && buttons.length > 0 && (
         <FooterRoot>
           {buttons.map(button => (
             <Button
@@ -234,9 +234,11 @@ const Footer = ({ buttons }) => {
           ))}
         </FooterRoot>
       )}
-      <FooterTicketMaster>
-        <TicketmasterLogo />
-      </FooterTicketMaster>
+      {false && (
+        <FooterTicketMaster>
+          <TicketmasterLogo />
+        </FooterTicketMaster>
+      )}
     </>
   );
 };
@@ -260,7 +262,7 @@ const FooterTicketMaster = styled.div`
 const SportGridList = styled.div`
   color: var(--text-color-primary);
   font-size: var(--font-size-normal);
-  padding: 32px 0px;
+  padding: 32px 0px 20px 0px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

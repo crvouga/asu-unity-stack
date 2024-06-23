@@ -94,6 +94,7 @@ const DropdownItem = forwardRef(
         return (
           <li key={key} className="nav-button">
             <Button
+              faClassName={link.faClassName}
               text={link.text}
               color={link.color || "dark"}
               href={link.href}
@@ -167,6 +168,7 @@ const DropdownItem = forwardRef(
             <div>
               {buttons.map((button, index) => (
                 <Button
+                  faClassName={button.faClassName}
                   key={`${button.text}-${button.href || index}`}
                   color={button.color}
                   text={button.text}

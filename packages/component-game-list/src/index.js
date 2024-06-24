@@ -1,2 +1,22 @@
+import {
+  initGamesNavigationComponent,
+  initGameTableComponent,
+  initHeaderComponent,
+} from "./core/init-component";
+
 export * from "./components";
-export * from "./core/init-component";
+
+// @ts-ignore
+window.initHeaderComponent = initHeaderComponent;
+
+// @ts-ignore
+window.initGameTableComponent = initGameTableComponent;
+
+// @ts-ignore
+window.initGamesNavigationComponent = initGamesNavigationComponent;
+
+export {
+  initGamesNavigationComponent,
+  initGameTableComponent,
+  initHeaderComponent,
+}

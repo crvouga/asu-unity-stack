@@ -114,7 +114,7 @@ SportItemLinks.propTypes = {
 
 const SportGridListItemRoot = styled.li`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: start;
   justify-content: start;
   gap: 2px;
@@ -123,6 +123,7 @@ const SportGridListItemRoot = styled.li`
 const SportLinksRoot = styled.div`
   display: flex;
   flex-direction: row;
+  padding-left: 28px;
 `;
 
 const SportNameLink = styled.a`
@@ -155,14 +156,6 @@ const Icon = styled.i`
   color: var(--text-color-primary);
 `;
 
-const SportGridListItemLinksRoot = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: start;
-  gap: 0px;
-`;
-
 /**
  * @param {{sport: Sport}} props
  */
@@ -170,19 +163,19 @@ const SportGridListItem = ({ sport }) => {
   const sportName = stringToClosestSportName(sport.sportName);
   return (
     <SportGridListItemRoot>
-      <SportIconWrapper>
-        {sport.faClassName ? (
-          <Icon className={sport.faClassName} style={{ color: "inherit" }} />
-        ) : (
-          <SportIcon sportName={sportName} />
-        )}
-      </SportIconWrapper>
-      <SportGridListItemLinksRoot>
-        <SportNameLink href={sport.href}>{sport.sportName}</SportNameLink>
-        <SportLinksRoot>
-          <SportItemLinks sport={sport} />
-        </SportLinksRoot>
-      </SportGridListItemLinksRoot>
+      <SportNameLink href={sport.href}>
+        <SportIconWrapper>
+          {sport.faClassName ? (
+            <Icon className={sport.faClassName} style={{ color: "inherit" }} />
+          ) : (
+            <SportIcon sportName={sportName} />
+          )}
+        </SportIconWrapper>
+        {sport.sportName}
+      </SportNameLink>
+      <SportLinksRoot>
+        <SportItemLinks sport={sport} />
+      </SportLinksRoot>
     </SportGridListItemRoot>
   );
 };
@@ -216,7 +209,7 @@ const toButtonColor = color => {
 const Footer = ({ buttons }) => {
   return (
     <>
-      {buttons.length > 0 && (
+      {false && buttons.length > 0 && (
         <FooterRoot>
           {buttons.map(button => (
             <Button
@@ -234,9 +227,11 @@ const Footer = ({ buttons }) => {
           ))}
         </FooterRoot>
       )}
-      <FooterTicketMaster>
-        <TicketmasterLogo />
-      </FooterTicketMaster>
+      {false && (
+        <FooterTicketMaster>
+          <TicketmasterLogo />
+        </FooterTicketMaster>
+      )}
     </>
   );
 };
@@ -260,7 +255,7 @@ const FooterTicketMaster = styled.div`
 const SportGridList = styled.div`
   color: var(--text-color-primary);
   font-size: var(--font-size-normal);
-  padding: 32px 0px;
+  padding: 32px 0px 20px 0px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -380,7 +375,7 @@ const HeaderContentSportLinks = ({ sports, buttons }) => {
           </SportGridListColumn>
         ))}
       </SportGridList>
-      <Footer buttons={buttons} />
+      {false && <Footer buttons={buttons} />}
     </Root>
   );
 };

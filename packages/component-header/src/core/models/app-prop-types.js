@@ -30,6 +30,7 @@ const ButtonPropTypes = {
   classes: PropTypes.string,
   onClick: PropTypes.func,
   onFocus: PropTypes.func,
+  faClassName: PropTypes.string,
 };
 
 const NavTreeItemsConfig = PropTypes.shape({

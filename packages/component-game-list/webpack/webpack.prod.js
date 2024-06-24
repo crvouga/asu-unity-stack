@@ -13,7 +13,7 @@ const umdConfig = merge(common, {
     path: path.resolve(PROJECT_DIR, "dist"),
     filename: "[name].umd.js",
     library: {
-      name: "TestComponent",
+      name: "GameListComponent",
       type: "umd",
       umdNamedDefine: true,
     },

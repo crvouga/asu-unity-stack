@@ -210,12 +210,12 @@ const mapProps = props => ({
   navTree: mapNavTree(props.navTree),
   universalNavbar: {
     renderStart: () => <OfficialAthleticsSite href={props.officialSiteHref} />,
+    hideMobile: true,
   },
 });
 
 export const SunDevilsHeader = props => {
   const mappedProps = { ...mapProps(props) };
-  console.log(mappedProps);
   return <ASUHeader {...mappedProps} />;
 };
 SunDevilsHeader.propTypes = {

@@ -1,4 +1,5 @@
 // @ts-check
+import PropTypes from "prop-types";
 import React, { useState } from "react";
 
 import { idGenerator, trackGAEvent } from "../../../../../../shared";
@@ -10,8 +11,9 @@ import { UniversalNavbar } from "../../UniversalNavbar";
 import { Wrapper } from "./index.styles";
 import { NavItem } from "./NavItem";
 
-const NavbarContainer = () => {
-  const { navTree, mobileNavTree, buttons, breakpoint } = useAppContext();
+const NavbarContainer = ({ navBarHeight }) => {
+  const { navTree, mobileNavTree, buttons, breakpoint, universalNavbar } =
+    useAppContext();
   const isMobile = useIsMobile(breakpoint);
   const [itemOpened, setItemOpened] = useState(undefined);
 
@@ -34,9 +36,17 @@ const NavbarContainer = () => {
     );
   };
 
+  const showUniversalNavbar = isMobile && !universalNavbar.hideMobile;
+
   return (
-    // @ts-ignore
-    <Wrapper breakpoint={breakpoint} data-testid="navigation" aria-label="Main">
+    <Wrapper
+      // @ts-ignore
+      breakpoint={breakpoint}
+      data-testid="navigation"
+      aria-label="Main"
+      showUniversalNavbar={showUniversalNavbar}
+      navBarHeight={navBarHeight}
+    >
       {(navTree?.length || mobileNavTree?.length || buttons?.length) && (
         <div className="content-container">
           {(navTree?.length || mobileNavTree?.length) && (
@@ -60,9 +70,13 @@ const NavbarContainer = () => {
         </div>
       )}
       {/* Navbar Footer */}
-      {isMobile && <UniversalNavbar />}
+      {showUniversalNavbar && <UniversalNavbar />}
     </Wrapper>
   );
+};
+
+NavbarContainer.propTypes = {
+  navBarHeight: PropTypes.number,
 };
 
 export { NavbarContainer };

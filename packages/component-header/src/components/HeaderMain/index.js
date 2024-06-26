@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { trackGAEvent } from "../../../../../shared";
 import { useAppContext } from "../../core/context/app-context";
 import { useIsMobile } from "../../core/hooks/isMobile";
+import { useDimensions } from "../../core/utils/use-dimensions";
 import { UniversalNavbar } from "../UniversalNavbar";
 import { HeaderMainWrapper } from "./index.styles";
 import { Logo } from "./Logo";
@@ -19,6 +20,8 @@ const HeaderMain = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile(breakpoint);
   const isDesktop = !isMobile;
+  const headerMainRef = React.useRef(null);
+  const headerMainDimensions = useDimensions(headerMainRef);
 
   const handleChangeMenuVisibility = () => {
     setMobileMenuOpen(prevState => !prevState);
@@ -37,7 +40,7 @@ const HeaderMain = () => {
     <>
       {isDesktop && <UniversalNavbar />}
       {/* @ts-ignore */}
-      <HeaderMainWrapper breakpoint={breakpoint}>
+      <HeaderMainWrapper breakpoint={breakpoint} ref={headerMainRef}>
         <div className="container-xl">
           <div className="header-main">
             <div
@@ -68,13 +71,17 @@ const HeaderMain = () => {
                     }`}
                   >
                     {isPartner ? <Partner /> : <Title />}
-                    <NavbarContainer />
+                    <NavbarContainer
+                      navBarHeight={headerMainDimensions.height}
+                    />
                   </div>
                   <LogoSponsor />
                 </>
               )}
             </div>
-            {isMobile && mobileMenuOpen && <NavbarContainer />}
+            {isMobile && mobileMenuOpen && (
+              <NavbarContainer navBarHeight={headerMainDimensions.height} />
+            )}
           </div>
         </div>
       </HeaderMainWrapper>

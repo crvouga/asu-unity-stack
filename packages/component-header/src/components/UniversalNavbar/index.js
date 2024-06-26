@@ -28,6 +28,10 @@ const UniversalNavbar = () => {
     }
   }
 
+  if (isMobile && universalNavbar.hideMobile) {
+    return null;
+  }
+
   return (
     <Wrapper
       // @ts-ignore

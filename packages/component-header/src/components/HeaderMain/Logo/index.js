@@ -24,8 +24,16 @@ const Logo = () => {
         src={logo?.src ?? vertLogo}
         alt={logo?.alt ?? "Arizona State University"}
         title={logo?.title ?? "ASU home page"}
-        width="303"
-        height="234"
+        width={logo?.width ?? "303"}
+        height={logo?.height ?? "234"}
+        style={
+          logo?.width || logo?.height
+            ? {
+                width: `${logo?.width}px`,
+                height: `${logo?.height}px`,
+              }
+            : {}
+        }
         decoding="async"
         // eslint-disable-next-line
         fetchpriority="high"
@@ -35,8 +43,16 @@ const Logo = () => {
         src={logo?.mobileSrc ?? horizLogo}
         alt={logo?.alt ?? "Arizona State University"}
         title={logo?.title ?? "ASU home page"}
-        width="400"
-        height="72"
+        width={logo?.mobileWidth ?? logo?.width ?? "400"}
+        height={logo?.mobileHeight ?? logo?.height ?? "72"}
+        style={
+          logo?.width || logo?.height || logo?.mobileWidth || logo?.mobileHeight
+            ? {
+                width: `${logo?.mobileWidth ?? logo?.width}px`,
+                height: `${logo?.mobileHeight ?? logo?.height}px`,
+              }
+            : {}
+        }
         decoding="async"
         // eslint-disable-next-line
         fetchpriority="high"

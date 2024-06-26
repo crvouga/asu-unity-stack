@@ -9,6 +9,10 @@
  * @property {string} src
  * @property {string} mobileSrc
  * @property {string} brandLink
+ * @property {string | number} [width]
+ * @property {string | number} [height]
+ * @property {string | number} [mobileWidth]
+ * @property {string | number} [mobileHeight]
  */
 
 /**

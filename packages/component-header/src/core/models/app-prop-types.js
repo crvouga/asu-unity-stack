@@ -7,6 +7,10 @@ const LogoPropTypes = {
   src: PropTypes.string,
   mobileSrc: PropTypes.string,
   brandLink: PropTypes.string,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  mobileWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  mobileHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 const TitlePropTypes = {

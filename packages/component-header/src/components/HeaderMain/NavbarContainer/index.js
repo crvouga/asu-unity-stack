@@ -12,8 +12,14 @@ import { Wrapper } from "./index.styles";
 import { NavItem } from "./NavItem";
 
 const NavbarContainer = ({ navBarHeight }) => {
-  const { navTree, mobileNavTree, buttons, breakpoint, universalNavbar } =
-    useAppContext();
+  const {
+    navTree,
+    mobileNavTree,
+    buttons,
+    breakpoint,
+    universalNavbar,
+    mobile,
+  } = useAppContext();
   const isMobile = useIsMobile(breakpoint);
   const [itemOpened, setItemOpened] = useState(undefined);
 
@@ -47,6 +53,9 @@ const NavbarContainer = ({ navBarHeight }) => {
       showUniversalNavbar={showUniversalNavbar}
       navBarHeight={navBarHeight}
     >
+      {isMobile && typeof mobile?.drawer?.renderStart === "function"
+        ? mobile.drawer.renderStart()
+        : null}
       {(navTree?.length || mobileNavTree?.length || buttons?.length) && (
         <div className="content-container">
           {(navTree?.length || mobileNavTree?.length) && (

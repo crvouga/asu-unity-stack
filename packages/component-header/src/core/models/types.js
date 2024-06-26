@@ -74,9 +74,16 @@
  */
 
 /**
+ * @typedef {object} DrawerProps
+ * @property {function} [renderStart]
+ */
+
+/**
  * @typedef {object} MobileProps
  * @property {HamburgerProps} [hamburger]
+ * @property {DrawerProps} [drawer]
  */
+
 /**
  * @typedef {object} HeaderProps
  * @property {boolean} isPartner

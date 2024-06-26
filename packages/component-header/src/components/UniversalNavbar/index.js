@@ -28,7 +28,7 @@ const UniversalNavbar = () => {
     }
   }
 
-  if (isMobile && universalNavbar.hideMobile) {
+  if (isMobile && universalNavbar?.hideMobile) {
     return null;
   }
 

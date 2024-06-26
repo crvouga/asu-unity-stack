@@ -7,6 +7,7 @@ import { RenderReact } from "../../utils/react-render";
 import { HeaderContentSportLinks } from "../HeaderContentSportLinks";
 import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
 import { IconHamburgerSearch } from "./IconHamburgerSearch";
+import { MobileSearchBar } from "./MobileSearchBar";
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps} BaseHeaderProps */
 /** @typedef {BaseHeaderProps & {officialSiteHref: string}} HeaderProps */
@@ -222,6 +223,9 @@ const mapProps = props => ({
           style={{ color: "#191919" }}
         />
       ),
+    },
+    drawer: {
+      renderStart: () => <MobileSearchBar />,
     },
   },
 });

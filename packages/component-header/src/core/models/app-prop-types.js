@@ -76,8 +76,13 @@ const HamburgerPropTypes = PropTypes.shape({
   renderClose: PropTypes.func,
 });
 
+const DrawerProps = PropTypes.shape({
+  renderStart: PropTypes.func,
+});
+
 const MobilePropTypes = PropTypes.shape({
   hamburger: HamburgerPropTypes,
+  drawer: DrawerProps,
 });
 
 const HeaderPropTypes = {

@@ -41,7 +41,7 @@ const SearchWrapper = styled.form`
   }
   @media (max-width: ${({ breakpoint }) => breakpoint}) {
     width: 100%;
-    padding: 1rem 2rem;
+    ${({ disablePadding }) => (disablePadding ? "" : "padding: 1rem 2rem;")}
     label {
       position: relative;
       font-size: 0.875rem;
@@ -51,6 +51,12 @@ const SearchWrapper = styled.form`
         position: absolute;
         top: 50%;
         left: 0.5rem;
+        transform: translate(0, -50%);
+      }
+      .input-icon-end {
+        position: absolute;
+        top: 50%;
+        right: 0.5rem;
         transform: translate(0, -50%);
       }
       input {

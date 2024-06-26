@@ -1,7 +1,8 @@
 // @ts-check
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState, useRef, useEffect } from "react";
+import PropTypes from "prop-types";
+import React, { useEffect, useRef, useState } from "react";
 
 import { trackGAEvent } from "../../../../../../shared";
 import { useAppContext } from "../../../core/context/app-context";
@@ -22,7 +23,7 @@ function handleSearch(e) {
   /**
    * Issue: Callback not currently available
    * We need to ensure dataLayer events are being logged correctly
-   * Soluton might be in GA4 settings with a form event targeting the element ID
+   * Solution might be in GA4 settings with a form event targeting the element ID
    *
    * This solution does not guarantee the event is logged before the page
    * redirects.
@@ -38,14 +39,20 @@ function handleSearch(e) {
   });
 }
 
-const Search = () => {
+const Search = ({
+  disablePadding = false,
+  renderIconEnd = (_input = {}) => null,
+} = {}) => {
   const { breakpoint, searchUrl, site } = useAppContext();
   const isMobile = useIsMobile(breakpoint);
   const inputRef = useRef(null);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (open) inputRef.current.focus();
+    if (open) {
+      // @ts-ignore
+      inputRef.current.focus();
+    }
   }, [open]);
 
   const handleChangeVisibility = () => {
@@ -62,6 +69,18 @@ const Search = () => {
       return newState;
     });
   };
+
+  const [inputValue, setInputValue] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
+  const onInputChanged = e => {
+    const inputValueNew = e.target.value;
+    trackGAEvent({
+      ...SEARCH_GA_EVENT,
+      text: inputValueNew,
+    });
+    setInputValue(inputValueNew);
+  };
+
   return (
     <SearchWrapper
       // @ts-ignore
@@ -72,6 +91,7 @@ const Search = () => {
       name="gs"
       className={open ? "open-search" : ""}
       data-testid="universal-nav-search-form"
+      disablePadding={disablePadding}
     >
       {!isMobile ? (
         <>
@@ -118,13 +138,14 @@ const Search = () => {
             aria-labelledby="header-top-search"
             placeholder="Search asu.edu"
             required
-            onChange={e =>
-              trackGAEvent({
-                ...SEARCH_GA_EVENT,
-                text: e.target.value,
-              })
-            }
+            onChange={onInputChanged}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
           />
+
+          <span className="input-icon-end">
+            {renderIconEnd({ inputValue, isFocused })}
+          </span>
         </label>
       )}
       <input name="url_host" value={site} type="hidden" />
@@ -138,5 +159,11 @@ const Search = () => {
     </SearchWrapper>
   );
 };
+Search.propTypes = {
+  disablePadding: PropTypes.bool,
+  renderIconEnd: PropTypes.func,
+};
 
-export { Search };
+const UniversalNavbarSearch = Search;
+
+export { Search, UniversalNavbarSearch };

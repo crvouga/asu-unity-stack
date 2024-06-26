@@ -163,7 +163,7 @@ const DropdownItem = forwardRef(
             })}
           </div>
         )}
-        {buttons && (
+        {Array.isArray(buttons) && buttons.length > 0 && (
           <div className="dropdown-button-container">
             <div>
               {buttons.map((button, index) => (

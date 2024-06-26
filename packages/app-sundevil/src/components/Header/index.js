@@ -215,7 +215,13 @@ const mapProps = props => ({
   },
   mobile: {
     hamburger: {
-      renderOpen: () => <IconHamburgerSearch width="24" height="24" />,
+      renderOpen: () => (
+        <IconHamburgerSearch
+          width="24"
+          height="24"
+          style={{ color: "#191919" }}
+        />
+      ),
     },
   },
 });

@@ -220,7 +220,7 @@ const mapProps = props => ({
         <IconHamburgerSearch
           width="24"
           height="24"
-          style={{ color: "#191919" }}
+          style={{ color: "#4d4d4d" }}
         />
       ),
     },

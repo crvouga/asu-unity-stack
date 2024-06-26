@@ -23,14 +23,14 @@ const Wrapper = styled.nav`
       flex-direction: column;
       justify-content: flex-start;
       overflow-y: auto;
+      > *:last-child {
+        margin-bottom: min(75px, 15vw);
+      }
       ${({ showUniversalNavbar, navBarHeight }) =>
         showUniversalNavbar
           ? `
           min-height: calc(100vh - 277px);
           max-height: calc(100vh - 277px);
-          > *:last-child {
-            margin-bottom: min(75px, 15vw);
-          }
           `
           : `
           min-height: calc(100vh - ${navBarHeight}px);

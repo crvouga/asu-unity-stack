@@ -3,7 +3,7 @@ import React from "react";
 
 import { SunDevilsHeader } from ".";
 
-import { testHeaderProps } from "./test-props-v3";
+import { testHeaderProps } from "./test-props";
 
 export default {
   title: "Header/Sun Devils Header",

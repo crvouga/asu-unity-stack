@@ -9,6 +9,28 @@ export const testHeaderProps = {
   logoutLink: "/caslogout",
   loggedIn: true,
   userName: "You are logged in",
+  isSponsor: true,
+  sponsorLogo: {
+    brandLink: "https://upload.wikimedia.org/",
+    src: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Adidas_2022_logo.svg",
+    alt: "Test",
+    mobileSrc:
+      "https://upload.wikimedia.org/wikipedia/commons/1/1b/Adidas_2022_logo.svg",
+  },
+  logo: {
+    alt: "Arizona State University",
+    title: "ASU home page",
+    brandLink: "https://www.asu.edu",
+    src: "https://thesundevils.com/images/responsive/primary_logo.svg",
+    mobileSrc: "https://thesundevils.com/images/responsive/primary_logo.svg",
+    width: "107",
+    height: "74",
+    mobileWidth: "67",
+    mobileHeight: "47",
+  },
+  searchUrl: "https://search.asu.edu/search",
+  site: "web-sda.ddev.site",
+  officialSiteHref: "#",
   navTree: [
     {
       href: "/123",
@@ -1241,26 +1263,4 @@ export const testHeaderProps = {
       },
     },
   ],
-  isSponsor: true,
-  sponsorLogo: {
-    brandLink: "https://upload.wikimedia.org/",
-    src: "https://upload.wikimedia.org/wikipedia/commons/1/1b/Adidas_2022_logo.svg",
-    alt: "Test",
-    mobileSrc:
-      "https://upload.wikimedia.org/wikipedia/commons/1/1b/Adidas_2022_logo.svg",
-  },
-  logo: {
-    alt: "Arizona State University",
-    title: "ASU home page",
-    brandLink: "https://www.asu.edu",
-    src: "https://thesundevils.com/images/responsive/primary_logo.svg",
-    mobileSrc: "https://thesundevils.com/images/responsive/primary_logo.svg",
-    width: "107",
-    height: "74",
-    mobileWidth: "67",
-    mobileHeight: "47",
-  },
-  searchUrl: "https://search.asu.edu/search",
-  site: "web-sda.ddev.site",
-  officialSiteHref: "#",
 };

@@ -36,7 +36,7 @@ const NavbarContainer = ({ navBarHeight }) => {
     );
   };
 
-  const showUniversalNavbar = isMobile && !universalNavbar.hideMobile;
+  const showUniversalNavbar = isMobile && !universalNavbar?.hideMobile;
 
   return (
     <Wrapper

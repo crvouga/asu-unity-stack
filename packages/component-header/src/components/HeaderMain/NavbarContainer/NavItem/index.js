@@ -56,6 +56,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
   const opened = link.id === itemOpened;
   const { breakpoint, expandOnHover, title } = useAppContext();
   const isMobile = useIsMobile(breakpoint);
+  const isDesktop = !isMobile;
   const { refs, floatingStyles, y } = useFloating({
     strategy: "fixed",
     // placement: 'bottom-start',
@@ -68,13 +69,14 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
     ],
   });
   const bodyDimensions = useDimensionsBody();
-  const maxHeight = bodyDimensions.height - y;
-  const dropdownStyles = {
-    ...(isMobile ? {} : floatingStyles),
-    maxHeight: `${maxHeight}px`,
-    overflow: "hidden",
-    overflowY: "auto",
-  };
+  const dropdownStyles = isDesktop
+    ? {
+        ...floatingStyles,
+        maxHeight: `${bodyDimensions.height - y}px`,
+        overflow: "hidden",
+        overflowY: "auto",
+      }
+    : {};
 
   const isDropdown =
     (Array.isArray(link.items) && link.items.length > 0) ||
@@ -197,7 +199,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
         />
       )}
 
-      {Array.isArray(link.items) && link.items.length > 0 && (
+      {isDropdown && Array.isArray(link.items) && link.items.length > 0 && (
         <DropdownItem
           items={link.items}
           isMega={link.isMega}

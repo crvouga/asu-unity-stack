@@ -76,6 +76,10 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
     overflowY: "auto",
   };
 
+  const isDropdown =
+    (Array.isArray(link.items) && link.items.length > 0) ||
+    typeof link.renderContent === "function";
+
   useEffect(() => {
     const handleClickOutside = event => {
       // @ts-ignore
@@ -110,7 +114,6 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
   }, [link]);
 
   const dispatchGAEvent = () => {
-    const isDropdown = !!link.items?.length;
     const action = opened ? "close" : "open";
     const { text } = link;
     trackGAEvent(
@@ -128,7 +131,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
   };
 
   const handleClick = e => {
-    if (link.items || link.renderContent) {
+    if (isDropdown) {
       e.preventDefault();
       if (!expandOnHover && !isMobile) {
         setItemOpened();
@@ -176,7 +179,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
         {renderNavLinks}
       </a>
 
-      {link.renderContent && (
+      {typeof link.renderContent === "function" && (
         <DropdownItem
           items={[]}
           renderContent={link.renderContent}
@@ -194,7 +197,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
         />
       )}
 
-      {link.items && (
+      {Array.isArray(link.items) && link.items.length > 0 && (
         <DropdownItem
           items={link.items}
           isMega={link.isMega}

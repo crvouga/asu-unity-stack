@@ -60,6 +60,7 @@
 /**
  * @typedef {object} UniversalNavBarProps
  * @property {function} [renderStart]
+ * @property {boolean} [hideMobile]
  */
 
 /**

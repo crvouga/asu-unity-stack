@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { trackGAEvent } from "../../../../../shared";
 import { useAppContext } from "../../core/context/app-context";
 import { useIsMobile } from "../../core/hooks/isMobile";
+import { useDimensions } from "../../core/utils/use-dimensions";
 import { UniversalNavbar } from "../UniversalNavbar";
 import { HeaderMainWrapper } from "./index.styles";
 import { Logo } from "./Logo";
@@ -19,6 +20,8 @@ const HeaderMain = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile(breakpoint);
   const isDesktop = !isMobile;
+  const navbarRef = React.useRef(null);
+  const navbarDimensions = useDimensions(navbarRef);
 
   const handleChangeMenuVisibility = () => {
     setMobileMenuOpen(prevState => !prevState);
@@ -44,6 +47,7 @@ const HeaderMain = () => {
               className={`navbar navbar-expand-xl ${
                 isPartner ? "partner" : ""
               }`}
+              ref={navbarRef}
             >
               {!isPartner && <Logo />}
               <button
@@ -68,13 +72,15 @@ const HeaderMain = () => {
                     }`}
                   >
                     {isPartner ? <Partner /> : <Title />}
-                    <NavbarContainer />
+                    <NavbarContainer navBarHeight={navbarDimensions.height} />
                   </div>
                   <LogoSponsor />
                 </>
               )}
             </div>
-            {isMobile && mobileMenuOpen && <NavbarContainer />}
+            {isMobile && mobileMenuOpen && (
+              <NavbarContainer navBarHeight={navbarDimensions.height} />
+            )}
           </div>
         </div>
       </HeaderMainWrapper>

@@ -9,6 +9,7 @@ import { trackGAEvent } from "../../../../../../../shared";
 import { useAppContext } from "../../../../core/context/app-context";
 import { useIsMobile } from "../../../../core/hooks/isMobile";
 import { NavTreePropTypes } from "../../../../core/models/app-prop-types";
+import { useDimensionsBody } from "../../../../core/utils/use-dimensions";
 import { DropdownItem } from "../DropdownItem";
 import { NavItemWrapper } from "./index.styles";
 
@@ -55,7 +56,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
   const opened = link.id === itemOpened;
   const { breakpoint, expandOnHover, title } = useAppContext();
   const isMobile = useIsMobile(breakpoint);
-  const { refs, floatingStyles } = useFloating({
+  const { refs, floatingStyles, y } = useFloating({
     strategy: "fixed",
     // placement: 'bottom-start',
     whileElementsMounted: autoUpdate,
@@ -66,6 +67,14 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
       }),
     ],
   });
+  const bodyDimensions = useDimensionsBody();
+  const maxHeight = bodyDimensions.height - y;
+  const dropdownStyles = {
+    ...(isMobile ? {} : floatingStyles),
+    maxHeight: `${maxHeight}px`,
+    overflow: "hidden",
+    overflowY: "auto",
+  };
 
   useEffect(() => {
     const handleClickOutside = event => {
@@ -179,7 +188,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
           classes={`header-dropdown-${link.id} ${opened ? "opened" : ""}`}
           listId={`dropdown-${link.id}`}
           ref={refs.setFloating}
-          style={isMobile ? {} : floatingStyles}
+          style={dropdownStyles}
           mobile={link.mobile ?? undefined}
           footers={link.footers}
         />
@@ -195,7 +204,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
           dropdownName={link.text}
           classes={`header-dropdown-${link.id} ${opened ? "opened" : ""}`}
           listId={`dropdown-${link.id}`}
-          style={isMobile ? {} : floatingStyles}
+          style={dropdownStyles}
           ref={refs.setFloating}
           mobile={link.mobile ?? undefined}
           footers={link.footers}

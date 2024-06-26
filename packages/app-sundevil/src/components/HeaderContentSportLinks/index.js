@@ -112,7 +112,7 @@ SportItemLinks.propTypes = {
   sport: sportSchema.isRequired,
 };
 
-const SportGridListItemRoot = styled.li`
+const SportGridListItemRoot = styled.div`
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -120,7 +120,7 @@ const SportGridListItemRoot = styled.li`
   gap: 2px;
 `;
 
-const SportLinksRoot = styled.div`
+const SportLinksRoot = styled.span`
   display: flex;
   flex-direction: row;
   padding-left: 28px;

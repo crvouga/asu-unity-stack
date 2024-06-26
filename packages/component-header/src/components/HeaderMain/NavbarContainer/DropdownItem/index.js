@@ -182,8 +182,12 @@ const DropdownItem = forwardRef(
 
         {showFooter &&
           footers &&
-          footers.map(footer => (
-            <DropdownItemFooter key={footer.text} footer={footer} />
+          footers.map((footer, index) => (
+            <DropdownItemFooter
+              // eslint-disable-next-line react/no-array-index-key
+              key={`${footer.text}${index}`}
+              footer={footer}
+            />
           ))}
       </DropdownWrapper>
     );

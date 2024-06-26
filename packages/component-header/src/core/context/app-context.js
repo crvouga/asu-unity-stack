@@ -21,6 +21,9 @@ AppContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+/**
+ * @returns {import("../models/types").HeaderProps}
+ */
 const useAppContext = () => {
   const context = useContext(AppContext);
   if (context === undefined) {

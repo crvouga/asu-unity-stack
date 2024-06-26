@@ -1,6 +1,4 @@
 // @ts-check
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 
 import { trackGAEvent } from "../../../../../shared";
@@ -8,6 +6,7 @@ import { useAppContext } from "../../core/context/app-context";
 import { useIsMobile } from "../../core/hooks/isMobile";
 import { useDimensions } from "../../core/utils/use-dimensions";
 import { UniversalNavbar } from "../UniversalNavbar";
+import { HamburgerButton } from "./HamburgerButton";
 import { HeaderMainWrapper } from "./index.styles";
 import { Logo } from "./Logo";
 import { LogoSponsor } from "./LogoSponsor";
@@ -16,7 +15,12 @@ import { Partner } from "./Partner";
 import { Title } from "./Title";
 
 const HeaderMain = () => {
-  const { breakpoint, isPartner, hasNavigation } = useAppContext();
+  const {
+    breakpoint,
+    isPartner,
+    // @ts-ignore
+    hasNavigation,
+  } = useAppContext();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile(breakpoint);
   const isDesktop = !isMobile;
@@ -50,20 +54,11 @@ const HeaderMain = () => {
               ref={navbarRef}
             >
               {!isPartner && <Logo />}
-              <button
-                className={`navbar-toggler${
-                  mobileMenuOpen ? "" : " collapsed"
-                }`}
-                type="button"
+
+              <HamburgerButton
                 onClick={handleClickMobileMenu}
-                aria-label="Toggle navigation"
-              >
-                <FontAwesomeIcon
-                  icon={mobileMenuOpen ? faTimes : faBars}
-                  // @ts-ignore
-                  alt=""
-                />
-              </button>
+                open={mobileMenuOpen}
+              />
               {isDesktop && (
                 <>
                   <div

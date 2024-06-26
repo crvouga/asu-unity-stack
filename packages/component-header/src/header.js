@@ -43,6 +43,7 @@ const ASUHeader = ({
   site,
   renderDiv = "false",
   universalNavbar,
+  mobile,
 }) => {
   const navTree = tryAddActivePage(rawNavTree);
   const mobileNavTree = tryAddActivePage(rawMobileNavTree);
@@ -132,6 +133,7 @@ const ASUHeader = ({
         site,
         // @ts-ignore
         universalNavbar,
+        mobile,
       }}
     >
       {renderHeader()}

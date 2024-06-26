@@ -1263,4 +1263,11 @@ export const testHeaderProps = {
   searchUrl: "https://search.asu.edu/search",
   site: "web-sda.ddev.site",
   officialSiteHref: "#",
+  mobile: {
+    hamburger: {
+      closeFaClassName: "fas fa-times",
+      // use icon with search
+      openFaClassName: "fas fa-bars",
+    },
+  },
 };

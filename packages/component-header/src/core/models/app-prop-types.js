@@ -71,6 +71,15 @@ const NavTreePropFooter = PropTypes.shape({
   buttonText: PropTypes.string,
 });
 
+const HamburgerPropTypes = PropTypes.shape({
+  openFaClassName: PropTypes.string,
+  closeFaClassName: PropTypes.string,
+});
+
+const MobilePropTypes = PropTypes.shape({
+  hamburger: HamburgerPropTypes,
+});
+
 const HeaderPropTypes = {
   isPartner: PropTypes.bool,
   navTree: PropTypes.arrayOf(NavTreePropTypes),
@@ -96,6 +105,7 @@ const HeaderPropTypes = {
   searchUrl: PropTypes.string,
   site: PropTypes.string,
   renderDiv: PropTypes.oneOf(["true", "false"]),
+  mobile: MobilePropTypes,
   universalNavbar: UniversalNavbarPropTypes,
   footers: PropTypes.arrayOf(NavTreePropFooter),
 };

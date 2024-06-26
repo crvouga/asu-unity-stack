@@ -68,6 +68,16 @@
  */
 
 /**
+ * @typedef {object} HamburgerProps
+ * @property {string} [openFaClassName]
+ * @property {string} [closeFaClassName]
+ */
+
+/**
+ * @typedef {object} MobileProps
+ * @property {HamburgerProps} [hamburger]
+ */
+/**
  * @typedef {object} HeaderProps
  * @property {boolean} isPartner
  * @property {NavTreeProps[]} navTree
@@ -88,6 +98,7 @@
  * @property {("Lg"|"Xl")} breakpoint
  * @property {boolean} animateTitle
  * @property {boolean} expandOnHover
+ * @property {MobileProps} [mobile]
  * @property {NavTreeProps[]} mobileNavTree
  * @property {string} searchUrl
  * @property {string} site

@@ -6,6 +6,7 @@ import { ASUHeader } from "../../../../component-header/src";
 import { RenderReact } from "../../utils/react-render";
 import { HeaderContentSportLinks } from "../HeaderContentSportLinks";
 import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
+import { IconHamburgerSearch } from "./IconHamburgerSearch";
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps} BaseHeaderProps */
 /** @typedef {BaseHeaderProps & {officialSiteHref: string}} HeaderProps */
@@ -211,6 +212,11 @@ const mapProps = props => ({
   universalNavbar: {
     renderStart: () => <OfficialAthleticsSite href={props.officialSiteHref} />,
     hideMobile: true,
+  },
+  mobile: {
+    hamburger: {
+      renderOpen: () => <IconHamburgerSearch width="24" height="24" />,
+    },
   },
 });
 

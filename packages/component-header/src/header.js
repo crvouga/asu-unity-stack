@@ -133,6 +133,7 @@ const ASUHeader = ({
         site,
         // @ts-ignore
         universalNavbar,
+        // @ts-ignore
         mobile,
       }}
     >

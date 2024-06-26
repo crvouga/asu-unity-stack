@@ -10,12 +10,8 @@ export const HamburgerButton = ({ open, onClick }) => {
   const { mobile } = useAppContext();
 
   const openIcon =
-    typeof mobile?.hamburger?.openFaClassName === "string" ? (
-      <i
-        className={mobile.hamburger.openFaClassName}
-        // @ts-ignore
-        alt=" "
-      />
+    typeof mobile?.hamburger?.renderOpen === "function" ? (
+      mobile.hamburger.renderOpen()
     ) : (
       <FontAwesomeIcon
         icon={faBars}
@@ -25,12 +21,8 @@ export const HamburgerButton = ({ open, onClick }) => {
     );
 
   const closeIcon =
-    typeof mobile?.hamburger?.closeFaClassName === "string" ? (
-      <i
-        className={mobile.hamburger.closeFaClassName}
-        // @ts-ignore
-        alt=" "
-      />
+    typeof mobile?.hamburger?.renderClose === "function" ? (
+      mobile.hamburger.renderClose()
     ) : (
       <FontAwesomeIcon
         icon={faTimes}

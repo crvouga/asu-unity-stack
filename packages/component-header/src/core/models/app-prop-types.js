@@ -72,8 +72,8 @@ const NavTreePropFooter = PropTypes.shape({
 });
 
 const HamburgerPropTypes = PropTypes.shape({
-  openFaClassName: PropTypes.string,
-  closeFaClassName: PropTypes.string,
+  renderOpen: PropTypes.func,
+  renderClose: PropTypes.func,
 });
 
 const MobilePropTypes = PropTypes.shape({

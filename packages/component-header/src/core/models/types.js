@@ -69,8 +69,8 @@
 
 /**
  * @typedef {object} HamburgerProps
- * @property {string} [openFaClassName]
- * @property {string} [closeFaClassName]
+ * @property {function} [renderOpen]
+ * @property {function} [renderClose]
  */
 
 /**

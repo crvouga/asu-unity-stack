@@ -20,8 +20,8 @@ const HeaderMain = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile(breakpoint);
   const isDesktop = !isMobile;
-  const headerMainRef = React.useRef(null);
-  const headerMainDimensions = useDimensions(headerMainRef);
+  const navbarRef = React.useRef(null);
+  const navbarDimensions = useDimensions(navbarRef);
 
   const handleChangeMenuVisibility = () => {
     setMobileMenuOpen(prevState => !prevState);
@@ -40,13 +40,14 @@ const HeaderMain = () => {
     <>
       {isDesktop && <UniversalNavbar />}
       {/* @ts-ignore */}
-      <HeaderMainWrapper breakpoint={breakpoint} ref={headerMainRef}>
+      <HeaderMainWrapper breakpoint={breakpoint}>
         <div className="container-xl">
           <div className="header-main">
             <div
               className={`navbar navbar-expand-xl ${
                 isPartner ? "partner" : ""
               }`}
+              ref={navbarRef}
             >
               {!isPartner && <Logo />}
               <button
@@ -71,16 +72,14 @@ const HeaderMain = () => {
                     }`}
                   >
                     {isPartner ? <Partner /> : <Title />}
-                    <NavbarContainer
-                      navBarHeight={headerMainDimensions.height}
-                    />
+                    <NavbarContainer navBarHeight={navbarDimensions.height} />
                   </div>
                   <LogoSponsor />
                 </>
               )}
             </div>
             {isMobile && mobileMenuOpen && (
-              <NavbarContainer navBarHeight={headerMainDimensions.height} />
+              <NavbarContainer navBarHeight={navbarDimensions.height} />
             )}
           </div>
         </div>

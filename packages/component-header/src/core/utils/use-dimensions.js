@@ -1,22 +1,25 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 export const useDimensions = ref => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  useEffect(() => {
-    const getDimensions = () => ({
-      width: ref.current.offsetWidth,
-      height: ref.current.offsetHeight,
-    });
-    const handleResize = () => {
-      setDimensions(getDimensions());
+
+  useLayoutEffect(() => {
+    const updateDimensions = () => {
+      if (ref.current) {
+        setDimensions({
+          width: ref.current.offsetWidth,
+          height: ref.current.offsetHeight,
+        });
+      }
     };
-    if (ref.current) {
-      setDimensions(getDimensions());
-    }
-    window.addEventListener("resize", handleResize);
+
+    updateDimensions();
+
+    window.addEventListener("resize", updateDimensions);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", updateDimensions);
     };
   }, [ref]);
+
   return dimensions;
 };

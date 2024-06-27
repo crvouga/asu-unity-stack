@@ -6,12 +6,18 @@ import React from "react";
 
 import { useAppContext } from "../../../core/context/app-context";
 
-export const HamburgerButton = ({ open, onClick }) => {
+export const HamburgerButton = ({ open, onClick, hidden }) => {
   const { mobile } = useAppContext();
 
   if (typeof mobile?.hamburger?.render === "function") {
-    return mobile.hamburger.render({ open, onClick });
+    console.log(
+      "rendering HamburgerButton with render function",
+      mobile.hamburger.render({ open, onClick, hidden })
+    );
+    return mobile.hamburger.render({ open, onClick, hidden });
   }
+
+  console.log("rendering HamburgerButton");
 
   const openIcon =
     typeof mobile?.hamburger?.renderOpen === "function" ? (
@@ -53,4 +59,5 @@ export const HamburgerButton = ({ open, onClick }) => {
 HamburgerButton.propTypes = {
   open: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
+  hidden: PropTypes.bool,
 };

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.nav`
   white-space: nowrap;
+  display: ${({ hidden }) => (hidden ? "none" : "block")};
   > .content-container {
     display: flex;
     align-items: center;

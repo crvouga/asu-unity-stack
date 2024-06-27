@@ -52,8 +52,10 @@ const HeaderMain = () => {
   return (
     <>
       {isDesktop && <UniversalNavbar />}
-      {/* @ts-ignore */}
-      <HeaderMainWrapper breakpoint={breakpoint}>
+      <HeaderMainWrapper
+        // @ts-ignore
+        breakpoint={breakpoint}
+      >
         <div className="container-xl">
           <div className="header-main">
             <div
@@ -64,12 +66,13 @@ const HeaderMain = () => {
             >
               {!isPartner && <Logo />}
 
-              {isMobile && (
-                <HamburgerButton
-                  onClick={handleClickMobileMenu}
-                  open={mobileMenuOpen}
-                />
-              )}
+              <HamburgerButton
+                hidden={isDesktop}
+                key="hamburger-button"
+                onClick={handleClickMobileMenu}
+                open={mobileMenuOpen}
+              />
+
               {isDesktop && (
                 <>
                   <div
@@ -84,13 +87,13 @@ const HeaderMain = () => {
                 </>
               )}
             </div>
-            {isMobile && mobileMenuOpen && (
-              <NavbarContainer
-                navBarHeight={navbarDimensions.height}
-                // @ts-ignore
-                ref={mobileNavContainerRef}
-              />
-            )}
+
+            <NavbarContainer
+              navBarHeight={navbarDimensions.height}
+              // @ts-ignore
+              ref={mobileNavContainerRef}
+              hidden={!isMobile || !mobileMenuOpen}
+            />
           </div>
         </div>
       </HeaderMainWrapper>

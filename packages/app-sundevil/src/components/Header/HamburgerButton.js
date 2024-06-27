@@ -7,7 +7,7 @@ import { IconHamburgerSearch } from "./IconHamburgerSearch";
 const Root = styled.button`
   border-radius: 100%;
   overflow: hidden;
-  display: flex;
+  display: ${({ hidden }) => (hidden ? "none" : "flex")}
   align-items: center;
   justify-content: center;
   background-color: ${({ open }) => (open ? "#e8e7e8" : "transparent")};
@@ -17,8 +17,8 @@ const Root = styled.button`
 `;
 
 const IconClose = styled.i`
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   color: #4d4d4d;
   display: flex;
   align-items: center;
@@ -37,15 +37,17 @@ const IconHamburger = styled(IconHamburgerSearch)`
 `;
 
 /**
- * @type {React.FC<{open: boolean, onClick: () => void}>}
+ * @type {React.FC<{open: boolean, onClick: () => void, hidden: boolean}>}
  */
-export const HamburgerButton = ({ open, onClick }) => {
+export const HamburgerButton = ({ open, onClick, hidden }) => {
+  // eslint-disable-next-line no-nested-ternary
+  const key = hidden ? "hidden" : open ? "open" : "close";
   return (
-    <Root onClick={onClick} open={open}>
+    <Root key={key} onClick={onClick} open={open} hidden={hidden}>
       {open ? (
-        <IconClose className="fa fas fa-close" />
+        <IconClose key="open" className="fa fas fa-close" />
       ) : (
-        <IconHamburger width="24px" height="24px" />
+        <IconHamburger key="close" width="24px" height="24px" />
       )}
     </Root>
   );
@@ -53,4 +55,5 @@ export const HamburgerButton = ({ open, onClick }) => {
 HamburgerButton.propTypes = {
   open: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
+  hidden: PropTypes.bool,
 };

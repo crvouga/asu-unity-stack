@@ -12,9 +12,9 @@ import { Wrapper } from "./index.styles";
 import { NavItem } from "./NavItem";
 
 /**
- * @type {React.FC<{navBarHeight: number}>}
+ * @type {React.FC<{navBarHeight: number; hidden?: boolean}>}
  */
-const NavbarContainer = forwardRef(({ navBarHeight }, ref) => {
+const NavbarContainer = forwardRef(({ navBarHeight, hidden = false }, ref) => {
   const {
     navTree,
     mobileNavTree,
@@ -56,6 +56,7 @@ const NavbarContainer = forwardRef(({ navBarHeight }, ref) => {
       aria-label="Main"
       showUniversalNavbar={showUniversalNavbar}
       navBarHeight={navBarHeight}
+      hidden={hidden}
     >
       {isMobile && typeof mobile?.drawer?.renderStart === "function"
         ? mobile.drawer.renderStart()
@@ -91,6 +92,8 @@ const NavbarContainer = forwardRef(({ navBarHeight }, ref) => {
 NavbarContainer.propTypes = {
   // @ts-ignore
   navBarHeight: PropTypes.number,
+  // @ts-ignore
+  hidden: PropTypes.bool,
 };
 
 export { NavbarContainer };

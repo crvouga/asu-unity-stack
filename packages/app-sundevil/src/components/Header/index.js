@@ -217,8 +217,8 @@ const mapProps = props => ({
   },
   mobile: {
     hamburger: {
-      render: ({ open, onClick }) => (
-        <HamburgerButton open={open} onClick={onClick} />
+      render: ({ open, onClick, hidden }) => (
+        <HamburgerButton hidden={hidden} open={open} onClick={onClick} />
       ),
     },
     drawer: {

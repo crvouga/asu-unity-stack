@@ -1,18 +1,21 @@
 // @ts-check
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { trackGAEvent } from "../../../../../shared";
 import { useAppContext } from "../../core/context/app-context";
 import { useIsMobile } from "../../core/hooks/isMobile";
 import { useDimensions } from "../../core/utils/use-dimensions";
+import { useDisableParentScrolling } from "../../core/utils/use-disable-parent-scrolling";
 import { UniversalNavbar } from "../UniversalNavbar";
 import { HamburgerButton } from "./HamburgerButton";
-import { HeaderMainWrapper } from "./index.styles";
 import { Logo } from "./Logo";
 import { LogoSponsor } from "./LogoSponsor";
 import { NavbarContainer } from "./NavbarContainer";
 import { Partner } from "./Partner";
 import { Title } from "./Title";
+import { HeaderMainWrapper } from "./index.styles";
+
+
 
 const HeaderMain = () => {
   const {
@@ -40,6 +43,16 @@ const HeaderMain = () => {
       text: "menu button tablet",
     });
   };
+
+  /**
+   * @type {React.MutableRefObject<HTMLElement | null>}
+   */
+  const mobileNavContainerRef = useRef(null);
+  useDisableParentScrolling({
+    disabled: mobileMenuOpen && isMobile,
+    elementRef: mobileNavContainerRef,
+  });
+
   return (
     <>
       {isDesktop && <UniversalNavbar />}
@@ -74,7 +87,11 @@ const HeaderMain = () => {
               )}
             </div>
             {isMobile && mobileMenuOpen && (
-              <NavbarContainer navBarHeight={navbarDimensions.height} />
+              <NavbarContainer
+                navBarHeight={navbarDimensions.height}
+                // @ts-ignore
+                ref={mobileNavContainerRef}
+              />
             )}
           </div>
         </div>

@@ -1,6 +1,6 @@
 // @ts-check
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { forwardRef, useState } from "react";
 
 import { idGenerator, trackGAEvent } from "../../../../../../shared";
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -11,7 +11,10 @@ import { UniversalNavbar } from "../../UniversalNavbar";
 import { Wrapper } from "./index.styles";
 import { NavItem } from "./NavItem";
 
-const NavbarContainer = ({ navBarHeight }) => {
+/**
+ * @type {React.FC<{navBarHeight: number}>}
+ */
+const NavbarContainer = forwardRef(({ navBarHeight }, ref) => {
   const {
     navTree,
     mobileNavTree,
@@ -46,6 +49,7 @@ const NavbarContainer = ({ navBarHeight }) => {
 
   return (
     <Wrapper
+      ref={ref}
       // @ts-ignore
       breakpoint={breakpoint}
       data-testid="navigation"
@@ -82,9 +86,10 @@ const NavbarContainer = ({ navBarHeight }) => {
       {showUniversalNavbar && <UniversalNavbar />}
     </Wrapper>
   );
-};
+});
 
 NavbarContainer.propTypes = {
+  // @ts-ignore
   navBarHeight: PropTypes.number,
 };
 

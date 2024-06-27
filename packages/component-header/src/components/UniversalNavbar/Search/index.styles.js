@@ -39,6 +39,7 @@ const SearchWrapper = styled.form`
       pointer-events: none;
     }
   }
+
   @media (max-width: ${({ breakpoint }) => breakpoint}) {
     width: 100%;
     ${({ disablePadding }) => (disablePadding ? "" : "padding: 1rem 2rem;")}
@@ -51,12 +52,6 @@ const SearchWrapper = styled.form`
         position: absolute;
         top: 50%;
         left: 0.5rem;
-        transform: translate(0, -50%);
-      }
-      .input-icon-end {
-        position: absolute;
-        top: 50%;
-        right: 0.5rem;
         transform: translate(0, -50%);
       }
       input {

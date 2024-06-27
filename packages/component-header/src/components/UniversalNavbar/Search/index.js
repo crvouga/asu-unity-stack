@@ -142,8 +142,7 @@ const Search = ({
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
-
-          <span className="input-icon-end">
+          <span key={inputValue}>
             {renderIconEnd({ inputValue, isFocused })}
           </span>
         </label>

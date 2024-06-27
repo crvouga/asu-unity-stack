@@ -15,7 +15,12 @@ const Root = styled.div`
 const IconSearchEnd = styled.i`
   width: 12px;
   height: 12px;
-  padding-right: 1rem;
+  padding-right: 16px;
+  display: ${({ show }) => (show ? "block" : "none")};
+  position: absolute !important;
+  top: 50% !important;
+  left: calc(100% - 1rem - 6px) !important;
+  transform: translate(0, -50%) !important;
 `;
 
 export const MobileSearchBar = () => {
@@ -23,11 +28,15 @@ export const MobileSearchBar = () => {
     <Root>
       <UniversalNavbarSearch
         disablePadding
-        renderIconEnd={({ inputValue = "" } = {}) =>
-          inputValue.length === 0 && (
-            <IconSearchEnd className="fa fas fa-arrow-right" />
-          )
-        }
+        renderIconEnd={({ inputValue }) => (
+          <span key={inputValue}>
+            <IconSearchEnd
+              key={inputValue}
+              show={inputValue.length === 0}
+              className="fa fas fa-arrow-right"
+            />
+          </span>
+        )}
       />
     </Root>
   );

@@ -23,6 +23,7 @@ const IconClose = styled.i`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 `;
 
 const IconHamburger = styled(IconHamburgerSearch)`
@@ -32,6 +33,7 @@ const IconHamburger = styled(IconHamburgerSearch)`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 `;
 
 /**

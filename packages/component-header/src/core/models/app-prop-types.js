@@ -76,6 +76,8 @@ const NavTreePropFooter = PropTypes.shape({
 const HamburgerPropTypes = PropTypes.shape({
   renderOpen: PropTypes.func,
   renderClose: PropTypes.func,
+  getStyle: PropTypes.func,
+  render: PropTypes.func,
 });
 
 const DrawerProps = PropTypes.shape({

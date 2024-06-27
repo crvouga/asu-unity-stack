@@ -6,7 +6,7 @@ import { ASUHeader } from "../../../../component-header/src";
 import { RenderReact } from "../../utils/react-render";
 import { HeaderContentSportLinks } from "../HeaderContentSportLinks";
 import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
-import { IconHamburgerSearch } from "./IconHamburgerSearch";
+import { HamburgerButton } from "./HamburgerButton";
 import { MobileSearchBar } from "./MobileSearchBar";
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps} BaseHeaderProps */
@@ -217,12 +217,8 @@ const mapProps = props => ({
   },
   mobile: {
     hamburger: {
-      renderOpen: () => (
-        <IconHamburgerSearch
-          width="24"
-          height="24"
-          style={{ color: "#4d4d4d" }}
-        />
+      render: ({ open, onClick }) => (
+        <HamburgerButton open={open} onClick={onClick} />
       ),
     },
     drawer: {

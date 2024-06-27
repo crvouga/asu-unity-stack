@@ -9,6 +9,10 @@ import { useAppContext } from "../../../core/context/app-context";
 export const HamburgerButton = ({ open, onClick }) => {
   const { mobile } = useAppContext();
 
+  if (typeof mobile?.hamburger?.render === "function") {
+    return mobile.hamburger.render({ open, onClick });
+  }
+
   const openIcon =
     typeof mobile?.hamburger?.renderOpen === "function" ? (
       mobile.hamburger.renderOpen()
@@ -39,6 +43,7 @@ export const HamburgerButton = ({ open, onClick }) => {
       type="button"
       onClick={onClick}
       aria-label="Toggle navigation"
+      style={mobile?.hamburger?.getStyle?.({ open })}
     >
       {icon}
     </button>

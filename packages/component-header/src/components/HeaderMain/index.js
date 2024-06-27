@@ -8,14 +8,12 @@ import { useDimensions } from "../../core/utils/use-dimensions";
 import { useDisableParentScrolling } from "../../core/utils/use-disable-parent-scrolling";
 import { UniversalNavbar } from "../UniversalNavbar";
 import { HamburgerButton } from "./HamburgerButton";
+import { HeaderMainWrapper } from "./index.styles";
 import { Logo } from "./Logo";
 import { LogoSponsor } from "./LogoSponsor";
 import { NavbarContainer } from "./NavbarContainer";
 import { Partner } from "./Partner";
 import { Title } from "./Title";
-import { HeaderMainWrapper } from "./index.styles";
-
-
 
 const HeaderMain = () => {
   const {

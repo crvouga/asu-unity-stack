@@ -71,6 +71,8 @@
 
 /**
  * @typedef {object} HamburgerProps
+ * @property {function} [render]
+ * @property {function} [getStyle]
  * @property {function} [renderOpen]
  * @property {function} [renderClose]
  */

@@ -31,10 +31,15 @@ const Wrapper = styled.nav`
           ? `
           min-height: calc(100vh - 277px);
           max-height: calc(100vh - 277px);
+          min-height: calc(100dvh - 277px);
+          max-height: calc(100dvh - 277px);
           `
           : `
           min-height: calc(100vh - ${navBarHeight}px);
           max-height: calc(100vh - ${navBarHeight}px);
+          min-height: calc(100dvh - ${navBarHeight}px);
+          max-height: calc(100dvh - ${navBarHeight}px);
+          padding-bottom: 4rem;
           `}
     }
     .nav-list {

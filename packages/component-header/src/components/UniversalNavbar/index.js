@@ -12,25 +12,21 @@ const DEFAUL_GA_EVENT = {
   section: "topbar",
 };
 
+function getURL() {
+  try {
+    const URL = window.location.href;
+    return URL;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+    return "";
+  }
+}
+
 const UniversalNavbar = () => {
   const { breakpoint, universalNavbar } = useAppContext();
   const isMobile = useIsMobile(breakpoint);
   const isDesktop = !isMobile;
-
-  function getURL() {
-    try {
-      const URL = window.location.href;
-      return URL;
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
-      return "";
-    }
-  }
-
-  if (isMobile && universalNavbar?.hideMobile) {
-    return null;
-  }
 
   return (
     <Wrapper

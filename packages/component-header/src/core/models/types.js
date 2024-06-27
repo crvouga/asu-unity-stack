@@ -30,6 +30,7 @@
  * @typedef {object} NavTreeItemsConfig
  * @property {"underline" | "none"} [navTreeItemVariant]
  * @property {boolean} [hideFooter]
+ * @property {boolean} [hide]
  */
 
 /**

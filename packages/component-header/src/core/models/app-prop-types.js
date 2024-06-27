@@ -40,6 +40,7 @@ const ButtonPropTypes = {
 const NavTreeItemsConfig = PropTypes.shape({
   navTreeItemVariant: PropTypes.oneOf(["underline", "none"]),
   hideFooter: PropTypes.bool,
+  hide: PropTypes.bool,
 });
 
 const NavTreePropTypes = PropTypes.shape({

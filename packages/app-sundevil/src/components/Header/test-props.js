@@ -42,11 +42,13 @@ export const testHeaderProps = {
       is_sports_type: false,
       type: "icon-home",
       class: "home",
+      mobile: {
+        hide: true,
+      },
     },
     {
       href: "/sports",
       text: "Men\u0027s Sports",
-
       items: [
         [
           {
@@ -256,7 +258,6 @@ export const testHeaderProps = {
     {
       href: "/sports",
       text: "Woman\u0027s Sports",
-
       items: [
         [
           {
@@ -532,7 +533,6 @@ export const testHeaderProps = {
     {
       href: "/tickets",
       text: "Tickets",
-
       items: [
         [
           {
@@ -802,7 +802,6 @@ export const testHeaderProps = {
         },
       ],
       is_sports_type: true,
-
       mobile: {
         navTreeItemVariant: "none",
       },

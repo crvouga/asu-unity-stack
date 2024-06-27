@@ -152,6 +152,10 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
     }
   };
 
+  if (isMobile && link.mobile?.hide) {
+    return <></>;
+  }
+
   return (
     <NavItemWrapper
       // @ts-ignore

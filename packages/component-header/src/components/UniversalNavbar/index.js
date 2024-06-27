@@ -96,7 +96,7 @@ const UniversalNavbar = () => {
               </a>
               <Login />
             </div>
-            <Search />
+            <Search placeholder={universalNavbar?.searchPlaceholder ?? null} />
           </nav>
         </div>
       </div>

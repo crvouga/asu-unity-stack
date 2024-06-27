@@ -213,6 +213,7 @@ const mapProps = props => ({
   universalNavbar: {
     renderStart: () => <OfficialAthleticsSite href={props.officialSiteHref} />,
     hideMobile: true,
+    searchPlaceholder: "Search Sun Devil Athletics",
   },
   mobile: {
     hamburger: {

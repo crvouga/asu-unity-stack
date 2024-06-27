@@ -28,6 +28,7 @@ export const MobileSearchBar = () => {
     <Root>
       <UniversalNavbarSearch
         disablePadding
+        placeholder="Search Sun Devil Athletics"
         renderIconEnd={({ inputValue }) => (
           <span key={inputValue}>
             <IconSearchEnd

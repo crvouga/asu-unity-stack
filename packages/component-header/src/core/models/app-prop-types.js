@@ -58,6 +58,7 @@ const NavTreePropTypes = PropTypes.shape({
 const UniversalNavbarPropTypes = PropTypes.shape({
   renderStart: PropTypes.func,
   hideMobile: PropTypes.bool,
+  searchPlaceholder: PropTypes.string,
 });
 
 const NavTreePropFooter = PropTypes.shape({

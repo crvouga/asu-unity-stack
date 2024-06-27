@@ -42,6 +42,7 @@ function handleSearch(e) {
 const Search = ({
   disablePadding = false,
   renderIconEnd = (_input = {}) => null,
+  placeholder = null,
 } = {}) => {
   const { breakpoint, searchUrl, site } = useAppContext();
   const isMobile = useIsMobile(breakpoint);
@@ -112,12 +113,12 @@ const Search = ({
                 type="search"
                 name="q"
                 aria-labelledby="header-top-search"
-                placeholder="Search asu.edu"
+                placeholder={placeholder ?? "Search asu.edu"}
                 required
               />
               <button
                 type="button"
-                aria-label="Search asu.edu"
+                aria-label={placeholder ?? "Search asu.edu"}
                 onClick={handleChangeVisibility}
                 className="close-search"
                 data-testid="close-search"
@@ -136,7 +137,7 @@ const Search = ({
             type="search"
             name="q"
             aria-labelledby="header-top-search"
-            placeholder="Search asu.edu"
+            placeholder={placeholder ?? "Search asu.edu"}
             required
             onChange={onInputChanged}
             onFocus={() => setIsFocused(true)}
@@ -161,6 +162,7 @@ const Search = ({
 Search.propTypes = {
   disablePadding: PropTypes.bool,
   renderIconEnd: PropTypes.func,
+  placeholder: PropTypes.string,
 };
 
 const UniversalNavbarSearch = Search;

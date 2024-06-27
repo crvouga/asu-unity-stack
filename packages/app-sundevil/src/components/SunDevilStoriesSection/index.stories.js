@@ -11,9 +11,18 @@ import { SunDevilStoriesSection } from "./index";
  * @typedef {import("./index").SunDevilStoriesSectionProps} Props
  */
 
+/**
+ * @typedef {import("./NewsStoryCardGrid/NewsStoryCard").NewsStory} NewsStory
+ */
+
+/**
+ * @type {NewsStory[]}
+ */
 const newsStories = [
   {
     href: "#",
+    showCategory: false,
+    showSportName: false,
     category: "News",
     imageSrc:
       "https://s3-alpha-sig.figma.com/img/8e9e/72a1/77c62116be69649354a4a17f906b6615?Expires=1719792000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=MeS04UtlxKjM9ziMvygi4VQpXsMrb3dc-~AcinmwGBfarv-SENiFxas8dMJPMcuRGCsa-LwM6IbGtQ6CyABLg89AixL1t0so-I0-xDk3H6fllt6h56Y0ZbAEXWFtELSrYsVWsLpqNHVgEO99w2gM1qgYq2nwtfCfoRVfocsSm-IdhFHk0QARkax-Qc~FWV4p97k0zs7kma5qh6y-cuOpAa-tfU8TusqglRAcJ0~U5lKH1vpTonEFmfinhed0qcEFfmFpMRmbvz~jz5DGVyprbP5EgeC2XCMhztEuAO25z7woowTqGxwPFf~a8Kt3SkpUeLs04NGwp85uh1i1rJrYeg__",
@@ -23,6 +32,8 @@ const newsStories = [
   },
   {
     href: "#",
+    showCategory: false,
+    showSportName: false,
     category: "Video",
     imageSrc:
       "https://s3-alpha-sig.figma.com/img/db0e/2b8f/17baef744858f2831afd5de70e69852e?Expires=1719792000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=LzIVm3wZceyyQ2qCNwRixlbg9Nsoy-zDW-FH1vZJY-3D7zNvqyOe3siCiuK1Pcd4au0Hur3bR8eFyHzl199FKZ700Yj0kpwqe~3yY3KlTvacQoqHEuju6Ki7ep6PWhV-K67O99UjMGULD1BXPBfCc0JrN0i67V3C2kvm3FRtrMq5ULQnXEdeTd2pXoHu8iQXnnMyDGswW38dzLCHtJ~HO1P-fy-Fdj6sx3tVw2Cta3gqzWn7h1CjK4A0QuKWKpu~dDajfz3hwN23KmlcPNhjOIOzlwm7xFJEDO14VMHQMsrIrQXss-i4LRS7wCMyB9svxzB4WJeUb0HmQ9~4wynhiA__",
@@ -32,6 +43,8 @@ const newsStories = [
   },
   {
     href: "#",
+    showCategory: false,
+    showSportName: false,
     category: "Video",
     imageSrc:
       "https://s3-alpha-sig.figma.com/img/a7e8/e762/1cedb83f4bd2e6732714050f2896cb6c?Expires=1719792000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=FkSMmPFMIG-j9b15WHAEVzieYEtT1u9CSQGjGZ5rY9KOfH7v-HuqEnfOzheQeiMSgr9t2QsW7n6Dk-ZUBLNtuTw0AU59A1i6u0pnLTAj0h4CIrZuoT1~wkTtE2P4SeFr1~sVVivnAh7lKDk~sSyTHHf~TM1Zi3vyl0NS7cHO3XnvkULgaRLg5Uni8TVnUVXjdWtUZ2kYfwXy~BtsfCHxkVDfOWLX6RGRkP4DhraU7-agjdt2mtoGxDRb8C0cAi35KjVLBCmGLdnyDAAxpjEk~nZPckePSFtvfXXMfwDW40yp5LfAahXjXd6xFtObYdpaRPnCI0NJenkT3ulFJg2puw__",
@@ -42,6 +55,8 @@ const newsStories = [
   },
   {
     href: "#",
+    showCategory: false,
+    showSportName: false,
     category: "News",
     imageSrc:
       "https://s3-alpha-sig.figma.com/img/f9f1/f62f/87c68b75cb042655b9dbf6c51643f8cb?Expires=1719792000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=F-gvLfWe2beVM-~wa~fiSyLtKMN1kr9r8oDO6jGVxnVj94O8E6sYJBsfEvRpisevNyXOIvQfoWbuG5abg53KgVVNy2ynaodcqL1UZbIbqvte00rOUQsFGNO~BxpFWUjYw6mJM19XXII9KOstUY75A55FfSQHZoduAY-0L~FPFi~-eP17IuBKaN3rtcYJDglrHmkK6e3GbE3tW4e0Oz36fB2Wrj~1I5hI~Q7CrDw0p0wVQg7vhntL1YbXbBLQqKOUft~Dn479Dd091kLEUv21tI2WjMEBUJHyCPC7EulDsGvXiN~qfDGX~J0izjuPe0c5EDFaBd8iurmrd9Zn7su4yw__",
@@ -51,6 +66,8 @@ const newsStories = [
   },
   {
     href: "#",
+    showCategory: false,
+    showSportName: false,
     category: "Game Recap",
     title: "Lacrosse Downs Ducks, Will Face Stanford in Pac-12 Semifinals",
     sportName: "W. Lacrosse",
@@ -60,6 +77,8 @@ const newsStories = [
   },
   {
     href: "#",
+    showCategory: false,
+    showSportName: false,
     category: "News",
     title: "Kensinger, Williamson Named All-Americans",
     sportName: "Volleyball",

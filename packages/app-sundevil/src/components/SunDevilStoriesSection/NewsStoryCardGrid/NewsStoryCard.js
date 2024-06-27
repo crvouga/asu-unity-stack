@@ -10,6 +10,8 @@ import styled from "styled-components";
  * imageSrc: string;
  * sportName: string;
  * sportIconFaClassName: string;
+ * showCategory?: boolean;
+ * showSportName?: boolean;
  * }} NewsStory
  */
 
@@ -20,6 +22,8 @@ export const newsStorySchema = PropTypes.shape({
   imageSrc: PropTypes.string.isRequired,
   sportName: PropTypes.string.isRequired,
   sportIconFaClassName: PropTypes.string.isRequired,
+  showCategory: PropTypes.bool,
+  showSportName: PropTypes.bool,
 });
 
 const Root = styled.a`
@@ -117,6 +121,7 @@ const ContentBottom = styled.div`
  *
  * @type {React.FC<{newsStory: NewsStory, style: StyleSheet}>}
  * @link {https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=728-26483&t=nNPd77JTpPWPBY9Q-0}
+ * @link {https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=2127-15038&t=q44055rSZX7SMrDl-0}
  *
  */
 export const NewsStoryCard = ({ newsStory, style }) => {
@@ -124,15 +129,17 @@ export const NewsStoryCard = ({ newsStory, style }) => {
     <Root href={newsStory.href} style={style}>
       <BackgroundImage alt=" " src={newsStory.imageSrc} />
       <Content>
-        <SportName>
-          <SportNameIcon className={newsStory.sportIconFaClassName} />
-          {newsStory.sportName}
-        </SportName>
+        {newsStory.showSportName && (
+          <SportName>
+            <SportNameIcon className={newsStory.sportIconFaClassName} />
+            {newsStory.sportName}
+          </SportName>
+        )}
 
         <WhiteSpaceFill />
 
         <ContentBottom>
-          <Category>{newsStory.category}</Category>
+          {newsStory.showCategory && <Category>{newsStory.category}</Category>}
           <Title>{newsStory.title}</Title>
         </ContentBottom>
       </Content>

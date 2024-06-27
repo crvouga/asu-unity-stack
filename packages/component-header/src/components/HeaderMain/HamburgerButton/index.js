@@ -10,14 +10,8 @@ export const HamburgerButton = ({ open, onClick, hidden }) => {
   const { mobile } = useAppContext();
 
   if (typeof mobile?.hamburger?.render === "function") {
-    console.log(
-      "rendering HamburgerButton with render function",
-      mobile.hamburger.render({ open, onClick, hidden })
-    );
     return mobile.hamburger.render({ open, onClick, hidden });
   }
-
-  console.log("rendering HamburgerButton");
 
   const openIcon =
     typeof mobile?.hamburger?.renderOpen === "function" ? (

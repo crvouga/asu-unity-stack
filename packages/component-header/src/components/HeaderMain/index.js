@@ -42,9 +42,7 @@ const HeaderMain = () => {
     });
   };
 
-  /**
-   * @type {React.MutableRefObject<HTMLElement | null>}
-   */
+  /** @type {React.MutableRefObject<HTMLElement | null>} */
   const mobileNavContainerRef = useRef(null);
   useDisableParentScrolling({
     disabled: mobileMenuOpen && isMobile,
@@ -66,10 +64,12 @@ const HeaderMain = () => {
             >
               {!isPartner && <Logo />}
 
-              <HamburgerButton
-                onClick={handleClickMobileMenu}
-                open={mobileMenuOpen}
-              />
+              {isMobile && (
+                <HamburgerButton
+                  onClick={handleClickMobileMenu}
+                  open={mobileMenuOpen}
+                />
+              )}
               {isDesktop && (
                 <>
                   <div

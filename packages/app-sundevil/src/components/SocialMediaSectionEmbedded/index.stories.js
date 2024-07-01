@@ -31,12 +31,7 @@ const Template = args => {
   );
 };
 
-export const Square = Template.bind({});
-Square.args = {
-  ...drupalSocialMediaSectionProps,
-};
-
-export const Tall = Template.bind({});
-Tall.args = {
+export const Base = Template.bind({});
+Base.args = {
   ...drupalSocialMediaSectionProps,
 };

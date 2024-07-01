@@ -30,8 +30,8 @@ export const MobileSearchBar = () => {
         disableDataLayers
         disablePadding
         placeholder="Search Sun Devil Athletics"
-        renderIconEnd={({ inputValue }) => (
-          <span key={inputValue}>
+        renderIconEnd={({ inputValue, isFocused }) => (
+          <span key={`${inputValue}${isFocused}`}>
             <IconSearchEnd
               key={inputValue}
               show={inputValue.length === 0}

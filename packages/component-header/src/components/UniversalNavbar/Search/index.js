@@ -47,13 +47,19 @@ const Search = ({
 } = {}) => {
   const { breakpoint, searchUrl, site } = useAppContext();
   const isMobile = useIsMobile(breakpoint);
+  /** @type {React.MutableRefObject<HTMLInputElement | null>} */
   const inputRef = useRef(null);
   const [open, setOpen] = useState(false);
 
+  const focusInput = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
+
   useEffect(() => {
     if (open) {
-      // @ts-ignore
-      inputRef.current.focus();
+      focusInput();
     }
   }, [open]);
 
@@ -113,6 +119,8 @@ const Search = ({
                 className="form-control"
                 type="search"
                 name="q"
+                value={inputValue}
+                onChange={onInputChanged}
                 aria-labelledby="header-top-search"
                 placeholder={placeholder ?? "Search asu.edu"}
                 required
@@ -140,6 +148,7 @@ const Search = ({
             aria-labelledby="header-top-search"
             placeholder={placeholder ?? "Search asu.edu"}
             required
+            value={inputValue}
             onChange={onInputChanged}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}

@@ -3,6 +3,7 @@ import React from "react";
 
 import { RenderReact } from "../../../utils/react-render";
 import { SectionHeader } from "../../SectionHeader";
+import { useNewsStoryAPILoader } from "../news-story-api/use-news-story-api";
 import { SunDevilStories } from "../SunDevilStories";
 import { skeletonSports } from "./skeleton-props";
 
@@ -11,7 +12,11 @@ import { skeletonSports } from "./skeleton-props";
  */
 
 /**
- * @typedef {import("../NewsStoryCardGrid/NewsStoryCard").NewsStory} NewsStory
+ * @typedef {import("../news-story").NewsStory} NewsStory
+ */
+
+/**
+ * @typedef {Sport & { newsStories: NewsStory[]} } RemoteResult
  */
 
 /**
@@ -35,15 +40,31 @@ export const SunDevilStoriesFromAPI = ({
   allStoriesHref,
   allStoriesLabel,
 }) => {
-  return (
-    <SunDevilStories
-      allStoriesHref={allStoriesHref}
-      allStoriesLabel={allStoriesLabel}
-      sectionHeader={{ ...sectionHeader }}
-      sports={skeletonSports}
-      skeleton
-    />
-  );
+  const newsStoryState = useNewsStoryAPILoader();
+  switch (newsStoryState.t) {
+    case "ok": {
+      return (
+        <SunDevilStories
+          allStoriesHref={allStoriesHref}
+          allStoriesLabel={allStoriesLabel}
+          sectionHeader={{ ...sectionHeader }}
+          sports={newsStoryState.value}
+        />
+      );
+    }
+
+    default: {
+      return (
+        <SunDevilStories
+          allStoriesHref={allStoriesHref}
+          allStoriesLabel={allStoriesLabel}
+          sectionHeader={{ ...sectionHeader }}
+          sports={skeletonSports}
+          skeleton
+        />
+      );
+    }
+  }
 };
 
 SunDevilStoriesFromAPI.propTypes = {

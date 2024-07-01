@@ -1,6 +1,14 @@
 // @ts-check
 
 /**
+ * @typedef {{t: 'not-asked'}} NotAsked
+ */
+
+/**
+ * @typedef {{t: 'loading'}} Loading
+ */
+
+/**
  * @template TValue
  * @typedef {{ t: "ok", value: TValue }} Ok
  */
@@ -14,6 +22,12 @@
  * @template TError
  * @template TData
  * @typedef {Ok<TData> | Err<TError>} Result
+ */
+
+/**
+ * @template TError
+ * @template TData
+ * @typedef {Ok<TData> | Err<TError> | Loading | NotAsked} RemoteResult
  */
 
 /**
@@ -35,3 +49,13 @@ export const Ok = value => {
 export const Err = error => {
   return { t: "error", error };
 };
+
+/**
+ * @type {NotAsked}
+ */
+export const NotAsked = { t: "not-asked" };
+
+/**
+ * @type {Loading}
+ */
+export const Loading = { t: "loading" };

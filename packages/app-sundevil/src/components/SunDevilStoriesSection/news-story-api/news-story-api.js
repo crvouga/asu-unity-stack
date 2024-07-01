@@ -8,4 +8,5 @@
  * }} NewsStoryAPI
  */
 
+export const INewsStoryAPI = {};
 export default {};

@@ -19,4 +19,4 @@ export {
   initGamesNavigationComponent,
   initGameTableComponent,
   initHeaderComponent,
-}
+};

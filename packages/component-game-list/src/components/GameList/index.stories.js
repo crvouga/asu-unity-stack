@@ -77,8 +77,9 @@ Default.args = {
     // eslint-disable-next-line no-console
     console.log(sportId);
   },
-  presentedBy: {
-    name: "Presented By",
+  sponsorBlock: {
+    text: "Presented By",
+    name: "Ford",
     logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg",
   },
   games: [
@@ -116,6 +117,18 @@ Default.args = {
       },
       time: "5:30pm",
       venue: "Phoenix Muni Stadium",
+    },
+  ],
+  footerButtons: [
+    {
+      color: "gold",
+      label: "Full schedule",
+      size: "small",
+    },
+    {
+      color: "maroon",
+      label: "Gear up for the game",
+      size: "small",
     },
   ],
 };

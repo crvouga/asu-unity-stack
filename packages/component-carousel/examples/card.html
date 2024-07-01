@@ -32,151 +32,102 @@
     <script>
       var myCarouselItems = [
         {
-          id: 0,
-          imageSource: "https://source.unsplash.com/random/500x400?a=-1",
-          imageAltText: "Card image cap",
-          title: "Card 1",
-          content:
-            "Body 1 copy goes here. Limit to 5 lines max. Lorem ipsum dolor sit\n      amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt\n      ut labore et dolore magna aliqua eiusmod tempo.",
-          buttons: [
-            {
-              ariaLabel: "dummy button",
-              color: "maroon",
-              href: "#",
-              label: `Button 1 link here`,
-              size: "default",
-              onClick: () => window.alert("Holoa Amigo 😃."),
-            },
-          ],
-        },
-        {
           id: 1,
-          imageSource: "https://source.unsplash.com/random/300x400?a=0",
+          imageSource: "https://source.unsplash.com/random/400x400?a=8",
           imageAltText: "Card image cap",
-          title: "Card 2",
+          title: `Don’t miss the Maroon and Gold Spring Game`,
           content:
-            "Body 2 copy goes here. Limit to 5 lines max. Lorem ipsum dolor sit\n      amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt\n      ut labore et dolore magna aliqua eiusmod tempo.",
+            '<div style="\n' +
+            "                display: flex;\n" +
+            "                justify-content: space-between;\n" +
+            "        font-family: Arial, sans-serif;\n" +
+            "        font-weight: 700;\n" +
+            "        font-size: 16px;\n" +
+            "        line-height: 19px;\n" +
+            "        color: #747474;\n" +
+            "        text-align: left;\n" +
+            '        margin-bottom: 8px;">\n' +
+            "      <span>April 26, 2024</span><span>Free Admission</span>\n" +
+            "    </div> " +
+            "Join us for the Maroon and Gold Spring Game on Saturday, April 10 at 12:00 p.m. at TCF Bank Stadium. Admission is free, but tickets are required. Reserve your tickets today!",
           buttons: [
             {
               ariaLabel: "dummy button",
               color: "maroon",
               href: "#",
-              label: `Button 2 link here`,
-              size: "default",
-              onClick: () => window.alert("Holoa Amigo 😃."),
-            },
-          ],
-        },
-        {
-          id: 2,
-          imageSource: "https://source.unsplash.com/random/400x400?a=1",
-          imageAltText: "Card image cap",
-          title: "Card 3",
-          content:
-            "Body 3 copy goes here. Limit to 5 lines max. Lorem ipsum dolor sit\n      amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt\n      ut labore et dolore magna aliqua eiusmod tempo.",
-          buttons: [
-            {
-              ariaLabel: "dummy button",
-              color: "maroon",
-              href: "#",
-              label: `Button 3 link here`,
-              size: "default",
-              onClick: () => window.alert("Holoa Amigo 😃."),
-            },
-          ],
-        },
-        {
-          id: 3,
-          imageSource: "https://source.unsplash.com/random/200x200?a=2",
-          imageAltText: "Card image cap",
-          title: "Card 4",
-          content:
-            "Body 4 copy goes here. Limit to 5 lines max. Lorem ipsum dolor sit\n      amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt\n      ut labore et dolore magna aliqua eiusmod tempo.",
-          buttons: [
-            {
-              ariaLabel: "dummy button",
-              color: "maroon",
-              href: "#",
-              label: `Button 4 link here`,
-              size: "default",
-              onClick: () => window.alert("Holoa Amigo 😃."),
-            },
-          ],
-        },
-        {
-          id: 4,
-          imageSource: "https://source.unsplash.com/random/300x400?a=3",
-          imageAltText: "Card image cap",
-          title: "Card 5",
-          content:
-            "Body 5 copy goes here. Limit to 5 lines max. Lorem ipsum dolor sit\n      amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt\n      ut labore et dolore magna aliqua eiusmod tempo.",
-          buttons: [
-            {
-              ariaLabel: "dummy button",
-              color: "maroon",
-              href: "#",
-              label: `Button 5 link here`,
-              size: "default",
+              label: `Learn More`,
+              size: "small",
               onClick: () => {
+                // eslint-disable-next-line no-alert
+                window.alert("Hola Amigo 😃.");
+                return false;
+              },
+            },
+            {
+              ariaLabel: "dummy button",
+              color: "dark",
+              href: "#",
+              label: `More Info`,
+              size: "small",
+              onClick: () => {
+                // eslint-disable-next-line no-alert
                 window.alert("Hola Amigo 😃.");
                 return false;
               },
             },
           ],
+          buttonOrientation: "horizontal",
+          topic:
+            '<div><i class="far fa-calendar"></i> </div> <div><span>Football </span></div>',
         },
         {
-          id: 5,
-          imageSource: "https://source.unsplash.com/random/300x400?a=4",
+          id: 2,
+          imageSource: "https://source.unsplash.com/random/400x400?a=8",
           imageAltText: "Card image cap",
-          title: "Card 6",
+          title: `Don’t miss the Maroon and Gold Spring Game`,
           content:
-            "Body 6 copy goes here. Limit to 5 lines max. Lorem ipsum dolor sit\n      amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt\n      ut labore et dolore magna aliqua eiusmod tempo.",
+            '<div style="\n' +
+            "                display: flex;\n" +
+            "                justify-content: space-between;\n" +
+            "        font-family: Arial, sans-serif;\n" +
+            "        font-weight: 700;\n" +
+            "        font-size: 16px;\n" +
+            "        line-height: 19px;\n" +
+            "        color: #747474;\n" +
+            "        text-align: left;\n" +
+            '        margin-bottom: 8px;">\n' +
+            "      <span>April 26, 2024</span><span>Free Admission</span>\n" +
+            "    </div> " +
+            "Join us for the Maroon and Gold Spring Game on Saturday, April 10 at 12:00 p.m. at TCF Bank Stadium. Admission is free, but tickets are required. Reserve your tickets today!",
           buttons: [
             {
               ariaLabel: "dummy button",
               color: "maroon",
               href: "#",
-              label: `Button 6 link here`,
-              size: "default",
-              onClick: () => window.alert("Holoa Amigo 😃."),
+              label: `Learn More`,
+              size: "small",
+              onClick: () => {
+                // eslint-disable-next-line no-alert
+                window.alert("Hola Amigo 😃.");
+                return false;
+              },
             },
-          ],
-        },
-        {
-          id: 6,
-          imageSource: "https://source.unsplash.com/random/400x400?a=5",
-          imageAltText: "Card image cap",
-          title: "Card 7",
-          content:
-            "Body 7 copy goes here. Limit to 5 lines max. Lorem ipsum dolor sit\n      amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt\n      ut labore et dolore magna aliqua eiusmod tempo.",
-          buttons: [
             {
               ariaLabel: "dummy button",
-              color: "maroon",
+              color: "dark",
               href: "#",
-              label: `Button 7 link here`,
-              size: "default",
-              onClick: () => window.alert("Holoa Amigo 😃."),
+              label: `More Info`,
+              size: "small",
+              onClick: () => {
+                // eslint-disable-next-line no-alert
+                window.alert("Hola Amigo 😃.");
+                return false;
+              },
             },
           ],
-        },
-        {
-          id: 7,
-          imageSource: "https://source.unsplash.com/random/300x400?a=6",
-          imageAltText: "Card image cap",
-          title: "Card 8",
-          content:
-            "Body 8 copy goes here. Limit to 5 lines max. Lorem ipsum dolor sit\n      amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt\n      ut labore et dolore magna aliqua eiusmod tempo.",
-          buttons: [
-            {
-              ariaLabel: "dummy button",
-              color: "maroon",
-              href: "#",
-              label: `Button 8 link here`,
-              size: "default",
-              target: "_parent",
-            },
-          ],
+          buttonOrientation: "horizontal",
+          topic:
+            '<div><i class="far fa-calendar"></i> </div> <div><span>BasketBall </span></div>',
         },
       ];
 
@@ -184,9 +135,8 @@
       AsuWebCarousel.initCardCarousel({
         targetSelector: "#cardCarouselContainer",
         props: {
-          perView: "2",
+          perView: "3",
           cardItems: myCarouselItems,
-          maxWidth: "1000px",
           // imageAutoSize: false,// default true
         },
       });

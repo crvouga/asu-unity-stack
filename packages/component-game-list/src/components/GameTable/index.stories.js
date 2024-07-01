@@ -29,15 +29,11 @@ Default.args = {
         month: "Mar",
       },
       sport: { name: "Sport Name", icon: "fa fa-rocket" },
-
       homeTeam: {
         name: "Sun Devils",
-        logo: "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
       },
-      awayTeam: {
-        name: "Wildcats",
-        logo: "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
-      },
+      ticketLink: "https://www.example.com",
+      ticketText: "Buy Tickets",
       time: "5:30pm",
       venue: "Phoenix Muni Stadium",
     },
@@ -57,6 +53,18 @@ Default.args = {
       },
       time: "5:30pm",
       venue: "Phoenix Muni Stadium",
+    },
+  ],
+  footerButtons: [
+    {
+      color: "gold",
+      label: "Full schedule",
+      size: "small",
+    },
+    {
+      color: "maroon",
+      label: "Gear up for the game",
+      size: "small",
     },
   ],
 };

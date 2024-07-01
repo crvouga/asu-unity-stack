@@ -26,8 +26,9 @@ Default.args = {
   subtitle:
     "From the fall football season to the Maroon and Gold Spring game and at Camp Tontozona,\n" +
     "        there are football games and events throughout the year.",
-  presentedBy: {
-    name: "Presented By",
+  sponsorBlock: {
+    text: "Presented By",
+    name: "Ford",
     logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg",
   },
   tabs: [

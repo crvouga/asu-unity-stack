@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Media Card Section</title>
+    <!-- Load React. -->
+    <script
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+      crossorigin
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://unity.web.asu.edu/@asu/bootstrap4-theme/css/bootstrap-asu.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://asu.github.io/asu-unity-stack/@asu/unity-bootstrap-theme/css/unity-bootstrap-theme.bundle.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- *************************************************************** -->
+    <!-- include bundled scripts from packages -->
+    <script src="./dist/vendor.umd.js"></script>
+    <script src="./dist/sunDevil.umd.js"></script>
+  </head>
+
+  <body>
+    <div id="section-container"></div>
+    <script>
+      const props = {
+        title: "Sun Devil Stories",
+        sponsor_block: [
+          {
+            text: "Presented by:",
+            name: "Desert Financial",
+            logo: "https://www.desertfinancial.com/globalassets/images/logos/desert-financial/df-logo_fullcolor_tm-cropped.svg",
+          },
+        ],
+        // We have to proxy because of CORS error
+        api_endpoint: "http://localhost:8888/",
+        // api_endpoint: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+        all_stories_href: "#",
+        all_stories_label: "All Stories",
+        api_impl: "mock",
+      };
+
+      initSunDevilsStoriesFromAPI({
+        targetSelector: "#section-container",
+        props,
+      });
+    </script>
+  </body>
+</html>

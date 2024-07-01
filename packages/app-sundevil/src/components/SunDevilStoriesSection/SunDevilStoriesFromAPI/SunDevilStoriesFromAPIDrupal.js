@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React, { useMemo } from "react";
 
 import { SectionHeader } from "../../SectionHeader";
-import { NewsStoryAPIMock } from "../news-story-api/news-story-api-impl-mock";
+import { NewsStoryAPI } from "../news-story-api/news-story-api-impl";
 import { NewsStoryAPIProvider } from "../news-story-api/news-story-api-provider";
 import { SunDevilStoriesFromAPI } from "./SunDevilStoriesFromAPI";
 
@@ -12,10 +12,13 @@ export const SunDevilStoriesFromAPIDrupal = ({
   allStoriesHref,
   allStoriesLabel,
   apiUrl,
+  apiImpl,
 }) => {
-  // const newsStoryAPI = useMemo(() => NewsStoryAPIDrupal({ apiUrl }), [apiUrl]);
-  const newsStoryAPI = useMemo(() => NewsStoryAPIMock(), [apiUrl]);
-  // eslint-disable-next-line no-console
+  const newsStoryAPI = useMemo(
+    () => NewsStoryAPI({ apiUrl, apiImpl }),
+    [apiUrl, apiImpl]
+  );
+
   return (
     <NewsStoryAPIProvider newsStoryAPI={newsStoryAPI}>
       <SunDevilStoriesFromAPI
@@ -32,4 +35,5 @@ SunDevilStoriesFromAPIDrupal.propTypes = {
   sectionHeader: SectionHeader.propTypes,
   allStoriesLabel: PropTypes.string.isRequired,
   allStoriesHref: PropTypes.string.isRequired,
+  apiImpl: PropTypes.string,
 };

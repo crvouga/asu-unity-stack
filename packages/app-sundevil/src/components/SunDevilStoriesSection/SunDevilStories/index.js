@@ -166,3 +166,6 @@ SunDevilStories.propTypes = {
 export const initSunDevilsStories = ({ targetSelector, props }) => {
   RenderReact(SunDevilStories, props, document.querySelector(targetSelector));
 };
+
+// for backward compatibility
+export const initSunDevilsStoriesSection = initSunDevilsStories;

@@ -1,5 +1,6 @@
 // @ts-check
 import PropTypes from "prop-types";
+import { sportSchema } from "../../../../component-game-list/src/core/components/Navigation";
 
 /**
  * @typedef {{
@@ -23,4 +24,17 @@ export const newsStorySchema = PropTypes.shape({
   sportIconFaClassName: PropTypes.string.isRequired,
   showCategory: PropTypes.bool,
   showSportName: PropTypes.bool,
+});
+
+/**
+ * @typedef {import("../../../../component-game-list/src/core/components/Navigation").Sport} Sport
+ */
+
+/**
+ * @typedef {Sport & { newsStories: NewsStory[]} } SportWithNewsStories
+ */
+
+export const sportWithNewsStoriesSchema = PropTypes.shape({
+  ...sportSchema,
+  newsStories: PropTypes.arrayOf(newsStorySchema).isRequired,
 });

@@ -1,30 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
-
-/**
- * @typedef {{
- * href: string;
- * title: string;
- * category: string;
- * imageSrc: string;
- * sportName: string;
- * sportIconFaClassName: string;
- * showCategory?: boolean;
- * showSportName?: boolean;
- * }} NewsStory
- */
-
-export const newsStorySchema = PropTypes.shape({
-  href: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
-  imageSrc: PropTypes.string.isRequired,
-  sportName: PropTypes.string.isRequired,
-  sportIconFaClassName: PropTypes.string.isRequired,
-  showCategory: PropTypes.bool,
-  showSportName: PropTypes.bool,
-});
+import * as NewsStory from "../news-story";
 
 const Root = styled.a`
   overflow: hidden;
@@ -119,7 +96,7 @@ const ContentBottom = styled.div`
 
 /**
  *
- * @type {React.FC<{newsStory: NewsStory, style: StyleSheet}>}
+ * @type {React.FC<{newsStory: NewsStory.NewsStory, style: StyleSheet}>}
  * @link {https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=728-26483&t=nNPd77JTpPWPBY9Q-0}
  * @link {https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=2127-15038&t=q44055rSZX7SMrDl-0}
  *
@@ -147,7 +124,7 @@ export const NewsStoryCard = ({ newsStory, style }) => {
   );
 };
 NewsStoryCard.propTypes = {
-  newsStory: newsStorySchema.isRequired,
+  newsStory: NewsStory.newsStorySchema.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
 };

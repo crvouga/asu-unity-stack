@@ -12,7 +12,7 @@ import { SunDevilStoriesSection } from "./index";
  */
 
 /**
- * @typedef {import("./NewsStoryCardGrid/NewsStoryCard").NewsStory} NewsStory
+ * @typedef {import("./news-story").NewsStory} NewsStory
  */
 
 /**

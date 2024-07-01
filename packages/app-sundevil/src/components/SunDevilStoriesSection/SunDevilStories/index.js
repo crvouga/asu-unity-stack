@@ -2,27 +2,28 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { sportSchema } from "../../../../component-game-list/src/core/components/Navigation";
+import { sportSchema } from "../../../../../component-game-list/src/core/components/Navigation";
 import {
   SportsTabsDesktop,
   SportsTabsMobile,
-} from "../../../../component-game-list/src/core/components/SportsTabs";
-import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
-import { Button } from "../../../../components-core/src/index";
-import { APP_CONFIG } from "../../config";
-import { RenderReact } from "../../utils/react-render";
-import { useElementContentPosition } from "../../utils/use-element-position";
-import { SectionHeader } from "../SectionHeader";
-import * as NewsStory from "./news-story";
-import { NewsStoryCardGridDesktop } from "./NewsStoryCardGrid/NewsStoryCardGridDesktop";
-import { NewsStoryCardGridMobile } from "./NewsStoryCardGrid/NewsStoryCardGridMobile";
+} from "../../../../../component-game-list/src/core/components/SportsTabs";
+import { useIsMobile } from "../../../../../component-header/src/core/hooks/isMobile";
+import { Button } from "../../../../../components-core/src/index";
+import { APP_CONFIG } from "../../../config";
+import { RenderReact } from "../../../utils/react-render";
+import { useElementContentPosition } from "../../../utils/use-element-position";
+import { SectionHeader } from "../../SectionHeader";
+import { Skeleton } from "../../Skeleton";
+import * as NewsStory from "../news-story";
+import { NewsStoryCardGridDesktop } from "../NewsStoryCardGrid/NewsStoryCardGridDesktop";
+import { NewsStoryCardGridMobile } from "../NewsStoryCardGrid/NewsStoryCardGridMobile";
 
 /**
- * @typedef {import("../../../../component-game-list/src/core/components/Navigation").Sport} Sport
+ * @typedef {import("../../../../../component-game-list/src/core/components/Navigation").Sport} Sport
  */
 
 /**
- * @typedef {import("./NewsStoryCardGrid/NewsStoryCard").NewsStory} NewsStory
+ * @typedef {import("../NewsStoryCardGrid/NewsStoryCard").NewsStory} NewsStory
  */
 
 /**
@@ -40,7 +41,8 @@ const sportWithNewsStoriesSchema = PropTypes.shape({
  *  sectionHeader: object;
  *  allStoriesLabel: string;
  *  allStoriesHref: string;
- * }} SunDevilStoriesSectionProps
+ *  skeleton?: boolean;
+ * }} SunDevilStoriesProps
  */
 
 const Root = styled.section`
@@ -56,16 +58,17 @@ const AllStoriesRoot = styled.div`
 `;
 
 /**
- * @type {React.FC<SunDevilStoriesSectionProps>}
+ * @type {React.FC<SunDevilStoriesProps>}
  */
-export const SunDevilStoriesSection = ({
+export const SunDevilStories = ({
   sports,
   sectionHeader,
   allStoriesHref,
   allStoriesLabel,
+  skeleton,
 }) => {
   // eslint-disable-next-line react/prop-types
-  const [selectedTab, setSelectedTab] = React.useState(sports[0].id);
+  const [selectedTab, setSelectedTab] = React.useState(sports[0]?.id);
 
   const sportsWithSelectedTab = sports.map(sport => ({
     ...sport,
@@ -93,20 +96,26 @@ export const SunDevilStoriesSection = ({
             <SportsTabsMobile
               sports={sportsWithSelectedTab}
               onSportItemClick={sportId => () => setSelectedTab(sportId)}
+              skeleton={skeleton}
             />
           </div>
           <NewsStoryCardGridMobile
+            key={selectedSport.id}
+            skeleton={skeleton}
             newsStories={selectedSport.newsStories}
             slidesOffsetBefore={sectionHeaderPosition.left}
             slidesOffsetAfter={window.innerWidth - sectionHeaderPosition.right}
             cardWidth={cardWidth}
             renderBottomRightContent={() => (
-              <Button
-                color="maroon"
-                size="small"
-                label={allStoriesLabel}
-                href={allStoriesHref}
-              />
+              <Skeleton skeleton={skeleton} fitContent>
+                <Button
+                  color="maroon"
+                  size="small"
+                  label={allStoriesLabel}
+                  href={allStoriesHref}
+                  skeleton={skeleton}
+                />
+              </Skeleton>
             )}
           />
         </>
@@ -115,6 +124,7 @@ export const SunDevilStoriesSection = ({
         <>
           <div className="container">
             <SportsTabsDesktop
+              skeleton={skeleton}
               sports={sportsWithSelectedTab}
               onSportItemClick={sportId => () => setSelectedTab(sportId)}
               moreTabOrientation="horizontal"
@@ -122,14 +132,21 @@ export const SunDevilStoriesSection = ({
             />
           </div>
           <div className="container">
-            <NewsStoryCardGridDesktop newsStories={selectedSport.newsStories} />
+            <NewsStoryCardGridDesktop
+              key={selectedSport.id}
+              newsStories={selectedSport.newsStories}
+              skeleton={skeleton}
+            />
             <AllStoriesRoot>
-              <Button
-                color="maroon"
-                size="small"
-                label={allStoriesLabel}
-                href={allStoriesHref}
-              />
+              <Skeleton skeleton={skeleton} fitContent>
+                <Button
+                  color="maroon"
+                  size="small"
+                  label={allStoriesLabel}
+                  href={allStoriesHref}
+                  skeleton={skeleton}
+                />
+              </Skeleton>
             </AllStoriesRoot>
           </div>
         </>
@@ -138,17 +155,14 @@ export const SunDevilStoriesSection = ({
   );
 };
 
-SunDevilStoriesSection.propTypes = {
+SunDevilStories.propTypes = {
   sectionHeader: SectionHeader.propTypes,
   sports: PropTypes.arrayOf(sportWithNewsStoriesSchema).isRequired,
   allStoriesLabel: PropTypes.string.isRequired,
   allStoriesHref: PropTypes.string.isRequired,
+  skeleton: PropTypes.bool,
 };
 
-export const initSunDevilsStoriesSection = ({ targetSelector, props }) => {
-  RenderReact(
-    SunDevilStoriesSection,
-    props,
-    document.querySelector(targetSelector)
-  );
+export const initSunDevilsStories = ({ targetSelector, props }) => {
+  RenderReact(SunDevilStories, props, document.querySelector(targetSelector));
 };

@@ -87,13 +87,6 @@ export const JoinTheConversation = ({ social }) => {
             <StyledSocialIcon social={socialItem} />
           </SocialMediaIconButton>
         ))}
-
-        {social.map((socialItem, index) => (
-          <StyledSocialIcon
-            key={socialItem.label ?? social.faClassName ?? index}
-            social={socialItem}
-          />
-        ))}
       </SocialMediaIconsRoot>
     </Root>
   );

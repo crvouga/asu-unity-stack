@@ -13,13 +13,13 @@ const Root = styled.div`
   gap: 10px;
 `;
 
-export const ArrowButtons = ({ onLeft, onRight }) => {
+export const ArrowButtons = ({ onLeft, onRight, skeleton }) => {
   return (
     <Root>
-      <IconButton onClick={onLeft} label="Go to previous">
+      <IconButton onClick={onLeft} label="Go to previous" skeleton={skeleton}>
         <IconArrowLeft />
       </IconButton>
-      <IconButton onClick={onRight} label="Go to next">
+      <IconButton onClick={onRight} label="Go to next" skeleton={skeleton}>
         <IconArrowRight />
       </IconButton>
     </Root>
@@ -28,4 +28,5 @@ export const ArrowButtons = ({ onLeft, onRight }) => {
 ArrowButtons.propTypes = {
   onLeft: PropTypes.func.isRequired,
   onRight: PropTypes.func.isRequired,
+  skeleton: PropTypes.bool,
 };

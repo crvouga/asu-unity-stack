@@ -1,1 +1,2 @@
-export * from "./SunDevilStoriesSection";
+export * from "./SunDevilStories";
+export * from "./SunDevilStoriesFromAPI";

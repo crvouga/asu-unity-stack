@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
+
+import { Skeleton } from "../../Skeleton";
 import * as NewsStory from "../news-story";
 
 const Root = styled.a`
@@ -96,35 +98,40 @@ const ContentBottom = styled.div`
 
 /**
  *
- * @type {React.FC<{newsStory: NewsStory.NewsStory, style: StyleSheet}>}
+ * @type {React.FC<{newsStory: NewsStory.NewsStory, style: StyleSheet; skeleton?: boolean }>}
  * @link {https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=728-26483&t=nNPd77JTpPWPBY9Q-0}
  * @link {https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=2127-15038&t=q44055rSZX7SMrDl-0}
  *
  */
-export const NewsStoryCard = ({ newsStory, style }) => {
+export const NewsStoryCard = ({ newsStory, style, skeleton }) => {
   return (
-    <Root href={newsStory.href} style={style}>
-      <BackgroundImage alt=" " src={newsStory.imageSrc} />
-      <Content>
-        {newsStory.showSportName && (
-          <SportName>
-            <SportNameIcon className={newsStory.sportIconFaClassName} />
-            {newsStory.sportName}
-          </SportName>
-        )}
+    <Skeleton skeleton={skeleton}>
+      <Root href={newsStory.href} style={style}>
+        <BackgroundImage alt=" " src={newsStory.imageSrc} />
+        <Content>
+          {newsStory.showSportName && (
+            <SportName>
+              <SportNameIcon className={newsStory.sportIconFaClassName} />
+              {newsStory.sportName}
+            </SportName>
+          )}
 
-        <WhiteSpaceFill />
+          <WhiteSpaceFill />
 
-        <ContentBottom>
-          {newsStory.showCategory && <Category>{newsStory.category}</Category>}
-          <Title>{newsStory.title}</Title>
-        </ContentBottom>
-      </Content>
-    </Root>
+          <ContentBottom>
+            {newsStory.showCategory && (
+              <Category>{newsStory.category}</Category>
+            )}
+            <Title>{newsStory.title}</Title>
+          </ContentBottom>
+        </Content>
+      </Root>
+    </Skeleton>
   );
 };
 NewsStoryCard.propTypes = {
   newsStory: NewsStory.newsStorySchema.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
+  skeleton: PropTypes.bool,
 };

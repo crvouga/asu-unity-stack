@@ -1,16 +1,16 @@
 /* eslint-disable prettier/prettier */
 // @ts-check
 import {
-  HeaderContentSportLinks,
-  OfficialAthleticsSite,
-  SocialMediaSection,
-  SocialMediaSectionEmbedded,
-  SunDevilStoriesSection,
-  SunDevilsHeader,
-  initSocialMediaSection,
-  initSocialMediaSectionEmbedded,
-  initSunDevilsHeader,
-  initSunDevilsStoriesSection,
+    HeaderContentSportLinks,
+    OfficialAthleticsSite,
+    SocialMediaSection,
+    SocialMediaSectionEmbedded,
+    SunDevilStories,
+    SunDevilsHeader,
+    initSocialMediaSection,
+    initSocialMediaSectionEmbedded,
+    initSunDevilsHeader,
+    initSunDevilsStoriesSection,
 } from "./components";
 
 // @ts-ignore
@@ -33,14 +33,15 @@ window.SocialMediaSectionEmbedded = SocialMediaSectionEmbedded;
 window.initSocialMediaSectionEmbedded = initSocialMediaSectionEmbedded;
 
 export {
-  HeaderContentSportLinks,
-  OfficialAthleticsSite,
-  SocialMediaSection,
-  SocialMediaSectionEmbedded,
-  SunDevilStoriesSection,
-  SunDevilsHeader,
-  initSocialMediaSection,
-  initSocialMediaSectionEmbedded,
-  initSunDevilsHeader,
-  initSunDevilsStoriesSection,
+    HeaderContentSportLinks,
+    OfficialAthleticsSite,
+    SocialMediaSection,
+    SocialMediaSectionEmbedded,
+    SunDevilStories,
+    SunDevilsHeader,
+    initSocialMediaSection,
+    initSocialMediaSectionEmbedded,
+    initSunDevilsHeader,
+    initSunDevilsStoriesSection
 };
+

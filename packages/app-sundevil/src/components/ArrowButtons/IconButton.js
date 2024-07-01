@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { Skeleton } from "../Skeleton";
+
 const Root = styled.button`
   display: flex:
   justify-content: center;
@@ -14,11 +16,13 @@ const Root = styled.button`
   background-color: transparent;
 `;
 
-export const IconButton = ({ children, onClick, label }) => {
+export const IconButton = ({ children, onClick, label, skeleton }) => {
   return (
-    <Root type="button" onClick={onClick} aria-label={label}>
-      {children}
-    </Root>
+    <Skeleton fitContent skeleton={skeleton}>
+      <Root type="button" onClick={onClick} aria-label={label}>
+        {children}
+      </Root>
+    </Skeleton>
   );
 };
 
@@ -26,4 +30,5 @@ IconButton.propTypes = {
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
+  skeleton: PropTypes.bool,
 };

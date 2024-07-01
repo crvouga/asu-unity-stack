@@ -4,7 +4,8 @@ import styled from "styled-components";
 
 import { ArrowButtons } from "../../ArrowButtons";
 import { Carousel, CarouselController, CarouselItem } from "../../Carousel";
-import { NewsStoryCard, newsStorySchema } from "./NewsStoryCard";
+import * as NewsStory from "../news-story";
+import { NewsStoryCard } from "./NewsStoryCard";
 
 /** @typedef {import("./NewsStoryCard").NewsStory} */
 
@@ -58,6 +59,7 @@ export const NewsStoryCardGridMobile = ({
   slidesOffsetAfter,
   cardWidth,
   renderBottomRightContent,
+  skeleton,
 }) => {
   const [carouselController] = React.useState(() => new CarouselController());
   const [index, setIndex] = React.useState(0);
@@ -80,7 +82,7 @@ export const NewsStoryCardGridMobile = ({
         {newsStories.map(newsStory => (
           <CarouselItem key={newsStory.title} style={{ width: "fit-content" }}>
             <div style={{ width: cardWidth, height: "100%" }}>
-              <NewsStoryCard newsStory={newsStory} />
+              <NewsStoryCard skeleton={skeleton} newsStory={newsStory} />
             </div>
           </CarouselItem>
         ))}
@@ -89,6 +91,7 @@ export const NewsStoryCardGridMobile = ({
         <ArrowButtons
           onLeft={() => carouselController.slidePrev()}
           onRight={() => carouselController.slideNext()}
+          skeleton={skeleton}
         />
         <WhitespaceFill />
         {renderBottomRightContent?.()}
@@ -97,9 +100,10 @@ export const NewsStoryCardGridMobile = ({
   );
 };
 NewsStoryCardGridMobile.propTypes = {
-  newsStories: PropTypes.arrayOf(newsStorySchema).isRequired,
+  newsStories: PropTypes.arrayOf(NewsStory.newsStorySchema).isRequired,
   slidesOffsetAfter: PropTypes.number,
   slidesOffsetBefore: PropTypes.number,
   cardWidth: PropTypes.number,
   renderBottomRightContent: PropTypes.func.isRequired,
+  skeleton: PropTypes.bool,
 };

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React, { useRef } from "react";
 import styled from "styled-components";
 
@@ -5,13 +6,6 @@ import { RenderReact } from "../../utils/react-render";
 import { useElementPosition } from "../../utils/use-element-position";
 import { SectionHeader } from "../SectionHeader";
 import { SocialMediaPostCarousel } from "./SocialMediaPostCarousel";
-
-const propTypes = {
-  // eslint-disable-next-line react/forbid-foreign-prop-types
-  sectionHeader: SectionHeader.propTypes,
-  // eslint-disable-next-line react/forbid-foreign-prop-types
-  postCarousel: SocialMediaPostCarousel.propTypes,
-};
 
 const Root = styled.section`
   display: flex;
@@ -36,7 +30,10 @@ export const SocialMediaSection = ({ sectionHeader, postCarousel }) => {
   );
 };
 
-SocialMediaSection.propTypes = propTypes;
+SocialMediaSection.propTypes = {
+  sectionHeader: PropTypes.shape(SectionHeader.propTypes),
+  postCarousel: PropTypes.shape(SocialMediaPostCarousel.propTypes),
+};
 
 export const initSocialMediaSection = ({ targetSelector, props }) => {
   RenderReact(

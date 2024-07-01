@@ -42,14 +42,45 @@ const SocialMediaIconsRoot = styled.div`
   gap: 16px;
 `;
 
+export const socialPropType = PropTypes.shape({
+  label: PropTypes.string,
+  url: PropTypes.string.isRequired,
+  faClassName: PropTypes.string,
+});
+
+const iconStyle = {
+  width: "22px",
+  height: "22px",
+  fontSize: "22px",
+};
+
+const SocialIcon = ({ social }) => {
+  if (typeof social.faClassName === "string") {
+    return <i className={social.faClassName} style={iconStyle} />;
+  }
+  return (
+    <SocialMediaIcon
+      name={social.label.trim().toLowerCase()}
+      style={iconStyle}
+    />
+  );
+};
+
+SocialIcon.propTypes = {
+  social: socialPropType,
+};
+
 export const JoinTheConversation = ({ social }) => {
   return (
     <Root id="social-media">
       <Title>Join the Conversation:</Title>
       <SocialMediaIconsRoot>
-        {social.map(socialItem => (
-          <SocialMediaIconButton key={socialItem.label} href={socialItem.url}>
-            <SocialMediaIcon name={socialItem.label.trim().toLowerCase()} />
+        {social.map((socialItem, index) => (
+          <SocialMediaIconButton
+            key={socialItem.label ?? social.faClassName ?? index}
+            href={socialItem.url}
+          >
+            <SocialIcon social={socialItem} />
           </SocialMediaIconButton>
         ))}
       </SocialMediaIconsRoot>
@@ -57,10 +88,5 @@ export const JoinTheConversation = ({ social }) => {
   );
 };
 JoinTheConversation.propTypes = {
-  social: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-    })
-  ),
+  social: PropTypes.arrayOf(socialPropType),
 };

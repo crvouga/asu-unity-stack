@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { NavItem } from "../Navigation/index.styles";
 import { Logo } from "./index.styles";
-import { JoinTheConversation } from "./JoinTheConversation";
+import { JoinTheConversation, socialPropType } from "./JoinTheConversation";
 
 /**
  * @typedef {import("../../types/app-types").AppType} AppType
@@ -19,6 +19,10 @@ const Subtitle = styled.p`
   color: #191919;
   padding-bottom: 48px;
   padding-top: 12px;
+  & > * {
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 /**
@@ -35,12 +39,14 @@ const Header = forwardRef(
               <h2 className="m-0">{title}</h2>
               <div className="mt-auto mr-auto d-block d-sm-block d-md-none">
                 <div className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1">
-                  <h5 className="m-0">${sponsorBlock?.text}</h5>
+                  <h5 className="m-0">{sponsorBlock?.text}</h5>
                   <Logo src={sponsorBlock?.logo} alt={sponsorBlock?.name} />
                 </div>
               </div>
             </div>
-            {subtitle && <Subtitle>{subtitle}</Subtitle>}
+            {subtitle && (
+              <Subtitle dangerouslySetInnerHTML={{ __html: subtitle }} />
+            )}
             {tabs && tabs.length > 0 && (
               <nav className="nav nav-pills">
                 {tabs.map(tab => (
@@ -91,12 +97,7 @@ Header.propTypes = {
       active: PropTypes.bool.isRequired,
     })
   ),
-  social: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-    })
-  ),
+  social: PropTypes.arrayOf(socialPropType),
   onTabItemClick: PropTypes.func.isRequired,
 };
 

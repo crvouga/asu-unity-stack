@@ -54,21 +54,28 @@ export const IconInstagram = () => {
   );
 };
 
-export const SocialMediaIcon = ({ name, className }) => {
+export const SocialMediaIcon = ({ name, className, style }) => {
   const socialMediaName = stringToSocialMediaName(name);
 
   switch (socialMediaName) {
     case "facebook":
-      return <IconFacebook className={className} />;
+      return <IconFacebook className={className} style={style} />;
     case "twitter":
-      return <IconTwitter className={className} />;
+      return <IconTwitter className={className} style={style} />;
     case "instagram":
-      return <IconInstagram className={className} />;
+      return <IconInstagram className={className} style={style} />;
     default:
-      return <i className={`${className} fab fa-${name.toLowerCase()}`} />;
+      return (
+        <i
+          className={`${className} fab fa-${name.toLowerCase()}`}
+          style={style}
+        />
+      );
   }
 };
 SocialMediaIcon.propTypes = {
   name: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  style: PropTypes.object,
   className: PropTypes.string,
 };

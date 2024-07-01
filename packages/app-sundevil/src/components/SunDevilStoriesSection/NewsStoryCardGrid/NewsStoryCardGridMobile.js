@@ -82,7 +82,10 @@ export const NewsStoryCardGridMobile = ({
         {newsStories.map(newsStory => (
           <CarouselItem key={newsStory.title} style={{ width: "fit-content" }}>
             <div style={{ width: cardWidth, height: "100%" }}>
-              <NewsStoryCard skeleton={skeleton} newsStory={newsStory} />
+              <NewsStoryCard
+                skeleton={Boolean(skeleton)}
+                newsStory={newsStory}
+              />
             </div>
           </CarouselItem>
         ))}
@@ -91,7 +94,7 @@ export const NewsStoryCardGridMobile = ({
         <ArrowButtons
           onLeft={() => carouselController.slidePrev()}
           onRight={() => carouselController.slideNext()}
-          skeleton={skeleton}
+          skeleton={Boolean(skeleton)}
         />
         <WhitespaceFill />
         {renderBottomRightContent?.()}

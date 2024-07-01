@@ -96,24 +96,24 @@ export const SunDevilStories = ({
             <SportsTabsMobile
               sports={sportsWithSelectedTab}
               onSportItemClick={sportId => () => setSelectedTab(sportId)}
-              skeleton={skeleton}
+              skeleton={Boolean(skeleton)}
             />
           </div>
           <NewsStoryCardGridMobile
             key={selectedSport.id}
-            skeleton={skeleton}
+            skeleton={Boolean(skeleton)}
             newsStories={selectedSport.newsStories}
             slidesOffsetBefore={sectionHeaderPosition.left}
             slidesOffsetAfter={window.innerWidth - sectionHeaderPosition.right}
             cardWidth={cardWidth}
             renderBottomRightContent={() => (
-              <Skeleton skeleton={skeleton} fitContent>
+              <Skeleton skeleton={Boolean(skeleton)} fitContent>
                 <Button
                   color="maroon"
                   size="small"
                   label={allStoriesLabel}
                   href={allStoriesHref}
-                  skeleton={skeleton}
+                  skeleton={Boolean(skeleton)}
                 />
               </Skeleton>
             )}
@@ -124,7 +124,7 @@ export const SunDevilStories = ({
         <>
           <div className="container">
             <SportsTabsDesktop
-              skeleton={skeleton}
+              skeleton={Boolean(skeleton)}
               sports={sportsWithSelectedTab}
               onSportItemClick={sportId => () => setSelectedTab(sportId)}
               moreTabOrientation="horizontal"
@@ -135,10 +135,10 @@ export const SunDevilStories = ({
             <NewsStoryCardGridDesktop
               key={selectedSport.id}
               newsStories={selectedSport.newsStories}
-              skeleton={skeleton}
+              skeleton={Boolean(skeleton)}
             />
             <AllStoriesRoot>
-              <Skeleton skeleton={skeleton} fitContent>
+              <Skeleton skeleton={Boolean(skeleton)} fitContent>
                 <Button
                   color="maroon"
                   size="small"

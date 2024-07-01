@@ -69,8 +69,7 @@ export const Skeleton = ({
 
   return (
     <Root
-      key="skeleton"
-      skeleton={skeleton}
+      skeleton={Boolean(skeleton)}
       className={className}
       style={style}
       fitContent={fitContent}

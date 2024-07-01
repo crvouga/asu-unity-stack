@@ -18,7 +18,7 @@ const Root = styled.button`
 
 export const IconButton = ({ children, onClick, label, skeleton }) => {
   return (
-    <Skeleton fitContent skeleton={skeleton}>
+    <Skeleton fitContent skeleton={Boolean(skeleton)}>
       <Root type="button" onClick={onClick} aria-label={label}>
         {children}
       </Root>

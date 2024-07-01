@@ -22,7 +22,7 @@ export const NewsStoryCardGridDesktop = ({ newsStories, skeleton }) => {
         <NewsStoryCard
           key={newsStory.title}
           newsStory={newsStory}
-          skeleton={skeleton}
+          skeleton={Boolean(skeleton)}
         />
       ))}
     </Root>

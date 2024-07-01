@@ -1,78 +1,34 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import { RenderReact } from "../../../utils/react-render";
-import { SectionHeader } from "../../SectionHeader";
-import { useNewsStoryAPILoader } from "../news-story-api/use-news-story-api";
-import { SunDevilStories } from "../SunDevilStories";
-import { skeletonSports } from "./skeleton-props";
+import { SunDevilStoriesFromAPIDrupal } from "./SunDevilStoriesFromAPIDrupal";
 
-/**
- * @typedef {import("../../../../../component-game-list/src/core/components/Navigation").Sport} Sport
- */
-
-/**
- * @typedef {import("../news-story").NewsStory} NewsStory
- */
-
-/**
- * @typedef {Sport & { newsStories: NewsStory[]} } RemoteResult
- */
-
-/**
- * @typedef {Sport & { newsStories: NewsStory[]} } SportWithNewsStories
- */
-
-/**
- * @typedef {{
- *  sports: SportWithNewsStories[];
- *  sectionHeader: object;
- *  allStoriesLabel: string;
- *  allStoriesHref: string;
- * }} SunDevilStoriesProps
- */
-
-/**
- * @type {React.FC<SunDevilStoriesProps>}
- */
-export const SunDevilStoriesFromAPI = ({
-  sectionHeader,
-  allStoriesHref,
-  allStoriesLabel,
-}) => {
-  const newsStoryState = useNewsStoryAPILoader();
-  switch (newsStoryState.t) {
-    case "ok": {
-      return (
-        <SunDevilStories
-          allStoriesHref={allStoriesHref}
-          allStoriesLabel={allStoriesLabel}
-          sectionHeader={{ ...sectionHeader }}
-          sports={newsStoryState.value}
-        />
-      );
-    }
-
-    default: {
-      return (
-        <SunDevilStories
-          allStoriesHref={allStoriesHref}
-          allStoriesLabel={allStoriesLabel}
-          sectionHeader={{ ...sectionHeader }}
-          sports={skeletonSports}
-          skeleton
-        />
-      );
-    }
-  }
+const drupalPropTypes = {
+  title: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  sponsor_block: PropTypes.object,
+  api_endpoint: PropTypes.string.isRequired,
+  all_stories_href: PropTypes.string.isRequired,
+  all_stories_label: PropTypes.string.isRequired,
 };
 
-SunDevilStoriesFromAPI.propTypes = {
-  sectionHeader: SectionHeader.propTypes,
-  allStoriesLabel: PropTypes.string.isRequired,
-  allStoriesHref: PropTypes.string.isRequired,
+const drupalPropsToProps = maybeDrupalProps => {
+  const drupalProps = maybeDrupalProps ?? {};
+  return {
+    apiUrl: drupalProps.api_endpoint,
+    allStoriesHref: drupalProps.all_stories_href,
+    allStoriesLabel: drupalProps.all_stories_label,
+    sectionHeader: {
+      title: drupalProps.title,
+      sponsorBlock: drupalProps.sponsor_block[0],
+      subtitle: undefined,
+    },
+  };
 };
 
-export const initSunDevilsStoriesFromAPI = ({ targetSelector, props }) => {
-  RenderReact(SunDevilStories, props, document.querySelector(targetSelector));
+export const SunDevilStoriesFromAPI = drupalProps => {
+  const props = drupalPropsToProps(drupalProps);
+  return <SunDevilStoriesFromAPIDrupal {...props} />;
 };
+
+SunDevilStoriesFromAPI.propTypes = drupalPropTypes;

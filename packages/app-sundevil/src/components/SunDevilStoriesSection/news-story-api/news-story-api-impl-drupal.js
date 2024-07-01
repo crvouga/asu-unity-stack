@@ -2,12 +2,22 @@
 import * as Result from "../../../utils/result";
 
 /**
- * @type {() => import("./news-story-api").NewsStoryAPI}
+ * @type {(input: {apiUrl:string}) => import("./news-story-api").NewsStoryAPI}
  */
-export const NewsStoryAPIDrupal = () => {
+export const NewsStoryAPIDrupal = ({ apiUrl }) => {
   return {
     async findMany() {
-      return Result.Ok([]);
+      try {
+        const fetched = await fetch(apiUrl);
+
+        const json = await fetched.json();
+
+        console.log(json);
+
+        return Result.Ok([]);
+      } catch (error) {
+        return Result.Err(String(error));
+      }
     },
   };
 };

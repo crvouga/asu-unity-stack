@@ -30,7 +30,7 @@ export const SportsTabsMobile = ({ sports, onSportItemClick, skeleton }) => {
   const [state, setState] = React.useState(initialState);
 
   return (
-    <Skeleton skeleton={skeleton}>
+    <Skeleton skeleton={Boolean(skeleton)}>
       <DropDown
         open={state.opened === "dropdown"}
         onClose={() =>

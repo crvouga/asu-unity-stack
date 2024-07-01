@@ -51,7 +51,7 @@ const Header = forwardRef(
               <nav className="nav nav-pills">
                 {tabs.map(tab => (
                   <NavItem
-                    onClick={onTabItemClick(tab.id)}
+                    onClick={onTabItemClick?.(tab.id)}
                     // @ts-ignore
                     active={!!tab.active}
                     key={tab.id}
@@ -83,22 +83,22 @@ const Header = forwardRef(
 
 Header.propTypes = {
   // @ts-ignore
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   subtitle: PropTypes.string,
   sponsorBlock: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    logo: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-  }).isRequired,
+    name: PropTypes.string,
+    logo: PropTypes.string,
+    text: PropTypes.string,
+  }),
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-      active: PropTypes.bool.isRequired,
+      id: PropTypes.string,
+      label: PropTypes.string,
+      active: PropTypes.bool,
     })
   ),
   social: PropTypes.arrayOf(socialPropType),
-  onTabItemClick: PropTypes.func.isRequired,
+  onTabItemClick: PropTypes.func,
 };
 
 export { Header };

@@ -51,7 +51,7 @@ export const SportsTabsDesktop = ({
   const [state, setState] = React.useState(initialState);
 
   return (
-    <Skeleton skeleton={skeleton}>
+    <Skeleton skeleton={Boolean(skeleton)}>
       <Root>
         {firstTenSports.map(sport => (
           <SportsTab

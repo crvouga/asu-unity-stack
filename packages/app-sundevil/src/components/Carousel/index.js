@@ -102,7 +102,7 @@ Carousel.propTypes = {
   index: PropTypes.number.isRequired,
   onIndexChanged: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
-  slidesPerView: PropTypes.number,
+  slidesPerView: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   initialSlide: PropTypes.number,
   loop: PropTypes.bool,
   controller: PropTypes.instanceOf(CarouselController),

@@ -105,7 +105,7 @@ const ContentBottom = styled.div`
  */
 export const NewsStoryCard = ({ newsStory, style, skeleton }) => {
   return (
-    <Skeleton skeleton={skeleton}>
+    <Skeleton skeleton={Boolean(skeleton)}>
       <Root href={newsStory.href} style={style}>
         <BackgroundImage alt=" " src={newsStory.imageSrc} />
         <Content>

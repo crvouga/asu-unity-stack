@@ -16,10 +16,18 @@ const Root = styled.div`
 export const ArrowButtons = ({ onLeft, onRight, skeleton }) => {
   return (
     <Root>
-      <IconButton onClick={onLeft} label="Go to previous" skeleton={skeleton}>
+      <IconButton
+        onClick={onLeft}
+        label="Go to previous"
+        skeleton={Boolean(skeleton)}
+      >
         <IconArrowLeft />
       </IconButton>
-      <IconButton onClick={onRight} label="Go to next" skeleton={skeleton}>
+      <IconButton
+        onClick={onRight}
+        label="Go to next"
+        skeleton={Boolean(skeleton)}
+      >
         <IconArrowRight />
       </IconButton>
     </Root>

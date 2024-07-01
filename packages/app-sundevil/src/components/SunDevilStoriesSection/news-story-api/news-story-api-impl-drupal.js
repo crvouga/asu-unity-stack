@@ -67,9 +67,14 @@ export const NewsStoryAPIDrupal = ({ apiUrl }) => {
 
         const json = await fetched.json();
 
-        console.log(json);
+        const SKIP = true;
+        if (SKIP) {
+          return Result.Ok([]);
+        }
 
-        return Result.Ok([]);
+        // console.log(json);
+
+        return Result.Ok(json);
       } catch (error) {
         return Result.Err(String(error));
       }

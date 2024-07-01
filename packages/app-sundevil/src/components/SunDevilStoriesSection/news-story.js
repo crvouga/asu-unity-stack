@@ -1,5 +1,6 @@
 // @ts-check
 import PropTypes from "prop-types";
+
 import { sportSchema } from "../../../../component-game-list/src/core/components/Navigation";
 
 /**

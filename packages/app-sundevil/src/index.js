@@ -4,9 +4,11 @@ import {
   HeaderContentSportLinks,
   OfficialAthleticsSite,
   SocialMediaSection,
+  SocialMediaSectionEmbedded,
   SunDevilStoriesSection,
   SunDevilsHeader,
   initSocialMediaSection,
+  initSocialMediaSectionEmbedded,
   initSunDevilsHeader,
   initSunDevilsStoriesSection,
 } from "./components";
@@ -25,15 +27,20 @@ window.SocialMediaSection = SocialMediaSection;
 window.initSocialMediaSection = initSocialMediaSection;
 // @ts-ignore
 window.initSunDevilsStoriesSection = initSunDevilsStoriesSection;
+// @ts-ignore
+window.SocialMediaSectionEmbedded = SocialMediaSectionEmbedded;
+// @ts-ignore
+window.initSocialMediaSectionEmbedded = initSocialMediaSectionEmbedded;
 
 export {
   HeaderContentSportLinks,
   OfficialAthleticsSite,
   SocialMediaSection,
+  SocialMediaSectionEmbedded,
   SunDevilStoriesSection,
   SunDevilsHeader,
   initSocialMediaSection,
+  initSocialMediaSectionEmbedded,
   initSunDevilsHeader,
-  initSunDevilsStoriesSection
+  initSunDevilsStoriesSection,
 };
-

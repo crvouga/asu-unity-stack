@@ -3,7 +3,7 @@ import React from "react";
 
 import { RenderReact } from "../../utils/react-render";
 import { iconToFaClassName } from "../drupal-integration";
-import { SocialMediaSectionEmbedded } from "./SocialMediaSectionEmbedded";
+import { SocialMediaSectionEmbedded as SocialMediaSectionEmbeddedCore } from "./SocialMediaSectionEmbedded";
 
 const drupalSocialMediaHandlePropTypes = PropTypes.shape({
   // eslint-disable-next-line react/forbid-prop-types
@@ -50,16 +50,16 @@ const drupalPropsToProps = maybeDrupalProps => {
   };
 };
 
-export const SocialMediaSectionEmbeddedDrupal = drupalProps => {
+export const SocialMediaSectionEmbedded = drupalProps => {
   const props = drupalPropsToProps(drupalProps);
-  return <SocialMediaSectionEmbedded {...props} />;
+  return <SocialMediaSectionEmbeddedCore {...props} />;
 };
 
-SocialMediaSectionEmbeddedDrupal.propTypes = drupalPropTypes;
+SocialMediaSectionEmbedded.propTypes = drupalPropTypes;
 
 export const initSocialMediaSectionEmbedded = ({ targetSelector, props }) => {
   RenderReact(
-    SocialMediaSectionEmbeddedDrupal,
+    SocialMediaSectionEmbedded,
     props,
     document.querySelector(targetSelector)
   );

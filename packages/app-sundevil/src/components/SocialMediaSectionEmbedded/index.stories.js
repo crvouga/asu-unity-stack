@@ -1,17 +1,14 @@
 // @ts-check
 import React from "react";
 
-import { SocialMediaSectionEmbeddedDrupal } from "./index";
+import { SocialMediaSectionEmbedded } from "./index";
 
 import { drupalSocialMediaSectionProps } from "./test-props";
 
 export default {
   title: "Social Media / Social Media Section Embedded",
   component: args => (
-    <SocialMediaSectionEmbeddedDrupal
-      {...args}
-      {...drupalSocialMediaSectionProps}
-    />
+    <SocialMediaSectionEmbedded {...args} {...drupalSocialMediaSectionProps} />
   ),
   parameters: {
     docs: {
@@ -24,10 +21,7 @@ export default {
 
 const Template = args => {
   return (
-    <SocialMediaSectionEmbeddedDrupal
-      {...drupalSocialMediaSectionProps}
-      {...args}
-    />
+    <SocialMediaSectionEmbedded {...drupalSocialMediaSectionProps} {...args} />
   );
 };
 

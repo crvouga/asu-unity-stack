@@ -48,27 +48,31 @@ export const socialPropType = PropTypes.shape({
   faClassName: PropTypes.string,
 });
 
-const iconStyle = {
-  width: "22px",
-  height: "22px",
-  fontSize: "22px",
-};
-
-const SocialIcon = ({ social }) => {
+const SocialIcon = ({ social, className }) => {
   if (typeof social.faClassName === "string") {
-    return <i className={social.faClassName} style={iconStyle} />;
+    return <i className={`${social.faClassName} ${className}`} />;
   }
   return (
     <SocialMediaIcon
+      className={className}
       name={social.label.trim().toLowerCase()}
-      style={iconStyle}
     />
   );
 };
-
 SocialIcon.propTypes = {
   social: socialPropType,
+  className: PropTypes.string,
 };
+
+const StyledSocialIcon = styled(SocialIcon)`
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+  color: #fff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const JoinTheConversation = ({ social }) => {
   return (
@@ -80,8 +84,15 @@ export const JoinTheConversation = ({ social }) => {
             key={socialItem.label ?? social.faClassName ?? index}
             href={socialItem.url}
           >
-            <SocialIcon social={socialItem} />
+            <StyledSocialIcon social={socialItem} />
           </SocialMediaIconButton>
+        ))}
+
+        {social.map((socialItem, index) => (
+          <StyledSocialIcon
+            key={socialItem.label ?? social.faClassName ?? index}
+            social={socialItem}
+          />
         ))}
       </SocialMediaIconsRoot>
     </Root>

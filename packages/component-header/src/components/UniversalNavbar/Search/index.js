@@ -41,6 +41,7 @@ function handleSearch(e) {
 
 const Search = ({
   disablePadding = false,
+  disableDataLayers = false,
   renderIconEnd = (_input = {}) => null,
   placeholder = null,
 } = {}) => {
@@ -87,7 +88,7 @@ const Search = ({
       // @ts-ignore
       breakpoint={breakpoint}
       action={searchUrl}
-      onSubmit={handleSearch}
+      onSubmit={disableDataLayers ? undefined : handleSearch}
       method="get"
       name="gs"
       className={open ? "open-search" : ""}
@@ -161,6 +162,7 @@ const Search = ({
 };
 Search.propTypes = {
   disablePadding: PropTypes.bool,
+  disableDataLayers: PropTypes.bool,
   renderIconEnd: PropTypes.func,
   placeholder: PropTypes.string,
 };

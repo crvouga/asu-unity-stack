@@ -27,6 +27,7 @@ export const MobileSearchBar = () => {
   return (
     <Root>
       <UniversalNavbarSearch
+        disableDataLayers
         disablePadding
         placeholder="Search Sun Devil Athletics"
         renderIconEnd={({ inputValue }) => (

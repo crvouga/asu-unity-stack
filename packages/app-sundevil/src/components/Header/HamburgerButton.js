@@ -14,6 +14,9 @@ const Root = styled.button`
   width: 42px;
   height: 42px;
   border: ${({ open }) => (open ? "1px solid #d0cfd0" : "none")};
+  margin: 0;
+  padding: 0;
+  position: relative;
 `;
 
 const IconClose = styled.i`
@@ -24,6 +27,12 @@ const IconClose = styled.i`
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const IconHamburger = styled(IconHamburgerSearch)`
@@ -34,6 +43,12 @@ const IconHamburger = styled(IconHamburgerSearch)`
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 /**

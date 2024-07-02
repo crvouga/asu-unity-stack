@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { useIsMobile } from "../../../../../component-header/src/core/hooks/isMobile";
 import { APP_CONFIG } from "../../../config";
+import { Skeleton } from "../../Skeleton";
 import { Avatar } from "./Avatar";
 import * as SocialMediaPost from "./social-media-post";
 
@@ -19,7 +20,7 @@ const Root = styled.a`
   }
 `;
 
-const Image = styled.img`
+const ImageSkeletonWrapper = styled(Skeleton)`
   position: absolute;
   top: 0;
   left: 0;
@@ -27,6 +28,14 @@ const Image = styled.img`
   bottom: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+`;
+
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  min-width: 100%;
   object-fit: cover;
 `;
 
@@ -91,9 +100,16 @@ const Caption = styled.p`
 export const SocialMediaPostCardTall = ({ socialMediaPost }) => {
   const isMobile = useIsMobile(APP_CONFIG.breakpoint);
   const avatarSize = isMobile ? "sm" : "lg";
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
   return (
     <Root href={socialMediaPost.href}>
-      <Image src={socialMediaPost.imageSrc} alt="Post Image" />
+      <ImageSkeletonWrapper skeleton={!isImageLoaded}>
+        <Image
+          src={socialMediaPost.imageSrc}
+          alt="Post Image"
+          onLoad={() => setIsImageLoaded(true)}
+        />
+      </ImageSkeletonWrapper>
       <BackdropRoot>
         <ContentRoot>
           <Avatar

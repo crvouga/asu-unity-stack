@@ -29,14 +29,19 @@ export const SpecialEventsSection = ({ sectionHeader, cardCarousel }) => {
     ? sectionHeaderDimensions.width
     : DESKTOP_CARD_WIDTH;
 
+  const shouldPreventJitter = sectionHeaderPosition.left > 0;
+
   return (
     <Root>
       <SectionHeader {...sectionHeader} ref={sectionHeaderRef} />
-      <SpecialEventCardCarousel
-        {...cardCarousel}
-        cardWidth={cardWidth}
-        slidesOffsetBefore={sectionHeaderPosition.left}
-      />
+
+      {shouldPreventJitter && (
+        <SpecialEventCardCarousel
+          {...cardCarousel}
+          cardWidth={cardWidth}
+          slidesOffsetBefore={sectionHeaderPosition.left}
+        />
+      )}
     </Root>
   );
 };

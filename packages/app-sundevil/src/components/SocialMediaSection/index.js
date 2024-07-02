@@ -16,16 +16,20 @@ const Root = styled.section`
 export const SocialMediaSection = ({ sectionHeader, postCarousel }) => {
   const sectionHeaderRef = useRef();
   const sectionHeaderPosition = useElementPosition(sectionHeaderRef);
+  const shouldPreventJitter = sectionHeaderPosition.left > 0;
+
   return (
     <Root>
       <SectionHeader {...sectionHeader} ref={sectionHeaderRef} />
 
-      <SocialMediaPostCarousel
-        {...postCarousel}
-        loop
-        slidesOffsetBefore={sectionHeaderPosition.left}
-        initialSlide={postCarousel.posts.length}
-      />
+      {shouldPreventJitter && (
+        <SocialMediaPostCarousel
+          {...postCarousel}
+          loop
+          slidesOffsetBefore={sectionHeaderPosition.left}
+          initialSlide={postCarousel.posts.length}
+        />
+      )}
     </Root>
   );
 };

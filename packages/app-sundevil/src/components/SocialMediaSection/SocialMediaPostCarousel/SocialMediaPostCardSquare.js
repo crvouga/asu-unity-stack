@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+import { Skeleton } from "../../Skeleton";
 import * as SocialMediaPost from "./social-media-post";
 
 const Root = styled.a`
@@ -15,7 +16,7 @@ const Root = styled.a`
   }
 `;
 
-const Image = styled.img`
+const ImageSkeletonWrapper = styled(Skeleton)`
   position: absolute;
   top: 0;
   left: 0;
@@ -23,6 +24,14 @@ const Image = styled.img`
   bottom: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+`;
+
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  min-width: 100%;
   object-fit: cover;
 `;
 
@@ -63,9 +72,16 @@ const Username = styled.p`
 
 /** @typedef {React.FC<{socialMediaPost: SocialMediaPost.SocialMediaPost }>} */
 export const SocialMediaPostCardSquare = ({ socialMediaPost }) => {
+  const [isImageLoaded, setIsImageLoaded] = React.useState(false);
   return (
     <Root href={socialMediaPost.href}>
-      <Image src={socialMediaPost.imageSrc} alt="Post Image" />
+      <ImageSkeletonWrapper skeleton={!isImageLoaded}>
+        <Image
+          src={socialMediaPost.imageSrc}
+          alt="Post Image"
+          onLoad={() => setIsImageLoaded(true)}
+        />
+      </ImageSkeletonWrapper>
       <BackdropRoot>
         <ContentTextRoot>
           <Username>{socialMediaPost.username}</Username>

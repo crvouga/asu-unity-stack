@@ -25,7 +25,7 @@ const CardContent = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 12px;
+  gap: 8px;
   padding: 24px;
   flex-shrink: 0;
 `;
@@ -70,7 +70,12 @@ const CardSubtitle = styled.p`
   color: #747474;
 `;
 
-const CardBody = styled.p`
+const CardBody = styled.div`
+  flex: 1;
+  width: 100%;
+`;
+
+const CardBodyText = styled.p`
   margin: 0;
   padding: 0;
   font-size: 16px;
@@ -118,8 +123,10 @@ export const SpecialEventCard = ({ specialEventCard, cardWidth }) => {
             <CardSubtitle key={subtitle}>{subtitle}</CardSubtitle>
           ))}
         </CardSubtitles>
-        <CardBody>{specialEventCard.body}</CardBody>
-        <div style={{ flex: 1 }} />
+        <CardBody>
+          <CardBodyText>{specialEventCard.body}</CardBodyText>
+        </CardBody>
+
         <CardButtons>
           {specialEventCard.buttons.map(button => (
             <Button

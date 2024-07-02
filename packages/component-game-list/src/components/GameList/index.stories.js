@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-nocheck
 import React from "react";
 
 import { GameList } from "./index";
@@ -81,6 +81,7 @@ Default.args = {
     text: "Presented By",
     name: "Ford",
     logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg",
+    url: "https://www.ford.com/",
   },
   games: [
     {

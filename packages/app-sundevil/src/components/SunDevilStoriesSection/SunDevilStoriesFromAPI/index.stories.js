@@ -10,6 +10,7 @@ const props = {
       text: "Presented by:",
       name: "Desert Financial",
       logo: "https://www.desertfinancial.com/globalassets/images/logos/desert-financial/df-logo_fullcolor_tm-cropped.svg",
+      url: "https://www.desertfinancial.com/",
     },
   ],
   // We have to proxy because of CORS error

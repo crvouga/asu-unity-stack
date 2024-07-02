@@ -15,6 +15,7 @@ const drupalSponsorBlockPropTypes = PropTypes.shape({
   logo: PropTypes.string,
   text: PropTypes.string,
   url: PropTypes.string,
+  name: PropTypes.string,
 });
 
 const drupalPropTypes = {

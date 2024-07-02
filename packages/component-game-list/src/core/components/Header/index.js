@@ -25,6 +25,12 @@ const Subtitle = styled.p`
   }
 `;
 
+const SponsorBlock = styled.a`
+  color: #191919;
+  text-decoration: none;
+  width: fit-content;
+`;
+
 /**
  * @param {AppType & {children: object}} props
  */
@@ -37,11 +43,14 @@ const Header = forwardRef(
           <div className="col-md-8 col-sm-12">
             <div className="d-flex flex-row align-items-end justify-content-between gap-2 pt-2">
               <h2 className="m-0">{title}</h2>
-              <div className="mt-auto mr-auto d-block d-sm-block d-md-none">
-                <div className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1">
+              <div className="mt-auto mr-auto d-flex d-sm-flex d-md-none justify-content-end">
+                <SponsorBlock
+                  href={sponsorBlock?.url}
+                  className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
+                >
                   <h5 className="m-0">{sponsorBlock?.text}</h5>
                   <Logo src={sponsorBlock?.logo} alt={sponsorBlock?.name} />
-                </div>
+                </SponsorBlock>
               </div>
             </div>
             {subtitle && (
@@ -69,11 +78,14 @@ const Header = forwardRef(
               <JoinTheConversation social={social} />
             )}
           </div>
-          <div className="col-md-4 col-sm-0 mt-auto d-none d-sm-none d-md-block">
-            <div className="d-flex flex-row align-items-center justify-content-end gap-2">
+          <div className="col-md-4 col-sm-0 mt-auto d-none d-sm-none d-md-flex justify-content-end">
+            <SponsorBlock
+              href={sponsorBlock?.url}
+              className="d-flex flex-row align-items-center justify-content-end gap-2"
+            >
               <h5>{sponsorBlock?.text}</h5>
               <Logo src={sponsorBlock?.logo} alt={sponsorBlock?.name} />
-            </div>
+            </SponsorBlock>
           </div>
         </div>
       </div>
@@ -89,6 +101,7 @@ Header.propTypes = {
     name: PropTypes.string,
     logo: PropTypes.string,
     text: PropTypes.string,
+    url: PropTypes.string,
   }),
   tabs: PropTypes.arrayOf(
     PropTypes.shape({

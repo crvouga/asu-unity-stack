@@ -8,6 +8,7 @@ const sectionHeaderProps = {
     text: "Presented by: ",
     name: "Ford",
     logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Ford_logo_flat.svg/2560px-Ford_logo_flat.svg.png",
+    url: "https://www.ford.com/",
   },
   tabs: [],
   social: [

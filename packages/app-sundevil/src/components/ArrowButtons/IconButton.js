@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Skeleton } from "../Skeleton";
 
 const Root = styled.button`
-  display: flex:
+  display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
@@ -14,6 +14,20 @@ const Root = styled.button`
   width: 48px;
   height: 48px;
   background-color: transparent;
+  outline: none !important; /* Force no outline */
+  box-shadow: none !important; /* Force no box-shadow */
+
+  &:active,
+  &:focus,
+  &:focus-visible {
+    outline: none !important; /* Force no outline */
+    box-shadow: none !important; /* Force no box-shadow */
+  }
+
+  &:active {
+    background-color: #000;
+    color: #fff;
+  }
 `;
 
 export const IconButton = ({ children, onClick, label, skeleton }) => {

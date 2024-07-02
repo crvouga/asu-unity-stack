@@ -110,3 +110,48 @@ export const useElementDimensions = ref => {
 
   return dimensions;
 };
+
+export const useElementContentDimensions = ref => {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  // eslint-disable-next-line consistent-return
+  useEffect(() => {
+    if (ref.current) {
+      const handleDimensions = () => {
+        const { width, height } = ref.current.getBoundingClientRect();
+        const paddingLeft = parseInt(
+          window.getComputedStyle(ref.current).paddingLeft,
+          10
+        );
+        const paddingRight = parseInt(
+          window.getComputedStyle(ref.current).paddingRight,
+          10
+        );
+        const paddingTop = parseInt(
+          window.getComputedStyle(ref.current).paddingTop,
+          10
+        );
+        const paddingBottom = parseInt(
+          window.getComputedStyle(ref.current).paddingBottom,
+          10
+        );
+        setDimensions({
+          width: width - paddingLeft - paddingRight,
+          height: height - paddingTop - paddingBottom,
+        });
+      };
+
+      handleDimensions();
+
+      window.addEventListener("resize", handleDimensions);
+      window.addEventListener("scroll", handleDimensions);
+
+      return () => {
+        window.removeEventListener("resize", handleDimensions);
+        window.removeEventListener("scroll", handleDimensions);
+      };
+    }
+  }, [ref]);
+
+  return dimensions;
+};

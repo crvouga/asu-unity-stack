@@ -1,3 +1,5 @@
+import { specialEventsCardCarouselProps } from "./SpecialEventCardCarousel/test-props";
+
 const sectionHeaderProps = {
   title: "Special events",
   subtitle:
@@ -12,4 +14,5 @@ const sectionHeaderProps = {
 
 export const specialEventsSectionProps = {
   sectionHeader: sectionHeaderProps,
+  cardCarousel: specialEventsCardCarouselProps,
 };

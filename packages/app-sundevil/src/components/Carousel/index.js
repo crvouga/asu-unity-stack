@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { forwardRef, useEffect, useLayoutEffect, useRef } from "react";
 // eslint-disable-next-line import/no-unresolved
 import { register } from "swiper/element/bundle";
 
@@ -27,8 +27,9 @@ export class CarouselController {
   }
 }
 
-export function Carousel(props) {
-  const swiperRef = useRef(null);
+export const Carousel = forwardRef((props, ref) => {
+  const internalRef = useRef(null);
+  const swiperRef = ref || internalRef;
   const {
     children,
     index,
@@ -36,6 +37,7 @@ export function Carousel(props) {
     controller,
     initialSlide,
     loop = false,
+    style = {},
     ...rest
   } = props;
 
@@ -92,11 +94,11 @@ export function Carousel(props) {
   }, [index, loop]);
 
   return (
-    <swiper-container init="false" ref={swiperRef}>
+    <swiper-container init="false" ref={swiperRef} style={style}>
       {children}
     </swiper-container>
   );
-}
+});
 
 Carousel.propTypes = {
   index: PropTypes.number.isRequired,
@@ -106,6 +108,8 @@ Carousel.propTypes = {
   initialSlide: PropTypes.number,
   loop: PropTypes.bool,
   controller: PropTypes.instanceOf(CarouselController),
+  // eslint-disable-next-line react/forbid-prop-types
+  style: PropTypes.object,
 };
 
 export function CarouselItem(props) {

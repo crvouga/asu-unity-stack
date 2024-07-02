@@ -15,7 +15,7 @@ export const SocialMediaPostCard = ({ socialMediaPost, variant }) => {
       return <SocialMediaPostCardSquare socialMediaPost={socialMediaPost} />;
     }
     default: {
-      throw new Error(`Invalid social media card variant: ${variant}`);
+      return <SocialMediaPostCardTall socialMediaPost={socialMediaPost} />;
     }
   }
 };

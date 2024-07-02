@@ -1,1 +1,1 @@
-export * from "./LiveNow";
+export * from "./SpecialEventsSection";

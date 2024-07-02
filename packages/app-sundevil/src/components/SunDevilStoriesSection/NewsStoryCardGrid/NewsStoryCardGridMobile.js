@@ -18,14 +18,14 @@ const Root = styled.div`
 
   swiper-slide {
     width: auto;
-    padding: 0 12px;
+    padding: 0 24px 0 0;
     height: 273px;
   }
 
   @media (max-width: 768px) {
     swiper-slide {
       width: auto;
-      padding: 0 6px;
+      padding: 0 12px 0 0;
       height: 273px;
     }
   }

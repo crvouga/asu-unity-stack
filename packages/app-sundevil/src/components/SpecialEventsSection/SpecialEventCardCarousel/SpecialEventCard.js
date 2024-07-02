@@ -107,15 +107,15 @@ export const SpecialEventCard = ({ specialEventCard, cardWidth }) => {
         width: cardWidth === 0 ? "100%" : cardWidth,
       }}
     >
-      <Skeleton skeleton={!isImageLoaded}>
-        <AspectRatio16by9>
+      <AspectRatio16by9>
+        <Skeleton skeleton={!isImageLoaded}>
           <CardImage
             src={specialEventCard.imageSrc}
             alt={specialEventCard.imageAlt}
             onLoad={() => setIsImageLoaded(true)}
           />
-        </AspectRatio16by9>
-      </Skeleton>
+        </Skeleton>
+      </AspectRatio16by9>
       <CardContent>
         <SportHeading>
           <SportIcon className={specialEventCard.sportIconFaClassName} />

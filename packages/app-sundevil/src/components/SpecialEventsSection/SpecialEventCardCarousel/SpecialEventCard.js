@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../../components-core/src";
+import { Skeleton } from "../../Skeleton";
 import { AspectRatio16by9 } from "./AspectRatio16by9";
 import { specialEventCardSchema } from "./special-event-card";
 
@@ -98,6 +99,7 @@ const CardButtons = styled.div`
 /** @typedef {React.FC<{specialEventCard: import("./special-event-card").SpecialEventCard, cardWidth?: number }>} */
 export const SpecialEventCard = ({ specialEventCard, cardWidth }) => {
   const cardRef = useRef();
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
   return (
     <CardRoot
       ref={cardRef}
@@ -105,12 +107,15 @@ export const SpecialEventCard = ({ specialEventCard, cardWidth }) => {
         width: cardWidth === 0 ? "100%" : cardWidth,
       }}
     >
-      <AspectRatio16by9>
-        <CardImage
-          src={specialEventCard.imageSrc}
-          alt={specialEventCard.imageAlt}
-        />
-      </AspectRatio16by9>
+      <Skeleton skeleton={!isImageLoaded}>
+        <AspectRatio16by9>
+          <CardImage
+            src={specialEventCard.imageSrc}
+            alt={specialEventCard.imageAlt}
+            onLoad={() => setIsImageLoaded(true)}
+          />
+        </AspectRatio16by9>
+      </Skeleton>
       <CardContent>
         <SportHeading>
           <SportIcon className={specialEventCard.sportIconFaClassName} />

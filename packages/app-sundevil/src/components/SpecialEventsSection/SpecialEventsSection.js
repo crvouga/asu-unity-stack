@@ -1,8 +1,10 @@
+import PropTypes from "prop-types";
 import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { APP_CONFIG } from "../../config";
+import { RenderReact } from "../../utils/react-render";
 import {
   useElementContentDimensions,
   useElementContentPosition,
@@ -40,6 +42,14 @@ export const SpecialEventsSection = ({ sectionHeader, cardCarousel }) => {
 };
 
 SpecialEventsSection.propTypes = {
-  sectionHeader: SectionHeader.propTypes,
-  cardCarousel: SpecialEventCardCarousel.propTypes,
+  sectionHeader: PropTypes.shape(SectionHeader.propTypes),
+  cardCarousel: PropTypes.shape(SpecialEventCardCarousel.propTypes),
+};
+
+export const initSpecialEventsSection = ({ targetSelector, props }) => {
+  RenderReact(
+    SpecialEventsSection,
+    props,
+    document.querySelector(targetSelector)
+  );
 };

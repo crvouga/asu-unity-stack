@@ -14,19 +14,24 @@ const Root = styled.button`
   width: 48px;
   height: 48px;
   background-color: transparent;
-  outline: none !important; /* Force no outline */
-  box-shadow: none !important; /* Force no box-shadow */
+  outline: none !important;
+  box-shadow: none !important;
 
   &:active,
   &:focus,
   &:focus-visible {
-    outline: none !important; /* Force no outline */
-    box-shadow: none !important; /* Force no box-shadow */
+    outline: none !important;
+    box-shadow: none !important;
   }
 
+  &:hover,
   &:active {
     background-color: #000;
     color: #fff;
+  }
+
+  &:active {
+    opacity: 0.8;
   }
 `;
 

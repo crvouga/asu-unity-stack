@@ -5,11 +5,13 @@ import {
   OfficialAthleticsSite,
   SocialMediaSection,
   SocialMediaSectionEmbedded,
+  SpecialEventsSection,
   SunDevilStories,
   SunDevilStoriesFromAPI,
   SunDevilsHeader,
   initSocialMediaSection,
   initSocialMediaSectionEmbedded,
+  initSpecialEventsSection,
   initSunDevilsHeader,
   initSunDevilsStories,
   initSunDevilsStoriesFromAPI,
@@ -42,18 +44,25 @@ window.initSunDevilsStoriesSection = initSunDevilsStoriesSection;
 window.SunDevilStoriesFromAPI = SunDevilStoriesFromAPI;
 // @ts-ignore
 window.initSunDevilsStoriesFromAPI = initSunDevilsStoriesFromAPI;
+// @ts-ignore
+window.SpecialEventsSection = SpecialEventsSection;
+// @ts-ignore
+window.initSpecialEventsSection = initSpecialEventsSection;
 
 export {
   HeaderContentSportLinks,
   OfficialAthleticsSite,
   SocialMediaSection,
   SocialMediaSectionEmbedded,
+  SpecialEventsSection,
   SunDevilStories,
   SunDevilStoriesFromAPI,
   SunDevilsHeader,
   initSocialMediaSection,
   initSocialMediaSectionEmbedded,
+  initSpecialEventsSection,
   initSunDevilsHeader,
   initSunDevilsStoriesFromAPI,
-  initSunDevilsStoriesSection,
+  initSunDevilsStoriesSection
 };
+

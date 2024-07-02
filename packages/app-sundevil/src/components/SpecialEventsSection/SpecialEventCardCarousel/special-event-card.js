@@ -14,6 +14,7 @@ const buttonSchema = PropsTypes.shape({
  */
 
 export const specialEventCardSchema = PropsTypes.shape({
+  id: PropsTypes.string,
   imageSrc: PropsTypes.string,
   imageAlt: PropsTypes.string,
   sportName: PropsTypes.string,
@@ -26,6 +27,7 @@ export const specialEventCardSchema = PropsTypes.shape({
 
 /**
  * @typedef {Object} SpecialEventCard
+ * @property {string} [id]
  * @property {string} [imageSrc]
  * @property {string} [imageAlt]
  * @property {string} [sportName]

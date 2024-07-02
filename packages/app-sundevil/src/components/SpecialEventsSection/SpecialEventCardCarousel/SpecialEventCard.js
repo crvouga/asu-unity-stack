@@ -98,12 +98,11 @@ const CardButtons = styled.div`
 /** @typedef {React.FC<{specialEventCard: import("./special-event-card").SpecialEventCard, cardWidth?: number }>} */
 export const SpecialEventCard = ({ specialEventCard, cardWidth }) => {
   const cardRef = useRef();
-
   return (
     <CardRoot
       ref={cardRef}
       style={{
-        width: cardWidth ?? 588,
+        width: cardWidth === 0 ? "100%" : cardWidth,
       }}
     >
       <AspectRatio16by9>
@@ -130,7 +129,7 @@ export const SpecialEventCard = ({ specialEventCard, cardWidth }) => {
         <CardButtons>
           {specialEventCard.buttons.map(button => (
             <Button
-              key={button.text}
+              key={button.label}
               color={button.color}
               ariaLabel={button.label}
               href={button.href}

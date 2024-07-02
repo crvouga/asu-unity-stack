@@ -17,7 +17,6 @@ const Subtitle = styled.p`
   padding: 0;
   margin: 0;
   color: #191919;
-  padding-bottom: 48px;
   padding-top: 12px;
   & > * {
     margin: 0;
@@ -29,6 +28,13 @@ const SponsorBlock = styled.a`
   color: #191919;
   text-decoration: none;
   width: fit-content;
+`;
+
+const HeaderBody = styled.nav`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 48px;
 `;
 
 /**
@@ -53,30 +59,32 @@ const Header = forwardRef(
                 </SponsorBlock>
               </div>
             </div>
-            {subtitle && (
-              <Subtitle dangerouslySetInnerHTML={{ __html: subtitle }} />
-            )}
-            {tabs && tabs.length > 0 && (
-              <nav className="nav nav-pills">
-                {tabs.map(tab => (
-                  <NavItem
-                    onClick={onTabItemClick?.(tab.id)}
-                    // @ts-ignore
-                    active={!!tab.active}
-                    key={tab.id}
-                    className={`text-sm-center nav-link ${
-                      tab.active ? "active" : ""
-                    }`}
-                    href="#"
-                  >
-                    {tab.label}
-                  </NavItem>
-                ))}
-              </nav>
-            )}
-            {social && social.length > 0 && (
-              <JoinTheConversation social={social} />
-            )}
+            <HeaderBody>
+              {subtitle && (
+                <Subtitle dangerouslySetInnerHTML={{ __html: subtitle }} />
+              )}
+              {tabs && tabs.length > 0 && (
+                <nav className="nav nav-pills">
+                  {tabs.map(tab => (
+                    <NavItem
+                      onClick={onTabItemClick?.(tab.id)}
+                      // @ts-ignore
+                      active={!!tab.active}
+                      key={tab.id}
+                      className={`text-sm-center nav-link ${
+                        tab.active ? "active" : ""
+                      }`}
+                      href="#"
+                    >
+                      {tab.label}
+                    </NavItem>
+                  ))}
+                </nav>
+              )}
+              {social && social.length > 0 && (
+                <JoinTheConversation social={social} />
+              )}
+            </HeaderBody>
           </div>
           <div className="col-md-4 col-sm-0 mt-auto d-none d-sm-none d-md-flex justify-content-end">
             <SponsorBlock

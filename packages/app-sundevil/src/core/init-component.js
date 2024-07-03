@@ -1,21 +1,139 @@
 // @ts-check
+import React from "react";
+import ReactDOM from "react-dom";
 
-import { GameNavigation, GameTable, SectionHeader } from "../components";
-import { GameList } from "../components/GameList";
-import { RenderReact } from "./react-render";
+import {
+  GameList,
+  GameNavigation,
+  GameTable,
+  SectionHeader,
+  SocialMediaSection,
+  SocialMediaSectionEmbedded,
+  SpecialEventsSection,
+  SunDevilsHeader,
+  SunDevilStories,
+  SunDevilStoriesFromAPI,
+} from "../components";
 
-export const initGamesNavigationComponent = ({ targetSelector, props }) => {
-  RenderReact(GameNavigation, props, document.querySelector(targetSelector));
+/**
+ * @typedef {object} RenderInput
+ * @property {string} targetSelector - The CSS selector (#id or .class)
+ * which identify the <div> element where the footer should be either hydrated or rendered.
+ * @property {object} props - Properties to initialize the footer with.
+ * @property {object} component - The footer component to render.
+ * @property {boolean} [renderWithinChild]
+ */
+
+/**
+ * @type {(input: RenderInput) => void}
+ */
+export const RenderReact = ({
+  component,
+  props,
+  targetSelector,
+  renderWithinChild,
+}) => {
+  const target = document.querySelector(targetSelector);
+
+  if (!target) {
+    return;
+  }
+
+  if (renderWithinChild) {
+    const targetChild = document.createElement("div");
+    target.appendChild(targetChild);
+
+    // @ts-ignore
+    ReactDOM.render(React.createElement(component, props), targetChild);
+    return;
+  }
+
+  // @ts-ignore
+  ReactDOM.render(React.createElement(component, props), target);
 };
 
-export const initGameTableComponent = ({ targetSelector, props }) => {
-  RenderReact(GameTable, props, document.querySelector(targetSelector));
+/**
+ * @typedef {(input: Omit<RenderInput, 'component'>) => void} InitComponent
+ */
+
+/** @type {InitComponent} */
+export const initGamesNavigationComponent = input => {
+  RenderReact({
+    ...input,
+    component: GameNavigation,
+  });
+};
+/** @type {InitComponent} */
+export const initGameTableComponent = input => {
+  RenderReact({
+    ...input,
+    component: GameTable,
+  });
 };
 
-export const initHeaderComponent = ({ targetSelector, props }) => {
-  RenderReact(SectionHeader, props, document.querySelector(targetSelector));
+/** @type {InitComponent} */
+export const initHeaderComponent = input => {
+  RenderReact({
+    ...input,
+    component: SectionHeader,
+  });
 };
 
-export const initGameListComponent = ({ targetSelector, props }) => {
-  RenderReact(GameList, props, document.querySelector(targetSelector));
+/** @type {InitComponent} */
+export const initGameListComponent = input => {
+  RenderReact({
+    ...input,
+    component: GameList,
+  });
+};
+
+/** @type {InitComponent} */
+export const initSunDevilsStoriesFromAPI = input => {
+  RenderReact({
+    ...input,
+    component: SunDevilStoriesFromAPI,
+  });
+};
+
+/** @type {InitComponent} */
+export const initSocialMediaSection = input => {
+  RenderReact({
+    ...input,
+    component: SocialMediaSection,
+  });
+};
+
+/** @type {InitComponent} */
+export const initSocialMediaSectionEmbedded = input => {
+  RenderReact({
+    ...input,
+    component: SocialMediaSectionEmbedded,
+  });
+};
+
+/** @type {InitComponent} */
+export const initSunDevilsStories = input => {
+  RenderReact({
+    ...input,
+    component: SunDevilStories,
+  });
+};
+
+// for backward compatibility
+export const initSunDevilsStoriesSection = initSunDevilsStories;
+
+/** @type {InitComponent} */
+export const initSunDevilsHeader = input => {
+  RenderReact({
+    ...input,
+    component: SunDevilsHeader,
+  });
+};
+
+/** @type {InitComponent} */
+export const initSpecialEventsSection = input => {
+  RenderReact({
+    ...input,
+    component: SpecialEventsSection,
+  });
 };

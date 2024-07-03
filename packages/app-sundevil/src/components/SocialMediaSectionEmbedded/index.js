@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import { iconToFaClassName } from "../../core/drupal-integration";
-import { RenderReact } from "../../core/react-render";
 import { SocialMediaSectionEmbedded as SocialMediaSectionEmbeddedCore } from "./SocialMediaSectionEmbedded";
 
 const drupalSocialMediaHandlePropTypes = PropTypes.shape({
@@ -58,10 +57,3 @@ export const SocialMediaSectionEmbedded = drupalProps => {
 
 SocialMediaSectionEmbedded.propTypes = drupalPropTypes;
 
-export const initSocialMediaSectionEmbedded = ({ targetSelector, props }) => {
-  RenderReact(
-    SocialMediaSectionEmbedded,
-    props,
-    document.querySelector(targetSelector)
-  );
-};

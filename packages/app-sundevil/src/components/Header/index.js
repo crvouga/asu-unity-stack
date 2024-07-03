@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import { ASUHeader } from "../../../../component-header/src";
-import { RenderReact } from "../../core/react-render";
 import { HeaderContentSportLinks } from "../HeaderContentSportLinks";
 import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
 import { HamburgerButton } from "./HamburgerButton";
@@ -236,6 +235,3 @@ SunDevilsHeader.propTypes = {
   officialSiteHref: PropTypes.string.isRequired,
 };
 
-export const initSunDevilsHeader = ({ targetSelector, props }) => {
-  RenderReact(SunDevilsHeader, props, document.querySelector(targetSelector));
-};

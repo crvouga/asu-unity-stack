@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import React, { useRef } from "react";
 import styled from "styled-components";
 
-import { RenderReact } from "../../core/react-render";
 import { useElementPosition } from "../../utils/use-element-position";
 import { SectionHeader } from "../SectionHeader";
 import { SocialMediaPostCarousel } from "./SocialMediaPostCarousel";
@@ -39,10 +38,3 @@ SocialMediaSection.propTypes = {
   postCarousel: PropTypes.shape(SocialMediaPostCarousel.propTypes),
 };
 
-export const initSocialMediaSection = ({ targetSelector, props }) => {
-  RenderReact(
-    SocialMediaSection,
-    props,
-    document.querySelector(targetSelector)
-  );
-};

@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { useIsMobile } from "../../../../../component-header/src/core/hooks/isMobile";
 import { Button } from "../../../../../components-core/src/index";
 import { APP_CONFIG } from "../../../config";
-import { RenderReact } from "../../../core/react-render";
 import { useElementContentPosition } from "../../../utils/use-element-position";
 import { sportSchema } from "../../Navigation";
 import { SectionHeader } from "../../SectionHeader";
@@ -159,10 +158,3 @@ SunDevilStories.propTypes = {
   allStoriesHref: PropTypes.string.isRequired,
   skeleton: PropTypes.bool,
 };
-
-export const initSunDevilsStories = ({ targetSelector, props }) => {
-  RenderReact(SunDevilStories, props, document.querySelector(targetSelector));
-};
-
-// for backward compatibility
-export const initSunDevilsStoriesSection = initSunDevilsStories;

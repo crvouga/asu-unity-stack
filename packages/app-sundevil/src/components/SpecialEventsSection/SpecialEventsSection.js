@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { APP_CONFIG } from "../../config";
-import { RenderReact } from "../../core/react-render";
 import {
   useElementContentDimensions,
   useElementContentPosition,
@@ -51,10 +50,3 @@ SpecialEventsSection.propTypes = {
   cardCarousel: PropTypes.shape(SpecialEventCardCarousel.propTypes),
 };
 
-export const initSpecialEventsSection = ({ targetSelector, props }) => {
-  RenderReact(
-    SpecialEventsSection,
-    props,
-    document.querySelector(targetSelector)
-  );
-};

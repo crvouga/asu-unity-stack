@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import { RenderReact } from "../../../core/react-render";
 import { SunDevilStoriesFromAPIDrupal } from "./SunDevilStoriesFromAPIDrupal";
 
 const drupalPropTypes = {
@@ -35,11 +34,3 @@ export const SunDevilStoriesFromAPI = drupalProps => {
 };
 
 SunDevilStoriesFromAPI.propTypes = drupalPropTypes;
-
-export const initSunDevilsStoriesFromAPI = ({ targetSelector, props }) => {
-  RenderReact(
-    SunDevilStoriesFromAPI,
-    props,
-    document.querySelector(targetSelector)
-  );
-};

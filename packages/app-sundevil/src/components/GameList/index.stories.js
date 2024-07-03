@@ -25,8 +25,7 @@ export const Default = Template.bind({});
 Default.args = {
   title: "Upcoming Games",
   subtitle:
-    "From the fall football season to the Maroon and Gold Spring game and at Camp Tontozona,\n" +
-    "        there are football games and events throughout the year.",
+    "From the fall football season to the Maroon and Gold Spring game and at Camp Tontozona,\n there are football games and events throughout the year.",
   sports: [
     {
       name: "All Sports",
@@ -47,7 +46,12 @@ Default.args = {
       position: 3,
       id: "basketball",
     },
-    { name: "Hockey", icon: "fas fa-hockey-puck", position: 4, id: "hockey" },
+    {
+      name: "Hockey",
+      icon: "fas fa-hockey-puck",
+      position: 4,
+      id: "hockey",
+    },
     {
       name: "Baseball",
       icon: "fas fa-baseball-ball",
@@ -59,15 +63,43 @@ Default.args = {
       icon: "fas fa-basketball-ball",
       id: "w-basketball",
     },
-    { name: "Softball", icon: "fas fa-futbol", id: "softball" },
-    { name: "Soccer", icon: "fas fa-baseball-ball", id: "soccer" },
-    { name: "Swimming", icon: "fas fa-swimmer", id: "swimming" },
-    { name: "Golf", icon: "fas fa-golf-ball", id: "golf" },
+    {
+      name: "Softball",
+      icon: "fas fa-futbol",
+      id: "softball",
+    },
+    {
+      name: "Soccer",
+      icon: "fas fa-baseball-ball",
+      id: "soccer",
+    },
+    {
+      name: "Swimming",
+      icon: "fas fa-swimmer",
+      id: "swimming",
+    },
+    {
+      name: "Golf",
+      icon: "fas fa-golf-ball",
+      id: "golf",
+    },
   ],
   tabs: [
-    { label: "All Games", active: true, id: "all" },
-    { label: "Home", active: false, id: "home" },
-    { label: "Away", active: false, id: "away" },
+    {
+      label: "All Games",
+      active: true,
+      id: "all",
+    },
+    {
+      label: "Home",
+      active: false,
+      id: "home",
+    },
+    {
+      label: "Away",
+      active: false,
+      id: "away",
+    },
   ],
   onTabItemClick: tabId => () => {
     // eslint-disable-next-line no-console

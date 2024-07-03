@@ -1,5 +1,5 @@
 // @ts-check
-import { render, cleanup, act } from "@testing-library/react";
+import { act, cleanup, render } from "@testing-library/react";
 import React from "react";
 
 import { GameTable } from "./index";

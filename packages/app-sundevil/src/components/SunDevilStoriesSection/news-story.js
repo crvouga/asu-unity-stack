@@ -1,7 +1,7 @@
 // @ts-check
 import PropTypes from "prop-types";
 
-import { sportSchema } from "../../../../component-game-list/src/core/components/Navigation";
+import { sportSchema } from "../Navigation";
 
 /**
  * @typedef {{
@@ -28,7 +28,7 @@ export const newsStorySchema = PropTypes.shape({
 });
 
 /**
- * @typedef {import("../../../../component-game-list/src/core/components/Navigation").Sport} Sport
+ * @typedef {import("../Navigation").Sport} Sport
  */
 
 /**

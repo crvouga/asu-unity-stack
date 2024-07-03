@@ -17,6 +17,12 @@ import {
   initSunDevilsStoriesFromAPI,
   initSunDevilsStoriesSection,
 } from "./components";
+import {
+  initGameListComponent,
+  initGameTableComponent,
+  initGamesNavigationComponent,
+  initHeaderComponent,
+} from "./core/init-component";
 
 // @ts-ignore
 window.HeaderContentSportLinks = HeaderContentSportLinks;
@@ -48,21 +54,21 @@ window.initSunDevilsStoriesFromAPI = initSunDevilsStoriesFromAPI;
 window.SpecialEventsSection = SpecialEventsSection;
 // @ts-ignore
 window.initSpecialEventsSection = initSpecialEventsSection;
+// @ts-ignore
+window.initHeaderComponent = initHeaderComponent;
+// @ts-ignore
+window.initGameTableComponent = initGameTableComponent;
+// @ts-ignore
+window.initGamesNavigationComponent = initGamesNavigationComponent;
+// @ts-ignore
+window.initGameListComponent = initGameListComponent;
+
+export * from "./components";
 
 export {
-  HeaderContentSportLinks,
-  OfficialAthleticsSite,
-  SocialMediaSection,
-  SocialMediaSectionEmbedded,
-  SpecialEventsSection,
-  SunDevilStories,
-  SunDevilStoriesFromAPI,
-  SunDevilsHeader,
-  initSocialMediaSection,
-  initSocialMediaSectionEmbedded,
-  initSpecialEventsSection,
-  initSunDevilsHeader,
-  initSunDevilsStoriesFromAPI,
-  initSunDevilsStoriesSection
+  initGameListComponent,
+  initGameTableComponent,
+  initGamesNavigationComponent,
+  initHeaderComponent
 };
 

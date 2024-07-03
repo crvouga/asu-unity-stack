@@ -3,9 +3,8 @@ import React from "react";
 
 import { Header } from "./index";
 
-/** @typedef {import("@asu-design-system/components-core/src/core/types/feed-types").ComponentType } ComponentType */
 export default {
-  title: "Header",
+  title: "Section Header",
   component: Header,
   parameters: {
     docs: {

@@ -2,10 +2,10 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import { DropDown } from "../../../../../app-sundevil/src/components/DropDown/DropDown";
-import { DropDownSurface } from "../../../../../app-sundevil/src/components/DropDown/DropDownSurface";
-import { SelectBase } from "../../../../../app-sundevil/src/components/Select/SelectBase";
-import { Skeleton } from "../../../../../app-sundevil/src/components/Skeleton";
+import { DropDown } from "../DropDown/DropDown";
+import { DropDownSurface } from "../DropDown/DropDownSurface";
+import { SelectBase } from "../Select/SelectBase";
+import { Skeleton } from "../Skeleton";
 import { basePropTypes } from "./sports-tabs";
 import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 

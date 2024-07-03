@@ -2,7 +2,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { MyComponent } from "../components/index";
+import { GameNavigation, GameTable, SectionHeader } from "../components";
+import { GameList } from "../components/GameList";
 
 /**
  * @typedef {Object} ComponentProps
@@ -19,8 +20,26 @@ const RenderReact = (component, props, target) => {
 /**
  * @param {ComponentProps} props
  */
-const initMyComponent = ({ targetSelector, props }) => {
-  RenderReact(MyComponent, props, document.querySelector(targetSelector));
+const initGamesNavigationComponent = ({ targetSelector, props }) => {
+  RenderReact(GameNavigation, props, document.querySelector(targetSelector));
 };
 
-export { initMyComponent };
+const initGameTableComponent = ({ targetSelector, props }) => {
+  RenderReact(GameTable, props, document.querySelector(targetSelector));
+};
+
+const initHeaderComponent = ({ targetSelector, props }) => {
+  RenderReact(SectionHeader, props, document.querySelector(targetSelector));
+};
+
+const initGameListComponent = ({ targetSelector, props }) => {
+  RenderReact(GameList, props, document.querySelector(targetSelector));
+};
+
+export {
+  initGameListComponent,
+  initGameTableComponent,
+  initGamesNavigationComponent,
+  initHeaderComponent,
+};
+// 

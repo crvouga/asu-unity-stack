@@ -1,9 +1,9 @@
 // @ts-check
 import React, { useEffect } from "react";
 
-import { Header } from "../../core/components/Header";
-import { SportsTable } from "../../core/components/Table";
 import { GameNavigation } from "../GameNavigation";
+import { Header } from "../SectionHeader";
+import { SportsTable } from "../Table";
 
 const GameList = ({ ...props }) => {
   const [allSports, setAllSports] = React.useState([]);
@@ -25,17 +25,21 @@ const GameList = ({ ...props }) => {
   function onSportItemClick(sportId) {
     return () => {
       const newSports = allSports.map(sport => {
+        // @ts-ignore
         if (sport.id === sportId) {
           return {
+            // @ts-ignore
             ...sport,
             active: true,
           };
         }
         return {
+          // @ts-ignore
           ...sport,
           active: false,
         };
       });
+      // @ts-ignore
       setAllSports(newSports);
       if (sportId === "all") {
         setGamesSchedule(props.games);
@@ -54,17 +58,21 @@ const GameList = ({ ...props }) => {
   function onNavigationTabItemClick(tabId) {
     return () => {
       const newTabs = navigationTabs.map(tab => {
+        // @ts-ignore
         if (tab.id === tabId) {
           return {
+            // @ts-ignore
             ...tab,
             active: true,
           };
         }
         return {
+          // @ts-ignore
           ...tab,
           active: false,
         };
       });
+      // @ts-ignore
       setNavigationTabs(newTabs);
       if (tabId === "all") {
         setGamesSchedule(props.games);
@@ -84,6 +92,7 @@ const GameList = ({ ...props }) => {
     <>
       <Header
         {...{ ...props }}
+        // @ts-ignore
         tabs={navigationTabs}
         /* eslint-disable-next-line react/jsx-no-bind */
         onTabItemClick={onNavigationTabItemClick}
@@ -95,6 +104,7 @@ const GameList = ({ ...props }) => {
         /* eslint-disable-next-line react/jsx-no-bind */
         onSportItemClick={onSportItemClick}
       />
+      {/* @ts-ignore */}
       <SportsTable {...{ ...props }} games={gamesSchedule} />
     </>
   );

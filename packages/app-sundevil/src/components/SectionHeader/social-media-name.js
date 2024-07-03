@@ -1,4 +1,4 @@
-import { levenshteinDistance } from "../../../../../app-sundevil/src/utils/levenshtein-distance";
+import { levenshteinDistance } from "../../utils/levenshtein-distance";
 
 /**
  * @typedef {"facebook" | "twitter" | "instagram"} SocialMediaName

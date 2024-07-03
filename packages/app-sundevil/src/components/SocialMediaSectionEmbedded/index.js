@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 
+import { iconToFaClassName } from "../../core/drupal-integration";
 import { RenderReact } from "../../utils/react-render";
-import { iconToFaClassName } from "../drupal-integration";
 import { SocialMediaSectionEmbedded as SocialMediaSectionEmbeddedCore } from "./SocialMediaSectionEmbedded";
 
 const drupalSocialMediaHandlePropTypes = PropTypes.shape({

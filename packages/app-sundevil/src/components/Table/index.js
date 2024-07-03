@@ -1,4 +1,5 @@
 // @ts-check
+// @ts-ignore
 import { Button } from "@asu/components-core";
 import PropTypes from "prop-types";
 import React from "react";
@@ -6,13 +7,10 @@ import React from "react";
 import { Footer, UpcomingGamesWrapper } from "./index.styles";
 
 /**
- * @typedef {import("../../types/app-types").AppType} AppType
+ * @param {{children: object}} props
  */
 
-/**
- * @param {AppType & {children: object}} props
- */
-
+// @ts-ignore
 const SportsTable = ({ games, footerButtons }) => {
   return (
     <UpcomingGamesWrapper>

@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { DropDown } from "../../../../../app-sundevil/src/components/DropDown/DropDown";
-import { DropDownSurface } from "../../../../../app-sundevil/src/components/DropDown/DropDownSurface";
-import { Skeleton } from "../../../../../app-sundevil/src/components/Skeleton";
+import { DropDown, DropDownSurface } from "../DropDown";
+import { Skeleton } from "../Skeleton";
 import { basePropTypes } from "./sports-tabs";
 import { SportsTab } from "./SportsTab";
 import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
@@ -34,6 +33,7 @@ export const SportsTabsDesktop = ({
   moreTabOrientation,
   moreTabColor,
   skeleton,
+  // @ts-ignore
   invertColor,
 }) => {
   sports.sort((a, b) => a.position - b.position);
@@ -127,5 +127,6 @@ export const SportsTabsDesktop = ({
 SportsTabsDesktop.propTypes = {
   ...basePropTypes,
   skeleton: PropTypes.bool,
+  // @ts-ignore
   invertColor: PropTypes.bool,
 };

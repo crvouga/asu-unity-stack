@@ -2,24 +2,21 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { sportSchema } from "../../../../../component-game-list/src/core/components/Navigation";
-import {
-  SportsTabsDesktop,
-  SportsTabsMobile,
-} from "../../../../../component-game-list/src/core/components/SportsTabs";
 import { useIsMobile } from "../../../../../component-header/src/core/hooks/isMobile";
 import { Button } from "../../../../../components-core/src/index";
 import { APP_CONFIG } from "../../../config";
 import { RenderReact } from "../../../utils/react-render";
 import { useElementContentPosition } from "../../../utils/use-element-position";
+import { sportSchema } from "../../Navigation";
 import { SectionHeader } from "../../SectionHeader";
 import { Skeleton } from "../../Skeleton";
+import { SportsTabsDesktop, SportsTabsMobile } from "../../SportsTabs";
 import * as NewsStory from "../news-story";
 import { NewsStoryCardGridDesktop } from "../NewsStoryCardGrid/NewsStoryCardGridDesktop";
 import { NewsStoryCardGridMobile } from "../NewsStoryCardGrid/NewsStoryCardGridMobile";
 
 /**
- * @typedef {import("../../../../../component-game-list/src/core/components/Navigation").Sport} Sport
+ * @typedef {import("../Navigation").Sport} Sport
  */
 
 /**

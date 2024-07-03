@@ -1,11 +1,12 @@
 // @ts-check
 import React from "react";
 
-import { SportsTable } from "../../core/components/Table";
+import { SportsTable } from "../Table";
 
 const GameTable = ({ ...props }) => {
   return (
     <>
+      {/* @ts-ignore */}
       <SportsTable {...{ ...props }} />
     </>
   );

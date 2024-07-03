@@ -2,6 +2,7 @@ import {
   initGamesNavigationComponent,
   initGameTableComponent,
   initHeaderComponent,
+  initGameListComponent,
 } from "./core/init-component";
 
 export * from "./components";
@@ -15,8 +16,12 @@ window.initGameTableComponent = initGameTableComponent;
 // @ts-ignore
 window.initGamesNavigationComponent = initGamesNavigationComponent;
 
+// @ts-ignore
+window.initGameListComponent = initGameListComponent;
+
 export {
   initGamesNavigationComponent,
   initGameTableComponent,
   initHeaderComponent,
+  initGameListComponent,
 };

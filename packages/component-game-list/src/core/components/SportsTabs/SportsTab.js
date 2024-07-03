@@ -6,23 +6,31 @@ import { AspectRatioSquare } from "./AspectRatioSquare";
 
 const Root = styled.div`
   flex: 1;
+
   &.inactive {
     background-color: transparent;
+
     &:hover {
       background-color: rgba(25, 25, 25, 0.1);
     }
+
     color: ${({ color }) => (color === "muted" ? "#747474" : "inherit")};
   }
+
   &.active {
-    background-color: #191919;
-    color: #fafafa;
+    background-color: ${({ color }) =>
+      color === "muted" ? "#fafafa" : "#191919"};
+    color: ${({ color }) => (color === "muted" ? "#191919" : "#fafafa")};
   }
+
   outline: none !important;
   border: none !important;
+
   &:focus {
     outline: none !important;
     box-shadow: none !important;
   }
+
   cursor: pointer;
 `;
 

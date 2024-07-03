@@ -18,6 +18,7 @@ const Subtitle = styled.p`
   margin: 0;
   color: #191919;
   padding-top: 12px;
+
   & > * {
     margin: 0;
     padding: 0;
@@ -42,19 +43,40 @@ const HeaderBody = styled.nav`
  */
 const Header = forwardRef(
   // @ts-ignore
-  ({ title, subtitle, tabs, sponsorBlock, social, onTabItemClick }, ref) => {
+  (
+    {
+      title,
+      subtitle,
+      tabs,
+      sponsorBlock,
+      social,
+      onTabItemClick,
+      invertColor = false,
+    },
+    ref
+  ) => {
     return (
       <div className="container" ref={ref}>
         <div className="row">
           <div className="col-md-8 col-sm-12">
             <div className="d-flex flex-row align-items-end justify-content-between gap-2 pt-2">
-              <h2 className="m-0">{title}</h2>
+              <h2
+                className={`m-0 ${invertColor ? "text-white" : "text-black"}`}
+              >
+                {title}
+              </h2>
               <div className="mt-auto mr-auto d-flex d-sm-flex d-md-none justify-content-end">
                 <SponsorBlock
                   href={sponsorBlock?.url}
                   className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
                 >
-                  <h5 className="m-0">{sponsorBlock?.text}</h5>
+                  <h5
+                    className={`m-0 ${
+                      invertColor ? "text-white" : "text-black"
+                    }`}
+                  >
+                    {sponsorBlock?.text}
+                  </h5>
                   <Logo src={sponsorBlock?.logo} alt={sponsorBlock?.name} />
                 </SponsorBlock>
               </div>
@@ -74,7 +96,6 @@ const Header = forwardRef(
                       className={`text-sm-center nav-link ${
                         tab.active ? "active" : ""
                       }`}
-                      href="#"
                     >
                       {tab.label}
                     </NavItem>
@@ -91,7 +112,11 @@ const Header = forwardRef(
               href={sponsorBlock?.url}
               className="d-flex flex-row align-items-center justify-content-end gap-2"
             >
-              <h5>{sponsorBlock?.text}</h5>
+              <h5
+                className={`m-0 ${invertColor ? "text-white" : "text-black"}`}
+              >
+                {sponsorBlock?.text}
+              </h5>
               <Logo src={sponsorBlock?.logo} alt={sponsorBlock?.name} />
             </SponsorBlock>
           </div>
@@ -120,6 +145,7 @@ Header.propTypes = {
   ),
   social: PropTypes.arrayOf(socialPropType),
   onTabItemClick: PropTypes.func,
+  invertColor: PropTypes.bool,
 };
 
 export { Header };

@@ -2,6 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import { GameList } from "../components/GameList";
 import { GameNavigation, GameTable, Header } from "../components/index";
 
 /**
@@ -31,8 +32,13 @@ const initHeaderComponent = ({ targetSelector, props }) => {
   RenderReact(Header, props, document.querySelector(targetSelector));
 };
 
+const initGameListComponent = ({ targetSelector, props }) => {
+  RenderReact(GameList, props, document.querySelector(targetSelector));
+};
+
 export {
   initGamesNavigationComponent,
   initGameTableComponent,
   initHeaderComponent,
+  initGameListComponent,
 };

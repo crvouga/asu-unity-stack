@@ -82,8 +82,14 @@ const SportsTable = ({ games, footerButtons }) => {
             color={button.color}
             label={button.label}
             size={button.size}
+            onClick={() => {
+              window.open(button.link, "_blank");
+            }}
           />
         ))}
+      </Footer>
+      <Footer style={{ gap: "8px" }}>
+        <span style={{ color: "#8c1d40" }}>See Past Game Scores</span>
       </Footer>
     </UpcomingGamesWrapper>
   );
@@ -112,6 +118,7 @@ SportsTable.propTypes = {
         name: PropTypes.string.isRequired,
         icon: PropTypes.string.isRequired,
       }).isRequired,
+      gameType: PropTypes.string,
     })
   ).isRequired,
   footerButtons: PropTypes.arrayOf(

@@ -34,6 +34,7 @@ export const SportsTabsDesktop = ({
   moreTabOrientation,
   moreTabColor,
   skeleton,
+  invertColor,
 }) => {
   sports.sort((a, b) => a.position - b.position);
   const firstTenSports = sports
@@ -59,6 +60,7 @@ export const SportsTabsDesktop = ({
             onClick={onSportItemClick(sport.id)}
             active={Boolean(sport.active)}
             orientation="vertical"
+            color={invertColor ? "muted" : "default"}
           >
             <span title={sport.name} className={sport.icon} />
             <div>{sport.name}</div>
@@ -125,4 +127,5 @@ export const SportsTabsDesktop = ({
 SportsTabsDesktop.propTypes = {
   ...basePropTypes,
   skeleton: PropTypes.bool,
+  invertColor: PropTypes.bool,
 };

@@ -67,6 +67,7 @@
 <!-- Provide target divs for the component. Must have unique ids or class name. -->
 <div class="container">
   <div class="mt-2" id="example-wrapper"></div>
+  <div class="mt-4" id="example-wrapper-football"></div>
 </div>
 
 <script>
@@ -85,26 +86,102 @@
 
       const data = await response.json();
       const mappedData = mapResponseToDesiredFormat(data);
-      console.log(mappedData);
-      initGameTableComponent({
+      const allSports = [
+        {
+          name: "All Sports",
+          icon: "fas fa-sync-alt",
+          active: true,
+          position: 1,
+          id: "all",
+        },
+        {
+          name: "Football",
+          icon: "fas fa-football-ball",
+          position: 2,
+          id: "football",
+        },
+        {
+          name: "M. Basketball",
+          icon: "fas fa-basketball-ball",
+          position: 3,
+          id: "basketball",
+        },
+        {name: "Hockey", icon: "fas fa-hockey-puck", position: 4, id: "hockey"},
+        {
+          name: "Baseball",
+          icon: "fas fa-baseball-ball",
+          position: 5,
+          id: "baseball",
+        },
+        {
+          name: "W. Basketball",
+          icon: "fas fa-basketball-ball",
+          id: "w-basketball",
+        },
+        {name: "Softball", icon: "fas fa-futbol", id: "softball"},
+        {name: "Soccer", icon: "fas fa-baseball-ball", id: "soccer"},
+        {name: "Swimming", icon: "fas fa-swimmer", id: "swimming"},
+        {name: "Golf", icon: "fas fa-golf-ball", id: "golf"},
+      ];
+      initGameListComponent({
           targetSelector: '#example-wrapper',
           props: {
             games: mappedData,
+            sports: allSports,
+            title: "Upcoming games",
+            invertColor: false,
+            sponsorBlock: {
+              text: "Presented By",
+              name: "Ford",
+              logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg",
+              url: "https://www.ford.com/",
+            },
             footerButtons: [
               {
                 color: "gold",
                 label: "Full schedule",
                 size: "small",
+                link: "https://www.example.com",
               },
               {
                 color: "maroon",
                 label: "Gear up for the game",
                 size: "small",
+                link: "https://www.example.com",
               },
             ],
           },
-        }
-      )
+        })
+      initGameListComponent({
+          targetSelector: '#example-wrapper-football',
+          props: {
+            games: mappedData,
+            sports: [],
+            tabs: [
+              { label: "All Games", active: true, id: "all" },
+              { label: "Home", active: false, id: "home" },
+              { label: "Away", active: false, id: "away" },
+            ],
+            title: "Upcoming games",
+            subtitle: "From the fall football season to the Maroon and Gold Spring game and at Camp Tontozona,\n" +
+              "        there are football games and events throughout the year.",
+            invertColor: false,
+            footerButtons: [
+              {
+                color: "gold",
+                label: "Full schedule",
+                size: "small",
+                link: "https://www.example.com",
+              },
+              {
+                color: "maroon",
+                label: "Gear up for the game",
+                size: "small",
+                link: "https://www.example.com",
+              },
+            ],
+          },
+        })
     } catch
       (error) {
       console.error('There was a problem with the fetch operation:', error);
@@ -133,7 +210,8 @@
         ticketLink: event.ticketing_rsvp_url || "https://www.example.com",
         ticketText: event.ticketing_rsvp_txt || "Buy Tickets",
         time: yearTime || "TBD",
-        venue: event.locations || "Venue Name"
+        venue: event.locations || "Venue Name",
+        gameType: event.game_type || "home",
       };
     });
   }

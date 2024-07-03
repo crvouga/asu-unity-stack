@@ -18,10 +18,15 @@ import {
 /**
  * @typedef {object} RenderInput
  * @property {string} targetSelector - The CSS selector (#id or .class)
- * which identify the <div> element where the footer should be either hydrated or rendered.
+ * which identify the <div> element where the footer should be either hydrated
+ * or rendered.
  * @property {object} props - Properties to initialize the footer with.
  * @property {object} component - The footer component to render.
- * @property {boolean} [renderWithinChild]
+ * @property {boolean} [renderWithinChild] - This is used for smoother drupal
+ * integration. Since the target selector will usually be a block element and
+ * drupal puts other elements inside blocks, we need to render the component
+ * inside a child element of the target element so we don't wipe out the other
+ * elements inserted by drupal.
  */
 
 /**
@@ -31,7 +36,7 @@ export const RenderReact = ({
   component,
   props,
   targetSelector,
-  renderWithinChild,
+  renderWithinChild = true,
 }) => {
   const target = document.querySelector(targetSelector);
 

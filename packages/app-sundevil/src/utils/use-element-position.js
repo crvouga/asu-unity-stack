@@ -46,12 +46,12 @@ export const useElementContentPosition = ref => {
     bottom: 0,
   });
 
-  // eslint-disable-next-line consistent-return
   useEffect(() => {
     if (ref.current) {
       const handlePosition = () => {
-        const { left, top, right, bottom } =
-          ref.current.getBoundingClientRect();
+        const elementRect = ref.current.getBoundingClientRect();
+        const parentRect = ref.current.offsetParent.getBoundingClientRect();
+
         const paddingLeft = parseInt(
           window.getComputedStyle(ref.current).paddingLeft,
           10
@@ -60,13 +60,17 @@ export const useElementContentPosition = ref => {
           window.getComputedStyle(ref.current).paddingRight,
           10
         );
-        const leftContent = left + paddingLeft;
-        const rightContent = right - paddingRight;
+
+        const leftContent = elementRect.left - parentRect.left + paddingLeft;
+        const rightContent = elementRect.right - parentRect.left - paddingRight;
+        const topContent = elementRect.top - parentRect.top;
+        const bottomContent = elementRect.bottom - parentRect.top;
+
         setPosition({
           left: leftContent,
-          top,
+          top: topContent,
           right: rightContent,
-          bottom,
+          bottom: bottomContent,
         });
       };
 
@@ -80,6 +84,7 @@ export const useElementContentPosition = ref => {
         window.removeEventListener("scroll", handlePosition);
       };
     }
+    return () => {};
   }, [ref]);
 
   return position;

@@ -16,6 +16,7 @@ const Root = styled.section`
   display: flex;
   flex-direction: column;
   gap: 52px;
+  position: relative;
 `;
 
 const DESKTOP_CARD_WIDTH = 588;
@@ -34,7 +35,6 @@ export const SpecialEventsSection = ({ sectionHeader, cardCarousel }) => {
   return (
     <Root>
       <SectionHeader {...sectionHeader} ref={sectionHeaderRef} />
-
       {shouldPreventJitter && (
         <SpecialEventCardCarousel
           {...cardCarousel}

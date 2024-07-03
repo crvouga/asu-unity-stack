@@ -1,12 +1,14 @@
-/**
- * @typedef {import("../news-story").NewsStory} NewsStory
- */
+// @ts-check
 
 /**
- * @typedef {{
- *  findMany: () => Promise<Result<string, NewsStory[]>
- * }} NewsStoryAPI
+ * @typedef {import("../news-story").SportWithNewsStories} SportWithNewsStories
  */
-
-export const INewsStoryAPI = {};
-export default {};
+export class INewsStoryAPI {
+  /**
+   * @returns {Promise<SportWithNewsStories[]>}
+   */
+  // eslint-disable-next-line class-methods-use-this
+  async findMany() {
+    throw new Error("Not implemented");
+  }
+}

@@ -3,7 +3,6 @@ import React from "react";
 
 import { GameTable } from "./index";
 
-/** @typedef {import("@asu-design-system/components-core/src/core/types/feed-types").ComponentType } ComponentType */
 export default {
   title: "Game Table",
   component: GameTable,
@@ -17,9 +16,7 @@ export default {
 };
 
 const Template = args => <GameTable {...args} />;
-/**
- * @type {{ args: ComponentType, parameters: object}}
- */
+
 export const Default = Template.bind({});
 Default.args = {
   games: [

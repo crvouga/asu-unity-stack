@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { APP_CONFIG } from "../../config";
-import { RenderReact } from "../../utils/react-render";
+import { RenderReact } from "../../core/react-render";
 import {
   useElementContentDimensions,
   useElementContentPosition,

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import { RenderReact } from "../../../utils/react-render";
+import { RenderReact } from "../../../core/react-render";
 import { SunDevilStoriesFromAPIDrupal } from "./SunDevilStoriesFromAPIDrupal";
 
 const drupalPropTypes = {

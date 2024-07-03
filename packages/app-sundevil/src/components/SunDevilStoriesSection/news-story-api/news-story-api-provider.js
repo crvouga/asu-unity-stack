@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import { NewsStoryAPI } from "./news-story-api-impl";
+import { buildNewsStoryAPI } from "./news-story-api-impl";
 
-/** @type {React.Context<import("./news-story-api").NewsStoryAPI | null>} */
+/** @type {React.Context<import("./news-story-api").INewsStoryAPI | null>} */
 const NewsStoryAPIContext = React.createContext(null);
 
 export const NewsStoryAPIProvider = ({ children, newsStoryAPI }) => {
@@ -19,11 +19,11 @@ NewsStoryAPIProvider.propTypes = {
   newsStoryAPI: PropTypes.object.isRequired,
 };
 
-/** @type {() => import("./news-story-api").NewsStoryAPI} */
+/** @type {() => import("./news-story-api").INewsStoryAPI} */
 export const useNewsStoryAPI = () => {
   const newsStoryAPI = React.useContext(NewsStoryAPIContext);
   if (!newsStoryAPI) {
-    return NewsStoryAPI();
+    return buildNewsStoryAPI({ apiUrl: "", apiImpl: "mock" });
   }
   return newsStoryAPI;
 };

@@ -1,5 +1,5 @@
 // @ts-check
-import * as Result from "../../../utils/result";
+import { INewsStoryAPI } from "./news-story-api";
 
 /*
 Example
@@ -57,27 +57,26 @@ Example
 */
 
 /**
- * @type {(input: {apiUrl:string}) => import("./news-story-api").NewsStoryAPI}
+ * @type {(input: {apiUrl:string}) => import("./news-story-api").INewsStoryAPI}
  */
-export const NewsStoryAPIDrupal = ({ apiUrl }) => {
-  return {
-    async findMany() {
-      try {
-        const fetched = await fetch(apiUrl);
+export class NewsStoryAPIDrupal extends INewsStoryAPI {
+  constructor({ apiUrl }) {
+    super();
+    this.apiUrl = apiUrl;
+  }
 
-        const json = await fetched.json();
+  async findMany() {
+    const fetched = await fetch(this.apiUrl);
 
-        const SKIP = true;
-        if (SKIP) {
-          return Result.Ok([]);
-        }
+    const json = await fetched.json();
 
-        // console.log(json);
+    const SKIP = true;
+    if (SKIP) {
+      return [];
+    }
 
-        return Result.Ok(json);
-      } catch (error) {
-        return Result.Err(String(error));
-      }
-    },
-  };
-};
+    // console.log(json);
+
+    return json;
+  }
+}

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React, { useMemo } from "react";
 
 import { SectionHeader } from "../../SectionHeader";
-import { NewsStoryAPI } from "../news-story-api/news-story-api-impl";
+import { buildNewsStoryAPI } from "../news-story-api/news-story-api-impl";
 import { NewsStoryAPIProvider } from "../news-story-api/news-story-api-provider";
 import { SunDevilStoriesFromAPI } from "./SunDevilStoriesFromAPI";
 
@@ -15,7 +15,7 @@ export const SunDevilStoriesFromAPIDrupal = ({
   apiImpl,
 }) => {
   const newsStoryAPI = useMemo(
-    () => NewsStoryAPI({ apiUrl, apiImpl }),
+    () => buildNewsStoryAPI({ apiUrl, apiImpl }),
     [apiUrl, apiImpl]
   );
 

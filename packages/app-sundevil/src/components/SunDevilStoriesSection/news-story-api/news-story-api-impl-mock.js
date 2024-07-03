@@ -1,5 +1,6 @@
 // @ts-check
-import * as Result from "../../../utils/result";
+
+import { INewsStoryAPI } from "./news-story-api";
 
 /**
  * @typedef {import("../index").Sport} Sport
@@ -173,13 +174,16 @@ const fakeData = [
 ];
 
 /**
- * @type {() => import("./news-story-api").NewsStoryAPI}
+ * @type {() => import("./news-story-api").INewsStoryAPI}
  */
-export const NewsStoryAPIMock = () => {
-  return {
-    async findMany() {
-      await new Promise(r => setTimeout(r, 3000));
-      return Result.Ok(fakeData);
-    },
-  };
-};
+export class NewsStoryAPIMock extends INewsStoryAPI {
+  constructor({ timeout = 3000 } = {}) {
+    super();
+    this.timeout = timeout;
+  }
+
+  async findMany() {
+    await new Promise(r => setTimeout(r, this.timeout));
+    return fakeData;
+  }
+}

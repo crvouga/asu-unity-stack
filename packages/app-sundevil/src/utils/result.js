@@ -59,3 +59,17 @@ export const NotAsked = { t: "not-asked" };
  * @type {Loading}
  */
 export const Loading = { t: "loading" };
+
+/**
+ *
+ * @template TData
+ * @param {() => Promise<TData>} fn
+ * @returns {Promise<Result<string, TData>>}
+ */
+export const attempt = async fn => {
+  try {
+    return Ok(await fn());
+  } catch (error) {
+    return Err(String(error));
+  }
+};

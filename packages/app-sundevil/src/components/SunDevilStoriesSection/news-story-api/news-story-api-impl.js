@@ -3,11 +3,11 @@ import { NewsStoryAPIDrupal } from "./news-story-api-impl-drupal";
 import { NewsStoryAPIMock } from "./news-story-api-impl-mock";
 
 /**
- * @type {(input: {apiUrl: string, apiImpl:string}) => import("./news-story-api").NewsStoryAPI}
+ * @type {(input: {apiUrl: string, apiImpl:string}) => import("./news-story-api").INewsStoryAPI}
  */
-export const NewsStoryAPI = ({ apiUrl, apiImpl }) => {
+export const buildNewsStoryAPI = ({ apiUrl, apiImpl }) => {
   if (apiImpl === "mock") {
-    return NewsStoryAPIMock();
+    return new NewsStoryAPIMock();
   }
-  return NewsStoryAPIDrupal({ apiUrl });
+  return new NewsStoryAPIDrupal({ apiUrl });
 };

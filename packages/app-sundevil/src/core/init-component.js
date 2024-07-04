@@ -6,6 +6,7 @@ import {
   GameList,
   GameNavigation,
   GameTable,
+  GameTableSection,
   SectionHeader,
   SocialMediaSection,
   SocialMediaSectionEmbedded,
@@ -89,6 +90,14 @@ export const initGameListComponent = input => {
   RenderReact({
     ...input,
     component: GameList,
+  });
+};
+
+/** @type {InitComponent} */
+export const initGameTableSection = input => {
+  RenderReact({
+    ...input,
+    component: GameTableSection,
   });
 };
 

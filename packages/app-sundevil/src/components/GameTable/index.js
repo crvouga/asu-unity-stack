@@ -92,7 +92,7 @@ const GameTable = ({
   return (
     <Root>
       {skeleton ? (
-        <div>
+        <div style={{ width: "100%" }}>
           {Array.from({ length: maxRowCount }).map((_, index) => (
             // eslint-disable-next-line react/no-array-index-key
             <Skeleton key={index} skeleton>

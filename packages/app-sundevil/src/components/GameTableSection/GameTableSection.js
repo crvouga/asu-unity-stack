@@ -91,7 +91,7 @@ GameTableSectionInner.propTypes = {
   sports: PropTypes.arrayOf(sportSchemaGameTable),
 };
 
-export const GameTableSection = ({ gameDataSource, ...props }) => {
+const GameTableSection = ({ gameDataSource, ...props }) => {
   const gameAPI = useMemo(
     () => buildGameDataSource(gameDataSource),
     [gameDataSource]
@@ -107,3 +107,5 @@ GameTableSection.propTypes = {
   ...GameTableSectionInner.propTypes,
   gameDataSource: gameDataSourceSchema,
 };
+
+export { GameTableSection };

@@ -3,6 +3,7 @@
 import {
   initGameListComponent,
   initGameTableComponent,
+  initGameTableSection,
   initGamesNavigationComponent,
   initHeaderComponent,
   initSocialMediaSection,
@@ -36,6 +37,8 @@ window.initGameTableComponent = initGameTableComponent;
 window.initGamesNavigationComponent = initGamesNavigationComponent;
 // @ts-ignore
 window.initGameListComponent = initGameListComponent;
+// @ts-ignore
+window.initGameTableSection = initGameTableSection;
 
 
 

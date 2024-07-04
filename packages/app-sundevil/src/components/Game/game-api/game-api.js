@@ -20,3 +20,6 @@ export class IGameAPI {
     throw new Error("Not implemented");
   }
 }
+
+// @ts-ignore
+window.IGameAPI = IGameAPI;

@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 
 import { GameNavigation } from "../GameNavigation";
-import { SportsTable } from "../GameTable";
+import { GameTable } from "../GameTable";
 import { Header } from "../SectionHeader";
 
 const GameList = ({ ...props }) => {
@@ -105,13 +105,13 @@ const GameList = ({ ...props }) => {
         onSportItemClick={onSportItemClick}
       />
       {/* @ts-ignore */}
-      <SportsTable {...{ ...props }} games={gamesSchedule} />
+      <GameTable {...{ ...props }} games={gamesSchedule} />
     </>
   );
 };
 
 GameList.propTypes = Header.propTypes;
 GameList.propTypes = GameNavigation.propTypes;
-GameList.propTypes = SportsTable.propTypes;
+GameList.propTypes = GameTable.propTypes;
 
 export { GameList };

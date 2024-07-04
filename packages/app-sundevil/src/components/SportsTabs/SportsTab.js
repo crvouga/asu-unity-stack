@@ -11,17 +11,27 @@ const Root = styled.div`
     background-color: transparent;
 
     &:hover {
-      opacity: 0.7;
+      opacity: 0.8;
       background-color: ${({ darkMode }) =>
         darkMode ? "rgba(250, 250, 250, 0.1)" : "rgba(25, 25, 25, 0.1)"};
     }
 
-    color: ${({ darkMode }) => (darkMode ? "#fafafa" : "#191919")};
+    color: ${({ darkMode, color }) => {
+      if (darkMode) {
+        return color === "muted" ? "#fafafa" : "#fafafa";
+      }
+      return color === "muted" ? "#6c757d" : "#191919";
+    }};
   }
 
   &.active {
     background-color: ${({ darkMode }) => (darkMode ? "#fff" : "#191919")};
-    color: ${({ darkMode }) => (darkMode ? "#191919" : "#fff")};
+    color: ${({ darkMode }) => {
+      if (darkMode) {
+        return "#191919";
+      }
+      return "#fff";
+    }};
   }
 
   outline: none !important;

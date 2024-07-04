@@ -1,7 +1,10 @@
 // @ts-check
 import PropTypes from "prop-types";
 import React, { useMemo, useState } from "react";
+import styled from "styled-components";
 
+import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
+import { APP_CONFIG } from "../../config";
 import {
   buildGameDataSource,
   gameDataSourceSchema,
@@ -12,6 +15,25 @@ import { GameNavigation } from "../GameNavigation";
 import { GameTable, gameTableFooterButtonSchema } from "../GameTable";
 import { Header } from "../SectionHeader";
 import { sportSchema } from "../SportsTabs/sports-tabs";
+
+const GameTableRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+`;
+
+const GameNavigationRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 20px;
+`;
 
 const GameTableSectionInner = ({ ...props }) => {
   const [selectedSportId, setSelectedSportId] = useState(
@@ -49,6 +71,9 @@ const GameTableSectionInner = ({ ...props }) => {
     activeSport?.footerButtons ?? props?.footerButtons ?? [];
   const footerLinks = activeSport?.footerLinks ?? props?.footerLinks ?? [];
 
+  const isMobile = useIsMobile(APP_CONFIG.breakpoint);
+  const isDesktop = !isMobile;
+
   return (
     <>
       <Header
@@ -58,14 +83,18 @@ const GameTableSectionInner = ({ ...props }) => {
         onTabItemClick={onTabItemClick}
         //
       />
-      <div className="container" style={{ marginTop: "48px" }}>
+
+      <GameNavigationRoot className="container">
         <GameNavigation
           {...props}
           sports={sports}
           onSportItemClick={onSportItemClick}
+          variant="borderless"
           //
         />
+      </GameNavigationRoot>
 
+      <GameTableRoot className={isDesktop ? "container" : ""}>
         <GameTable
           {...props}
           games={games}
@@ -74,7 +103,7 @@ const GameTableSectionInner = ({ ...props }) => {
           skeleton={skeleton}
           //
         />
-      </div>
+      </GameTableRoot>
     </>
   );
 };

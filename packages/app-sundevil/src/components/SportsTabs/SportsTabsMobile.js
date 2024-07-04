@@ -13,7 +13,7 @@ import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 /**
  * @typedef {import("./sports-tabs").Sport} Sport
  * @typedef {import("./sports-tabs").BaseProps} BaseProps
- * @typedef {BaseProps & {skeleton?: boolean}} Props
+ * @typedef {BaseProps & {skeleton?: boolean; variant?: "bottom-bordered" | "borderless" | null | undefined}} Props
  */
 
 /**
@@ -23,6 +23,7 @@ export const SportsTabsMobile = ({
   sports = [],
   onSportItemClick,
   skeleton,
+  variant,
 }) => {
   sports?.sort((a, b) => a.position - b.position);
   const activeSport = sports.find(sport => Boolean(sport.active));
@@ -46,6 +47,7 @@ export const SportsTabsMobile = ({
             <SelectBase
               // @ts-ignore
               ref={input.ref}
+              variant={variant}
               icon={iconToFaClassName(activeSport.icon)}
               name={activeSport.name}
               open={input.open}
@@ -88,4 +90,5 @@ export const SportsTabsMobile = ({
 SportsTabsMobile.propTypes = {
   ...basePropTypes,
   skeleton: PropTypes.bool,
+  variant: PropTypes.oneOf(["bottom-bordered", "borderless"]),
 };

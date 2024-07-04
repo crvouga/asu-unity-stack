@@ -16,7 +16,6 @@ const Root = styled.div`
   overflow: hidden;
   justify-content: center;
   align-items: stretch;
-  border-bottom: 1px solid #d0d0d0;
   & > *:not(:last-child) {
     border-right: 1px solid #d0d0d0;
   }

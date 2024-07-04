@@ -31,7 +31,7 @@ AllSports.args = {
   // },
   gameDataSource: {
     type: "custom",
-    gameAPI: new GameAPIMock({ timeout: 0 }),
+    gameAPI: new GameAPIMock({ timeout: 1000 }),
   },
   title: "Upcoming Games",
   emptyStateMessage: "No upcoming games",

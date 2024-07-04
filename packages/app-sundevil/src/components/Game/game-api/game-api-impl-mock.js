@@ -22,12 +22,14 @@ const ALL_GAME_TYPE = ["all", "home", "away"];
 const games = [];
 
 ALL_SPORT_IDS.forEach(sportId => {
+  const gameType =
+    ALL_GAME_TYPE[Math.floor(Math.random() * ALL_GAME_TYPE.length)];
   games.push({
     id: Math.random().toString(36).substring(2, 9),
-    gameType: ALL_GAME_TYPE[Math.floor(Math.random() * ALL_GAME_TYPE.length)],
+    gameType,
     ticketLink: "https://www.example.com",
     ticketText: "Buy Tickets",
-    title: "Sun Devils vs Wildcats",
+    title: `Sun Devils vs Wildcats ${sportId}`,
     date: {
       day: "25",
       month: "Nov",

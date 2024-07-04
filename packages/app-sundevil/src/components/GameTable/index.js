@@ -11,7 +11,6 @@ import { GameTableRow } from "./GameTableRow/GameTableRow";
 const Footer = styled.footer`
   display: flex;
   justify-content: center;
-  margin: 20px 0;
   flex-wrap: wrap;
 `;
 
@@ -36,12 +35,18 @@ const Table = styled.div`
   width: 100%;
   border: 1px solid #d0d0d0;
   position: relative;
+  & > *:not(:last-child) {
+    border-bottom: 1px solid #d0d0d0;
+  }
 `;
 
 const AlternateBackground = styled.div`
   width: 100%;
   & > div:nth-child(even) {
     background-color: #fafafa;
+  }
+  & > *:not(:last-child) {
+    border-bottom: 1px solid #d0d0d0;
   }
 `;
 
@@ -119,7 +124,7 @@ const GameTable = ({
         </Footer>
       )}
       {footerLinks && footerLinks?.length > 0 && (
-        <Footer style={{ gap: "8px" }}>
+        <Footer style={{ gap: "8px", paddingTop: "24px" }}>
           {footerLinks.map(link => (
             <a key={link.label} href={link.href} style={{ color: "#8c1d40" }}>
               {link.label}

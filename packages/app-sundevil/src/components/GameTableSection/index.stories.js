@@ -153,19 +153,16 @@ SingleSport.args = {
       label: "All Games",
       active: true,
       id: "all",
-      gameType: "all",
     },
     {
       label: "Home",
       active: false,
       id: "home",
-      gameType: "home",
     },
     {
       label: "Away",
       active: false,
       id: "away",
-      gameType: "away",
     },
   ],
   sponsorBlock: {

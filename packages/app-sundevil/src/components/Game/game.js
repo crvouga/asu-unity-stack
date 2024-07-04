@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 
 export const gameSchema = PropTypes.shape({
+  id: PropTypes.string,
   title: PropTypes.string,
   date: PropTypes.shape({
     day: PropTypes.string.isRequired,

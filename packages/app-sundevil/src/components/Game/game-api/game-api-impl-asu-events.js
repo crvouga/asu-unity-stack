@@ -32,6 +32,7 @@ const mapNodeToGame = data => {
   });
 
   return {
+    id: data?.nid,
     gameType: data.game_type,
     sportId: data.sport_tag,
     date: {

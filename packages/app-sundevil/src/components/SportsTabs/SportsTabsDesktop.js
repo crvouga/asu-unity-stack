@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { iconToFaClassName } from "../../core/drupal-integration/icon";
 import { DropDown, DropDownSurface } from "../DropDown";
 import { Skeleton } from "../Skeleton";
 import { basePropTypes } from "./sports-tabs";
@@ -61,7 +62,10 @@ export const SportsTabsDesktop = ({
             orientation="vertical"
             color={invertColor ? "muted" : "default"}
           >
-            <span title={sport.name} className={sport.icon} />
+            <span
+              title={sport.name}
+              className={iconToFaClassName(sport.icon)}
+            />
             <div>{sport.name}</div>
           </SportsTab>
         ))}

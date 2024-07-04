@@ -6,6 +6,9 @@ const isIcon = icon =>
 
 /** @type {(icon: unknown) => string} */
 export const iconToFaClassName = icon => {
+  if (typeof icon === "string") {
+    return icon;
+  }
   if (!isIcon(icon)) {
     return "";
   }

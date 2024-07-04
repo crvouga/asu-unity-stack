@@ -38,7 +38,7 @@ const GameTableSectionInner = ({ ...props }) => {
 
   const onSportItemClick = sportId => () => setSelectedSportId(sportId);
 
-  const onNavigationTabItemClick = tabId => () => setSelectedGameType(tabId);
+  const onTabItemClick = tabId => () => setSelectedGameType(tabId);
 
   const skeleton = result.t !== "ok";
   const games = result.t === "ok" ? result.value : [];
@@ -54,7 +54,7 @@ const GameTableSectionInner = ({ ...props }) => {
         {...props}
         // @ts-ignore
         tabs={tabs}
-        onTabItemClick={onNavigationTabItemClick}
+        onTabItemClick={onTabItemClick}
         //
       />
       <div className="container" style={{ marginTop: "48px" }}>

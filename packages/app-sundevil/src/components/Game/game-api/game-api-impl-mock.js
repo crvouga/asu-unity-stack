@@ -23,6 +23,7 @@ const games = [];
 
 ALL_SPORT_IDS.forEach(sportId => {
   games.push({
+    id: Math.random().toString(36).substring(2, 9),
     gameType: ALL_GAME_TYPE[Math.floor(Math.random() * ALL_GAME_TYPE.length)],
     ticketLink: "https://www.example.com",
     ticketText: "Buy Tickets",

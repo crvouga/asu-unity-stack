@@ -1,107 +1,14 @@
 // @ts-check
 // @ts-ignore
-import { Button } from "@asu/components-core";
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { Button } from "../../../../components-core/src/components/Button";
 import { gameSchema } from "../Game/game";
 import { Skeleton } from "../Skeleton";
-import { Footer, UpcomingGamesWrapper } from "./index.styles";
-
-const GameTableRow = ({ game }) => {
-  return (
-    <tr key={game.id}>
-      <td className="py-3 px-2 ">
-        <h5 className="m-0 lh-1">{game.date.month}.</h5>
-        <h2 className="m-0">{game.date.day}</h2>
-      </td>
-      {false && (
-        <>
-          <td className="py-3 px-2 ">
-            <span className="fas fa-rocket" />
-            <br />
-            <span className="m-0 fw-bold fs-6">{game.sport.name}</span>
-          </td>
-          <td>
-            <div className="d-flex align-items-center p-1">
-              <img
-                width="80px"
-                height="80px"
-                src={game.homeTeam.logo}
-                className="team-logo"
-                alt={game.homeTeam.name}
-              />
-              <h6 className="p-1 m-0 fw-bold">vs</h6>
-              <img
-                width="80px"
-                height="80px"
-                src={game.awayTeam.logo}
-                className="team-logo"
-                alt={game.awayTeam.name}
-              />
-            </div>
-          </td>
-        </>
-      )}
-      <td className="py-3 px-2 ">
-        {false && (
-          <div>
-            <h3>
-              {game.homeTeam.name}{" "}
-              {game.awayTeam ? `vs ${game.awayTeam.name}` : ""}
-            </h3>
-          </div>
-        )}
-        <div>
-          <h3>{game.title}</h3>
-        </div>
-        <div className="d-flex gap-3">
-          <span className="text-body-tertiary">{game.time}</span>
-          <span className="text-body-tertiary">{game.venue}</span>
-        </div>
-      </td>
-      <td className="py-4 px-3 btn-ticket text-center align-middle">
-        <button
-          onClick={() => {
-            window.open(game.ticketLink, "_blank");
-          }}
-          type="button"
-          className="btn btn-dark btn-sm"
-        >
-          <span className="fas fa-rocket" />
-          &nbsp;&nbsp;{game.ticketText}
-        </button>
-      </td>
-    </tr>
-  );
-};
-
-GameTableRow.propTypes = {
-  game: gameSchema.isRequired,
-};
-
-const SKELETON_GAME = {
-  title: "Game Title",
-  date: {
-    day: "25",
-    month: "Nov",
-  },
-  sport: {
-    name: "Sport Name",
-    icon: "fa fa-rocket",
-  },
-  homeTeam: {
-    name: "Sun Devils",
-    logo: "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
-  },
-  awayTeam: {
-    name: "Wildcats",
-    logo: "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
-  },
-  time: "5:30pm",
-  venue: "Phoenix Muni Stadium",
-};
+import { GameTableRow } from "./GameTableRow/GameTableRow";
+import { Footer } from "./index.styles";
 
 const EmptyStateMessage = styled.div`
   width: 100%;
@@ -115,6 +22,51 @@ const EmptyStateMessage = styled.div`
   padding: 0;
 `;
 
+const Table = styled.table`
+  max-width: 100%;
+  width: 100%;
+  overflow: hidden;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #d0d0d0;
+
+  tr {
+    border-bottom: 1px solid #d0d0d0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:nth-child(even) {
+      background-color: #fafafa;
+    }
+
+    &:nth-child(odd) {
+      background-color: transparent;
+    }
+
+    td {
+      border-right: 1px solid #d0d0d0;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+`;
+
+const Root = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  flex-wrap: nowrap;
+`;
+
+const ROW_HEIGHT = "96px";
+
 // @ts-ignore
 const GameTable = ({
   skeleton,
@@ -126,36 +78,43 @@ const GameTable = ({
 }) => {
   // const skeleton = true;
   const gamesSliced = games.slice(0, maxRowCount);
-  const gamesFinal = skeleton
-    ? Array.from({ length: maxRowCount }).map(() => SKELETON_GAME)
-    : gamesSliced;
+
   const showEmptyState =
     typeof emptyStateMessage === "string" &&
     !skeleton &&
-    gamesFinal.length === 0;
+    gamesSliced.length === 0;
 
   return (
-    <UpcomingGamesWrapper>
-      <table className="table table-bordered table-striped">
-        <tbody>
-          {gamesFinal.map(game =>
-            skeleton ? (
-              <Skeleton key={game.id} skeleton>
-                <GameTableRow game={game} />
-              </Skeleton>
-            ) : (
-              <GameTableRow key={game.id} game={game} />
-            )
-          )}
-        </tbody>
-      </table>
+    <Root>
+      {skeleton ? (
+        <div>
+          {Array.from({ length: maxRowCount }).map((_, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <Skeleton key={index} skeleton>
+              <div style={{ width: "100%", height: ROW_HEIGHT }} />
+            </Skeleton>
+          ))}
+        </div>
+      ) : (
+        <Table>
+          <tbody>
+            {gamesSliced.map(game => (
+              <GameTableRow
+                key={game.id}
+                game={game}
+                style={{ width: "100%", height: ROW_HEIGHT }}
+              />
+            ))}
+          </tbody>
+        </Table>
+      )}
       {showEmptyState && (
         <EmptyStateMessage>
           <p>{emptyStateMessage}</p>
         </EmptyStateMessage>
       )}
-      {footerButtons.length > 0 && (
-        <Footer style={{ gap: "8px" }}>
+      {footerButtons && footerButtons?.length > 0 && (
+        <Footer style={{ gap: "8px", paddingTop: "32px" }}>
           {footerButtons.map(button => (
             <Button
               key={button.label}
@@ -169,7 +128,7 @@ const GameTable = ({
           ))}
         </Footer>
       )}
-      {footerLinks.length > 0 && (
+      {footerLinks && footerLinks?.length > 0 && (
         <Footer style={{ gap: "8px" }}>
           {footerLinks.map(link => (
             <a key={link.label} href={link.href} style={{ color: "#8c1d40" }}>
@@ -178,7 +137,7 @@ const GameTable = ({
           ))}
         </Footer>
       )}
-    </UpcomingGamesWrapper>
+    </Root>
   );
 };
 

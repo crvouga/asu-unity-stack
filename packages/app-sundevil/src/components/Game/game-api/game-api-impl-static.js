@@ -27,8 +27,9 @@ export class GameAPIStatic extends IGameAPI {
           : true;
       const matchedGameType =
         typeof input?.gameType === "string" && input?.gameType.length > 0
-          ? cleanEqual(game?.gameType?.id, input?.gameType)
+          ? cleanEqual(game?.gameType, input?.gameType)
           : true;
+
       const matched = matchedSportId && matchedGameType;
       return matched;
     });

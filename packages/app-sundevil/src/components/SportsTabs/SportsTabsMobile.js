@@ -2,6 +2,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
+import { iconToFaClassName } from "../../core/drupal-integration/icon";
 import { DropDown } from "../DropDown/DropDown";
 import { DropDownSurface } from "../DropDown/DropDownSurface";
 import { SelectBase } from "../Select/SelectBase";
@@ -45,7 +46,7 @@ export const SportsTabsMobile = ({
             <SelectBase
               // @ts-ignore
               ref={input.ref}
-              icon={activeSport.icon}
+              icon={iconToFaClassName(activeSport.icon)}
               name={activeSport.name}
               open={input.open}
               onClick={() =>

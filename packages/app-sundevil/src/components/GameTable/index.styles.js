@@ -28,6 +28,7 @@ const Footer = styled.footer`
   display: flex;
   justify-content: center;
   margin: 20px 0;
+  flex-wrap: wrap;
 `;
 
 const ScheduleButton = styled.button`
@@ -43,11 +44,11 @@ const UpcomingGamesWrapper = styled.div`
 `;
 
 export {
-  GamesTable,
-  TableHeader,
-  TableCell,
-  GetTicketsButton,
   Footer,
+  GamesTable,
+  GetTicketsButton,
   ScheduleButton,
+  TableCell,
+  TableHeader,
   UpcomingGamesWrapper,
 };

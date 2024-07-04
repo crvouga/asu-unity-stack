@@ -12,7 +12,7 @@ import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 /**
  * @typedef {import("./sports-tabs").Sport} Sport
  * @typedef {import("./sports-tabs").BaseProps} BaseProps
- * @typedef {BaseProps & {moreTabOrientation?: "vertical" | "horizontal", moreTabColor?: "default" | "muted"; skeleton?: boolean}} Props
+ * @typedef {BaseProps & {moreTabOrientation?: "vertical" | "horizontal", moreTabColor?: "default" | "muted"; skeleton?: boolean; invertColor?: boolean}} Props
  */
 
 const Root = styled.div`
@@ -28,19 +28,18 @@ const Root = styled.div`
  * @type {React.FC<Props>}
  * */
 export const SportsTabsDesktop = ({
-  sports,
+  sports = [],
   onSportItemClick,
   moreTabOrientation,
   moreTabColor,
   skeleton,
-  // @ts-ignore
   invertColor,
 }) => {
-  sports.sort((a, b) => a.position - b.position);
+  sports?.sort((a, b) => a.position - b.position);
   const firstTenSports = sports
-    .filter((_sport, index) => index < 9)
+    ?.filter((_sport, index) => index < 9)
     // @ts-ignore
-    .filter(sport => !sport.more);
+    ?.filter(sport => !sport.more);
 
   const moreSports = sports.filter((sport, index) => index >= 9);
   const isMoreSportsActive = moreSports.some(sport => Boolean(sport.active));
@@ -102,6 +101,7 @@ export const SportsTabsDesktop = ({
                 <DropDownSurface>
                   {moreSports.map(sport => (
                     <SportsTabDropDownItem
+                      key={sport.id ?? sport.name}
                       label={sport.name}
                       active={Boolean(sport.active)}
                       onClick={() => {

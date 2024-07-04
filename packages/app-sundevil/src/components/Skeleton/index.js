@@ -3,8 +3,7 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const Root = styled.div`
-  display: flex;
-  flex-direction: column;
+  ${({ as }) => (as === "tr" ? "display: table-row;" : "display: flex;")}
   justify-content: center;
   align-items: center;
   ${({ fitContent }) =>
@@ -56,6 +55,8 @@ export const Skeleton = ({
   className,
   style,
   fitContent,
+
+  component = "div",
 }) => {
   const rootRef = useRef(null);
 
@@ -69,6 +70,7 @@ export const Skeleton = ({
 
   return (
     <Root
+      as={component}
       skeleton={Boolean(skeleton)}
       className={className}
       style={style}
@@ -87,4 +89,5 @@ Skeleton.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
   fitContent: PropTypes.bool,
+  component: PropTypes.elementType,
 };

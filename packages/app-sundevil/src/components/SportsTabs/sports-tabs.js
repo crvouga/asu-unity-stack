@@ -29,5 +29,5 @@ export const sportSchema = PropTypes.shape({
 
 export const basePropTypes = {
   sports: PropTypes.arrayOf(sportSchema).isRequired,
-  onSportItemClick: PropTypes.func.isRequired,
+  onSportItemClick: PropTypes.func,
 };

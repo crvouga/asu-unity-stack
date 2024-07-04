@@ -2,8 +2,8 @@
 import React, { useEffect } from "react";
 
 import { GameNavigation } from "../GameNavigation";
+import { SportsTable } from "../GameTable";
 import { Header } from "../SectionHeader";
-import { SportsTable } from "../Table";
 
 const GameList = ({ ...props }) => {
   const [allSports, setAllSports] = React.useState([]);

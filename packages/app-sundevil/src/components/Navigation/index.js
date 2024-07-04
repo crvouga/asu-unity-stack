@@ -84,7 +84,7 @@ const SportsNavigation = ({ sports, onSportItemClick }) => {
 
 SportsNavigation.propTypes = {
   sports: PropTypes.arrayOf(sportSchema).isRequired,
-  onSportItemClick: PropTypes.func.isRequired,
+  onSportItemClick: PropTypes.func,
 };
 
 export { SportsNavigation };

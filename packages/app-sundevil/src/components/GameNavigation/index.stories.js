@@ -3,7 +3,6 @@ import React from "react";
 
 import { GameNavigation } from "./index";
 
-/** @typedef {import("@asu-design-system/components-core/src/core/types/feed-types").ComponentType } ComponentType */
 export default {
   title: "Game Navigation",
   component: GameNavigation,
@@ -17,9 +16,7 @@ export default {
 };
 
 const Template = args => <GameNavigation {...args} />;
-/**
- * @type {{ args: ComponentType, parameters: object}}
- */
+
 export const Default = Template.bind({});
 Default.args = {
   sports: [

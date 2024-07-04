@@ -7,10 +7,6 @@ import { NavItem } from "../Navigation/index.styles";
 import { Logo } from "./index.styles";
 import { JoinTheConversation, socialPropType } from "./JoinTheConversation";
 
-/**
- * @typedef {import("../../../../component-game-list/src/core/types/app-types").AppType} AppType
- */
-
 const Subtitle = styled.p`
   width: 100%;
   max-width: 520px;
@@ -38,9 +34,6 @@ const HeaderBody = styled.nav`
   gap: 48px;
 `;
 
-/**
- * @param {AppType & {children: object}} props
- */
 const Header = forwardRef(
   // @ts-ignore
   (

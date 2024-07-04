@@ -18,8 +18,12 @@ import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 /**
  * @type {React.FC<Props>}
  * */
-export const SportsTabsMobile = ({ sports, onSportItemClick, skeleton }) => {
-  sports.sort((a, b) => a.position - b.position);
+export const SportsTabsMobile = ({
+  sports = [],
+  onSportItemClick,
+  skeleton,
+}) => {
+  sports?.sort((a, b) => a.position - b.position);
   const activeSport = sports.find(sport => Boolean(sport.active));
   if (!activeSport) return null;
 
@@ -59,6 +63,7 @@ export const SportsTabsMobile = ({ sports, onSportItemClick, skeleton }) => {
             <DropDownSurface style={{ width: input.referenceWidth }}>
               {sports.map(sport => (
                 <SportsTabDropDownItem
+                  key={sport.id ?? sport.name}
                   label={sport.name}
                   active={Boolean(sport.active)}
                   onClick={() => {

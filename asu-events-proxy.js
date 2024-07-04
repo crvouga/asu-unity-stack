@@ -2,13 +2,16 @@ const http = require("http");
 const https = require("https");
 
 const PORT = 8888;
-const SERVER_URL = `http://localhost:${PORT}`
+const SERVER_URL = `http://localhost:${PORT}`;
 const TARGET_URL = "https://asuevents.asu.edu/feed-json/sun_devil_athletics";
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   // Set CORS headers
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, PUT, DELETE, OPTIONS"
+  );
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method === "OPTIONS") {
@@ -16,6 +19,8 @@ const server = http.createServer((req, res) => {
     res.end();
     return;
   }
+
+  await new Promise(resolve => setTimeout(resolve, 1000));
 
   https
     .get(TARGET_URL, externalRes => {
@@ -40,6 +45,6 @@ const server = http.createServer((req, res) => {
 
 server.listen(PORT, () => {
   console.log(`Proxy server is running on port ${PORT}`);
-  console.log(`Proxy server is forwarding requests to ${TARGET_URL}`)
-  console.log(`Proxy server is accessible at ${SERVER_URL}`)
+  console.log(`Proxy server is forwarding requests to ${TARGET_URL}`);
+  console.log(`Proxy server is accessible at ${SERVER_URL}`);
 });

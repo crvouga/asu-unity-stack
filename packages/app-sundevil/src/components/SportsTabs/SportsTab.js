@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { AspectRatioSquare } from "./AspectRatioSquare";
+import { AspectRatioSquare } from "../AspectRatio/AspectRatioSquare";
 
 const Root = styled.div`
   flex: 1;

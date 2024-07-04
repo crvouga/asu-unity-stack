@@ -17,6 +17,7 @@ const GameTableSectionInner = ({ ...props }) => {
   const [selectedSportId, setSelectedSportId] = useState(
     props?.sports?.find(sport => sport?.active)?.id ?? "all"
   );
+
   const [selectedGameType, setSelectedGameType] = useState(
     props?.tabs?.find(tab => tab?.active)?.gameType ?? "all"
   );
@@ -40,7 +41,7 @@ const GameTableSectionInner = ({ ...props }) => {
 
   const onTabItemClick = tabId => () => setSelectedGameType(tabId);
 
-  const skeleton = result.t !== "ok";
+  const skeleton = result.t !== "ok" && !props?.disableSkeleton;
   const games = result.t === "ok" ? result.value : [];
 
   const activeSport = sports?.find(sport => Boolean(sport?.active));
@@ -106,6 +107,7 @@ const GameTableSection = ({ gameDataSource, ...props }) => {
 GameTableSection.propTypes = {
   ...GameTableSectionInner.propTypes,
   gameDataSource: gameDataSourceSchema,
+  disableSkeleton: PropTypes.bool,
 };
 
 export { GameTableSection };

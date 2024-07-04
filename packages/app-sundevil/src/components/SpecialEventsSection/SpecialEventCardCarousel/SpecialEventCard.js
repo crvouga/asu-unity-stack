@@ -3,8 +3,8 @@ import React, { useRef, useState } from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../../components-core/src";
+import { AspectRatio16by9 } from "../../AspectRatio/AspectRatio16by9";
 import { Skeleton } from "../../Skeleton";
-import { AspectRatio16by9 } from "./AspectRatio16by9";
 import { specialEventCardSchema } from "./special-event-card";
 
 const CardRoot = styled.div`

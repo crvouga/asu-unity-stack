@@ -25,9 +25,13 @@ const Template = args => <GameTableSection {...args} />;
  */
 export const AllSports = Template.bind({});
 AllSports.args = {
+  // gameDataSource: {
+  //   type: "asu-events",
+  //   url: "http://localhost:8888/",
+  // },
   gameDataSource: {
-    type: "asu-events",
-    url: "http://localhost:8888/",
+    type: "custom",
+    gameAPI: new GameAPIMock({ timeout: 0 }),
   },
   title: "Upcoming Games",
   emptyStateMessage: "No upcoming games",

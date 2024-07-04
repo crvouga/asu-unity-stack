@@ -23,15 +23,9 @@ const Content = styled.div`
   aspect-ratio: 1;
 `;
 
-const propsSchema = {
-  children: PropTypes.node,
-};
-
 /**
  * @typedef {{
  * children: React.ReactNode;
- * active: boolean;
- * onClick: () => void;
  * }} Props
  */
 
@@ -45,4 +39,6 @@ export const AspectRatioSquare = ({ children }) => {
     </Root>
   );
 };
-AspectRatioSquare.propTypes = propsSchema;
+AspectRatioSquare.propTypes = {
+  children: PropTypes.node,
+};

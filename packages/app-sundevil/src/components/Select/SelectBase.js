@@ -27,7 +27,7 @@ const Root = styled.button`
   background-color: transparent;
   color: #191919;
   border: none;
-  padding: 1rem 1rem;
+  padding: 1rem 0rem;
   min-width: 260px;
   text-align: left;
   width: 100%;

@@ -1,10 +1,11 @@
 // @ts-check
 import PropTypes from "prop-types";
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import styled from "styled-components";
 
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { APP_CONFIG } from "../../config";
+import { useElementContentDimensions } from "../../utils/use-element-position";
 import {
   buildGameDataSource,
   gameDataSourceSchema,
@@ -32,7 +33,10 @@ const GameNavigationRoot = styled.div`
   align-items: center;
   width: 100%;
   overflow: hidden;
-  padding-top: 20px;
+`;
+
+const HeaderRoot = styled.div`
+  padding-bottom: 20px;
 `;
 
 const GameTableSectionInner = ({ ...props }) => {
@@ -74,25 +78,53 @@ const GameTableSectionInner = ({ ...props }) => {
   const isMobile = useIsMobile(APP_CONFIG.breakpoint);
   const isDesktop = !isMobile;
 
-  return (
-    <>
-      <Header
-        {...props}
-        // @ts-ignore
-        tabs={tabs}
-        onTabItemClick={onTabItemClick}
-        //
-      />
+  /** @type {React.MutableRefObject<HTMLDivElement | null>} */
+  const headerRef = useRef(null);
+  const headerDimensions = useElementContentDimensions(headerRef);
 
-      <GameNavigationRoot className="container">
-        <GameNavigation
-          {...props}
-          sports={sports}
-          onSportItemClick={onSportItemClick}
-          variant="borderless"
-          //
-        />
-      </GameNavigationRoot>
+  return (
+    <div
+      style={{
+        marginTop: props.applyNegativeMarginForOverlap
+          ? -headerDimensions.height
+          : 0,
+      }}
+    >
+      <div ref={headerRef}>
+        <HeaderRoot>
+          <Header
+            {...props}
+            // @ts-ignore
+            tabs={tabs}
+            onTabItemClick={onTabItemClick}
+            //
+          />
+        </HeaderRoot>
+
+        {isDesktop && (
+          <GameNavigationRoot className="container">
+            <GameNavigation
+              {...props}
+              sports={sports}
+              onSportItemClick={onSportItemClick}
+              variant="borderless"
+              //
+            />
+          </GameNavigationRoot>
+        )}
+      </div>
+
+      {isMobile && (
+        <GameNavigationRoot className="container">
+          <GameNavigation
+            {...props}
+            sports={sports}
+            onSportItemClick={onSportItemClick}
+            variant="borderless"
+            //
+          />
+        </GameNavigationRoot>
+      )}
 
       <GameTableRoot className={isDesktop ? "container" : ""}>
         <GameTable
@@ -104,7 +136,7 @@ const GameTableSectionInner = ({ ...props }) => {
           //
         />
       </GameTableRoot>
-    </>
+    </div>
   );
 };
 
@@ -118,6 +150,7 @@ GameTableSectionInner.propTypes = {
   ...Header.propTypes,
   ...GameNavigation.propTypes,
   ...GameTable.propTypes,
+  applyNegativeMarginForOverlap: PropTypes.bool,
   sports: PropTypes.arrayOf(sportSchemaGameTable),
 };
 

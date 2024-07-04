@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Skeleton } from "../../Skeleton";
 import { gameTableRowPropTypes } from "./game-table-row";
 
-const Root = styled.tr`
+const Root = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,11 +15,6 @@ const Root = styled.tr`
   height: 64px;
   max-height: 64px;
   gap: 1rem;
-  padding: 0 2rem;
-
-  .flex-1 {
-    flex: 1;
-  }
 `;
 
 const Title = styled.p`
@@ -88,27 +83,29 @@ const TitleRoot = styled.div`
 export const GameTableRowMobile = ({ game, skeleton }) => {
   return (
     <Skeleton skeleton={skeleton}>
-      <Root>
-        <Date>{`${game?.date.month}. ${game?.date.day}`}</Date>
+      <div className="container">
+        <Root>
+          <Date>{`${game?.date.month}. ${game?.date.day}`}</Date>
 
-        <TitleRoot>
-          <Title>{game?.title}</Title>
-          <Subtitles>
-            <Subtitle className="text-body-tertiary">{game?.time}</Subtitle>
-            <Subtitle className="text-body-tertiary">{game?.venue}</Subtitle>
-          </Subtitles>
-        </TitleRoot>
+          <TitleRoot>
+            <Title>{game?.title}</Title>
+            <Subtitles>
+              <Subtitle className="text-body-tertiary">{game?.time}</Subtitle>
+              <Subtitle className="text-body-tertiary">{game?.venue}</Subtitle>
+            </Subtitles>
+          </TitleRoot>
 
-        <TicketButton
-          type="button"
-          aria-label={game?.ticketText}
-          onClick={() => {
-            window.open(game?.ticketLink, "_blank");
-          }}
-        >
-          <i className="fa fa-fas fa-ticket" />
-        </TicketButton>
-      </Root>
+          <TicketButton
+            type="button"
+            aria-label={game?.ticketText}
+            onClick={() => {
+              window.open(game?.ticketLink, "_blank");
+            }}
+          >
+            <i className="fa fa-fas fa-ticket" />
+          </TicketButton>
+        </Root>
+      </div>
     </Skeleton>
   );
 };

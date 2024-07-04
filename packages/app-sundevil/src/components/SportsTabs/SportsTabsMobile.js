@@ -13,7 +13,7 @@ import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 /**
  * @typedef {import("./sports-tabs").Sport} Sport
  * @typedef {import("./sports-tabs").BaseProps} BaseProps
- * @typedef {BaseProps & {skeleton?: boolean; variant?: "bottom-bordered" | "borderless" | null | undefined}} Props
+ * @typedef {BaseProps & {skeleton?: boolean; variant?: "bottom-bordered" | "borderless" | null | undefined; className?: string}} Props
  */
 
 /**
@@ -24,6 +24,7 @@ export const SportsTabsMobile = ({
   onSportItemClick,
   skeleton,
   variant,
+  className,
 }) => {
   sports?.sort((a, b) => a.position - b.position);
   const activeSport = sports.find(sport => Boolean(sport.active));
@@ -36,7 +37,7 @@ export const SportsTabsMobile = ({
   const [state, setState] = React.useState(initialState);
 
   return (
-    <Skeleton skeleton={Boolean(skeleton)}>
+    <Skeleton skeleton={Boolean(skeleton)} className={className}>
       <DropDown
         open={state.opened === "dropdown"}
         onClose={() =>
@@ -91,4 +92,5 @@ SportsTabsMobile.propTypes = {
   ...basePropTypes,
   skeleton: PropTypes.bool,
   variant: PropTypes.oneOf(["bottom-bordered", "borderless"]),
+  className: PropTypes.string,
 };

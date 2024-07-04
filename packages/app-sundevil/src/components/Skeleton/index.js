@@ -55,7 +55,6 @@ export const Skeleton = ({
   className,
   style,
   fitContent,
-
   component = "div",
 }) => {
   const rootRef = useRef(null);

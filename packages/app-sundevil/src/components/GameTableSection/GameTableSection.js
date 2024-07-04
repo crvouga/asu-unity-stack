@@ -1,7 +1,6 @@
 // @ts-check
 import PropTypes from "prop-types";
 import React, { useMemo, useRef, useState } from "react";
-import styled from "styled-components";
 
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { APP_CONFIG } from "../../config";
@@ -15,29 +14,8 @@ import { useGameLoader } from "../Game/use-game-api";
 import { GameNavigation } from "../GameNavigation";
 import { GameTable, gameTableFooterButtonSchema } from "../GameTable";
 import { Header } from "../SectionHeader";
+import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportSchema } from "../SportsTabs/sports-tabs";
-
-const GameTableRoot = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  overflow: hidden;
-`;
-
-const GameNavigationRoot = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  overflow: hidden;
-`;
-
-const HeaderRoot = styled.div`
-  padding-bottom: 20px;
-`;
 
 const GameTableSectionInner = ({ ...props }) => {
   const [selectedSportId, setSelectedSportId] = useState(
@@ -91,42 +69,39 @@ const GameTableSectionInner = ({ ...props }) => {
       }}
     >
       <div ref={headerRef}>
-        <HeaderRoot>
+        <div style={{ paddingBottom: "20px" }}>
           <Header
             {...props}
             // @ts-ignore
             tabs={tabs}
             onTabItemClick={onTabItemClick}
-            //
           />
-        </HeaderRoot>
+        </div>
 
         {isDesktop && (
-          <GameNavigationRoot className="container">
-            <GameNavigation
+          <div className="container">
+            <SportsTabsDesktop
               {...props}
               sports={sports}
               onSportItemClick={onSportItemClick}
-              variant="borderless"
-              //
             />
-          </GameNavigationRoot>
+          </div>
         )}
       </div>
 
       {isMobile && (
-        <GameNavigationRoot className="container">
-          <GameNavigation
+        <div className="container">
+          <SportsTabsMobile
             {...props}
+            className="container"
             sports={sports}
             onSportItemClick={onSportItemClick}
             variant="borderless"
-            //
           />
-        </GameNavigationRoot>
+        </div>
       )}
 
-      <GameTableRoot className={isDesktop ? "container" : ""}>
+      <div className={isDesktop ? "container" : ""}>
         <GameTable
           {...props}
           games={games}
@@ -135,7 +110,7 @@ const GameTableSectionInner = ({ ...props }) => {
           skeleton={skeleton}
           //
         />
-      </GameTableRoot>
+      </div>
     </div>
   );
 };

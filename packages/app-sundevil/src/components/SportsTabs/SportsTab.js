@@ -11,16 +11,17 @@ const Root = styled.div`
     background-color: transparent;
 
     &:hover {
-      background-color: rgba(25, 25, 25, 0.1);
+      opacity: 0.7;
+      background-color: ${({ darkMode }) =>
+        darkMode ? "rgba(250, 250, 250, 0.1)" : "rgba(25, 25, 25, 0.1)"};
     }
 
-    color: ${({ color }) => (color === "muted" ? "#747474" : "inherit")};
+    color: ${({ darkMode }) => (darkMode ? "#fafafa" : "#191919")};
   }
 
   &.active {
-    background-color: ${({ color }) =>
-      color === "muted" ? "#fafafa" : "#191919"};
-    color: ${({ color }) => (color === "muted" ? "#191919" : "#fafafa")};
+    background-color: ${({ darkMode }) => (darkMode ? "#fff" : "#191919")};
+    color: ${({ darkMode }) => (darkMode ? "#191919" : "#fff")};
   }
 
   outline: none !important;
@@ -53,6 +54,7 @@ const propsSchema = {
   onClick: PropTypes.func,
   orientation: PropTypes.oneOf(["horizontal", "vertical"]),
   color: PropTypes.oneOf(["default", "muted"]),
+  darkMode: PropTypes.bool,
 };
 
 /**
@@ -62,6 +64,7 @@ const propsSchema = {
  * onClick: () => void;
  * orientation: "horizontal" | "vertical";
  * color?: "default" | "muted";
+ * darkMode?: boolean;
  * }} Props
  */
 
@@ -69,7 +72,10 @@ const propsSchema = {
  * @type {React.FC<Props>}
  */
 export const SportsTab = React.forwardRef(
-  ({ children, active, onClick, orientation, color }, ref) => {
+  (
+    { children, active, onClick, orientation, color, darkMode = false },
+    ref
+  ) => {
     const className = active ? "active" : "inactive";
     return (
       <Root
@@ -79,6 +85,7 @@ export const SportsTab = React.forwardRef(
         tabIndex={0}
         ref={ref}
         color={color}
+        darkMode={darkMode}
         onKeyDown={e => {
           if (e.key === "Enter") {
             onClick();

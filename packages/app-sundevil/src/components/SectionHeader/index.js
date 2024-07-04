@@ -51,7 +51,7 @@ const Header = forwardRef(
       // @ts-ignore
       onTabItemClick,
       // @ts-ignore
-      invertColor = false,
+      darkMode = false,
     },
     ref
   ) => {
@@ -60,9 +60,7 @@ const Header = forwardRef(
         <div className="row">
           <div className="col-md-8 col-sm-12">
             <div className="d-flex flex-row align-items-end justify-content-between gap-2 pt-2">
-              <h2
-                className={`m-0 ${invertColor ? "text-white" : "text-black"}`}
-              >
+              <h2 className={`m-0 ${darkMode ? "text-white" : "text-black"}`}>
                 {title}
               </h2>
               <div className="mt-auto mr-auto d-flex d-sm-flex d-md-none justify-content-end">
@@ -71,9 +69,7 @@ const Header = forwardRef(
                   className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
                 >
                   <h5
-                    className={`m-0 ${
-                      invertColor ? "text-white" : "text-black"
-                    }`}
+                    className={`m-0 ${darkMode ? "text-white" : "text-black"}`}
                   >
                     {sponsorBlock?.text}
                   </h5>
@@ -112,9 +108,7 @@ const Header = forwardRef(
               href={sponsorBlock?.url}
               className="d-flex flex-row align-items-center justify-content-end gap-2"
             >
-              <h5
-                className={`m-0 ${invertColor ? "text-white" : "text-black"}`}
-              >
+              <h5 className={`m-0 ${darkMode ? "text-white" : "text-black"}`}>
                 {sponsorBlock?.text}
               </h5>
               <Logo src={sponsorBlock?.logo} alt={sponsorBlock?.name} />
@@ -145,7 +139,7 @@ Header.propTypes = {
   ),
   social: PropTypes.arrayOf(socialPropType),
   onTabItemClick: PropTypes.func,
-  invertColor: PropTypes.bool,
+  darkMode: PropTypes.bool,
 };
 
 const SectionHeader = Header;

@@ -13,7 +13,7 @@ import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 /**
  * @typedef {import("./sports-tabs").Sport} Sport
  * @typedef {import("./sports-tabs").BaseProps} BaseProps
- * @typedef {BaseProps & {moreTabOrientation?: "vertical" | "horizontal", moreTabColor?: "default" | "muted"; skeleton?: boolean; invertColor?: boolean}} Props
+ * @typedef {BaseProps & {moreTabOrientation?: "vertical" | "horizontal", moreTabColor?: "default" | "muted"; skeleton?: boolean; darkMode?: boolean; className?: string}} Props
  */
 
 const Root = styled.div`
@@ -34,7 +34,8 @@ export const SportsTabsDesktop = ({
   moreTabOrientation,
   moreTabColor,
   skeleton,
-  invertColor,
+  darkMode = false,
+  className,
 }) => {
   sports?.sort((a, b) => a.position - b.position);
   const firstTenSports = sports
@@ -52,7 +53,7 @@ export const SportsTabsDesktop = ({
   const [state, setState] = React.useState(initialState);
 
   return (
-    <Skeleton skeleton={Boolean(skeleton)}>
+    <Skeleton skeleton={Boolean(skeleton)} className={className}>
       <Root>
         {firstTenSports.map(sport => (
           <SportsTab
@@ -60,7 +61,7 @@ export const SportsTabsDesktop = ({
             onClick={onSportItemClick(sport.id)}
             active={Boolean(sport.active)}
             orientation="vertical"
-            color={invertColor ? "muted" : "default"}
+            darkMode={darkMode}
           >
             <span
               title={sport.name}
@@ -90,6 +91,7 @@ export const SportsTabsDesktop = ({
                   orientation={moreTabOrientation ?? "vertical"}
                   active={isMoreSportsActive}
                   color={moreTabColor ?? "default"}
+                  darkMode={darkMode}
                 >
                   {input.open ? (
                     <span className="fas fa-chevron-up" />
@@ -131,6 +133,6 @@ export const SportsTabsDesktop = ({
 SportsTabsDesktop.propTypes = {
   ...basePropTypes,
   skeleton: PropTypes.bool,
-  // @ts-ignore
-  invertColor: PropTypes.bool,
+  darkMode: PropTypes.bool,
+  className: PropTypes.string,
 };

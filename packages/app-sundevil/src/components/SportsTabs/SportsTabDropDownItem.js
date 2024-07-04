@@ -41,6 +41,9 @@ const Root = styled.button`
     &:hover {
       background-color: rgba(25, 25, 25, 0.1);
     }
+    &:focus {
+      background-color: rgba(25, 25, 25, 0.1);
+    }
   }
   &.active {
     background-color: #191919;

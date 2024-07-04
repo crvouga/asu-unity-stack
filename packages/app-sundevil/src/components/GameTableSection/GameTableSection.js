@@ -13,7 +13,7 @@ import { GameAPIProvider } from "../Game/GameAPIContext";
 import { useGameLoader } from "../Game/use-game-api";
 import { GameNavigation } from "../GameNavigation";
 import { GameTable, gameTableFooterButtonSchema } from "../GameTable";
-import { Header } from "../SectionHeader";
+import { SectionHeader } from "../SectionHeader";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportSchema } from "../SportsTabs/sports-tabs";
 
@@ -70,7 +70,7 @@ const GameTableSectionInner = ({ ...props }) => {
     >
       <div ref={headerRef}>
         <div style={{ paddingBottom: "20px" }}>
-          <Header
+          <SectionHeader
             {...props}
             // @ts-ignore
             tabs={tabs}
@@ -122,7 +122,7 @@ const sportSchemaGameTable = PropTypes.shape({
 });
 
 GameTableSectionInner.propTypes = {
-  ...Header.propTypes,
+  ...SectionHeader.propTypes,
   ...GameNavigation.propTypes,
   ...GameTable.propTypes,
   applyNegativeMarginForOverlap: PropTypes.bool,

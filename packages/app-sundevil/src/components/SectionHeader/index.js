@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
-import { NavItem } from "../Navigation/index.styles";
+import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
+import { APP_CONFIG } from "../../config";
 import { Logo } from "./index.styles";
 import { JoinTheConversation, socialPropType } from "./JoinTheConversation";
+import { Tabs } from "./Tabs";
 
 const Subtitle = styled.p`
   width: 100%;
@@ -34,7 +36,7 @@ const HeaderBody = styled.nav`
   gap: 48px;
 `;
 
-const Header = forwardRef(
+const SectionHeader = forwardRef(
   // @ts-ignore
   (
     {
@@ -55,6 +57,7 @@ const Header = forwardRef(
     },
     ref
   ) => {
+    const isMobile = useIsMobile(APP_CONFIG.breakpoint);
     return (
       <div className="container" ref={ref}>
         <div className="row">
@@ -82,21 +85,11 @@ const Header = forwardRef(
                 <Subtitle dangerouslySetInnerHTML={{ __html: subtitle }} />
               )}
               {tabs && tabs.length > 0 && (
-                <nav className="nav nav-pills">
-                  {tabs.map(tab => (
-                    <NavItem
-                      onClick={onTabItemClick?.(tab.id)}
-                      // @ts-ignore
-                      active={!!tab.active}
-                      key={tab.id}
-                      className={`text-sm-center nav-link ${
-                        tab.active ? "active" : ""
-                      }`}
-                    >
-                      {tab.label}
-                    </NavItem>
-                  ))}
-                </nav>
+                <Tabs
+                  tabs={tabs}
+                  onTabItemClick={onTabItemClick}
+                  stretch={isMobile}
+                />
               )}
               {social && social.length > 0 && (
                 <JoinTheConversation social={social} />
@@ -120,7 +113,7 @@ const Header = forwardRef(
   }
 );
 
-Header.propTypes = {
+SectionHeader.propTypes = {
   // @ts-ignore
   title: PropTypes.string,
   subtitle: PropTypes.string,
@@ -142,7 +135,5 @@ Header.propTypes = {
   darkMode: PropTypes.bool,
 };
 
-const SectionHeader = Header;
-
-export { Header, SectionHeader };
+export { SectionHeader };
 //

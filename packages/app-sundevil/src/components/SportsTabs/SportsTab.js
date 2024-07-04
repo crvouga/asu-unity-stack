@@ -22,6 +22,11 @@ const Root = styled.div`
       }
       return color === "muted" ? "#6c757d" : "#191919";
     }};
+
+    &:focus {
+      background-color: ${({ darkMode }) =>
+        darkMode ? "rgba(250, 250, 250, 0.1)" : "rgba(25, 25, 25, 0.1)"};
+    }
   }
 
   &.active {

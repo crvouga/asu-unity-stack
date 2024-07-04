@@ -30,7 +30,6 @@ const Tab = styled.button`
   }) => (active ? "#fff" : "#191919")};
   border: none;
   outline: none;
-  transition: background-color 0.1s, color 0.1s;
 
   ${({
     // @ts-ignore
@@ -71,12 +70,12 @@ const Tabs = ({ tabs, onTabItemClick, stretch = false }) => {
     tabs &&
     tabs.length > 0 && (
       <Root>
-        {tabs.map(tab => (
+        {tabs.map((tab, index) => (
           <Tab
             onClick={onTabItemClick?.(tab.id)}
             // @ts-ignore
             active={Boolean(tab.active)}
-            key={tab.id}
+            key={tab.id ?? tab.label ?? index}
             // @ts-ignore
             stretch={stretch}
           >

@@ -1,11 +1,11 @@
 // @ts-nocheck
 import React from "react";
 
-import { Header } from "./index";
+import { SectionHeader } from "./index";
 
 export default {
   title: "Section Header",
-  component: Header,
+  component: SectionHeader,
   parameters: {
     docs: {
       description: {
@@ -15,7 +15,7 @@ export default {
   },
 };
 
-const Template = args => <Header {...args} />;
+const Template = args => <SectionHeader {...args} />;
 /**
  * @type {{ args: ComponentType, parameters: object}}
  */

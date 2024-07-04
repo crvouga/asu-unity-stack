@@ -52,13 +52,11 @@
   <body>
     <div id="section-container"></div>
     <script>
-      class CustomGameAPI extends IGameAPI {
-        constructor() {
-          super();
-        }
-        async findMany() {
-          console.log("CustomGameAPI.findMany()");
-          return [
+      const props = {
+        // This will use a static list of games
+        gameDataSource: {
+          type: "static",
+          games: [
             {
               id: Math.random().toString(36).substring(2, 9),
               gameType: "home",
@@ -85,13 +83,7 @@
               time: "5:30pm",
               venue: "Phoenix Muni Stadium",
             },
-          ];
-        }
-      }
-      const props = {
-        gameDataSource: {
-          type: "custom",
-          gameAPI: new CustomGameAPI(),
+          ],
         },
         title: "Upcoming Games",
         emptyStateMessage: "No upcoming games",

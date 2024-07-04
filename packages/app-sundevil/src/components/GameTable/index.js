@@ -8,7 +8,13 @@ import { Button } from "../../../../components-core/src/components/Button";
 import { gameSchema } from "../Game/game";
 import { Skeleton } from "../Skeleton";
 import { GameTableRow } from "./GameTableRow/GameTableRow";
-import { Footer } from "./index.styles";
+
+const Footer = styled.footer`
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  flex-wrap: wrap;
+`;
 
 const EmptyStateMessage = styled.div`
   width: 100%;

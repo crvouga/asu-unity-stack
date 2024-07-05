@@ -53,7 +53,7 @@ const GameTableSectionInner = ({ ...props }) => {
     activeSport?.footerButtons ?? props?.footerButtons ?? [];
   const footerLinks = activeSport?.footerLinks ?? props?.footerLinks ?? [];
 
-  const isMobile = useIsMobile(APP_CONFIG.breakpoint);
+  const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
 
   /** @type {React.MutableRefObject<HTMLDivElement | null>} */

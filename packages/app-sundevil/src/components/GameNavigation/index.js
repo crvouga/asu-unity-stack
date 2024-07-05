@@ -12,7 +12,7 @@ import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
  * @type {React.FC<Props>}
  */
 const GameNavigation = ({ ...props }) => {
-  const isMobile = useIsMobile(APP_CONFIG.breakpoint);
+  const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
   if (isMobile) {
     return <SportsTabsMobile {...props} />;
   }

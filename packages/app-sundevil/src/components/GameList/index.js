@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 
 import { GameNavigation } from "../GameNavigation";
 import { GameTable } from "../GameTable";
-import { Header } from "../SectionHeader";
+import { SectionHeader } from "../SectionHeader";
 
 const GameList = ({ ...props }) => {
   const [allSports, setAllSports] = React.useState([]);
@@ -90,7 +90,7 @@ const GameList = ({ ...props }) => {
 
   return (
     <>
-      <Header
+      <SectionHeader
         {...{ ...props }}
         // @ts-ignore
         tabs={navigationTabs}
@@ -110,7 +110,7 @@ const GameList = ({ ...props }) => {
   );
 };
 
-GameList.propTypes = Header.propTypes;
+GameList.propTypes = SectionHeader.propTypes;
 GameList.propTypes = GameNavigation.propTypes;
 GameList.propTypes = GameTable.propTypes;
 

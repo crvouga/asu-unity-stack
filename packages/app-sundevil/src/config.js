@@ -1,3 +1,4 @@
 export const APP_CONFIG = {
-  breakpoint: "768px",
+  breakpointMobile: "768px",
+  breakpointTablet: "1024px",
 };

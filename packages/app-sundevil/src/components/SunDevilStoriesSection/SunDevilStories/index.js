@@ -79,7 +79,7 @@ export const SunDevilStories = ({
     sectionHeaderPosition.left - sectionHeaderPosition.right
   );
 
-  const isMobile = useIsMobile(APP_CONFIG.breakpoint);
+  const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
 
   return (

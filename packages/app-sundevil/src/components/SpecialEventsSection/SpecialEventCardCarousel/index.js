@@ -64,7 +64,7 @@ export const SpecialEventCardCarousel = ({
 }) => {
   const [carouselController] = useState(() => new CarouselController());
   const [index, setIndex] = useState(0);
-  const isMobile = useIsMobile(APP_CONFIG.breakpoint);
+  const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
   const carouselRef = useRef(null);
 
   return (

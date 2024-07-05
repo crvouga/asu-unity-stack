@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
+import { APP_CONFIG } from "../../config";
 import { iconToFaClassName } from "../../core/drupal-integration/icon";
 import { DropDown, DropDownSurface } from "../DropDown";
 import { Skeleton } from "../Skeleton";
@@ -38,12 +40,14 @@ export const SportsTabsDesktop = ({
   className,
 }) => {
   sports?.sort((a, b) => a.position - b.position);
-  const firstTenSports = sports
-    ?.filter((_sport, index) => index < 9)
-    // @ts-ignore
-    ?.filter(sport => !sport.more);
+  const isTablet = useIsMobile(APP_CONFIG.breakpointTablet);
+  const tabCount = isTablet ? 6 : 9;
+  // @ts-ignore
+  const sportTabs = sports?.filter(sport => !sport.more)?.slice(0, tabCount);
 
-  const moreSports = sports.filter((sport, index) => index >= 9);
+  const moreSports = sports.filter(sport =>
+    sportTabs.every(s => s.id !== sport.id)
+  );
   const isMoreSportsActive = moreSports.some(sport => Boolean(sport.active));
 
   /** @type {Record<string, unknown>} */
@@ -55,7 +59,7 @@ export const SportsTabsDesktop = ({
   return (
     <Skeleton skeleton={Boolean(skeleton)} className={className}>
       <Root>
-        {firstTenSports.map(sport => (
+        {sportTabs.map(sport => (
           <SportsTab
             key={sport.id}
             onClick={onSportItemClick(sport.id)}

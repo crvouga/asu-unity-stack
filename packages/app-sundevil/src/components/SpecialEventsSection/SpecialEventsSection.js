@@ -5,8 +5,8 @@ import styled from "styled-components";
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { APP_CONFIG } from "../../config";
 import {
-  useElementContentDimensions,
-  useElementContentPosition,
+    useElementContentDimensions,
+    useElementContentPosition,
 } from "../../utils/use-element-position";
 import { SectionHeader } from "../SectionHeader";
 import { SpecialEventCardCarousel } from "./SpecialEventCardCarousel";
@@ -24,7 +24,7 @@ export const SpecialEventsSection = ({ sectionHeader, cardCarousel }) => {
   const sectionHeaderRef = useRef();
   const sectionHeaderPosition = useElementContentPosition(sectionHeaderRef);
   const sectionHeaderDimensions = useElementContentDimensions(sectionHeaderRef);
-  const isMobile = useIsMobile(APP_CONFIG.breakpoint);
+  const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
   const cardWidth = isMobile
     ? sectionHeaderDimensions.width
     : DESKTOP_CARD_WIDTH;

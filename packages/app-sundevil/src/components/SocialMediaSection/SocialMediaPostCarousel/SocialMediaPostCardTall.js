@@ -74,7 +74,7 @@ const ContentTextRoot = styled.div`
   color: #fafafa;
   with: 100%;
   max-width: 100%;
-  @media (max-width: ${APP_CONFIG.breakpoint}) {
+  @media (max-width: ${APP_CONFIG.breakpointMobile}) {
     gap: 5px;
   }
 `;
@@ -83,7 +83,7 @@ const Username = styled.p`
   margin: 0;
   font-weight: bold;
   font-size: 12px;
-  @media (max-width: ${APP_CONFIG.breakpoint}) {
+  @media (max-width: ${APP_CONFIG.breakpointMobile}) {
     font-size: 6px;
   }
 `;
@@ -91,14 +91,14 @@ const Username = styled.p`
 const Caption = styled.p`
   margin: 0;
   font-size: 12px;
-  @media (max-width: ${APP_CONFIG.breakpoint}) {
+  @media (max-width: ${APP_CONFIG.breakpointMobile}) {
     font-size: 6px;
   }
 `;
 
 /** @typedef {React.FC<{socialMediaPost: SocialMediaPost.SocialMediaPost }>} */
 export const SocialMediaPostCardTall = ({ socialMediaPost }) => {
-  const isMobile = useIsMobile(APP_CONFIG.breakpoint);
+  const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
   const avatarSize = isMobile ? "sm" : "lg";
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   return (

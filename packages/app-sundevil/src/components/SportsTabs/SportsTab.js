@@ -2,10 +2,14 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { AspectRatioSquare } from "../AspectRatio/AspectRatioSquare";
-
 const Root = styled.div`
   flex: 1;
+  height: 96px;
+  min-height: 96px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
 
   &.inactive {
     background-color: transparent;
@@ -111,9 +115,7 @@ export const SportsTab = React.forwardRef(
           }
         }}
       >
-        <AspectRatioSquare>
-          <Content orientation={orientation}>{children}</Content>
-        </AspectRatioSquare>
+        <Content orientation={orientation}>{children}</Content>
       </Root>
     );
   }

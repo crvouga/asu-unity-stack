@@ -9,7 +9,7 @@ import { GameTableRowDesktop } from "./GameTableRowDesktop";
 import { GameTableRowMobile } from "./GameTableRowMobile";
 
 export const GameTableRow = props => {
-  const isMobile = useIsMobile(APP_CONFIG.breakpoint);
+  const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
   if (isMobile) {
     return <GameTableRowMobile {...props} />;
   }

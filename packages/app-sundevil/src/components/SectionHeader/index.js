@@ -57,7 +57,7 @@ const SectionHeader = forwardRef(
     },
     ref
   ) => {
-    const isMobile = useIsMobile(APP_CONFIG.breakpoint);
+    const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
     return (
       <div className="container" ref={ref}>
         <div className="row">

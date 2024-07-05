@@ -40,13 +40,17 @@ window.initGameListComponent = initGameListComponent;
 // @ts-ignore
 window.initGameTableSection = initGameTableSection;
 
-
-
 export {
   initGameListComponent,
   initGameTableComponent,
   initGamesNavigationComponent,
-  initHeaderComponent, initSocialMediaSection,
-  initSocialMediaSectionEmbedded, initSpecialEventsSection, initSunDevilsHeader, initSunDevilsStories, initSunDevilsStoriesFromAPI, initSunDevilsStoriesSection
+  initHeaderComponent,
+  initSocialMediaSection,
+  initSocialMediaSectionEmbedded,
+  initSpecialEventsSection,
+  initSunDevilsHeader,
+  initSunDevilsStories,
+  initSunDevilsStoriesFromAPI,
+  initSunDevilsStoriesSection
 };
 

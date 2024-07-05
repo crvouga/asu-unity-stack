@@ -35,6 +35,9 @@ const Table = styled.div`
   width: 100%;
   border: 1px solid #d0d0d0;
   position: relative;
+`;
+
+const BorderBottom = styled.div`
   & > *:not(:last-child) {
     border-bottom: 1px solid #d0d0d0;
   }
@@ -85,10 +88,13 @@ const GameTable = ({
   return (
     <Root>
       <Table>
-        {isSkeleton &&
-          range(maxRowCount).map(index => (
-            <GameTableRow key={index} skeleton />
-          ))}
+        {isSkeleton && (
+          <BorderBottom>
+            {range(maxRowCount).map(index => (
+              <GameTableRow key={index} skeleton />
+            ))}
+          </BorderBottom>
+        )}
 
         {isRow && (
           <AlternateBackground>
@@ -150,10 +156,10 @@ export const gameTableFooterLinkSchema = PropTypes.shape({
 });
 
 GameTable.propTypes = {
-  games: PropTypes.arrayOf(gameSchema.isRequired).isRequired,
+  games: PropTypes.arrayOf(gameSchema),
   skeleton: PropTypes.bool,
   maxRowCount: PropTypes.number,
-  footerButtons: PropTypes.arrayOf(gameTableFooterButtonSchema).isRequired,
+  footerButtons: PropTypes.arrayOf(gameTableFooterButtonSchema),
   footerLinks: PropTypes.arrayOf(gameTableFooterLinkSchema),
   emptyStateMessage: PropTypes.string,
 };

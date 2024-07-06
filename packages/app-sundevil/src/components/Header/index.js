@@ -215,11 +215,12 @@ const mapProps = props => ({
     searchPlaceholder: "Search Sun Devil Athletics",
   },
   mobile: {
-    hamburger: {
-      render: ({ open, onClick, hidden }) => (
-        <HamburgerButton hidden={hidden} open={open} onClick={onClick} />
-      ),
-    },
+    // we're now going to use the default hamburger button
+    // hamburger: {
+    //   render: ({ open, onClick, hidden }) => (
+    //     <HamburgerButton hidden={hidden} open={open} onClick={onClick} />
+    //   ),
+    // },
     drawer: {
       renderStart: () => <MobileSearchBar />,
     },
@@ -234,4 +235,3 @@ SunDevilsHeader.propTypes = {
   ...ASUHeader.propTypes,
   officialSiteHref: PropTypes.string.isRequired,
 };
-

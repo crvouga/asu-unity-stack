@@ -33,7 +33,7 @@ export const NewsStoryCardGridDesktopFeatured = ({ newsStories, skeleton }) => {
         <NewsStoryCard
           newsStory={featuredStory}
           skeleton={Boolean(skeleton)}
-          featured
+          size="large"
         />
       </FeaturedCard>
       {otherStories.map(newsStory => (

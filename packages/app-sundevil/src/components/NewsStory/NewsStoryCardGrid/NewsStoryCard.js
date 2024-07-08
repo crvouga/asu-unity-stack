@@ -31,7 +31,7 @@ const BackgroundImage = styled.img`
 
 const Title = styled.div`
   color: white;
-  font-size: 1.5rem;
+  font-size: ${({ size }) => (size === "large" ? "40px" : "24px")};
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   display: -webkit-box;
@@ -99,13 +99,22 @@ const ContentBottom = styled.div`
 `;
 
 /**
+ * @typedef {{newsStory: NewsStory.NewsStory, style: StyleSheet; skeleton?: boolean, size?: "large" | "default" }} Props
+ */
+
+/**
  *
- * @type {React.FC<{newsStory: NewsStory.NewsStory, style: StyleSheet; skeleton?: boolean }>}
+ * @type {React.FC<Props>}
  * @link {https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=728-26483&t=nNPd77JTpPWPBY9Q-0}
  * @link {https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=2127-15038&t=q44055rSZX7SMrDl-0}
  *
  */
-export const NewsStoryCard = ({ newsStory, style, skeleton }) => {
+export const NewsStoryCard = ({
+  newsStory,
+  style,
+  skeleton,
+  size = "default",
+}) => {
   return (
     <Skeleton skeleton={Boolean(skeleton)}>
       <Root href={newsStory.href} style={style}>
@@ -124,7 +133,7 @@ export const NewsStoryCard = ({ newsStory, style, skeleton }) => {
             {newsStory.showCategory && (
               <Category>{newsStory.category}</Category>
             )}
-            <Title>{newsStory.title}</Title>
+            <Title size={size}>{newsStory.title}</Title>
           </ContentBottom>
         </Content>
       </Root>
@@ -136,4 +145,5 @@ NewsStoryCard.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
   skeleton: PropTypes.bool,
+  size: PropTypes.oneOf(["large", "default"]),
 };

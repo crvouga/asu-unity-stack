@@ -37,6 +37,13 @@ const Table = styled.div`
   position: relative;
 `;
 
+// Even if this transparent it ensures no layout shift when the skeleton is replaced with the actual content
+const BorderBottom = styled.div`
+  & > *:not(:last-child) {
+    border-bottom: 1px solid transparent;
+  }
+`;
+
 const AlternateBackground = styled.div`
   width: 100%;
   & > div:nth-child(even) {
@@ -82,10 +89,13 @@ const GameTable = ({
   return (
     <Root>
       <Table>
-        {isSkeleton &&
-          range(maxRowCount).map(index => (
-            <GameTableRow key={index} skeleton />
-          ))}
+        {isSkeleton && (
+          <BorderBottom>
+            {range(maxRowCount).map(index => (
+              <GameTableRow key={index} skeleton />
+            ))}
+          </BorderBottom>
+        )}
 
         {isRow && (
           <AlternateBackground>

@@ -9,7 +9,9 @@ const Root = styled.a`
   overflow: hidden;
   position: relative;
   width: 100%;
-  height: 273px;
+  height: 100%;
+  min-height: 273px;
+  /* height: 273px; */
   text-decoration: none;
   cursor: pointer;
   &:hover {

@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 
+import { useNewsStoryAPILoader } from "../../NewsStory/news-story-api/use-news-story-api";
 import { SectionHeader } from "../../SectionHeader";
-import { useNewsStoryAPILoader } from "../news-story-api/use-news-story-api";
 import { SunDevilStories } from "../SunDevilStories";
 import { skeletonSports } from "./skeleton-props";
 

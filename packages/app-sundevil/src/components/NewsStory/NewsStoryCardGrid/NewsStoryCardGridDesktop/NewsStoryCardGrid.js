@@ -1,11 +1,10 @@
-import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import * as NewsStory from "../news-story";
-import { NewsStoryCard } from "./NewsStoryCard";
+import { NewsStoryCard } from "../NewsStoryCard";
+import * as newsStoryCardGrid from "./news-story-card-grid";
 
-/** @typedef {import("./NewsStoryCard").NewsStory} */
+/** @typedef {import("../NewsStoryCard").NewsStory} */
 
 const Root = styled.div`
   display: grid;
@@ -14,7 +13,7 @@ const Root = styled.div`
   width: 100%;
 `;
 
-/** @type {React.FC<{newsStories: NewsStory[]; skeleton?: boolean}>} */
+/** @type {React.FC<newsStoryCardGrid.Props>} */
 export const NewsStoryCardGridDesktop = ({ newsStories, skeleton }) => {
   return (
     <Root>
@@ -28,7 +27,5 @@ export const NewsStoryCardGridDesktop = ({ newsStories, skeleton }) => {
     </Root>
   );
 };
-NewsStoryCardGridDesktop.propTypes = {
-  newsStories: PropTypes.arrayOf(NewsStory.newsStorySchema).isRequired,
-  skeleton: PropTypes.bool,
-};
+
+NewsStoryCardGridDesktop.propTypes = newsStoryCardGrid.propTypes;

@@ -7,12 +7,12 @@ import { Button } from "../../../../../components-core/src/index";
 import { APP_CONFIG } from "../../../config";
 import { useElementContentPosition } from "../../../utils/use-element-position";
 import { sportSchema } from "../../Navigation";
+import * as NewsStory from "../../NewsStory/news-story";
+import { NewsStoryCardGridDesktop } from "../../NewsStory/NewsStoryCardGrid/NewsStoryCardGridDesktop";
+import { NewsStoryCardGridMobile } from "../../NewsStory/NewsStoryCardGrid/NewsStoryCardGridMobile";
 import { SectionHeader } from "../../SectionHeader";
 import { Skeleton } from "../../Skeleton";
 import { SportsTabsDesktop, SportsTabsMobile } from "../../SportsTabs";
-import * as NewsStory from "../news-story";
-import { NewsStoryCardGridDesktop } from "../NewsStoryCardGrid/NewsStoryCardGridDesktop";
-import { NewsStoryCardGridMobile } from "../NewsStoryCardGrid/NewsStoryCardGridMobile";
 
 /**
  * @typedef {import("../Navigation").Sport} Sport

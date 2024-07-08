@@ -9,7 +9,7 @@
  */
 
 /**
- * @typedef {import("../news-story").NewsStory} NewsStory
+ * @typedef {import("../../NewsStory/news-story").NewsStory} NewsStory
  */
 
 const imageSrc =

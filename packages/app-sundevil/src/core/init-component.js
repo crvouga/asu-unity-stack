@@ -15,6 +15,7 @@ import {
   SunDevilsHeader,
   SunDevilStories,
   SunDevilStoriesFromAPI,
+  VideoSection,
 } from "../components";
 
 /**
@@ -212,5 +213,12 @@ export const initNewsZoneSection = input => {
   RenderReact({
     ...input,
     component: NewsZoneSection,
+  });
+};
+
+export const initVideoSection = input => {
+  RenderReact({
+    ...input,
+    component: VideoSection,
   });
 };

@@ -68,6 +68,9 @@ const filterDOM = (rootNode, whiteListCssSelectors, maxDepth = 1) => {
  */
 
 const REACT_CHILD_TARGET_ID = "react-child-target";
+const DEFAULT_WHITE_LIST = [
+  ".contextual", // Drupal element we want to keep
+];
 
 /**
  * @type {(input: RenderInput) => void}
@@ -78,7 +81,7 @@ export const RenderReact = ({
   targetSelector,
   renderWithinChild = true,
   renderWithinChildReactId = REACT_CHILD_TARGET_ID,
-  renderWithinChildWhiteList = [],
+  renderWithinChildWhiteList = DEFAULT_WHITE_LIST,
 }) => {
   const target = document.querySelector(targetSelector);
 

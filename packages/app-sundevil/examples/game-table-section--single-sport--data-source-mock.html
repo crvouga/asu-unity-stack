@@ -50,7 +50,16 @@
   </head>
 
   <body>
-    <div id="section-container"></div>
+    <div id="section-container">
+      <div>
+        This will be removed
+      </div>
+      <div class="contextual">
+      </div>
+      <div>
+        This will be removed
+      </div>
+    </div>
     <script>
       const props = {
         gameDataSource: {
@@ -101,6 +110,7 @@
       initGameTableSection({
         targetSelector: "#section-container",
         props,
+        renderWithinChildWhiteList: [".contextual"]
       });
     </script>
   </body>

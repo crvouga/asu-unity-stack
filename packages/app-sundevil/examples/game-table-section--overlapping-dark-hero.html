@@ -63,7 +63,12 @@
 
   <body>
     <div id="hero"></div>
-    <div id="section-container"></div>
+    <div id="section-container">
+      <div>
+        This will be removed
+      </div>
+      <div class="contextual"></div>
+    </div>
     <script>
       const props = {
         // This will just generate random games
@@ -181,6 +186,7 @@
       initGameTableSection({
         targetSelector: "#section-container",
         props,
+        renderWithinChildWhiteList: [".contextual"]
       });
     </script>
   </body>

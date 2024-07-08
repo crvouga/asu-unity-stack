@@ -50,8 +50,12 @@
   </head>
 
   <body>
-    <div id="section-container"></div>
-    <script>
+    <div id="section-container">
+      <div>
+        This will be removed
+      </div>
+      <div class="contextual"></div>
+    </div>    <script>
       class CustomGameAPI extends IGameAPI {
         constructor() {
           super();
@@ -203,6 +207,7 @@
       initGameTableSection({
         targetSelector: "#section-container",
         props,
+        renderWithinChildWhiteList: [".contextual"]
       });
     </script>
   </body>

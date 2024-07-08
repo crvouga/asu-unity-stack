@@ -38,7 +38,12 @@
   </head>
 
   <body>
-    <div id="section-container"></div>
+    <div id="section-container">
+      <div>
+        This will be removed
+      </div>
+      <div class="contextual"></div>
+    </div>
     <script>
       const imageSrc =
         "https://asuevents.asu.edu/sites/default/files/2024-07/football-2024.jpg";
@@ -215,6 +220,7 @@
       initSunDevilsStoriesSection({
         targetSelector: "#section-container",
         props,
+        renderWithinChildWhiteList: [".contextual"]
       });
     </script>
   </body>

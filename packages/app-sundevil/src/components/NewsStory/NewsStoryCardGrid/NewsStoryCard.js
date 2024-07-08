@@ -26,6 +26,17 @@ const Root = styled.a`
     `}
 `;
 
+const BackgroundImageSkeletonWrapper = styled(Skeleton)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
 const BackgroundImage = styled.img`
   position: absolute;
   top: 0;
@@ -123,6 +134,8 @@ export const NewsStoryCard = ({
   size = "default",
 }) => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+
   return (
     <Skeleton skeleton={Boolean(skeleton)}>
       <Root
@@ -130,7 +143,13 @@ export const NewsStoryCard = ({
         style={style}
         clickable={typeof newsStory.href === "string"}
       >
-        <BackgroundImage alt=" " src={newsStory.imageSrc} />
+        <BackgroundImageSkeletonWrapper skeleton={!isImageLoaded}>
+          <BackgroundImage
+            alt=" "
+            src={newsStory.imageSrc}
+            onLoad={() => setIsImageLoaded(true)}
+          />
+        </BackgroundImageSkeletonWrapper>
         <Content>
           {newsStory.showSportName && (
             <SportName>

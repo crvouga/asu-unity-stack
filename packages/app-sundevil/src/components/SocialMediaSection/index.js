@@ -37,4 +37,3 @@ SocialMediaSection.propTypes = {
   sectionHeader: PropTypes.shape(SectionHeader.propTypes),
   postCarousel: PropTypes.shape(SocialMediaPostCarousel.propTypes),
 };
-

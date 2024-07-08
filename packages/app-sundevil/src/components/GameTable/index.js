@@ -14,7 +14,7 @@ const Footer = styled.footer`
   flex-wrap: wrap;
 `;
 
-const EmptyStateMessage = styled.p`
+const EmptyStateMessage = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -88,13 +88,10 @@ const GameTable = ({
   return (
     <Root>
       <Table>
-        {isSkeleton && (
-          <BorderBottom>
-            {range(maxRowCount).map(index => (
-              <GameTableRow key={index} skeleton />
-            ))}
-          </BorderBottom>
-        )}
+        {isSkeleton &&
+          range(maxRowCount).map(index => (
+            <GameTableRow key={index} skeleton />
+          ))}
 
         {isRow && (
           <AlternateBackground>

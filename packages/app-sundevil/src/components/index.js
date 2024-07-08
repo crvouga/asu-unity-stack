@@ -6,6 +6,7 @@ export * from "./GameTableSection";
 export * from "./Header";
 export * from "./HeaderContentSportLinks";
 export * from "./MyComponent";
+export * from "./NewsZoneSection";
 export * from "./OfficialAthleticsSite";
 export * from "./SectionHeader";
 export * from "./SocialMediaSection";

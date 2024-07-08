@@ -1,56 +1,9 @@
 /* eslint-disable prettier/prettier */
 // @ts-check
-import {
-  initGameListComponent,
-  initGameTableComponent,
-  initGameTableSection,
-  initGamesNavigationComponent,
-  initHeaderComponent,
-  initSocialMediaSection,
-  initSocialMediaSectionEmbedded,
-  initSpecialEventsSection,
-  initSunDevilsHeader,
-  initSunDevilsStories,
-  initSunDevilsStoriesFromAPI,
-  initSunDevilsStoriesSection,
-} from "./core/init-component";
+import * as initComponent from "./core/init-component";
 
-// @ts-ignore
-window.initSunDevilsHeader = initSunDevilsHeader;
-// @ts-ignore
-window.initSocialMediaSection = initSocialMediaSection;
-// @ts-ignore
-window.initSocialMediaSectionEmbedded = initSocialMediaSectionEmbedded;
-// @ts-ignore
-window.initSunDevilsStories = initSunDevilsStories;
-// @ts-ignore
-window.initSunDevilsStoriesSection = initSunDevilsStoriesSection;
-// @ts-ignore
-window.initSunDevilsStoriesFromAPI = initSunDevilsStoriesFromAPI;
-// @ts-ignore
-window.initSpecialEventsSection = initSpecialEventsSection;
-// @ts-ignore
-window.initHeaderComponent = initHeaderComponent;
-// @ts-ignore
-window.initGameTableComponent = initGameTableComponent;
-// @ts-ignore
-window.initGamesNavigationComponent = initGamesNavigationComponent;
-// @ts-ignore
-window.initGameListComponent = initGameListComponent;
-// @ts-ignore
-window.initGameTableSection = initGameTableSection;
+export * from "./core/init-component";
 
-export {
-  initGameListComponent,
-  initGameTableComponent,
-  initGamesNavigationComponent,
-  initHeaderComponent,
-  initSocialMediaSection,
-  initSocialMediaSectionEmbedded,
-  initSpecialEventsSection,
-  initSunDevilsHeader,
-  initSunDevilsStories,
-  initSunDevilsStoriesFromAPI,
-  initSunDevilsStoriesSection
-};
-
+Object.keys(initComponent).forEach(key => {
+  window[key] = initComponent[key];
+});

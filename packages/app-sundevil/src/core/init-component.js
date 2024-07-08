@@ -7,6 +7,7 @@ import {
   GameNavigation,
   GameTable,
   GameTableSection,
+  NewsZoneSection,
   SectionHeader,
   SocialMediaSection,
   SocialMediaSectionEmbedded,
@@ -203,5 +204,13 @@ export const initSpecialEventsSection = input => {
   RenderReact({
     ...input,
     component: SpecialEventsSection,
+  });
+};
+
+/** @type {InitComponent} */
+export const initNewsZoneSection = input => {
+  RenderReact({
+    ...input,
+    component: NewsZoneSection,
   });
 };

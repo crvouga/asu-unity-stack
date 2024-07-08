@@ -20,8 +20,13 @@ const imageSrc =
 
 /** @type {Props} */
 const props = {
-  allStoriesHref: "#",
-  allStoriesLabel: "All Stories",
+  bottomButtons: [
+    {
+      color: "maroon",
+      href: "#",
+      label: "Read more stories",
+    },
+  ],
   sectionHeader: {
     title: "News Zone",
     sponsorBlock: {
@@ -66,36 +71,36 @@ const props = {
       title:
         "Men's Golf Gets No. 1 Seet at Rancho Santa Fe/The Farms Golf Club Regional",
     },
-    // {
-    //   href: "#",
-    //   showCategory: false,
-    //   showSportName: false,
-    //   category: "News",
-    //   imageSrc,
-    //   sportName: "Vollyball",
-    //   sportIconFaClassName: "fas fa-volleyball-ball",
-    //   title: "Rohr Pac-12 Coach of the Year, Kensinger Honored",
-    // },
-    // {
-    //   href: "#",
-    //   showCategory: false,
-    //   showSportName: false,
-    //   category: "Game Recap",
-    //   title: "Lacrosse Downs Ducks, Will Face Stanford in Pac-12 Semifinals",
-    //   sportName: "W. Lacrosse",
-    //   imageSrc,
-    //   sportIconFaClassName: "fas fa-lacrosse",
-    // },
-    // {
-    //   href: "#",
-    //   showCategory: false,
-    //   showSportName: false,
-    //   category: "News",
-    //   title: "Kensinger, Williamson Named All-Americans",
-    //   sportName: "Volleyball",
-    //   sportIconFaClassName: "fas fa-volleyball-ball",
-    //   imageSrc,
-    // },
+    {
+      href: "#",
+      showCategory: false,
+      showSportName: false,
+      category: "News",
+      imageSrc,
+      sportName: "Vollyball",
+      sportIconFaClassName: "fas fa-volleyball-ball",
+      title: "Rohr Pac-12 Coach of the Year, Kensinger Honored",
+    },
+    {
+      href: "#",
+      showCategory: false,
+      showSportName: false,
+      category: "Game Recap",
+      title: "Lacrosse Downs Ducks, Will Face Stanford in Pac-12 Semifinals",
+      sportName: "W. Lacrosse",
+      imageSrc,
+      sportIconFaClassName: "fas fa-lacrosse",
+    },
+    {
+      href: "#",
+      showCategory: false,
+      showSportName: false,
+      category: "News",
+      title: "Kensinger, Williamson Named All-Americans",
+      sportName: "Volleyball",
+      sportIconFaClassName: "fas fa-volleyball-ball",
+      imageSrc,
+    },
   ],
 };
 

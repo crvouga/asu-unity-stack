@@ -58,56 +58,63 @@ const SectionHeader = forwardRef(
     ref
   ) => {
     const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
+    const hasContent = Boolean(
+      title || subtitle || tabs || social || sponsorBlock
+    );
     return (
       <div className="container" ref={ref}>
-        <div className="row">
-          <div className="col-md-8 col-sm-12">
-            <div className="d-flex flex-row align-items-end justify-content-between gap-2 pt-2">
-              <h2 className={`m-0 ${darkMode ? "text-white" : "text-black"}`}>
-                {title}
-              </h2>
-              <div className="mt-auto mr-auto d-flex d-sm-flex d-md-none justify-content-end">
-                <SponsorBlock
-                  href={sponsorBlock?.url}
-                  className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
-                >
-                  <h5
-                    className={`m-0 ${darkMode ? "text-white" : "text-black"}`}
+        {hasContent && (
+          <div className="row">
+            <div className="col-md-8 col-sm-12">
+              <div className="d-flex flex-row align-items-end justify-content-between gap-2 pt-2">
+                <h2 className={`m-0 ${darkMode ? "text-white" : "text-black"}`}>
+                  {title}
+                </h2>
+                <div className="mt-auto mr-auto d-flex d-sm-flex d-md-none justify-content-end">
+                  <SponsorBlock
+                    href={sponsorBlock?.url}
+                    className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
                   >
-                    {sponsorBlock?.text}
-                  </h5>
-                  <Logo src={sponsorBlock?.logo} alt={sponsorBlock?.name} />
-                </SponsorBlock>
+                    <h5
+                      className={`m-0 ${
+                        darkMode ? "text-white" : "text-black"
+                      }`}
+                    >
+                      {sponsorBlock?.text}
+                    </h5>
+                    <Logo src={sponsorBlock?.logo} alt={sponsorBlock?.name} />
+                  </SponsorBlock>
+                </div>
               </div>
+              <HeaderBody>
+                {subtitle && (
+                  <Subtitle dangerouslySetInnerHTML={{ __html: subtitle }} />
+                )}
+                {tabs && tabs.length > 0 && (
+                  <Tabs
+                    tabs={tabs}
+                    onTabItemClick={onTabItemClick}
+                    stretch={isMobile}
+                  />
+                )}
+                {social && social.length > 0 && (
+                  <JoinTheConversation social={social} />
+                )}
+              </HeaderBody>
             </div>
-            <HeaderBody>
-              {subtitle && (
-                <Subtitle dangerouslySetInnerHTML={{ __html: subtitle }} />
-              )}
-              {tabs && tabs.length > 0 && (
-                <Tabs
-                  tabs={tabs}
-                  onTabItemClick={onTabItemClick}
-                  stretch={isMobile}
-                />
-              )}
-              {social && social.length > 0 && (
-                <JoinTheConversation social={social} />
-              )}
-            </HeaderBody>
+            <div className="col-md-4 col-sm-0 mt-auto d-none d-sm-none d-md-flex justify-content-end">
+              <SponsorBlock
+                href={sponsorBlock?.url}
+                className="d-flex flex-row align-items-center justify-content-end gap-2"
+              >
+                <h5 className={`m-0 ${darkMode ? "text-white" : "text-black"}`}>
+                  {sponsorBlock?.text}
+                </h5>
+                <Logo src={sponsorBlock?.logo} alt={sponsorBlock?.name} />
+              </SponsorBlock>
+            </div>
           </div>
-          <div className="col-md-4 col-sm-0 mt-auto d-none d-sm-none d-md-flex justify-content-end">
-            <SponsorBlock
-              href={sponsorBlock?.url}
-              className="d-flex flex-row align-items-center justify-content-end gap-2"
-            >
-              <h5 className={`m-0 ${darkMode ? "text-white" : "text-black"}`}>
-                {sponsorBlock?.text}
-              </h5>
-              <Logo src={sponsorBlock?.logo} alt={sponsorBlock?.name} />
-            </SponsorBlock>
-          </div>
-        </div>
+        )}
       </div>
     );
   }

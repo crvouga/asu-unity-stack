@@ -38,6 +38,7 @@ export const Button = ({
   classes,
   target,
   renderIcon,
+  renderEndIcon,
   ...props
 }) => {
   const btnClasses = classNames("btn", {
@@ -72,6 +73,7 @@ export const Button = ({
       {renderIcon && renderIcon()}
       {icon && <i className={`${icon?.[0]} fa-${icon?.[1]} me-1`} />}
       {label}
+      {renderEndIcon && renderEndIcon()}
     </Tag>
   );
 };
@@ -158,6 +160,10 @@ Button.propTypes = {
    * Function to render an icon
    */
   renderIcon: PropTypes.func,
+  /**
+   * Function to render an icon at the end of the button
+   */
+  renderEndIcon: PropTypes.func,
 };
 
 Button.defaultProps = {

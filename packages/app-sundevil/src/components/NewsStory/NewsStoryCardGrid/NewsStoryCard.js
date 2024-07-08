@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import { Skeleton } from "../../Skeleton";
 import * as NewsStory from "../news-story";
+import { EmbeddedYoutubeVideo } from "./EmbeddedYoutubeVideo";
 
 const Root = styled.a`
   overflow: hidden;
@@ -13,10 +14,16 @@ const Root = styled.a`
   min-height: 273px;
   /* height: 273px; */
   text-decoration: none;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.9;
-  }
+
+  ${({ clickable }) =>
+    clickable &&
+    `
+    &:hover {
+      opacity: 0.9;
+    }
+    cursor: pointer;
+
+    `}
 `;
 
 const BackgroundImage = styled.img`
@@ -115,9 +122,14 @@ export const NewsStoryCard = ({
   skeleton,
   size = "default",
 }) => {
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
   return (
     <Skeleton skeleton={Boolean(skeleton)}>
-      <Root href={newsStory.href} style={style}>
+      <Root
+        href={newsStory.href}
+        style={style}
+        clickable={typeof newsStory.href === "string"}
+      >
         <BackgroundImage alt=" " src={newsStory.imageSrc} />
         <Content>
           {newsStory.showSportName && (
@@ -138,6 +150,11 @@ export const NewsStoryCard = ({
             <Title size={size}>{newsStory.title}</Title>
           </ContentBottom>
         </Content>
+        <EmbeddedYoutubeVideo
+          youtubeVideoUrl={newsStory.youtubeVideoUrl}
+          isVideoOpen={isVideoOpen}
+          onClickPlay={() => setIsVideoOpen(true)}
+        />
       </Root>
     </Skeleton>
   );

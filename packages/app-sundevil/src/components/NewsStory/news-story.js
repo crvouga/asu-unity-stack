@@ -5,26 +5,28 @@ import { sportSchema } from "../Navigation";
 
 /**
  * @typedef {{
- * href: string;
+ * href?: string;
  * title: string;
- * category: string;
- * imageSrc: string;
- * sportName: string;
- * sportIconFaClassName: string;
+ * category?: string;
+ * imageSrc?: string;
+ * sportName?: string;
+ * sportIconFaClassName?: string;
  * showCategory?: boolean;
  * showSportName?: boolean;
+ * youtubeVideoUrl?: string;
  * }} NewsStory
  */
 
 export const newsStorySchema = PropTypes.shape({
-  href: PropTypes.string.isRequired,
+  href: PropTypes.string,
   title: PropTypes.string.isRequired,
   category: PropTypes.string,
-  imageSrc: PropTypes.string.isRequired,
+  imageSrc: PropTypes.string,
   sportName: PropTypes.string,
   sportIconFaClassName: PropTypes.string,
   showCategory: PropTypes.bool,
   showSportName: PropTypes.bool,
+  youtubeVideoUrl: PropTypes.string,
 });
 
 /**

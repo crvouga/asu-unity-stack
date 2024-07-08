@@ -42,6 +42,11 @@ const PlayButton = styled.button`
   box-shadow: none !important;
   border: none !important;
 
+  transition: scale 0.2s;
+  &:hover {
+    scale: 1.1;
+  }
+
   &:active,
   &:focus,
   &:focus-visible {
@@ -71,7 +76,11 @@ export const EmbeddedYoutubeVideo = ({
   if (!isVideoOpen) {
     return (
       <Root>
-        <PlayButton type="button" onClick={onClickPlay}>
+        <PlayButton
+          type="button"
+          onClick={onClickPlay}
+          aria-label="Play youtube video"
+        >
           <i className="fas fa-play" />
         </PlayButton>
       </Root>

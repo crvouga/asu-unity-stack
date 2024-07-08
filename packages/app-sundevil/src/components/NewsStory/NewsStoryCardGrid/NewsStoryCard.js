@@ -122,7 +122,9 @@ export const NewsStoryCard = ({
         <Content>
           {newsStory.showSportName && (
             <SportName>
-              <SportNameIcon className={newsStory.sportIconFaClassName} />
+              {newsStory.sportIconFaClassName && (
+                <SportNameIcon className={newsStory.sportIconFaClassName} />
+              )}
               {newsStory.sportName}
             </SportName>
           )}
@@ -130,7 +132,7 @@ export const NewsStoryCard = ({
           <WhiteSpaceFill />
 
           <ContentBottom>
-            {newsStory.showCategory && (
+            {newsStory.showCategory && newsStory.category && (
               <Category>{newsStory.category}</Category>
             )}
             <Title size={size}>{newsStory.title}</Title>

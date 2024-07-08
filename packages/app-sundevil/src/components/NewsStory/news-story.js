@@ -19,10 +19,10 @@ import { sportSchema } from "../Navigation";
 export const newsStorySchema = PropTypes.shape({
   href: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  category: PropTypes.string.isRequired,
+  category: PropTypes.string,
   imageSrc: PropTypes.string.isRequired,
-  sportName: PropTypes.string.isRequired,
-  sportIconFaClassName: PropTypes.string.isRequired,
+  sportName: PropTypes.string,
+  sportIconFaClassName: PropTypes.string,
   showCategory: PropTypes.bool,
   showSportName: PropTypes.bool,
 });

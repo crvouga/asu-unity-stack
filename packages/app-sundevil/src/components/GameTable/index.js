@@ -37,12 +37,6 @@ const Table = styled.div`
   position: relative;
 `;
 
-const BorderBottom = styled.div`
-  & > *:not(:last-child) {
-    border-bottom: 1px solid #d0d0d0;
-  }
-`;
-
 const AlternateBackground = styled.div`
   width: 100%;
   & > div:nth-child(even) {

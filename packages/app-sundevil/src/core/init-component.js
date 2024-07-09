@@ -32,16 +32,19 @@ const filterDOM = (rootNode, whiteListCssSelectors, maxDepth = 1) => {
   };
 
   /**
-   * @param {Element} node
+   * @param {Node} node
    * @param {number} depth
    */
   const filterNode = (node, depth) => {
     if (depth > maxDepth) return;
 
-    Array.from(node.children).forEach(child => {
-      if (!matchesWhitelist(child)) {
+    Array.from(node.childNodes).forEach(child => {
+      if (
+        child.nodeType === Node.TEXT_NODE ||
+        (child.nodeType === Node.ELEMENT_NODE && !matchesWhitelist(child))
+      ) {
         node.removeChild(child);
-      } else {
+      } else if (child.nodeType === Node.ELEMENT_NODE) {
         filterNode(child, depth + 1);
       }
     });

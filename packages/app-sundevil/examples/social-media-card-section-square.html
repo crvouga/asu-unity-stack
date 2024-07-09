@@ -39,10 +39,11 @@
 
   <body>
     <div id="section-container">
-      <div>
-        This will be removed
-      </div>
+      <div>This will be removed</div>
+      "hello" This should be removed
+
       <div class="contextual"></div>
+      "This should be removed"
     </div>
     <script>
       const imageSrc =
@@ -176,7 +177,7 @@
       initSocialMediaSection({
         targetSelector: "#section-container",
         props,
-        renderWithinChildWhiteList: [".contextual"]
+        renderWithinChildWhiteList: [".contextual"],
       });
     </script>
   </body>

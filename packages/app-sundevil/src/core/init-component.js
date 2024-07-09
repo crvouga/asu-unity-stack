@@ -27,6 +27,7 @@ import {
  * @param {number} [maxDepth=1]
  */
 const filterDOM = (rootNode, whiteListCssSelectors, maxDepth = 1) => {
+  console.log("filterDOM", rootNode, whiteListCssSelectors, maxDepth);
   const matchesWhitelist = element => {
     return whiteListCssSelectors.some(selector => element.matches(selector));
   };
@@ -36,15 +37,21 @@ const filterDOM = (rootNode, whiteListCssSelectors, maxDepth = 1) => {
    * @param {number} depth
    */
   const filterNode = (node, depth) => {
-    if (depth > maxDepth) return;
+    console.log("filterNode", node, depth, maxDepth);
+    if (depth > maxDepth) {
+      console.log("hit max depth. returning");
+      return;
+    }
 
     Array.from(node.childNodes).forEach(child => {
       if (
         child.nodeType === Node.TEXT_NODE ||
         (child.nodeType === Node.ELEMENT_NODE && !matchesWhitelist(child))
       ) {
+        console.log("removing child", child);
         node.removeChild(child);
       } else if (child.nodeType === Node.ELEMENT_NODE) {
+        console.log("filtering within child", child, "depth", depth + 1);
         filterNode(child, depth + 1);
       }
     });
@@ -88,31 +95,53 @@ export const RenderReact = ({
   renderWithinChildReactId = REACT_CHILD_TARGET_ID,
   renderWithinChildWhiteList = DEFAULT_WHITE_LIST,
 }) => {
+  console.log(
+    "RenderReact",
+    component,
+    props,
+    targetSelector,
+    renderWithinChild,
+    renderWithinChildReactId,
+    renderWithinChildWhiteList
+  );
   const target = document.querySelector(targetSelector);
 
   if (!target) {
+    console.log("target not found", targetSelector);
     return;
   }
 
   if (renderWithinChild) {
+    console.log("is rendering within child");
     if (!renderWithinChildWhiteList.includes(`#${renderWithinChildReactId}`)) {
       renderWithinChildWhiteList.push(`#${renderWithinChildReactId}`);
     }
+
+    console.log("looking for child target", `#${renderWithinChildReactId}`);
     const targetChild = target.querySelector(`#${renderWithinChildReactId}`);
 
     if (!targetChild) {
+      console.log("child target not found", `#${renderWithinChildReactId}`);
       const targetChildNew = document.createElement("div");
+      console.log("created new child target", targetChildNew);
       targetChildNew.id = renderWithinChildReactId;
+      console.log("added id to new child target", targetChildNew);
       target.appendChild(targetChildNew);
+      console.log("appended new child target", targetChildNew);
       filterDOM(target, renderWithinChildWhiteList);
+      console.log("filtered DOM", target, renderWithinChildWhiteList);
       ReactDOM.render(React.createElement(component, props), targetChildNew);
+      console.log("rendered component", component, props, targetChildNew);
       return;
     }
-
+    console.log("found child target", targetChild);
     filterDOM(target, renderWithinChildWhiteList);
+    console.log("filtered DOM", target, renderWithinChildWhiteList);
     ReactDOM.render(React.createElement(component, props), targetChild);
+    console.log("rendered component", component, props, targetChild);
     return;
   }
+  console.log("rendering to target", target);
   // @ts-ignore
   ReactDOM.render(React.createElement(component, props), target);
 };

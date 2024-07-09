@@ -38,11 +38,36 @@
   </head>
 
   <body>
-    <div id="section-container">
-      <div>
-        This will be removed
+    <div
+      data-layout-content-preview-placeholder-label='"Special Events section" block'
+      class="js-layout-builder-block layout-builder-block spacing-top-96 contextual-region container-special-events block--type-text-content block block-block-content block-block-content73be945b-fa56-40fa-ae88-86569e058393 clearfix default"
+      data-layout-block-uuid="45705a99-8336-4f18-a445-fa338d1aabcb"
+      data-layout-builder-highlight-id="45705a99-8336-4f18-a445-fa338d1aabcb"
+    >
+
+      <div
+        class="layout-builder-block__content-preview-placeholder-label js-layout-builder-content-preview-placeholder-label"
+      >
+        "Special Events section" block
       </div>
-      <div class="contextual"></div>
+      <div
+        class="layout-builder-block__content-preview-placeholder-label js-layout-builder-content-preview-placeholder-label"
+        style="display: none"
+      >
+        "Special Events section" block
+      </div>
+      <div
+        class="layout-builder-block__content-preview-placeholder-label js-layout-builder-content-preview-placeholder-label"
+        style="display: none"
+      >
+        "Special Events section" block
+      </div>
+
+      <div
+        class="contextual"
+      >
+        Drupal Contextual Div
+      </div>
     </div>
     <script>
       const cardBase = {
@@ -117,7 +142,7 @@
       };
 
       initSpecialEventsSection({
-        targetSelector: "#section-container",
+        targetSelector: ".container-special-events",
         props,
         renderWithinChildWhiteList: [".contextual"]
       });

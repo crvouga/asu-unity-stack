@@ -210,7 +210,7 @@ const mapProps = props => ({
   navTree: mapNavTree(props.navTree),
   universalNavbar: {
     renderStart: () => <OfficialAthleticsSite href={props.officialSiteHref} />,
-    hideMobile: true,
+    hideMobile: false,
     searchPlaceholder: "Search Sun Devil Athletics",
   },
   mobile: {
@@ -220,9 +220,9 @@ const mapProps = props => ({
     //     <HamburgerButton hidden={hidden} open={open} onClick={onClick} />
     //   ),
     // },
-    drawer: {
-      renderStart: () => <MobileSearchBar />,
-    },
+    // drawer: {
+    //   renderStart: () => <MobileSearchBar />,
+    // },
   },
 });
 

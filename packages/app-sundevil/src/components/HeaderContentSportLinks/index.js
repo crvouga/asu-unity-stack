@@ -8,6 +8,8 @@ import { useMaxWidth } from "../../utils/use-max-width";
 import { SportIcon } from "../SportIcon";
 import { stringToClosestSportName } from "../SportIcon/sport-name";
 import { TicketmasterLogo } from "./TicketmasterLogo";
+import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
+import { APP_CONFIG } from "../../config";
 
 const buttonSchema = PropTypes.shape({
   label: PropTypes.string.isRequired,
@@ -57,7 +59,7 @@ const SportLinkItemLink = styled.a`
   }
 `;
 
-const SportLinkItemRoot = styled.li`
+const SportLinkItemRoot = styled.div`
   margin-bottom: 0.5em;
   display: flex;
   flex-direction: row;
@@ -81,7 +83,7 @@ SportLinkItem.propTypes = {
   sportLinkItem: sportLinkItemSchema.isRequired,
 };
 
-const SportItemLinksRoot = styled.ul`
+const SportItemLinksRoot = styled.div`
   list-style: none;
   padding: 0;
   display: flex;
@@ -91,6 +93,7 @@ const SportItemLinksRoot = styled.ul`
   gap: 0px 16px;
   flex-wrap: wrap;
   height: fit-content;
+  max-height: fit-content;
 `;
 
 /**
@@ -118,6 +121,16 @@ const SportGridListItemRoot = styled.div`
   align-items: start;
   justify-content: start;
   gap: 2px;
+  ${({
+    // @ts-ignore
+    borderBottom,
+  }) =>
+    borderBottom
+      ? `
+      border-bottom: 1px solid var(--divider-color);
+      padding-bottom: 8px;
+      `
+      : ""}
 `;
 
 const SportLinksRoot = styled.span`
@@ -157,12 +170,15 @@ const Icon = styled.i`
 `;
 
 /**
- * @param {{sport: Sport}} props
+ * @param {{sport: Sport; borderBottom?: boolean}} props
  */
-const SportGridListItem = ({ sport }) => {
+const SportGridListItem = ({ sport, borderBottom }) => {
   const sportName = stringToClosestSportName(sport.sportName);
   return (
-    <SportGridListItemRoot>
+    <SportGridListItemRoot
+      // @ts-ignore
+      borderBottom={borderBottom}
+    >
       <SportNameLink href={sport.href}>
         <SportIconWrapper>
           {sport.faClassName ? (
@@ -181,6 +197,7 @@ const SportGridListItem = ({ sport }) => {
 };
 SportGridListItem.propTypes = {
   sport: sportSchema.isRequired,
+  borderBottom: PropTypes.bool,
 };
 
 const FooterRoot = styled.div`
@@ -262,7 +279,7 @@ const SportGridList = styled.div`
   justify-content: flex-start;
   align-items: stretch;
   text-align: start;
-  gap: 24px;
+  gap: 16px;
   max-width: 100%;
   overflow: hidden;
 
@@ -295,6 +312,10 @@ const SportGridListColumn = styled.div`
   width: 100%;
   flex: 1;
   min-width: fit-content;
+  @media (max-width: 1000px) {
+    flex: 1 1 100%;
+    width: 100%;
+  }
 `;
 
 const Vars = createGlobalStyle`
@@ -355,6 +376,7 @@ const toColumnKey = column => column.map(sport => sport.sportName).join("");
 const HeaderContentSportLinks = ({ sports, buttons }) => {
   const columns = chunk(sports, COLUMN_HEIGHT);
   const { elementsRef, maxWidth } = useMaxWidth(columns.length);
+  const isTablet = useIsMobile(APP_CONFIG.breakpointTablet);
   return (
     <Root>
       <Vars />
@@ -369,8 +391,18 @@ const HeaderContentSportLinks = ({ sports, buttons }) => {
               minWidth: maxWidth ? `${maxWidth + 24}px` : undefined,
             }}
           >
-            {column.map(sport => (
-              <SportGridListItem key={sport.sportName} sport={sport} />
+            {column.map((sport, rowIndex) => (
+              <SportGridListItem
+                key={sport.sportName}
+                sport={sport}
+                borderBottom={
+                  isTablet &&
+                  !(
+                    rowIndex === column.length - 1 &&
+                    columnIndex === columns.length - 1
+                  )
+                }
+              />
             ))}
           </SportGridListColumn>
         ))}

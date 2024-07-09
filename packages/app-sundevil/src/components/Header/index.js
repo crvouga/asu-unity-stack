@@ -5,7 +5,6 @@ import React from "react";
 import { ASUHeader } from "../../../../component-header/src";
 import { HeaderContentSportLinks } from "../HeaderContentSportLinks";
 import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
-import { HamburgerButton } from "./HamburgerButton";
 import { MobileSearchBar } from "./MobileSearchBar";
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps} BaseHeaderProps */

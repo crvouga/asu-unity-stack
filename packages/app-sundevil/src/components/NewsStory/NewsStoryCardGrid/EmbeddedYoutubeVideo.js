@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { toYoutubeVideoId } from "./to-youtube-video-id";
 
-const toYoutubeEmbedUrl = youtubeVideoId =>
-  `https://www.youtube.com/embed/${youtubeVideoId}`;
+const toYoutubeEmbedUrl = (youtubeVideoId, autoplay = 0) =>
+  `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=${autoplay}`;
 
 const Root = styled.div`
   position: absolute;
@@ -61,6 +61,23 @@ export const EmbeddedYoutubeVideo = ({
   isVideoOpen,
   onClickPlay,
 }) => {
+  /** @type {React.MutableRefObject<HTMLElement | null>} */
+  const videoRef = useRef(null);
+  useEffect(() => {
+    if (!isVideoOpen) {
+      return;
+    }
+
+    if (!videoRef.current) {
+      return;
+    }
+
+    const youtubeVideoId = toYoutubeVideoId(youtubeVideoUrl);
+    const youtubeEmbedUrl = toYoutubeEmbedUrl(youtubeVideoId, 1);
+
+    videoRef.current.src = youtubeEmbedUrl;
+  }, [isVideoOpen]);
+
   if (typeof youtubeVideoUrl !== "string") {
     return null;
   }
@@ -90,6 +107,7 @@ export const EmbeddedYoutubeVideo = ({
   return (
     <Root>
       <IFrame
+        ref={videoRef}
         width="100%"
         height="100%"
         src={youtubeEmbedUrl}

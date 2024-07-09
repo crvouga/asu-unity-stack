@@ -36,35 +36,34 @@ const HeaderBody = styled.nav`
   gap: 48px;
 `;
 
-export const mapPropsSponsorBlock = ({
-  sponsorBlock,
-  // eslint-disable-next-line camelcase
-  sponsor_block,
-  ...rest
-}) => {
+export const mapPropsSponsorBlock = props => {
+  const sponsorBlock = props?.sponsorBlock;
   if (Array.isArray(sponsorBlock) && sponsorBlock?.[0]) {
     return {
-      ...rest,
-      sponsorBlock: sponsorBlock[0],
+      ...props,
+      sponsorBlock: sponsorBlock?.[0],
     };
   }
 
   if (sponsorBlock) {
     return {
-      ...rest,
+      ...props,
       sponsorBlock,
     };
   }
 
+  // eslint-disable-next-line camelcase
+  const sponsor_block = props?.sponsor_block;
+
   if (Array.isArray(sponsor_block) && sponsor_block?.[0]) {
     return {
-      ...rest,
+      ...props,
       sponsorBlock: sponsor_block[0],
     };
   }
 
   return {
-    ...rest,
+    ...props,
     sponsorBlock: sponsor_block,
   };
 };

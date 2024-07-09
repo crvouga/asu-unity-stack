@@ -10,7 +10,7 @@ import { sportSchema } from "../../Navigation";
 import * as NewsStory from "../../NewsStory/news-story";
 import { NewsStoryCardGridDesktop } from "../../NewsStory/NewsStoryCardGrid/NewsStoryCardGridDesktop";
 import { NewsStoryCardGridMobile } from "../../NewsStory/NewsStoryCardGrid/NewsStoryCardGridMobile";
-import { SectionHeader } from "../../SectionHeader";
+import { mapSectionHeaderProps, SectionHeader } from "../../SectionHeader";
 import { Skeleton } from "../../Skeleton";
 import { SportsTabsDesktop, SportsTabsMobile } from "../../SportsTabs";
 
@@ -84,7 +84,10 @@ export const SunDevilStories = ({
 
   return (
     <Root>
-      <SectionHeader {...sectionHeader} ref={sectionHeaderRef} />
+      <SectionHeader
+        {...mapSectionHeaderProps(sectionHeader)}
+        ref={sectionHeaderRef}
+      />
 
       {selectedSport && isMobile && (
         <>

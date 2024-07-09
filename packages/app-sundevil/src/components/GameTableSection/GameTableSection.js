@@ -13,7 +13,7 @@ import { GameAPIProvider } from "../Game/GameAPIContext";
 import { useGameLoader } from "../Game/use-game-api";
 import { GameNavigation } from "../GameNavigation";
 import { GameTable, gameTableFooterButtonSchema } from "../GameTable";
-import { SectionHeader } from "../SectionHeader";
+import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportSchema } from "../SportsTabs/sports-tabs";
 
@@ -71,7 +71,7 @@ const GameTableSectionInner = ({ ...props }) => {
       <div ref={headerRef}>
         <div style={{ paddingBottom: "20px" }}>
           <SectionHeader
-            {...props}
+            {...mapSectionHeaderProps(props)}
             // @ts-ignore
             tabs={tabs}
             onTabItemClick={onTabItemClick}

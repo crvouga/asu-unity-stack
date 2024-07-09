@@ -36,6 +36,46 @@ const HeaderBody = styled.nav`
   gap: 48px;
 `;
 
+export const mapPropsSponsorBlock = ({
+  sponsorBlock,
+  // eslint-disable-next-line camelcase
+  sponsor_block,
+  ...rest
+}) => {
+  if (Array.isArray(sponsorBlock) && sponsorBlock?.[0]) {
+    return {
+      ...rest,
+      sponsorBlock: sponsorBlock[0],
+    };
+  }
+
+  if (sponsorBlock) {
+    return {
+      ...rest,
+      sponsorBlock,
+    };
+  }
+
+  if (Array.isArray(sponsor_block) && sponsor_block?.[0]) {
+    return {
+      ...rest,
+      sponsorBlock: sponsor_block[0],
+    };
+  }
+
+  return {
+    ...rest,
+    sponsorBlock: sponsor_block,
+  };
+};
+
+/**
+ * Used for drupal integration. Drupal team sends weird props so we'll fix them here.
+ */
+export const mapSectionHeaderProps = props => {
+  return mapPropsSponsorBlock(props);
+};
+
 const SectionHeader = forwardRef(
   // @ts-ignore
   (
@@ -61,6 +101,7 @@ const SectionHeader = forwardRef(
     const hasContent = Boolean(
       title || subtitle || tabs || social || sponsorBlock
     );
+
     return (
       <div className="container" ref={ref}>
         {hasContent && (
@@ -120,16 +161,18 @@ const SectionHeader = forwardRef(
   }
 );
 
+const sponsorBlockSchema = PropTypes.shape({
+  name: PropTypes.string,
+  logo: PropTypes.string,
+  text: PropTypes.string,
+  url: PropTypes.string,
+});
+
 SectionHeader.propTypes = {
   // @ts-ignore
   title: PropTypes.string,
   subtitle: PropTypes.string,
-  sponsorBlock: PropTypes.shape({
-    name: PropTypes.string,
-    logo: PropTypes.string,
-    text: PropTypes.string,
-    url: PropTypes.string,
-  }),
+  sponsorBlock: sponsorBlockSchema,
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

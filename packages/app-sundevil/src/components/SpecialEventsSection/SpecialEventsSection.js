@@ -5,10 +5,10 @@ import styled from "styled-components";
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { APP_CONFIG } from "../../config";
 import {
-    useElementContentDimensions,
-    useElementContentPosition,
+  useElementContentDimensions,
+  useElementContentPosition,
 } from "../../utils/use-element-position";
-import { SectionHeader } from "../SectionHeader";
+import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 import { SpecialEventCardCarousel } from "./SpecialEventCardCarousel";
 
 const Root = styled.section`
@@ -33,7 +33,10 @@ export const SpecialEventsSection = ({ sectionHeader, cardCarousel }) => {
 
   return (
     <Root>
-      <SectionHeader {...sectionHeader} ref={sectionHeaderRef} />
+      <SectionHeader
+        {...mapSectionHeaderProps(sectionHeader)}
+        ref={sectionHeaderRef}
+      />
       {shouldPreventJitter && (
         <SpecialEventCardCarousel
           {...cardCarousel}
@@ -49,4 +52,3 @@ SpecialEventsSection.propTypes = {
   sectionHeader: PropTypes.shape(SectionHeader.propTypes),
   cardCarousel: PropTypes.shape(SpecialEventCardCarousel.propTypes),
 };
-

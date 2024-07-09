@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { EmbeddedCode } from "../../utils/embed-code";
-import { SectionHeader } from "../SectionHeader";
+import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 
 const Root = styled.section`
   display: flex;
@@ -14,7 +14,7 @@ const Root = styled.section`
 export const SocialMediaSectionEmbedded = ({ sectionHeader, embedCode }) => {
   return (
     <Root>
-      <SectionHeader {...sectionHeader} />
+      <SectionHeader {...mapSectionHeaderProps(sectionHeader)} />
       <EmbeddedCode embedCode={embedCode} />
     </Root>
   );

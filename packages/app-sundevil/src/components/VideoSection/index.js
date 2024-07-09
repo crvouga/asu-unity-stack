@@ -10,7 +10,7 @@ import { BottomButtons } from "../Button/BottomButtons";
 import * as NewsStory from "../NewsStory/news-story";
 import { NewsStoryCardGridDesktopFeatured } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGridDesktop";
 import { NewsStoryCardGridMobile } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGridMobile";
-import { SectionHeader } from "../SectionHeader";
+import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 
 /**
  * @typedef {import("../Navigation").Sport} Sport
@@ -70,7 +70,10 @@ export const VideoSection = ({
 
   return (
     <Root hasSectionHeader={hasSectionHeader}>
-      <SectionHeader {...sectionHeader} ref={sectionHeaderRef} />
+      <SectionHeader
+        {...mapSectionHeaderProps(sectionHeader)}
+        ref={sectionHeaderRef}
+      />
       {isMobile && (
         <NewsStoryCardGridMobile
           skeleton={Boolean(skeleton)}

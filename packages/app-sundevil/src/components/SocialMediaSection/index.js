@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { useElementPosition } from "../../utils/use-element-position";
-import { SectionHeader } from "../SectionHeader";
+import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 import { SocialMediaPostCarousel } from "./SocialMediaPostCarousel";
 
 const Root = styled.section`
@@ -19,7 +19,10 @@ export const SocialMediaSection = ({ sectionHeader, postCarousel }) => {
 
   return (
     <Root>
-      <SectionHeader {...sectionHeader} ref={sectionHeaderRef} />
+      <SectionHeader
+        {...mapSectionHeaderProps(sectionHeader)}
+        ref={sectionHeaderRef}
+      />
 
       {shouldPreventJitter && (
         <SocialMediaPostCarousel

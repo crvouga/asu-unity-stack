@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 
 import { GameNavigation } from "../GameNavigation";
 import { GameTable } from "../GameTable";
-import { SectionHeader } from "../SectionHeader";
+import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 
 const GameList = ({ ...props }) => {
   const [allSports, setAllSports] = React.useState([]);
@@ -91,7 +91,7 @@ const GameList = ({ ...props }) => {
   return (
     <>
       <SectionHeader
-        {...{ ...props }}
+        {...mapSectionHeaderProps({ ...props })}
         // @ts-ignore
         tabs={navigationTabs}
         /* eslint-disable-next-line react/jsx-no-bind */

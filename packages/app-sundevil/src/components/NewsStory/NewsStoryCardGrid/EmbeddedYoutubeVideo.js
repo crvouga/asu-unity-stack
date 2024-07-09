@@ -120,7 +120,7 @@ export const EmbeddedYoutubeVideo = ({
 };
 
 EmbeddedYoutubeVideo.propTypes = {
-  youtubeVideoUrl: PropTypes.string.isRequired,
+  youtubeVideoUrl: PropTypes.string,
   isVideoOpen: PropTypes.bool,
   onClickPlay: PropTypes.func,
 };

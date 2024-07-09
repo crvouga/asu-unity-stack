@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 
+import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { Button } from "../../../../components-core/src";
+import { APP_CONFIG } from "../../config";
 import { useMaxWidth } from "../../utils/use-max-width";
 import { SportIcon } from "../SportIcon";
 import { stringToClosestSportName } from "../SportIcon/sport-name";
 import { TicketmasterLogo } from "./TicketmasterLogo";
-import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
-import { APP_CONFIG } from "../../config";
 
 const buttonSchema = PropTypes.shape({
   label: PropTypes.string.isRequired,

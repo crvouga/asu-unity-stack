@@ -25,7 +25,6 @@ const props = {
       color: "maroon",
       href: "https://www.youtube.com/@thesundevils",
       label: "Watch more",
-      endIcon: "fa fas fa-solid fa-arrow-up-right-from-square",
       target: "_blank",
     },
   ],

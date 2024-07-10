@@ -110,7 +110,7 @@ const SectionHeader = forwardRef(
                 <h2 className={`m-0 ${darkMode ? "text-white" : "text-black"}`}>
                   {title}
                 </h2>
-                <div className="mt-auto mr-auto d-flex d-sm-flex d-md-none justify-content-end">
+                <div className="mt-auto d-flex d-sm-flex d-md-none justify-content-end">
                   <SponsorBlock
                     href={sponsorBlock?.url}
                     className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"

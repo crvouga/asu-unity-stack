@@ -2,6 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import { CookieConsent } from "../../../component-cookie-consent/src/CookieConsent";
 import {
   GameList,
   GameNavigation,
@@ -261,3 +262,10 @@ export const initVideoSection = input => {
     component: VideoSection,
   });
 };
+
+export const initCookieConsent = input => {
+  RenderReact({
+    ...input,
+    component: CookieConsent,
+  });
+}

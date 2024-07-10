@@ -74,12 +74,13 @@ const Wrapper = styled.div`
         flex-direction: column-reverse;
         .links-container {
           width: 100%;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-auto-flow: row;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
           justify-items: start;
           width: 100%;
           .nav-link {
+            width: 50%;
             display: flex;
             align-items: center;
             height: 100%;
@@ -88,7 +89,6 @@ const Wrapper = styled.div`
             margin-right: 0;
             margin: 0;
             text-align: center;
-            width: 100%;
             font-size: 0.875rem;
             padding: 1rem 1.5rem;
             border-top: 1px solid #d0d0d0;

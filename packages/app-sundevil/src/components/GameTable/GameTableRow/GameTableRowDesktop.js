@@ -65,7 +65,10 @@ const Subtitles = styled.div`
 export const GameTableRowDesktop = ({ game, skeleton, empty }) => {
   return (
     <Skeleton skeleton={skeleton}>
-      <Root style={empty ? { opacity: 0 } : {}}>
+      <Root
+        aria-hidden={empty}
+        style={empty ? { opacity: 0, userSelect: "none" } : {}}
+      >
         <Cell>
           <CellDate>
             <h5 className="m-0 lh-1">{game?.date.month}.</h5>

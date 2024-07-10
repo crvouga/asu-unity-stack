@@ -3,7 +3,46 @@ import React from "react";
 
 import { GameTableSection } from "./index";
 
-import { GameAPIMock } from "../Game/game-api";
+import { GameAPIMock, IGameAPI } from "../Game/game-api";
+
+class CustomGameAPI extends IGameAPI {
+  // eslint-disable-next-line no-useless-constructor
+  constructor() {
+    super();
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  async findMany(_input) {
+    return [
+      {
+        id: Math.random().toString(36).substring(2, 9),
+        gameType: "home",
+        ticketLink: "https://www.example.com",
+        ticketText: "Buy Tickets",
+        title: "Sun Devils vs Wildcats",
+        date: {
+          day: "25",
+          month: "Nov",
+        },
+        sport: {
+          id: "football",
+          name: "Sport Name",
+          icon: "fa fa-rocket",
+        },
+        homeTeam: {
+          name: "Sun Devils",
+          logo: "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
+        },
+        awayTeam: {
+          name: "Wildcats",
+          logo: "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
+        },
+        time: "5:30pm",
+        venue: "Phoenix Muni Stadium",
+      },
+    ];
+  }
+}
 
 /** @typedef {import("@asu-design-system/components-core/src/core/types/feed-types").ComponentType } ComponentType */
 export default {
@@ -29,9 +68,13 @@ AllSports.args = {
   //   type: "asu-events",
   //   url: "http://localhost:8888/",
   // },
+  // gameDataSource: {
+  //   type: "custom",
+  //   gameAPI: new GameAPIMock({ timeout: 1000 }),
+  // },
   gameDataSource: {
     type: "custom",
-    gameAPI: new GameAPIMock({ timeout: 1000 }),
+    gameAPI: new CustomGameAPI(),
   },
   title: "Upcoming Games",
   emptyStateMessage: "No upcoming games",
@@ -146,7 +189,7 @@ export const SingleSport = Template.bind({});
 SingleSport.args = {
   gameDataSource: {
     type: "custom",
-    gameAPI: new GameAPIMock(),
+    gameAPI: new CustomGameAPI(),
   },
   title: "Upcoming Games",
   subtitle:

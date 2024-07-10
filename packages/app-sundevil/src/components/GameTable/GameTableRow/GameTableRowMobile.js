@@ -80,11 +80,14 @@ const TitleRoot = styled.div`
   min-width: 0;
 `;
 
-export const GameTableRowMobile = ({ game, skeleton }) => {
+export const GameTableRowMobile = ({ game, skeleton, empty }) => {
   return (
     <Skeleton skeleton={skeleton}>
       <div className="container">
-        <Root>
+        <Root
+          aria-hidden={empty}
+          style={empty ? { opacity: 0, userSelect: "none" } : {}}
+        >
           <Date>{`${game?.date.month}. ${game?.date.day}`}</Date>
 
           <TitleRoot>

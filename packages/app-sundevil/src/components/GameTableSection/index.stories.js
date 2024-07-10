@@ -3,7 +3,7 @@ import React from "react";
 
 import { GameTableSection } from "./index";
 
-import { GameAPIMock, IGameAPI } from "../Game/game-api";
+import { IGameAPI } from "../Game/game-api";
 
 class CustomGameAPI extends IGameAPI {
   // eslint-disable-next-line no-useless-constructor

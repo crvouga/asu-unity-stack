@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useRef } from "react";
+import styled from "styled-components";
 
 /** @type {(icon: unknown) => icon is {icon_name: string, style: string}} */
 const isFontAwesomeIconObject = icon =>
@@ -93,19 +94,40 @@ export const mergeIconProps = (props, icon) => {
   return propsNew;
 };
 
+const StyledIcon = styled.i`
+  color: inherit !important;
+  text-decoration: !important;
+  &:hover {
+    color: !important;
+    text-decoration: !important;
+  }
+`;
+
 export const Icon = ({ icon, ...props }) => {
+  const iconRef = useRef(null);
+
   if (!isValidIcon(icon)) {
     return null;
   }
+
   const iconProps = mergeIconProps(props, icon);
-  // eslint-disable-next-line react/jsx-props-no-spreading
-  return <i {...iconProps} />;
+
+  return (
+    <StyledIcon
+      {...iconProps}
+      ref={iconRef}
+      style={{
+        ...iconProps.style,
+      }}
+    />
+  );
 };
 
 export const iconPropType = PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.object,
 ]);
+
 Icon.propTypes = {
   icon: iconPropType,
   title: PropTypes.string,

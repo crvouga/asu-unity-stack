@@ -55,7 +55,7 @@ const Text = styled.div`
   flex: 1;
 `;
 
-const Icon = styled.span`
+const ChevronIcon = styled.span`
   font-size: 16px;
   color: #191919;
 `;
@@ -77,9 +77,9 @@ export const SelectBase = React.forwardRef(
           renderIcon?.({ style: { fontSize: "16", color: "#191919" } })}
         <Text>{name}</Text>
         {open ? (
-          <Icon className="fas fa-chevron-up" />
+          <ChevronIcon className="fas fa-chevron-up" />
         ) : (
-          <Icon className="fas fa-chevron-down" />
+          <ChevronIcon className="fas fa-chevron-down" />
         )}
       </Root>
     );

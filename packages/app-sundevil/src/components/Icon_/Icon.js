@@ -56,6 +56,8 @@ const toIconProps = icon => {
     return {
       className: "",
       style: {
+        width: "1em",
+        height: "1em",
         display: "inline-block",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",

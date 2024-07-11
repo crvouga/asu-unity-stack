@@ -1,3 +1,4 @@
+// https://cdn-icons-png.flaticon.com/512/94/94107.png
 /** @type {import("../../../../component-header/src/header").HeaderProps} */
 export const testHeaderProps = {
   baseUrl: "https://web-sda.ddev.site:8443/",
@@ -350,10 +351,7 @@ export const testHeaderProps = {
             href: "/sports/lacrosse",
             text: "Lacrosse",
             icon: {
-              icon_name: "lacrosse-stick-ball",
-              style: "fa-solid",
-              settings:
-                "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+              src: "https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/lacrosse-sticks-icon.png",
             },
             type: null,
             extra_links: [
@@ -670,10 +668,7 @@ export const testHeaderProps = {
             href: "/tickets/lacrosse",
             text: "Lacrosse",
             icon: {
-              icon_name: "lacrosse-stick",
-              style: "fa-solid",
-              settings:
-                "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:8:\u0022fa-solid\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+              src: "https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/lacrosse-sticks-icon.png",
             },
             type: null,
             extra_links: "",

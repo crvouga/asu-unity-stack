@@ -121,9 +121,7 @@ const DropdownItem = forwardRef(
               trackGAEvent({ text: link.text, component: dropdownName })
             }
           >
-            {link.faClassName && (
-              <i className={link.faClassName} aria-hidden="true" />
-            )}
+            {link?.renderStartIcon?.()}
             {link.text}
           </a>
         </li>
@@ -168,7 +166,7 @@ const DropdownItem = forwardRef(
             <div>
               {buttons.map((button, index) => (
                 <Button
-                  faClassName={button.faClassName}
+                  renderStartIcon={button.renderStartIcon}
                   key={`${button.text}-${button.href || index}`}
                   color={button.color}
                   text={button.text}

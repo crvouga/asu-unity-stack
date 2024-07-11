@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import { Button } from "../../../../components-core/src/index";
-import { iconToFaClassName } from "../../core/drupal-integration";
+import { mergeIconProps } from "../Icon_";
 import { Skeleton } from "../Skeleton";
 import { buttonSchema } from "./button-prop";
 
@@ -23,10 +23,14 @@ const EndIcon = ({ button }) => {
   }
 
   if (button?.endIcon) {
+    const iconProps = mergeIconProps(
+      { style: { marginLeft: "8px" } },
+      button.endIcon
+    );
     return (
       <i
-        style={{ marginLeft: "8px" }}
-        className={iconToFaClassName(button.endIcon)}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...iconProps}
       />
     );
   }

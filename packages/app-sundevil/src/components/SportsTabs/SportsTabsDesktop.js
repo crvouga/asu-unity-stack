@@ -5,8 +5,8 @@ import styled from "styled-components";
 
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { APP_CONFIG } from "../../config";
-import { iconToFaClassName } from "../../core/drupal-integration/icon";
 import { DropDown, DropDownSurface } from "../DropDown";
+import { Icon } from "../Icon_";
 import { Skeleton } from "../Skeleton";
 import { basePropTypes } from "./sports-tabs";
 import { SportsTab } from "./SportsTab";
@@ -67,10 +67,7 @@ export const SportsTabsDesktop = ({
             orientation="vertical"
             darkMode={darkMode}
           >
-            <span
-              title={sport.name}
-              className={iconToFaClassName(sport.icon)}
-            />
+            <Icon title={sport.name} icon={sport.icon} />
             <div>{sport.name}</div>
           </SportsTab>
         ))}

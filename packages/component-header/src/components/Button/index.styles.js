@@ -8,7 +8,6 @@ const ButtonWrapper = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
   border-radius: 400rem;
   font-weight: 700;
   font-size: 0.875rem;

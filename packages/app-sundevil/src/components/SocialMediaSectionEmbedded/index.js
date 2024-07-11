@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import { iconToFaClassName } from "../../core/drupal-integration";
 import { SocialMediaSectionEmbedded as SocialMediaSectionEmbeddedCore } from "./SocialMediaSectionEmbedded";
 
 const drupalSocialMediaHandlePropTypes = PropTypes.shape({
@@ -40,7 +39,7 @@ const drupalPropsToProps = maybeDrupalProps => {
       social: ensureArray(drupalProps?.social_media_handles).map(handle => {
         return {
           url: handle?.link,
-          faClassName: iconToFaClassName(handle?.icon),
+          icon: handle?.icon,
         };
       }),
       sponsorBlock: ensureRecord(drupalProps?.sponsor_block?.[0]),
@@ -56,4 +55,3 @@ export const SocialMediaSectionEmbedded = drupalProps => {
 };
 
 SocialMediaSectionEmbedded.propTypes = drupalPropTypes;
-

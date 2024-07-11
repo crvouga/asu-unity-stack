@@ -5,6 +5,7 @@ import styled from "styled-components";
 /**
  * @typedef {{
  * icon: string;
+ * renderIcon?: () => React.ReactNode
  * name: string;
  * open: boolean;
  * onClick: () => void;
@@ -13,7 +14,7 @@ import styled from "styled-components";
  */
 
 const propTypes = {
-  icon: PropTypes.string.isRequired,
+  renderIcon: PropTypes.func,
   name: PropTypes.string.isRequired,
   open: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
@@ -63,7 +64,7 @@ const Icon = styled.span`
  * @type {React.FC<Props>}
  */
 export const SelectBase = React.forwardRef(
-  ({ icon, name, onClick, open, variant = "bottom-bordered" }, ref) => {
+  ({ name, onClick, renderIcon, open, variant = "bottom-bordered" }, ref) => {
     return (
       <Root
         type="button"
@@ -72,7 +73,8 @@ export const SelectBase = React.forwardRef(
         variant={variant}
         onClick={onClick}
       >
-        <Icon title={name} className={icon} />
+        {renderIcon &&
+          renderIcon?.({ style: { fontSize: "16", color: "#191919" } })}
         <Text>{name}</Text>
         {open ? (
           <Icon className="fas fa-chevron-up" />

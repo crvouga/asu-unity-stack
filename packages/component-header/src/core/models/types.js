@@ -21,7 +21,7 @@
  * @property {("gold"|"maroon"|"light"|"dark")} [color]
  * @property {string} text
  * @property {string} [classes]
- * @property {string} [faClassName]
+ * @property {function} [renderStartIcon]
  * @property {function} [onClick]
  * @property {function} [onFocus]
  */

@@ -4,7 +4,7 @@ export const testHeaderProps = {
   title: "Sun Devils",
   parentOrg: "",
   parentOrgUrl: "",
-  expandOnHover: 0,
+  expandOnHover: false,
   loginLink: "/caslogin",
   logoutLink: "/caslogout",
   loggedIn: true,
@@ -507,7 +507,6 @@ export const testHeaderProps = {
           href: "/link",
           text: "Buy Tickets",
           color: "gold",
-
           icon: {
             icon_name: "ticket",
             style: "fa-fas",

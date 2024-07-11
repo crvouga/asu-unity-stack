@@ -20,7 +20,7 @@ const Button = ({
   classes,
   onClick,
   onFocus,
-  faClassName,
+  renderStartIcon,
 }) => {
   return (
     // @ts-ignore
@@ -30,9 +30,7 @@ const Button = ({
       onClick={onClick}
       onFocus={onFocus}
     >
-      {typeof faClassName === "string" && faClassName.length > 0 && (
-        <i className={faClassName} />
-      )}
+      {renderStartIcon && renderStartIcon?.()}
       <span>{text}</span>
     </ButtonWrapper>
   );

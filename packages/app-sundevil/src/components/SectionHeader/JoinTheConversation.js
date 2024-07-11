@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { Icon, iconPropType } from "../Icon_";
 import { SocialMediaIcon } from "./SocialMediaIcon";
 
 const Root = styled.div`
@@ -46,12 +47,14 @@ export const socialPropType = PropTypes.shape({
   label: PropTypes.string,
   url: PropTypes.string.isRequired,
   faClassName: PropTypes.string,
+  icon: iconPropType,
 });
 
 const SocialIcon = ({ social, className }) => {
-  if (typeof social.faClassName === "string") {
-    return <i className={`${social.faClassName} ${className}`} />;
+  if (social?.icon) {
+    return <Icon className={className} icon={social.icon} />;
   }
+
   return (
     <SocialMediaIcon
       className={className}

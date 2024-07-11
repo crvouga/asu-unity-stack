@@ -4,6 +4,7 @@ import React from "react";
 
 import { ASUHeader } from "../../../../component-header/src";
 import { HeaderContentSportLinks } from "../HeaderContentSportLinks";
+import { Icon } from "../Icon_";
 import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps} BaseHeaderProps */
@@ -31,23 +32,12 @@ const assocNavTreeVariant = navTreeItem => {
     type: navTreeItem.type ?? "builtin",
   };
 };
-/** @type {(icon: unknown) => icon is {icon_name: string, style: string}} */
-const isIcon = icon =>
-  Boolean(
-    icon && typeof icon === "object" && "icon_name" in icon && "style" in icon
-  );
-
-/** @type {(icon: unknown) => string} */
-const iconToFaClassName = icon => {
-  if (!isIcon(icon)) return "";
-  return `fa ${icon.style} fa-${icon.icon_name}`;
-};
 
 /** @type {(item: object) => object} */
 const mapNavTreeItemItem = item => {
   return {
     ...item,
-    faClassName: iconToFaClassName(item.icon),
+    renderStartIcon: () => <Icon icon={item.icon} />,
   };
 };
 
@@ -56,21 +46,16 @@ const mapNavTreeItemButtons = navTreeItem => {
   const buttons = Array.isArray(navTreeItem.buttons) ? navTreeItem.buttons : [];
   return {
     ...navTreeItem,
-    buttons: buttons.map(button => {
-      const icon =
-        "icon" in button &&
-        typeof button.icon === "object" &&
-        isIcon(button.icon)
-          ? button.icon
-          : null;
-
-      const faClassName = iconToFaClassName(icon);
-
-      return {
-        ...button,
-        faClassName,
-      };
-    }),
+    buttons: buttons.map(button => ({
+      ...button,
+      icon: undefined,
+      renderStartIcon: () => (
+        <Icon
+          icon={"icon" in button && button.icon}
+          style={{ marginRight: "0.5rem" }}
+        />
+      ),
+    })),
   };
 };
 
@@ -82,31 +67,29 @@ const mapNavTreeItemToSportLinks = navTreeItem => {
     text: navTreeItem.text,
     footers: navTreeItem.footers,
     buttons: navTreeItem.buttons,
-    renderContent: () => {
-      return (
-        <HeaderContentSportLinks
-          buttons={[]}
-          sports={(navTreeItem.items ?? []).flatMap(column =>
-            column.map(item => {
-              const extraLinks = Array.isArray(item.extra_links)
-                ? item?.extra_links
-                : [];
-              return {
-                href: item.href,
-                sportName: item.text,
-                sportLinks: extraLinks.map(extraLink => {
-                  return {
-                    label: extraLink.text,
-                    url: extraLink.href,
-                  };
-                }),
-                faClassName: iconToFaClassName(item.icon),
-              };
-            })
-          )}
-        />
-      );
-    },
+    renderContent: () => (
+      <HeaderContentSportLinks
+        buttons={[]}
+        sports={(navTreeItem.items ?? []).flatMap(column =>
+          column.map(item => {
+            const extraLinks = Array.isArray(item.extra_links)
+              ? item?.extra_links
+              : [];
+            return {
+              href: item.href,
+              sportName: item.text,
+              sportLinks: extraLinks.map(extraLink => {
+                return {
+                  label: extraLink.text,
+                  url: extraLink.href,
+                };
+              }),
+              icon: item.icon,
+            };
+          })
+        )}
+      />
+    ),
   };
 };
 

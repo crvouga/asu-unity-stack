@@ -7,6 +7,7 @@ import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobil
 import { Button } from "../../../../components-core/src";
 import { APP_CONFIG } from "../../config";
 import { useMaxWidth } from "../../utils/use-max-width";
+import { Icon, iconPropType } from "../Icon_";
 import { SportIcon } from "../SportIcon";
 import { stringToClosestSportName } from "../SportIcon/sport-name";
 import { TicketmasterLogo } from "./TicketmasterLogo";
@@ -39,7 +40,7 @@ const sportLinkItemSchema = PropTypes.shape({
 const sportSchema = PropTypes.shape({
   sportName: PropTypes.string.isRequired,
   sportLinks: PropTypes.arrayOf(sportLinkItemSchema.isRequired).isRequired,
-  faClassName: PropTypes.string,
+  icon: iconPropType,
   href: PropTypes.string,
 });
 /**
@@ -47,7 +48,7 @@ const sportSchema = PropTypes.shape({
  * @property {string} href
  * @property {string} sportName
  * @property {SportLinkItem[]} sportLinks
- * @property {string | null | undefined} [faClassName]
+ * @property {string | object} [icon]
  */
 
 const SportLinkItemLink = styled.a`
@@ -163,7 +164,7 @@ const SportIconWrapper = styled.span`
   color: inherit !important;
 `;
 
-const Icon = styled.i`
+const StyledIcon = styled(Icon)`
   width: 16px;
   height: 16px;
   color: var(--text-color-primary);
@@ -181,8 +182,8 @@ const SportGridListItem = ({ sport, borderBottom }) => {
     >
       <SportNameLink href={sport.href}>
         <SportIconWrapper>
-          {sport.faClassName ? (
-            <Icon className={sport.faClassName} style={{ color: "inherit" }} />
+          {sport.icon ? (
+            <StyledIcon icon={sport.icon} />
           ) : (
             <SportIcon sportName={sportName} />
           )}

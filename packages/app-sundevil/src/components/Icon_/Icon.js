@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 
 /** @type {(icon: unknown) => icon is {icon_name: string, style: string}} */
@@ -57,8 +57,8 @@ const toIconProps = icon => {
     return {
       className: "",
       style: {
-        width: "1em",
-        height: "1em",
+        width: "1rem",
+        height: "1rem",
         display: "inline-block",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
@@ -87,8 +87,8 @@ export const mergeIconProps = (props, icon) => {
     ...props,
     className: `${props?.className ?? ""} ${iconProps?.className ?? ""}`,
     style: {
-      ...props?.style,
       ...iconProps?.style,
+      ...props?.style,
     },
   };
   return propsNew;
@@ -104,23 +104,13 @@ const StyledIcon = styled.i`
 `;
 
 export const Icon = ({ icon, ...props }) => {
-  const iconRef = useRef(null);
-
   if (!isValidIcon(icon)) {
     return null;
   }
 
   const iconProps = mergeIconProps(props, icon);
 
-  return (
-    <StyledIcon
-      {...iconProps}
-      ref={iconRef}
-      style={{
-        ...iconProps.style,
-      }}
-    />
-  );
+  return <StyledIcon {...iconProps} />;
 };
 
 export const iconPropType = PropTypes.oneOfType([

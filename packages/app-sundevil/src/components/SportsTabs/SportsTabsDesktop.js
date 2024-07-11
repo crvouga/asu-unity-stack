@@ -27,6 +27,12 @@ const Root = styled.div`
   flex-wrap: nowrap;
 `;
 
+const ICON_SIZE = {
+  width: "16px",
+  height: "16px",
+  fontSize: "16px",
+};
+
 /**
  * @type {React.FC<Props>}
  * */
@@ -67,7 +73,7 @@ export const SportsTabsDesktop = ({
             orientation="vertical"
             darkMode={darkMode}
           >
-            <Icon title={sport.name} icon={sport.icon} />
+            <Icon title={sport.name} icon={sport.icon} style={ICON_SIZE} />
             <div>{sport.name}</div>
           </SportsTab>
         ))}
@@ -95,9 +101,9 @@ export const SportsTabsDesktop = ({
                   darkMode={darkMode}
                 >
                   {input.open ? (
-                    <span className="fas fa-chevron-up" />
+                    <span className="fas fa-chevron-up" style={ICON_SIZE} />
                   ) : (
-                    <span className="fas fa-chevron-down" />
+                    <span className="fas fa-chevron-down" style={ICON_SIZE} />
                   )}
                   <div>More</div>
                 </SportsTab>

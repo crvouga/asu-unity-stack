@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 
 import { gameSchema } from "../game";
-import { IGameAPI } from "./game-api";
-import { GameAPIAsuEvents } from "./game-api-impl-asu-events";
-import { GameAPIMock } from "./game-api-impl-mock";
-import { GameAPIStatic } from "./game-api-impl-static";
+import { IGameDataSource } from "./game-data-source";
+import { GameDataSourceAsuEvents } from "./game-data-source-impl-asu-events";
+import { GameDataSourceMock } from "./game-data-source-impl-mock";
+import { GameDataSourceStatic } from "./game-data-source-impl-static";
 
 export const gameDataSourceSchema = PropTypes.oneOf([
   PropTypes.shape({
@@ -19,26 +19,26 @@ export const gameDataSourceSchema = PropTypes.oneOf([
   }),
   PropTypes.shape({
     type: PropTypes.exact("custom"),
-    gameAPI: PropTypes.instanceOf(IGameAPI),
+    gameDataSource: PropTypes.instanceOf(IGameDataSource),
   }),
 ]);
 
 export const buildGameDataSource = input => {
   switch (input.type) {
     case "static": {
-      return new GameAPIStatic(input);
+      return new GameDataSourceStatic(input);
     }
     case "mock": {
-      return new GameAPIMock();
+      return new GameDataSourceMock();
     }
     case "asu-events": {
-      return new GameAPIAsuEvents(input);
+      return new GameDataSourceAsuEvents(input);
     }
     case "custom": {
-      return input.gameAPI;
+      return input.gameDataSource;
     }
     default: {
-      return new GameAPIStatic({ games: [] });
+      return new GameDataSourceStatic({ games: [] });
     }
   }
 };

@@ -10,7 +10,7 @@
  * @property {string | null | undefined} [gameType]
  */
 
-export class IGameAPI {
+export class IGameDataSource {
   /**
    * @param {FindManyInput} input
    * @returns {Promise<Game[]>}
@@ -22,4 +22,4 @@ export class IGameAPI {
 }
 
 // @ts-ignore
-window.IGameAPI = IGameAPI;
+window.IGameAPI = IGameDataSource;

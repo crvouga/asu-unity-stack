@@ -1,4 +1,4 @@
-import { IGameAPI } from "./game-api";
+import { IGameDataSource } from "./game-data-source";
 
 const cleanEqual = (a, b) => {
   if (typeof a === "string" && typeof b === "string") {
@@ -7,7 +7,7 @@ const cleanEqual = (a, b) => {
   return a === b;
 };
 
-export class GameAPIStatic extends IGameAPI {
+export class GameDataSourceStatic extends IGameDataSource {
   /**
    * @param {{games: import("../game").Game[]}} input
    */
@@ -17,7 +17,7 @@ export class GameAPIStatic extends IGameAPI {
   }
 
   /**
-   * @type {import("./game-api").IGameAPI['findMany']}
+   * @type {import("./game-data-source").IGameDataSource['findMany']}
    */
   async findMany(input) {
     const filtered = this.games.filter(game => {

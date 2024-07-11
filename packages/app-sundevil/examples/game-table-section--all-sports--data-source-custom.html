@@ -56,12 +56,12 @@
       </div>
       <div class="contextual"></div>
     </div>    <script>
-      class CustomGameAPI extends IGameAPI {
+      class CustomGameDataSource extends IGameDataSource {
         constructor() {
           super();
         }
         async findMany(input) {
-          console.log(`CustomGameAPI.findMany()`, input);
+          console.log(`CustomGameDataSource.findMany()`, input);
           return [
             {
               id: Math.random().toString(36).substring(2, 9),
@@ -96,7 +96,7 @@
         // This allows for custom implementation of game data source
         gameDataSource: {
           type: "custom",
-          gameAPI: new CustomGameAPI(),
+          gameAPI: new CustomGameDataSource(),
         },
         title: "Upcoming Games",
         emptyStateMessage: "No upcoming games",

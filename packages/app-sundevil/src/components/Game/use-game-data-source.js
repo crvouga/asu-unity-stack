@@ -2,8 +2,8 @@
 import { useEffect, useMemo, useState } from "react";
 
 import * as Result from "../../utils/result";
-import { WithFiltering } from "./game-api";
-import { useGameAPI } from "./GameAPIContext";
+import { WithFiltering } from "./game-data-source";
+import { useGameDataSource } from "./GameDataSourceContext";
 
 /** @type {() => Result.RemoteResult<string, import('./game').Game[]>} */
 const initState = () => {
@@ -11,7 +11,7 @@ const initState = () => {
 };
 
 /**
- * @param {import("./game-api/game-api").FindManyInput} input
+ * @param {import("./game-data-source/game-data-source").FindManyInput} input
  * @returns {string}
  */
 const toQueryKey = input => {
@@ -19,10 +19,10 @@ const toQueryKey = input => {
 };
 
 /**
- * @param {import("./game-api/game-api").FindManyInput} input
+ * @param {import("./game-data-source/game-data-source").FindManyInput} input
  */
 export const useGameLoader = input => {
-  const gameAPI = useGameAPI();
+  const gameAPI = useGameDataSource();
   const gameAPIWithFiltering = useMemo(
     () => new WithFiltering(gameAPI),
     [gameAPI]

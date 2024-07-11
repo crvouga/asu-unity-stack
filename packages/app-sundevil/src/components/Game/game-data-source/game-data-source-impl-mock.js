@@ -1,5 +1,5 @@
-import { IGameAPI } from "./game-api";
-import { GameAPIStatic } from "./game-api-impl-static";
+import { IGameDataSource } from "./game-data-source";
+import { GameDataSourceStatic } from "./game-data-source-impl-static";
 
 const ALL_SPORT_IDS = [
   "all",
@@ -52,15 +52,15 @@ ALL_SPORT_IDS.forEach(sportId => {
   });
 });
 
-export class GameAPIMock extends IGameAPI {
+export class GameDataSourceMock extends IGameDataSource {
   constructor({ timeout = 3000 } = {}) {
     super();
     this.timeout = timeout;
-    this.gameAPI = new GameAPIStatic({ games });
+    this.gameAPI = new GameDataSourceStatic({ games });
   }
 
   /**
-   * @type {import("./game-api").IGameAPI['findMany']}
+   * @type {import("./game-data-source").IGameDataSource['findMany']}
    */
   async findMany(input) {
     await new Promise(resolve => setTimeout(resolve, this.timeout));

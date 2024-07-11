@@ -8,9 +8,9 @@ import { useElementContentDimensions } from "../../utils/use-element-position";
 import {
   buildGameDataSource,
   gameDataSourceSchema,
-} from "../Game/game-api/game-api-impl";
-import { GameAPIProvider } from "../Game/GameAPIContext";
-import { useGameLoader } from "../Game/use-game-api";
+} from "../Game/game-data-source/game-data-source-impl";
+import { GameDataSourceProvider } from "../Game/GameDataSourceContext";
+import { useGameLoader } from "../Game/use-game-data-source";
 import { GameNavigation } from "../GameNavigation";
 import { GameTable, gameTableFooterButtonSchema } from "../GameTable";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
@@ -135,9 +135,9 @@ const GameTableSection = ({ gameDataSource, ...props }) => {
     [gameDataSource]
   );
   return (
-    <GameAPIProvider gameAPI={gameAPI}>
+    <GameDataSourceProvider gameAPI={gameAPI}>
       <GameTableSectionInner {...props} />
-    </GameAPIProvider>
+    </GameDataSourceProvider>
   );
 };
 

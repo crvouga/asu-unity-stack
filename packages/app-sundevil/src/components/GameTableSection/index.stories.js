@@ -3,9 +3,9 @@ import React from "react";
 
 import { GameTableSection } from "./index";
 
-import { IGameAPI } from "../Game/game-api";
+import { IGameDataSource } from "../Game/game-data-source";
 
-class CustomGameAPI extends IGameAPI {
+class CustomGameDataSource extends IGameDataSource {
   // eslint-disable-next-line no-useless-constructor
   constructor() {
     super();
@@ -64,18 +64,18 @@ const Template = args => <GameTableSection {...args} />;
  */
 export const AllSports = Template.bind({});
 AllSports.args = {
+  gameDataSource: {
+    type: "asu-events",
+    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+  },
   // gameDataSource: {
-  //   type: "asu-events",
-  //   url: "http://localhost:8888/",
+  //   type: "custom",
+  //   gameAPI: new GameDataSourceMock({ timeout: 1000 }),
   // },
   // gameDataSource: {
   //   type: "custom",
-  //   gameAPI: new GameAPIMock({ timeout: 1000 }),
+  //   gameAPI: new CustomGameDataSource(),
   // },
-  gameDataSource: {
-    type: "custom",
-    gameAPI: new CustomGameAPI(),
-  },
   title: "Upcoming Games",
   emptyStateMessage: "No upcoming games",
   sports: [
@@ -189,7 +189,7 @@ export const SingleSport = Template.bind({});
 SingleSport.args = {
   gameDataSource: {
     type: "custom",
-    gameAPI: new CustomGameAPI(),
+    gameAPI: new CustomGameDataSource(),
   },
   title: "Upcoming Games",
   subtitle:

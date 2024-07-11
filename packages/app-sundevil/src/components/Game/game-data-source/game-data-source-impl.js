@@ -24,7 +24,7 @@ export const gameDataSourceSchema = PropTypes.oneOf([
 ]);
 
 export const buildGameDataSource = input => {
-  switch (input.type) {
+  switch (input?.type) {
     case "static": {
       return new GameDataSourceStatic(input);
     }

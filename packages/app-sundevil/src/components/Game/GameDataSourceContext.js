@@ -6,16 +6,16 @@ import { IGameDataSource } from "./game-data-source/game-data-source";
 
 const GameDataSourceContext = React.createContext(new IGameDataSource());
 
-export const GameDataSourceProvider = ({ children, gameAPI }) => {
+export const GameDataSourceProvider = ({ children, gameDataSource }) => {
   return (
-    <GameDataSourceContext.Provider value={gameAPI}>
+    <GameDataSourceContext.Provider value={gameDataSource}>
       {children}
     </GameDataSourceContext.Provider>
   );
 };
 GameDataSourceProvider.propTypes = {
   children: PropTypes.node.isRequired,
-  gameAPI: PropTypes.instanceOf(IGameDataSource).isRequired,
+  gameDataSource: PropTypes.instanceOf(IGameDataSource).isRequired,
 };
 
 /**

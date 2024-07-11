@@ -22,10 +22,10 @@ const toQueryKey = input => {
  * @param {import("./game-data-source/game-data-source").FindManyInput} input
  */
 export const useGameLoader = input => {
-  const gameAPI = useGameDataSource();
-  const gameAPIWithFiltering = useMemo(
-    () => new WithFiltering(gameAPI),
-    [gameAPI]
+  const gameDataSource = useGameDataSource();
+  const gameDataSourceWithFiltering = useMemo(
+    () => new WithFiltering(gameDataSource),
+    [gameDataSource]
   );
   const [queries, setQueries] = useState({});
   const queryKey = toQueryKey(input);
@@ -35,7 +35,7 @@ export const useGameLoader = input => {
       return;
     }
     const result = await Result.attempt(() =>
-      gameAPIWithFiltering.findMany(input)
+      gameDataSourceWithFiltering.findMany(input)
     );
     setQueries(queriesPrev => ({
       ...queriesPrev,

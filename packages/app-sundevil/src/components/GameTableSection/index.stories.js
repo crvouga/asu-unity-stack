@@ -70,11 +70,11 @@ AllSports.args = {
   },
   // gameDataSource: {
   //   type: "custom",
-  //   gameAPI: new GameDataSourceMock({ timeout: 1000 }),
+  //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
   // },
   // gameDataSource: {
   //   type: "custom",
-  //   gameAPI: new CustomGameDataSource(),
+  //   gameDataSource: new CustomGameDataSource(),
   // },
   title: "Upcoming Games",
   emptyStateMessage: "No upcoming games",
@@ -189,7 +189,7 @@ export const SingleSport = Template.bind({});
 SingleSport.args = {
   gameDataSource: {
     type: "custom",
-    gameAPI: new CustomGameDataSource(),
+    gameDataSource: new CustomGameDataSource(),
   },
   title: "Upcoming Games",
   subtitle:

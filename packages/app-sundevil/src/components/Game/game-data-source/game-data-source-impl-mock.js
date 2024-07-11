@@ -56,7 +56,7 @@ export class GameDataSourceMock extends IGameDataSource {
   constructor({ timeout = 3000 } = {}) {
     super();
     this.timeout = timeout;
-    this.gameAPI = new GameDataSourceStatic({ games });
+    this.gameDataSource = new GameDataSourceStatic({ games });
   }
 
   /**
@@ -64,7 +64,7 @@ export class GameDataSourceMock extends IGameDataSource {
    */
   async findMany(input) {
     await new Promise(resolve => setTimeout(resolve, this.timeout));
-    const found = await this.gameAPI.findMany(input);
+    const found = await this.gameDataSource.findMany(input);
     return found;
   }
 }

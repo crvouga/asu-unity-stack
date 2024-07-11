@@ -25,6 +25,14 @@ Default.args = {
   subtitle:
     "From the fall football season to the Maroon and Gold Spring game and at Camp Tontozona,\n" +
     "        there are football games and events throughout the year.",
+  subtitleFontWeight: "bold",
+  subtitleLinks: [
+    {
+      label: "See Past Game Scores",
+      href: "#",
+      fontWeight: "bold",
+    },
+  ],
   sponsorBlock: {
     text: "Presented By",
     name: "Ford",

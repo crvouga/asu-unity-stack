@@ -69,7 +69,7 @@ const GameTableSectionInner = ({ ...props }) => {
       }}
     >
       <div ref={headerRef}>
-        <div style={{ paddingBottom: "20px" }}>
+        <div style={{ paddingBottom: "48px" }}>
           <SectionHeader
             {...mapSectionHeaderProps(props)}
             // @ts-ignore

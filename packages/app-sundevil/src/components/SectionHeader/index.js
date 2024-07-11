@@ -5,13 +5,14 @@ import styled from "styled-components";
 
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { APP_CONFIG } from "../../config";
+import { stringToFontWeight } from "../../utils/font-weight";
 import { Logo } from "./index.styles";
 import { JoinTheConversation, socialPropType } from "./JoinTheConversation";
 import { Tabs } from "./Tabs";
 
 const Subtitle = styled.p`
   width: 100%;
-  max-width: 520px;
+  max-width: 588px;
   padding: 0;
   margin: 0;
   color: #191919;
@@ -34,6 +35,12 @@ const HeaderBody = styled.nav`
   flex-direction: column;
   width: 100%;
   gap: 48px;
+`;
+
+const SubtitleRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 `;
 
 export const mapPropsSponsorBlock = props => {
@@ -93,6 +100,10 @@ const SectionHeader = forwardRef(
       onTabItemClick,
       // @ts-ignore
       darkMode = false,
+      //  @ts-ignore
+      subtitleFontWeight = "normal",
+      //  @ts-ignore
+      subtitleLinks = [],
     },
     ref
   ) => {
@@ -127,9 +138,32 @@ const SectionHeader = forwardRef(
                 </div>
               </div>
               <HeaderBody>
-                {subtitle && (
-                  <Subtitle dangerouslySetInnerHTML={{ __html: subtitle }} />
-                )}
+                <SubtitleRoot>
+                  {subtitle && (
+                    <Subtitle
+                      style={{
+                        fontWeight: stringToFontWeight(subtitleFontWeight),
+                      }}
+                      dangerouslySetInnerHTML={{ __html: subtitle }}
+                    />
+                  )}
+                  {Array.isArray(subtitleLinks) && subtitleLinks.length > 0 && (
+                    <>
+                      {subtitleLinks.map(link => (
+                        <a
+                          key={link?.href ?? link?.url ?? link?.label}
+                          href={link?.href ?? link?.url}
+                          style={{
+                            fontWeight: stringToFontWeight(link.fontWeight),
+                          }}
+                        >
+                          {link?.label}
+                        </a>
+                      ))}
+                    </>
+                  )}
+                </SubtitleRoot>
+
                 {tabs && tabs.length > 0 && (
                   <Tabs
                     tabs={tabs}
@@ -171,6 +205,14 @@ SectionHeader.propTypes = {
   // @ts-ignore
   title: PropTypes.string,
   subtitle: PropTypes.string,
+  subtitleFontWeight: PropTypes.string,
+  subtitleLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      href: PropTypes.string,
+      fontWeight: PropTypes.string,
+    })
+  ),
   sponsorBlock: sponsorBlockSchema,
   tabs: PropTypes.arrayOf(
     PropTypes.shape({

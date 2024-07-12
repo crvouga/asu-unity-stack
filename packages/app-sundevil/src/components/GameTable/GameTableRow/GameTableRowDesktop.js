@@ -54,7 +54,9 @@ const CellTitle = styled.div`
   overflow: hidden;
 `;
 
-const Title = styled.h3`
+const Title = styled.a`
+  color: #000 !important;
+  text-decoration: none !important;
   font-size: 24px;
   padding: 0;
   margin: 0;
@@ -62,13 +64,14 @@ const Title = styled.h3`
   text-overflow: ellipsis;
   white-space: nowrap;
   font-weight: bold;
-  width: 100%;
+  width: fit-content;
   max-width: 100%;
 `;
 
 const Subtitles = styled.div`
   display: flex;
-  gap: 1rem;
+  gap: 24px;
+  font-weight: bold;
 `;
 
 export const GameTableRowDesktop = ({ game, skeleton, empty }) => {
@@ -92,7 +95,7 @@ export const GameTableRowDesktop = ({ game, skeleton, empty }) => {
         </Cell>
         <Cell className="flex-1">
           <CellTitle>
-            <Title>{game?.title}</Title>
+            <Title href={game?.titleHref}>{game?.title}</Title>
             <Subtitles>
               <span className="text-body-tertiary">{game?.time}</span>
               <span className="text-body-tertiary">{game?.venue}</span>

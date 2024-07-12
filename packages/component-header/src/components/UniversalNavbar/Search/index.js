@@ -32,7 +32,7 @@ function handleSearch(e) {
    *
    * TODO: UDS-1612
    */
-  setTimeout(() => e.target.submit(), 100);
+  setTimeout(() => e?.target?.submit?.(), 100);
   return trackGAEvent({
     ...SEARCH_GA_EVENT,
     text: e.target.elements.q.value,

@@ -195,6 +195,8 @@ const mapProps = props => ({
     renderStart: () => <OfficialAthleticsSite href={props.officialSiteHref} />,
     hideMobile: false,
     searchPlaceholder: "Search Sun Devil Athletics",
+    // Data layer code is crashing in prod. Disabling it for now.
+    searchDisableDataLayers: false,
   },
   mobile: {
     // we're now going to use the default hamburger button

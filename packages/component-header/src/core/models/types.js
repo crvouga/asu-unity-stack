@@ -66,6 +66,7 @@
  * @typedef {object} UniversalNavBarProps
  * @property {function} [renderStart]
  * @property {boolean} [hideMobile]
+ * @property {boolean} [searchDisableDataLayers]
  * @property {string} [searchPlaceholder]
  */
 

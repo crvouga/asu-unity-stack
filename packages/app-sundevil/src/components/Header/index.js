@@ -143,13 +143,14 @@ const mapNavTreeFooters = navTreeItem => {
         return {
           ...extraSection,
           type: extraSectionToFooterType(extraSection),
-          text: extraSection.extra_text,
-          buttonHref: extraSection.button_uri,
-          buttonText: extraSection.button_text,
-          imageSrc: extraSection.url,
-          imageWidth: extraSection.image_width,
-          imageHeight: extraSection.image_height,
-          imageAlt: extraSection.alt,
+          text: extraSection?.extra_text,
+          buttonHref: extraSection?.button_uri,
+          buttonText: extraSection?.button_text,
+          href: extraSection?.href,
+          imageSrc: extraSection?.url,
+          imageWidth: extraSection?.image_width,
+          imageHeight: extraSection?.image_height,
+          imageAlt: extraSection?.alt,
         };
       }),
     };

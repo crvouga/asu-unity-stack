@@ -53,7 +53,7 @@ const ButtonWithTextRoot = styled.div`
 export const DropdownItemFooter = ({ footer }) => {
   const footerType = footer.type ?? "button-with-text";
   return (
-    <Root>
+    <Root as={typeof footer.href === "string" ? "a" : "div"} href={footer.href}>
       {footerType === "image-only" && (
         <ImageOnlyRoot>
           <img

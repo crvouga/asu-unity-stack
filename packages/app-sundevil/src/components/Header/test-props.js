@@ -247,6 +247,7 @@ export const testHeaderProps = {
         {
           url: "https://cdn.freebiesupply.com/logos/large/2x/ticketmaster-5-logo-black-and-white.png",
           type: "image_only",
+          href: "#image-only",
 
           alt: " ",
 
@@ -517,6 +518,7 @@ export const testHeaderProps = {
         {
           url: "https://cdn.freebiesupply.com/logos/large/2x/ticketmaster-5-logo-black-and-white.png",
           type: "image_only",
+          href: "#image-only",
 
           alt: " ",
 
@@ -1241,7 +1243,7 @@ export const testHeaderProps = {
         {
           url: "https://redpeg.com/wp-content/uploads/2022/09/GRRC-Logo.png",
           type: "image_only",
-
+          href: "#image-only",
           alt: " ",
 
           image_width: "203",

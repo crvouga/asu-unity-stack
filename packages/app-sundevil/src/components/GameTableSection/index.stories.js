@@ -3,47 +3,6 @@ import React from "react";
 
 import { GameTableSection } from "./index";
 
-import { IGameDataSource } from "../Game/game-data-source";
-
-class CustomGameDataSource extends IGameDataSource {
-  // eslint-disable-next-line no-useless-constructor
-  constructor() {
-    super();
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  async findMany(_input) {
-    return [
-      {
-        id: Math.random().toString(36).substring(2, 9),
-        gameType: "home",
-        ticketLink: "https://www.example.com",
-        ticketText: "Buy Tickets",
-        title: "Sun Devils vs Wildcats",
-        date: {
-          day: "25",
-          month: "Nov",
-        },
-        sport: {
-          id: "football",
-          name: "Sport Name",
-          icon: "fa fa-rocket",
-        },
-        homeTeam: {
-          name: "Sun Devils",
-          logo: "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
-        },
-        awayTeam: {
-          name: "Wildcats",
-          logo: "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
-        },
-        time: "5:30pm",
-        venue: "Phoenix Muni Stadium",
-      },
-    ];
-  }
-}
-
 /** @typedef {import("@asu-design-system/components-core/src/core/types/feed-types").ComponentType } ComponentType */
 export default {
   title: "Game Table Section",
@@ -188,9 +147,13 @@ AllSports.args = {
 export const SingleSport = Template.bind({});
 SingleSport.args = {
   gameDataSource: {
-    type: "custom",
-    gameDataSource: new CustomGameDataSource(),
+    type: "asu-events",
+    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
   },
+  // gameDataSource: {
+  //   type: "custom",
+  //   gameDataSource: new CustomGameDataSource(),
+  // },
   title: "Upcoming Games",
   subtitle:
     "From the fall football season to the Maroon and Gold Spring game and at Camp Tontozona,\n there are football games and events throughout the year.",
@@ -226,17 +189,21 @@ SingleSport.args = {
     logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg",
     url: "https://www.ford.com/",
   },
+  loadMore: {
+    label: "Load More",
+    loadingLabel: "Loading...",
+  },
 
-  footerButtons: [
-    {
-      color: "gold",
-      label: "Full schedule",
-      size: "small",
-    },
-    {
-      color: "maroon",
-      label: "Gear up for the game",
-      size: "small",
-    },
-  ],
+  // footerButtons: [
+  //   {
+  //     color: "gold",
+  //     label: "Full schedule",
+  //     size: "small",
+  //   },
+  //   {
+  //     color: "maroon",
+  //     label: "Gear up for the game",
+  //     size: "small",
+  //   },
+  // ],
 };

@@ -1,6 +1,7 @@
 // @ts-check
 import PropTypes from "prop-types";
 import React, { useMemo, useRef, useState } from "react";
+import styled from "styled-components";
 
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { APP_CONFIG } from "../../config";
@@ -16,6 +17,18 @@ import { GameTable, gameTableFooterButtonSchema } from "../GameTable";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportSchema } from "../SportsTabs/sports-tabs";
+import {
+  GameTableLoadMoreButton,
+  gameTableLoadMorePropTypes,
+} from "./GameTableLoadMoreButton";
+
+const GameTableRoot = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+`;
 
 const GameTableSectionInner = ({ ...props }) => {
   const [selectedSportId, setSelectedSportId] = useState(
@@ -101,7 +114,7 @@ const GameTableSectionInner = ({ ...props }) => {
         </div>
       )}
 
-      <div className={isDesktop ? "container" : ""}>
+      <GameTableRoot className={isDesktop ? "container" : ""}>
         <GameTable
           {...props}
           games={games}
@@ -110,7 +123,9 @@ const GameTableSectionInner = ({ ...props }) => {
           skeleton={skeleton}
           //
         />
-      </div>
+
+        {props.loadMore && <GameTableLoadMoreButton {...props.loadMore} />}
+      </GameTableRoot>
     </div>
   );
 };
@@ -127,6 +142,7 @@ GameTableSectionInner.propTypes = {
   ...GameTable.propTypes,
   applyNegativeMarginForOverlap: PropTypes.bool,
   sports: PropTypes.arrayOf(sportSchemaGameTable),
+  loadMore: gameTableLoadMorePropTypes,
 };
 
 const GameTableSection = ({

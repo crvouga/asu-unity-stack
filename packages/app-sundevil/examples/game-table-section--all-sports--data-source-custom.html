@@ -51,18 +51,17 @@
 
   <body>
     <div id="section-container">
-      <div>
-        This will be removed
-      </div>
+      <div>This will be removed</div>
       <div class="contextual"></div>
-    </div>    <script>
+    </div>
+    <script>
       class CustomGameDataSource extends IGameDataSource {
         constructor() {
           super();
         }
         async findMany(input) {
           console.log(`CustomGameDataSource.findMany()`, input);
-          return [
+          const rows = [
             {
               id: Math.random().toString(36).substring(2, 9),
               gameType: "home",
@@ -90,6 +89,12 @@
               venue: "Phoenix Muni Stadium",
             },
           ];
+          return {
+            limit: Infinity,
+            offset: 0,
+            total: rows.length,
+            rows,
+          };
         }
       }
       const props = {
@@ -207,7 +212,7 @@
       initGameTableSection({
         targetSelector: "#section-container",
         props,
-        renderWithinChildWhiteList: [".contextual"]
+        renderWithinChildWhiteList: [".contextual"],
       });
     </script>
   </body>

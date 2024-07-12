@@ -71,27 +71,22 @@ const GameTable = ({
   games,
   footerButtons,
   emptyStateMessage,
-  maxRowCount = 5,
+  skeletonRowCount = 5,
   footerLinks,
 }) => {
-  // const skeleton = true;
-  const gamesSliced = games.slice(0, maxRowCount);
-
-  const isSkeleton = skeleton && gamesSliced.length === 0;
+  const isSkeleton = skeleton && games.length === 0;
 
   const isEmpty =
-    typeof emptyStateMessage === "string" &&
-    !skeleton &&
-    gamesSliced.length === 0;
+    typeof emptyStateMessage === "string" && !skeleton && games.length === 0;
 
-  const isRow = !isSkeleton && gamesSliced.length > 0;
+  const isRow = !isSkeleton && games.length > 0;
 
   return (
     <Root>
       <Table>
         {isSkeleton && (
           <BorderBottom>
-            {range(maxRowCount).map(index => (
+            {range(skeletonRowCount).map(index => (
               <GameTableRow key={index} skeleton />
             ))}
           </BorderBottom>
@@ -99,7 +94,7 @@ const GameTable = ({
 
         {isRow && (
           <AlternateBackground>
-            {gamesSliced.map(game => (
+            {games.map(game => (
               <GameTableRow key={game.id} game={game} />
             ))}
           </AlternateBackground>
@@ -107,7 +102,7 @@ const GameTable = ({
 
         {isEmpty && (
           <>
-            {range(maxRowCount).map(index => (
+            {range(skeletonRowCount).map(index => (
               <GameTableRow key={index} empty />
             ))}
             <EmptyStateMessage>{emptyStateMessage}</EmptyStateMessage>
@@ -159,7 +154,7 @@ export const gameTableFooterLinkSchema = PropTypes.shape({
 GameTable.propTypes = {
   games: PropTypes.arrayOf(gameSchema),
   skeleton: PropTypes.bool,
-  maxRowCount: PropTypes.number,
+  skeletonRowCount: PropTypes.number,
   footerButtons: PropTypes.arrayOf(gameTableFooterButtonSchema),
   footerLinks: PropTypes.arrayOf(gameTableFooterLinkSchema),
   emptyStateMessage: PropTypes.string,

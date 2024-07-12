@@ -25,15 +25,26 @@ export class GameDataSourceStatic extends IGameDataSource {
         typeof input?.sportId === "string" && input?.sportId?.length > 0
           ? cleanEqual(game?.sport?.id, input?.sportId)
           : true;
+
       const matchedGameType =
         typeof input?.gameType === "string" && input?.gameType.length > 0
           ? cleanEqual(game?.gameType, input?.gameType)
           : true;
 
       const matched = matchedSportId && matchedGameType;
+
       return matched;
     });
 
-    return filtered;
+    const offset = input?.offset ?? 0;
+    const limit = input?.limit ?? Infinity;
+    const sliced = filtered.slice(offset, offset + limit);
+
+    return {
+      limit: input?.limit ?? Infinity,
+      offset: input?.offset ?? 0,
+      rows: sliced,
+      total: filtered.length,
+    };
   }
 }

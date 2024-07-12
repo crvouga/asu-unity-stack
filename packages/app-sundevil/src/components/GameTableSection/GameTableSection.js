@@ -39,10 +39,12 @@ const GameTableSectionInner = ({ ...props }) => {
     props?.tabs?.find(tab => tab?.active)?.gameType ?? "all"
   );
 
-  const result = useGameLoader({
-    gameType: selectedGameType === "all" ? null : selectedGameType,
-    sportId: selectedSportId === "all" ? null : selectedSportId,
-  });
+  const { games, showLoadNextPage, isLoading, isLoadingInitial, loadNextPage } =
+    useGameLoader({
+      gameType: selectedGameType === "all" ? null : selectedGameType,
+      sportId: selectedSportId === "all" ? null : selectedSportId,
+      limit: 5,
+    });
 
   const sports = props.sports?.map(sport => ({
     ...sport,
@@ -57,9 +59,6 @@ const GameTableSectionInner = ({ ...props }) => {
   const onSportItemClick = sportId => () => setSelectedSportId(sportId);
 
   const onTabItemClick = tabId => () => setSelectedGameType(tabId);
-
-  const skeleton = result.t !== "ok" && !props?.disableSkeleton;
-  const games = result.t === "ok" ? result.value : [];
 
   const activeSport = sports?.find(sport => Boolean(sport?.active));
   const footerButtons =
@@ -120,11 +119,17 @@ const GameTableSectionInner = ({ ...props }) => {
           games={games}
           footerButtons={footerButtons}
           footerLinks={footerLinks}
-          skeleton={skeleton}
+          skeleton={isLoadingInitial}
           //
         />
 
-        {props.loadMore && <GameTableLoadMoreButton {...props.loadMore} />}
+        {props.loadMore && showLoadNextPage && (
+          <GameTableLoadMoreButton
+            {...props.loadMore}
+            onClick={loadNextPage}
+            loading={isLoading}
+          />
+        )}
       </GameTableRoot>
     </div>
   );

@@ -1,4 +1,5 @@
 import { IGameDataSource } from "./game-data-source";
+import { GameDataSourceStatic } from "./game-data-source-impl-static";
 
 const parseDate = dateString => {
   const parts = dateString.split("-");
@@ -75,10 +76,12 @@ export class GameDataSourceAsuEvents extends IGameDataSource {
   /**
    * @type {import("./game-data-source").IGameDataSource['findMany']}
    */
-  async findMany(_input) {
+  async findMany(input) {
     const fetched = await fetch(this.url);
     const json = await fetched.json();
     const games = json?.nodes?.map(item => mapNodeToGame(item?.node));
-    return games;
+    const staticAPI = new GameDataSourceStatic({ games });
+    const found = await staticAPI.findMany(input);
+    return found;
   }
 }

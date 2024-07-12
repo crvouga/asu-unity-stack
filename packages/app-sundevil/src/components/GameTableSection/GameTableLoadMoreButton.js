@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const Root = styled.button`
   color: #8c1d40;
+  color: ${({ loading }) => (loading ? "#191919" : "#8c1d40")};
   background-color: transparent;
   border: none;
   display: flex;
@@ -23,7 +24,13 @@ export const GameTableLoadMoreButton = ({
   onClick,
 }) => {
   return (
-    <Root type="button" className="btn-maroon" onClick={onClick}>
+    <Root
+      type="button"
+      className="btn-maroon"
+      onClick={onClick}
+      loading={loading}
+      disabled={loading}
+    >
       {loading ? (
         loadingLabel ?? "Loading..."
       ) : (

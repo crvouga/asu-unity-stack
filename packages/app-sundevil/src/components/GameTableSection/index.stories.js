@@ -146,14 +146,13 @@ AllSports.args = {
  */
 export const SingleSport = Template.bind({});
 SingleSport.args = {
-  gameDataSource: {
-    type: "asu-events",
-    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-  },
   // gameDataSource: {
-  //   type: "custom",
-  //   gameDataSource: new CustomGameDataSource(),
+  //   type: "asu-events",
+  //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
   // },
+  gameDataSource: {
+    type: "mock",
+  },
   title: "Upcoming Games",
   subtitle:
     "From the fall football season to the Maroon and Gold Spring game and at Camp Tontozona,\n there are football games and events throughout the year.",

@@ -1,4 +1,4 @@
 export * from "./game";
-export * from "./game-api";
+export * from "./game-data-source";
 export * from "./GameDataSourceContext";
 //

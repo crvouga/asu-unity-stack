@@ -1,3 +1,4 @@
+// @ts-check
 import PropTypes from "prop-types";
 
 import { gameSchema } from "../game";
@@ -6,19 +7,19 @@ import { GameDataSourceAsuEvents } from "./game-data-source-impl-asu-events";
 import { GameDataSourceMock } from "./game-data-source-impl-mock";
 import { GameDataSourceStatic } from "./game-data-source-impl-static";
 
-export const gameDataSourceSchema = PropTypes.oneOf([
+export const gameDataSourceSchema = PropTypes.oneOfType([
   PropTypes.shape({
-    type: PropTypes.exact("static"),
+    type: PropTypes.oneOf(["static"]),
     games: PropTypes.arrayOf(gameSchema),
   }),
   PropTypes.shape({
-    type: PropTypes.exact("mock"),
+    type: PropTypes.oneOf(["mock"]),
   }),
   PropTypes.shape({
-    type: PropTypes.exact("asu-events"),
+    type: PropTypes.oneOf(["asu-events"]),
   }),
   PropTypes.shape({
-    type: PropTypes.exact("custom"),
+    type: PropTypes.oneOf(["custom"]),
     gameDataSource: PropTypes.instanceOf(IGameDataSource),
   }),
 ]);
@@ -42,3 +43,12 @@ export const buildGameDataSource = input => {
     }
   }
 };
+
+// @ts-ignore
+window.buildGameDataSource = buildGameDataSource;
+// @ts-ignore
+window.GameDataSourceAsuEvents = GameDataSourceAsuEvents;
+// @ts-ignore
+window.GameDataSourceMock = GameDataSourceMock;
+// @ts-ignore
+window.GameDataSourceStatic = GameDataSourceStatic;

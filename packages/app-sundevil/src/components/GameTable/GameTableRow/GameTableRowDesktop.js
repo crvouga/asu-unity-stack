@@ -43,8 +43,7 @@ const CellDate = styled.div`
 `;
 
 const CellTitle = styled.div`
-  padding: 1.5rem;
-  gap: 0.25rem;
+  padding: 0 1.5rem;
   line-height: 28.8px;
   width: 100%;
   display: flex;

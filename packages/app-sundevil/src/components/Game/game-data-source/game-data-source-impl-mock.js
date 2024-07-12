@@ -21,7 +21,7 @@ const ALL_GAME_TYPE = ["all", "home", "away"];
  */
 const games = [];
 
-ALL_SPORT_IDS.forEach(sportId => {
+[...ALL_SPORT_IDS, ...ALL_SPORT_IDS, ...ALL_SPORT_IDS].forEach(sportId => {
   const gameType =
     ALL_GAME_TYPE[Math.floor(Math.random() * ALL_GAME_TYPE.length)];
   games.push({

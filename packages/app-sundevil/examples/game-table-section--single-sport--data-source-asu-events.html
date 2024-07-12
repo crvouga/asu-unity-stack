@@ -50,7 +50,7 @@
   </head>
 
   <body>
-    <div id="section-container" style="padding-bottom: 20rem;">
+    <div id="section-container" style="padding-bottom: 20rem">
       <div>This will be removed</div>
       <div class="contextual"></div>
       <div>This will be removed</div>
@@ -59,7 +59,7 @@
       const props = {
         gameDataSource: {
           type: "asu-events",
-          url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics"
+          url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
         },
         title: "Upcoming Games",
         loadMore: {
@@ -68,6 +68,12 @@
         },
         subtitle:
           "From the fall football season to the Maroon and Gold Spring game and at Camp Tontozona,\n there are football games and events throughout the year.",
+        subtitleLinks: [
+          {
+            label: "See Past Game Scores",
+            href: "https://example.com",
+          },
+        ],
         emptyStateMessage: "No upcoming games",
         tabs: [
           {

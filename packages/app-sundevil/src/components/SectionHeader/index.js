@@ -155,6 +155,7 @@ const SectionHeader = forwardRef(
                           href={link?.href ?? link?.url}
                           style={{
                             fontWeight: stringToFontWeight(link.fontWeight),
+                            maxWidth: "fit-content",
                           }}
                         >
                           {link?.label}

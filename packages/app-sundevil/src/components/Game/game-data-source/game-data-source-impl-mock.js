@@ -30,6 +30,7 @@ const games = [];
     ticketLink: "https://www.example.com",
     ticketText: "Buy Tickets",
     title: `Sun Devils vs Wildcats ${sportId}`,
+    titleHref: "https://www.example.com",
     date: {
       day: "25",
       month: "Nov",

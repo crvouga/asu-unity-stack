@@ -50,11 +50,10 @@
   </head>
 
   <body>
-    <div id="section-container">
-      <div>
-        This will be removed
-      </div>
+    <div id="section-container" style="padding-bottom: 20rem;">
+      <div>This will be removed</div>
       <div class="contextual"></div>
+      <div>This will be removed</div>
     </div>
     <script>
       const props = {
@@ -63,83 +62,28 @@
           url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics"
         },
         title: "Upcoming Games",
+        loadMore: {
+          label: "Load More",
+          loadingLabel: "Loading...",
+        },
+        subtitle:
+          "From the fall football season to the Maroon and Gold Spring game and at Camp Tontozona,\n there are football games and events throughout the year.",
         emptyStateMessage: "No upcoming games",
-        sports: [
+        tabs: [
           {
-            name: "All Sports",
-            icon: "fas fa-sync-alt",
+            label: "All Games",
             active: true,
-            position: 1,
             id: "all",
           },
           {
-            name: "Football",
-            icon: "fas fa-football-ball",
-            position: 2,
-            id: "football",
-            footerButtons: [
-              {
-                color: "gold",
-                label: "Full schedule - Football",
-                size: "small",
-                href: "#",
-              },
-              {
-                color: "maroon",
-                label: "Gear up for the game - Football",
-                size: "small",
-                href: "#",
-              },
-            ],
-            footerLinks: [
-              {
-                label: "See past game scores - Football",
-                href: "#",
-              },
-            ],
+            label: "Home",
+            active: false,
+            id: "home",
           },
           {
-            name: "M. Basketball",
-            icon: "fas fa-basketball-ball",
-            position: 3,
-            id: "basketball",
-          },
-          {
-            name: "Hockey",
-            icon: "fas fa-hockey-puck",
-            position: 4,
-            id: "hockey",
-          },
-          {
-            name: "Baseball",
-            icon: "fas fa-baseball-ball",
-            position: 5,
-            id: "baseball",
-          },
-          {
-            name: "W. Basketball",
-            icon: "fas fa-basketball-ball",
-            id: "w-basketball",
-          },
-          {
-            name: "Softball",
-            icon: "fas fa-futbol",
-            id: "softball",
-          },
-          {
-            name: "Soccer",
-            icon: "fas fa-baseball-ball",
-            id: "soccer",
-          },
-          {
-            name: "Swimming",
-            icon: "fas fa-swimmer",
-            id: "swimming",
-          },
-          {
-            name: "Golf",
-            icon: "fas fa-golf-ball",
-            id: "golf",
+            label: "Away",
+            active: false,
+            id: "away",
           },
         ],
         sponsorBlock: {
@@ -148,30 +92,25 @@
           logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg",
           url: "https://www.ford.com/",
         },
-        footerButtons: [
-          {
-            color: "gold",
-            label: "Full schedule",
-            size: "small",
-          },
-          {
-            color: "maroon",
-            label: "Gear up for the game",
-            size: "small",
-          },
-        ],
-        footerLinks: [
-          {
-            label: "See past game scores",
-            href: "#",
-          },
-        ],
+
+        // footerButtons: [
+        //   {
+        //     color: "gold",
+        //     label: "Full schedule",
+        //     size: "small",
+        //   },
+        //   {
+        //     color: "maroon",
+        //     label: "Gear up for the game",
+        //     size: "small",
+        //   },
+        // ],
       };
 
       initGameTableSection({
         targetSelector: "#section-container",
         props,
-        renderWithinChildWhiteList: [".contextual"]
+        renderWithinChildWhiteList: [".contextual"],
       });
     </script>
   </body>

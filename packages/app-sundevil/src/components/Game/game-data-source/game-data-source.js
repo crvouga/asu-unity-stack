@@ -21,4 +21,4 @@ export class IGameDataSource {
 }
 
 // @ts-ignore
-window.IGameAPI = IGameDataSource;
+window.IGameDataSource = IGameDataSource;

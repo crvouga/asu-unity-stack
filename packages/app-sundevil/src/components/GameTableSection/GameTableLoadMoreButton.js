@@ -35,7 +35,7 @@ export const GameTableLoadMoreButton = ({
         loadingLabel ?? "Loading..."
       ) : (
         <>
-          {label}
+          {label ?? "Load More"}
           <Icon className="fas fa-chevron-down" />
         </>
       )}

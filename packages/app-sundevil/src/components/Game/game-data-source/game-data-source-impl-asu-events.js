@@ -31,6 +31,8 @@ const mapNodeToGame = data => {
     hour12: true,
   });
 
+  const titleHref = data["alias-indexed"] ?? data.alias;
+
   return {
     id: data?.nid,
     gameType: data.game_type,
@@ -40,6 +42,7 @@ const mapNodeToGame = data => {
       month: startMonth,
     },
     title: data.title,
+    titleHref,
     homeTeam: {
       name: "Arizona State Sun Devils",
       logo: "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",

@@ -1,5 +1,4 @@
 // @ts-check
-// @ts-ignore
 import React from "react";
 import styled from "styled-components";
 
@@ -21,6 +20,7 @@ const Root = styled.div`
   }
   .flex-1 {
     flex: 1;
+    min-width: 0;
   }
 `;
 
@@ -28,6 +28,7 @@ const Cell = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 `;
 
 const CellDate = styled.div`
@@ -49,12 +50,19 @@ const CellTitle = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  overflow: hidden;
 `;
 
 const Title = styled.h3`
   font-size: 24px;
   padding: 0;
   margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: bold;
+  width: 100%;
+  max-width: 100%;
 `;
 
 const Subtitles = styled.div`
@@ -104,4 +112,5 @@ export const GameTableRowDesktop = ({ game, skeleton, empty }) => {
     </Skeleton>
   );
 };
+
 GameTableRowDesktop.propTypes = gameTableRowPropTypes;

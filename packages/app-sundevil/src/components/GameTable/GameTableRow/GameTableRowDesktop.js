@@ -1,8 +1,9 @@
 // @ts-check
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../../components-core/src/components/Button";
+import { useElementSetMaxDimensions } from "../../../utils/use-element-set-max-dimensions";
 import { Skeleton } from "../../Skeleton";
 import { gameTableRowPropTypes } from "./game-table-row";
 
@@ -71,6 +72,11 @@ const Subtitles = styled.div`
 `;
 
 export const GameTableRowDesktop = ({ game, skeleton, empty }) => {
+  const buttonCellRef = useRef(null);
+  const buttonCellMaxDimensions = useElementSetMaxDimensions({
+    elementRef: buttonCellRef,
+    elementSetId: "button-cell",
+  });
   return (
     <Skeleton skeleton={skeleton}>
       <Root
@@ -78,6 +84,7 @@ export const GameTableRowDesktop = ({ game, skeleton, empty }) => {
         style={empty ? { opacity: 0, userSelect: "none" } : {}}
       >
         <Cell>
+          {/* {Object.keys(game).join(", ")} */}
           <CellDate>
             <h5 className="m-0 lh-1">{game?.date.month}.</h5>
             <h2 className="m-0">{game?.date.day}</h2>
@@ -92,7 +99,11 @@ export const GameTableRowDesktop = ({ game, skeleton, empty }) => {
             </Subtitles>
           </CellTitle>
         </Cell>
-        <Cell className="btn-ticket text-center align-middle px-2">
+        <Cell
+          className="btn-ticket text-center align-middle px-2"
+          ref={buttonCellRef}
+          style={{ minWidth: buttonCellMaxDimensions.width }}
+        >
           <Button
             label={game?.ticketText}
             color="dark"

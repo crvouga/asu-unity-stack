@@ -18,7 +18,8 @@ const SEARCH_GA_EVENT = {
   section: "topbar",
 };
 
-function handleSearch(e) {
+/** @type {(formRef: React.MutableRefObject<HTMLFormElement | null>) => React.FormEventHandler<HTMLFormElement>} */
+const onSubmit = formRef => e => {
   e.preventDefault();
   /**
    * Issue: Callback not currently available
@@ -32,19 +33,30 @@ function handleSearch(e) {
    *
    * TODO: UDS-1612
    */
-  setTimeout(() => e?.target?.submit?.(), 100);
+  setTimeout(() => {
+    // This is crashing in drupal site
+    const eventTarget = e?.target;
+    if (eventTarget instanceof HTMLFormElement) {
+      eventTarget?.submit?.();
+    }
+    // Trying this if the above line doesn't work
+    formRef?.current?.submit();
+  }, 100);
+
   return trackGAEvent({
     ...SEARCH_GA_EVENT,
-    text: e.target.elements.q.value,
+    // @ts-ignore
+    text: e.target?.elements?.q?.value,
   });
-}
+};
 
 const Search = ({
   disablePadding = false,
-  disableDataLayers = false,
   renderIconEnd = (_input = {}) => null,
   placeholder = null,
 } = {}) => {
+  /** @type {React.MutableRefObject<HTMLFormElement | null>} */
+  const formRef = useRef(null);
   const { breakpoint, searchUrl, site } = useAppContext();
   const isMobile = useIsMobile(breakpoint);
   /** @type {React.MutableRefObject<HTMLInputElement | null>} */
@@ -91,10 +103,11 @@ const Search = ({
 
   return (
     <SearchWrapper
+      ref={formRef}
       // @ts-ignore
       breakpoint={breakpoint}
       action={searchUrl}
-      onSubmit={disableDataLayers ? undefined : handleSearch}
+      onSubmit={onSubmit(formRef)}
       method="get"
       name="gs"
       className={open ? "open-search" : ""}
@@ -171,7 +184,6 @@ const Search = ({
 };
 Search.propTypes = {
   disablePadding: PropTypes.bool,
-  disableDataLayers: PropTypes.bool,
   renderIconEnd: PropTypes.func,
   placeholder: PropTypes.string,
 };

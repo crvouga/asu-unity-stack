@@ -92,10 +92,7 @@ const UniversalNavbar = () => {
               </a>
               <Login />
             </div>
-            <Search
-              disableDataLayers={universalNavbar?.searchDisableDataLayers}
-              placeholder={universalNavbar?.searchPlaceholder ?? null}
-            />
+            <Search placeholder={universalNavbar?.searchPlaceholder ?? null} />
           </nav>
         </div>
       </div>

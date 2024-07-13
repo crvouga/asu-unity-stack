@@ -78,9 +78,13 @@ export const NewsStoryCardGridMobile = ({
         onIndexChanged={setIndex}
         slidesOffsetBefore={slidesOffsetBefore ?? 0}
         slidesOffsetAfter={slidesOffsetAfter ?? 0}
+        disabled={Boolean(skeleton)}
       >
         {newsStories.map(newsStory => (
-          <CarouselItem key={newsStory.title} style={{ width: "fit-content" }}>
+          <CarouselItem
+            key={newsStory?.id ?? newsStory?.title}
+            style={{ width: "fit-content" }}
+          >
             <div style={{ width: cardWidth, height: "100%" }}>
               <NewsStoryCard
                 skeleton={Boolean(skeleton)}

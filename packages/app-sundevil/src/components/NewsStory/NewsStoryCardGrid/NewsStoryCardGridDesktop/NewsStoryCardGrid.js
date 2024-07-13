@@ -19,7 +19,7 @@ export const NewsStoryCardGridDesktop = ({ newsStories, skeleton }) => {
     <Root>
       {newsStories.map(newsStory => (
         <NewsStoryCard
-          key={newsStory.title}
+          key={newsStory?.id ?? newsStory?.title}
           newsStory={newsStory}
           skeleton={Boolean(skeleton)}
         />

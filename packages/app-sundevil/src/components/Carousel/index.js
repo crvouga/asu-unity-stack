@@ -94,7 +94,11 @@ export const Carousel = forwardRef((props, ref) => {
   }, [index, loop]);
 
   return (
-    <swiper-container init="false" ref={swiperRef} style={style}>
+    <swiper-container
+      init="false"
+      ref={swiperRef}
+      style={{ ...style, pointerEvents: props.disabled ? "none" : "auto" }}
+    >
       {children}
     </swiper-container>
   );
@@ -110,6 +114,7 @@ Carousel.propTypes = {
   controller: PropTypes.instanceOf(CarouselController),
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
+  disabled: PropTypes.bool,
 };
 
 export function CarouselItem(props) {

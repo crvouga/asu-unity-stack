@@ -17,6 +17,7 @@ export const gameDataSourceSchema = PropTypes.oneOfType([
   }),
   PropTypes.shape({
     type: PropTypes.oneOf(["asu-events"]),
+    url: PropTypes.string,
   }),
   PropTypes.shape({
     type: PropTypes.oneOf(["custom"]),

@@ -5,6 +5,7 @@ import { sportSchema } from "../Navigation";
 
 /**
  * @typedef {{
+ * id: string;
  * href?: string;
  * title: string;
  * category?: string;
@@ -18,6 +19,7 @@ import { sportSchema } from "../Navigation";
  */
 
 export const newsStorySchema = PropTypes.shape({
+  id: PropTypes.string,
   href: PropTypes.string,
   title: PropTypes.string.isRequired,
   category: PropTypes.string,

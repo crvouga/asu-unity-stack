@@ -59,7 +59,7 @@ export const NewsStoryCardGridDesktopFeatured = ({
       </FeaturedCard>
       {otherStories.map(newsStory => (
         <NewsStoryCard
-          key={newsStory.title}
+          key={newsStory?.id ?? newsStory?.title}
           newsStory={newsStory}
           skeleton={Boolean(skeleton)}
         />

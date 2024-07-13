@@ -45,30 +45,30 @@
 
     <!-- *************************************************************** -->
     <!-- include bundled scripts from packages -->
-    <script src="./dist/vendor.umd.js"></script>
-    <script src="./dist/sunDevil.umd.js"></script>
+    <script src="../dist/vendor.umd.js"></script>
+    <script src="../dist/sunDevil.umd.js"></script>
   </head>
 
   <body>
     <div id="section-container">
-      <div>
-        This will be removed
-      </div>
+      <div>This will be removed</div>
       <div class="contextual"></div>
     </div>
     <script>
-      const props = {
-        // This will use a static list of games
-        gameDataSource: {
-          type: "static",
-          games: [
+      class CustomGameDataSource extends IGameDataSource {
+        constructor() {
+          super();
+        }
+        async findMany(input) {
+          console.log(`CustomGameDataSource.findMany()`, input);
+          const rows = [
             {
               id: Math.random().toString(36).substring(2, 9),
               gameType: "home",
               ticketLink: "https://www.example.com",
               ticketText: "Buy Tickets",
-              title: "Sun Devils vs Wildcats",
               titleHref: "https://www.example.com",
+              title: "Sun Devils vs Wildcats",
               date: {
                 day: "25",
                 month: "Nov",
@@ -89,7 +89,20 @@
               time: "5:30pm",
               venue: "Phoenix Muni Stadium",
             },
-          ],
+          ];
+          return {
+            limit: Infinity,
+            offset: 0,
+            total: rows.length,
+            rows,
+          };
+        }
+      }
+      const props = {
+        // This allows for custom implementation of game data source
+        gameDataSource: {
+          type: "custom",
+          gameDataSource: new CustomGameDataSource(),
         },
         title: "Upcoming Games",
         emptyStateMessage: "No upcoming games",
@@ -200,7 +213,7 @@
       initGameTableSection({
         targetSelector: "#section-container",
         props,
-        renderWithinChildWhiteList: [".contextual"]
+        renderWithinChildWhiteList: [".contextual"],
       });
     </script>
   </body>

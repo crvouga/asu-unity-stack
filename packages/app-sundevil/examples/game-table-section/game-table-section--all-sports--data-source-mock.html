@@ -45,24 +45,11 @@
 
     <!-- *************************************************************** -->
     <!-- include bundled scripts from packages -->
-    <script src="./dist/vendor.umd.js"></script>
-    <script src="./dist/sunDevil.umd.js"></script>
-    <style>
-      #hero {
-        background-color: black;
-        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
-          url("./sun-devils-hero.png") no-repeat center center;
-        background-size: cover;
-        height: 800px;
-      }
-      #section-container {
-        padding-bottom: 500px;
-      }
-    </style>
+    <script src="../dist/vendor.umd.js"></script>
+    <script src="../dist/sunDevil.umd.js"></script>
   </head>
 
   <body>
-    <div id="hero"></div>
     <div id="section-container">
       <div>
         This will be removed
@@ -77,8 +64,6 @@
         },
         title: "Upcoming Games",
         emptyStateMessage: "No upcoming games",
-        applyNegativeMarginForOverlap: true,
-        darkMode: true,
         sports: [
           {
             name: "All Sports",

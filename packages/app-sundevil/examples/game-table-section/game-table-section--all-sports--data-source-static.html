@@ -45,8 +45,8 @@
 
     <!-- *************************************************************** -->
     <!-- include bundled scripts from packages -->
-    <script src="./dist/vendor.umd.js"></script>
-    <script src="./dist/sunDevil.umd.js"></script>
+    <script src="../dist/vendor.umd.js"></script>
+    <script src="../dist/sunDevil.umd.js"></script>
   </head>
 
   <body>
@@ -58,9 +58,38 @@
     </div>
     <script>
       const props = {
-        // This will just generate random games
+        // This will use a static list of games
         gameDataSource: {
-          type: "mock",
+          type: "static",
+          games: [
+            {
+              id: Math.random().toString(36).substring(2, 9),
+              gameType: "home",
+              ticketLink: "https://www.example.com",
+              ticketText: "Buy Tickets",
+              title: "Sun Devils vs Wildcats",
+              titleHref: "https://www.example.com",
+              date: {
+                day: "25",
+                month: "Nov",
+              },
+              sport: {
+                id: "football",
+                name: "Sport Name",
+                icon: "fa fa-rocket",
+              },
+              homeTeam: {
+                name: "Sun Devils",
+                logo: "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
+              },
+              awayTeam: {
+                name: "Wildcats",
+                logo: "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
+              },
+              time: "5:30pm",
+              venue: "Phoenix Muni Stadium",
+            },
+          ],
         },
         title: "Upcoming Games",
         emptyStateMessage: "No upcoming games",

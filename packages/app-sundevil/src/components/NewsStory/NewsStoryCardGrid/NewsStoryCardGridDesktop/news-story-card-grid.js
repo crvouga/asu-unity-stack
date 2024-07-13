@@ -11,4 +11,5 @@ import * as NewsStory from "../../news-story";
 export const propTypes = {
   newsStories: PropTypes.arrayOf(NewsStory.newsStorySchema).isRequired,
   skeleton: PropTypes.bool,
+  emptyStateMessage: PropTypes.string,
 };

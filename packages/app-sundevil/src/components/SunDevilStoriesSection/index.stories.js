@@ -8,6 +8,11 @@ const props = {
   newsStoryDataSource: {
     type: "mock",
   },
+  // newsStoryDataSource: {
+  //   type: "asu-news",
+  //   url: "https://news.asu.edu/feed-json/sun_devil_athletics",
+  // },
+  emptyStateMessage: "No stories available",
   allStoriesHref: "#",
   allStoriesLabel: "All Stories",
   sectionHeader: {

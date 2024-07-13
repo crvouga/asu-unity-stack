@@ -130,14 +130,21 @@ const ContentBottom = styled.div`
 export const NewsStoryCard = ({
   newsStory,
   style,
-  skeleton,
+  skeleton = false,
   size = "default",
+  empty = false,
 }) => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   return (
-    <Skeleton skeleton={Boolean(skeleton)}>
+    <Skeleton
+      skeleton={Boolean(skeleton)}
+      aria-hidden={Boolean(skeleton) || Boolean(empty)}
+      style={
+        empty ? { pointerEvents: "none", opacity: 0, userSelect: "none" } : {}
+      }
+    >
       <Root
         href={newsStory.href}
         style={style}
@@ -184,4 +191,5 @@ NewsStoryCard.propTypes = {
   style: PropTypes.object,
   skeleton: PropTypes.bool,
   size: PropTypes.oneOf(["large", "default"]),
+  empty: PropTypes.bool,
 };

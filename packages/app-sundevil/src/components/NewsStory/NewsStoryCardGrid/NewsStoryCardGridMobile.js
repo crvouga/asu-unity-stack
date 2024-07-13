@@ -4,7 +4,12 @@ import styled from "styled-components";
 
 import { ArrowButtons } from "../../ArrowButtons";
 import { Carousel, CarouselController, CarouselItem } from "../../Carousel";
+import { EmptyStateMessage } from "../../EmptyState/EmptyStateMessage";
 import * as NewsStory from "../news-story";
+import {
+  DEFAULT_EMPTY_STATE_MESSAGE,
+  newsStoriesSkeletonData,
+} from "./news-stories-skeleton-data";
 import { NewsStoryCard } from "./NewsStoryCard";
 
 /** @typedef {import("./NewsStoryCard").NewsStory} */
@@ -59,7 +64,9 @@ export const NewsStoryCardGridMobile = ({
   slidesOffsetAfter,
   cardWidth,
   renderBottomRightContent,
-  skeleton,
+  emptyStateMessage = DEFAULT_EMPTY_STATE_MESSAGE,
+  skeleton = false,
+  empty = false,
 }) => {
   const [carouselController] = React.useState(() => new CarouselController());
   const [index, setIndex] = React.useState(0);
@@ -78,21 +85,55 @@ export const NewsStoryCardGridMobile = ({
         onIndexChanged={setIndex}
         slidesOffsetBefore={slidesOffsetBefore ?? 0}
         slidesOffsetAfter={slidesOffsetAfter ?? 0}
-        disabled={Boolean(skeleton)}
+        disabled={Boolean(skeleton) || Boolean(empty)}
       >
-        {newsStories.map(newsStory => (
-          <CarouselItem
-            key={newsStory?.id ?? newsStory?.title}
-            style={{ width: "fit-content" }}
-          >
-            <div style={{ width: cardWidth, height: "100%" }}>
-              <NewsStoryCard
-                skeleton={Boolean(skeleton)}
-                newsStory={newsStory}
-              />
-            </div>
-          </CarouselItem>
-        ))}
+        {!empty && !skeleton && (
+          <>
+            {newsStories.map(newsStory => (
+              <CarouselItem
+                key={newsStory?.id ?? newsStory?.title}
+                style={{ width: "fit-content" }}
+              >
+                <div style={{ width: cardWidth, height: "100%" }}>
+                  <NewsStoryCard
+                    skeleton={Boolean(skeleton)}
+                    newsStory={newsStory}
+                  />
+                </div>
+              </CarouselItem>
+            ))}
+          </>
+        )}
+        {skeleton && (
+          <>
+            {newsStoriesSkeletonData.map(newsStory => (
+              <CarouselItem
+                key={newsStory?.id ?? newsStory?.title}
+                style={{ width: "fit-content" }}
+              >
+                <div style={{ width: cardWidth, height: "100%" }}>
+                  <NewsStoryCard skeleton newsStory={newsStory} />
+                </div>
+              </CarouselItem>
+            ))}
+          </>
+        )}
+        {empty && (
+          <>
+            <CarouselItem style={{ width: "fit-content" }}>
+              <div
+                style={{
+                  width: cardWidth,
+                  height: "100%",
+                  position: "relative",
+                }}
+              >
+                <NewsStoryCard empty newsStory={newsStoriesSkeletonData[0]} />
+                <EmptyStateMessage message={emptyStateMessage} />
+              </div>
+            </CarouselItem>
+          </>
+        )}
       </Carousel>
       <BottomContent className="container">
         <ArrowButtons
@@ -113,4 +154,6 @@ NewsStoryCardGridMobile.propTypes = {
   cardWidth: PropTypes.number,
   renderBottomRightContent: PropTypes.func.isRequired,
   skeleton: PropTypes.bool,
+  empty: PropTypes.bool,
+  emptyStateMessage: PropTypes.string,
 };

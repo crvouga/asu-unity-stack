@@ -5,6 +5,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../components-core/src/components/Button";
+import { EmptyStateMessage } from "../EmptyState/EmptyStateMessage";
 import { gameSchema } from "../Game/game";
 import { GameTableRow } from "./GameTableRow/GameTableRow";
 
@@ -12,23 +13,6 @@ const Footer = styled.footer`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-`;
-
-const EmptyStateMessage = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1rem;
-  margin: 0;
-  padding: 0;
-  color: #6c757d;
 `;
 
 const Table = styled.div`
@@ -105,7 +89,7 @@ const GameTable = ({
             {range(skeletonRowCount).map(index => (
               <GameTableRow key={index} empty />
             ))}
-            <EmptyStateMessage>{emptyStateMessage}</EmptyStateMessage>
+            <EmptyStateMessage message={emptyStateMessage} />
           </>
         )}
       </Table>

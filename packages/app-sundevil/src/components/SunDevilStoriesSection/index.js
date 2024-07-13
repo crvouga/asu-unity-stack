@@ -11,14 +11,14 @@ import {
   buildNewsStoryDataSource,
   newsStoryDataSourceSchema,
 } from "../NewsStory/news-story-data-source/news-story-data-source-impl";
-import { NewsStoryDataSourceProvider } from "../NewsStory/news-story-data-source/news-story-data-source-provider";
-import { useNewsStoryLoader } from "../NewsStory/news-story-data-source/use-news-story-loader";
+import { NewsStoryDataSourceProvider } from "../NewsStory/NewsDataSourceContext";
+import { newsStoriesSkeletonData } from "../NewsStory/NewsStoryCardGrid/news-stories-skeleton-data";
 import { NewsStoryCardGridDesktop } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGridDesktop";
 import { NewsStoryCardGridMobile } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGridMobile";
+import { useNewsStoryLoader } from "../NewsStory/use-news-story-loader";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 import { Skeleton } from "../Skeleton";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
-import { newsStoriesSkeletonData } from "../NewsStory/NewsStoryCardGrid/news-stories-skeleton-data";
 
 /**
  * @typedef {import("../Navigation").Sport} Sport
@@ -48,16 +48,17 @@ const SunDevilStoriesSectionInner = ({
   sectionHeader,
   allStoriesHref,
   allStoriesLabel,
+  emptyStateMessage,
 }) => {
   // eslint-disable-next-line react/prop-types
-  const [selectedTab, setSelectedTab] = React.useState(sports[0]?.id);
+  const [selectedSportId, setSelectedSportId] = React.useState(sports[0]?.id);
 
   const sportsWithSelectedTab = sports.map(sport => ({
     ...sport,
-    active: sport.id === selectedTab,
+    active: sport.id === selectedSportId,
   }));
 
-  const selectedSport = sports.find(sport => sport.id === selectedTab);
+  const selectedSport = sports.find(sport => sport.id === selectedSportId);
 
   const sectionHeaderRef = React.useRef();
   const sectionHeaderPosition = useElementContentPosition(sectionHeaderRef);
@@ -68,9 +69,12 @@ const SunDevilStoriesSectionInner = ({
   const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
 
-  const { newsStories, isLoading } = useNewsStoryLoader();
+  const { newsStories, isLoading } = useNewsStoryLoader({
+    sportId: selectedSportId === "all" ? null : selectedSportId,
+  });
 
   const skeleton = isLoading;
+  const empty = !isLoading && newsStories.length === 0;
 
   const newsStoriesFinal = skeleton ? newsStoriesSkeletonData : newsStories;
   return (
@@ -84,25 +88,27 @@ const SunDevilStoriesSectionInner = ({
           <div className="container">
             <SportsTabsMobile
               sports={sportsWithSelectedTab}
-              onSportItemClick={sportId => () => setSelectedTab(sportId)}
-              skeleton={Boolean(skeleton) && false}
+              onSportItemClick={sportId => () => setSelectedSportId(sportId)}
+              skeleton={skeleton && false}
             />
           </div>
           <NewsStoryCardGridMobile
             key={selectedSport.id}
-            skeleton={Boolean(skeleton)}
+            skeleton={skeleton}
             newsStories={newsStoriesFinal}
             slidesOffsetBefore={sectionHeaderPosition.left}
             slidesOffsetAfter={window.innerWidth - sectionHeaderPosition.right}
             cardWidth={cardWidth}
+            empty={empty}
+            emptyStateMessage={emptyStateMessage}
             renderBottomRightContent={() => (
-              <Skeleton skeleton={Boolean(skeleton)} fitContent>
+              <Skeleton skeleton={skeleton} fitContent>
                 <Button
                   color="maroon"
                   size="small"
                   label={allStoriesLabel}
                   href={allStoriesHref}
-                  skeleton={Boolean(skeleton)}
+                  skeleton={skeleton}
                 />
               </Skeleton>
             )}
@@ -113,9 +119,9 @@ const SunDevilStoriesSectionInner = ({
         <>
           <div className="container">
             <SportsTabsDesktop
-              skeleton={Boolean(skeleton) && false}
+              skeleton={skeleton && false}
               sports={sportsWithSelectedTab}
-              onSportItemClick={sportId => () => setSelectedTab(sportId)}
+              onSportItemClick={sportId => () => setSelectedSportId(sportId)}
               moreTabOrientation="horizontal"
               moreTabColor="muted"
             />
@@ -124,10 +130,12 @@ const SunDevilStoriesSectionInner = ({
             <NewsStoryCardGridDesktop
               key={selectedSport.id}
               newsStories={newsStoriesFinal}
-              skeleton={Boolean(skeleton)}
+              skeleton={skeleton}
+              empty={empty}
+              emptyStateMessage={emptyStateMessage}
             />
             <AllStoriesRoot>
-              <Skeleton skeleton={Boolean(skeleton)} fitContent>
+              <Skeleton skeleton={skeleton} fitContent>
                 <Button
                   color="maroon"
                   size="small"
@@ -150,6 +158,7 @@ SunDevilStoriesSectionInner.propTypes = {
   allStoriesLabel: PropTypes.string.isRequired,
   allStoriesHref: PropTypes.string.isRequired,
   skeleton: PropTypes.bool,
+  emptyStateMessage: PropTypes.string,
 };
 
 export const SunDevilStoriesSection = ({
@@ -179,5 +188,6 @@ SunDevilStoriesSection.propTypes = {
  *  allStoriesHref: string;
  *  skeleton?: boolean;
  *  newsStoryDataSource: object
+ *  emptyStateMessage: string;
  * }} SunDevilStoriesProps
  */

@@ -122,7 +122,7 @@ const DropdownWrapper = styled.div`
       ul {
         width: 100%;
         max-width: 100%;
-        padding: 0 1rem;
+        padding: 0 0;
         margin-bottom: 1rem;
         &:not(:last-child) {
           padding-right: 1rem;
@@ -140,7 +140,7 @@ const DropdownWrapper = styled.div`
             mobile?.navTreeItemVariant === "none"
               ? ""
               : `
-            padding: 0 1rem;
+            padding: 0.3rem 0;
             &:not(:last-child) {
               border-bottom: 1px solid #d0d0d0;
             }

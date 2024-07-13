@@ -43,9 +43,6 @@ export const testHeaderProps = {
       is_sports_type: false,
       type: "icon-home",
       class: "home",
-      mobile: {
-        hide: true,
-      },
     },
     {
       href: "/sports",
@@ -799,7 +796,7 @@ export const testHeaderProps = {
       ],
       is_sports_type: true,
       mobile: {
-        navTreeItemVariant: "none",
+        // navTreeItemVariant: "none",
       },
     },
     {
@@ -1023,7 +1020,7 @@ export const testHeaderProps = {
       is_sports_type: true,
 
       mobile: {
-        navTreeItemVariant: "none",
+        // navTreeItemVariant: "none",
         hideFooter: true,
       },
     },
@@ -1157,7 +1154,7 @@ export const testHeaderProps = {
       is_sports_type: true,
 
       mobile: {
-        navTreeItemVariant: "none",
+        // navTreeItemVariant: "none",
       },
     },
     {
@@ -1254,7 +1251,7 @@ export const testHeaderProps = {
       is_sports_type: true,
 
       mobile: {
-        navTreeItemVariant: "none",
+        // navTreeItemVariant: "none",
       },
     },
   ],

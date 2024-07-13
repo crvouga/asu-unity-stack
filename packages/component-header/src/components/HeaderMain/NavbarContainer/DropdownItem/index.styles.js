@@ -129,6 +129,9 @@ const DropdownWrapper = styled.div`
           margin: 0 0 1rem 0;
           border: none;
         }
+        li {
+          max-width: 100%;
+        }
         .ul-heading {
           font-size: 1.25rem;
         }

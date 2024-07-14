@@ -44,15 +44,20 @@ export const createUseQueryState = ({ queryKey, debouncePushMs }) => {
 
     const timeoutId = useRef(null);
     const setQueryState = valueOrFunction => {
-      const valueNew =
-        typeof valueOrFunction === "function"
-          ? valueOrFunction(state)
-          : valueOrFunction;
       clearTimeout(timeoutId.current);
       timeoutId.current = setTimeout(() => {
+        const valueNew =
+          typeof valueOrFunction === "function"
+            ? valueOrFunction(state)
+            : valueOrFunction;
         pushQueryParam(queryKey, encode(valueNew));
       }, debouncePushMs ?? 0);
-      setState(valueNew);
+
+      setState(statePrev =>
+        typeof valueOrFunction === "function"
+          ? valueOrFunction(statePrev)
+          : valueOrFunction
+      );
     };
 
     return [state, setQueryState];

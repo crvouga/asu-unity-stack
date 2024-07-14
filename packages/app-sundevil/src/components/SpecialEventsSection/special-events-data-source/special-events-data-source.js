@@ -1,3 +1,5 @@
+// @ts-ignore
+
 /**
  * @typedef {{
  * limit?: number
@@ -23,4 +25,5 @@ export class ISpecialEventsDataSource {
   }
 }
 
+// @ts-ignore
 window.ISpecialEventsDataSource = ISpecialEventsDataSource;

@@ -16,18 +16,15 @@ export default {
   },
 };
 
-const Template = args => <GameTableSection {...args} />;
+const Template = args => (
+  <>
+    <GameTableSection {...args} />
+    <div style={{ width: "100%", height: "1000px" }} />
+  </>
+);
 
-/**
- * @type {{ args: ComponentType, parameters: object}}
- */
-export const GetTickets = Template.bind({});
-GetTickets.args = {
-  gameDataSource: {
-    type: "asu-events",
-    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-    timeout: 800,
-  },
+export const GetTicketsOverlapFirstRow = Template.bind({});
+GetTicketsOverlapFirstRow.args = {
   // gameDataSource: {
   //   type: "custom",
   //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
@@ -36,6 +33,13 @@ GetTickets.args = {
   //   type: "custom",
   //   gameDataSource: new CustomGameDataSource(),
   // },
+  gameDataSource: {
+    type: "asu-events",
+    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+    timeout: 800,
+  },
+  variant: "hero",
+  layoutOverlap: "first-row-with-hero",
   title: "Get Tickets",
   subtitle:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -46,6 +50,130 @@ GetTickets.args = {
       color: "muted",
     },
   ],
+  darkMode: true,
+  emptyStateMessage: "No games found",
+  layoutConfig: {
+    includeInputSearch: true,
+    includeInputSportType: true,
+    includeInputHomeOrAwaySelect: true,
+    includeInputVenueSelect: false,
+    includeInputSortBySelect: false,
+    includeSportsTabs: false,
+    includeLoadMore: true,
+  },
+  inputsConfig: {
+    searchInput: {
+      label: "Search by Event Name",
+      placeholder: "Sun Devils vs. BYU, Season Tickets, Rose Bowl",
+    },
+    sportTypeSelect: {
+      label: "Sport Type",
+      placeholder: "Select one",
+    },
+    homeOrAwaySelect: {
+      label: "Home or away",
+      placeholder: "Select one",
+    },
+    venueSelect: {
+      label: "Venue",
+      placeholder: "Select one",
+    },
+    sortBySelect: {
+      label: "Sort By:",
+      placeholder: "Select one",
+    },
+  },
+  sports: [
+    {
+      name: "All Sports",
+      icon: "fas fa-sync-alt",
+      active: true,
+      position: 1,
+      id: "all",
+    },
+    {
+      name: "Football",
+      icon: "fas fa-football-ball",
+      position: 2,
+      id: "football",
+    },
+    {
+      name: "M. Basketball",
+      icon: "fas fa-basketball-ball",
+      position: 3,
+      id: "basketball",
+    },
+    {
+      name: "Hockey",
+      icon: "fas fa-hockey-puck",
+      position: 4,
+      id: "hockey",
+    },
+    {
+      name: "Baseball",
+      icon: "fas fa-baseball-ball",
+      position: 5,
+      id: "baseball",
+    },
+    {
+      name: "W. Basketball",
+      icon: "fas fa-basketball-ball",
+      id: "w-basketball",
+    },
+    {
+      name: "Softball",
+      icon: "fas fa-futbol",
+      id: "softball",
+    },
+    {
+      name: "Soccer",
+      icon: "fas fa-baseball-ball",
+      id: "soccer",
+    },
+    {
+      name: "Swimming",
+      icon: "fas fa-swimmer",
+      id: "swimming",
+    },
+    {
+      name: "Golf",
+      icon: "fas fa-golf-ball",
+      id: "golf",
+    },
+  ],
+};
+
+/**
+ * @type {{ args: ComponentType, parameters: object}}
+ */
+export const GetTickets = Template.bind({});
+GetTickets.args = {
+  // gameDataSource: {
+  //   type: "custom",
+  //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
+  // },
+  // gameDataSource: {
+  //   type: "custom",
+  //   gameDataSource: new CustomGameDataSource(),
+  // },
+  gameDataSource: {
+    type: "asu-events",
+    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+    timeout: 800,
+  },
+  variant: "hero",
+  layoutOverlap: "sport-tabs-with-hero",
+  title: "Get Tickets",
+  subtitle:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  subtitleLinks: [
+    {
+      label: "See a list of free sporting events",
+      href: "#",
+      color: "muted",
+    },
+  ],
+  darkMode: true,
   emptyStateMessage: "No games found",
   layoutConfig: {
     includeInputSearch: true,

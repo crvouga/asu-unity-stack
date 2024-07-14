@@ -13,7 +13,6 @@ import {
 } from "../Game/game-data-source/game-data-source-impl";
 import { GameDataSourceProvider } from "../Game/GameDataSourceContext";
 import { useGameLoader } from "../Game/use-game-loader";
-import { GameNavigation } from "../GameNavigation";
 import { GameTable, gameTableFooterButtonSchema } from "../GameTable/GameTable";
 import {
   GameTableLoadMoreButton,
@@ -24,8 +23,10 @@ import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportSchema } from "../SportsTabs/sports-tabs";
 import { useGameTableForm } from "./GameTableForm/game-table-form";
 import { GameTableForm } from "./GameTableForm/GameTableForm";
+import { GameTableSectionHero } from "./GameTableSectionHero";
 import { defaultInputsConfig, inputsConfigSchema } from "./inputs-config";
 import { defaultLayoutConfig, layoutConfigSchema } from "./layout-config";
+import { LayoutOverlap, layoutOverlapSchema } from "./layout-overlap";
 
 const GameTableRoot = styled.div`
   display: flex;
@@ -36,6 +37,8 @@ const GameTableRoot = styled.div`
 `;
 
 const GameTableSectionInner = ({ ...props }) => {
+  const variant = props.variant ?? "default";
+
   /** @type {import("./layout-config").LayoutConfig} */
   const layoutConfig = props.layoutConfig ?? defaultLayoutConfig;
 
@@ -80,78 +83,132 @@ const GameTableSectionInner = ({ ...props }) => {
   const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
 
+  /** @type {React.MutableRefObject<HTMLElement | null>} */
+  const gameTableFirstRowRef = useRef(null);
+  const gameTableFirstRowDimensions =
+    useElementContentDimensions(gameTableFirstRowRef);
+
   /** @type {React.MutableRefObject<HTMLDivElement | null>} */
   const headerRef = useRef(null);
   const headerDimensions = useElementContentDimensions(headerRef);
 
+  const getOverlapStyles = () => {
+    switch (props?.layoutOverlap) {
+      case LayoutOverlap["first-row-with-hero"]: {
+        return {
+          marginTop:
+            (headerDimensions.height + gameTableFirstRowDimensions.height) * -1,
+        };
+      }
+      case LayoutOverlap["sport-tabs-with-hero"]: {
+        return {
+          marginTop: -headerDimensions.height,
+        };
+      }
+      default: {
+        return {};
+      }
+    }
+  };
+
+  const getHeroOverlapStyles = () => {
+    switch (props?.layoutOverlap) {
+      case LayoutOverlap["first-row-with-hero"]: {
+        return {
+          paddingBottom:
+            headerDimensions.height + gameTableFirstRowDimensions.height,
+        };
+      }
+      case LayoutOverlap["sport-tabs-with-hero"]: {
+        return {
+          paddingBottom: headerDimensions.height,
+        };
+      }
+      default: {
+        return {};
+      }
+    }
+  };
+
   return (
-    <div
-      style={{
-        marginTop: props.applyNegativeMarginForOverlap
-          ? -headerDimensions.height
-          : 0,
-      }}
-    >
-      <div ref={headerRef}>
-        <div style={{ paddingBottom: "48px" }}>
-          <SectionHeader
-            {...mapSectionHeaderProps(props)}
-            tabs={tabs}
-            onTabItemClick={clickedGameType => () =>
-              gameTableForm.update({ gameType: clickedGameType })}
+    <>
+      {variant === "hero" && (
+        <GameTableSectionHero
+          title={props.title}
+          subtitle={props.subtitle}
+          subtitleLinks={props.subtitleLinks}
+          style={getHeroOverlapStyles()}
+          darkMode={props.darkMode}
+        />
+      )}
+
+      <div style={getOverlapStyles()}>
+        <div ref={headerRef}>
+          {variant === "default" && (
+            <SectionHeader
+              {...mapSectionHeaderProps(props)}
+              tabs={tabs}
+              onTabItemClick={clickedGameType => () =>
+                gameTableForm.update({ gameType: clickedGameType })}
+              style={{ paddingBottom: "48px" }}
+            />
+          )}
+
+          <GameTableForm
+            className="container"
+            gameTableForm={gameTableForm}
+            inputsConfig={inputsConfig}
+            layoutConfig={layoutConfig}
+            sports={sports}
+            darkMode={props.darkMode}
           />
+
+          {isDesktop && layoutConfig.includeSportsTabs && (
+            <div className="container">
+              <SportsTabsDesktop
+                {...props}
+                sports={sports}
+                onSportItemClick={onSportItemClick}
+              />
+            </div>
+          )}
         </div>
 
-        <GameTableForm
-          className="container"
-          gameTableForm={gameTableForm}
-          inputsConfig={inputsConfig}
-          layoutConfig={layoutConfig}
-          sports={sports}
-        />
-
-        {isDesktop && layoutConfig.includeSportsTabs && (
+        {isMobile && layoutConfig.includeSportsTabs && (
           <div className="container">
-            <SportsTabsDesktop
+            <SportsTabsMobile
               {...props}
+              className="container"
               sports={sports}
               onSportItemClick={onSportItemClick}
+              variant="borderless"
             />
           </div>
         )}
-      </div>
 
-      {isMobile && layoutConfig.includeSportsTabs && (
-        <div className="container">
-          <SportsTabsMobile
+        <GameTableRoot className={isDesktop ? "container" : ""}>
+          <GameTable
             {...props}
-            className="container"
-            sports={sports}
-            onSportItemClick={onSportItemClick}
-            variant="borderless"
+            games={gameLoader.games}
+            footerButtons={footerButtons}
+            footerLinks={footerLinks}
+            skeleton={gameLoader.isLoadingInitial}
+            //
+            setFirstRowRef={ref => {
+              gameTableFirstRowRef.current = ref;
+            }}
           />
-        </div>
-      )}
 
-      <GameTableRoot className={isDesktop ? "container" : ""}>
-        <GameTable
-          {...props}
-          games={gameLoader.games}
-          footerButtons={footerButtons}
-          footerLinks={footerLinks}
-          skeleton={gameLoader.isLoadingInitial}
-          //
-        />
-
-        {layoutConfig.includeLoadMore && gameLoader.showLoadNextPage && (
-          <GameTableLoadMoreButton
-            {...props.loadMore}
-            onClick={gameLoader.loadNextPage}
-            loading={gameLoader.isLoading}
-          />
-        )}
-      </GameTableRoot>
-    </div>
+          {layoutConfig.includeLoadMore && gameLoader.showLoadNextPage && (
+            <GameTableLoadMoreButton
+              {...props.loadMore}
+              onClick={gameLoader.loadNextPage}
+              loading={gameLoader.isLoading}
+            />
+          )}
+        </GameTableRoot>
+      </div>
+    </>
   );
 };
 
@@ -163,13 +220,14 @@ const sportSchemaGameTable = PropTypes.shape({
 
 GameTableSectionInner.propTypes = {
   ...SectionHeader.propTypes,
-  ...GameNavigation.propTypes,
   ...GameTable.propTypes,
   applyNegativeMarginForOverlap: PropTypes.bool,
   sports: PropTypes.arrayOf(sportSchemaGameTable),
   loadMore: gameTableLoadMorePropTypes,
   layoutConfig: layoutConfigSchema,
   inputsConfig: inputsConfigSchema,
+  variant: PropTypes.oneOf(["default", "hero"]),
+  layoutOverlap: layoutOverlapSchema,
 };
 
 const GameTableSection = ({
@@ -190,7 +248,6 @@ const GameTableSection = ({
 GameTableSection.propTypes = {
   ...GameTableSectionInner.propTypes,
   gameDataSource: gameDataSourceSchema,
-  disableSkeleton: PropTypes.bool,
 };
 
 export { GameTableSection };

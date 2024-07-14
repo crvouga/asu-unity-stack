@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const DropDownSurface = styled.div`
-  border-radius: 8px;
+  border-radius: 0px;
   background-color: #fff !important;
   opacity: 1 !important;
   padding: 0.5rem 0;

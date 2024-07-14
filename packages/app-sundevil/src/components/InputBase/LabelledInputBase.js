@@ -13,6 +13,7 @@ const Label = styled.label`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: inherit;
 `;
 
 const Root = styled.div`
@@ -20,28 +21,34 @@ const Root = styled.div`
   flex-direction: column;
   width: 100%;
   gap: 0.5rem;
-  background-color: #fff;
+  background-color: transparent;
+  color: ${({ darkMode }) => (darkMode ? "#fff" : "#191919")};
   min-width: 150px;
 `;
 
 const InputRoot = styled.div`
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #fff;
+  color: #191919;
 `;
 
 export const LabelledInputBase = forwardRef(
-  ({ label, renderInput, renderEndIcon, style }, ref) => {
+  ({ label, renderInput, renderEndIcon, style, darkMode }, ref) => {
     const id = useId();
     return (
-      <Root style={style} ref={ref}>
+      <Root style={style} ref={ref} darkMode={darkMode}>
         {typeof label === "string" && label.length > 0 && (
           <Label htmlFor={id}>{label}</Label>
         )}
         <InputRoot>
-          {renderInput({ id, style: { padding: "0.5rem" } })}
+          {renderInput({
+            id,
+            style: { padding: "0.75rem", paddingRight: "1.25rem" },
+          })}
           {renderEndIcon?.({
             style: {
               paddingRight: "0.75rem",
@@ -61,4 +68,5 @@ LabelledInputBase.propTypes = {
   renderEndIcon: PropTypes.func,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
+  darkMode: PropTypes.bool,
 };

@@ -104,6 +104,8 @@ const SectionHeader = forwardRef(
       subtitleFontWeight = "normal",
       //  @ts-ignore
       subtitleLinks = [],
+      // @ts-ignore
+      style,
     },
     ref
   ) => {
@@ -113,7 +115,7 @@ const SectionHeader = forwardRef(
     );
 
     return (
-      <div className="container" ref={ref}>
+      <div className="container" ref={ref} style={style}>
         {hasContent && (
           <div className="row">
             <div className="col-md-8 col-sm-12">
@@ -225,6 +227,8 @@ SectionHeader.propTypes = {
   social: PropTypes.arrayOf(socialPropType),
   onTabItemClick: PropTypes.func,
   darkMode: PropTypes.bool,
+  // eslint-disable-next-line react/forbid-prop-types
+  style: PropTypes.object,
 };
 
 export { SectionHeader };

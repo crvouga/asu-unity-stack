@@ -50,6 +50,7 @@ export const Select = ({
   onChange,
   options,
   emptyStateMessage = "No options available",
+  darkMode,
 }) => {
   const [open, setOpen] = useState(false);
   const active = options.find(option => option.active);
@@ -59,6 +60,7 @@ export const Select = ({
       onClose={() => setOpen(false)}
       renderReference={({ ref }) => (
         <LabelledInputBase
+          darkMode={darkMode}
           ref={ref}
           label={label}
           style={style}
@@ -125,4 +127,5 @@ Select.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   options: PropTypes.arrayOf(optionSchema),
   emptyStateMessage: PropTypes.string,
+  darkMode: PropTypes.bool,
 };

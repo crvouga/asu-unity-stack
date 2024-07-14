@@ -19,6 +19,7 @@ const Table = styled.div`
   width: 100%;
   border: 1px solid #d0d0d0;
   position: relative;
+  background-color: #fff;
 `;
 
 // Even if this transparent it ensures no layout shift when the skeleton is replaced with the actual content
@@ -57,6 +58,7 @@ const GameTable = ({
   emptyStateMessage,
   skeletonRowCount = 5,
   footerLinks,
+  setFirstRowRef,
 }) => {
   const isSkeleton = skeleton && games.length === 0;
 
@@ -71,15 +73,25 @@ const GameTable = ({
         {isSkeleton && (
           <BorderBottom>
             {range(skeletonRowCount).map(index => (
-              <GameTableRow key={index} skeleton />
+              <GameTableRow
+                key={index}
+                // @ts-ignore
+                skeleton
+                ref={index === 0 ? setFirstRowRef : null}
+              />
             ))}
           </BorderBottom>
         )}
 
         {isRow && (
           <AlternateBackground>
-            {games.map(game => (
-              <GameTableRow key={game.id} game={game} />
+            {games.map((game, index) => (
+              <GameTableRow
+                key={game.id}
+                // @ts-ignore
+                game={game}
+                ref={index === 0 ? setFirstRowRef : null}
+              />
             ))}
           </AlternateBackground>
         )}
@@ -87,7 +99,12 @@ const GameTable = ({
         {isEmpty && (
           <>
             {range(skeletonRowCount).map(index => (
-              <GameTableRow key={index} empty />
+              <GameTableRow
+                key={index}
+                // @ts-ignore
+                empty
+                ref={index === 0 ? setFirstRowRef : null}
+              />
             ))}
             <EmptyStateMessage message={emptyStateMessage} />
           </>
@@ -142,6 +159,7 @@ GameTable.propTypes = {
   footerButtons: PropTypes.arrayOf(gameTableFooterButtonSchema),
   footerLinks: PropTypes.arrayOf(gameTableFooterLinkSchema),
   emptyStateMessage: PropTypes.string,
+  setFirstRowRef: PropTypes.func,
 };
 
 export { GameTable };

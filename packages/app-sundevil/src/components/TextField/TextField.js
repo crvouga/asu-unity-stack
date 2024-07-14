@@ -7,20 +7,28 @@ import { LabelledInputBase } from "../InputBase/LabelledInputBase";
 const InputContainer = styled.div`
   position: relative;
   width: 100%;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  overflow: hidden;
 `;
 
 const Placeholder = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
+  height: 100%;
   width: 100%;
+  display: flex;
+  align-items: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   pointer-events: none;
   color: #999;
-  padding: 8px; /* Adjust based on your input padding */
-  display: ${({ hasValue }) => (hasValue ? "none" : "block")};
+  padding: 8px;
+  display: ${({ hasValue }) => (hasValue ? "none" : "flex")};
 `;
 
 const Input = styled.input`
@@ -44,10 +52,12 @@ export const TextField = ({
   onChange,
   renderEndIcon,
   style,
+  darkMode,
 }) => {
   return (
     <LabelledInputBase
       label={label}
+      darkMode={darkMode}
       style={style}
       renderInput={({ id, style: inputStyle }) => (
         <InputContainer>
@@ -74,4 +84,5 @@ TextField.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
   renderEndIcon: PropTypes.func,
+  darkMode: PropTypes.bool,
 };

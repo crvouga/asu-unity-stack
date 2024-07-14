@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useEffect, useRef } from "react";
+import React, { forwardRef, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const Root = styled.div`
@@ -51,38 +51,44 @@ const Root = styled.div`
   height: 100%;
 `;
 
-export const Skeleton = ({
-  skeleton,
-  children,
-  className,
-  style,
-  fitContent,
-  component = "div",
-}) => {
-  const rootRef = useRef(null);
+export const Skeleton = forwardRef(
+  (
+    { skeleton, children, className, style, fitContent, component = "div" },
+    ref
+  ) => {
+    const rootRef = useRef(null);
 
-  useEffect(() => {
-    if (rootRef.current && rootRef.current.firstChild) {
-      const childStyle = getComputedStyle(rootRef.current.firstChild);
-      const { borderRadius } = childStyle;
-      rootRef.current.style.borderRadius = borderRadius;
-    }
-  }, [children]);
+    useEffect(() => {
+      if (rootRef.current && rootRef.current.firstChild) {
+        const childStyle = getComputedStyle(rootRef.current.firstChild);
+        const { borderRadius } = childStyle;
+        rootRef.current.style.borderRadius = borderRadius;
+      }
+    }, [children]);
 
-  return (
-    <Root
-      as={component}
-      skeleton={Boolean(skeleton)}
-      className={className}
-      style={style}
-      fitContent={fitContent}
-      ref={rootRef}
-      aria-hidden={skeleton}
-    >
-      {children}
-    </Root>
-  );
-};
+    return (
+      <Root
+        as={component}
+        skeleton={Boolean(skeleton)}
+        className={className}
+        style={style}
+        fitContent={fitContent}
+        ref={node => {
+          rootRef.current = node;
+          if (typeof ref === "function") {
+            ref(node);
+          } else if (ref) {
+            // eslint-disable-next-line no-param-reassign
+            ref.current = node;
+          }
+        }}
+        aria-hidden={skeleton}
+      >
+        {children}
+      </Root>
+    );
+  }
+);
 
 Skeleton.propTypes = {
   children: PropTypes.node.isRequired,

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 
 import { Skeleton } from "../../Skeleton";
@@ -80,37 +80,41 @@ const TitleRoot = styled.div`
   min-width: 0;
 `;
 
-export const GameTableRowMobile = ({ game, skeleton, empty }) => {
-  return (
-    <Skeleton skeleton={skeleton}>
-      <div className="container">
-        <Root
-          aria-hidden={empty}
-          style={empty ? { opacity: 0, userSelect: "none" } : {}}
-        >
-          <Date>{`${game?.date.month}. ${game?.date.day}`}</Date>
-
-          <TitleRoot>
-            <Title>{game?.title}</Title>
-            <Subtitles>
-              <Subtitle className="text-body-tertiary">{game?.time}</Subtitle>
-              <Subtitle className="text-body-tertiary">{game?.venue}</Subtitle>
-            </Subtitles>
-          </TitleRoot>
-
-          <TicketButton
-            type="button"
-            aria-label={game?.ticketText}
-            onClick={() => {
-              window.open(game?.ticketLink, "_blank");
-            }}
+export const GameTableRowMobile = forwardRef(
+  ({ game, skeleton, empty }, ref) => {
+    return (
+      <Skeleton skeleton={skeleton} ref={ref}>
+        <div className="container">
+          <Root
+            aria-hidden={empty}
+            style={empty ? { opacity: 0, userSelect: "none" } : {}}
           >
-            <i className="fa fa-fas fa-ticket" />
-          </TicketButton>
-        </Root>
-      </div>
-    </Skeleton>
-  );
-};
+            <Date>{`${game?.date.month}. ${game?.date.day}`}</Date>
+
+            <TitleRoot>
+              <Title>{game?.title}</Title>
+              <Subtitles>
+                <Subtitle className="text-body-tertiary">{game?.time}</Subtitle>
+                <Subtitle className="text-body-tertiary">
+                  {game?.venue}
+                </Subtitle>
+              </Subtitles>
+            </TitleRoot>
+
+            <TicketButton
+              type="button"
+              aria-label={game?.ticketText}
+              onClick={() => {
+                window.open(game?.ticketLink, "_blank");
+              }}
+            >
+              <i className="fa fa-fas fa-ticket" />
+            </TicketButton>
+          </Root>
+        </div>
+      </Skeleton>
+    );
+  }
+);
 
 GameTableRowMobile.propTypes = gameTableRowPropTypes;

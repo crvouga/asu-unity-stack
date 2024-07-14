@@ -71,17 +71,21 @@ const mapNodeToGame = data => {
 
 export class GameDataSourceAsuEvents extends IGameDataSource {
   /**
-   * @param {{url: string}} input
+   * @param {{url: string; timeout?: number}} input
    */
-  constructor({ url }) {
+  constructor({ url, timeout }) {
     super();
     this.url = url;
+    this.timeout = timeout;
   }
 
   /**
    * @type {import("./game-data-source").IGameDataSource['findMany']}
    */
   async findMany(input) {
+    if (this.timeout) {
+      await new Promise(resolve => setTimeout(resolve, this.timeout));
+    }
     const fetched = await fetch(this.url);
     const json = await fetched.json();
     const games =

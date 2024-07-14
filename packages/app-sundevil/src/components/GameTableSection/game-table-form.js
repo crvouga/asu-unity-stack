@@ -35,7 +35,12 @@ export const init = form => {
   };
 };
 
-const useQueryState = createUseQueryState("gameTableForm");
+export const GAME_TABLE_FORM_DEBOUNCE_MS = 500;
+
+const useQueryState = createUseQueryState({
+  queryKey: "gameTableForm",
+  debouncePushMs: GAME_TABLE_FORM_DEBOUNCE_MS,
+});
 
 /**
  * @param {Partial<GameTableForm>} initial

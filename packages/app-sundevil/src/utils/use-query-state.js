@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 const encode = value => btoa(JSON.stringify(value));
 const decode = encoded => JSON.parse(atob(encoded));
@@ -18,8 +18,8 @@ const getQueryParam = key => {
   return urlParams.get(key);
 };
 
-/** @type {(queryKey: string) => typeof import('react').useState} */
-export const createUseQueryState = queryKey => {
+/** @type {(input: {queryKey: string, debouncePushMs?: number}) => typeof import('react').useState} */
+export const createUseQueryState = ({ queryKey, debouncePushMs }) => {
   /** @type {typeof import('react').useState} */
   const useQueryState = initial => {
     const [state, setState] = useState(initial);
@@ -42,12 +42,16 @@ export const createUseQueryState = queryKey => {
       window.addEventListener("popstate", onLocationChange);
     }, []);
 
+    const timeoutId = useRef(null);
     const setQueryState = valueOrFunction => {
       const valueNew =
         typeof valueOrFunction === "function"
           ? valueOrFunction(state)
           : valueOrFunction;
-      pushQueryParam(queryKey, encode(valueNew));
+      clearTimeout(timeoutId.current);
+      timeoutId.current = setTimeout(() => {
+        pushQueryParam(queryKey, encode(valueNew));
+      }, debouncePushMs ?? 0);
       setState(valueNew);
     };
 

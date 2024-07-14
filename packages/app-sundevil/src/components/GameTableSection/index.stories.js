@@ -26,6 +26,7 @@ GetTickets.args = {
   gameDataSource: {
     type: "asu-events",
     url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+    timeout: 800,
   },
   // gameDataSource: {
   //   type: "custom",

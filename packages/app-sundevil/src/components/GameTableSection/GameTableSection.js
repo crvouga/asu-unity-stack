@@ -26,7 +26,10 @@ import { Select } from "../Select/Select";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportSchema } from "../SportsTabs/sports-tabs";
 import { TextField } from "../TextField/TextField";
-import { useGameTableForm } from "./game-table-form";
+import {
+  GAME_TABLE_FORM_DEBOUNCE_MS,
+  useGameTableForm,
+} from "./game-table-form";
 import { defaultInputsConfig, inputsConfigSchema } from "./inputs-config";
 import { defaultLayoutConfig, layoutConfigSchema } from "./layout-config";
 
@@ -70,7 +73,10 @@ const GameTableSectionInner = ({ ...props }) => {
     sortByDesc,
   } = gameTableForm;
 
-  const debouncedSearchQuery = useDebouncedValue(searchQuery, 600);
+  const debouncedSearchQuery = useDebouncedValue(
+    searchQuery,
+    GAME_TABLE_FORM_DEBOUNCE_MS
+  );
 
   const { games, showLoadNextPage, isLoading, isLoadingInitial, loadNextPage } =
     useGameLoader({

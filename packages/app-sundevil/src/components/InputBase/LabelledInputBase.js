@@ -21,6 +21,7 @@ const Root = styled.div`
   width: 100%;
   gap: 0.5rem;
   background-color: #fff;
+  min-width: 150px;
 `;
 
 const InputRoot = styled.div`

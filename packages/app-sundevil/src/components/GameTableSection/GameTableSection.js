@@ -11,7 +11,7 @@ import {
   gameDataSourceSchema,
 } from "../Game/game-data-source/game-data-source-impl";
 import { GameDataSourceProvider } from "../Game/GameDataSourceContext";
-import { useGameLoader } from "../Game/use-game-data-source";
+import { useGameLoader } from "../Game/use-game-loader";
 import { GameNavigation } from "../GameNavigation";
 import { GameTable, gameTableFooterButtonSchema } from "../GameTable";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";

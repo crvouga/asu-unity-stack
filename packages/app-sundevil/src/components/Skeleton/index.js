@@ -30,6 +30,8 @@ const Root = styled.div`
     );
     background-size: 800px 100%;
     background-repeat: no-repeat;
+    user-select: none;
+    pointer-events: none;
 
     animation: shimmer 1s infinite linear;
     @keyframes shimmer {
@@ -75,6 +77,7 @@ export const Skeleton = ({
       style={style}
       fitContent={fitContent}
       ref={rootRef}
+      aria-hidden={skeleton}
     >
       {children}
     </Root>

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useRef } from "react";
+import React, { useMemo, useRef } from "react";
 import styled from "styled-components";
 
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
@@ -9,7 +9,13 @@ import {
   useElementContentPosition,
 } from "../../utils/use-element-position";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
+import {
+  buildSpecialEventsDataSource,
+  specialEventsDataSourceSchema,
+} from "./special-events-data-source/special-events-data-source-impl";
 import { SpecialEventCardCarousel } from "./SpecialEventCardCarousel";
+import { SpecialEventsDataSourceProvider } from "./SpecialEventsDataSourceContext";
+import { useSpecialEventsLoader } from "./use-special-events-loader";
 
 const Root = styled.section`
   display: flex;
@@ -20,7 +26,12 @@ const Root = styled.section`
 
 const DESKTOP_CARD_WIDTH = 588;
 
-export const SpecialEventsSection = ({ sectionHeader, cardCarousel }) => {
+const SpecialEventsSectionInner = ({ sectionHeader }) => {
+  const { isLoading, specialEvents } = useSpecialEventsLoader({
+    offset: 0,
+    limit: 10,
+  });
+
   const sectionHeaderRef = useRef();
   const sectionHeaderPosition = useElementContentPosition(sectionHeaderRef);
   const sectionHeaderDimensions = useElementContentDimensions(sectionHeaderRef);
@@ -39,7 +50,8 @@ export const SpecialEventsSection = ({ sectionHeader, cardCarousel }) => {
       />
       {shouldPreventJitter && (
         <SpecialEventCardCarousel
-          {...cardCarousel}
+          cards={specialEvents}
+          skeleton={isLoading}
           cardWidth={cardWidth}
           slidesOffsetBefore={sectionHeaderPosition.left}
         />
@@ -48,7 +60,32 @@ export const SpecialEventsSection = ({ sectionHeader, cardCarousel }) => {
   );
 };
 
+SpecialEventsSectionInner.propTypes = {
+  sectionHeader: PropTypes.shape(SectionHeader.propTypes),
+  cardCarousel: PropTypes.shape(SpecialEventCardCarousel.propTypes),
+  specialEventsDataSource: specialEventsDataSourceSchema,
+};
+
+export const SpecialEventsSection = ({
+  specialEventsDataSource: specialEventsDataSourceConfig,
+  ...props
+}) => {
+  const specialEventsDataSourceInstance = useMemo(
+    () => buildSpecialEventsDataSource(specialEventsDataSourceConfig),
+    [specialEventsDataSourceConfig]
+  );
+
+  return (
+    <SpecialEventsDataSourceProvider
+      specialEventsDataSource={specialEventsDataSourceInstance}
+    >
+      <SpecialEventsSectionInner {...props} />
+    </SpecialEventsDataSourceProvider>
+  );
+};
+
 SpecialEventsSection.propTypes = {
   sectionHeader: PropTypes.shape(SectionHeader.propTypes),
   cardCarousel: PropTypes.shape(SpecialEventCardCarousel.propTypes),
+  specialEventsDataSource: specialEventsDataSourceSchema,
 };

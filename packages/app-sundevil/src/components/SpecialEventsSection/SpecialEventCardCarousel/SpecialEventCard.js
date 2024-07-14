@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Button } from "../../../../../components-core/src";
 import { AspectRatio16by9 } from "../../AspectRatio/AspectRatio16by9";
 import { Skeleton } from "../../Skeleton";
-import { specialEventCardSchema } from "./special-event-card";
+import { specialEventSchema } from "../special-event";
 
 const CardRoot = styled.div`
   display: flex;
@@ -96,7 +96,7 @@ const CardButtons = styled.div`
   padding-top: 6px;
 `;
 
-/** @typedef {React.FC<{specialEventCard: import("./special-event-card").SpecialEventCard, cardWidth?: number }>} */
+/** @typedef {React.FC<{specialEventCard: import("../special-event").SpecialEvent, cardWidth?: number }>} */
 export const SpecialEventCard = ({ specialEventCard, cardWidth }) => {
   const cardRef = useRef();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -149,6 +149,6 @@ export const SpecialEventCard = ({ specialEventCard, cardWidth }) => {
 };
 
 SpecialEventCard.propTypes = {
-  specialEventCard: specialEventCardSchema,
+  specialEventCard: specialEventSchema,
   cardWidth: PropTypes.number,
 };

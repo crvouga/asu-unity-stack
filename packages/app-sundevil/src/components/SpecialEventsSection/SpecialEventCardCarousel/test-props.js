@@ -1,6 +1,6 @@
 // @ts-check
 
-/** @type {import("./special-event-card").SpecialEventCard} */
+/** @type {import("../special-event").SpecialEvent} */
 const cardBase = {
   imageSrc:
     "https://s3-alpha-sig.figma.com/img/e612/d1c3/c3494ba0dc25749d9779cb496f7e703b?Expires=1721001600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=LrE-~tupwTOUQy4~hBr9vBPPlW0WSoLLicHd2mNpsM897xPOp3gpJPNdF15HEDb0YMLvmjedwt4pGbu36fHJn-~6yrftN4jADb60~q3cqF2qh7qxcOo4rb2xIlTL7RREUTUeuEdbfWch36oKbh4N1yqLWpQSS~0YsXFn6G-DNXjtrzm-co3H4bRPklx2-pTObIfZEM~BJuHx7m2GC8oB0SPx8HrpW5d6P90lO3uCDNvN4tw~fAT9GxMeiA8YUq5edTDFqc3wsVmd9fHMwv9AVj1L1fU4rhlgOZODyvVofIWF3V4nUiWTi19Qsa2txTrKK0nheZEhaf0bX0oQgG6Kog",

@@ -13,7 +13,7 @@ const buttonSchema = PropsTypes.shape({
  * @property {"maroon" | "dark"} color
  */
 
-export const specialEventCardSchema = PropsTypes.shape({
+export const specialEventSchema = PropsTypes.shape({
   id: PropsTypes.string,
   imageSrc: PropsTypes.string,
   imageAlt: PropsTypes.string,
@@ -26,7 +26,7 @@ export const specialEventCardSchema = PropsTypes.shape({
 });
 
 /**
- * @typedef {Object} SpecialEventCard
+ * @typedef {Object} SpecialEvent
  * @property {string} [id]
  * @property {string} [imageSrc]
  * @property {string} [imageAlt]

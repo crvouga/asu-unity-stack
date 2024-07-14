@@ -6,19 +6,21 @@ import { useIsMobile } from "../../../../../component-header/src/core/hooks/isMo
 import { APP_CONFIG } from "../../../config";
 import { ArrowButtons } from "../../ArrowButtons";
 import { Carousel, CarouselController, CarouselItem } from "../../Carousel";
-import { specialEventCardSchema } from "./special-event-card";
+import { specialEventSchema } from "../special-event";
 import { SpecialEventCard } from "./SpecialEventCard";
 
 const propTypes = {
-  cards: PropTypes.arrayOf(specialEventCardSchema.isRequired).isRequired,
+  cards: PropTypes.arrayOf(specialEventSchema.isRequired).isRequired,
   slidesOffsetBefore: PropTypes.number,
   cardWidth: PropTypes.number,
+  skeleton: PropTypes.bool,
 };
 
 /**
  * @typedef {Object} Props
- * @property {import('./special-event-card').SpecialEventCard[]} cards
+ * @property {import('../special-event').SpecialEvent[]} cards
  * @property {number} [cardWidth]
+ * @property {boolean} [skeleton]
  * @property {number} [slidesOffsetBefore]
  */
 
@@ -61,6 +63,7 @@ export const SpecialEventCardCarousel = ({
   cards,
   slidesOffsetBefore,
   cardWidth,
+  skeleton,
 }) => {
   const [carouselController] = useState(() => new CarouselController());
   const [index, setIndex] = useState(0);
@@ -82,7 +85,11 @@ export const SpecialEventCardCarousel = ({
       >
         {cards.map(card => (
           <CarouselItem key={card.id}>
-            <SpecialEventCard specialEventCard={card} cardWidth={cardWidth} />
+            <SpecialEventCard
+              skeleton={skeleton}
+              specialEventCard={card}
+              cardWidth={cardWidth}
+            />
           </CarouselItem>
         ))}
       </Carousel>

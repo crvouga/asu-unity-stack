@@ -34,11 +34,11 @@ const initAllSportIds = () => {
 };
 
 /**
- * @type {(newsStoryAPI: import("./news-story-data-source/news-story-data-source").INewsStoryDataSource) => Promise<string[]>}
+ * @type {(newsStoryDataSource: import("./news-story-data-source/news-story-data-source").INewsStoryDataSource) => Promise<string[]>}
  */
-const getAllSportIds = async newsStoryAPI => {
+const getAllSportIds = async newsStoryDataSource => {
   const result = await Result.attempt(() =>
-    newsStoryAPI.findMany({
+    newsStoryDataSource.findMany({
       limit: Infinity,
       offset: 0,
       sportId: null,
@@ -58,7 +58,7 @@ const getAllSportIds = async newsStoryAPI => {
  * @param {import("./news-story-data-source/news-story-data-source").FindManyInput} input
  */
 export const useNewsStoryLoader = input => {
-  const newsStoryAPI = useNewsStoryDataSource();
+  const newsStoryDataSource = useNewsStoryDataSource();
   const [state, setState] = useState(initState);
   const queryKey = toQueryKey(input);
   const queryState = state[queryKey] ?? initQueryState();
@@ -75,7 +75,7 @@ export const useNewsStoryLoader = input => {
     }));
 
     const result = await Result.attempt(() =>
-      newsStoryAPI.findMany({
+      newsStoryDataSource.findMany({
         limit: DEFAULT_LIMIT,
         offset: 0,
         ...input,
@@ -83,7 +83,7 @@ export const useNewsStoryLoader = input => {
     );
 
     if (allSportIds.length === 0) {
-      const sportIds = await getAllSportIds(newsStoryAPI);
+      const sportIds = await getAllSportIds(newsStoryDataSource);
       setAllSportIds(sportIds);
     }
 

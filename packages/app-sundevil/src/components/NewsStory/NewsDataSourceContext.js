@@ -24,9 +24,9 @@ NewsStoryDataSourceProvider.propTypes = {
 
 /** @type {() => import("./news-story-data-source/news-story-data-source").INewsStoryDataSource} */
 export const useNewsStoryDataSource = () => {
-  const newsStoryAPI = React.useContext(NewsStoryDataSourceContext);
-  if (!newsStoryAPI) {
+  const newsStoryDataSource = React.useContext(NewsStoryDataSourceContext);
+  if (!newsStoryDataSource) {
     return buildNewsStoryDataSource();
   }
-  return newsStoryAPI;
+  return newsStoryDataSource;
 };

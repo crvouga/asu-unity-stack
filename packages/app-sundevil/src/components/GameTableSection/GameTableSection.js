@@ -7,7 +7,6 @@ import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobil
 import { APP_CONFIG } from "../../config";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
 import { useElementContentDimensions } from "../../utils/use-element-position";
-import { GameDataSourceSortByColumnId } from "../Game/game-data-source";
 import {
   buildGameDataSource,
   gameDataSourceSchema,
@@ -15,20 +14,18 @@ import {
 import { GameDataSourceProvider } from "../Game/GameDataSourceContext";
 import { useGameLoader } from "../Game/use-game-loader";
 import { GameNavigation } from "../GameNavigation";
-import { GameTable, gameTableFooterButtonSchema } from "../GameTable";
+import { GameTable, gameTableFooterButtonSchema } from "../GameTable/GameTable";
 import {
   GameTableLoadMoreButton,
   gameTableLoadMorePropTypes,
 } from "../GameTable/GameTableLoadMoreButton";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
-import { Select } from "../Select/Select";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportSchema } from "../SportsTabs/sports-tabs";
-import { TextField } from "../TextField/TextField";
-import { useGameTableForm } from "./game-table-form";
+import { useGameTableForm } from "./GameTableForm/game-table-form";
+import { GameTableForm } from "./GameTableForm/GameTableForm";
 import { defaultInputsConfig, inputsConfigSchema } from "./inputs-config";
 import { defaultLayoutConfig, layoutConfigSchema } from "./layout-config";
-import { useGameVenuesLoader } from "../Game/use-game-venues-loader";
 
 const GameTableRoot = styled.div`
   display: flex;
@@ -36,15 +33,6 @@ const GameTableRoot = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-`;
-
-const InputsRoot = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding-bottom: 1rem;
-  gap: 1rem;
-  flex-wrap: wrap;
 `;
 
 const GameTableSectionInner = ({ ...props }) => {
@@ -61,44 +49,29 @@ const GameTableSectionInner = ({ ...props }) => {
     gameType: props?.tabs?.find(tab => tab?.active)?.gameType ?? "all",
     sportId: props?.sports?.find(sport => sport?.active)?.id ?? "all",
   });
-  const {
-    sportId,
-    gameType,
-    venueId,
-    searchQuery,
-    debouncedSearchQuery,
-    sortByColumnId,
-    sortByDesc,
-  } = gameTableForm;
 
-  const { games, showLoadNextPage, isLoading, isLoadingInitial, loadNextPage } =
-    useGameLoader({
-      gameType: gameType === "all" ? null : gameType,
-      sportId: sportId === "all" ? null : sportId,
-      searchQuery: debouncedSearchQuery,
-      sortByColumnId,
-      venueId,
-      sortByDesc,
-      limit: 5,
-    });
-
-  const { allVenues } = useGameVenuesLoader();
+  const gameLoader = useGameLoader({
+    gameType: gameTableForm.gameType === "all" ? null : gameTableForm.gameType,
+    sportId: gameTableForm.sportId === "all" ? null : gameTableForm.sportId,
+    searchQuery: gameTableForm.debouncedSearchQuery,
+    sortByColumnId: gameTableForm.sortByColumnId,
+    venueId: gameTableForm.venueId,
+    sortByDesc: gameTableForm.sortByDesc,
+    limit: 5,
+  });
 
   const sports = props.sports?.map(sport => ({
     ...sport,
-    active: sport.id === sportId,
+    active: sport.id === gameTableForm.sportId,
   }));
 
   const tabs = props.tabs?.map(tab => ({
     ...tab,
-    active: tab.id === gameType,
+    active: tab.id === gameTableForm.gameType,
   }));
 
   const onSportItemClick = clickedSportId => () =>
     gameTableForm.update({ sportId: clickedSportId });
-
-  const onTabItemClick = clickedGameType => () =>
-    gameTableForm.update({ gameType: clickedGameType });
 
   const activeSport = sports?.find(sport => Boolean(sport?.active));
   const footerButtons =
@@ -126,128 +99,18 @@ const GameTableSectionInner = ({ ...props }) => {
             {...mapSectionHeaderProps(props)}
             // @ts-ignore
             tabs={tabs}
-            onTabItemClick={onTabItemClick}
+            onTabItemClick={clickedGameType => () =>
+              gameTableForm.update({ gameType: clickedGameType })}
           />
         </div>
 
-        <InputsRoot className="container">
-          {layoutConfig.includeInputSearch && (
-            <TextField
-              style={{ flex: 2 }}
-              label={inputsConfig?.searchInput?.label ?? ""}
-              placeholder={inputsConfig?.searchInput?.placeholder ?? ""}
-              value={searchQuery}
-              onChange={gameTableForm.setSearchQuery}
-              renderEndIcon={({ style }) => (
-                <i
-                  style={style}
-                  className="fa fas fa-solid fa-magnifying-glass"
-                />
-              )}
-            />
-          )}
-
-          {layoutConfig.includeInputSportType && (
-            <Select
-              style={{ flex: 1 }}
-              label={inputsConfig.sportTypeSelect?.label ?? ""}
-              placeholder={inputsConfig.sportTypeSelect?.placeholder ?? ""}
-              onChange={option =>
-                gameTableForm.update({
-                  sportId: option.id === sportId ? "all" : option.id,
-                })
-              }
-              options={sports.map(sport => ({
-                label: sport.name,
-                id: sport.id,
-                active: sport.active,
-              }))}
-            />
-          )}
-
-          {layoutConfig.includeInputVenueSelect && (
-            <Select
-              style={{ flex: 1 }}
-              label={inputsConfig.venueSelect?.label ?? ""}
-              placeholder={inputsConfig.venueSelect?.placeholder ?? ""}
-              onChange={option =>
-                gameTableForm.update({
-                  venueId: option.id === venueId ? null : option.id,
-                })
-              }
-              options={allVenues.map(venueOption => ({
-                label: venueOption,
-                id: venueOption,
-                active: venueOption === venueId,
-              }))}
-            />
-          )}
-
-          {layoutConfig.includeInputHomeOrAwaySelect && (
-            <Select
-              style={{ flex: 1 }}
-              label={inputsConfig.homeOrAwaySelect?.label ?? ""}
-              placeholder={inputsConfig.homeOrAwaySelect?.placeholder ?? ""}
-              onChange={option =>
-                gameTableForm.update({
-                  gameType: option.id === gameType ? null : option.id,
-                })
-              }
-              options={[
-                {
-                  id: "home",
-                  label: "Home",
-                  active: gameType === "home",
-                },
-                {
-                  id: "away",
-                  label: "Away",
-                  active: gameType === "away",
-                },
-              ]}
-            />
-          )}
-
-          {layoutConfig.includeSortBySelect && (
-            <Select
-              style={{ flex: 1 }}
-              label={inputsConfig.sortBySelect?.label ?? ""}
-              placeholder={inputsConfig.sortBySelect?.placeholder ?? ""}
-              onChange={option => {
-                gameTableForm.update({
-                  sortByDesc:
-                    option.payload.desc === sortByDesc
-                      ? true
-                      : option.payload.desc,
-                  sortByColumnId:
-                    option.payload.columnId === sortByColumnId
-                      ? GameDataSourceSortByColumnId.DATE
-                      : option.payload.columnId,
-                });
-              }}
-              options={[
-                {
-                  id: "date",
-                  label: "Date",
-                  active: sortByColumnId === GameDataSourceSortByColumnId.DATE,
-                  payload: {
-                    columnId: GameDataSourceSortByColumnId.DATE,
-                    desc: true,
-                  },
-                },
-                {
-                  id: "event-name",
-                  label: "Event Name",
-                  active: sortByColumnId === GameDataSourceSortByColumnId.NAME,
-                  payload: {
-                    columnId: GameDataSourceSortByColumnId.NAME,
-                    desc: true,
-                  },
-                },
-              ]}
-            />
-          )}
-        </InputsRoot>
+        <GameTableForm
+          className="container"
+          gameTableForm={gameTableForm}
+          inputsConfig={inputsConfig}
+          layoutConfig={layoutConfig}
+          sports={sports}
+        />
 
         {isDesktop && layoutConfig.includeSportsTabs && (
           <div className="container">
@@ -275,18 +138,18 @@ const GameTableSectionInner = ({ ...props }) => {
       <GameTableRoot className={isDesktop ? "container" : ""}>
         <GameTable
           {...props}
-          games={games}
+          games={gameLoader.games}
           footerButtons={footerButtons}
           footerLinks={footerLinks}
-          skeleton={isLoadingInitial}
+          skeleton={gameLoader.isLoadingInitial}
           //
         />
 
-        {props.loadMore && showLoadNextPage && (
+        {layoutConfig.includeLoadMore && gameLoader.showLoadNextPage && (
           <GameTableLoadMoreButton
             {...props.loadMore}
-            onClick={loadNextPage}
-            loading={isLoading}
+            onClick={gameLoader.loadNextPage}
+            loading={gameLoader.isLoading}
           />
         )}
       </GameTableRoot>

@@ -1,7 +1,7 @@
 // @ts-check
 import React from "react";
 
-import { GameTable } from "./index";
+import { GameTable } from "./GameTable";
 
 export default {
   title: "Game Table / Game Table",

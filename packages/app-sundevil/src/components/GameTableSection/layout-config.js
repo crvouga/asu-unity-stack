@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
  *  includeInputVenueSelect: boolean
  *  includeSportsTabs: boolean
  *  includeSortBySelect: boolean
+ *  includeLoadMore: boolean
  * }} LayoutConfig
  */
 
@@ -16,6 +17,7 @@ export const layoutConfigSchema = PropTypes.shape({
   includeInputSearch: PropTypes.bool,
   includeInputSportType: PropTypes.bool,
   includeInputHomeOrAwaySelect: PropTypes.bool,
+  includeLoadMore: PropTypes.bool,
   includeInputVenueSelect: PropTypes.bool,
   includeSportsTabs: PropTypes.bool,
   includeSortBySelect: PropTypes.bool,
@@ -30,5 +32,6 @@ export const defaultLayoutConfig = {
   includeInputHomeOrAwaySelect: false,
   includeInputVenueSelect: false,
   includeSportsTabs: true,
+  includeLoadMore: false,
   includeSortBySelect: false,
 };

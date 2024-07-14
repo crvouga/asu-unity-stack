@@ -53,7 +53,8 @@ GetTickets.args = {
     includeInputHomeOrAwaySelect: true,
     includeInputVenueSelect: true,
     includeInputSortBySelect: true,
-    includeSportsTabs: true,
+    includeSportsTabs: false,
+    includeLoadMore: true,
   },
   inputsConfig: {
     searchInput: {

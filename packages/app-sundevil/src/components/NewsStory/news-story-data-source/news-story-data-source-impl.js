@@ -40,6 +40,9 @@ export const buildNewsStoryDataSource = input => {
     case "static": {
       return new NewsStoryDataSourceStatic(input);
     }
+    case "custom": {
+      return input.newsStoryDataSource;
+    }
     default: {
       return new NewsStoryDataSourceMock();
     }

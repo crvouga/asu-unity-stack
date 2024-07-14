@@ -32,7 +32,9 @@ const initState = {};
  * @returns {string}
  */
 const toQueryKey = input => {
-  return btoa(JSON.stringify([input.gameType, input.sportId, input.limit]));
+  const copied = { ...input };
+  delete copied["offset"];
+  return btoa(JSON.stringify(copied));
 };
 
 /**

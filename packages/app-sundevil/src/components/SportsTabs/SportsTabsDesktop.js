@@ -63,6 +63,10 @@ export const SportsTabsDesktop = ({
   };
   const [state, setState] = React.useState(initialState);
 
+  if (sportTabs.length === 0) {
+    return null;
+  }
+
   return (
     <Skeleton skeleton={Boolean(skeleton)} className={className}>
       <Root>

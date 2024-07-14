@@ -4,7 +4,7 @@ import React from "react";
 import { GameTable } from "./index";
 
 export default {
-  title: "Game Table",
+  title: "Game Table / Game Table",
   component: GameTable,
   parameters: {
     docs: {

@@ -1,5 +1,6 @@
 import { matchSort } from "../../../utils/match-sort";
-import { IGameDataSource } from "./game-data-source";
+import { asc, desc } from "../../../utils/sort";
+import { GameDataSourceSortBy, IGameDataSource } from "./game-data-source";
 
 const cleanEqual = (a, b) => {
   if (typeof a === "string" && typeof b === "string") {
@@ -49,9 +50,25 @@ export class GameDataSourceStatic extends IGameDataSource {
       }),
     });
 
+    const sorted = filtered.sort((a, b) => {
+      switch (input?.sortBy) {
+        case GameDataSourceSortBy.TITLE_A_TO_Z: {
+          return asc(game => game.name)(a, b);
+        }
+
+        case GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST: {
+          return desc(game => game.date)(a, b);
+        }
+
+        default: {
+          return desc(game => game.date)(a, b);
+        }
+      }
+    });
+
     const offset = input?.offset ?? 0;
     const limit = input?.limit ?? Infinity;
-    const sliced = filtered.slice(offset, offset + limit);
+    const sliced = sorted.slice(offset, offset + limit);
 
     return {
       limit: input?.limit ?? Infinity,

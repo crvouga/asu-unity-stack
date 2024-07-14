@@ -54,9 +54,8 @@ const GameTableSectionInner = ({ ...props }) => {
     gameType: gameTableForm.gameType === "all" ? null : gameTableForm.gameType,
     sportId: gameTableForm.sportId === "all" ? null : gameTableForm.sportId,
     searchQuery: gameTableForm.debouncedSearchQuery,
-    sortByColumnId: gameTableForm.sortByColumnId,
+    sortBy: gameTableForm.sortBy,
     venueId: gameTableForm.venueId,
-    sortByDesc: gameTableForm.sortByDesc,
     limit: 5,
   });
 
@@ -97,7 +96,6 @@ const GameTableSectionInner = ({ ...props }) => {
         <div style={{ paddingBottom: "48px" }}>
           <SectionHeader
             {...mapSectionHeaderProps(props)}
-            // @ts-ignore
             tabs={tabs}
             onTabItemClick={clickedGameType => () =>
               gameTableForm.update({ gameType: clickedGameType })}

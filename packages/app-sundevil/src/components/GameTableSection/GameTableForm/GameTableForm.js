@@ -3,13 +3,14 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { GameDataSourceSortByColumnId } from "../../Game/game-data-source";
+import { GameDataSourceSortBy } from "../../Game/game-data-source";
 import { useGameVenuesLoader } from "../../Game/use-game-venues-loader";
 import { Select } from "../../Select/Select";
 import { sportSchema } from "../../SportsTabs/sports-tabs";
 import { TextField } from "../../TextField/TextField";
 import { inputsConfigSchema } from "../inputs-config";
 import { layoutConfigSchema } from "../layout-config";
+import { gameTableFormSchema } from "./game-table-form";
 
 const Root = styled.div`
   display: flex;
@@ -27,15 +28,7 @@ export const GameTableForm = ({
   sports,
   className,
 }) => {
-  const {
-    sportId,
-    gameType,
-    venueId,
-    searchQuery,
-
-    sortByColumnId,
-    sortByDesc,
-  } = gameTableForm;
+  const { sportId, gameType, venueId, searchQuery, sortBy } = gameTableForm;
 
   const { allVenues } = useGameVenuesLoader();
 
@@ -64,7 +57,6 @@ export const GameTableForm = ({
           )}
         />
       )}
-
       {layoutConfig.includeInputSportType && (
         <Select
           style={{ flex: 1 }}
@@ -82,7 +74,6 @@ export const GameTableForm = ({
           }))}
         />
       )}
-
       {layoutConfig.includeInputVenueSelect && (
         <Select
           style={{ flex: 1 }}
@@ -100,7 +91,6 @@ export const GameTableForm = ({
           }))}
         />
       )}
-
       {layoutConfig.includeInputHomeOrAwaySelect && (
         <Select
           style={{ flex: 1 }}
@@ -126,38 +116,34 @@ export const GameTableForm = ({
         />
       )}
 
-      {layoutConfig.includeSortBySelect && (
+      {layoutConfig.includeInputSortBySelect && (
         <Select
           style={{ flex: 1 }}
           label={inputsConfig.sortBySelect?.label ?? ""}
           placeholder={inputsConfig.sortBySelect?.placeholder ?? ""}
           onChange={option => {
             gameTableForm.update({
-              sortByDesc:
-                option.payload.desc === sortByDesc ? true : option.payload.desc,
-              sortByColumnId:
-                option.payload.columnId === sortByColumnId
-                  ? GameDataSourceSortByColumnId.DATE
-                  : option.payload.columnId,
+              sortBy:
+                option.payload.sortBy === sortBy
+                  ? GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST
+                  : option.payload.sortBy,
             });
           }}
           options={[
             {
               id: "date",
               label: "Date",
-              active: sortByColumnId === GameDataSourceSortByColumnId.DATE,
+              active: sortBy === GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST,
               payload: {
-                columnId: GameDataSourceSortByColumnId.DATE,
-                desc: true,
+                sortBy: GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST,
               },
             },
             {
               id: "event-name",
               label: "Event Name",
-              active: sortByColumnId === GameDataSourceSortByColumnId.NAME,
+              active: sortBy === GameDataSourceSortBy.TITLE_A_TO_Z,
               payload: {
-                columnId: GameDataSourceSortByColumnId.NAME,
-                desc: true,
+                sortBy: GameDataSourceSortBy.TITLE_A_TO_Z,
               },
             },
           ]}
@@ -168,8 +154,7 @@ export const GameTableForm = ({
 };
 
 GameTableForm.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  gameTableForm: PropTypes.object,
+  gameTableForm: gameTableFormSchema,
   layoutConfig: layoutConfigSchema,
   inputsConfig: inputsConfigSchema,
   className: PropTypes.string,

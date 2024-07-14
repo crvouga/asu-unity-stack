@@ -1,10 +1,12 @@
 // @ts-check
 
-export const GameDataSourceSortByColumnId = {
-  DATE: "date",
-  NAME: "name",
-  VENUE: "venue",
+export const GameDataSourceSortBy = {
+  DATE_NEWEST_TO_OLDEST: "DATE_NEWEST_TO_OLDEST",
+  TITLE_A_TO_Z: "TITLE_A_TO_Z",
 };
+
+// @ts-ignore
+window.GameDataSourceSortBy = GameDataSourceSortBy;
 
 /**
  * @typedef {object} FindManyInput
@@ -14,8 +16,7 @@ export const GameDataSourceSortByColumnId = {
  * @property {string | null | undefined} [gameType]
  * @property {string | null | undefined} [searchQuery]
  * @property {string | null | undefined} [venueId]
- * @property {string | null | undefined} [sortByColumnId]
- * @property {boolean} [sortByDesc]
+ * @property {keyof GameDataSourceSortBy} [sortBy]
  */
 
 export class IGameDataSource {

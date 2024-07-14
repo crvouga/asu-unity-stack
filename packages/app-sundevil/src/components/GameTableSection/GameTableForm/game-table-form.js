@@ -1,6 +1,8 @@
+import PropTypes from "prop-types";
+
 import { useDebouncedValue } from "../../../utils/use-debounced-value";
 import { createUseQueryState } from "../../../utils/use-query-state";
-import { GameDataSourceSortByColumnId } from "../../Game/game-data-source";
+import { GameDataSourceSortBy } from "../../Game/game-data-source";
 
 /**
  * @typedef {{
@@ -8,8 +10,7 @@ import { GameDataSourceSortByColumnId } from "../../Game/game-data-source";
  * gameType: string;
  * venueId: string;
  * searchQuery: string;
- * sortByColumnId: string;
- * sortByDesc: boolean;
+ * sortBy: keyof typeof GameDataSourceSortBy;
  * }} GameTableForm
  */
 
@@ -28,8 +29,7 @@ export const init = form => {
   return {
     gameType: null,
     searchQuery: "",
-    sortByColumnId: GameDataSourceSortByColumnId.DATE,
-    sortByDesc: false,
+    sortBy: GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST,
     sportId: null,
     venueId: null,
     ...form,
@@ -72,3 +72,13 @@ export const useGameTableForm = initial => {
     update,
   };
 };
+
+export const gameTableFormSchema = PropTypes.shape({
+  sportId: PropTypes.string,
+  gameType: PropTypes.string,
+  venueId: PropTypes.string,
+  searchQuery: PropTypes.string,
+  sortBy: PropTypes.oneOf(Object.values(GameDataSourceSortBy)),
+  setSearchQuery: PropTypes.func,
+  update: PropTypes.func,
+});

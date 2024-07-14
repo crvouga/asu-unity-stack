@@ -2,11 +2,11 @@ import { matchSort } from "../../../utils/match-sort";
 import { asc, desc } from "../../../utils/sort";
 import { GameDataSourceSortBy, IGameDataSource } from "./game-data-source";
 
-const cleanEqual = (a, b) => {
-  if (typeof a === "string" && typeof b === "string") {
-    return a.toLowerCase().trim() === b.toLowerCase().trim();
-  }
-  return a === b;
+const cleanString = str =>
+  typeof str === "string" ? str?.toLowerCase().trim() : str;
+
+const isEqual = (keyFn, a, b) => {
+  return keyFn(a) === keyFn(b);
 };
 
 export class GameDataSourceStatic extends IGameDataSource {
@@ -31,17 +31,17 @@ export class GameDataSourceStatic extends IGameDataSource {
       items: this.games.filter(game => {
         const matchedSportId =
           typeof input?.sportId === "string" && input?.sportId?.length > 0
-            ? cleanEqual(game?.sport?.id, input?.sportId)
+            ? isEqual(cleanString, game?.sport?.id, input?.sportId)
             : true;
 
         const matchedGameType =
           typeof input?.gameType === "string" && input?.gameType.length > 0
-            ? cleanEqual(game?.gameType, input?.gameType)
+            ? isEqual(cleanString, game?.gameType, input?.gameType)
             : true;
 
         const matchedVenueId =
           typeof input?.venueId === "string" && input?.venueId.length > 0
-            ? cleanEqual(game?.venue, input?.venueId)
+            ? isEqual(cleanString, game?.venue, input?.venueId)
             : true;
 
         const matched = matchedSportId && matchedGameType && matchedVenueId;

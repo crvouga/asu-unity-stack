@@ -195,6 +195,7 @@ const GameTableSectionInner = ({ ...props }) => {
         <GameTableRoot className={isDesktop ? "container" : ""}>
           <GameTable
             {...props}
+            {...props.gameTable}
             games={gameLoader.games}
             footerButtons={footerButtons}
             footerLinks={footerLinks}

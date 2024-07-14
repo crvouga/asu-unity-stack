@@ -31,23 +31,16 @@ const games = [];
     ticketText: "Buy Tickets",
     title: `Sun Devils vs Wildcats ${sportId}`,
     titleHref: "https://www.example.com",
-    date: {
-      day: "25",
-      month: "Nov",
-    },
-    sport: {
-      id: sportId,
-      name: "Sport Name",
-      icon: "fa fa-rocket",
-    },
-    homeTeam: {
-      name: "Sun Devils",
-      logo: "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
-    },
-    awayTeam: {
-      name: "Wildcats",
-      logo: "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
-    },
+    dateDay: "25",
+    dateMonth: "Nov",
+    sportId,
+    sportName: "Sport Name",
+    homeTeamName: "Arizona State Sun Devils",
+    homeTeamLogoSrc:
+      "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
+    awayTeamName: "Arizona State Sun Devils",
+    awayTeamLogoSrc:
+      "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
     time: "5:30pm",
     venue: "Phoenix Muni Stadium",
   });

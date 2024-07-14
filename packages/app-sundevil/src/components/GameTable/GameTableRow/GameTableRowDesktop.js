@@ -6,6 +6,8 @@ import { Button } from "../../../../../components-core/src/components/Button";
 import { deepMergeLeft } from "../../../utils/deep-merge-left";
 import { useElementSetMaxDimensions } from "../../../utils/use-element-set-max-dimensions";
 import { Skeleton } from "../../Skeleton";
+import { SportIcon } from "../../SportIcon";
+import { stringToClosestSportName } from "../../SportIcon/sport-name";
 import { defaultConfigCells } from "./config-cells";
 import { defaultConfigLayout } from "./config-layout";
 import { gameTableRowPropTypes } from "./game-table-row";
@@ -45,6 +47,42 @@ const CellDate = styled.div`
   padding: 1rem;
 `;
 
+const CellSportName = styled.div`
+  width: 96px;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  padding: 1rem;
+  font-size: 12px;
+  font-weight: bold;
+  gap: 0.2rem;
+`;
+
+const CellVersus = styled.div`
+  height: 96px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.5em;
+`;
+
+const CellVersusLogo = styled.img`
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+`;
+
+const CellVersusVS = styled.p`
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 2px;
+`;
+
 const CellTitle = styled.div`
   padding: 0 1.5rem;
   line-height: 28.8px;
@@ -73,14 +111,26 @@ const Title = styled.a`
 const Subtitles = styled.div`
   display: flex;
   gap: 24px;
-  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  flex-wrap: nowrap;
+`;
+
+const Subtitle = styled.p`
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const GameTableRowDesktop = forwardRef(
   (
     {
       // @ts-ignore
-      game,
+      game: gameUntyped,
       // @ts-ignore
       skeleton,
       // @ts-ignore
@@ -92,6 +142,8 @@ export const GameTableRowDesktop = forwardRef(
     },
     ref
   ) => {
+    /** @type {import("../../Game").Game} */
+    const game = gameUntyped;
     /** @type {import("./config-layout").ConfigLayout} */
     const configLayout = deepMergeLeft(
       configLayoutPartial,
@@ -115,11 +167,33 @@ export const GameTableRowDesktop = forwardRef(
           {configLayout.includeCellDate && (
             <Cell>
               <CellDate>
-                <h5 className="m-0 lh-1">{game?.date.month}.</h5>
-                <h2 className="m-0">{game?.date.day}</h2>
+                <h5 className="m-0 lh-1">{game?.dateMonth}.</h5>
+                <h2 className="m-0">{game?.dateDay}</h2>
               </CellDate>
             </Cell>
           )}
+
+          {configLayout.includeCellSportName && (
+            <Cell>
+              <CellSportName>
+                <SportIcon
+                  sportName={stringToClosestSportName(game?.sportId)}
+                />
+                <p className="m-0">{game?.sportId}</p>
+              </CellSportName>
+            </Cell>
+          )}
+
+          {configLayout.includeCellVersus && (
+            <Cell>
+              <CellVersus>
+                <CellVersusLogo src={game?.homeTeamLogoSrc} />
+                <CellVersusVS>vs</CellVersusVS>
+                <CellVersusLogo src={game?.awayTeamLogoSrc} />
+              </CellVersus>
+            </Cell>
+          )}
+
           {configLayout.includeCellTitle && (
             <Cell className="flex-1">
               <CellTitle>
@@ -132,8 +206,12 @@ export const GameTableRowDesktop = forwardRef(
                         : undefined,
                   }}
                 >
-                  <span className="text-body-tertiary">{game?.time}</span>
-                  <span className="text-body-tertiary">{game?.venue}</span>
+                  <Subtitle className="text-body-tertiary">
+                    {game?.time}
+                  </Subtitle>
+                  <Subtitle className="text-body-tertiary">
+                    {game?.venue}
+                  </Subtitle>
                 </Subtitles>
               </CellTitle>
             </Cell>

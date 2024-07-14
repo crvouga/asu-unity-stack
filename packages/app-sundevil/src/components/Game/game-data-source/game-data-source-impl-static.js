@@ -31,7 +31,7 @@ export class GameDataSourceStatic extends IGameDataSource {
       items: this.games.filter(game => {
         const matchedSportId =
           typeof input?.sportId === "string" && input?.sportId?.length > 0
-            ? isEqual(cleanString, game?.sport?.id, input?.sportId)
+            ? isEqual(cleanString, game?.sportId, input?.sportId)
             : true;
 
         const matchedGameType =

@@ -90,7 +90,7 @@ export const GameTableRowMobile = forwardRef(
             style={empty ? { opacity: 0, userSelect: "none" } : {}}
           >
             {configLayout.includeCellDate && (
-              <Date>{`${game?.date.month}. ${game?.date.day}`}</Date>
+              <Date>{`${game?.dateMonth}. ${game?.dateDay}`}</Date>
             )}
 
             {configLayout.includeCellTitle && (

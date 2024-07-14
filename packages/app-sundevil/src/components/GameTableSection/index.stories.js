@@ -411,8 +411,11 @@ GetTicketsLight.args = {
   emptyStateMessage: "No games found",
   gameTable: {
     configLayout: {
-      includeSportNameCell: true,
-      includeVersusCell: true,
+      includeCellDate: true,
+      includeCellSportName: true,
+      includeCellVersus: true,
+      includeCellTitle: true,
+      includeCellTickets: true,
     },
     cellsConfig: {
       titleCell: {

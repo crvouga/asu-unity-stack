@@ -39,33 +39,24 @@ const mapNodeToGame = data => {
     id: data?.nid,
     gameType: data.game_type,
     sportId: data.sport_tag,
-    date: {
-      // @ts-ignore
-      day: startDay,
-      // @ts-ignore
-      month: startMonth,
-    },
+    sportName: data.sport_tag,
+    // @ts-ignore
+    dateDay: startDay,
+    // @ts-ignore
+    dateMonth: startMonth,
     title: data.title,
     titleHref,
-    homeTeam: {
-      name: "Arizona State Sun Devils",
-      logo: "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
-    },
-    awayTeam: {
-      name: data.sport_tag,
-      logo: data.image_url,
-    },
+    homeTeamName: "Arizona State Sun Devils",
+    homeTeamLogoSrc:
+      "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
+    awayTeamName: "Arizona State Sun Devils",
+    awayTeamLogoSrc:
+      "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
     // @ts-ignore
     time: startTimeHour12,
     venue: data.locations,
     ticketLink: data.ticketing_rsvp_url,
     ticketText: data.ticketing_rsvp_txt,
-    sport: {
-      name: data.event_topics,
-      icon: "fas fa-football-ball",
-      // @ts-ignore
-      id: data.sport_tag,
-    },
   };
 };
 

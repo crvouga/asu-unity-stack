@@ -8,8 +8,8 @@ import { useGameVenuesLoader } from "../../Game/use-game-venues-loader";
 import { Select } from "../../Select/Select";
 import { sportSchema } from "../../SportsTabs/sports-tabs";
 import { TextField } from "../../TextField/TextField";
-import { inputsConfigSchema } from "../inputs-config";
-import { layoutConfigSchema } from "../layout-config";
+import { configInputsSchema } from "../config-inputs";
+import { configLayoutSchema } from "../config-layout";
 import { gameTableFormSchema } from "./game-table-form";
 
 const Root = styled.div`
@@ -23,8 +23,8 @@ const Root = styled.div`
 
 export const GameTableForm = ({
   gameTableForm,
-  layoutConfig,
-  inputsConfig,
+  configLayout,
+  configInputs,
   sports,
   className,
   darkMode,
@@ -32,11 +32,11 @@ export const GameTableForm = ({
   const { allVenues } = useGameVenuesLoader();
 
   const includeAny =
-    layoutConfig.includeInputSearch ||
-    layoutConfig.includeInputSportType ||
-    layoutConfig.includeInputVenueSelect ||
-    layoutConfig.includeInputHomeOrAwaySelect ||
-    layoutConfig.includeSortBySelect;
+    configLayout.includeInputSearch ||
+    configLayout.includeInputSportType ||
+    configLayout.includeInputVenueSelect ||
+    configLayout.includeInputHomeOrAwaySelect ||
+    configLayout.includeSortBySelect;
 
   if (!includeAny) {
     return null;
@@ -44,12 +44,12 @@ export const GameTableForm = ({
 
   return (
     <Root className={className}>
-      {layoutConfig.includeInputSearch && (
+      {configLayout.includeInputSearch && (
         <TextField
           darkMode={darkMode}
           style={{ flex: 2 }}
-          label={inputsConfig?.searchInput?.label ?? ""}
-          placeholder={inputsConfig?.searchInput?.placeholder ?? ""}
+          label={configInputs?.searchInput?.label ?? ""}
+          placeholder={configInputs?.searchInput?.placeholder ?? ""}
           value={gameTableForm.searchQuery}
           onChange={gameTableForm.setSearchQuery}
           renderEndIcon={({ style }) => (
@@ -57,12 +57,12 @@ export const GameTableForm = ({
           )}
         />
       )}
-      {layoutConfig.includeInputSportType && (
+      {configLayout.includeInputSportType && (
         <Select
           darkMode={darkMode}
           style={{ flex: 1 }}
-          label={inputsConfig.sportTypeSelect?.label ?? ""}
-          placeholder={inputsConfig.sportTypeSelect?.placeholder ?? ""}
+          label={configInputs.sportTypeSelect?.label ?? ""}
+          placeholder={configInputs.sportTypeSelect?.placeholder ?? ""}
           onChange={option =>
             gameTableForm.update({
               sportId: option.id === gameTableForm.sportId ? "all" : option.id,
@@ -75,12 +75,12 @@ export const GameTableForm = ({
           }))}
         />
       )}
-      {layoutConfig.includeInputVenueSelect && (
+      {configLayout.includeInputVenueSelect && (
         <Select
           darkMode={darkMode}
           style={{ flex: 1 }}
-          label={inputsConfig.venueSelect?.label ?? ""}
-          placeholder={inputsConfig.venueSelect?.placeholder ?? ""}
+          label={configInputs.venueSelect?.label ?? ""}
+          placeholder={configInputs.venueSelect?.placeholder ?? ""}
           onChange={option =>
             gameTableForm.update({
               venueId: option.id === gameTableForm.venueId ? null : option.id,
@@ -93,12 +93,12 @@ export const GameTableForm = ({
           }))}
         />
       )}
-      {layoutConfig.includeInputHomeOrAwaySelect && (
+      {configLayout.includeInputHomeOrAwaySelect && (
         <Select
           darkMode={darkMode}
           style={{ flex: 1 }}
-          label={inputsConfig.homeOrAwaySelect?.label ?? ""}
-          placeholder={inputsConfig.homeOrAwaySelect?.placeholder ?? ""}
+          label={configInputs.homeOrAwaySelect?.label ?? ""}
+          placeholder={configInputs.homeOrAwaySelect?.placeholder ?? ""}
           onChange={option =>
             gameTableForm.update({
               gameType: option.id === gameTableForm.gameType ? null : option.id,
@@ -119,12 +119,12 @@ export const GameTableForm = ({
         />
       )}
 
-      {layoutConfig.includeInputSortBySelect && (
+      {configLayout.includeInputSortBySelect && (
         <Select
           darkMode={darkMode}
           style={{ flex: 1 }}
-          label={inputsConfig.sortBySelect?.label ?? ""}
-          placeholder={inputsConfig.sortBySelect?.placeholder ?? ""}
+          label={configInputs.sortBySelect?.label ?? ""}
+          placeholder={configInputs.sortBySelect?.placeholder ?? ""}
           onChange={option => {
             gameTableForm.update({
               sortBy:
@@ -162,8 +162,8 @@ export const GameTableForm = ({
 
 GameTableForm.propTypes = {
   gameTableForm: gameTableFormSchema,
-  layoutConfig: layoutConfigSchema,
-  inputsConfig: inputsConfigSchema,
+  configLayout: configLayoutSchema,
+  configInputs: configInputsSchema,
   className: PropTypes.string,
   sports: PropTypes.arrayOf(sportSchema),
   darkMode: PropTypes.bool,

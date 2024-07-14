@@ -3,6 +3,8 @@
 import PropTypes from "prop-types";
 
 import { gameSchema } from "../../Game/game";
+import { configCellsSchema } from "./config-cells";
+import { configLayoutSchema } from "./config-layout";
 
 export const gameTableRowPropTypes = {
   game: gameSchema,
@@ -10,4 +12,6 @@ export const gameTableRowPropTypes = {
   style: PropTypes.object,
   skeleton: PropTypes.bool,
   empty: PropTypes.bool,
+  configCells: configCellsSchema,
+  configLayout: configLayoutSchema,
 };

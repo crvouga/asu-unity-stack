@@ -10,10 +10,10 @@ import PropTypes from "prop-types";
  *  includeSportsTabs: boolean
  *  includeInputSortBySelect: boolean
  *  includeLoadMore: boolean
- * }} LayoutConfig
+ * }} ConfigLayout
  */
 
-export const layoutConfigSchema = PropTypes.shape({
+export const configLayoutSchema = PropTypes.shape({
   includeInputSearch: PropTypes.bool,
   includeInputSportType: PropTypes.bool,
   includeInputHomeOrAwaySelect: PropTypes.bool,
@@ -24,9 +24,9 @@ export const layoutConfigSchema = PropTypes.shape({
 });
 
 /**
- * @type {LayoutConfig}
+ * @type {ConfigLayout}
  */
-export const defaultLayoutConfig = {
+export const defaultConfigLayout = {
   includeInputSearch: false,
   includeInputSportType: false,
   includeInputHomeOrAwaySelect: false,

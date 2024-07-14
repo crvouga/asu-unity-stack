@@ -37,6 +37,7 @@ export const SportsTabsMobile = ({
   const [state, setState] = React.useState(initialState);
 
   return (
+    // @ts-ignore
     <Skeleton skeleton={Boolean(skeleton)} className={className}>
       <DropDown
         open={state.opened === "dropdown"}

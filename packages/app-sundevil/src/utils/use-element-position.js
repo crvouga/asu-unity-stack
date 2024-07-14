@@ -97,7 +97,10 @@ export const useElementDimensions = ref => {
   useEffect(() => {
     if (ref.current) {
       const handleDimensions = () => {
-        const { width, height } = ref.current.getBoundingClientRect();
+        const { width, height } = ref?.current?.getBoundingClientRect?.() ?? {
+          width: 0,
+          height: 0,
+        };
         setDimensions({ width, height });
       };
 
@@ -123,7 +126,11 @@ export const useElementContentDimensions = ref => {
   useEffect(() => {
     if (ref.current) {
       const handleDimensions = () => {
-        const { width, height } = ref.current.getBoundingClientRect();
+        const { width, height } = ref?.current?.getBoundingClientRect?.() ?? {
+          width: 0,
+          height: 0,
+        };
+
         const paddingLeft = parseInt(
           window.getComputedStyle(ref.current).paddingLeft,
           10

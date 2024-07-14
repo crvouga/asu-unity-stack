@@ -51,7 +51,7 @@ const SubtitleLink = styled.a`
   opacity: 0.7;
 `;
 
-export const GameTableSectionHero = ({
+export const GameTableHero = ({
   title,
   subtitle,
   subtitleLinks,
@@ -83,7 +83,7 @@ export const GameTableSectionHero = ({
   );
 };
 
-GameTableSectionHero.propTypes = {
+GameTableHero.propTypes = {
   title: PropTypes.string,
   subtitle: PropTypes.string,
   subtitleLinks: PropTypes.arrayOf(

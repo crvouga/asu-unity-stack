@@ -81,7 +81,7 @@ const TitleRoot = styled.div`
 `;
 
 export const GameTableRowMobile = forwardRef(
-  ({ game, skeleton, empty }, ref) => {
+  ({ game, skeleton, empty, configLayout }, ref) => {
     return (
       <Skeleton skeleton={skeleton} ref={ref}>
         <div className="container">
@@ -89,27 +89,35 @@ export const GameTableRowMobile = forwardRef(
             aria-hidden={empty}
             style={empty ? { opacity: 0, userSelect: "none" } : {}}
           >
-            <Date>{`${game?.date.month}. ${game?.date.day}`}</Date>
+            {configLayout.includeCellDate && (
+              <Date>{`${game?.date.month}. ${game?.date.day}`}</Date>
+            )}
 
-            <TitleRoot>
-              <Title>{game?.title}</Title>
-              <Subtitles>
-                <Subtitle className="text-body-tertiary">{game?.time}</Subtitle>
-                <Subtitle className="text-body-tertiary">
-                  {game?.venue}
-                </Subtitle>
-              </Subtitles>
-            </TitleRoot>
+            {configLayout.includeCellTitle && (
+              <TitleRoot>
+                <Title>{game?.title}</Title>
+                <Subtitles>
+                  <Subtitle className="text-body-tertiary">
+                    {game?.time}
+                  </Subtitle>
+                  <Subtitle className="text-body-tertiary">
+                    {game?.venue}
+                  </Subtitle>
+                </Subtitles>
+              </TitleRoot>
+            )}
 
-            <TicketButton
-              type="button"
-              aria-label={game?.ticketText}
-              onClick={() => {
-                window.open(game?.ticketLink, "_blank");
-              }}
-            >
-              <i className="fa fa-fas fa-ticket" />
-            </TicketButton>
+            {configLayout.includeCellTickets && (
+              <TicketButton
+                type="button"
+                aria-label={game?.ticketText}
+                onClick={() => {
+                  window.open(game?.ticketLink, "_blank");
+                }}
+              >
+                <i className="fa fa-fas fa-ticket" />
+              </TicketButton>
+            )}
           </Root>
         </div>
       </Skeleton>

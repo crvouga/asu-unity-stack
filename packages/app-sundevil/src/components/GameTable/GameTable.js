@@ -7,6 +7,8 @@ import styled from "styled-components";
 import { Button } from "../../../../components-core/src/components/Button";
 import { EmptyStateMessage } from "../EmptyState/EmptyStateMessage";
 import { gameSchema } from "../Game/game";
+import { configCellsSchema } from "./GameTableRow/config-cells";
+import { configLayoutSchema } from "./GameTableRow/config-layout";
 import { GameTableRow } from "./GameTableRow/GameTableRow";
 
 const Footer = styled.footer`
@@ -59,6 +61,8 @@ const GameTable = ({
   skeletonRowCount = 5,
   footerLinks,
   setFirstRowRef,
+  configLayout,
+  configCells,
 }) => {
   const isSkeleton = skeleton && games.length === 0;
 
@@ -78,6 +82,8 @@ const GameTable = ({
                 // @ts-ignore
                 skeleton
                 ref={index === 0 ? setFirstRowRef : null}
+                configLayout={configLayout}
+                configCells={configCells}
               />
             ))}
           </BorderBottom>
@@ -91,6 +97,8 @@ const GameTable = ({
                 // @ts-ignore
                 game={game}
                 ref={index === 0 ? setFirstRowRef : null}
+                configLayout={configLayout}
+                configCells={configCells}
               />
             ))}
           </AlternateBackground>
@@ -104,6 +112,8 @@ const GameTable = ({
                 // @ts-ignore
                 empty
                 ref={index === 0 ? setFirstRowRef : null}
+                configLayout={configLayout}
+                configCells={configCells}
               />
             ))}
             <EmptyStateMessage message={emptyStateMessage} />
@@ -160,6 +170,8 @@ GameTable.propTypes = {
   footerLinks: PropTypes.arrayOf(gameTableFooterLinkSchema),
   emptyStateMessage: PropTypes.string,
   setFirstRowRef: PropTypes.func,
+  configLayout: configLayoutSchema,
+  configCells: configCellsSchema,
 };
 
 export { GameTable };

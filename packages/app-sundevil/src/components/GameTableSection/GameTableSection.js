@@ -21,12 +21,12 @@ import {
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportSchema } from "../SportsTabs/sports-tabs";
+import { configInputsSchema, defaultConfigInputs } from "./config-inputs";
+import { configLayoutSchema, defaultConfigLayout } from "./config-layout";
+import { ConfigOverlap, configOverlapSchema } from "./config-overlap";
 import { useGameTableForm } from "./GameTableForm/game-table-form";
 import { GameTableForm } from "./GameTableForm/GameTableForm";
-import { GameTableSectionHero } from "./GameTableSectionHero";
-import { defaultInputsConfig, inputsConfigSchema } from "./inputs-config";
-import { defaultLayoutConfig, layoutConfigSchema } from "./layout-config";
-import { LayoutOverlap, layoutOverlapSchema } from "./layout-overlap";
+import { GameTableHero } from "./GameTableHero/GameTableHero";
 
 const GameTableRoot = styled.div`
   display: flex;
@@ -39,13 +39,13 @@ const GameTableRoot = styled.div`
 const GameTableSectionInner = ({ ...props }) => {
   const variant = props.variant ?? "default";
 
-  /** @type {import("./layout-config").LayoutConfig} */
-  const layoutConfig = props.layoutConfig ?? defaultLayoutConfig;
+  /** @type {import("./config-layout").ConfigLayout} */
+  const configLayout = props.configLayout ?? defaultConfigLayout;
 
-  /** @type {import("./inputs-config").InputsConfig} */
-  const inputsConfig = deepMergeLeft(
-    props.inputsConfig ?? {},
-    defaultInputsConfig
+  /** @type {import("./config-inputs").ConfigInputs} */
+  const configInputs = deepMergeLeft(
+    props.configInputs ?? {},
+    defaultConfigInputs
   );
 
   const gameTableForm = useGameTableForm({
@@ -83,6 +83,12 @@ const GameTableSectionInner = ({ ...props }) => {
   const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
 
+  //
+  //
+  //
+  //
+  //
+
   /** @type {React.MutableRefObject<HTMLElement | null>} */
   const gameTableFirstRowRef = useRef(null);
   const gameTableFirstRowDimensions =
@@ -93,14 +99,14 @@ const GameTableSectionInner = ({ ...props }) => {
   const headerDimensions = useElementContentDimensions(headerRef);
 
   const getOverlapStyles = () => {
-    switch (props?.layoutOverlap) {
-      case LayoutOverlap["first-row-with-hero"]: {
+    switch (props?.configOverlap) {
+      case ConfigOverlap["first-row-with-hero"]: {
         return {
           marginTop:
             (headerDimensions.height + gameTableFirstRowDimensions.height) * -1,
         };
       }
-      case LayoutOverlap["sport-tabs-with-hero"]: {
+      case ConfigOverlap["sport-tabs-with-hero"]: {
         return {
           marginTop: -headerDimensions.height,
         };
@@ -112,14 +118,14 @@ const GameTableSectionInner = ({ ...props }) => {
   };
 
   const getHeroOverlapStyles = () => {
-    switch (props?.layoutOverlap) {
-      case LayoutOverlap["first-row-with-hero"]: {
+    switch (props?.configOverlap) {
+      case ConfigOverlap["first-row-with-hero"]: {
         return {
           paddingBottom:
             headerDimensions.height + gameTableFirstRowDimensions.height,
         };
       }
-      case LayoutOverlap["sport-tabs-with-hero"]: {
+      case ConfigOverlap["sport-tabs-with-hero"]: {
         return {
           paddingBottom: headerDimensions.height,
         };
@@ -133,7 +139,7 @@ const GameTableSectionInner = ({ ...props }) => {
   return (
     <>
       {variant === "hero" && (
-        <GameTableSectionHero
+        <GameTableHero
           title={props.title}
           subtitle={props.subtitle}
           subtitleLinks={props.subtitleLinks}
@@ -157,13 +163,13 @@ const GameTableSectionInner = ({ ...props }) => {
           <GameTableForm
             className="container"
             gameTableForm={gameTableForm}
-            inputsConfig={inputsConfig}
-            layoutConfig={layoutConfig}
+            configInputs={configInputs}
+            configLayout={configLayout}
             sports={sports}
             darkMode={props.darkMode}
           />
 
-          {isDesktop && layoutConfig.includeSportsTabs && (
+          {isDesktop && configLayout.includeSportsTabs && (
             <div className="container">
               <SportsTabsDesktop
                 {...props}
@@ -174,7 +180,7 @@ const GameTableSectionInner = ({ ...props }) => {
           )}
         </div>
 
-        {isMobile && layoutConfig.includeSportsTabs && (
+        {isMobile && configLayout.includeSportsTabs && (
           <div className="container">
             <SportsTabsMobile
               {...props}
@@ -193,13 +199,12 @@ const GameTableSectionInner = ({ ...props }) => {
             footerButtons={footerButtons}
             footerLinks={footerLinks}
             skeleton={gameLoader.isLoadingInitial}
-            //
             setFirstRowRef={ref => {
               gameTableFirstRowRef.current = ref;
             }}
           />
 
-          {layoutConfig.includeLoadMore && gameLoader.showLoadNextPage && (
+          {configLayout.includeLoadMore && gameLoader.showLoadNextPage && (
             <GameTableLoadMoreButton
               {...props.loadMore}
               onClick={gameLoader.loadNextPage}
@@ -221,13 +226,14 @@ const sportSchemaGameTable = PropTypes.shape({
 GameTableSectionInner.propTypes = {
   ...SectionHeader.propTypes,
   ...GameTable.propTypes,
-  applyNegativeMarginForOverlap: PropTypes.bool,
   sports: PropTypes.arrayOf(sportSchemaGameTable),
   loadMore: gameTableLoadMorePropTypes,
-  layoutConfig: layoutConfigSchema,
-  inputsConfig: inputsConfigSchema,
+  configLayout: configLayoutSchema,
+  configInputs: configInputsSchema,
+  configOverlap: configOverlapSchema,
   variant: PropTypes.oneOf(["default", "hero"]),
-  layoutOverlap: layoutOverlapSchema,
+  gameTable: GameTable.propTypes,
+  sectionHeader: SectionHeader.propTypes,
 };
 
 const GameTableSection = ({

@@ -3,8 +3,11 @@ import React, { forwardRef, useRef } from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../../components-core/src/components/Button";
+import { deepMergeLeft } from "../../../utils/deep-merge-left";
 import { useElementSetMaxDimensions } from "../../../utils/use-element-set-max-dimensions";
 import { Skeleton } from "../../Skeleton";
+import { defaultConfigCells } from "./config-cells";
+import { defaultConfigLayout } from "./config-layout";
 import { gameTableRowPropTypes } from "./game-table-row";
 
 const Root = styled.div`
@@ -74,8 +77,29 @@ const Subtitles = styled.div`
 `;
 
 export const GameTableRowDesktop = forwardRef(
-  // @ts-ignore
-  ({ game, skeleton, empty }, ref) => {
+  (
+    {
+      // @ts-ignore
+      game,
+      // @ts-ignore
+      skeleton,
+      // @ts-ignore
+      empty,
+      // @ts-ignore
+      configLayout: configLayoutPartial,
+      // @ts-ignore
+      configCells: configCellsPartial,
+    },
+    ref
+  ) => {
+    /** @type {import("./config-layout").ConfigLayout} */
+    const configLayout = deepMergeLeft(
+      configLayoutPartial,
+      defaultConfigLayout
+    );
+    /** @type {import("./config-cells").ConfigCells} */
+    const configCells = deepMergeLeft(configCellsPartial, defaultConfigCells);
+
     const buttonCellRef = useRef(null);
     const buttonCellMaxDimensions = useElementSetMaxDimensions({
       elementRef: buttonCellRef,
@@ -88,42 +112,54 @@ export const GameTableRowDesktop = forwardRef(
           aria-hidden={empty}
           style={empty ? { opacity: 0, userSelect: "none" } : {}}
         >
-          <Cell>
-            {/* {Object.keys(game).join(", ")} */}
-            <CellDate>
-              <h5 className="m-0 lh-1">{game?.date.month}.</h5>
-              <h2 className="m-0">{game?.date.day}</h2>
-            </CellDate>
-          </Cell>
-          <Cell className="flex-1">
-            <CellTitle>
-              <Title href={game?.titleHref}>{game?.title}</Title>
-              <Subtitles>
-                <span className="text-body-tertiary">{game?.time}</span>
-                <span className="text-body-tertiary">{game?.venue}</span>
-              </Subtitles>
-            </CellTitle>
-          </Cell>
-          <Cell
-            className="btn-ticket text-center align-middle px-2"
-            ref={buttonCellRef}
-            style={{ minWidth: buttonCellMaxDimensions.width }}
-          >
-            <Button
-              label={game?.ticketText}
-              color="dark"
-              size="small"
-              renderIcon={() => (
-                <i
-                  className="fa fa-fas fa-ticket"
-                  style={{ paddingRight: "10px" }}
-                />
-              )}
-              onClick={() => {
-                window.open(game?.ticketLink, "_blank");
-              }}
-            />
-          </Cell>
+          {configLayout.includeCellDate && (
+            <Cell>
+              <CellDate>
+                <h5 className="m-0 lh-1">{game?.date.month}.</h5>
+                <h2 className="m-0">{game?.date.day}</h2>
+              </CellDate>
+            </Cell>
+          )}
+          {configLayout.includeCellTitle && (
+            <Cell className="flex-1">
+              <CellTitle>
+                <Title href={game?.titleHref}>{game?.title}</Title>
+                <Subtitles
+                  style={{
+                    fontWeight:
+                      configCells?.cellTitle?.subtitleFontWeight === "bold"
+                        ? "bold"
+                        : undefined,
+                  }}
+                >
+                  <span className="text-body-tertiary">{game?.time}</span>
+                  <span className="text-body-tertiary">{game?.venue}</span>
+                </Subtitles>
+              </CellTitle>
+            </Cell>
+          )}
+          {configLayout.includeCellTickets && (
+            <Cell
+              className="btn-ticket text-center align-middle px-2"
+              ref={buttonCellRef}
+              style={{ minWidth: buttonCellMaxDimensions.width }}
+            >
+              <Button
+                label={game?.ticketText}
+                color="dark"
+                size="small"
+                renderIcon={() => (
+                  <i
+                    className="fa fa-fas fa-ticket"
+                    style={{ paddingRight: "10px" }}
+                  />
+                )}
+                onClick={() => {
+                  window.open(game?.ticketLink, "_blank");
+                }}
+              />
+            </Cell>
+          )}
         </Root>
       </Skeleton>
     );

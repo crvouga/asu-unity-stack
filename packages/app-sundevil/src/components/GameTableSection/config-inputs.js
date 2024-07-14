@@ -1,7 +1,7 @@
 // @ts-check
 import PropTypes from "prop-types";
 
-export const inputsConfigSchema = PropTypes.shape({
+export const configInputsSchema = PropTypes.shape({
   searchInput: PropTypes.shape({
     label: PropTypes.string,
     placeholder: PropTypes.string,
@@ -28,23 +28,23 @@ export const inputsConfigSchema = PropTypes.shape({
  * @typedef {{
  *  label?: string;
  *  placeholder?: string;
- * }} InputConfig
+ * }} ConfigInput
  */
 
 /**
  * @typedef {{
- *  searchInput?: InputConfig,
- *  sportTypeSelect?: InputConfig,
- *  homeOrAwaySelect?: InputConfig,
- *  venueSelect?: InputConfig,
- *  sortBySelect?: InputConfig,
- * }} InputsConfig
+ *  searchInput?: ConfigInput,
+ *  sportTypeSelect?: ConfigInput,
+ *  homeOrAwaySelect?: ConfigInput,
+ *  venueSelect?: ConfigInput,
+ *  sortBySelect?: ConfigInput,
+ * }} ConfigInputs
  */
 
 /**
- * @type {InputsConfig}
+ * @type {ConfigInputs}
  */
-export const defaultInputsConfig = {
+export const defaultConfigInputs = {
   searchInput: {
     label: "Search by Event Name",
     placeholder: "Sun Devils vs. BYU, Season Tickets, Rose Bowl",

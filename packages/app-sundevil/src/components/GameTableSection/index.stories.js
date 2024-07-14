@@ -534,13 +534,13 @@ GetTicketsSportTabsOnly.args = {
   title: "Get Tickets",
   subtitle:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  subtitleLinks: [
-    {
-      label: "See a list of free sporting events",
-      href: "#",
-      color: "muted",
-    },
-  ],
+  // subtitleLinks: [
+  //   {
+  //     label: "See a list of free sporting events",
+  //     href: "#",
+  //     color: "muted",
+  //   },
+  // ],
   darkMode: true,
   emptyStateMessage: "No games found",
   configLayout: {

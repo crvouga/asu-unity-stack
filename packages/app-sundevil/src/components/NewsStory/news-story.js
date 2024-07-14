@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
  * title: string;
  * category?: string;
  * imageSrc?: string;
+ * imageAlt?: string;
  * sportId?: string;
  * sportName?: string;
  * sportIconFaClassName?: string;
@@ -23,6 +24,7 @@ export const newsStorySchema = PropTypes.shape({
   title: PropTypes.string.isRequired,
   category: PropTypes.string,
   imageSrc: PropTypes.string,
+  imageAlt: PropTypes.string,
   sportId: PropTypes.string,
   sportName: PropTypes.string,
   sportIconFaClassName: PropTypes.string,

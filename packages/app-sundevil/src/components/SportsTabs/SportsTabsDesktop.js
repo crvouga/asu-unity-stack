@@ -8,6 +8,7 @@ import { APP_CONFIG } from "../../config";
 import { DropDown, DropDownSurface } from "../DropDown";
 import { Icon } from "../Icon_";
 import { Skeleton } from "../Skeleton";
+import { sportsTabSkeletonData } from "./sports-tab-skeleton-data";
 import { basePropTypes } from "./sports-tabs";
 import { SportsTab } from "./SportsTab";
 import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
@@ -47,9 +48,9 @@ export const SportsTabsDesktop = ({
 }) => {
   sports?.sort((a, b) => a.position - b.position);
   const isTablet = useIsMobile(APP_CONFIG.breakpointTablet);
-  const tabCount = isTablet ? 6 : 9;
+  const maxTabCount = isTablet ? 6 : 9;
   // @ts-ignore
-  const sportTabs = sports?.filter(sport => !sport.more)?.slice(0, tabCount);
+  const sportTabs = sports?.filter(sport => !sport.more)?.slice(0, maxTabCount);
 
   const moreSports = sports.filter(sport =>
     sportTabs.every(s => s.id !== sport.id)
@@ -65,71 +66,98 @@ export const SportsTabsDesktop = ({
   return (
     <Skeleton skeleton={Boolean(skeleton)} className={className}>
       <Root>
-        {sportTabs.map(sport => (
-          <SportsTab
-            key={sport.id}
-            onClick={onSportItemClick(sport.id)}
-            active={Boolean(sport.active)}
-            orientation="vertical"
-            darkMode={darkMode}
-          >
-            <Icon title={sport.name} icon={sport.icon} style={ICON_SIZE} />
-            <div>{sport.name}</div>
-          </SportsTab>
-        ))}
-        {moreSports.length > 0 && (
-          <DropDown
-            open={state.opened === "dropdown"}
-            onClose={() =>
-              setState(currentState => ({ ...currentState, opened: null }))
-            }
-            renderReference={input => {
-              return (
-                <SportsTab
-                  // @ts-ignore
-                  ref={input.ref}
-                  onClick={() =>
-                    setState(currentState => ({
-                      ...currentState,
-                      opened:
-                        currentState.opened === "dropdown" ? null : "dropdown",
-                    }))
-                  }
-                  orientation={moreTabOrientation ?? "vertical"}
-                  active={isMoreSportsActive}
-                  color={moreTabColor ?? "default"}
-                  darkMode={darkMode}
-                >
-                  {input.open ? (
-                    <span className="fas fa-chevron-up" style={ICON_SIZE} />
-                  ) : (
-                    <span className="fas fa-chevron-down" style={ICON_SIZE} />
-                  )}
-                  <div>More</div>
-                </SportsTab>
-              );
-            }}
-            renderContent={() => {
-              return (
-                <DropDownSurface>
-                  {moreSports.map(sport => (
-                    <SportsTabDropDownItem
-                      key={sport.id ?? sport.name}
-                      label={sport.name}
-                      active={Boolean(sport.active)}
-                      onClick={() => {
+        {skeleton && (
+          <>
+            {sportsTabSkeletonData.slice(0, maxTabCount).map(sport => (
+              <SportsTab
+                key={sport.id}
+                onClick={() => {}}
+                active={Boolean(sport.active)}
+                orientation="vertical"
+                darkMode={darkMode}
+              />
+            ))}
+          </>
+        )}
+        {!skeleton && (
+          <>
+            {sportTabs.map(sport => (
+              <SportsTab
+                key={sport.id}
+                onClick={onSportItemClick(sport.id)}
+                active={Boolean(sport.active)}
+                orientation="vertical"
+                darkMode={darkMode}
+              >
+                <Icon title={sport.name} icon={sport.icon} style={ICON_SIZE} />
+                <div>{sport.name}</div>
+              </SportsTab>
+            ))}
+            {sportsTabSkeletonData
+              .slice(0, maxTabCount - sportTabs.length)
+              .map(sport => (
+                <SportsTab key={sport.id} empty />
+              ))}
+            {moreSports.length > 0 && (
+              <DropDown
+                open={state.opened === "dropdown"}
+                onClose={() =>
+                  setState(currentState => ({ ...currentState, opened: null }))
+                }
+                renderReference={input => {
+                  return (
+                    <SportsTab
+                      // @ts-ignore
+                      ref={input.ref}
+                      onClick={() =>
                         setState(currentState => ({
                           ...currentState,
-                          opened: null,
-                        }));
-                        onSportItemClick(sport.id)();
-                      }}
-                    />
-                  ))}
-                </DropDownSurface>
-              );
-            }}
-          />
+                          opened:
+                            currentState.opened === "dropdown"
+                              ? null
+                              : "dropdown",
+                        }))
+                      }
+                      orientation={moreTabOrientation ?? "vertical"}
+                      active={isMoreSportsActive}
+                      color={moreTabColor ?? "default"}
+                      darkMode={darkMode}
+                    >
+                      {input.open ? (
+                        <span className="fas fa-chevron-up" style={ICON_SIZE} />
+                      ) : (
+                        <span
+                          className="fas fa-chevron-down"
+                          style={ICON_SIZE}
+                        />
+                      )}
+                      <div>More</div>
+                    </SportsTab>
+                  );
+                }}
+                renderContent={() => {
+                  return (
+                    <DropDownSurface>
+                      {moreSports.map(sport => (
+                        <SportsTabDropDownItem
+                          key={sport.id ?? sport.name}
+                          label={sport.name}
+                          active={Boolean(sport.active)}
+                          onClick={() => {
+                            setState(currentState => ({
+                              ...currentState,
+                              opened: null,
+                            }));
+                            onSportItemClick(sport.id)();
+                          }}
+                        />
+                      ))}
+                    </DropDownSurface>
+                  );
+                }}
+              />
+            )}
+          </>
         )}
       </Root>
     </Skeleton>

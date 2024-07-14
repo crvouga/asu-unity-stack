@@ -49,8 +49,8 @@ const SunDevilStoriesSectionInner = ({
   allStoriesHref,
   allStoriesLabel,
   emptyStateMessage,
+  removeSportsWithNoStories,
 }) => {
-  // eslint-disable-next-line react/prop-types
   const [selectedSportId, setSelectedSportId] = React.useState(sports[0]?.id);
 
   const sportsWithSelectedTab = sports.map(sport => ({
@@ -69,14 +69,26 @@ const SunDevilStoriesSectionInner = ({
   const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
 
-  const { newsStories, isLoading } = useNewsStoryLoader({
+  const { newsStories, isLoading, allSportIds } = useNewsStoryLoader({
     sportId: selectedSportId === "all" ? null : selectedSportId,
   });
 
   const skeleton = isLoading;
+  const skeletonTabs = Boolean(
+    skeleton && removeSportsWithNoStories && allSportIds.length === 0
+  );
   const empty = !isLoading && newsStories.length === 0;
 
   const newsStoriesFinal = skeleton ? newsStoriesSkeletonData : newsStories;
+  const sportsFinal = sportsWithSelectedTab.filter(sport => {
+    if (skeletonTabs) {
+      return true;
+    }
+    if (removeSportsWithNoStories) {
+      return allSportIds.includes(sport.id) || sport.id === "all";
+    }
+    return true;
+  });
   return (
     <Root>
       <SectionHeader
@@ -87,9 +99,9 @@ const SunDevilStoriesSectionInner = ({
         <>
           <div className="container">
             <SportsTabsMobile
-              sports={sportsWithSelectedTab}
+              sports={sportsFinal}
               onSportItemClick={sportId => () => setSelectedSportId(sportId)}
-              skeleton={skeleton && false}
+              skeleton={skeletonTabs}
             />
           </div>
           <NewsStoryCardGridMobile
@@ -119,8 +131,8 @@ const SunDevilStoriesSectionInner = ({
         <>
           <div className="container">
             <SportsTabsDesktop
-              skeleton={skeleton && false}
-              sports={sportsWithSelectedTab}
+              skeleton={skeletonTabs}
+              sports={sportsFinal}
               onSportItemClick={sportId => () => setSelectedSportId(sportId)}
               moreTabOrientation="horizontal"
               moreTabColor="muted"
@@ -159,6 +171,7 @@ SunDevilStoriesSectionInner.propTypes = {
   allStoriesHref: PropTypes.string.isRequired,
   skeleton: PropTypes.bool,
   emptyStateMessage: PropTypes.string,
+  removeSportsWithNoStories: PropTypes.bool,
 };
 
 export const SunDevilStoriesSection = ({
@@ -188,6 +201,7 @@ SunDevilStoriesSection.propTypes = {
  *  allStoriesHref: string;
  *  skeleton?: boolean;
  *  newsStoryDataSource: object
- *  emptyStateMessage: string;
+ *  emptyStateMessage?: string;
+ *  removeSportsWithNoStories?: boolean;
  * }} SunDevilStoriesProps
  */

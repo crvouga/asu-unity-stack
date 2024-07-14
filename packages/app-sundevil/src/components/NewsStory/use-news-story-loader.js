@@ -28,6 +28,32 @@ const toQueryKey = input => {
   return btoa(JSON.stringify([input.sportId, input.limit]));
 };
 
+/** @type {() => string[]} */
+const initAllSportIds = () => {
+  return [];
+};
+
+/**
+ * @type {(newsStoryAPI: import("./news-story-data-source/news-story-data-source").INewsStoryDataSource) => Promise<string[]>}
+ */
+const getAllSportIds = async newsStoryAPI => {
+  const result = await Result.attempt(() =>
+    newsStoryAPI.findMany({
+      limit: Infinity,
+      offset: 0,
+      sportId: null,
+    })
+  );
+  const newsStories = Result.withDefault(
+    Result.mapOk(result, pagination => pagination.rows),
+    []
+  );
+  const sportIds = Array.from(
+    new Set(newsStories.map(newsStory => newsStory.sportId ?? "all"))
+  );
+  return sportIds;
+};
+
 /**
  * @param {import("./news-story-data-source/news-story-data-source").FindManyInput} input
  */
@@ -36,6 +62,7 @@ export const useNewsStoryLoader = input => {
   const [state, setState] = useState(initState);
   const queryKey = toQueryKey(input);
   const queryState = state[queryKey] ?? initQueryState();
+  const [allSportIds, setAllSportIds] = useState(initAllSportIds);
 
   const load = async () => {
     if (queryState.t === "loading" || queryState.t === "ok") {
@@ -55,6 +82,11 @@ export const useNewsStoryLoader = input => {
       })
     );
 
+    if (allSportIds.length === 0) {
+      const sportIds = await getAllSportIds(newsStoryAPI);
+      setAllSportIds(sportIds);
+    }
+
     setState(statePrev => ({
       ...statePrev,
       [queryKey]: result,
@@ -67,7 +99,9 @@ export const useNewsStoryLoader = input => {
 
   const newsStories = queryState.t === "ok" ? queryState.value.rows : [];
   const isLoading = queryState.t === "not-asked" || queryState.t === "loading";
+
   return {
+    allSportIds,
     newsStories,
     isLoading,
   };

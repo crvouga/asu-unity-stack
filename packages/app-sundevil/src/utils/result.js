@@ -73,3 +73,38 @@ export const attempt = async fn => {
     return Err(String(error));
   }
 };
+
+/**
+ *
+ * @template TError
+ * @template TData
+ * @param {Result<TError, TData>} result
+ * @param {TData} defaultValue
+ * @returns {TData}
+ */
+export const withDefault = (result, defaultValue) => {
+  if (result.t === "ok") {
+    return result.value;
+  }
+  return defaultValue;
+};
+
+/**
+ *
+ * @template TError
+ * @template TA
+ * @template TB
+ * @param {Result<TError, TA>} result
+ * @param {(a: TA) => TB} fn
+ * @returns {Result<TError, TB>}
+ */
+export const mapOk = (result, fn) => {
+  switch (result.t) {
+    case "ok": {
+      return Ok(fn(result.value));
+    }
+    default: {
+      return result;
+    }
+  }
+};

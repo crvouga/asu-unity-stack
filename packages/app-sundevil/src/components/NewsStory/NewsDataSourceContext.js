@@ -26,7 +26,7 @@ NewsStoryDataSourceProvider.propTypes = {
 export const useNewsStoryDataSource = () => {
   const newsStoryAPI = React.useContext(NewsStoryDataSourceContext);
   if (!newsStoryAPI) {
-    return buildNewsStoryDataSource({ apiUrl: "", apiImpl: "mock" });
+    return buildNewsStoryDataSource();
   }
   return newsStoryAPI;
 };

@@ -16,7 +16,7 @@ const cleanEqual = (a, b) => {
 export class NewsStoryDataSourceStatic extends INewsStoryDataSource {
   constructor({ newsStories }) {
     super();
-    this.newsStories = newsStories ?? [];
+    this.newsStories = Array.isArray(newsStories) ? newsStories : [];
   }
 
   /**

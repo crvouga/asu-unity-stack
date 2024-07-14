@@ -11,6 +11,7 @@ export const newsStoryDataSourceSchema = PropTypes.oneOfType([
   PropTypes.shape({
     type: PropTypes.oneOf(["asu-news"]),
     url: PropTypes.string,
+    timeout: PropTypes.number,
   }),
   PropTypes.shape({
     type: PropTypes.oneOf(["mock"]),

@@ -19,3 +19,6 @@ export const PaginationResult = ({ total, rows, limit, offset }) => ({
   limit,
   offset,
 });
+
+export const initPaginationResult = () =>
+  PaginationResult({ total: 0, rows: [], limit: 0, offset: 0 });

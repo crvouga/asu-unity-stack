@@ -1,27 +1,58 @@
 // @ts-check
+import { stringToSportId } from "../../Sport/sport";
 import { INewsStoryDataSource } from "./news-story-data-source";
+import { NewsStoryDataSourceStatic } from "./news-story-data-source-impl-static";
 
 /**
- * @type {(input: {apiUrl:string}) => import("./news-story-data-source").INewsStoryDataSource}
+ * @type {(node: unknown) => import("../news-story").NewsStory | null}
  */
+const mapNodeToNewsStory = node => {
+  return {
+    // @ts-ignore
+    id: node?.nid,
+    // @ts-ignore
+    title: node?.title,
+    // @ts-ignore
+    category: node?.sport_event_type_category,
+    // @ts-ignore
+    href: node?.news_url,
+    // @ts-ignore
+    imageSrc: node?.image_url,
+    // @ts-ignore
+    imageAlt: node?.image_alt,
+    // @ts-ignore
+    sportId: stringToSportId(node?.sport_category),
+    // @ts-ignore
+    sportName: node?.sport_category,
+  };
+};
+
 export class NewsStoryDataSourceAsuNews extends INewsStoryDataSource {
-  constructor({ apiUrl }) {
+  constructor({ url, timeout }) {
     super();
-    this.apiUrl = apiUrl;
+    this.url = url;
+    this.timeout = timeout;
   }
 
-  async findMany() {
-    const fetched = await fetch(this.apiUrl);
+  /**
+   * @type {import("./news-story-data-source").FindMany}
+   */
+  async findMany(input) {
+    if (typeof this.timeout === "number") {
+      await new Promise(resolve => setTimeout(resolve, this.timeout));
+    }
+    const fetched = await fetch(this.url);
 
     const json = await fetched.json();
 
-    const SKIP = true;
-    if (SKIP) {
-      return [];
-    }
+    const newsStories = json?.nodes?.map(item =>
+      mapNodeToNewsStory(item?.node)
+    );
 
-    // console.log(json);
+    const dataSource = new NewsStoryDataSourceStatic({
+      newsStories,
+    });
 
-    return json;
+    return dataSource.findMany(input);
   }
 }

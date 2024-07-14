@@ -1,3 +1,4 @@
+// @ts-check
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
@@ -12,11 +13,17 @@ const Root = styled.div`
 
     &:hover {
       opacity: 0.8;
-      background-color: ${({ darkMode }) =>
-        darkMode ? "rgba(250, 250, 250, 0.1)" : "rgba(25, 25, 25, 0.1)"};
+      background-color: ${({
+        // @ts-ignore
+        darkMode,
+      }) => (darkMode ? "rgba(250, 250, 250, 0.1)" : "rgba(25, 25, 25, 0.1)")};
     }
 
-    color: ${({ darkMode, color }) => {
+    color: ${({
+      // @ts-ignore
+      darkMode,
+      color,
+    }) => {
       if (darkMode) {
         return color === "muted" ? "#fafafa" : "#fafafa";
       }
@@ -24,14 +31,22 @@ const Root = styled.div`
     }};
 
     &:focus {
-      background-color: ${({ darkMode }) =>
-        darkMode ? "rgba(250, 250, 250, 0.1)" : "rgba(25, 25, 25, 0.1)"};
+      background-color: ${({
+        // @ts-ignore
+        darkMode,
+      }) => (darkMode ? "rgba(250, 250, 250, 0.1)" : "rgba(25, 25, 25, 0.1)")};
     }
   }
 
   &.active {
-    background-color: ${({ darkMode }) => (darkMode ? "#fff" : "#191919")};
-    color: ${({ darkMode }) => {
+    background-color: ${({
+      // @ts-ignore
+      darkMode,
+    }) => (darkMode ? "#fff" : "#191919")};
+    color: ${({
+      // @ts-ignore
+      darkMode,
+    }) => {
       if (darkMode) {
         return "#191919";
       }
@@ -53,8 +68,10 @@ const Root = styled.div`
 const Content = styled.div`
   padding: 1rem;
   display: flex;
-  flex-direction: ${({ orientation }) =>
-    orientation === "horizontal" ? "row-reverse" : "column"};
+  flex-direction: ${({
+    // @ts-ignore
+    orientation,
+  }) => (orientation === "horizontal" ? "row-reverse" : "column")};
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -70,16 +87,18 @@ const propsSchema = {
   orientation: PropTypes.oneOf(["horizontal", "vertical"]),
   color: PropTypes.oneOf(["default", "muted"]),
   darkMode: PropTypes.bool,
+  empty: PropTypes.bool,
 };
 
 /**
  * @typedef {{
- * children: React.ReactNode;
+ * children?: React.ReactNode;
  * active?: boolean;
- * onClick: () => void;
- * orientation: "horizontal" | "vertical";
+ * onClick?: () => void;
+ * orientation?: "horizontal" | "vertical";
  * color?: "default" | "muted";
  * darkMode?: boolean;
+ * empty?: boolean;
  * }} Props
  */
 
@@ -88,7 +107,7 @@ const propsSchema = {
  */
 export const SportsTab = React.forwardRef(
   (
-    { children, active, onClick, orientation, color, darkMode = false },
+    { children, active, onClick, empty, orientation, color, darkMode = false },
     ref
   ) => {
     const className = active ? "active" : "inactive";
@@ -100,23 +119,40 @@ export const SportsTab = React.forwardRef(
         tabIndex={0}
         ref={ref}
         color={color}
+        // @ts-ignore
         darkMode={darkMode}
+        aria-hidden={empty}
+        style={
+          empty
+            ? {
+                pointerEvents: "none",
+                opacity: 0,
+                userSelect: "none",
+              }
+            : {}
+        }
         onKeyDown={e => {
           if (e.key === "Enter") {
-            onClick();
+            onClick?.();
           }
           if (e.key === " ") {
             e.preventDefault();
-            onClick();
+            onClick?.();
           }
         }}
       >
         <AspectRatioSquare>
-          <Content orientation={orientation}>{children}</Content>
+          <Content
+            // @ts-ignore
+            orientation={orientation}
+          >
+            {children}
+          </Content>
         </AspectRatioSquare>
       </Root>
     );
   }
 );
 
+// @ts-ignore
 SportsTab.propTypes = propsSchema;

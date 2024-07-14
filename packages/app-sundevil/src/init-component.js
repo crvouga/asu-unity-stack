@@ -2,7 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { CookieConsent } from "../../../component-cookie-consent/src/CookieConsent";
+import { CookieConsent } from "../../component-cookie-consent/src/CookieConsent";
 import {
   GameList,
   GameNavigation,
@@ -16,7 +16,7 @@ import {
   SunDevilsHeader,
   SunDevilStoriesSection,
   VideoSection,
-} from "../components";
+} from "./components";
 
 /**
  * @description

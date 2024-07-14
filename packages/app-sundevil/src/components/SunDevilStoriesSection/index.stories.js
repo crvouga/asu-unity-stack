@@ -5,13 +5,14 @@ import { SunDevilStoriesSection } from "./index";
 
 /** @type {import("./index").SunDevilStoriesProps} */
 const props = {
-  newsStoryDataSource: {
-    type: "mock",
-  },
   // newsStoryDataSource: {
-  //   type: "asu-news",
-  //   url: "https://news.asu.edu/feed-json/sun_devil_athletics",
+  //   type: "mock",
   // },
+  newsStoryDataSource: {
+    type: "asu-news",
+    url: "https://news.asu.edu/feed-json/sun_devil_athletics",
+    timeout: 1500,
+  },
   emptyStateMessage: "No stories available",
   allStoriesHref: "#",
   allStoriesLabel: "All Stories",
@@ -24,11 +25,11 @@ const props = {
       url: "https://www.desertfinancial.com/",
     },
   },
+  removeSportsWithNoStories: false,
   sports: [
     {
       name: "All Sports",
       icon: "fas fa-sync-alt",
-      active: true,
       position: 1,
       id: "all",
     },

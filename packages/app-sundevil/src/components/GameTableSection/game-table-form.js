@@ -1,3 +1,4 @@
+import { useDebouncedValue } from "../../utils/use-debounced-value";
 import { createUseQueryState } from "../../utils/use-query-state";
 import { GameDataSourceSortByColumnId } from "../Game/game-data-source";
 
@@ -35,10 +36,14 @@ export const init = form => {
   };
 };
 
-export const GAME_TABLE_FORM_DEBOUNCE_MS = 500;
+const GAME_TABLE_FORM_DEBOUNCE_MS = 500;
 
 const useQueryState = createUseQueryState({
   queryKey: "gameTableForm",
+});
+
+const useSearchQueryState = createUseQueryState({
+  queryKey: "gameTableFormSearchQuery",
   debouncePushMs: GAME_TABLE_FORM_DEBOUNCE_MS,
 });
 
@@ -46,6 +51,11 @@ const useQueryState = createUseQueryState({
  * @param {Partial<GameTableForm>} initial
  */
 export const useGameTableForm = initial => {
+  const [searchQuery, setSearchQuery] = useSearchQueryState("");
+  const debouncedSearchQuery = useDebouncedValue(
+    searchQuery,
+    GAME_TABLE_FORM_DEBOUNCE_MS
+  );
   const [state, setState] = useQueryState(init(initial));
   /**
    * @param {Partial<GameTableForm>} value
@@ -56,6 +66,9 @@ export const useGameTableForm = initial => {
 
   return {
     ...state,
+    searchQuery,
+    debouncedSearchQuery,
+    setSearchQuery,
     update,
   };
 };

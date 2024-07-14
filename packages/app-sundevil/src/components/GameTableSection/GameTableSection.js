@@ -6,7 +6,6 @@ import styled from "styled-components";
 import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { APP_CONFIG } from "../../config";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
-import { useDebouncedValue } from "../../utils/use-debounced-value";
 import { useElementContentDimensions } from "../../utils/use-element-position";
 import { GameDataSourceSortByColumnId } from "../Game/game-data-source";
 import {
@@ -26,12 +25,10 @@ import { Select } from "../Select/Select";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportSchema } from "../SportsTabs/sports-tabs";
 import { TextField } from "../TextField/TextField";
-import {
-  GAME_TABLE_FORM_DEBOUNCE_MS,
-  useGameTableForm,
-} from "./game-table-form";
+import { useGameTableForm } from "./game-table-form";
 import { defaultInputsConfig, inputsConfigSchema } from "./inputs-config";
 import { defaultLayoutConfig, layoutConfigSchema } from "./layout-config";
+import { useGameVenuesLoader } from "../Game/use-game-venues-loader";
 
 const GameTableRoot = styled.div`
   display: flex;
@@ -69,14 +66,10 @@ const GameTableSectionInner = ({ ...props }) => {
     gameType,
     venueId,
     searchQuery,
+    debouncedSearchQuery,
     sortByColumnId,
     sortByDesc,
   } = gameTableForm;
-
-  const debouncedSearchQuery = useDebouncedValue(
-    searchQuery,
-    GAME_TABLE_FORM_DEBOUNCE_MS
-  );
 
   const { games, showLoadNextPage, isLoading, isLoadingInitial, loadNextPage } =
     useGameLoader({
@@ -88,6 +81,8 @@ const GameTableSectionInner = ({ ...props }) => {
       sortByDesc,
       limit: 5,
     });
+
+  const { allVenues } = useGameVenuesLoader();
 
   const sports = props.sports?.map(sport => ({
     ...sport,
@@ -117,8 +112,6 @@ const GameTableSectionInner = ({ ...props }) => {
   const headerRef = useRef(null);
   const headerDimensions = useElementContentDimensions(headerRef);
 
-  const allVenues = [];
-
   return (
     <div
       style={{
@@ -144,9 +137,7 @@ const GameTableSectionInner = ({ ...props }) => {
               label={inputsConfig?.searchInput?.label ?? ""}
               placeholder={inputsConfig?.searchInput?.placeholder ?? ""}
               value={searchQuery}
-              onChange={inputtedSearchQuery =>
-                gameTableForm.update({ searchQuery: inputtedSearchQuery })
-              }
+              onChange={gameTableForm.setSearchQuery}
               renderEndIcon={({ style }) => (
                 <i
                   style={style}

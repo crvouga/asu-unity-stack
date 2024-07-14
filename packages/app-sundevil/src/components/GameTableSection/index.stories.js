@@ -143,6 +143,345 @@ GetTicketsOverlapFirstRow.args = {
   ],
 };
 
+export const GetTicketsOverlapWithSportTabs = Template.bind({});
+GetTicketsOverlapWithSportTabs.args = {
+  // gameDataSource: {
+  //   type: "custom",
+  //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
+  // },
+  // gameDataSource: {
+  //   type: "custom",
+  //   gameDataSource: new CustomGameDataSource(),
+  // },
+  gameDataSource: {
+    type: "asu-events",
+    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+    timeout: 800,
+  },
+  variant: "hero",
+  layoutOverlap: "sport-tabs-with-hero",
+  title: "Get Tickets",
+  subtitle:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  darkMode: true,
+  emptyStateMessage: "No games found",
+  layoutConfig: {
+    includeInputSearch: true,
+    includeInputSportType: false,
+    includeInputHomeOrAwaySelect: false,
+    includeInputVenueSelect: true,
+    includeInputSortBySelect: true,
+    includeSportsTabs: true,
+    includeLoadMore: true,
+  },
+  inputsConfig: {
+    searchInput: {
+      label: "Search by Event Name",
+      placeholder: "Sun Devils vs. BYU, Season Tickets, Rose Bowl",
+    },
+    sportTypeSelect: {
+      label: "Sport Type",
+      placeholder: "Select one",
+    },
+    homeOrAwaySelect: {
+      label: "Home or away",
+      placeholder: "Select one",
+    },
+    venueSelect: {
+      label: "Venue",
+      placeholder: "Select one",
+    },
+    sortBySelect: {
+      label: "Sort By:",
+      placeholder: "Select one",
+    },
+  },
+  sports: [
+    {
+      name: "All Sports",
+      icon: "fas fa-sync-alt",
+      active: true,
+      position: 1,
+      id: "all",
+    },
+    {
+      name: "Football",
+      icon: "fas fa-football-ball",
+      position: 2,
+      id: "football",
+    },
+    {
+      name: "M. Basketball",
+      icon: "fas fa-basketball-ball",
+      position: 3,
+      id: "basketball",
+    },
+    {
+      name: "Hockey",
+      icon: "fas fa-hockey-puck",
+      position: 4,
+      id: "hockey",
+    },
+    {
+      name: "Baseball",
+      icon: "fas fa-baseball-ball",
+      position: 5,
+      id: "baseball",
+    },
+    {
+      name: "W. Basketball",
+      icon: "fas fa-basketball-ball",
+      id: "w-basketball",
+    },
+    {
+      name: "Softball",
+      icon: "fas fa-futbol",
+      id: "softball",
+    },
+    {
+      name: "Soccer",
+      icon: "fas fa-baseball-ball",
+      id: "soccer",
+    },
+    {
+      name: "Swimming",
+      icon: "fas fa-swimmer",
+      id: "swimming",
+    },
+    {
+      name: "Golf",
+      icon: "fas fa-golf-ball",
+      id: "golf",
+    },
+  ],
+};
+
+export const GetTicketsLight = Template.bind({});
+GetTicketsLight.args = {
+  // gameDataSource: {
+  //   type: "custom",
+  //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
+  // },
+  // gameDataSource: {
+  //   type: "custom",
+  //   gameDataSource: new CustomGameDataSource(),
+  // },
+  gameDataSource: {
+    type: "asu-events",
+    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+    timeout: 800,
+  },
+  variant: "hero",
+  layoutOverlap: "sport-tabs-with-hero",
+  title: "Get Tickets",
+  subtitle:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  darkMode: false,
+  emptyStateMessage: "No games found",
+  layoutConfig: {
+    includeInputSearch: true,
+    includeInputSportType: true,
+    includeInputHomeOrAwaySelect: false,
+    includeInputVenueSelect: true,
+    includeInputSortBySelect: true,
+    includeSportsTabs: false,
+    includeLoadMore: true,
+  },
+  inputsConfig: {
+    searchInput: {
+      label: "Search by Event Name",
+      placeholder: "Sun Devils vs. BYU, Season Tickets, Rose Bowl",
+    },
+    sportTypeSelect: {
+      label: "Sport Type",
+      placeholder: "Select one",
+    },
+    homeOrAwaySelect: {
+      label: "Home or away",
+      placeholder: "Select one",
+    },
+    venueSelect: {
+      label: "Venue",
+      placeholder: "Select one",
+    },
+    sortBySelect: {
+      label: "Sort By:",
+      placeholder: "Select one",
+    },
+  },
+  sports: [
+    {
+      name: "All Sports",
+      icon: "fas fa-sync-alt",
+      active: true,
+      position: 1,
+      id: "all",
+    },
+    {
+      name: "Football",
+      icon: "fas fa-football-ball",
+      position: 2,
+      id: "football",
+    },
+    {
+      name: "M. Basketball",
+      icon: "fas fa-basketball-ball",
+      position: 3,
+      id: "basketball",
+    },
+    {
+      name: "Hockey",
+      icon: "fas fa-hockey-puck",
+      position: 4,
+      id: "hockey",
+    },
+    {
+      name: "Baseball",
+      icon: "fas fa-baseball-ball",
+      position: 5,
+      id: "baseball",
+    },
+    {
+      name: "W. Basketball",
+      icon: "fas fa-basketball-ball",
+      id: "w-basketball",
+    },
+    {
+      name: "Softball",
+      icon: "fas fa-futbol",
+      id: "softball",
+    },
+    {
+      name: "Soccer",
+      icon: "fas fa-baseball-ball",
+      id: "soccer",
+    },
+    {
+      name: "Swimming",
+      icon: "fas fa-swimmer",
+      id: "swimming",
+    },
+    {
+      name: "Golf",
+      icon: "fas fa-golf-ball",
+      id: "golf",
+    },
+  ],
+};
+
+export const GetTicketsSportTabsOnly = Template.bind({});
+GetTicketsLight.args = {
+  // gameDataSource: {
+  //   type: "custom",
+  //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
+  // },
+  // gameDataSource: {
+  //   type: "custom",
+  //   gameDataSource: new CustomGameDataSource(),
+  // },
+  gameDataSource: {
+    type: "asu-events",
+    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+    timeout: 800,
+  },
+  variant: "hero",
+  layoutOverlap: "sport-tabs-with-hero",
+  title: "Get Tickets",
+  subtitle:
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+  darkMode: true,
+  emptyStateMessage: "No games found",
+  layoutConfig: {
+    includeInputSearch: false,
+    includeInputSportType: false,
+    includeInputHomeOrAwaySelect: false,
+    includeInputVenueSelect: false,
+    includeInputSortBySelect: false,
+    includeSportsTabs: true,
+    includeLoadMore: true,
+  },
+  inputsConfig: {
+    searchInput: {
+      label: "Search by Event Name",
+      placeholder: "Sun Devils vs. BYU, Season Tickets, Rose Bowl",
+    },
+    sportTypeSelect: {
+      label: "Sport Type",
+      placeholder: "Select one",
+    },
+    homeOrAwaySelect: {
+      label: "Home or away",
+      placeholder: "Select one",
+    },
+    venueSelect: {
+      label: "Venue",
+      placeholder: "Select one",
+    },
+    sortBySelect: {
+      label: "Sort By:",
+      placeholder: "Select one",
+    },
+  },
+  sports: [
+    {
+      name: "All Sports",
+      icon: "fas fa-sync-alt",
+      active: true,
+      position: 1,
+      id: "all",
+    },
+    {
+      name: "Football",
+      icon: "fas fa-football-ball",
+      position: 2,
+      id: "football",
+    },
+    {
+      name: "M. Basketball",
+      icon: "fas fa-basketball-ball",
+      position: 3,
+      id: "basketball",
+    },
+    {
+      name: "Hockey",
+      icon: "fas fa-hockey-puck",
+      position: 4,
+      id: "hockey",
+    },
+    {
+      name: "Baseball",
+      icon: "fas fa-baseball-ball",
+      position: 5,
+      id: "baseball",
+    },
+    {
+      name: "W. Basketball",
+      icon: "fas fa-basketball-ball",
+      id: "w-basketball",
+    },
+    {
+      name: "Softball",
+      icon: "fas fa-futbol",
+      id: "softball",
+    },
+    {
+      name: "Soccer",
+      icon: "fas fa-baseball-ball",
+      id: "soccer",
+    },
+    {
+      name: "Swimming",
+      icon: "fas fa-swimmer",
+      id: "swimming",
+    },
+    {
+      name: "Golf",
+      icon: "fas fa-golf-ball",
+      id: "golf",
+    },
+  ],
+};
+
 /**
  * @type {{ args: ComponentType, parameters: object}}
  */

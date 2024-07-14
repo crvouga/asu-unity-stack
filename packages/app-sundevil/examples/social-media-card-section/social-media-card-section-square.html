@@ -33,23 +33,24 @@
 
     <!-- *************************************************************** -->
     <!-- include bundled scripts from packages -->
-    <script src="./dist/vendor.umd.js"></script>
-    <script src="./dist/sunDevil.umd.js"></script>
+    <script src="../dist/vendor.umd.js"></script>
+    <script src="../dist/sunDevil.umd.js"></script>
   </head>
 
   <body>
     <div id="section-container">
-      <div>
-        This will be removed
-      </div>
+      <div>This will be removed</div>
+      "hello" This should be removed
+
       <div class="contextual"></div>
+      "This should be removed"
     </div>
     <script>
       const imageSrc =
         "https://s3-alpha-sig.figma.com/img/268d/b398/7cc2b3301274082494a32b2e07bbe661?Expires=1721001600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ObCnZVdsTde9h36wlR56IF7kEa3ITa9RaRg0X3Ryq~vjzUvaC3dbQKHZ5kGH7vIusQctyTNmXK6EaLNcWejtTgDQM4CUirL1X9vuLQKJj0Yl0ZIe~5eNJWtmexZ1ILjbpeHWJK~1FPWy5kNJrG7-eYcgTATjbpY4iRvnwdVSJmmsXOE-6D4m-8Sfe7O7DlsLI4Qb5oGFhHDn5tmWwO2oLY-Oqv1RmiJHzLqpc2uMYFXh1J6WY357PAyy4b~yiK8~95zkcdL7-T6ph8rVB8SQoQwhLfG7wUUthXc3XwGCeAZ76sQUAVXMUhPi3pjjg5~yDkpvI5O8KZhL0PaulPY2Gg__";
 
       const socialMediaPostCarouselProps = {
-        variant: "tall",
+        variant: "square",
         posts: [
           {
             id: "0",
@@ -149,17 +150,19 @@
         ],
         onTabItemClick: () => {},
       };
+
       const socialMediaSectionProps = {
         sectionHeader: sectionHeaderProps,
         postCarousel: socialMediaPostCarouselProps,
       };
 
       const props = {
+        ...socialMediaSectionProps,
         sectionHeader: {
           ...socialMediaSectionProps.sectionHeader,
-          title: "Sun Devil Nation",
+          title: "Connect with your Sun Devil Football team",
           subtitle:
-            "Share your Sun Devil love! The Sun Devil Nation is a global community that bleeds maroon and gold.",
+            "Join fellow Sun Devil football fans  the latest updates about the program, games, your favorite players and more!",
           presentedBy: {
             name: "Ford",
             logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Ford_logo_flat.svg/2560px-Ford_logo_flat.svg.png",
@@ -167,14 +170,14 @@
         },
         postCarousel: {
           ...socialMediaSectionProps.postCarousel,
-          variant: "tall",
+          variant: "square",
         },
       };
 
       initSocialMediaSection({
         targetSelector: "#section-container",
         props,
-        renderWithinChildWhiteList: [".contextual"]
+        renderWithinChildWhiteList: [".contextual"],
       });
     </script>
   </body>

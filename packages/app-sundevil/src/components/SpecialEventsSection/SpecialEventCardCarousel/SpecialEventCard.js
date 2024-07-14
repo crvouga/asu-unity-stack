@@ -5,6 +5,10 @@ import styled from "styled-components";
 import { Button } from "../../../../../components-core/src";
 import { AspectRatio16by9 } from "../../AspectRatio/AspectRatio16by9";
 import { Skeleton } from "../../Skeleton";
+import {
+  sportNameToFaClassName,
+  stringToClosestSportName,
+} from "../../SportIcon/sport-name";
 import { specialEventSchema } from "../special-event";
 
 const CardRoot = styled.div`
@@ -86,6 +90,10 @@ const CardBodyText = styled.p`
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  & > * {
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 const CardButtons = styled.div`
@@ -96,59 +104,72 @@ const CardButtons = styled.div`
   padding-top: 6px;
 `;
 
-/** @typedef {React.FC<{specialEventCard: import("../special-event").SpecialEvent, cardWidth?: number }>} */
-export const SpecialEventCard = ({ specialEventCard, cardWidth }) => {
+/** @typedef {React.FC<{specialEventCard: import("../special-event").SpecialEvent, cardWidth?: number; skeleton?: boolean }>} */
+export const SpecialEventCard = ({ specialEventCard, cardWidth, skeleton }) => {
   const cardRef = useRef();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const sportIconFaClassName =
+    specialEventCard.sportIconFaClassName ??
+    sportNameToFaClassName(
+      stringToClosestSportName(specialEventCard.sportName)
+    );
   return (
-    <CardRoot
-      ref={cardRef}
-      style={{
-        width: cardWidth === 0 ? "100%" : cardWidth,
-      }}
-    >
-      <AspectRatio16by9>
-        <Skeleton skeleton={!isImageLoaded}>
-          <CardImage
-            src={specialEventCard.imageSrc}
-            alt={specialEventCard.imageAlt}
-            onLoad={() => setIsImageLoaded(true)}
-          />
-        </Skeleton>
-      </AspectRatio16by9>
-      <CardContent>
-        <SportHeading>
-          <SportIcon className={specialEventCard.sportIconFaClassName} />
-          <SportName>{specialEventCard.sportName}</SportName>
-        </SportHeading>
-        <CardTitle>{specialEventCard.title}</CardTitle>
-        <CardSubtitles>
-          {specialEventCard.subtitles.map(subtitle => (
-            <CardSubtitle key={subtitle}>{subtitle}</CardSubtitle>
-          ))}
-        </CardSubtitles>
-        <CardBody>
-          <CardBodyText>{specialEventCard.body}</CardBodyText>
-        </CardBody>
-
-        <CardButtons>
-          {specialEventCard.buttons.map(button => (
-            <Button
-              key={button.label}
-              color={button.color}
-              ariaLabel={button.label}
-              href={button.href}
-              label={button.label}
-              size="small"
+    <Skeleton skeleton={skeleton}>
+      <CardRoot
+        ref={cardRef}
+        style={{
+          width: cardWidth === 0 ? "100%" : cardWidth,
+        }}
+      >
+        <AspectRatio16by9>
+          <Skeleton skeleton={!isImageLoaded}>
+            <CardImage
+              src={specialEventCard.imageSrc}
+              alt={specialEventCard.imageAlt}
+              onLoad={() => setIsImageLoaded(true)}
             />
-          ))}
-        </CardButtons>
-      </CardContent>
-    </CardRoot>
+          </Skeleton>
+        </AspectRatio16by9>
+        <CardContent>
+          <SportHeading>
+            {typeof sportIconFaClassName === "string" && (
+              <SportIcon className={sportIconFaClassName} />
+            )}
+
+            <SportName>{specialEventCard.sportName}</SportName>
+          </SportHeading>
+          <CardTitle>{specialEventCard.title}</CardTitle>
+          <CardSubtitles>
+            {specialEventCard.subtitles.map(subtitle => (
+              <CardSubtitle key={subtitle}>{subtitle}</CardSubtitle>
+            ))}
+          </CardSubtitles>
+          <CardBody>
+            <CardBodyText
+              dangerouslySetInnerHTML={{ __html: specialEventCard.body }}
+            />
+          </CardBody>
+
+          <CardButtons>
+            {specialEventCard.buttons.map(button => (
+              <Button
+                key={button.label}
+                color={button.color}
+                ariaLabel={button.label}
+                href={button.href}
+                label={button.label}
+                size="small"
+              />
+            ))}
+          </CardButtons>
+        </CardContent>
+      </CardRoot>
+    </Skeleton>
   );
 };
 
 SpecialEventCard.propTypes = {
   specialEventCard: specialEventSchema,
   cardWidth: PropTypes.number,
+  skeleton: PropTypes.bool,
 };

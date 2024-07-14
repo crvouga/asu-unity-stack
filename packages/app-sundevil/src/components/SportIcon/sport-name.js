@@ -32,6 +32,34 @@ export const SPORT_NAME = [
   "water-polo",
 ];
 
+/**
+ * @type {{[key in SportName]: string}}
+ */
+export const sportNameToFaClassNameMap = {
+  "baseball": "fas fa-baseball-ball",
+  "basketball": "fas fa-basketball-ball",
+  "cross-country": "fas fa-running",
+  "football": "fas fa-football-ball",
+  "golf": "fas fa-golf-ball",
+  "ice-hockey": "fas fa-hockey-puck",
+  "swimming-and-diving": "fas fa-swimmer",
+  "tennis": "fas fa-table-tennis",
+  "track-and-field": "fas fa-running",
+  "beach-volleyball": "fas fa-volleyball-ball",
+  "water-polo": "fas fa-water",
+  "gymnastics": "fas fa-running",
+  "lacrosse": "fas fa-lacrosse",
+  "soccer": "fas fa-futbol",
+  "softball": "fas fa-baseball-ball",
+  "triathlon": "fas fa-running",
+  "volleyball": "fas fa-volleyball-ball",
+  "wrestling": "fas fa-wrestling",
+};
+
+/** @type {(sportName: SportName) => string | null} */
+export const sportNameToFaClassName = sportName =>
+  sportNameToFaClassNameMap[sportName] ?? null;
+
 export const sportNameSchema = PropTypes.oneOf(SPORT_NAME);
 
 /** @type {(str: string | null | undefined) => string} */

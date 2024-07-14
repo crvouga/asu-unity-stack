@@ -7,6 +7,7 @@ import { APP_CONFIG } from "../../../config";
 import { ArrowButtons } from "../../ArrowButtons";
 import { Carousel, CarouselController, CarouselItem } from "../../Carousel";
 import { specialEventSchema } from "../special-event";
+import { specialEventsSkeletonData } from "./special-events-skeleton-data";
 import { SpecialEventCard } from "./SpecialEventCard";
 
 const propTypes = {
@@ -82,23 +83,45 @@ export const SpecialEventCardCarousel = ({
         index={index}
         onIndexChanged={setIndex}
         ref={carouselRef}
+        disabled={skeleton}
       >
-        {cards.map(card => (
-          <CarouselItem key={card.id}>
-            <SpecialEventCard
-              skeleton={skeleton}
-              specialEventCard={card}
-              cardWidth={cardWidth}
-            />
-          </CarouselItem>
-        ))}
+        {!skeleton && (
+          <>
+            {cards.map(card => (
+              <CarouselItem key={card.id}>
+                <SpecialEventCard
+                  skeleton={skeleton}
+                  specialEventCard={card}
+                  cardWidth={cardWidth}
+                />
+              </CarouselItem>
+            ))}
+          </>
+        )}
+
+        {skeleton && (
+          <>
+            {specialEventsSkeletonData.map(card => (
+              <CarouselItem key={card.id}>
+                <SpecialEventCard
+                  skeleton={skeleton}
+                  specialEventCard={card}
+                  cardWidth={cardWidth}
+                />
+              </CarouselItem>
+            ))}
+          </>
+        )}
       </Carousel>
-      <ArrowButtonsWrapper className="container">
-        <ArrowButtons
-          onLeft={() => carouselController.slidePrev()}
-          onRight={() => carouselController.slideNext()}
-        />
-      </ArrowButtonsWrapper>
+      {(cards.length > 0 || skeleton) && (
+        <ArrowButtonsWrapper className="container">
+          <ArrowButtons
+            skeleton={skeleton}
+            onLeft={() => carouselController.slidePrev()}
+            onRight={() => carouselController.slideNext()}
+          />
+        </ArrowButtonsWrapper>
+      )}
     </Root>
   );
 };

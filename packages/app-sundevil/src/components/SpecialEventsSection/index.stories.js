@@ -1,6 +1,7 @@
 // @ts-check
 import React from "react";
 
+import { ISpecialEventsDataSource } from "./special-events-data-source/special-events-data-source";
 import { SpecialEventsSection } from "./SpecialEventsSection";
 
 /** @type {import("./special-event").SpecialEvent} */
@@ -26,7 +27,7 @@ const cardBase = {
 };
 
 /** @type {import("./special-event").SpecialEvent[]} */
-const cards = [
+const specialEvents = [
   {
     ...cardBase,
     id: "1",
@@ -56,14 +57,42 @@ const cards = [
   },
 ];
 
+class CustomSpecialEventsDataSource extends ISpecialEventsDataSource {
+  // eslint-disable-next-line class-methods-use-this
+  async findMany(input) {
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    const limit = input?.limit ?? Infinity;
+    const offset = input?.offset ?? 0;
+    const total = specialEvents.length;
+    const rows = specialEvents.slice(offset, offset + limit);
+
+    return {
+      limit,
+      offset,
+      total,
+      rows,
+    };
+  }
+}
+
 /**
  *
  */
 const props = {
   specialEventsDataSource: {
     type: "static",
-    specialEvents: cards,
+    specialEvents,
   },
+  // specialEventsDataSource: {
+  //   type: "asu-events",
+  //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+  //   timeout: 1500,
+  // },
+  // specialEventsDataSource: {
+  //   type: "custom",
+  //   specialEventsDataSource: new CustomSpecialEventsDataSource(),
+  // },
   sectionHeader: {
     title: "Special events",
     subtitle:

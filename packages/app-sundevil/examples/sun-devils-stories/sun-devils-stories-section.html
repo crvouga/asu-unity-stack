@@ -33,21 +33,18 @@
 
     <!-- *************************************************************** -->
     <!-- include bundled scripts from packages -->
-    <script src="./dist/vendor.umd.js"></script>
-    <script src="./dist/sunDevil.umd.js"></script>
+    <script src="../dist/vendor.umd.js"></script>
+    <script src="../dist/sunDevil.umd.js"></script>
   </head>
 
   <body>
     <div id="section-container">
-      <div>
-        This will be removed
-      </div>
+      <div>This will be removed</div>
       <div class="contextual"></div>
     </div>
     <script>
       const imageSrc =
         "https://asuevents.asu.edu/sites/default/files/2024-07/football-2024.jpg";
-
 
       const newsStories = [
         {
@@ -115,8 +112,15 @@
         },
       ];
 
-
       const props = {
+        newsStoryDataSource: {
+          type: "mock",
+        },
+        // newsStoryDataSource: {
+        //   type: "asu-news",
+        //   url: "https://news.asu.edu/feed-json/sun_devil_athletics",
+        // },
+        emptyStateMessage: "No stories available",
         allStoriesHref: "#",
         allStoriesLabel: "All Stories",
         sectionHeader: {
@@ -135,92 +139,79 @@
             active: true,
             position: 1,
             id: "all",
-            newsStories: [...newsStories].sort(() => Math.random() - 0.5),
           },
           {
             name: "Football",
             icon: "fas fa-football-ball",
             position: 2,
             id: "football",
-            newsStories: [...newsStories].sort(() => Math.random() - 0.5),
           },
           {
             name: "M. Basketball",
             icon: "fas fa-basketball-ball",
             position: 3,
             id: "basketball",
-            newsStories: [...newsStories].sort(() => Math.random() - 0.5),
           },
           {
             name: "Hockey",
             icon: "fas fa-hockey-puck",
             position: 4,
             id: "hockey",
-            newsStories: [...newsStories].sort(() => Math.random() - 0.5),
           },
           {
             name: "Baseball",
             icon: "fas fa-baseball-ball",
             position: 5,
             id: "baseball",
-            newsStories: [...newsStories].sort(() => Math.random() - 0.5),
           },
           {
             name: "W. Basketball",
             icon: "fas fa-basketball-ball",
             id: "w-basketball",
             position: 6,
-            newsStories: [...newsStories].sort(() => Math.random() - 0.5),
           },
           {
             name: "Softball",
             icon: "fas fa-futbol",
             id: "softball",
             position: 7,
-            newsStories: [...newsStories].sort(() => Math.random() - 0.5),
           },
           {
             name: "Soccer",
             icon: "fas fa-baseball-ball",
             id: "soccer",
             position: 8,
-            newsStories: [...newsStories].sort(() => Math.random() - 0.5),
           },
           {
             name: "Swimming",
             icon: "fas fa-swimmer",
             id: "swimming",
             position: 9,
-            newsStories: [...newsStories].sort(() => Math.random() - 0.5),
           },
           {
             name: "Golf",
             icon: "fas fa-golf-ball",
             id: "golf",
             position: 10,
-            newsStories: [...newsStories].sort(() => Math.random() - 0.5),
           },
           {
             name: "Tennis",
             icon: "fas fa-table-tennis",
             id: "tennis",
             position: 11,
-            newsStories: [...newsStories].sort(() => Math.random() - 0.5),
           },
           {
             name: "W. Lacrosse",
             icon: "fas fa-lacrosse",
             id: "w-lacrosse",
             position: 12,
-            newsStories: [...newsStories].sort(() => Math.random() - 0.5),
           },
         ],
       };
-
       initSunDevilsStoriesSection({
         targetSelector: "#section-container",
         props,
-        renderWithinChildWhiteList: [".contextual"]
+        renderWithinChildWhiteList: [".contextual"],
       });
     </script>
   </body>

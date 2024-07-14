@@ -14,8 +14,7 @@ import {
   SocialMediaSectionEmbedded,
   SpecialEventsSection,
   SunDevilsHeader,
-  SunDevilStories,
-  SunDevilStoriesFromAPI,
+  SunDevilStoriesSection,
   VideoSection,
 } from "../components";
 
@@ -198,14 +197,6 @@ export const initGameTableSection = input => {
 };
 
 /** @type {InitComponent} */
-export const initSunDevilsStoriesFromAPI = input => {
-  RenderReact({
-    ...input,
-    component: SunDevilStoriesFromAPI,
-  });
-};
-
-/** @type {InitComponent} */
 export const initSocialMediaSection = input => {
   RenderReact({
     ...input,
@@ -222,15 +213,12 @@ export const initSocialMediaSectionEmbedded = input => {
 };
 
 /** @type {InitComponent} */
-export const initSunDevilsStories = input => {
+export const initSunDevilsStoriesSection = input => {
   RenderReact({
     ...input,
-    component: SunDevilStories,
+    component: SunDevilStoriesSection,
   });
 };
-
-// for backward compatibility
-export const initSunDevilsStoriesSection = initSunDevilsStories;
 
 /** @type {InitComponent} */
 export const initSunDevilsHeader = input => {
@@ -268,4 +256,4 @@ export const initCookieConsent = input => {
     ...input,
     component: CookieConsent,
   });
-}
+};

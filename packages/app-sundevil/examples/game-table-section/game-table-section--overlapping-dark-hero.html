@@ -64,9 +64,7 @@
   <body>
     <div id="hero"></div>
     <div id="section-container">
-      <div>
-        This will be removed
-      </div>
+      <div>This will be removed</div>
       <div class="contextual"></div>
     </div>
     <script>
@@ -78,6 +76,7 @@
         title: "Upcoming Games",
         emptyStateMessage: "No upcoming games",
         darkMode: true,
+        configOverlap: "sport-tabs-with-hero",
         sports: [
           {
             name: "All Sports",
@@ -185,7 +184,7 @@
       initGameTableSection({
         targetSelector: "#section-container",
         props,
-        renderWithinChildWhiteList: [".contextual"]
+        renderWithinChildWhiteList: [".contextual"],
       });
     </script>
   </body>

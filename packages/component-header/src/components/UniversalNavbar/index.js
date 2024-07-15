@@ -1,5 +1,5 @@
 // @ts-check
-import React from "react";
+import React, { forwardRef } from "react";
 
 import { trackGAEvent } from "../../../../../shared";
 import { useAppContext } from "../../core/context/app-context";
@@ -23,7 +23,7 @@ function getURL() {
   }
 }
 
-const UniversalNavbar = () => {
+const UniversalNavbar = forwardRef((_props, ref) => {
   const { breakpoint, universalNavbar } = useAppContext();
   const isMobile = useIsMobile(breakpoint);
   const isDesktop = !isMobile;
@@ -36,6 +36,7 @@ const UniversalNavbar = () => {
       data-testid="universal-navbar"
       data-elastic-exclude="data-elastic-exclude"
       universalNavbar={universalNavbar}
+      ref={ref}
     >
       <div className="container-xl">
         <div className="header-top">
@@ -99,6 +100,6 @@ const UniversalNavbar = () => {
       </div>
     </Wrapper>
   );
-};
+});
 
 export { UniversalNavbar };

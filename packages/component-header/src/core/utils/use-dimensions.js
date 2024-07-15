@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 export const useDimensionsBody = () => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
@@ -25,21 +25,23 @@ export const useDimensionsBody = () => {
 export const useDimensions = ref => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const updateDimensions = () => {
-      if (ref.current) {
-        setDimensions({
-          width: ref.current.offsetWidth,
-          height: ref.current.offsetHeight,
-        });
-      }
+      const { width, height } = ref?.current?.getBoundingClientRect?.() ?? {
+        width: 0,
+        height: 0,
+      };
+      setDimensions({ width, height });
     };
 
     updateDimensions();
 
     window.addEventListener("resize", updateDimensions);
+    window.addEventListener("scroll", updateDimensions);
+
     return () => {
       window.removeEventListener("resize", updateDimensions);
+      window.removeEventListener("scroll", updateDimensions);
     };
   }, [ref]);
 

@@ -204,9 +204,10 @@ const mapProps = props => ({
     //     <HamburgerButton hidden={hidden} open={open} onClick={onClick} />
     //   ),
     // },
-    // drawer: {
-    //   renderStart: () => <MobileSearchBar />,
-    // },
+    drawer: {
+      // renderStart: () => <MobileSearchBar />,
+      height: "fit-content",
+    },
   },
 });
 

@@ -82,6 +82,7 @@
 /**
  * @typedef {object} DrawerProps
  * @property {function} [renderStart]
+ * @property {"default" |"fit-content"} [height]
  */
 
 /**

@@ -32,21 +32,23 @@ const Wrapper = styled.nav`
               margin-bottom: min(75px, 15vw);
             }
           `}
-      ${({ showUniversalNavbar, navBarHeight }) =>
-        showUniversalNavbar
-          ? `
-          min-height: calc(100vh - 277px);
-          max-height: calc(100vh - 277px);
-          min-height: calc(100dvh - 277px);
-          max-height: calc(100dvh - 277px);
-          `
-          : `
-          min-height: calc(100vh - ${navBarHeight}px);
-          max-height: calc(100vh - ${navBarHeight}px);
-          min-height: calc(100dvh - ${navBarHeight}px);
-          max-height: calc(100dvh - ${navBarHeight}px);
+
+      ${({ showUniversalNavbar, navBarHeight }) => {
+        const offset = navBarHeight;
+
+        if (showUniversalNavbar) {
+          return `
+            min-height: calc(100vh - 277px);
+            max-height: calc(100vh - 277px);
+          `;
+        }
+
+        return `
+          min-height: calc(100dvh - ${offset}px);
+          max-height: calc(100dvh - ${offset}px);
           padding-bottom: 4rem;
-          `}
+        `;
+      }}
     }
     .nav-list {
       flex-direction: column;

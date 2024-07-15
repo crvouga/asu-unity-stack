@@ -50,7 +50,7 @@
   </head>
 
   <body>
-    <div id="section-container">
+    <div id="section-container" class="existing-class">
       <div>This will be removed</div>
       <div class="contextual"></div>
     </div>
@@ -197,6 +197,8 @@
       };
 
       initGameTableSection({
+        id: "testing-id",
+        class: "testing-class",
         targetSelector: "#section-container",
         props,
         renderWithinChildWhiteList: [".contextual"],

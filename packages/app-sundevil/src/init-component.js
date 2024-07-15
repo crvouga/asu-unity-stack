@@ -121,10 +121,12 @@ export const RenderReact = ({
   }
 
   if (typeof id === "string") {
+    consoleLog("setting id on target", id);
     target.id = id;
   }
 
   if (typeof class_ === "string") {
+    consoleLog("setting class on target", class_);
     target.classList.add(class_);
   }
 

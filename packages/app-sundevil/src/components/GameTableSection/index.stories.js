@@ -85,8 +85,11 @@ GetTickets.args = {
   },
   gameTable: {
     configLayout: {
-      includeSportNameCell: true,
-      includeVersusCell: true,
+      // includeCellDate: true,
+      // includeCellSportName: true,
+      // includeCellVersus: true,
+      // includeCellTitle: true,
+      // includeCellTickets: true,
     },
     cellsConfig: {
       titleCell: {

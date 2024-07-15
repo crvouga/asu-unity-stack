@@ -1,7 +1,9 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
+import { deepMergeLeft } from "../../../utils/deep-merge-left";
 import { Skeleton } from "../../Skeleton";
+import { defaultConfigLayout } from "./config-layout";
 import { gameTableRowPropTypes } from "./game-table-row";
 
 const Root = styled.div`
@@ -81,7 +83,24 @@ const TitleRoot = styled.div`
 `;
 
 export const GameTableRowMobile = forwardRef(
-  ({ game, skeleton, empty, configLayout }, ref) => {
+  (
+    {
+      game,
+      skeleton,
+      empty,
+      configLayout: configLayoutPartial,
+      // configCells: configCellsPartial,
+    },
+    ref
+  ) => {
+    /** @type {import("./config-layout").ConfigLayout} */
+    const configLayout = deepMergeLeft(
+      configLayoutPartial,
+      defaultConfigLayout
+    );
+    /** @type {import("./config-cells").ConfigCells} */
+    // const configCells = deepMergeLeft(configCellsPartial, defaultConfigCells);
+
     return (
       <Skeleton skeleton={skeleton} ref={ref}>
         <div className="container">

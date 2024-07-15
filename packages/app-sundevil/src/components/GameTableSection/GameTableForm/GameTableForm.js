@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import { GameDataSourceSortBy } from "../../Game/game-data-source";
 import { useGameVenuesLoader } from "../../Game/use-game-venues-loader";
+import { Icon } from "../../Icon_";
 import { Select } from "../../Select/Select";
 import { sportSchema } from "../../SportsTabs/sports-tabs";
 import { TextField } from "../../TextField/TextField";
@@ -72,6 +73,9 @@ export const GameTableForm = ({
             label: sport.name,
             id: sport.id,
             active: sport.active,
+            renderStart: ({ style }) => (
+              <Icon icon={sport.icon} style={style} />
+            ),
           }))}
         />
       )}

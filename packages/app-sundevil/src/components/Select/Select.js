@@ -71,7 +71,10 @@ export const Select = ({
               onClick={() => setOpen(openPrev => !openPrev)}
             >
               {active ? (
-                <Value>{active.label}</Value>
+                <>
+                  {active.renderStart?.({ style: { paddingRight: "0.5rem" } })}
+                  <Value>{active.label}</Value>
+                </>
               ) : (
                 <Placeholder>{placeholder}</Placeholder>
               )}
@@ -116,6 +119,7 @@ const optionSchema = PropTypes.shape({
   active: PropTypes.bool,
   // eslint-disable-next-line react/forbid-prop-types
   payload: PropTypes.any,
+  renderStart: PropTypes.func,
 });
 
 Select.propTypes = {

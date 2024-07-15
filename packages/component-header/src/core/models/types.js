@@ -68,6 +68,7 @@
  * @property {boolean} [hideMobile]
  * @property {boolean} [searchDisableDataLayers]
  * @property {string} [searchPlaceholder]
+ * @property {boolean} [disableTopGradient]
  */
 
 /**

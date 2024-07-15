@@ -24,9 +24,14 @@ const Wrapper = styled.nav`
       flex-direction: column;
       justify-content: flex-start;
       overflow-y: auto;
-      > *:last-child {
-        margin-bottom: min(75px, 15vw);
-      }
+      ${({ universalNavbar }) =>
+        universalNavbar.disableTopGradient
+          ? ""
+          : `
+            > *:last-child {
+              margin-bottom: min(75px, 15vw);
+            }
+          `}
       ${({ showUniversalNavbar, navBarHeight }) =>
         showUniversalNavbar
           ? `

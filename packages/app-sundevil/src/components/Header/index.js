@@ -195,6 +195,7 @@ const mapProps = props => ({
     renderStart: () => <OfficialAthleticsSite href={props.officialSiteHref} />,
     hideMobile: false,
     searchPlaceholder: "Search Sun Devil Athletics",
+    disableTopGradient: true,
   },
   mobile: {
     // we're now going to use the default hamburger button

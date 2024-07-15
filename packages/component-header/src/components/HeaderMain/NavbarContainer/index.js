@@ -57,6 +57,7 @@ const NavbarContainer = forwardRef(({ navBarHeight, hidden = false }, ref) => {
       showUniversalNavbar={showUniversalNavbar}
       navBarHeight={navBarHeight}
       hidden={hidden}
+      universalNavbar={universalNavbar}
     >
       {isMobile && typeof mobile?.drawer?.renderStart === "function"
         ? mobile.drawer.renderStart()

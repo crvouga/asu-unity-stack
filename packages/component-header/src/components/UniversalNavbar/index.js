@@ -35,6 +35,7 @@ const UniversalNavbar = () => {
       className="universal-nav"
       data-testid="universal-navbar"
       data-elastic-exclude="data-elastic-exclude"
+      universalNavbar={universalNavbar}
     >
       <div className="container-xl">
         <div className="header-top">

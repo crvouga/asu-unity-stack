@@ -50,19 +50,23 @@ const Wrapper = styled.div`
     width: 100%;
     min-height: auto;
     position: relative;
-    &:before {
-      content: "";
-      width: 100%;
-      height: 50px;
-      position: absolute;
-      top: -50px;
-      border-bottom: 1px solid #d0d0d0;
-      background: linear-gradient(
-        180deg,
-        rgba(232, 232, 232, 0) 0%,
-        rgba(232, 232, 232, 1) 100%
-      );
-    }
+    ${({ universalNavbar }) =>
+      universalNavbar?.disableTopGradient
+        ? ""
+        : `
+        &:before {
+          content: "";
+          width: 100%;
+          height: 50px;
+          position: absolute;
+          top: -50px;
+          border-bottom: 1px solid #d0d0d0;
+          background: linear-gradient(
+            180deg,
+            rgba(232, 232, 232, 0) 0%,
+            rgba(232, 232, 232, 1) 100%
+          );
+        }`}
     .header-top {
       width: 100%;
       .nav {

@@ -35,6 +35,10 @@ const ChevronIcon = styled.span`
 const Value = styled.span`
   font-size: 16px;
   color: #191919;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 `;
 
 const Placeholder = styled.span`

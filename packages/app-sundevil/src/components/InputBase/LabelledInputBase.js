@@ -47,7 +47,12 @@ export const LabelledInputBase = forwardRef(
         <InputRoot>
           {renderInput({
             id,
-            style: { padding: "0.75rem", paddingRight: "1.25rem" },
+            style: {
+              padding: "0.75rem",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            },
           })}
           {renderEndIcon?.({
             style: {

@@ -11,6 +11,8 @@ const InputContainer = styled.div`
   align-items: center;
   height: 100%;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const Placeholder = styled.div`
@@ -20,6 +22,7 @@ const Placeholder = styled.div`
   bottom: 0;
   height: 100%;
   width: 100%;
+  max-width: 100%;
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -27,8 +30,15 @@ const Placeholder = styled.div`
   text-overflow: ellipsis;
   pointer-events: none;
   color: #999;
-  padding: 8px;
   display: ${({ hasValue }) => (hasValue ? "none" : "flex")};
+  padding: ${({ inputStyle }) => inputStyle.padding || "0"};
+`;
+
+const PlaceholderText = styled.span`
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const Input = styled.input`
@@ -36,7 +46,6 @@ const Input = styled.input`
   outline: none !important;
   box-shadow: none !important;
   width: 100%;
-  padding: 8px; /* Adjust based on your design */
   background: transparent;
   &:focus {
     border: none !important;
@@ -61,7 +70,9 @@ export const TextField = ({
       style={style}
       renderInput={({ id, style: inputStyle }) => (
         <InputContainer>
-          <Placeholder hasValue={!!value}>{placeholder}</Placeholder>
+          <Placeholder inputStyle={inputStyle} hasValue={Boolean(value)}>
+            <PlaceholderText>{placeholder}</PlaceholderText>
+          </Placeholder>
           <Input
             style={inputStyle}
             id={id}

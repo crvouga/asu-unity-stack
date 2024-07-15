@@ -19,6 +19,7 @@ const Label = styled.div`
   padding: 0;
   width: 100%;
   text-align: left;
+  padding-bottom: 0.5rem;
 `;
 
 export const CheckboxList = ({

@@ -5,6 +5,7 @@ import { deepMergeLeft } from "../../../utils/deep-merge-left";
 import { Skeleton } from "../../Skeleton";
 import { defaultConfigLayout } from "./config-layout";
 import { gameTableRowPropTypes } from "./game-table-row";
+import { defaultConfigCells } from "./config-cells";
 
 const Root = styled.div`
   display: flex;
@@ -89,17 +90,21 @@ export const GameTableRowMobile = forwardRef(
       skeleton,
       empty,
       configLayout: configLayoutPartial,
-      // configCells: configCellsPartial,
+      configCells: configCellsPartial,
     },
     ref
   ) => {
     /** @type {import("./config-layout").ConfigLayout} */
     const configLayout = deepMergeLeft(
-      configLayoutPartial,
+      configLayoutPartial ?? {},
       defaultConfigLayout
     );
     /** @type {import("./config-cells").ConfigCells} */
-    // const configCells = deepMergeLeft(configCellsPartial, defaultConfigCells);
+    // eslint-disable-next-line no-unused-vars
+    const configCells = deepMergeLeft(
+      configCellsPartial ?? {},
+      defaultConfigCells
+    );
 
     return (
       <Skeleton skeleton={skeleton} ref={ref}>

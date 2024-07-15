@@ -146,11 +146,15 @@ export const GameTableRowDesktop = forwardRef(
     const game = gameUntyped;
     /** @type {import("./config-layout").ConfigLayout} */
     const configLayout = deepMergeLeft(
-      configLayoutPartial,
-      defaultConfigLayout
+      configLayoutPartial ?? {},
+      defaultConfigLayout ?? {}
     );
+
     /** @type {import("./config-cells").ConfigCells} */
-    const configCells = deepMergeLeft(configCellsPartial, defaultConfigCells);
+    const configCells = deepMergeLeft(
+      configCellsPartial ?? {},
+      defaultConfigCells ?? {}
+    );
 
     const buttonCellRef = useRef(null);
     const buttonCellMaxDimensions = useElementSetMaxDimensions({

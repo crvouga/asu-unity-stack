@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 import { deepMergeLeft } from "../../../utils/deep-merge-left";
 import { Skeleton } from "../../Skeleton";
+import { defaultConfigCells } from "./config-cells";
 import { defaultConfigLayout } from "./config-layout";
 import { gameTableRowPropTypes } from "./game-table-row";
-import { defaultConfigCells } from "./config-cells";
 
 const Root = styled.div`
   display: flex;

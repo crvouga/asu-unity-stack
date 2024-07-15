@@ -571,6 +571,7 @@ GetTicketsLightSidebar.args = {
     includeInputSortBySelect: true,
     includeSportsTabs: false,
     includeLoadMore: true,
+    includeSportTypeCheckboxList: true,
   },
   configInputs: {
     searchInput: {
@@ -592,6 +593,9 @@ GetTicketsLightSidebar.args = {
     sortBySelect: {
       label: "Sort By:",
       placeholder: "Select one",
+    },
+    sportTypeCheckboxList: {
+      label: "Sport Type",
     },
   },
   sports: [

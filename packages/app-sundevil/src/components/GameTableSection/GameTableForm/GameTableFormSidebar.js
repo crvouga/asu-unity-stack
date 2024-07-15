@@ -30,7 +30,6 @@ export const GameTableFormSidebar = ({
     <Root>
       <Title>{sidebar.title}</Title>
       <GameTableForm
-        // orientation="vertical"
         style={{
           gap: "2.5rem",
         }}

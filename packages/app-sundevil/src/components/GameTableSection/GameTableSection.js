@@ -41,6 +41,8 @@ const GameTableRoot = styled.div`
 `;
 
 const GameTableSectionInner = ({ ...props }) => {
+  const limit = props?.gameDataSourceLoader?.limit ?? 5;
+
   const sidebar = props.sidebar ?? {
     title: "Filter your results",
   };
@@ -69,7 +71,7 @@ const GameTableSectionInner = ({ ...props }) => {
     searchQuery: gameTableForm.debouncedSearchQuery,
     sortBy: gameTableForm.sortBy,
     venueId: gameTableForm.venueId,
-    limit: props.gameDataSourceLoader?.limit ?? 5,
+    limit,
   });
 
   const sports = props.sports?.map(sport => ({
@@ -154,7 +156,7 @@ const GameTableSectionInner = ({ ...props }) => {
         games={gameDataSourceLoader.games}
         footerButtons={footerButtons}
         footerLinks={footerLinks}
-        skeletonRowCount={gameDataSourceLoader.limit ?? 5}
+        skeletonRowCount={limit}
         skeleton={gameDataSourceLoader.isLoadingInitial}
         setFirstRowRef={ref => {
           gameTableFirstRowRef.current = ref;

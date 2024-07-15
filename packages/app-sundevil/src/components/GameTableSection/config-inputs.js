@@ -38,6 +38,7 @@ export const configInputsSchema = PropTypes.shape({
  *  homeOrAwaySelect?: ConfigInput,
  *  venueSelect?: ConfigInput,
  *  sortBySelect?: ConfigInput,
+ *  sportTypeCheckboxList?: ConfigInput,
  * }} ConfigInputs
  */
 
@@ -63,6 +64,10 @@ export const defaultConfigInputs = {
   },
   sortBySelect: {
     label: "Sort By:",
+    placeholder: "Select one",
+  },
+  sportTypeCheckboxList: {
+    label: "Sport Type",
     placeholder: "Select one",
   },
 };

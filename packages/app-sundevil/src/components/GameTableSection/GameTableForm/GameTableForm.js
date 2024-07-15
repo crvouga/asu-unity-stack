@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { useIsMobile } from "../../../../../component-header/src/core/hooks/isMobile";
+import { APP_CONFIG } from "../../../config";
+import { CheckboxList } from "../../CheckboxList/CheckboxList";
 import { GameDataSourceSortBy } from "../../Game/game-data-source";
 import { useGameVenuesLoader } from "../../Game/use-game-venues-loader";
 import { Icon } from "../../Icon_";
@@ -33,6 +36,8 @@ export const GameTableForm = ({
   orientation,
 }) => {
   const { allVenues } = useGameVenuesLoader();
+  const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
+  const isDesktop = !isMobile;
 
   const includeAny =
     configLayout.includeInputSearch ||
@@ -76,7 +81,26 @@ export const GameTableForm = ({
           placeholder={configInputs.sportTypeSelect?.placeholder ?? ""}
           onChange={option =>
             gameTableForm.update({
-              sportId: option.id === gameTableForm.sportId ? "all" : option.id,
+              sportId: option.id === gameTableForm.sportId ? null : option.id,
+            })
+          }
+          options={sports.map(sport => ({
+            label: sport.name,
+            id: sport.id,
+            active: sport.active,
+            renderStart: ({ style: iconStyle }) => (
+              <Icon icon={sport.icon} style={iconStyle} />
+            ),
+          }))}
+        />
+      )}
+      {configLayout.includeSportTypeCheckboxList && isDesktop && (
+        <CheckboxList
+          style={{ flex: 1 }}
+          label={configInputs.sportTypeCheckboxList?.label ?? ""}
+          onChange={option =>
+            gameTableForm.update({
+              sportId: option.id === gameTableForm.sportId ? null : option.id,
             })
           }
           options={sports.map(sport => ({

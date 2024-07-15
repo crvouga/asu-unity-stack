@@ -9,28 +9,30 @@ const Root = styled.div`
   display: flex;
   padding: 0;
   flex-wrap: wrap;
-  flex-direction: ${({ isMobile }) => (isMobile ? "column" : "row")};
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: ${({ isTablet }) => (isTablet ? "column" : "row")};
 `;
 
 const SidebarRoot = styled.div`
   display: flex;
-  width: ${({ isMobile }) => (isMobile ? "100%" : "25%")};
+  width: ${({ isTablet }) => (isTablet ? "100%" : "25%")};
   padding: 0;
-  padding-right: ${({ isMobile }) => (isMobile ? "0" : "1.5rem")};
+  padding-right: ${({ isTablet }) => (isTablet ? "0" : "1.5rem")};
 `;
 
 const ContentRoot = styled.div`
   display: flex;
-  width: ${({ isMobile }) => (isMobile ? "100%" : "75%")};
+  width: ${({ isTablet }) => (isTablet ? "100%" : "75%")};
   padding: 0;
 `;
 
 export const SidebarLayout = ({ className, renderSidebar, renderContent }) => {
-  const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
+  const isTablet = useIsMobile(APP_CONFIG.breakpointTablet);
   return (
-    <Root className={className} isMobile={isMobile}>
-      <SidebarRoot isMobile={isMobile}>{renderSidebar()}</SidebarRoot>
-      <ContentRoot isMobile={isMobile}>{renderContent()}</ContentRoot>
+    <Root className={className} isTablet={isTablet}>
+      <SidebarRoot isTablet={isTablet}>{renderSidebar()}</SidebarRoot>
+      <ContentRoot isTablet={isTablet}>{renderContent()}</ContentRoot>
     </Root>
   );
 };

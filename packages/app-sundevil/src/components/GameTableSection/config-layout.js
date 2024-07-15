@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 /**
  * @typedef {{
+ *  variant: "sidebar" | "default"
  *  includeInputSearch: boolean
  *  includeInputSportType: boolean
  *  includeInputHomeOrAwaySelect: boolean
@@ -14,6 +15,7 @@ import PropTypes from "prop-types";
  */
 
 export const configLayoutSchema = PropTypes.shape({
+  variant: PropTypes.oneOf(["sidebar", "default"]),
   includeInputSearch: PropTypes.bool,
   includeInputSportType: PropTypes.bool,
   includeInputHomeOrAwaySelect: PropTypes.bool,
@@ -27,6 +29,7 @@ export const configLayoutSchema = PropTypes.shape({
  * @type {ConfigLayout}
  */
 export const defaultConfigLayout = {
+  variant: "default",
   includeInputSearch: false,
   includeInputSportType: false,
   includeInputHomeOrAwaySelect: false,

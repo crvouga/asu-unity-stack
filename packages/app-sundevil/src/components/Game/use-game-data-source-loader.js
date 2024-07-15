@@ -40,7 +40,7 @@ const toQueryKey = input => {
 /**
  * @param {import("./game-data-source/game-data-source").FindManyInput} input
  */
-export const useGameLoader = input => {
+export const useGameDataSourceLoader = input => {
   const gameDataSource = useGameDataSource();
 
   const [state, setState] = useState(initState);

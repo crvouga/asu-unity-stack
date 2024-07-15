@@ -12,7 +12,7 @@ import {
   gameDataSourceSchema,
 } from "../Game/game-data-source/game-data-source-impl";
 import { GameDataSourceProvider } from "../Game/GameDataSourceContext";
-import { useGameLoader } from "../Game/use-game-loader";
+import { useGameDataSourceLoader } from "../Game/use-game-data-source-loader";
 import { GameTable, gameTableFooterButtonSchema } from "../GameTable/GameTable";
 import {
   GameTableLoadMoreButton,
@@ -24,9 +24,11 @@ import { sportSchema } from "../SportsTabs/sports-tabs";
 import { configInputsSchema, defaultConfigInputs } from "./config-inputs";
 import { configLayoutSchema, defaultConfigLayout } from "./config-layout";
 import { ConfigOverlap, configOverlapSchema } from "./config-overlap";
-import { useGameTableForm } from "./GameTableForm/game-table-form";
 import { GameTableForm } from "./GameTableForm/GameTableForm";
+import { GameTableFormSidebar } from "./GameTableForm/GameTableFormSidebar";
+import { useGameTableForm } from "./GameTableForm/use-game-table-form";
 import { GameTableHero } from "./GameTableHero/GameTableHero";
+import { SidebarLayout } from "./SidebarLayout";
 
 const GameTableRoot = styled.div`
   display: flex;
@@ -34,13 +36,21 @@ const GameTableRoot = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+  flex: 1;
+  width: 100%;
 `;
 
 const GameTableSectionInner = ({ ...props }) => {
+  const sidebar = props.sidebar ?? {
+    title: "Filter your results",
+  };
   const variant = props.variant ?? "default";
 
   /** @type {import("./config-layout").ConfigLayout} */
-  const configLayout = props.configLayout ?? defaultConfigLayout;
+  const configLayout = deepMergeLeft(
+    props.configLayout ?? {},
+    defaultConfigLayout
+  );
 
   /** @type {import("./config-inputs").ConfigInputs} */
   const configInputs = deepMergeLeft(
@@ -53,13 +63,13 @@ const GameTableSectionInner = ({ ...props }) => {
     sportId: props?.sports?.find(sport => sport?.active)?.id ?? "all",
   });
 
-  const gameLoader = useGameLoader({
+  const gameDataSourceLoader = useGameDataSourceLoader({
     gameType: gameTableForm.gameType === "all" ? null : gameTableForm.gameType,
     sportId: gameTableForm.sportId === "all" ? null : gameTableForm.sportId,
     searchQuery: gameTableForm.debouncedSearchQuery,
     sortBy: gameTableForm.sortBy,
     venueId: gameTableForm.venueId,
-    limit: 5,
+    limit: props.gameDataSourceLoader?.limit ?? 5,
   });
 
   const sports = props.sports?.map(sport => ({
@@ -136,6 +146,32 @@ const GameTableSectionInner = ({ ...props }) => {
     }
   };
 
+  const renderGameTable = ({ className = "" } = {}) => (
+    <GameTableRoot className={className}>
+      <GameTable
+        {...props}
+        {...props.gameTable}
+        games={gameDataSourceLoader.games}
+        footerButtons={footerButtons}
+        footerLinks={footerLinks}
+        skeletonRowCount={gameDataSourceLoader.limit ?? 5}
+        skeleton={gameDataSourceLoader.isLoadingInitial}
+        setFirstRowRef={ref => {
+          gameTableFirstRowRef.current = ref;
+        }}
+      />
+
+      {configLayout.includeLoadMore &&
+        gameDataSourceLoader.showLoadNextPage && (
+          <GameTableLoadMoreButton
+            {...props.loadMore}
+            onClick={gameDataSourceLoader.loadNextPage}
+            loading={gameDataSourceLoader.isLoading}
+          />
+        )}
+    </GameTableRoot>
+  );
+
   return (
     <>
       {variant === "hero" && (
@@ -160,14 +196,16 @@ const GameTableSectionInner = ({ ...props }) => {
             />
           )}
 
-          <GameTableForm
-            className="container"
-            gameTableForm={gameTableForm}
-            configInputs={configInputs}
-            configLayout={configLayout}
-            sports={sports}
-            darkMode={props.darkMode}
-          />
+          {configLayout.variant === "default" && (
+            <GameTableForm
+              className="container"
+              gameTableForm={gameTableForm}
+              configInputs={configInputs}
+              configLayout={configLayout}
+              sports={sports}
+              darkMode={props.darkMode}
+            />
+          )}
 
           {isDesktop && configLayout.includeSportsTabs && (
             <div className="container">
@@ -192,27 +230,25 @@ const GameTableSectionInner = ({ ...props }) => {
           </div>
         )}
 
-        <GameTableRoot className={isDesktop ? "container" : ""}>
-          <GameTable
-            {...props}
-            {...props.gameTable}
-            games={gameLoader.games}
-            footerButtons={footerButtons}
-            footerLinks={footerLinks}
-            skeleton={gameLoader.isLoadingInitial}
-            setFirstRowRef={ref => {
-              gameTableFirstRowRef.current = ref;
-            }}
+        {configLayout.variant === "sidebar" && (
+          <SidebarLayout
+            className="container"
+            renderSidebar={() => (
+              <GameTableFormSidebar
+                sidebar={sidebar}
+                gameTableForm={gameTableForm}
+                configInputs={configInputs}
+                configLayout={configLayout}
+                sports={sports}
+                darkMode={props.darkMode}
+              />
+            )}
+            renderContent={() => renderGameTable()}
           />
+        )}
 
-          {configLayout.includeLoadMore && gameLoader.showLoadNextPage && (
-            <GameTableLoadMoreButton
-              {...props.loadMore}
-              onClick={gameLoader.loadNextPage}
-              loading={gameLoader.isLoading}
-            />
-          )}
-        </GameTableRoot>
+        {configLayout.variant === "default" &&
+          renderGameTable({ className: "container" })}
       </div>
     </>
   );
@@ -235,6 +271,12 @@ GameTableSectionInner.propTypes = {
   variant: PropTypes.oneOf(["default", "hero"]),
   gameTable: GameTable.propTypes,
   sectionHeader: SectionHeader.propTypes,
+  sidebar: PropTypes.shape({
+    title: PropTypes.string,
+  }),
+  gameDataSourceLoader: PropTypes.shape({
+    limit: PropTypes.number,
+  }),
 };
 
 const GameTableSection = ({

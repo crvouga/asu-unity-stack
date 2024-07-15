@@ -11,7 +11,7 @@ import { sportSchema } from "../../SportsTabs/sports-tabs";
 import { TextField } from "../../TextField/TextField";
 import { configInputsSchema } from "../config-inputs";
 import { configLayoutSchema } from "../config-layout";
-import { gameTableFormSchema } from "./game-table-form";
+import { gameTableFormSchema } from "./use-game-table-form";
 
 const Root = styled.div`
   display: flex;
@@ -23,12 +23,14 @@ const Root = styled.div`
 `;
 
 export const GameTableForm = ({
+  style,
   gameTableForm,
   configLayout,
   configInputs,
   sports,
   className,
   darkMode,
+  orientation,
 }) => {
   const { allVenues } = useGameVenuesLoader();
 
@@ -44,7 +46,12 @@ export const GameTableForm = ({
   }
 
   return (
-    <Root className={className}>
+    <Root
+      style={style}
+      className={className}
+      // @ts-ignore
+      orientation={orientation}
+    >
       {configLayout.includeInputSearch && (
         <TextField
           darkMode={darkMode}
@@ -53,8 +60,11 @@ export const GameTableForm = ({
           placeholder={configInputs?.searchInput?.placeholder ?? ""}
           value={gameTableForm.searchQuery}
           onChange={gameTableForm.setSearchQuery}
-          renderEndIcon={({ style }) => (
-            <i style={style} className="fa fas fa-solid fa-magnifying-glass" />
+          renderEndIcon={({ style: iconStyle }) => (
+            <i
+              style={iconStyle}
+              className="fa fas fa-solid fa-magnifying-glass"
+            />
           )}
         />
       )}
@@ -73,8 +83,8 @@ export const GameTableForm = ({
             label: sport.name,
             id: sport.id,
             active: sport.active,
-            renderStart: ({ style }) => (
-              <Icon icon={sport.icon} style={style} />
+            renderStart: ({ style: iconStyle }) => (
+              <Icon icon={sport.icon} style={iconStyle} />
             ),
           }))}
         />
@@ -171,4 +181,7 @@ GameTableForm.propTypes = {
   className: PropTypes.string,
   sports: PropTypes.arrayOf(sportSchema),
   darkMode: PropTypes.bool,
+  orientation: PropTypes.oneOf(["horizontal", "vertical"]),
+  // eslint-disable-next-line react/forbid-prop-types
+  style: PropTypes.object,
 };

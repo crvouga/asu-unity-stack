@@ -197,11 +197,11 @@ GetTicketsOverlapFirstRow.args = {
   },
   configInputs: {
     searchInput: {
-      label: "Search by Event Name",
+      label: "Search tickets",
       placeholder: "Sun Devils vs. BYU, Season Tickets, Rose Bowl",
     },
     sportTypeSelect: {
-      label: "Sport Type",
+      label: "Sport",
       placeholder: "Select one",
     },
     homeOrAwaySelect: {

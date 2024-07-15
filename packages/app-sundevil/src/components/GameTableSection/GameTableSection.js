@@ -24,8 +24,8 @@ import { sportSchema } from "../SportsTabs/sports-tabs";
 import { configInputsSchema, defaultConfigInputs } from "./config-inputs";
 import { configLayoutSchema, defaultConfigLayout } from "./config-layout";
 import { ConfigOverlap, configOverlapSchema } from "./config-overlap";
-import { GameTableForm } from "./GameTableForm/GameTableForm";
 import { GameTableFormSidebar } from "./GameTableForm/GameTableFormSidebar";
+import { GameTableFormTopbar } from "./GameTableForm/GameTableFormTopbar";
 import { useGameTableForm } from "./GameTableForm/use-game-table-form";
 import { GameTableHero } from "./GameTableHero/GameTableHero";
 import { SidebarLayout } from "./SidebarLayout";
@@ -43,9 +43,8 @@ const GameTableRoot = styled.div`
 const GameTableSectionInner = ({ ...props }) => {
   const limit = props?.gameDataSourceLoader?.limit ?? 5;
 
-  const sidebar = props.sidebar ?? {
-    title: "Filter your results",
-  };
+  const configGameTableForm = props.configGameTableForm ?? {};
+
   const variant = props.variant ?? "default";
 
   /** @type {import("./config-layout").ConfigLayout} */
@@ -199,12 +198,13 @@ const GameTableSectionInner = ({ ...props }) => {
           )}
 
           {configLayout.variant === "default" && (
-            <GameTableForm
+            <GameTableFormTopbar
               className="container"
               gameTableForm={gameTableForm}
               configInputs={configInputs}
               configLayout={configLayout}
               sports={sports}
+              configGameTableForm={configGameTableForm}
               darkMode={props.darkMode}
             />
           )}
@@ -237,7 +237,7 @@ const GameTableSectionInner = ({ ...props }) => {
             className="container"
             renderSidebar={() => (
               <GameTableFormSidebar
-                sidebar={sidebar}
+                configGameTableForm={configGameTableForm}
                 gameTableForm={gameTableForm}
                 configInputs={configInputs}
                 configLayout={configLayout}
@@ -273,7 +273,7 @@ GameTableSectionInner.propTypes = {
   variant: PropTypes.oneOf(["default", "hero"]),
   gameTable: GameTable.propTypes,
   sectionHeader: SectionHeader.propTypes,
-  sidebar: PropTypes.shape({
+  configGameTableForm: PropTypes.shape({
     title: PropTypes.string,
   }),
   gameDataSourceLoader: PropTypes.shape({

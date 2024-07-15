@@ -16,7 +16,6 @@ const Subtitle = styled.p`
   padding: 0;
   margin: 0;
   color: #191919;
-  padding-top: 12px;
 
   & > * {
     margin: 0;
@@ -35,12 +34,40 @@ const HeaderBody = styled.nav`
   flex-direction: column;
   width: 100%;
   gap: 48px;
+  padding-top: 12px;
 `;
 
 const SubtitleRoot = styled.div`
   display: flex;
   flex-direction: column;
   gap: 12px;
+`;
+
+const SubtitleLink = styled.a`
+  max-width: fit-content;
+  ${({ color }) => {
+    if (color === "muted") {
+      return `
+        color: #191919;
+        opacity: 0.6;
+      `;
+    }
+
+    return "";
+  }}
+
+  ${({
+    // @ts-ignore
+    fontWeight,
+  }) => {
+    if (fontWeight) {
+      return `
+        font-weight: ${stringToFontWeight(fontWeight)};
+      `;
+    }
+
+    return "";
+  }}
 `;
 
 export const mapPropsSponsorBlock = props => {
@@ -152,16 +179,15 @@ const SectionHeader = forwardRef(
                   {Array.isArray(subtitleLinks) && subtitleLinks.length > 0 && (
                     <>
                       {subtitleLinks.map(link => (
-                        <a
+                        <SubtitleLink
                           key={link?.href ?? link?.url ?? link?.label}
                           href={link?.href ?? link?.url}
-                          style={{
-                            fontWeight: stringToFontWeight(link.fontWeight),
-                            maxWidth: "fit-content",
-                          }}
+                          // @ts-ignore
+                          fontWeight={link?.fontWeight}
+                          color={link?.color}
                         >
                           {link?.label}
-                        </a>
+                        </SubtitleLink>
                       ))}
                     </>
                   )}

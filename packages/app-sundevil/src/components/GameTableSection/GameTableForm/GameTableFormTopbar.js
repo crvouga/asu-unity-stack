@@ -9,16 +9,16 @@ const Root = styled.div`
   display: flex;
   flex-direction: column;
   flex-shrink: -1;
-  gap: 1.5rem;
+  gap: 1rem;
 `;
 
 const Title = styled.div`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: bold;
   padding: 0;
 `;
 
-export const GameTableFormSidebar = ({
+export const GameTableFormTopbar = ({
   configGameTableForm,
   gameTableForm,
   configInputs,
@@ -34,9 +34,6 @@ export const GameTableFormSidebar = ({
           <Title>{configGameTableForm?.title}</Title>
         )}
       <GameTableForm
-        style={{
-          gap: "2.5rem",
-        }}
         gameTableForm={gameTableForm}
         configInputs={configInputs}
         configLayout={configLayout}
@@ -47,7 +44,7 @@ export const GameTableFormSidebar = ({
   );
 };
 
-GameTableFormSidebar.propTypes = {
+GameTableFormTopbar.propTypes = {
   ...GameTableForm.propTypes,
   configGameTableForm: PropTypes.shape({
     title: PropTypes.string,

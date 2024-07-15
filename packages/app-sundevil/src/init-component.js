@@ -65,6 +65,8 @@ const filterDOM = (
 };
 /**
  * @typedef {object} RenderInput
+ * @property {string} id - Html id to be added to the rendered component.
+ * @property {string} class - Html class to be added to the rendered component.
  * @property {string} targetSelector - The CSS selector (#id or .class)
  * which identify the <div> element where the footer should be either hydrated
  * or rendered.
@@ -95,6 +97,8 @@ const DEFAULT_WHITE_LIST = [
  * @type {(input: RenderInput) => void}
  */
 export const RenderReact = ({
+  id,
+  class: class_,
   component,
   props,
   targetSelector,
@@ -114,6 +118,14 @@ export const RenderReact = ({
   if (!target) {
     consoleLog("target not found", targetSelector);
     return;
+  }
+
+  if (typeof id === "string") {
+    target.id = id;
+  }
+
+  if (typeof class_ === "string") {
+    target.classList.add(class_);
   }
 
   if (renderWithinChild) {

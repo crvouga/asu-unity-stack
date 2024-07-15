@@ -26,8 +26,7 @@ const Template = args => (
 export const GetTickets = Template.bind({});
 GetTickets.args = {
   // gameDataSource: {
-  //   type: "custom",
-  //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
+  //   type: "mock",
   // },
   // gameDataSource: {
   //   type: "custom",
@@ -60,6 +59,7 @@ GetTickets.args = {
     includeInputSortBySelect: true,
     includeSportsTabs: true,
     includeLoadMore: true,
+    includeSportTypeCheckboxList: false,
   },
   configInputs: {
     searchInput: {
@@ -82,14 +82,17 @@ GetTickets.args = {
       label: "Sort By:",
       placeholder: "Select one",
     },
+    sportTypeCheckboxList: {
+      label: "Sport Type",
+    },
   },
   gameTable: {
     configLayout: {
-      // includeCellDate: true,
-      // includeCellSportName: true,
-      // includeCellVersus: true,
-      // includeCellTitle: true,
-      // includeCellTickets: true,
+      includeCellDate: true,
+      includeCellSportName: true,
+      includeCellVersus: true,
+      includeCellTitle: true,
+      includeCellTickets: true,
     },
     cellsConfig: {
       titleCell: {

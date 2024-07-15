@@ -1,6 +1,4 @@
 export * from "./Game";
-export * from "./GameList";
-export * from "./GameNavigation";
 export * from "./GameTable";
 export * from "./GameTableSection";
 export * from "./Header";

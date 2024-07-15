@@ -4,8 +4,6 @@ import ReactDOM from "react-dom";
 
 import { CookieConsent } from "../../component-cookie-consent/src/CookieConsent";
 import {
-  GameList,
-  GameNavigation,
   GameTable,
   GameTableSection,
   NewsZoneSection,
@@ -158,13 +156,6 @@ export const RenderReact = ({
  */
 
 /** @type {InitComponent} */
-export const initGamesNavigationComponent = input => {
-  RenderReact({
-    ...input,
-    component: GameNavigation,
-  });
-};
-/** @type {InitComponent} */
 export const initGameTableComponent = input => {
   RenderReact({
     ...input,
@@ -177,14 +168,6 @@ export const initHeaderComponent = input => {
   RenderReact({
     ...input,
     component: SectionHeader,
-  });
-};
-
-/** @type {InitComponent} */
-export const initGameListComponent = input => {
-  RenderReact({
-    ...input,
-    component: GameList,
   });
 };
 

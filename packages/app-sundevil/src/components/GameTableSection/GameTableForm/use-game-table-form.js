@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 
 import { useDebouncedValue } from "../../../utils/use-debounced-value";
 import { createUseQueryState } from "../../../utils/use-query-state";
@@ -48,15 +49,47 @@ const useSearchQueryState = createUseQueryState({
 });
 
 /**
- * @param {Partial<GameTableForm>} initial
+ * Custom hook to conditionally use useQueryState or useState
+ * @param {boolean} enableUrlState
+ * @param {any} initialState
+ * @returns {[any, Function]}
+ */
+const useConditionalState = (
+  enableUrlState,
+  initialState,
+  useQueryHook,
+  useStateHook
+) => {
+  const queryState = useQueryHook(initialState);
+  const localState = useStateHook(initialState);
+
+  return enableUrlState ? queryState : localState;
+};
+
+/**
+ * @param {Partial<GameTableForm> & {enableUrlState: boolean}} initial
  */
 export const useGameTableForm = initial => {
-  const [searchQuery, setSearchQuery] = useSearchQueryState("");
+  const { enableUrlState, ...initialFormState } = initial;
+
+  const [searchQuery, setSearchQuery] = useConditionalState(
+    enableUrlState,
+    "",
+    useSearchQueryState,
+    useState
+  );
   const debouncedSearchQuery = useDebouncedValue(
     searchQuery,
     GAME_TABLE_FORM_DEBOUNCE_MS
   );
-  const [state, setState] = useQueryState(init(initial));
+
+  const [state, setState] = useConditionalState(
+    enableUrlState,
+    init(initialFormState),
+    useQueryState,
+    useState
+  );
+
   /**
    * @param {Partial<GameTableForm>} value
    */

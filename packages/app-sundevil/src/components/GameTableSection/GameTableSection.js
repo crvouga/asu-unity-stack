@@ -60,6 +60,7 @@ const GameTableSectionInner = ({ ...props }) => {
   );
 
   const gameTableForm = useGameTableForm({
+    enableUrlState: configGameTableForm?.enableUrlState ?? false,
     gameType: props?.tabs?.find(tab => tab?.active)?.gameType ?? "all",
     sportId: props?.sports?.find(sport => sport?.active)?.id ?? "all",
   });
@@ -275,6 +276,7 @@ GameTableSectionInner.propTypes = {
   sectionHeader: SectionHeader.propTypes,
   configGameTableForm: PropTypes.shape({
     title: PropTypes.string,
+    enableUrlState: PropTypes.bool,
   }),
   gameDataSourceLoader: PropTypes.shape({
     limit: PropTypes.number,

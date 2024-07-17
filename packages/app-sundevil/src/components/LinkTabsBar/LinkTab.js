@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
-import { Icon } from "../../Icon_";
+import { Icon } from "../Icon_";
 
 export const Root = styled.a`
   display: flex;
@@ -67,10 +67,31 @@ export const Root = styled.a`
   }}
 `;
 
+const LabelRoot = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: flex-start;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+`;
+
+const Label = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
 export const LinkTab = forwardRef(
-  ({ active, focused, href, icon, renderIconEnd, onClick, label, as }, ref) => {
+  (
+    { active, focused, href, icon, renderIconEnd, onClick, label, as, style },
+    ref
+  ) => {
     return (
       <Root
+        style={style}
         focused={focused}
         active={active}
         href={href}
@@ -78,8 +99,10 @@ export const LinkTab = forwardRef(
         onClick={onClick}
         ref={ref}
       >
-        {icon && <Icon icon={icon} />}
-        {label}
+        <LabelRoot>
+          {icon && <Icon icon={icon} />}
+          <Label>{label}</Label>
+        </LabelRoot>
         {renderIconEnd && renderIconEnd()}
       </Root>
     );
@@ -94,4 +117,6 @@ LinkTab.propTypes = {
   onClick: PropTypes.func,
   active: PropTypes.bool,
   focused: PropTypes.bool,
+  // eslint-disable-next-line react/forbid-prop-types
+  style: PropTypes.object,
 };

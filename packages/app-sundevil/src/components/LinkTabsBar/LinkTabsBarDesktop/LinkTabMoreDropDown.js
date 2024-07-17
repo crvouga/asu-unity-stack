@@ -5,7 +5,7 @@ import { DropDown, DropDownSurface } from "../../DropDown";
 import { DropDownChevron } from "../../DropDown/DropDownChevron";
 import { DropDownItem } from "../../DropDown/DropDownItem";
 import { linkTabPropType, linkTabToKey } from "../link";
-import { LinkTab } from "./LinkTab";
+import { LinkTab } from "../LinkTab";
 
 export const LinkTabMoreDropDown = ({ links, moreTabLabel = "More" }) => {
   const [open, setOpen] = useState(false);

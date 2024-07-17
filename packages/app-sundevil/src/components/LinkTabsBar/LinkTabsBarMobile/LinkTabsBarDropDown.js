@@ -5,10 +5,12 @@ import { DropDown, DropDownSurface } from "../../DropDown";
 import { DropDownChevron } from "../../DropDown/DropDownChevron";
 import { DropDownItem } from "../../DropDown/DropDownItem";
 import { linkTabPropType, linkTabToKey } from "../link";
-import { LinkTab } from "./LinkTab";
+import { LinkTab } from "../LinkTab";
 
-export const LinkTabMoreDropDown = ({ links, moreTabLabel = "More" }) => {
+export const LinkTabsBarDropDown = ({ links }) => {
   const [open, setOpen] = useState(false);
+  const activeLink = links.find(link => link.active);
+
   return (
     <DropDown
       open={open}
@@ -16,11 +18,13 @@ export const LinkTabMoreDropDown = ({ links, moreTabLabel = "More" }) => {
       position="bottom-start"
       renderReference={({ ref, open: isOpen }) => (
         <LinkTab
+          style={{ width: "100%", padding: "0 1rem" }}
           as="button"
           focused={isOpen}
           ref={ref}
           onClick={() => setOpen(openPrev => !openPrev)}
-          label={moreTabLabel}
+          label={activeLink.label}
+          icon={activeLink.icon}
           renderIconEnd={() => <DropDownChevron open={isOpen} />}
         />
       )}
@@ -33,6 +37,7 @@ export const LinkTabMoreDropDown = ({ links, moreTabLabel = "More" }) => {
               label={link.label}
               href={link.href}
               onClick={link.onClick}
+              active={link.active}
             />
           ))}
         </DropDownSurface>
@@ -40,7 +45,6 @@ export const LinkTabMoreDropDown = ({ links, moreTabLabel = "More" }) => {
     />
   );
 };
-LinkTabMoreDropDown.propTypes = {
+LinkTabsBarDropDown.propTypes = {
   links: PropTypes.arrayOf(linkTabPropType),
-  moreTabLabel: PropTypes.string,
 };

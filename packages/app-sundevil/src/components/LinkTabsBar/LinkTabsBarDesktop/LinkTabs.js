@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { linkTabPropType, linkTabToKey } from "../link";
-import { LinkTab } from "./LinkTab";
+import { LinkTab } from "../LinkTab";
 import { LinkTabMoreDropDown } from "./LinkTabMoreDropDown";
 
 export const Root = styled.div`

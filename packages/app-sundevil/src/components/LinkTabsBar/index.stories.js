@@ -21,7 +21,7 @@ export const Default = Template.bind({});
 Default.args = {
   links: [
     {
-      mobileLabel: "Home",
+      mobileLabel: "Football Home",
       icon: "fa fas fa-football",
       href: "#",
       active: true,

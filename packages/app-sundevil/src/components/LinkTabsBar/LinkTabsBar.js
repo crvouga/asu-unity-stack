@@ -10,7 +10,12 @@ export const LinkTabsBar = props => {
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
 
   if (isMobile) {
-    return <LinkTabsBarMobile {...props} />;
+    const { links } = props;
+    const linksMobile = links.map(link => ({
+      ...link,
+      label: link.mobileLabel ?? link.label,
+    }));
+    return <LinkTabsBarMobile {...props} links={linksMobile} />;
   }
 
   return <LinkTabsBarDesktop {...props} />;

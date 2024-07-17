@@ -2,8 +2,8 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { linkTabsBarPropTypes } from "../link-tab-bar";
-import { LinkTabs } from "./LinkTabs";
 import { useMaxLinkCount } from "../max-link-count";
+import { LinkTabs } from "./LinkTabs";
 
 export const Root = styled.div`
   display: flex;

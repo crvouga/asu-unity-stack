@@ -11,4 +11,5 @@ export * from "./SocialMediaSectionEmbedded";
 export * from "./SpecialEventsSection";
 export * from "./SunDevilStoriesSection";
 export * from "./VideoSection";
+export * from "./LinkTabsBar";
 //

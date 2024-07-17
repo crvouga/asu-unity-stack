@@ -13,8 +13,8 @@ import styled from "styled-components";
  */
 
 const propTypes = {
-  label: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  label: PropTypes.string,
+  onClick: PropTypes.func,
   active: PropTypes.bool,
   as: PropTypes.string,
 };

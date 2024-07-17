@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 
 import { CookieConsent } from "../../component-cookie-consent/src/CookieConsent";
 import {
+  LinkTabsBar,
   GameTable,
   GameTableSection,
   NewsZoneSection,
@@ -252,5 +253,12 @@ export const initCookieConsent = input => {
   RenderReact({
     ...input,
     component: CookieConsent,
+  });
+};
+
+export const initLinkTabsBar = input => {
+  RenderReact({
+    ...input,
+    component: LinkTabsBar,
   });
 };

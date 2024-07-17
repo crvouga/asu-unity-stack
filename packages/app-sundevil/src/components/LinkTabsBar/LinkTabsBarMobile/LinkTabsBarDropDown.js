@@ -9,7 +9,7 @@ import { LinkTab } from "../LinkTab";
 
 export const LinkTabsBarDropDown = ({ links }) => {
   const [open, setOpen] = useState(false);
-  const activeLink = links.find(link => link.active);
+  const activeLink = links.find(link => link.active) ?? links[0];
 
   return (
     <DropDown
@@ -23,8 +23,8 @@ export const LinkTabsBarDropDown = ({ links }) => {
           focused={isOpen}
           ref={ref}
           onClick={() => setOpen(openPrev => !openPrev)}
-          label={activeLink.label}
-          icon={activeLink.icon}
+          label={activeLink?.label}
+          icon={activeLink?.icon}
           renderIconEnd={() => <DropDownChevron open={isOpen} />}
         />
       )}
@@ -36,7 +36,7 @@ export const LinkTabsBarDropDown = ({ links }) => {
               key={linkTabToKey(link)}
               label={link.label}
               href={link.href}
-              onClick={link.onClick}
+              onClick={() => setOpen(false)}
               active={link.active}
             />
           ))}

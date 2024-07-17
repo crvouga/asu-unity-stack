@@ -32,7 +32,7 @@ export const LinkTabMoreDropDown = ({ links, moreTabLabel = "More" }) => {
               key={linkTabToKey(link)}
               label={link.label}
               href={link.href}
-              onClick={link.onClick}
+              onClick={() => setOpen(false)}
             />
           ))}
         </DropDownSurface>

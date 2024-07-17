@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Media Card Section</title>
+    <!-- Load React. -->
+    <script
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+      crossorigin
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://unity.web.asu.edu/@asu/bootstrap4-theme/css/bootstrap-asu.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://asu.github.io/asu-unity-stack/@asu/unity-bootstrap-theme/css/unity-bootstrap-theme.bundle.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/63c5db143d.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- *************************************************************** -->
+    <!-- include bundled scripts from packages -->
+    <script src="./dist/vendor.umd.js"></script>
+    <script src="./dist/sunDevil.umd.js"></script>
+    <style>
+      #hero {
+        background-color: black;
+        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
+          url("./sun-devils-hero.png") no-repeat center center;
+        background-size: cover;
+        height: 800px;
+      }
+      #container {
+        padding-bottom: 500px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="header-container"></div>
+    <div id="hero"></div>
+    <div id="container">
+      <div>This will be removed</div>
+      <div class="contextual"></div>
+    </div>
+    <script>
+      const props = {
+        links: [
+          {
+            mobileLabel: "Football Home",
+            icon: "fa fas fa-football",
+            href: "#football",
+            active: true,
+          },
+          {
+            label: "Roster",
+            href: "#football-roster",
+          },
+          {
+            label: "News",
+            href: "#football-news",
+          },
+          {
+            label: "Coaches",
+            href: "#football-coaches",
+          },
+          {
+            label: "Stats",
+            href: "#football-stats",
+          },
+          {
+            label: "NIL",
+            href: "#football-nil",
+          },
+          {
+            label: "Gameday Info",
+            href: "#football-gameday-info",
+          },
+          {
+            label: "Camps",
+            href: "#football-camps",
+          },
+          {
+            label: "Lorem Ipsum Dolor Sit",
+            href: "#football-lorem-ipsum-dolor-sit",
+          },
+          {
+            label: "Lorem Ipsum Dolor Sit",
+            href: "#football-lorem-ipsum-dolor-sit-2",
+          },
+          {
+            label: "Lorem Ipsum Dolor Sit",
+            href: "#football-lorem-ipsum-dolor-sit-3",
+          },
+        ],
+        sponsorHref: "#",
+        sponsorLogoSrc:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfbwJU0mLkyyoKkok_jMppnBtEbsWNYJja3A&s",
+        sponsorLogoAlt: " ",
+      };
+
+      initLinkTabsBar({
+        targetSelector: "#container",
+        props,
+      });
+    </script>
+  </body>
+</html>

@@ -23,48 +23,48 @@ Default.args = {
     {
       mobileLabel: "Football Home",
       icon: "fa fas fa-football",
-      href: "#",
+      href: "#football",
       active: true,
     },
     {
       label: "Roster",
-      href: "#",
+      href: "#football-roster",
     },
     {
       label: "News",
-      href: "#",
+      href: "#football-news",
     },
     {
       label: "Coaches",
-      href: "#",
+      href: "#football-coaches",
     },
     {
       label: "Stats",
-      href: "#",
+      href: "#football-stats",
     },
     {
       label: "NIL",
-      href: "#",
+      href: "#football-nil",
     },
     {
       label: "Gameday Info",
-      href: "#",
+      href: "#football-gameday-info",
     },
     {
       label: "Camps",
-      href: "#",
+      href: "#football-camps",
     },
     {
       label: "Lorem Ipsum Dolor Sit",
-      href: "#",
+      href: "#football-lorem-ipsum-dolor-sit",
     },
     {
       label: "Lorem Ipsum Dolor Sit",
-      href: "#",
+      href: "#football-lorem-ipsum-dolor-sit-2",
     },
     {
       label: "Lorem Ipsum Dolor Sit",
-      href: "#",
+      href: "#football-lorem-ipsum-dolor-sit-3",
     },
   ],
   sponsorHref: "#",

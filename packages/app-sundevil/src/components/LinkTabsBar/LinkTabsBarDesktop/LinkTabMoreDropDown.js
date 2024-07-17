@@ -22,6 +22,7 @@ export const LinkTabMoreDropDown = ({ links, moreTabLabel = "More" }) => {
           onClick={() => setOpen(openPrev => !openPrev)}
           label={moreTabLabel}
           renderIconEnd={() => <DropDownChevron open={isOpen} />}
+          active={links.some(link => link.active)}
         />
       )}
       renderContent={() => (
@@ -32,6 +33,7 @@ export const LinkTabMoreDropDown = ({ links, moreTabLabel = "More" }) => {
               key={linkTabToKey(link)}
               label={link.label}
               href={link.href}
+              active={link.active}
               onClick={() => setOpen(false)}
             />
           ))}

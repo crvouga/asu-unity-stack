@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React, { useMemo, useRef } from "react";
 import styled from "styled-components";
 
-import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../config";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
 import { useElementContentDimensions } from "../../utils/use-element-position";
@@ -92,7 +92,7 @@ const GameTableSectionInner = ({ ...props }) => {
     activeSport?.footerButtons ?? props?.footerButtons ?? [];
   const footerLinks = activeSport?.footerLinks ?? props?.footerLinks ?? [];
 
-  const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
+  const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
 
   //

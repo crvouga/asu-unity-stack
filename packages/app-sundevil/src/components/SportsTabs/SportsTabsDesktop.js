@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../config";
 import { DropDown, DropDownSurface } from "../DropDown";
+import { DropDownChevron } from "../DropDown/DropDownChevron";
 import { Icon } from "../Icon_";
 import { Skeleton } from "../Skeleton";
 import { sportsTabSkeletonData } from "./sports-tab-skeleton-data";
@@ -47,7 +48,7 @@ export const SportsTabsDesktop = ({
   className,
 }) => {
   sports?.sort((a, b) => a.position - b.position);
-  const isTablet = useIsMobile(APP_CONFIG.breakpointTablet);
+  const isTablet = useBreakpoint(APP_CONFIG.breakpointTablet);
   const maxTabCount = isTablet ? 6 : 9;
   // @ts-ignore
   const sportTabs = sports?.filter(sport => !sport.more)?.slice(0, maxTabCount);
@@ -68,6 +69,7 @@ export const SportsTabsDesktop = ({
   }
 
   return (
+    // @ts-ignore
     <Skeleton skeleton={Boolean(skeleton)} className={className}>
       <Root>
         {skeleton && (
@@ -127,14 +129,8 @@ export const SportsTabsDesktop = ({
                       color={moreTabColor ?? "default"}
                       darkMode={darkMode}
                     >
-                      {input.open ? (
-                        <span className="fas fa-chevron-up" style={ICON_SIZE} />
-                      ) : (
-                        <span
-                          className="fas fa-chevron-down"
-                          style={ICON_SIZE}
-                        />
-                      )}
+                      <DropDownChevron open={input.open} style={ICON_SIZE} />
+
                       <div>More</div>
                     </SportsTab>
                   );

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
-import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../config";
 import { stringToFontWeight } from "../../utils/font-weight";
 import { Logo } from "./index.styles";
@@ -136,7 +136,7 @@ const SectionHeader = forwardRef(
     },
     ref
   ) => {
-    const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
+    const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
     const hasContent = Boolean(
       title || subtitle || tabs || social || sponsorBlock
     );

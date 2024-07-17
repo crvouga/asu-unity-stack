@@ -8,6 +8,7 @@ import { useElementPosition } from "../../utils/use-element-position";
  * @typedef {{
  * open: boolean
  * onClose: () => void
+ * position?: "top" | "top-start" | "top-end" | "right" | "right-start" | "right-end" | "bottom" | "bottom-start" | "bottom-end" | "left" | "left-start" | "left-end"
  * renderContent: (input: {referenceWidth: number}) => React.ReactNode
  * renderReference: (input: {open: boolean, ref: React.RefObject<HTMLElement>}) => React.ReactNode
  * }}  Props
@@ -18,16 +19,36 @@ const propTypes = {
   onClose: PropTypes.func.isRequired,
   renderContent: PropTypes.func.isRequired,
   renderReference: PropTypes.func.isRequired,
+  position: PropTypes.oneOf([
+    "top",
+    "top-start",
+    "top-end",
+    "right",
+    "right-start",
+    "right-end",
+    "bottom",
+    "bottom-start",
+    "bottom-end",
+    "left",
+    "left-start",
+    "left-end",
+  ]),
 };
 
 /**
  * @type {React.FC<Props>}
  */
-export const DropDown = ({ open, onClose, renderContent, renderReference }) => {
+export const DropDown = ({
+  open,
+  position,
+  onClose,
+  renderContent,
+  renderReference,
+}) => {
   const { refs, floatingStyles } = useFloating({
     strategy: "fixed",
     whileElementsMounted: autoUpdate,
-    placement: "bottom-end",
+    placement: position ?? "bottom-end",
     middleware: [
       shift({
         crossAxis: false,

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../config";
 import { useElementContentPosition } from "../../utils/use-element-position";
 import { ButtonProp } from "../Button";
@@ -60,7 +60,7 @@ export const NewsZoneSection = ({
     sectionHeaderPosition.left - sectionHeaderPosition.right
   );
 
-  const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
+  const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
 
   const newsStoriesSliced = newsStories.slice(0, maxCards);

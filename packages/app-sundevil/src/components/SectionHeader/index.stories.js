@@ -4,7 +4,7 @@ import React from "react";
 import { SectionHeader } from "./index";
 
 export default {
-  title: "Section Header",
+  title: "Section Header / Section Header",
   component: SectionHeader,
   parameters: {
     docs: {

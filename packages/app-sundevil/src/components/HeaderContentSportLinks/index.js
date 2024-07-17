@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled, { createGlobalStyle } from "styled-components";
 
-import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
 import { Button } from "../../../../components-core/src";
 import { APP_CONFIG } from "../../config";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useMaxWidth } from "../../utils/use-max-width";
 import { Icon, iconPropType } from "../Icon_";
 import { SportIcon } from "../SportIcon";
@@ -377,7 +377,7 @@ const toColumnKey = column => column.map(sport => sport.sportName).join("");
 const HeaderContentSportLinks = ({ sports, buttons }) => {
   const columns = chunk(sports, COLUMN_HEIGHT);
   const { elementsRef, maxWidth } = useMaxWidth(columns.length);
-  const isTablet = useIsMobile(APP_CONFIG.breakpointTablet);
+  const isTablet = useBreakpoint(APP_CONFIG.breakpointTablet);
   return (
     <Root>
       <Vars />

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useMemo, useRef } from "react";
 import styled from "styled-components";
 
-import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../config";
 import {
   useElementContentDimensions,
@@ -35,7 +35,7 @@ const SpecialEventsSectionInner = ({ sectionHeader }) => {
   const sectionHeaderRef = useRef();
   const sectionHeaderPosition = useElementContentPosition(sectionHeaderRef);
   const sectionHeaderDimensions = useElementContentDimensions(sectionHeaderRef);
-  const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
+  const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const cardWidth = isMobile
     ? sectionHeaderDimensions.width
     : DESKTOP_CARD_WIDTH;

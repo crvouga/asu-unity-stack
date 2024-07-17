@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 
-import { useIsMobile } from "../../../../../component-header/src/core/hooks/isMobile";
+import { useBreakpoint } from "../../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../../config";
 import { ArrowButtons } from "../../ArrowButtons";
 import { Carousel, CarouselController, CarouselItem } from "../../Carousel";
@@ -68,7 +68,7 @@ export const SpecialEventCardCarousel = ({
 }) => {
   const [carouselController] = useState(() => new CarouselController());
   const [index, setIndex] = useState(0);
-  const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
+  const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const carouselRef = useRef(null);
 
   return (

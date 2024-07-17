@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import { useIsMobile } from "../../../../../component-header/src/core/hooks/isMobile";
+import { useBreakpoint } from "../../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../../config";
 import { Skeleton } from "../../Skeleton";
 import { Avatar } from "./Avatar";
@@ -98,7 +98,7 @@ const Caption = styled.p`
 
 /** @typedef {React.FC<{socialMediaPost: SocialMediaPost.SocialMediaPost }>} */
 export const SocialMediaPostCardTall = ({ socialMediaPost }) => {
-  const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
+  const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const avatarSize = isMobile ? "sm" : "lg";
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   return (

@@ -4,7 +4,7 @@ export const DropDownSurface = styled.div`
   border-radius: 0px;
   background-color: #fff !important;
   opacity: 1 !important;
-  padding: 0.5rem 0;
+  padding: 1.5rem 0;
   position: relative;
   z-index: 10 !important;
   color: #000; /* Ensure text color is not transparent */

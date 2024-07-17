@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { useIsMobile } from "../../../../component-header/src/core/hooks/isMobile";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../config";
 
 const Root = styled.div`
@@ -28,7 +28,7 @@ const ContentRoot = styled.div`
 `;
 
 export const SidebarLayout = ({ className, renderSidebar, renderContent }) => {
-  const isTablet = useIsMobile(APP_CONFIG.breakpointTablet);
+  const isTablet = useBreakpoint(APP_CONFIG.breakpointTablet);
   return (
     <Root className={className} isTablet={isTablet}>
       <SidebarRoot isTablet={isTablet}>{renderSidebar()}</SidebarRoot>

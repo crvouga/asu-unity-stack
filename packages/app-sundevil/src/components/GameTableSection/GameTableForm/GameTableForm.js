@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { useIsMobile } from "../../../../../component-header/src/core/hooks/isMobile";
+import { useBreakpoint } from "../../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../../config";
 import { CheckboxList } from "../../CheckboxList/CheckboxList";
 import { GameDataSourceSortBy } from "../../Game/game-data-source";
@@ -36,7 +36,7 @@ export const GameTableForm = ({
   orientation,
 }) => {
   const { allVenues } = useGameVenuesLoader();
-  const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
+  const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
 
   const includeAny =

@@ -2,14 +2,14 @@
 // @ts-ignore
 import React, { forwardRef } from "react";
 
-import { useIsMobile } from "../../../../../component-header/src/core/hooks/isMobile";
 import { APP_CONFIG } from "../../../config";
+import { useBreakpoint } from "../../../utils/use-breakpoint";
 import { gameTableRowPropTypes } from "./game-table-row";
 import { GameTableRowDesktop } from "./GameTableRowDesktop";
 import { GameTableRowMobile } from "./GameTableRowMobile";
 
 export const GameTableRow = forwardRef((props, ref) => {
-  const isMobile = useIsMobile(APP_CONFIG.breakpointMobile);
+  const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   if (isMobile) {
     return <GameTableRowMobile {...props} ref={ref} />;
   }

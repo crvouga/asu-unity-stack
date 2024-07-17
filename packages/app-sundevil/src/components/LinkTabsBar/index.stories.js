@@ -27,8 +27,29 @@ Default.args = {
       active: true,
     },
     {
+      mobileLabel: "Baseball Home",
+      href: "#baseball",
+      label: "Baseball",
+      active: false,
+      icon: {
+        icon_name: "baseball",
+        style: "fa-fas",
+        settings:
+          "a:2:{s:7:\u0022masking\u0022;a:2:{s:4:\u0022mask\u0022;s:0:\u0022\u0022;s:5:\u0022style\u0022;s:6:\u0022fa-fas\u0022;}s:16:\u0022power_transforms\u0022;a:3:{s:5:\u0022scale\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_y\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}s:10:\u0022position_x\u0022;a:2:{s:4:\u0022type\u0022;s:0:\u0022\u0022;s:5:\u0022value\u0022;s:0:\u0022\u0022;}}}",
+      },
+    },
+    {
+      mobileLabel: "Lacrosse Home",
+      href: "#lacrosse",
+      icon: {
+        src: "https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/lacrosse-sticks-icon.png",
+      },
+      active: false,
+    },
+    {
       label: "Roster",
       href: "#football-roster",
+      active: false,
     },
     {
       label: "News",

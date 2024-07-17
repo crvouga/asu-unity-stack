@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
-import { Icon } from "../Icon_";
+import { Icon, iconPropType } from "../Icon_";
 
 export const Root = styled.a`
   display: flex;
@@ -112,7 +112,7 @@ export const LinkTab = forwardRef(
 );
 LinkTab.propTypes = {
   href: PropTypes.string,
-  icon: PropTypes.string,
+  icon: iconPropType,
   renderIconEnd: PropTypes.func,
   label: PropTypes.string,
   as: PropTypes.elementType,

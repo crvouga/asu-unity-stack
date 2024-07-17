@@ -43,6 +43,14 @@ const LinkTabsRoot = styled.div`
   flex-shrink: 0;
 `;
 
+const Content = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+
 export const LinkTabsBarMobile = ({
   links = [],
   sponsorHref,
@@ -51,12 +59,14 @@ export const LinkTabsBarMobile = ({
 }) => {
   return (
     <Root>
-      <LinkTabsRoot>
-        <LinkTabsBarDropDown links={links} />
-      </LinkTabsRoot>
-      <SponsorRoot href={sponsorHref}>
-        <SponsorImage src={sponsorLogoSrc} alt={sponsorLogoAlt} />
-      </SponsorRoot>
+      <Content className="container">
+        <LinkTabsRoot>
+          <LinkTabsBarDropDown links={links} />
+        </LinkTabsRoot>
+        <SponsorRoot href={sponsorHref}>
+          <SponsorImage src={sponsorLogoSrc} alt={sponsorLogoAlt} />
+        </SponsorRoot>
+      </Content>
     </Root>
   );
 };

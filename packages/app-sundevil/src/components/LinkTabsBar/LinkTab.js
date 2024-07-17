@@ -101,7 +101,9 @@ export const LinkTab = forwardRef(
       >
         <LabelRoot>
           {icon && <Icon icon={icon} />}
-          <Label>{label}</Label>
+          {typeof label === "string" && label.trim().length > 0 && (
+            <Label>{label}</Label>
+          )}
         </LabelRoot>
         {renderIconEnd && renderIconEnd()}
       </Root>

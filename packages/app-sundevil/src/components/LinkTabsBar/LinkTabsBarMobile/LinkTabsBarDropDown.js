@@ -18,7 +18,7 @@ export const LinkTabsBarDropDown = ({ links }) => {
       position="bottom-start"
       renderReference={({ ref, open: isOpen }) => (
         <LinkTab
-          style={{ width: "100%", padding: "0 1rem" }}
+          style={{ width: "100%", padding: "0", paddingRight: "1rem" }}
           as="button"
           focused={isOpen}
           ref={ref}

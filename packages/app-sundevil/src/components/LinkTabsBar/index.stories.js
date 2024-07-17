@@ -19,6 +19,7 @@ const Template = args => <LinkTabsBar {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
+  disableActiveFromUrl: false,
   links: [
     {
       mobileLabel: "Football Home",

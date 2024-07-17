@@ -28,7 +28,7 @@ const isCurrentHref = (currentUrl, href) => {
   );
 };
 
-const mapLinks = (currentUrl, links) => {
+const mapActiveLinkFromUrl = (currentUrl, links) => {
   if (!Array.isArray(links)) {
     return [];
   }
@@ -40,10 +40,12 @@ const mapLinks = (currentUrl, links) => {
 };
 
 export const LinkTabsBar = props => {
+  const { links, disableActiveFromUrl } = props;
   const currentUrl = useCurrentUrl();
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
-  const { links } = props;
-  const mappedLinks = mapLinks(currentUrl, links);
+  const mappedLinks = disableActiveFromUrl
+    ? links
+    : mapActiveLinkFromUrl(currentUrl, links);
 
   if (isMobile) {
     const linksMobile = mappedLinks.map(link => ({

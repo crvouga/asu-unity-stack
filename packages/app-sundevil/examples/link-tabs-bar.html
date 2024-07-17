@@ -70,6 +70,7 @@
     </div>
     <script>
       const props = {
+        disableActiveFromUrl: false,
         links: [
           {
             mobileLabel: "Football Home",
@@ -80,8 +81,8 @@
           {
             mobileLabel: "Baseball Home",
             href: "#baseball",
+            label: "Baseball",
             active: false,
-            label: "Baseball Home",
             icon: {
               icon_name: "baseball",
               style: "fa-fas",
@@ -144,7 +145,6 @@
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfbwJU0mLkyyoKkok_jMppnBtEbsWNYJja3A&s",
         sponsorLogoAlt: " ",
       };
-
       initLinkTabsBar({
         targetSelector: "#container",
         props,

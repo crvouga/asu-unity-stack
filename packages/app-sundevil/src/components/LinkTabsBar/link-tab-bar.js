@@ -11,5 +11,8 @@ export const linkTabsBarPropTypes = PropTypes.shape({
   sponsorLogoAlt: PropTypes.string,
   maxLinkCountBreakpoints: maxLinkCountBreakpointsPropType,
   disableActiveFromUrl: PropTypes.bool,
-  stickyNavbarSelector: PropTypes.string,
+  stickyPosition: PropTypes.shape({
+    navbarSelector: PropTypes.string,
+    stickyElementSelector: PropTypes.string,
+  }),
 });

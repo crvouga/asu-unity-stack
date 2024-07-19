@@ -21,26 +21,33 @@ const Template = args => (
       id="navbar"
       style={{
         width: "100%",
-        height: "123px",
+        height: "80px",
         backgroundColor: "black",
         position: "fixed",
         top: 0,
         left: 0,
+        zIndex: 1000,
       }}
     />
     <div
       style={{ width: "100%", height: "500px", backgroundColor: "#efefef" }}
     />
-    <LinkTabsBar {...args} />
 
-    <div style={{ width: "100%", height: "1000px" }} />
+    <div id="link-tabs">
+      <LinkTabsBar {...args} />
+    </div>
+
+    <div style={{ width: "100%", height: "3000px" }} />
   </div>
 );
 
 export const Default = Template.bind({});
 Default.args = {
   disableActiveFromUrl: false,
-  stickyNavbarSelector: "#navbar",
+  stickyPosition: {
+    navbarSelector: "#navbar",
+    stickyElementSelector: "#link-tabs",
+  },
   links: [
     {
       mobileLabel: "Football Home",

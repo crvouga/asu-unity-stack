@@ -1,5 +1,5 @@
 // @ts-check
-import React from "react";
+import React, { useEffect } from "react";
 
 import { APP_CONFIG } from "../../config";
 import { useBreakpoint } from "../../utils/use-breakpoint";
@@ -7,8 +7,7 @@ import { useCurrentUrl } from "../../utils/use-current-url";
 import { linkTabsBarPropTypes } from "./link-tab-bar";
 import { LinkTabsBarDesktop } from "./LinkTabsBarDesktop/LinkTabsBarDesktop";
 import { LinkTabsBarMobile } from "./LinkTabsBarMobile/LinkTabsBarMobile";
-import { useQuerySelector } from "../../utils/use-query-selector";
-import { useElementContentDimensions } from "../../utils/use-element-position";
+import { useStickyPositionEffect } from "./use-sticky-position-effect";
 
 /**
  *
@@ -58,23 +57,14 @@ const LinkTabsBarResponsive = props => {
 LinkTabsBarResponsive.propTypes = linkTabsBarPropTypes;
 
 export const LinkTabsBar = props => {
-  const { links, disableActiveFromUrl, stickyNavbarSelector } = props;
+  const { links, disableActiveFromUrl, stickyPosition } = props;
   const currentUrl = useCurrentUrl();
   const mappedLinks = disableActiveFromUrl
     ? links
     : mapActiveLinkFromUrl(currentUrl, links);
 
-  const stickyNavBar = useQuerySelector(stickyNavbarSelector);
-  const stickyNavBarDimensions = useElementContentDimensions(stickyNavBar);
+  useStickyPositionEffect(stickyPosition);
 
-  return (
-    <div style={{ position: "sticky", top: stickyNavBarDimensions.height }}>
-      <LinkTabsBarResponsive
-        {...props}
-        links={mappedLinks}
-        stickyNavBarDimensions={stickyNavBarDimensions}
-      />
-    </div>
-  );
+  return <LinkTabsBarResponsive {...props} links={mappedLinks} />;
 };
 LinkTabsBar.propTypes = linkTabsBarPropTypes;

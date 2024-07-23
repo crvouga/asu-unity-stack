@@ -44,7 +44,23 @@ export class GameDataSourceStatic extends IGameDataSource {
             ? isEqual(cleanString, game?.venue, input?.venueId)
             : true;
 
-        const matched = matchedSportId && matchedGameType && matchedVenueId;
+        const matchedMaxAdmissionCost =
+          typeof input?.maxAdmissionCost === "number" &&
+          typeof game?.admissionCost === "number"
+            ? game?.admissionCost <= input?.maxAdmissionCost
+            : true;
+
+        const matchedEventType =
+          typeof input?.eventType === "string" && input?.eventType.length > 0
+            ? isEqual(cleanString, game?.eventType, input?.eventType)
+            : true;
+
+        const matched =
+          matchedSportId &&
+          matchedGameType &&
+          matchedVenueId &&
+          matchedMaxAdmissionCost &&
+          matchedEventType;
 
         return matched;
       }),

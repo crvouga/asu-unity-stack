@@ -14,9 +14,11 @@ export const gameSchema = PropTypes.shape({
   venue: PropTypes.string.isRequired,
   ticketLink: PropTypes.string,
   ticketText: PropTypes.string,
-  gameType: PropTypes.string,
+  gameType: PropTypes.string, // "home" | "away"
   sportId: PropTypes.string,
   subtitleChip: PropTypes.string,
+  admissionCost: PropTypes.number,
+  eventType: PropTypes.string,
 });
 
 /**
@@ -36,4 +38,6 @@ export const gameSchema = PropTypes.shape({
  * @property {string} ticketText
  * @property {string} gameType
  * @property {string} subtitleChip
+ * @property {number} admissionCost
+ * @property {string} eventType
  */

@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { useBreakpoint } from "../../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../../config";
+import { useBreakpoint } from "../../../utils/use-breakpoint";
 import { CheckboxList } from "../../CheckboxList/CheckboxList";
 import { GameDataSourceSortBy } from "../../Game/game-data-source";
 import { useGameVenuesLoader } from "../../Game/use-game-venues-loader";
@@ -25,6 +25,18 @@ const Root = styled.div`
   flex-wrap: wrap;
 `;
 
+/**
+ * @type {React.FC<{
+ * style?: React.CSSProperties;
+ * gameTableForm: import("./use-game-table-form").GameTableFormHook;
+ * configLayout: import("../config-layout").ConfigLayout;
+ * configInputs: import("../config-inputs").ConfigInputs;
+ * sports: import("../../SportsTabs/sports-tabs").Sport[];
+ * className?: string;
+ * darkMode?: boolean;
+ * orientation?: "horizontal" | "vertical";
+ * }>}
+ */
 export const GameTableForm = ({
   style,
   gameTableForm,
@@ -44,7 +56,9 @@ export const GameTableForm = ({
     configLayout.includeInputSportType ||
     configLayout.includeInputVenueSelect ||
     configLayout.includeInputHomeOrAwaySelect ||
-    configLayout.includeSortBySelect;
+    configLayout.includeInputSortBySelect ||
+    configLayout.includeInputEventTypeSelect ||
+    configLayout.includeMaxAdmissionCostSelect;
 
   if (!includeAny) {
     return null;
@@ -73,6 +87,7 @@ export const GameTableForm = ({
           )}
         />
       )}
+
       {configLayout.includeInputSportType && (
         <Select
           darkMode={darkMode}
@@ -94,6 +109,7 @@ export const GameTableForm = ({
           }))}
         />
       )}
+
       {configLayout.includeSportTypeCheckboxList && isDesktop && (
         <CheckboxList
           style={{ flex: 1 }}
@@ -113,6 +129,7 @@ export const GameTableForm = ({
           }))}
         />
       )}
+
       {configLayout.includeInputVenueSelect && (
         <Select
           darkMode={darkMode}
@@ -131,6 +148,7 @@ export const GameTableForm = ({
           }))}
         />
       )}
+
       {configLayout.includeInputHomeOrAwaySelect && (
         <Select
           darkMode={darkMode}
@@ -156,6 +174,58 @@ export const GameTableForm = ({
           ]}
         />
       )}
+
+      {configLayout.includeInputEventTypeSelect &&
+        Array.isArray(configInputs.eventTypeSelect?.options) &&
+        configInputs.eventTypeSelect?.options.length > 0 && (
+          <Select
+            darkMode={darkMode}
+            style={{ flex: 1 }}
+            label={configInputs.eventTypeSelect?.label ?? ""}
+            placeholder={configInputs.eventTypeSelect?.placeholder ?? ""}
+            onChange={option =>
+              gameTableForm.update({
+                eventType:
+                  option.value === gameTableForm.eventType
+                    ? null
+                    : option.value,
+              })
+            }
+            options={configInputs.eventTypeSelect?.options.map(option => ({
+              active: option.value === gameTableForm.eventType,
+              id: option.id,
+              label: option.label,
+              value: option.value,
+            }))}
+          />
+        )}
+
+      {configLayout.includeMaxAdmissionCostSelect &&
+        Array.isArray(configInputs.maxAdmissionCostSelect?.options) &&
+        configInputs.maxAdmissionCostSelect?.options.length > 0 && (
+          <Select
+            darkMode={darkMode}
+            style={{ flex: 1 }}
+            label={configInputs.maxAdmissionCostSelect?.label ?? ""}
+            placeholder={configInputs.maxAdmissionCostSelect?.placeholder ?? ""}
+            onChange={option =>
+              gameTableForm.update({
+                maxAdmissionCost:
+                  option.value === gameTableForm.maxAdmissionCost
+                    ? null
+                    : option.value,
+              })
+            }
+            options={configInputs.maxAdmissionCostSelect?.options.map(
+              option => ({
+                active: option.value === gameTableForm.maxAdmissionCost,
+                id: option.id,
+                label: option.label,
+                value: option.value,
+              })
+            )}
+          />
+        )}
 
       {configLayout.includeInputSortBySelect && (
         <Select
@@ -199,10 +269,14 @@ export const GameTableForm = ({
 };
 
 GameTableForm.propTypes = {
+  // @ts-ignore
   gameTableForm: gameTableFormSchema,
+  // @ts-ignore
   configLayout: configLayoutSchema,
+  // @ts-ignore
   configInputs: configInputsSchema,
   className: PropTypes.string,
+  // @ts-ignore
   sports: PropTypes.arrayOf(sportSchema),
   darkMode: PropTypes.bool,
   orientation: PropTypes.oneOf(["horizontal", "vertical"]),

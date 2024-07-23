@@ -4,7 +4,7 @@ import React from "react";
 import { GameTableSection } from "../index";
 
 export default {
-  title: "Game Table / Schedule",
+  title: "Game Table / SunDevilAthleticsEvents",
   component: GameTableSection,
   parameters: {
     docs: {
@@ -22,9 +22,9 @@ const Template = args => (
   </>
 );
 
-export const Schedule = Template.bind({});
-Schedule.args = {
-  // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4801-45080&t=OOxUjvuOdT8YyVSn-0
+export const SunDevilAthleticsEvents = Template.bind({});
+SunDevilAthleticsEvents.args = {
+  // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4801-4633&t=LF0II0k8pEHIoz43-0
   gameDataSource: {
     type: "mock",
     timeout: 200,
@@ -59,15 +59,15 @@ Schedule.args = {
   },
   configLayout: {
     includeInputSearch: true,
-    includeInputSportType: true,
-    includeInputHomeOrAwaySelect: true,
+    includeInputSportType: false,
+    includeInputHomeOrAwaySelect: false,
     includeInputVenueSelect: false,
     includeInputSortBySelect: false,
     includeSportsTabs: false,
     includeLoadMore: true,
     includeSportTypeCheckboxList: false,
-    includeInputEventTypeSelect: false,
-    includeMaxAdmissionCostSelect: false,
+    includeInputEventTypeSelect: true,
+    includeMaxAdmissionCostSelect: true,
   },
   configGameTableForm: {
     title: "Filter your results",
@@ -95,6 +95,63 @@ Schedule.args = {
     },
     sportTypeCheckboxList: {
       label: "Sport Type",
+    },
+    eventTypeSelect: {
+      label: "Event Type",
+      placeholder: "Select one",
+      options: [
+        {
+          label: "Game",
+          id: "game",
+          value: "game",
+        },
+        {
+          label: "Practice",
+          id: "practice",
+          value: "practice",
+        },
+        {
+          label: "Scrimmage",
+          id: "scrimmage",
+          value: "scrimmage",
+        },
+      ],
+    },
+    maxAdmissionCostSelect: {
+      label: "Cost of admission",
+      placeholder: "Select one",
+      options: [
+        {
+          label: "Free",
+          id: "free",
+          value: 0,
+        },
+        {
+          label: "$10",
+          id: "10",
+          value: 10,
+        },
+        {
+          label: "$20",
+          id: "20",
+          value: 20,
+        },
+        {
+          label: "$30",
+          id: "30",
+          value: 30,
+        },
+        {
+          label: "$40",
+          id: "40",
+          value: 40,
+        },
+        {
+          label: "$50",
+          id: "50",
+          value: 50,
+        },
+      ],
     },
   },
   gameTable: {

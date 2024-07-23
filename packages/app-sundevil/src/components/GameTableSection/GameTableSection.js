@@ -71,6 +71,8 @@ const GameTableSectionInner = ({ ...props }) => {
     searchQuery: gameTableForm.debouncedSearchQuery,
     sortBy: gameTableForm.sortBy,
     venueId: gameTableForm.venueId,
+    maxAdmissionCost: gameTableForm.maxAdmissionCost,
+    eventType: gameTableForm.eventType,
     limit,
   });
 

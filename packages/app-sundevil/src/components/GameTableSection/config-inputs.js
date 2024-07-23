@@ -1,6 +1,23 @@
 // @ts-check
 import PropTypes from "prop-types";
 
+const selectOptionSchema = PropTypes.shape({
+  label: PropTypes.string,
+  id: PropTypes.string,
+  active: PropTypes.bool,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+});
+
+/**
+ * @typedef {{
+ * id: string;
+ * label?: string;
+ * placeholder?: string;
+ * active?:boolean;
+ * value?: string | number | null | undefined;
+ * }} SelectOption
+ */
+
 export const configInputsSchema = PropTypes.shape({
   searchInput: PropTypes.shape({
     label: PropTypes.string,
@@ -22,6 +39,16 @@ export const configInputsSchema = PropTypes.shape({
     label: PropTypes.string,
     placeholder: PropTypes.string,
   }),
+  eventTypeSelect: PropTypes.shape({
+    label: PropTypes.string,
+    placeholder: PropTypes.string,
+    options: selectOptionSchema,
+  }),
+  maxAdmissionCostSelect: PropTypes.shape({
+    label: PropTypes.string,
+    placeholder: PropTypes.string,
+    options: selectOptionSchema,
+  }),
 });
 
 /**
@@ -32,6 +59,10 @@ export const configInputsSchema = PropTypes.shape({
  */
 
 /**
+ * @typedef {ConfigInput & {options?: SelectOption[]}} ConfigSelectInput
+ */
+
+/**
  * @typedef {{
  *  searchInput?: ConfigInput,
  *  sportTypeSelect?: ConfigInput,
@@ -39,6 +70,8 @@ export const configInputsSchema = PropTypes.shape({
  *  venueSelect?: ConfigInput,
  *  sortBySelect?: ConfigInput,
  *  sportTypeCheckboxList?: ConfigInput,
+ *  eventTypeSelect?: ConfigSelectInput,
+ *  maxAdmissionCostSelect?: ConfigSelectInput,
  * }} ConfigInputs
  */
 
@@ -68,6 +101,14 @@ export const defaultConfigInputs = {
   },
   sportTypeCheckboxList: {
     label: "Sport Type",
+    placeholder: "Select one",
+  },
+  maxAdmissionCostSelect: {
+    label: "Cost of admission",
+    placeholder: "Select one",
+  },
+  eventTypeSelect: {
+    label: "Event Type",
     placeholder: "Select one",
   },
 };

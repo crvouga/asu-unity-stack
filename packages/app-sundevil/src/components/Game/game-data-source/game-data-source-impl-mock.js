@@ -16,6 +16,10 @@ const ALL_SPORT_IDS = [
 
 const ALL_GAME_TYPE = ["all", "home", "away"];
 
+const ALL_ADMISSION_COST = [0, 10, 20, 30, 40, 50];
+
+const ALL_EVENT_TYPE = ["game", "practice", "scrimmage"];
+
 /**
  * @type {import("../game").Game[]}
  */
@@ -44,6 +48,10 @@ const games = [];
     time: "5:30pm",
     venue: "Phoenix Muni Stadium",
     subtitleChip: "Gameday",
+    admissionCost:
+      ALL_ADMISSION_COST[Math.floor(Math.random() * ALL_ADMISSION_COST.length)],
+    eventType:
+      ALL_EVENT_TYPE[Math.floor(Math.random() * ALL_EVENT_TYPE.length)],
   });
 });
 

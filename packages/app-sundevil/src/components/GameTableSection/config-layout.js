@@ -12,6 +12,8 @@ import PropTypes from "prop-types";
  *  includeInputSortBySelect: boolean
  *  includeLoadMore: boolean
  *  includeSportTypeCheckboxList: boolean
+ *  includeInputEventTypeSelect: boolean
+ *  includeMaxAdmissionCostSelect: boolean
  * }} ConfigLayout
  */
 
@@ -25,6 +27,8 @@ export const configLayoutSchema = PropTypes.shape({
   includeSportsTabs: PropTypes.bool,
   includeInputSortBySelect: PropTypes.bool,
   includeSportTypeCheckboxList: PropTypes.bool,
+  includeInputEventTypeSelect: PropTypes.bool,
+  includeMaxAdmissionCostSelect: PropTypes.bool,
 });
 
 /**
@@ -40,4 +44,6 @@ export const defaultConfigLayout = {
   includeLoadMore: false,
   includeInputSortBySelect: false,
   includeSportTypeCheckboxList: false,
+  includeInputEventTypeSelect: false,
+  includeMaxAdmissionCostSelect: false,
 };

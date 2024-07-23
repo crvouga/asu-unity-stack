@@ -12,7 +12,9 @@ import { GameDataSourceSortBy } from "../../Game/game-data-source";
  * venueId: string;
  * searchQuery: string;
  * sortBy: keyof typeof GameDataSourceSortBy;
- * }} GameTableForm
+ * maxAdmissionCost: number;
+ * eventType: string;
+ * }} GameTableFormState
  */
 
 /**
@@ -33,6 +35,8 @@ export const init = form => {
     sortBy: GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST,
     sportId: null,
     venueId: null,
+    maxAdmissionCost: null,
+    eventType: null,
     ...form,
   };
 };
@@ -106,11 +110,17 @@ export const useGameTableForm = initial => {
   };
 };
 
+/**
+ * @typedef {GameTableFormState & {update: (state: Partial<GameTableFormState>) => void; setSearchQuery: (searchQueryNew: string) => void}} GameTableFormHook
+ */
+
 export const gameTableFormSchema = PropTypes.shape({
   sportId: PropTypes.string,
   gameType: PropTypes.string,
   venueId: PropTypes.string,
   searchQuery: PropTypes.string,
+  maxAdmissionCost: PropTypes.number,
+  eventType: PropTypes.string,
   sortBy: PropTypes.oneOf(Object.values(GameDataSourceSortBy)),
   setSearchQuery: PropTypes.func,
   update: PropTypes.func,

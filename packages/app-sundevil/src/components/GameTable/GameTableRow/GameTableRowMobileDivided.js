@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 import { deepMergeLeft } from "../../../utils/deep-merge-left";
 import { Skeleton } from "../../Skeleton";
-import { defaultConfigCells } from "./config-cells";
 import { defaultConfigLayout } from "./config-layout";
 import { gameTableRowPropTypes } from "./game-table-row";
+import { Subtitles } from "./Subtitles";
 
 const Root = styled.div`
   display: flex;
@@ -31,23 +31,6 @@ const Title = styled.p`
   font-size: 16px;
   font-weight: bold;
   width: 100%;
-`;
-
-const Subtitles = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  overflow: hidden;
-`;
-
-const Subtitle = styled.p`
-  padding: 0;
-  margin: 0;
-  font-size: 12px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 `;
 
 const CellDate = styled.div`
@@ -117,73 +100,51 @@ const DateMonth = styled.p`
   font-size: 12px;
   font-weight: bold;
 `;
-export const GameTableRowMobileDivided = forwardRef(
-  (
-    {
-      game,
-      skeleton,
-      empty,
-      configLayout: configLayoutPartial,
-      configCells: configCellsPartial,
-    },
-    ref
-  ) => {
-    /** @type {import("./config-layout").ConfigLayout} */
-    const configLayout = deepMergeLeft(
-      configLayoutPartial ?? {},
-      defaultConfigLayout
-    );
-    /** @type {import("./config-cells").ConfigCells} */
-    // eslint-disable-next-line no-unused-vars
-    const configCells = deepMergeLeft(
-      configCellsPartial ?? {},
-      defaultConfigCells
-    );
+export const GameTableRowMobileDivided = forwardRef((props, ref) => {
+  const { game, skeleton, empty, configLayout: configLayoutPartial } = props;
 
-    return (
-      <Skeleton skeleton={skeleton} ref={ref}>
-        <div className="container">
-          <Root
-            aria-hidden={empty}
-            style={empty ? { opacity: 0, userSelect: "none" } : {}}
-          >
-            {configLayout.includeCellDate && (
-              <CellDate>
-                <DateMonth>{game?.dateMonth}.</DateMonth>
-                <DateDay>{game?.dateDay}</DateDay>
-              </CellDate>
-            )}
-            {configLayout.includeCellTitle && (
-              <CellTitle>
-                <Title>{game?.title}</Title>
-                <Subtitles>
-                  <Subtitle className="text-body-tertiary">
-                    {game?.time}
-                  </Subtitle>
-                  <Subtitle className="text-body-tertiary">
-                    {game?.venue}
-                  </Subtitle>
-                </Subtitles>
-              </CellTitle>
-            )}
-            {configLayout.includeCellTickets && (
-              <CellTicketButton>
-                <TicketButton
-                  type="button"
-                  aria-label={game?.ticketText}
-                  onClick={() => {
-                    window.open(game?.ticketLink, "_blank");
-                  }}
-                >
-                  <i className="fa fa-fas fa-ticket" />
-                </TicketButton>
-              </CellTicketButton>
-            )}
-          </Root>
-        </div>
-      </Skeleton>
-    );
-  }
-);
+  /** @type {import("./config-layout").ConfigLayout} */
+  const configLayout = deepMergeLeft(
+    configLayoutPartial ?? {},
+    defaultConfigLayout
+  );
+
+  return (
+    <Skeleton skeleton={skeleton} ref={ref}>
+      <div className="container">
+        <Root
+          aria-hidden={empty}
+          style={empty ? { opacity: 0, userSelect: "none" } : {}}
+        >
+          {configLayout.includeCellDate && (
+            <CellDate>
+              <DateMonth>{game?.dateMonth}.</DateMonth>
+              <DateDay>{game?.dateDay}</DateDay>
+            </CellDate>
+          )}
+          {configLayout.includeCellTitle && (
+            <CellTitle>
+              <Title>{game?.title}</Title>
+              <Subtitles {...props} />
+            </CellTitle>
+          )}
+          {configLayout.includeCellTickets && (
+            <CellTicketButton>
+              <TicketButton
+                type="button"
+                aria-label={game?.ticketText}
+                onClick={() => {
+                  window.open(game?.ticketLink, "_blank");
+                }}
+              >
+                <i className="fa fa-fas fa-ticket" />
+              </TicketButton>
+            </CellTicketButton>
+          )}
+        </Root>
+      </div>
+    </Skeleton>
+  );
+});
 
 GameTableRowMobileDivided.propTypes = gameTableRowPropTypes;

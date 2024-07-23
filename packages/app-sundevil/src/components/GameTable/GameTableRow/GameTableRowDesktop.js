@@ -8,9 +8,9 @@ import { useElementSetMaxDimensions } from "../../../utils/use-element-set-max-d
 import { Skeleton } from "../../Skeleton";
 import { SportIcon } from "../../SportIcon";
 import { stringToClosestSportName } from "../../SportIcon/sport-name";
-import { defaultConfigCells } from "./config-cells";
 import { defaultConfigLayout } from "./config-layout";
 import { gameTableRowPropTypes } from "./game-table-row";
+import { Subtitles } from "./Subtitles";
 
 const Root = styled.div`
   width: 100%;
@@ -108,167 +108,101 @@ const Title = styled.a`
   max-width: 100%;
 `;
 
-const Subtitles = styled.div`
-  display: flex;
-  gap: 24px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 100%;
-  flex-wrap: nowrap;
-  align-items: center;
-`;
+export const GameTableRowDesktop = forwardRef((props, ref) => {
+  const {
+    // @ts-ignore
+    game: gameUntyped,
+    // @ts-ignore
+    skeleton,
+    // @ts-ignore
+    empty,
+    // @ts-ignore
+    configLayout: configLayoutPartial,
+  } = props;
 
-const Subtitle = styled.p`
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-`;
+  /** @type {import("../../Game").Game} */
+  const game = gameUntyped;
+  /** @type {import("./config-layout").ConfigLayout} */
+  const configLayout = deepMergeLeft(
+    configLayoutPartial ?? {},
+    defaultConfigLayout ?? {}
+  );
 
-const SubtitleChip = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 6px;
-  border-radius: 1px;
-  background-color: #d0d0d0;
-  color: #484848;
-  font-size: 12px;
-  font-weight: bold;
-  height: 18px;
-`;
+  const buttonCellRef = useRef(null);
+  const buttonCellMaxDimensions = useElementSetMaxDimensions({
+    elementRef: buttonCellRef,
+    elementSetId: "button-cell",
+  });
+  return (
+    // @ts-ignore
+    <Skeleton skeleton={skeleton} ref={ref}>
+      <Root
+        aria-hidden={empty}
+        style={empty ? { opacity: 0, userSelect: "none" } : {}}
+      >
+        {configLayout.includeCellDate && (
+          <Cell>
+            <CellDate>
+              <h5 className="m-0 lh-1">{game?.dateMonth}.</h5>
+              <h2 className="m-0">{game?.dateDay}</h2>
+            </CellDate>
+          </Cell>
+        )}
 
-const isValidString = value =>
-  typeof value === "string" && value.trim().length > 0;
+        {configLayout.includeCellSportName && (
+          <Cell>
+            <CellSportName>
+              <SportIcon sportName={stringToClosestSportName(game?.sportId)} />
+              <p className="m-0">{game?.sportId}</p>
+            </CellSportName>
+          </Cell>
+        )}
 
-export const GameTableRowDesktop = forwardRef(
-  (
-    {
-      // @ts-ignore
-      game: gameUntyped,
-      // @ts-ignore
-      skeleton,
-      // @ts-ignore
-      empty,
-      // @ts-ignore
-      configLayout: configLayoutPartial,
-      // @ts-ignore
-      configCells: configCellsPartial,
-    },
-    ref
-  ) => {
-    /** @type {import("../../Game").Game} */
-    const game = gameUntyped;
-    /** @type {import("./config-layout").ConfigLayout} */
-    const configLayout = deepMergeLeft(
-      configLayoutPartial ?? {},
-      defaultConfigLayout ?? {}
-    );
+        {configLayout.includeCellVersus && (
+          <Cell>
+            <CellVersus>
+              <CellVersusLogo src={game?.homeTeamLogoSrc} />
+              <CellVersusVS>vs</CellVersusVS>
+              <CellVersusLogo src={game?.awayTeamLogoSrc} />
+            </CellVersus>
+          </Cell>
+        )}
 
-    /** @type {import("./config-cells").ConfigCells} */
-    const configCells = deepMergeLeft(
-      configCellsPartial ?? {},
-      defaultConfigCells ?? {}
-    );
+        {configLayout.includeCellTitle && (
+          <Cell className="flex-1">
+            <CellTitle>
+              <Title href={game?.titleHref}>{game?.title}</Title>
 
-    const buttonCellRef = useRef(null);
-    const buttonCellMaxDimensions = useElementSetMaxDimensions({
-      elementRef: buttonCellRef,
-      elementSetId: "button-cell",
-    });
-    return (
-      // @ts-ignore
-      <Skeleton skeleton={skeleton} ref={ref}>
-        <Root
-          aria-hidden={empty}
-          style={empty ? { opacity: 0, userSelect: "none" } : {}}
-        >
-          {configLayout.includeCellDate && (
-            <Cell>
-              <CellDate>
-                <h5 className="m-0 lh-1">{game?.dateMonth}.</h5>
-                <h2 className="m-0">{game?.dateDay}</h2>
-              </CellDate>
-            </Cell>
-          )}
-
-          {configLayout.includeCellSportName && (
-            <Cell>
-              <CellSportName>
-                <SportIcon
-                  sportName={stringToClosestSportName(game?.sportId)}
+              <Subtitles {...props} />
+            </CellTitle>
+          </Cell>
+        )}
+        {configLayout.includeCellTickets && (
+          <Cell
+            className="btn-ticket text-center align-middle px-2"
+            ref={buttonCellRef}
+            style={{ minWidth: buttonCellMaxDimensions.width }}
+          >
+            <Button
+              label={game?.ticketText}
+              color="dark"
+              size="small"
+              renderIcon={() => (
+                <i
+                  className="fa fa-fas fa-ticket"
+                  style={{ paddingRight: "10px" }}
                 />
-                <p className="m-0">{game?.sportId}</p>
-              </CellSportName>
-            </Cell>
-          )}
-
-          {configLayout.includeCellVersus && (
-            <Cell>
-              <CellVersus>
-                <CellVersusLogo src={game?.homeTeamLogoSrc} />
-                <CellVersusVS>vs</CellVersusVS>
-                <CellVersusLogo src={game?.awayTeamLogoSrc} />
-              </CellVersus>
-            </Cell>
-          )}
-
-          {configLayout.includeCellTitle && (
-            <Cell className="flex-1">
-              <CellTitle>
-                <Title href={game?.titleHref}>{game?.title}</Title>
-
-                <Subtitles
-                  style={{
-                    fontWeight:
-                      configCells?.cellTitle?.subtitleFontWeight === "bold"
-                        ? "bold"
-                        : "normal",
-                  }}
-                >
-                  {configCells.cellTitle.includeSubtitleChip &&
-                    isValidString(game?.subtitleChip) && (
-                      <SubtitleChip>{game?.subtitleChip}</SubtitleChip>
-                    )}
-                  <Subtitle className="text-body-tertiary">
-                    {game?.time}
-                  </Subtitle>
-                  <Subtitle className="text-body-tertiary">
-                    {game?.venue}
-                  </Subtitle>
-                </Subtitles>
-              </CellTitle>
-            </Cell>
-          )}
-          {configLayout.includeCellTickets && (
-            <Cell
-              className="btn-ticket text-center align-middle px-2"
-              ref={buttonCellRef}
-              style={{ minWidth: buttonCellMaxDimensions.width }}
-            >
-              <Button
-                label={game?.ticketText}
-                color="dark"
-                size="small"
-                renderIcon={() => (
-                  <i
-                    className="fa fa-fas fa-ticket"
-                    style={{ paddingRight: "10px" }}
-                  />
-                )}
-                onClick={() => {
-                  window.open(game?.ticketLink, "_blank");
-                }}
-              />
-            </Cell>
-          )}
-        </Root>
-      </Skeleton>
-    );
-  }
-);
+              )}
+              onClick={() => {
+                window.open(game?.ticketLink, "_blank");
+              }}
+            />
+          </Cell>
+        )}
+      </Root>
+    </Skeleton>
+  );
+});
 
 // @ts-ignore
 GameTableRowDesktop.propTypes = gameTableRowPropTypes;

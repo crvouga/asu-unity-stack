@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 import { useFocus } from "../../utils/use-focus";
+import { CollapseIcon } from "../CollapseIcon/CollapseIcon";
 import { DropDown, DropDownSurface } from "../DropDown";
 import { LabelledInputBase } from "../InputBase/LabelledInputBase";
 import { SelectOption } from "./SelectOption";
@@ -26,11 +27,6 @@ const Button = styled.button`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-`;
-
-const ChevronIcon = styled.span`
-  font-size: 16px;
-  color: #191919;
 `;
 
 const Value = styled.span`
@@ -97,13 +93,9 @@ export const Select = ({
               )}
             </Button>
           )}
-          renderEndIcon={({ style: iconStyle }) =>
-            open ? (
-              <ChevronIcon style={iconStyle} className="fas fa-chevron-up" />
-            ) : (
-              <ChevronIcon style={iconStyle} className="fas fa-chevron-down" />
-            )
-          }
+          renderEndIcon={({ style: iconStyle }) => (
+            <CollapseIcon style={iconStyle} open={open} />
+          )}
         />
       )}
       renderContent={() => (

@@ -51,6 +51,12 @@ export const GameTableForm = ({
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
 
+  const inputStyle = {
+    flex: 1,
+    width: isMobile ? "100%" : "auto",
+    minWidth: isMobile ? "100%" : "auto",
+  };
+
   const includeAny =
     configLayout.includeInputSearch ||
     configLayout.includeInputSportType ||
@@ -74,7 +80,7 @@ export const GameTableForm = ({
       {configLayout.includeInputSearch && (
         <TextField
           darkMode={darkMode}
-          style={{ flex: 2 }}
+          style={{ ...inputStyle, flex: 2 }}
           label={configInputs?.searchInput?.label ?? ""}
           placeholder={configInputs?.searchInput?.placeholder ?? ""}
           value={gameTableForm.searchQuery}
@@ -91,7 +97,7 @@ export const GameTableForm = ({
       {configLayout.includeInputSportType && (
         <Select
           darkMode={darkMode}
-          style={{ flex: 1 }}
+          style={inputStyle}
           label={configInputs.sportTypeSelect?.label ?? ""}
           placeholder={configInputs.sportTypeSelect?.placeholder ?? ""}
           onChange={option =>
@@ -112,7 +118,7 @@ export const GameTableForm = ({
 
       {configLayout.includeSportTypeCheckboxList && isDesktop && (
         <CheckboxList
-          style={{ flex: 1 }}
+          style={inputStyle}
           label={configInputs.sportTypeCheckboxList?.label ?? ""}
           onChange={option =>
             gameTableForm.update({
@@ -133,7 +139,7 @@ export const GameTableForm = ({
       {configLayout.includeInputVenueSelect && (
         <Select
           darkMode={darkMode}
-          style={{ flex: 1 }}
+          style={inputStyle}
           label={configInputs.venueSelect?.label ?? ""}
           placeholder={configInputs.venueSelect?.placeholder ?? ""}
           onChange={option =>
@@ -152,7 +158,7 @@ export const GameTableForm = ({
       {configLayout.includeInputHomeOrAwaySelect && (
         <Select
           darkMode={darkMode}
-          style={{ flex: 1 }}
+          style={inputStyle}
           label={configInputs.homeOrAwaySelect?.label ?? ""}
           placeholder={configInputs.homeOrAwaySelect?.placeholder ?? ""}
           onChange={option =>
@@ -180,7 +186,7 @@ export const GameTableForm = ({
         configInputs.eventTypeSelect?.options.length > 0 && (
           <Select
             darkMode={darkMode}
-            style={{ flex: 1 }}
+            style={inputStyle}
             label={configInputs.eventTypeSelect?.label ?? ""}
             placeholder={configInputs.eventTypeSelect?.placeholder ?? ""}
             onChange={option =>
@@ -205,7 +211,7 @@ export const GameTableForm = ({
         configInputs.maxAdmissionCostSelect?.options.length > 0 && (
           <Select
             darkMode={darkMode}
-            style={{ flex: 1 }}
+            style={inputStyle}
             label={configInputs.maxAdmissionCostSelect?.label ?? ""}
             placeholder={configInputs.maxAdmissionCostSelect?.placeholder ?? ""}
             onChange={option =>
@@ -230,7 +236,7 @@ export const GameTableForm = ({
       {configLayout.includeInputSortBySelect && (
         <Select
           darkMode={darkMode}
-          style={{ flex: 1 }}
+          style={inputStyle}
           label={configInputs.sortBySelect?.label ?? ""}
           placeholder={configInputs.sortBySelect?.placeholder ?? ""}
           onChange={option => {

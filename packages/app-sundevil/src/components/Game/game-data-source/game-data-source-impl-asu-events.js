@@ -35,6 +35,8 @@ const mapNodeToGame = data => {
 
   const titleHref = data["alias-indexed"] ?? data.alias;
 
+  const eventTypes = data["event_types"] ?? "";
+
   return {
     id: data?.nid,
     gameType: data.game_type,
@@ -58,6 +60,8 @@ const mapNodeToGame = data => {
     ticketLink: data.ticketing_rsvp_url,
     ticketText: data.ticketing_rsvp_txt,
     subtitleChip: "Gameday",
+    admissionCost: 0,
+    eventType: eventTypes,
   };
 };
 

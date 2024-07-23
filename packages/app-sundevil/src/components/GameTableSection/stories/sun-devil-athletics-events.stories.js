@@ -25,19 +25,19 @@ const Template = args => (
 export const SunDevilAthleticsEvents = Template.bind({});
 SunDevilAthleticsEvents.args = {
   // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4801-4633&t=LF0II0k8pEHIoz43-0
-  gameDataSource: {
-    type: "mock",
-    timeout: 200,
-  },
+  // gameDataSource: {
+  //   type: "mock",
+  //   timeout: 200,
+  // },
   // gameDataSource: {
   //   type: "custom",
   //   gameDataSource: new CustomGameDataSource(),
   // },
-  // gameDataSource: {
-  //   type: "asu-events",
-  //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-  //   timeout: 800,
-  // },
+  gameDataSource: {
+    type: "asu-events",
+    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+    timeout: 800,
+  },
   // variant: "hero",
   variant: "default",
   // configOverlap: "sport-tabs-with-hero",

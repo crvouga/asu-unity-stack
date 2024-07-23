@@ -5,6 +5,8 @@ import React from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../components-core/src/components/Button";
+import { APP_CONFIG } from "../../config";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import { EmptyStateMessage } from "../EmptyState/EmptyStateMessage";
 import { gameSchema } from "../Game/game";
 import { configCellsSchema } from "./GameTableRow/config-cells";
@@ -19,9 +21,9 @@ const Footer = styled.footer`
 
 const Table = styled.div`
   width: 100%;
-  border: 1px solid #d0d0d0;
   position: relative;
   background-color: #fff;
+  border: 1px solid #d0d0d0;
 `;
 
 // Even if this transparent it ensures no layout shift when the skeleton is replaced with the actual content
@@ -49,6 +51,14 @@ const Root = styled.div`
   width: 100%;
   overflow: hidden;
   flex-wrap: nowrap;
+
+  .border-box {
+    box-sizing: border-box;
+  }
+
+  .content-box {
+    box-sizing: content-box;
+  }
 `;
 
 const range = end => Array.from({ length: end }, (_, index) => index);
@@ -64,7 +74,10 @@ const GameTable = ({
   setFirstRowRef,
   configLayout,
   configCells,
+  mobileRowVariant = "divided",
 }) => {
+  const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
+
   const isSkeleton = skeleton && games.length === 0;
 
   const isEmpty =
@@ -74,7 +87,7 @@ const GameTable = ({
 
   return (
     <Root>
-      <Table>
+      <Table className={isMobile ? "content-box" : "border-box"}>
         {isSkeleton && (
           <BorderBottom>
             {range(skeletonRowCount).map(index => (
@@ -85,6 +98,7 @@ const GameTable = ({
                 ref={index === 0 ? setFirstRowRef : null}
                 configLayout={configLayout}
                 configCells={configCells}
+                mobileRowVariant={mobileRowVariant}
               />
             ))}
           </BorderBottom>
@@ -100,6 +114,7 @@ const GameTable = ({
                 ref={index === 0 ? setFirstRowRef : null}
                 configLayout={configLayout}
                 configCells={configCells}
+                mobileRowVariant={mobileRowVariant}
               />
             ))}
           </AlternateBackground>
@@ -115,6 +130,7 @@ const GameTable = ({
                 ref={index === 0 ? setFirstRowRef : null}
                 configLayout={configLayout}
                 configCells={configCells}
+                mobileRowVariant={mobileRowVariant}
               />
             ))}
             <EmptyStateMessage message={emptyStateMessage} />
@@ -164,6 +180,7 @@ export const gameTableFooterLinkSchema = PropTypes.shape({
 });
 
 GameTable.propTypes = {
+  mobileRowVariant: PropTypes.oneOf(["divided", "bordered"]),
   games: PropTypes.arrayOf(gameSchema),
   skeleton: PropTypes.bool,
   skeletonRowCount: PropTypes.number,

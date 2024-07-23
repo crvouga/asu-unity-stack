@@ -253,7 +253,12 @@ const GameTableSectionInner = ({ ...props }) => {
         )}
 
         {configLayout.variant === "default" &&
+          isDesktop &&
           renderGameTable({ className: "container" })}
+
+        {configLayout.variant === "default" &&
+          isMobile &&
+          renderGameTable({ className: "" })}
       </div>
     </>
   );
@@ -283,9 +288,10 @@ GameTableSectionInner.propTypes = {
   gameDataSourceLoader: PropTypes.shape({
     limit: PropTypes.number,
   }),
+  gameDataSource: gameDataSourceSchema,
 };
 
-const GameTableSection = ({
+export const GameTableSection = ({
   gameDataSource: gameDataSourceConfig,
   ...props
 }) => {
@@ -300,9 +306,4 @@ const GameTableSection = ({
   );
 };
 
-GameTableSection.propTypes = {
-  ...GameTableSectionInner.propTypes,
-  gameDataSource: gameDataSourceSchema,
-};
-
-export { GameTableSection };
+GameTableSection.propTypes = GameTableSectionInner.propTypes;

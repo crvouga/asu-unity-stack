@@ -155,6 +155,7 @@ SunDevilAthleticsEvents.args = {
     },
   },
   gameTable: {
+    mobileRowVariant: "divided", // or "bordered",
     configLayout: {
       includeCellDate: true,
       includeCellSportName: false,

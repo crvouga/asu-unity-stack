@@ -57,7 +57,7 @@ const getAllSportIds = async newsStoryDataSource => {
 /**
  * @param {import("./news-story-data-source/news-story-data-source").FindManyInput} input
  */
-export const useNewsStoryLoader = input => {
+export const useNewsStoryDataSourceLoader = input => {
   const newsStoryDataSource = useNewsStoryDataSource();
   const [state, setState] = useState(initState);
   const queryKey = toQueryKey(input);

@@ -37,7 +37,7 @@ const Root = styled.div`
  */
 
 /** @type {React.FC<Props>} */
-export const NewsStoryCardGridDesktopFeatured = ({
+export const NewsStoryCardGridFeatured = ({
   newsStories,
   skeleton,
   layout = "twoThirds",
@@ -68,7 +68,7 @@ export const NewsStoryCardGridDesktopFeatured = ({
   );
 };
 
-NewsStoryCardGridDesktopFeatured.propTypes = {
+NewsStoryCardGridFeatured.propTypes = {
   ...newsStoryCardGrid.propTypes,
   layout: PropTypes.oneOf(["twoThirds", "fullWidth"]),
 };

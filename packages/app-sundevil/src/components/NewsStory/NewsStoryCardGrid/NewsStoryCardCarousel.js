@@ -58,7 +58,7 @@ const WhitespaceFill = styled.div`
  */
 
 /** @type {React.FC<Props>} */
-export const NewsStoryCardGridMobile = ({
+export const NewsStoryCardCarousel = ({
   newsStories,
   slidesOffsetBefore,
   slidesOffsetAfter,
@@ -147,7 +147,7 @@ export const NewsStoryCardGridMobile = ({
     </Root>
   );
 };
-NewsStoryCardGridMobile.propTypes = {
+NewsStoryCardCarousel.propTypes = {
   newsStories: PropTypes.arrayOf(NewsStory.newsStorySchema).isRequired,
   slidesOffsetAfter: PropTypes.number,
   slidesOffsetBefore: PropTypes.number,

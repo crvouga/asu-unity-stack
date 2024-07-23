@@ -8,8 +8,8 @@ import { useElementContentPosition } from "../../utils/use-element-position";
 import { ButtonProp } from "../Button";
 import { BottomButtons } from "../Button/BottomButtons";
 import * as NewsStory from "../NewsStory/news-story";
-import { NewsStoryCardGridDesktopFeatured } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGridDesktop";
-import { NewsStoryCardGridMobile } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGridMobile";
+import { NewsStoryCardGridFeatured } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGrid";
+import { NewsStoryCardCarousel } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardCarousel";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 
 /**
@@ -75,7 +75,7 @@ export const VideoSection = ({
         ref={sectionHeaderRef}
       />
       {isMobile && (
-        <NewsStoryCardGridMobile
+        <NewsStoryCardCarousel
           skeleton={Boolean(skeleton)}
           newsStories={newsStoriesSliced}
           slidesOffsetBefore={sectionHeaderPosition.left}
@@ -88,7 +88,7 @@ export const VideoSection = ({
       )}
       {isDesktop && (
         <div className="container">
-          <NewsStoryCardGridDesktopFeatured
+          <NewsStoryCardGridFeatured
             layout="fullWidth"
             newsStories={newsStoriesSliced}
             skeleton={Boolean(skeleton)}

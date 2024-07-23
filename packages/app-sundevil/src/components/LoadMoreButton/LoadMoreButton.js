@@ -13,6 +13,7 @@ const Root = styled.button`
   gap: 0.5rem;
   font-weight: bold;
   padding: 0.5rem 1rem;
+  width: fit-content;
 `;
 
 const Icon = styled.i``;

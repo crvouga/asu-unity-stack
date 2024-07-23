@@ -15,9 +15,9 @@ import {
 } from "../NewsStory/news-story-data-source/news-story-data-source-impl";
 import { NewsStoryDataSourceProvider } from "../NewsStory/NewsDataSourceContext";
 import { newsStoriesSkeletonData } from "../NewsStory/NewsStoryCardGrid/news-stories-skeleton-data";
-import { NewsStoryCardGridDesktop } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGridDesktop";
-import { NewsStoryCardGridMobile } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGridMobile";
-import { useNewsStoryLoader } from "../NewsStory/use-news-story-loader";
+import { NewsStoryCardCarousel } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardCarousel";
+import { NewsStoryCardGrid } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGrid";
+import { useNewsStoryDataSourceLoader } from "../NewsStory/use-news-story-data-source-loader";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 import { Skeleton } from "../Skeleton";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
@@ -57,6 +57,8 @@ const NewsStorySectionInner = ({
   removeSportsWithNoStories,
   configInputs: propsConfigInputs,
   configLayout: propsConfigLayout,
+  mobileVariant = "carousel",
+  loadMore,
 }) => {
   /** @type {import("./config-layout").ConfigLayout} */
   const configLayout = deepMergeLeft(
@@ -91,70 +93,45 @@ const NewsStorySectionInner = ({
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
 
-  const { newsStories, isLoading, allSportIds } = useNewsStoryLoader({
+  const newsStoryDataSourceLoader = useNewsStoryDataSourceLoader({
     sportId: selectedSportId === "all" ? null : selectedSportId,
   });
 
-  const skeleton = isLoading;
+  const skeleton = newsStoryDataSourceLoader.isLoading;
   const skeletonTabs = Boolean(
-    skeleton && removeSportsWithNoStories && allSportIds.length === 0
+    skeleton &&
+      removeSportsWithNoStories &&
+      newsStoryDataSourceLoader.allSportIds.length === 0
   );
-  const empty = !isLoading && newsStories.length === 0;
+  const empty =
+    !newsStoryDataSourceLoader.isLoading &&
+    newsStoryDataSourceLoader.newsStories.length === 0;
 
-  const newsStoriesFinal = skeleton ? newsStoriesSkeletonData : newsStories;
+  const newsStoriesFinal = skeleton
+    ? newsStoriesSkeletonData
+    : newsStoryDataSourceLoader.newsStories;
   const sportsFinal = sportsWithSelectedTab.filter(sport => {
     if (skeletonTabs) {
       return true;
     }
     if (removeSportsWithNoStories) {
-      return allSportIds.includes(sport.id) || sport.id === "all";
+      return (
+        newsStoryDataSourceLoader.allSportIds.includes(sport.id) ||
+        sport.id === "all"
+      );
     }
     return true;
   });
 
   const hasAllStories = Boolean(allStoriesHref && allStoriesLabel);
+
   return (
     <Root>
       <SectionHeader
         {...mapSectionHeaderProps(sectionHeader)}
         ref={sectionHeaderRef}
       />
-      {selectedSport && isMobile && (
-        <>
-          {configLayout.includeSportTabs && (
-            <div className="container">
-              <SportsTabsMobile
-                sports={sportsFinal}
-                onSportItemClick={sportId => () => setSelectedSportId(sportId)}
-                skeleton={skeletonTabs}
-              />
-            </div>
-          )}
-          <NewsStoryCardGridMobile
-            key={selectedSport.id}
-            skeleton={skeleton}
-            newsStories={newsStoriesFinal}
-            slidesOffsetBefore={sectionHeaderPosition.left}
-            slidesOffsetAfter={window.innerWidth - sectionHeaderPosition.right}
-            cardWidth={cardWidth}
-            empty={empty}
-            emptyStateMessage={emptyStateMessage}
-            renderBottomRightContent={() =>
-              hasAllStories && (
-                <Skeleton skeleton={skeleton} fitContent>
-                  <Button
-                    color="maroon"
-                    size="small"
-                    label={allStoriesLabel}
-                    href={allStoriesHref}
-                    skeleton={skeleton}
-                  />
-                </Skeleton>
-              )
-            }
-          />
-        </>
-      )}
+
       {selectedSport && isDesktop && (
         <>
           {configLayout.includeSportTabs && (
@@ -169,7 +146,7 @@ const NewsStorySectionInner = ({
             </div>
           )}
           <div className="container">
-            <NewsStoryCardGridDesktop
+            <NewsStoryCardGrid
               key={selectedSport.id}
               newsStories={newsStoriesFinal}
               skeleton={skeleton}
@@ -191,6 +168,80 @@ const NewsStorySectionInner = ({
             )}
           </div>
         </>
+      )}
+
+      {selectedSport && isMobile && (
+        <>
+          {configLayout.includeSportTabs && (
+            <div className="container">
+              <SportsTabsMobile
+                sports={sportsFinal}
+                onSportItemClick={sportId => () => setSelectedSportId(sportId)}
+                skeleton={skeletonTabs}
+              />
+            </div>
+          )}
+
+          {mobileVariant === "carousel" && (
+            <NewsStoryCardCarousel
+              key={selectedSport.id}
+              skeleton={skeleton}
+              newsStories={newsStoriesFinal}
+              slidesOffsetBefore={sectionHeaderPosition.left}
+              slidesOffsetAfter={
+                window.innerWidth - sectionHeaderPosition.right
+              }
+              cardWidth={cardWidth}
+              empty={empty}
+              emptyStateMessage={emptyStateMessage}
+              renderBottomRightContent={() =>
+                hasAllStories && (
+                  <Skeleton skeleton={skeleton} fitContent>
+                    <Button
+                      color="maroon"
+                      size="small"
+                      label={allStoriesLabel}
+                      href={allStoriesHref}
+                      skeleton={skeleton}
+                    />
+                  </Skeleton>
+                )
+              }
+            />
+          )}
+
+          {mobileVariant === "column" && (
+            <div className="container">
+              <NewsStoryCardGrid
+                key={selectedSport.id}
+                newsStories={newsStoriesFinal}
+                skeleton={skeleton}
+                empty={empty}
+                emptyStateMessage={emptyStateMessage}
+                columns={1}
+              />
+              {hasAllStories && (
+                <AllStoriesRoot>
+                  <Skeleton skeleton={skeleton} fitContent>
+                    <Button
+                      color="maroon"
+                      size="small"
+                      label={allStoriesLabel}
+                      href={allStoriesHref}
+                      skeleton={skeleton}
+                    />
+                  </Skeleton>
+                </AllStoriesRoot>
+              )}
+            </div>
+          )}
+        </>
+      )}
+
+      {configLayout.includeLoadMore && (
+        <div className="container d-flex justify-content-center align-items-center">
+          <LoadMoreButton {...loadMore} onClick={() => {}} loading={false} />
+        </div>
       )}
     </Root>
   );
@@ -225,6 +276,7 @@ NewsStorySectionInner.propTypes = {
  *  configForm?: import("./config-form").ConfigForm
  *  configLayout?: import("./config-layout").ConfigLayout
  *  configInputs?: import("./config-inputs").ConfigInputs
+ *  mobileVariant?: "carousel" | "column"
  * }} NewsStorySectionProps
  */
 

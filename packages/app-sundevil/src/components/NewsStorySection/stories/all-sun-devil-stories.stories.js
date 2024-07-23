@@ -114,14 +114,15 @@ const props = {
   // allStoriesHref: "#",
   // allStoriesLabel: "All Stories",
   sectionHeader: {
-    title: "Sun Devil Stories",
-    sponsorBlock: {
-      text: "Presented by:",
-      name: "Desert Financial",
-      logo: "https://www.desertfinancial.com/globalassets/images/logos/desert-financial/df-logo_fullcolor_tm-cropped.svg",
-      url: "https://www.desertfinancial.com/",
-    },
+    title: "All Sun Devil Stories",
+    // sponsorBlock: {
+    //   text: "Presented by:",
+    //   name: "Desert Financial",
+    //   logo: "https://www.desertfinancial.com/globalassets/images/logos/desert-financial/df-logo_fullcolor_tm-cropped.svg",
+    //   url: "https://www.desertfinancial.com/",
+    // },
   },
+  mobileVariant: "column", // "carousel" | "column"
   removeSportsWithNoStories: false,
   configForm: {
     title: "Filter your results",

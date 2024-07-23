@@ -13,21 +13,24 @@ import * as newsStoryCardGrid from "./news-story-card-grid";
 
 const Root = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
   width: 100%;
   position: relative;
+  ${({ columns }) => {
+    return `grid-template-columns: repeat(${columns}, 1fr);`;
+  }}
 `;
 
 /** @type {React.FC<newsStoryCardGrid.Props>} */
-export const NewsStoryCardGridDesktop = ({
+export const NewsStoryCardGrid = ({
   newsStories,
   skeleton = false,
   emptyStateMessage = DEFAULT_EMPTY_STATE_MESSAGE,
   empty = false,
+  columns = 3,
 }) => {
   return (
-    <Root>
+    <Root columns={columns}>
       {!skeleton && !empty && (
         <>
           {newsStories.map(newsStory => (
@@ -67,4 +70,4 @@ export const NewsStoryCardGridDesktop = ({
   );
 };
 
-NewsStoryCardGridDesktop.propTypes = newsStoryCardGrid.propTypes;
+NewsStoryCardGrid.propTypes = newsStoryCardGrid.propTypes;

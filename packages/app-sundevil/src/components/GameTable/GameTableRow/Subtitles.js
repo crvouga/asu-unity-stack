@@ -17,6 +17,9 @@ const Root = styled.div`
   width: 100%;
   flex-wrap: nowrap;
   align-items: center;
+  @media (max-width: ${APP_CONFIG.breakpointMobile}) {
+    gap: 12px;
+  }
 `;
 
 const Subtitle = styled.p`
@@ -25,6 +28,8 @@ const Subtitle = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  flex-shrink: 1;
+  min-width: 0;
 `;
 
 const SubtitleChip = styled.div`

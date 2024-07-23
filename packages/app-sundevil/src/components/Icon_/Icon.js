@@ -5,7 +5,14 @@ import styled from "styled-components";
 /** @type {(icon: unknown) => icon is {icon_name: string, style: string}} */
 const isFontAwesomeIconObject = icon =>
   Boolean(
-    icon && typeof icon === "object" && "icon_name" in icon && "style" in icon
+    icon &&
+      typeof icon === "object" &&
+      "icon_name" in icon &&
+      "style" in icon &&
+      typeof icon.icon_name === "string" &&
+      icon.icon_name.trim().length > 0 &&
+      typeof icon.style === "string" &&
+      icon.style.trim().length > 0
   );
 
 const isValidImageSrc = maybeImageSrc => {

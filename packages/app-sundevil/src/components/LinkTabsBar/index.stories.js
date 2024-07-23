@@ -48,6 +48,12 @@ Default.args = {
     navbarSelector: "#navbar",
     stickyElementSelector: "#link-tabs",
   },
+  maxLinkCountBreakpoints: {
+    mobile: 2,
+    tablet: 4,
+    smallDesktop: 6,
+    desktop: 8,
+  },
   links: [
     {
       mobileLabel: "Football Home",
@@ -115,6 +121,138 @@ Default.args = {
     {
       label: "Lorem Ipsum Dolor Sit",
       href: "#football-lorem-ipsum-dolor-sit-3",
+    },
+  ],
+  sponsorHref: "#",
+  sponsorLogoSrc:
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfbwJU0mLkyyoKkok_jMppnBtEbsWNYJja3A&s",
+  sponsorLogoAlt: " ",
+};
+
+export const DebugProps = Template.bind({});
+DebugProps.args = {
+  title: "Baseball anchor menu",
+  disableActiveFromUrl: false,
+  stickyPosition: {
+    navbarSelector: "#navbar",
+    stickyElementSelector: "#link-tabs",
+  },
+  maxLinkCountBreakpoints: {
+    mobile: 1,
+    tablet: 3,
+    smallDesktop: 5,
+    desktop: 7,
+  },
+  links: [
+    {
+      mobileLabel: "Baseball Home",
+      href: "/sports/mens/baseball",
+      label: "Baseball",
+      active: true,
+      icon: {
+        icon_name: "fa-fas",
+        style: "fa-baseball",
+        src: "",
+      },
+    },
+    {
+      mobileLabel: "Roster",
+      href: "https://thesundevils.com/sports/baseball/roster",
+      label: "Roster",
+      active: false,
+      icon: {
+        icon_name: "",
+        style: "",
+        src: "",
+      },
+    },
+    {
+      mobileLabel: "News",
+      href: "/about/news?baseball",
+      label: "News",
+      active: false,
+      icon: {
+        icon_name: "",
+        style: "",
+        src: "/sites/default/files/2024-07/basketball_2.svg",
+      },
+    },
+    {
+      mobileLabel: "Coaches",
+      href: "http://example.com",
+      label: "Coaches",
+      active: false,
+      icon: {
+        icon_name: "",
+        style: "",
+        src: "",
+      },
+    },
+    {
+      mobileLabel: "Stats",
+      href: "https://thesundevils.com/sports/baseball/stats/",
+      label: "Stats",
+      active: false,
+      icon: {
+        icon_name: "",
+        style: "",
+        src: "",
+      },
+    },
+    {
+      mobileLabel: "NIL",
+      href: "http://example.com",
+      label: "NIL",
+      active: false,
+      icon: {
+        icon_name: "",
+        style: "",
+        src: "",
+      },
+    },
+    {
+      mobileLabel: "Gameday Info",
+      href: "http://example.com",
+      label: "Gameday Info",
+      active: false,
+      icon: {
+        icon_name: "",
+        style: "",
+        src: "",
+      },
+    },
+    {
+      mobileLabel: "Camps",
+      href: "http://example.com",
+      label: "Camps",
+      active: false,
+      icon: {
+        icon_name: "",
+        style: "",
+        src: "",
+      },
+    },
+    {
+      mobileLabel: "Lorem Ipsum Dolor Sit",
+      href: "http://example.com",
+      label: "Lorem Ipsum Dolor Sit",
+      active: false,
+      icon: {
+        icon_name: "",
+        style: "",
+        src: "",
+      },
+    },
+    {
+      mobileLabel: "Lorem Ipsum Dolor Sit",
+      href: "http://example.com",
+      label: "Lorem Ipsum Dolor Sit",
+      active: false,
+      icon: {
+        icon_name: "",
+        style: "",
+        src: "/sites/default/files/2024-07/basketball_1.svg",
+      },
     },
   ],
   sponsorHref: "#",

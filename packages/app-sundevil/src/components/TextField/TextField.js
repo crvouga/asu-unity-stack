@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
+import { useFocus } from "../../utils/use-focus";
 import { LabelledInputBase } from "../InputBase/LabelledInputBase";
 
 const InputContainer = styled.div`
@@ -63,17 +64,22 @@ export const TextField = ({
   style,
   darkMode,
 }) => {
+  const inputRef = useRef(null);
+  const focused = useFocus(inputRef);
+
   return (
     <LabelledInputBase
       label={label}
       darkMode={darkMode}
       style={style}
+      focused={focused}
       renderInput={({ id, style: inputStyle }) => (
         <InputContainer>
           <Placeholder inputStyle={inputStyle} hasValue={Boolean(value)}>
             <PlaceholderText>{placeholder}</PlaceholderText>
           </Placeholder>
           <Input
+            ref={inputRef}
             style={inputStyle}
             id={id}
             type="text"

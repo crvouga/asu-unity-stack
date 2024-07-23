@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
  * @typedef {{
  * cellTitle: {
  *  subtitleFontWeight: "normal" | "bold";
+ *  includeSubtitleChip?: boolean;
  * }
  * }} ConfigCells
  */
@@ -12,6 +13,7 @@ import PropTypes from "prop-types";
 export const configCellsSchema = PropTypes.shape({
   cellTitle: PropTypes.shape({
     subtitleFontWeight: PropTypes.oneOf(["normal", "bold"]),
+    includeSubtitleChip: PropTypes.bool,
   }),
 });
 
@@ -20,6 +22,7 @@ export const configCellsSchema = PropTypes.shape({
  */
 export const defaultConfigCells = {
   cellTitle: {
-    subtitleFontWeight: "bold",
+    subtitleFontWeight: "normal",
+    includeSubtitleChip: true,
   },
 };

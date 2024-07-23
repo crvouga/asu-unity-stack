@@ -57,6 +57,7 @@ const mapNodeToGame = data => {
     venue: data.locations,
     ticketLink: data.ticketing_rsvp_url,
     ticketText: data.ticketing_rsvp_txt,
+    subtitleChip: "Gameday",
   };
 };
 

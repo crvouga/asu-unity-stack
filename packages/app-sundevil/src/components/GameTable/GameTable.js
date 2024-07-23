@@ -59,6 +59,7 @@ const GameTable = ({
   footerButtons,
   emptyStateMessage,
   skeletonRowCount = 5,
+  emptyStateRowCount = 5,
   footerLinks,
   setFirstRowRef,
   configLayout,
@@ -106,7 +107,7 @@ const GameTable = ({
 
         {isEmpty && (
           <>
-            {range(skeletonRowCount).map(index => (
+            {range(emptyStateRowCount).map(index => (
               <GameTableRow
                 key={index}
                 // @ts-ignore
@@ -169,6 +170,7 @@ GameTable.propTypes = {
   footerButtons: PropTypes.arrayOf(gameTableFooterButtonSchema),
   footerLinks: PropTypes.arrayOf(gameTableFooterLinkSchema),
   emptyStateMessage: PropTypes.string,
+  emptyStateRowCount: PropTypes.number,
   setFirstRowRef: PropTypes.func,
   configLayout: configLayoutSchema,
   configCells: configCellsSchema,

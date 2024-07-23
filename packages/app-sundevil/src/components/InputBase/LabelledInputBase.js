@@ -34,17 +34,26 @@ const InputRoot = styled.div`
   justify-content: space-between;
   background-color: #fff;
   color: #191919;
+  box-sizing: content-box;
+  ${({ focused }) => {
+    if (focused) {
+      return `
+        border: 1px solid #000;
+      `;
+    }
+    return "";
+  }}
 `;
 
 export const LabelledInputBase = forwardRef(
-  ({ label, renderInput, renderEndIcon, style, darkMode }, ref) => {
+  ({ label, renderInput, renderEndIcon, style, darkMode, focused }, ref) => {
     const id = useId();
     return (
       <Root style={style} ref={ref} darkMode={darkMode}>
         {typeof label === "string" && label.length > 0 && (
           <Label htmlFor={id}>{label}</Label>
         )}
-        <InputRoot>
+        <InputRoot focused={focused}>
           {renderInput({
             id,
             style: {
@@ -74,4 +83,5 @@ LabelledInputBase.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
   darkMode: PropTypes.bool,
+  focused: PropTypes.bool,
 };

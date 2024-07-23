@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+import { useFocus } from "../../utils/use-focus";
 import { DropDown, DropDownSurface } from "../DropDown";
 import { LabelledInputBase } from "../InputBase/LabelledInputBase";
 import { SelectOption } from "./SelectOption";
@@ -58,6 +59,16 @@ export const Select = ({
 }) => {
   const [open, setOpen] = useState(false);
   const active = options.find(option => option.active);
+  const buttonRef = useRef(null);
+  const dropdownRef = useRef(null);
+  const focused = useFocus([buttonRef, dropdownRef]);
+
+  useEffect(() => {
+    if (!focused) {
+      setOpen(false);
+    }
+  }, [focused]);
+
   return (
     <DropDown
       open={open}
@@ -65,11 +76,13 @@ export const Select = ({
       renderReference={({ ref }) => (
         <LabelledInputBase
           darkMode={darkMode}
+          focused={focused}
           ref={ref}
           label={label}
           style={style}
           renderInput={({ id, style: buttonStyle }) => (
             <Button
+              ref={buttonRef}
               style={buttonStyle}
               id={id}
               onClick={() => setOpen(openPrev => !openPrev)}
@@ -94,7 +107,7 @@ export const Select = ({
         />
       )}
       renderContent={() => (
-        <DropDownSurface>
+        <DropDownSurface ref={dropdownRef}>
           {options.map(option => (
             <SelectOption
               key={option.id ?? option.label}

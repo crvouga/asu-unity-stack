@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import React, { useMemo, useRef } from "react";
 import styled from "styled-components";
 
-import { useBreakpoint } from "../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../config";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useElementContentDimensions } from "../../utils/use-element-position";
 import {
   buildGameDataSource,
@@ -194,7 +194,7 @@ const GameTableSectionInner = ({ ...props }) => {
               tabs={tabs}
               onTabItemClick={clickedGameType => () =>
                 gameTableForm.update({ gameType: clickedGameType })}
-              style={{ paddingBottom: "48px" }}
+              style={{ paddingBottom: "32px" }}
             />
           )}
 

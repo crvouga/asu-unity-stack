@@ -31,7 +31,7 @@ export const buildGameDataSource = input => {
       return new GameDataSourceStatic(input);
     }
     case "mock": {
-      return new GameDataSourceMock();
+      return new GameDataSourceMock(input);
     }
     case "asu-events": {
       return new GameDataSourceAsuEvents(input);

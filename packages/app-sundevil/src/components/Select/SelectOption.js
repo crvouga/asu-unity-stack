@@ -7,6 +7,8 @@ import styled from "styled-components";
  * @typedef {{
  * label: string;
  * onClick: () => void;
+ * onFocus?: () => void;
+ * onBlur?: () => void;
  * active?: boolean;
  * }} Props
  */
@@ -14,6 +16,8 @@ import styled from "styled-components";
 const propTypes = {
   label: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
   active: PropTypes.bool,
 };
 
@@ -55,10 +59,16 @@ const Root = styled.button`
  *
  * @type {React.FC<Props>}
  */
-export const SelectOption = ({ active, label, onClick }) => {
+export const SelectOption = ({ active, label, onClick, onFocus, onBlur }) => {
   const className = active ? "active" : "inactive";
   return (
-    <Root onClick={onClick} active={active} className={className}>
+    <Root
+      onClick={onClick}
+      active={active}
+      className={className}
+      onFocus={onFocus}
+      onBlur={onBlur}
+    >
       {label}
     </Root>
   );

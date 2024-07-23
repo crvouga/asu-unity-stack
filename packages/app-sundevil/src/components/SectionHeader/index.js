@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
-import { useBreakpoint } from "../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../config";
 import { stringToFontWeight } from "../../utils/font-weight";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import { Logo } from "./index.styles";
 import { JoinTheConversation, socialPropType } from "./JoinTheConversation";
 import { Tabs } from "./Tabs";

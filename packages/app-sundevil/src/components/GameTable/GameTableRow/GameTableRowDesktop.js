@@ -116,6 +116,7 @@ const Subtitles = styled.div`
   white-space: nowrap;
   width: 100%;
   flex-wrap: nowrap;
+  align-items: center;
 `;
 
 const Subtitle = styled.p`
@@ -125,6 +126,22 @@ const Subtitle = styled.p`
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
+
+const SubtitleChip = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+  border-radius: 1px;
+  background-color: #d0d0d0;
+  color: #484848;
+  font-size: 12px;
+  font-weight: bold;
+  height: 18px;
+`;
+
+const isValidString = value =>
+  typeof value === "string" && value.trim().length > 0;
 
 export const GameTableRowDesktop = forwardRef(
   (
@@ -202,14 +219,19 @@ export const GameTableRowDesktop = forwardRef(
             <Cell className="flex-1">
               <CellTitle>
                 <Title href={game?.titleHref}>{game?.title}</Title>
+
                 <Subtitles
                   style={{
                     fontWeight:
                       configCells?.cellTitle?.subtitleFontWeight === "bold"
                         ? "bold"
-                        : undefined,
+                        : "normal",
                   }}
                 >
+                  {configCells.cellTitle.includeSubtitleChip &&
+                    isValidString(game?.subtitleChip) && (
+                      <SubtitleChip>{game?.subtitleChip}</SubtitleChip>
+                    )}
                   <Subtitle className="text-body-tertiary">
                     {game?.time}
                   </Subtitle>

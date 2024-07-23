@@ -141,6 +141,16 @@ const SectionHeader = forwardRef(
       title || subtitle || tabs || social || sponsorBlock
     );
 
+    const hasSubtitle =
+      Boolean(subtitle) ||
+      Boolean(Array.isArray(subtitleLinks) && subtitleLinks.length > 0);
+
+    const hasTabs = Boolean(tabs && tabs.length > 0);
+
+    const hasSocial = Boolean(social && social.length > 0);
+
+    const hasHeaderBody = hasSubtitle || hasTabs || hasSocial;
+
     return (
       <div className="container" ref={ref} style={style}>
         {hasContent && (
@@ -166,44 +176,47 @@ const SectionHeader = forwardRef(
                   </SponsorBlock>
                 </div>
               </div>
-              <HeaderBody>
-                <SubtitleRoot>
-                  {subtitle && (
-                    <Subtitle
-                      style={{
-                        fontWeight: stringToFontWeight(subtitleFontWeight),
-                      }}
-                      dangerouslySetInnerHTML={{ __html: subtitle }}
+              {hasHeaderBody && (
+                <HeaderBody>
+                  <SubtitleRoot>
+                    {subtitle && (
+                      <Subtitle
+                        style={{
+                          fontWeight: stringToFontWeight(subtitleFontWeight),
+                        }}
+                        dangerouslySetInnerHTML={{ __html: subtitle }}
+                      />
+                    )}
+                    {Array.isArray(subtitleLinks) &&
+                      subtitleLinks.length > 0 && (
+                        <>
+                          {subtitleLinks.map(link => (
+                            <SubtitleLink
+                              key={link?.href ?? link?.url ?? link?.label}
+                              href={link?.href ?? link?.url}
+                              // @ts-ignore
+                              fontWeight={link?.fontWeight}
+                              color={link?.color}
+                            >
+                              {link?.label}
+                            </SubtitleLink>
+                          ))}
+                        </>
+                      )}
+                  </SubtitleRoot>
+
+                  {tabs && tabs.length > 0 && (
+                    <Tabs
+                      tabs={tabs}
+                      onTabItemClick={onTabItemClick}
+                      stretch={isMobile}
                     />
                   )}
-                  {Array.isArray(subtitleLinks) && subtitleLinks.length > 0 && (
-                    <>
-                      {subtitleLinks.map(link => (
-                        <SubtitleLink
-                          key={link?.href ?? link?.url ?? link?.label}
-                          href={link?.href ?? link?.url}
-                          // @ts-ignore
-                          fontWeight={link?.fontWeight}
-                          color={link?.color}
-                        >
-                          {link?.label}
-                        </SubtitleLink>
-                      ))}
-                    </>
+                  {social && social.length > 0 && (
+                    <JoinTheConversation social={social} />
                   )}
-                </SubtitleRoot>
-
-                {tabs && tabs.length > 0 && (
-                  <Tabs
-                    tabs={tabs}
-                    onTabItemClick={onTabItemClick}
-                    stretch={isMobile}
-                  />
-                )}
-                {social && social.length > 0 && (
-                  <JoinTheConversation social={social} />
-                )}
-              </HeaderBody>
+                </HeaderBody>
+              )}
             </div>
             <div className="col-md-4 col-sm-0 mt-auto d-none d-sm-none d-md-flex justify-content-end">
               <SponsorBlock

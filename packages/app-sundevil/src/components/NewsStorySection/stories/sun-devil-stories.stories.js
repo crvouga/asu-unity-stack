@@ -1,9 +1,8 @@
 // @ts-check
 import React from "react";
 
-import { SunDevilStoriesSection } from "./index";
-
-import { INewsStoryDataSource } from "../NewsStory/news-story-data-source/news-story-data-source";
+import { INewsStoryDataSource } from "../../NewsStory/news-story-data-source/news-story-data-source";
+import { NewsStorySection } from "../index";
 
 const imageSrc =
   "https://asuevents.asu.edu/sites/default/files/2024-07/football-2024.jpg";
@@ -93,7 +92,7 @@ class CustomNewsStoryDataSource extends INewsStoryDataSource {
   }
 }
 
-/** @type {import("./index").SunDevilStoriesProps} */
+/** @type {import("../index").NewsStorySectionProps} */
 const props = {
   // newsStoryDataSource: {
   //   type: "mock",
@@ -201,8 +200,8 @@ const props = {
 };
 
 export default {
-  title: "Sun Devil Stories / Sun Devil Stories Section",
-  component: args => <SunDevilStoriesSection {...args} />,
+  title: "News Story / News Story Section",
+  component: args => <NewsStorySection {...args} />,
   parameters: {
     docs: {
       description: {
@@ -213,9 +212,9 @@ export default {
 };
 
 const Template = args => {
-  return <SunDevilStoriesSection {...args} {...props} />;
+  return <NewsStorySection {...args} {...props} />;
 };
 
-export const Default = Template.bind({
+export const SunDevilsStoriesSection = Template.bind({
   ...props,
 });

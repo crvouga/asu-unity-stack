@@ -1,5 +1,5 @@
 // @ts-check
-import React, { useEffect } from "react";
+import React from "react";
 
 import { APP_CONFIG } from "../../config";
 import { useBreakpoint } from "../../utils/use-breakpoint";

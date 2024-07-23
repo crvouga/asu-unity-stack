@@ -17,12 +17,7 @@ const Root = styled.button`
 
 const Icon = styled.i``;
 
-export const GameTableLoadMoreButton = ({
-  label,
-  loading,
-  loadingLabel,
-  onClick,
-}) => {
+export const LoadMoreButton = ({ label, loading, loadingLabel, onClick }) => {
   return (
     <Root
       type="button"
@@ -43,14 +38,23 @@ export const GameTableLoadMoreButton = ({
   );
 };
 
-GameTableLoadMoreButton.propTypes = {
+LoadMoreButton.propTypes = {
   label: PropTypes.string,
   loadingLabel: PropTypes.string,
   loading: PropTypes.bool,
   onClick: PropTypes.func,
 };
 
-export const gameTableLoadMorePropTypes = PropTypes.shape(
+/**
+ * @typedef {{
+ *  label?: string;
+ *  loadingLabel?: string;
+ *  loading?: boolean;
+ *  onClick?: () => void;
+ * }} LoadMoreButtonProps
+ */
+
+export const loadMorePropTypes = PropTypes.shape(
   // eslint-disable-next-line react/forbid-foreign-prop-types
-  GameTableLoadMoreButton.propTypes
+  LoadMoreButton.propTypes
 );

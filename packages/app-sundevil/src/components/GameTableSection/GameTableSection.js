@@ -15,9 +15,9 @@ import { GameDataSourceProvider } from "../Game/GameDataSourceContext";
 import { useGameDataSourceLoader } from "../Game/use-game-data-source-loader";
 import { GameTable, gameTableFooterButtonSchema } from "../GameTable/GameTable";
 import {
-  GameTableLoadMoreButton,
-  gameTableLoadMorePropTypes,
-} from "../GameTable/GameTableLoadMoreButton";
+  LoadMoreButton,
+  loadMorePropTypes,
+} from "../LoadMoreButton/LoadMoreButton";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportSchema } from "../SportsTabs/sports-tabs";
@@ -167,7 +167,7 @@ const GameTableSectionInner = ({ ...props }) => {
 
       {configLayout.includeLoadMore &&
         gameDataSourceLoader.showLoadNextPage && (
-          <GameTableLoadMoreButton
+          <LoadMoreButton
             {...props.loadMore}
             onClick={gameDataSourceLoader.loadNextPage}
             loading={gameDataSourceLoader.isLoading}
@@ -269,7 +269,7 @@ GameTableSectionInner.propTypes = {
   ...SectionHeader.propTypes,
   ...GameTable.propTypes,
   sports: PropTypes.arrayOf(sportSchemaGameTable),
-  loadMore: gameTableLoadMorePropTypes,
+  loadMore: loadMorePropTypes,
   configLayout: configLayoutSchema,
   configInputs: configInputsSchema,
   configOverlap: configOverlapSchema,

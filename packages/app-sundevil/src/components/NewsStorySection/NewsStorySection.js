@@ -2,10 +2,12 @@ import PropTypes from "prop-types";
 import React, { useMemo } from "react";
 import styled from "styled-components";
 
-import { useBreakpoint } from "../../utils/use-breakpoint";
 import { Button } from "../../../../components-core/src/index";
 import { APP_CONFIG } from "../../config";
+import { deepMergeLeft } from "../../utils/deep-merge-left";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useElementContentPosition } from "../../utils/use-element-position";
+import { LoadMoreButton } from "../LoadMoreButton";
 import { sportSchema } from "../Navigation";
 import {
   buildNewsStoryDataSource,
@@ -19,6 +21,9 @@ import { useNewsStoryLoader } from "../NewsStory/use-news-story-loader";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 import { Skeleton } from "../Skeleton";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
+import { configFormPropTypes } from "./config-form";
+import { configInputsPropTypes, defaultConfigInputs } from "./config-inputs";
+import { configLayoutPropTypes, defaultConfigLayout } from "./config-layout";
 
 /**
  * @typedef {import("../Navigation").Sport} Sport
@@ -41,16 +46,33 @@ const AllStoriesRoot = styled.div`
 `;
 
 /**
- * @type {React.FC<SunDevilStoriesProps>}
+ * @type {React.FC<NewsStorySectionProps>}
  */
-const SunDevilStoriesSectionInner = ({
+const NewsStorySectionInner = ({
   sports,
   sectionHeader,
   allStoriesHref,
   allStoriesLabel,
   emptyStateMessage,
   removeSportsWithNoStories,
+  configInputs: propsConfigInputs,
+  configLayout: propsConfigLayout,
 }) => {
+  /** @type {import("./config-layout").ConfigLayout} */
+  const configLayout = deepMergeLeft(
+    propsConfigLayout ?? {},
+    defaultConfigLayout
+  );
+
+  /** @type {import("./config-inputs").ConfigInputs} */
+  const configInputs = deepMergeLeft(
+    propsConfigInputs ?? {},
+    defaultConfigInputs
+  );
+
+  // eslint-disable-next-line no-unused-expressions
+  configInputs;
+
   const [selectedSportId, setSelectedSportId] = React.useState(sports[0]?.id);
 
   const sportsWithSelectedTab = sports.map(sport => ({
@@ -89,6 +111,8 @@ const SunDevilStoriesSectionInner = ({
     }
     return true;
   });
+
+  const hasAllStories = Boolean(allStoriesHref && allStoriesLabel);
   return (
     <Root>
       <SectionHeader
@@ -97,13 +121,15 @@ const SunDevilStoriesSectionInner = ({
       />
       {selectedSport && isMobile && (
         <>
-          <div className="container">
-            <SportsTabsMobile
-              sports={sportsFinal}
-              onSportItemClick={sportId => () => setSelectedSportId(sportId)}
-              skeleton={skeletonTabs}
-            />
-          </div>
+          {configLayout.includeSportTabs && (
+            <div className="container">
+              <SportsTabsMobile
+                sports={sportsFinal}
+                onSportItemClick={sportId => () => setSelectedSportId(sportId)}
+                skeleton={skeletonTabs}
+              />
+            </div>
+          )}
           <NewsStoryCardGridMobile
             key={selectedSport.id}
             skeleton={skeleton}
@@ -113,31 +139,35 @@ const SunDevilStoriesSectionInner = ({
             cardWidth={cardWidth}
             empty={empty}
             emptyStateMessage={emptyStateMessage}
-            renderBottomRightContent={() => (
-              <Skeleton skeleton={skeleton} fitContent>
-                <Button
-                  color="maroon"
-                  size="small"
-                  label={allStoriesLabel}
-                  href={allStoriesHref}
-                  skeleton={skeleton}
-                />
-              </Skeleton>
-            )}
+            renderBottomRightContent={() =>
+              hasAllStories && (
+                <Skeleton skeleton={skeleton} fitContent>
+                  <Button
+                    color="maroon"
+                    size="small"
+                    label={allStoriesLabel}
+                    href={allStoriesHref}
+                    skeleton={skeleton}
+                  />
+                </Skeleton>
+              )
+            }
           />
         </>
       )}
       {selectedSport && isDesktop && (
         <>
-          <div className="container">
-            <SportsTabsDesktop
-              skeleton={skeletonTabs}
-              sports={sportsFinal}
-              onSportItemClick={sportId => () => setSelectedSportId(sportId)}
-              moreTabOrientation="horizontal"
-              moreTabColor="muted"
-            />
-          </div>
+          {configLayout.includeSportTabs && (
+            <div className="container">
+              <SportsTabsDesktop
+                skeleton={skeletonTabs}
+                sports={sportsFinal}
+                onSportItemClick={sportId => () => setSelectedSportId(sportId)}
+                moreTabOrientation="horizontal"
+                moreTabColor="muted"
+              />
+            </div>
+          )}
           <div className="container">
             <NewsStoryCardGridDesktop
               key={selectedSport.id}
@@ -146,17 +176,19 @@ const SunDevilStoriesSectionInner = ({
               empty={empty}
               emptyStateMessage={emptyStateMessage}
             />
-            <AllStoriesRoot>
-              <Skeleton skeleton={skeleton} fitContent>
-                <Button
-                  color="maroon"
-                  size="small"
-                  label={allStoriesLabel}
-                  href={allStoriesHref}
-                  skeleton={skeleton}
-                />
-              </Skeleton>
-            </AllStoriesRoot>
+            {hasAllStories && (
+              <AllStoriesRoot>
+                <Skeleton skeleton={skeleton} fitContent>
+                  <Button
+                    color="maroon"
+                    size="small"
+                    label={allStoriesLabel}
+                    href={allStoriesHref}
+                    skeleton={skeleton}
+                  />
+                </Skeleton>
+              </AllStoriesRoot>
+            )}
           </div>
         </>
       )}
@@ -164,17 +196,39 @@ const SunDevilStoriesSectionInner = ({
   );
 };
 
-SunDevilStoriesSectionInner.propTypes = {
+NewsStorySectionInner.propTypes = {
   sectionHeader: SectionHeader.propTypes,
   sports: PropTypes.arrayOf(sportSchema).isRequired,
-  allStoriesLabel: PropTypes.string.isRequired,
-  allStoriesHref: PropTypes.string.isRequired,
+  allStoriesLabel: PropTypes.string,
+  allStoriesHref: PropTypes.string,
   skeleton: PropTypes.bool,
   emptyStateMessage: PropTypes.string,
   removeSportsWithNoStories: PropTypes.bool,
+  newsStoryDataSource: newsStoryDataSourceSchema,
+  loadMore: LoadMoreButton.propTypes,
+  configForm: configFormPropTypes,
+  configLayout: configLayoutPropTypes,
+  configInputs: configInputsPropTypes,
 };
 
-export const SunDevilStoriesSection = ({
+/**
+ * @typedef {{
+ *  sports: Sport[];
+ *  sectionHeader: object;
+ *  allStoriesLabel?: string;
+ *  allStoriesHref?: string;
+ *  skeleton?: boolean;
+ *  newsStoryDataSource: object
+ *  emptyStateMessage?: string;
+ *  removeSportsWithNoStories?: boolean;
+ *  loadMore?: import("../LoadMoreButton").LoadMoreButtonProps
+ *  configForm?: import("./config-form").ConfigForm
+ *  configLayout?: import("./config-layout").ConfigLayout
+ *  configInputs?: import("./config-inputs").ConfigInputs
+ * }} NewsStorySectionProps
+ */
+
+export const NewsStorySection = ({
   newsStoryDataSource: newsStoryDataSourceConfig,
   ...props
 }) => {
@@ -184,24 +238,8 @@ export const SunDevilStoriesSection = ({
   );
   return (
     <NewsStoryDataSourceProvider newsStoryDataSource={newsStoryDataSource}>
-      <SunDevilStoriesSectionInner {...props} />
+      <NewsStorySectionInner {...props} />
     </NewsStoryDataSourceProvider>
   );
 };
-SunDevilStoriesSection.propTypes = {
-  ...SunDevilStoriesSectionInner.propTypes,
-  newsStoryDataSource: newsStoryDataSourceSchema,
-};
-
-/**
- * @typedef {{
- *  sports: Sport[];
- *  sectionHeader: object;
- *  allStoriesLabel: string;
- *  allStoriesHref: string;
- *  skeleton?: boolean;
- *  newsStoryDataSource: object
- *  emptyStateMessage?: string;
- *  removeSportsWithNoStories?: boolean;
- * }} SunDevilStoriesProps
- */
+NewsStorySection.propTypes = NewsStorySectionInner.propTypes;

@@ -62,7 +62,7 @@ const props = {
 };
 
 export default {
-  title: "News Zone Section / News Zone Section",
+  title: "News Story / News Zone Section",
   component: args => <NewsZoneSection {...args} />,
   parameters: {
     docs: {

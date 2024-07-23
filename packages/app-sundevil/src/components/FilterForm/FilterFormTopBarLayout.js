@@ -38,7 +38,9 @@ export const FilterFormTopBarLayout = ({ title, className, renderForm }) => {
 
   const hasTitle = typeof title === "string" && title.length > 0;
 
-  if (isMobile) {
+  const formComponent = renderForm();
+
+  if (isMobile && formComponent && hasTitle) {
     return (
       <Root className={className}>
         <CollapseRoot onClick={toggleOpen}>
@@ -46,7 +48,7 @@ export const FilterFormTopBarLayout = ({ title, className, renderForm }) => {
           <CollapseIcon open={open} />
         </CollapseRoot>
         {open ? (
-          renderForm()
+          formComponent
         ) : (
           <div style={{ width: "100%", height: "20px" }} />
         )}
@@ -57,7 +59,7 @@ export const FilterFormTopBarLayout = ({ title, className, renderForm }) => {
   return (
     <Root className={className}>
       {hasTitle && <Title>{title}</Title>}
-      {renderForm()}
+      {formComponent}
     </Root>
   );
 };

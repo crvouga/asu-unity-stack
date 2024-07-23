@@ -17,7 +17,6 @@ const Root = styled.div`
   max-width: 100%;
   height: 64px;
   max-height: 64px;
-  gap: 1rem;
   & > *:not(:last-child) {
     border-right: 1px solid #d0d0d0;
   }
@@ -91,14 +90,17 @@ const CellTitle = styled.div`
   flex: 1;
   height: 100%;
   min-width: 0;
+  padding: 0 1rem;
 `;
 
 const CellTicketButton = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   height: 64px;
   width: 64px;
+  min-width: 64px;
+  flex-shrink: 0;
 `;
 
 const DateDay = styled.p`
@@ -140,41 +142,45 @@ export const GameTableRowMobileDivided = forwardRef(
 
     return (
       <Skeleton skeleton={skeleton} ref={ref}>
-        <Root
-          aria-hidden={empty}
-          style={empty ? { opacity: 0, userSelect: "none" } : {}}
-        >
-          {configLayout.includeCellDate && (
-            <CellDate>
-              <DateMonth>{game?.dateMonth}.</DateMonth>
-              <DateDay>{game?.dateDay}</DateDay>
-            </CellDate>
-          )}
-          {configLayout.includeCellTitle && (
-            <CellTitle>
-              <Title>{game?.title}</Title>
-              <Subtitles>
-                <Subtitle className="text-body-tertiary">{game?.time}</Subtitle>
-                <Subtitle className="text-body-tertiary">
-                  {game?.venue}
-                </Subtitle>
-              </Subtitles>
-            </CellTitle>
-          )}
-          {configLayout.includeCellTickets && (
-            <CellTicketButton>
-              <TicketButton
-                type="button"
-                aria-label={game?.ticketText}
-                onClick={() => {
-                  window.open(game?.ticketLink, "_blank");
-                }}
-              >
-                <i className="fa fa-fas fa-ticket" />
-              </TicketButton>
-            </CellTicketButton>
-          )}
-        </Root>
+        <div className="container">
+          <Root
+            aria-hidden={empty}
+            style={empty ? { opacity: 0, userSelect: "none" } : {}}
+          >
+            {configLayout.includeCellDate && (
+              <CellDate>
+                <DateMonth>{game?.dateMonth}.</DateMonth>
+                <DateDay>{game?.dateDay}</DateDay>
+              </CellDate>
+            )}
+            {configLayout.includeCellTitle && (
+              <CellTitle>
+                <Title>{game?.title}</Title>
+                <Subtitles>
+                  <Subtitle className="text-body-tertiary">
+                    {game?.time}
+                  </Subtitle>
+                  <Subtitle className="text-body-tertiary">
+                    {game?.venue}
+                  </Subtitle>
+                </Subtitles>
+              </CellTitle>
+            )}
+            {configLayout.includeCellTickets && (
+              <CellTicketButton>
+                <TicketButton
+                  type="button"
+                  aria-label={game?.ticketText}
+                  onClick={() => {
+                    window.open(game?.ticketLink, "_blank");
+                  }}
+                >
+                  <i className="fa fa-fas fa-ticket" />
+                </TicketButton>
+              </CellTicketButton>
+            )}
+          </Root>
+        </div>
       </Skeleton>
     );
   }

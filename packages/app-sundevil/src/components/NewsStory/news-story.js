@@ -6,13 +6,13 @@ import PropTypes from "prop-types";
  * id: string;
  * href?: string;
  * title: string;
- * category?: string;
+ * newsType?: string;
  * imageSrc?: string;
  * imageAlt?: string;
  * sportId?: string;
  * sportName?: string;
  * sportIconFaClassName?: string;
- * showCategory?: boolean;
+ * showNewsType?: boolean;
  * showSportName?: boolean;
  * youtubeVideoUrl?: string;
  * }} NewsStory
@@ -22,13 +22,13 @@ export const newsStoryPropTypes = PropTypes.shape({
   id: PropTypes.string,
   href: PropTypes.string,
   title: PropTypes.string.isRequired,
-  category: PropTypes.string,
+  newsType: PropTypes.string,
   imageSrc: PropTypes.string,
   imageAlt: PropTypes.string,
   sportId: PropTypes.string,
   sportName: PropTypes.string,
   sportIconFaClassName: PropTypes.string,
-  showCategory: PropTypes.bool,
+  showNewsType: PropTypes.bool,
   showSportName: PropTypes.bool,
   youtubeVideoUrl: PropTypes.string,
 });

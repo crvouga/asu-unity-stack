@@ -1,5 +1,6 @@
 // @ts-check
 
+import { matchSort } from "../../../utils/match-sort";
 import { INewsStoryDataSource } from "./news-story-data-source";
 
 const cleanEqual = (a, b) => {
@@ -25,13 +26,40 @@ export class NewsStoryDataSourceStatic extends INewsStoryDataSource {
   async findMany(input) {
     const limit = input.limit ?? Infinity;
     const offset = input.offset ?? 0;
-    const filtered = this.newsStories.filter(newsStory =>
-      typeof input?.sportId === "string" && input?.sportId?.length > 0
-        ? cleanEqual(newsStory.sportId, input.sportId)
-        : true
-    );
+
+    const filtered = matchSort({
+      searchQuery: input?.searchQuery ?? "",
+      toText: newsStory =>
+        [
+          newsStory.title,
+          newsStory.newsType,
+          newsStory.sportId,
+          newsStory.sportName,
+        ]
+          .filter(Boolean)
+          .join(" "),
+
+      items: this.newsStories.filter(newsStory => {
+        const matchSportId =
+          typeof input?.sportId === "string" && input?.sportId?.length > 0
+            ? cleanEqual(newsStory.sportId, input.sportId)
+            : true;
+
+        const matchCategory =
+          typeof input?.newsType === "string" && input?.newsType?.length > 0
+            ? cleanEqual(newsStory.newsType, input.newsType)
+            : true;
+
+        const match = matchSportId && matchCategory;
+
+        return match;
+      }),
+    });
+
     const rows = filtered.slice(offset, offset + limit);
+
     const total = filtered.length;
+
     return {
       limit,
       offset,

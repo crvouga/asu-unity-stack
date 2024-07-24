@@ -26,6 +26,8 @@ import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { configFormPropTypes } from "./config-form";
 import { configInputsPropTypes, defaultConfigInputs } from "./config-inputs";
 import { configLayoutPropTypes, defaultConfigLayout } from "./config-layout";
+import { NewsStorySearchFormTopbar } from "./NewsStorySearchForm/NewsStorySearchFormTopbar";
+import { useNewsStorySearchForm } from "./NewsStorySearchForm/use-news-story-search-form";
 
 /**
  * @typedef {import("../Navigation").Sport} Sport
@@ -34,13 +36,20 @@ import { configLayoutPropTypes, defaultConfigLayout } from "./config-layout";
 const Root = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 48px;
 `;
 
 const AllStoriesRoot = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 3rem;
+`;
+
+const LoadButtonRoot = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 48px;
+  width: 100%;
+  align-items: center;
 `;
 
 /**
@@ -55,9 +64,13 @@ const NewsStorySectionInner = ({
   removeSportsWithNoStories,
   configInputs: propsConfigInputs,
   configLayout: propsConfigLayout,
+  configForm: propsConfigForm,
   mobileVariant = "carousel",
   loadMore,
 }) => {
+  /** @type {import("./config-form").ConfigForm} */
+  const configForm = propsConfigForm ?? {};
+
   /** @type {import("./config-layout").ConfigLayout} */
   const configLayout = deepMergeLeft(
     propsConfigLayout ?? {},
@@ -70,17 +83,19 @@ const NewsStorySectionInner = ({
     defaultConfigInputs
   );
 
-  // eslint-disable-next-line no-unused-expressions
-  configInputs;
-
-  const [selectedSportId, setSelectedSportId] = React.useState(sports[0]?.id);
+  const newsStorySearchFrom = useNewsStorySearchForm({
+    enableUrlState: false,
+    sportId: sports.find(sport => sport.active)?.id ?? "all",
+  });
 
   const sportsWithSelectedTab = sports.map(sport => ({
     ...sport,
-    active: sport.id === selectedSportId,
+    active: sport.id === newsStorySearchFrom.sportId,
   }));
 
-  const selectedSport = sports.find(sport => sport.id === selectedSportId);
+  const selectedSport = sports.find(
+    sport => sport.id === newsStorySearchFrom.sportId
+  );
 
   const sectionHeaderRef = React.useRef();
   const sectionHeaderPosition = useElementContentPosition(sectionHeaderRef);
@@ -94,7 +109,12 @@ const NewsStorySectionInner = ({
   const { allSportIds } = useSportIdsLoader();
 
   const newsStoryDataSourceLoader = useNewsStoryDataSourceLoader({
-    sportId: selectedSportId === "all" ? null : selectedSportId,
+    searchQuery: newsStorySearchFrom.debouncedSearchQuery,
+    newsType: newsStorySearchFrom.newsType,
+    sportId:
+      newsStorySearchFrom.sportId === "all"
+        ? null
+        : newsStorySearchFrom.sportId,
   });
 
   const skeleton = newsStoryDataSourceLoader.isLoadingInitial;
@@ -125,17 +145,29 @@ const NewsStorySectionInner = ({
       <SectionHeader
         {...mapSectionHeaderProps(sectionHeader)}
         ref={sectionHeaderRef}
+        style={{ paddingBottom: "32px" }}
       />
 
-      {selectedSport && isDesktop && (
+      <NewsStorySearchFormTopbar
+        className="container"
+        newsStorySearchForm={newsStorySearchFrom}
+        configInputs={configInputs}
+        configLayout={configLayout}
+        configForm={configForm}
+        // @ts-ignore
+        sports={sportsWithSelectedTab}
+      />
+
+      {isDesktop && (
         <>
           {configLayout.includeSportTabs && (
-            <div className="container">
+            <div className="container" style={{ paddingBottom: "32px" }}>
               <SportsTabsDesktop
                 skeleton={skeletonTabs}
                 // @ts-ignore
                 sports={sportsFinal}
-                onSportItemClick={sportId => () => setSelectedSportId(sportId)}
+                onSportItemClick={sportId => () =>
+                  newsStorySearchFrom.update({ sportId })}
                 moreTabOrientation="horizontal"
                 moreTabColor="muted"
               />
@@ -143,7 +175,6 @@ const NewsStorySectionInner = ({
           )}
           <div className="container">
             <NewsStoryCardGrid
-              key={selectedSport.id}
               newsStories={newsStoriesFinal}
               skeleton={skeleton}
               // @ts-ignore
@@ -169,14 +200,15 @@ const NewsStorySectionInner = ({
         </>
       )}
 
-      {selectedSport && isMobile && (
+      {isMobile && (
         <>
           {configLayout.includeSportTabs && (
             <div className="container">
               <SportsTabsMobile
                 // @ts-ignore
                 sports={sportsFinal}
-                onSportItemClick={sportId => () => setSelectedSportId(sportId)}
+                onSportItemClick={sportId => () =>
+                  newsStorySearchFrom.update({ sportId })}
                 skeleton={skeletonTabs}
               />
             </div>
@@ -184,7 +216,6 @@ const NewsStorySectionInner = ({
 
           {mobileVariant === "carousel" && (
             <NewsStoryCardCarousel
-              key={selectedSport.id}
               skeleton={skeleton}
               // @ts-ignore
               newsStories={newsStoriesFinal}
@@ -216,7 +247,6 @@ const NewsStorySectionInner = ({
           {mobileVariant === "column" && (
             <div className="container">
               <NewsStoryCardGrid
-                key={selectedSport.id}
                 newsStories={newsStoriesFinal}
                 skeleton={skeleton}
                 // @ts-ignore
@@ -247,13 +277,13 @@ const NewsStorySectionInner = ({
       {configLayout.includeLoadMore &&
         loadMore &&
         newsStoryDataSourceLoader.showLoadNextPage && (
-          <div className="container d-flex justify-content-center align-items-center">
+          <LoadButtonRoot>
             <LoadMoreButton
               {...loadMore}
               onClick={newsStoryDataSourceLoader.loadNextPage}
               loading={newsStoryDataSourceLoader.isLoading}
             />
-          </div>
+          </LoadButtonRoot>
         )}
     </Root>
   );

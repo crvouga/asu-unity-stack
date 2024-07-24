@@ -13,7 +13,7 @@ const mapNodeToNewsStory = node => {
     // @ts-ignore
     title: node?.title,
     // @ts-ignore
-    category: node?.sport_event_type_category,
+    newsType: node?.sport_event_type_category,
     // @ts-ignore
     href: node?.news_url,
     // @ts-ignore

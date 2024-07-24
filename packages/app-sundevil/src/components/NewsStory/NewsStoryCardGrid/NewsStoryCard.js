@@ -170,8 +170,8 @@ export const NewsStoryCard = ({
           <WhiteSpaceFill />
 
           <ContentBottom>
-            {newsStory.showCategory && newsStory.category && (
-              <Category>{newsStory.category}</Category>
+            {newsStory.showNewsType && newsStory.newsType && (
+              <Category>{newsStory.newsType}</Category>
             )}
             <Title size={size}>{newsStory.title}</Title>
           </ContentBottom>

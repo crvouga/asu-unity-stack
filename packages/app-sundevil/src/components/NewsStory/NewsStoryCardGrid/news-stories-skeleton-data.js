@@ -4,9 +4,9 @@
 export const newsStoriesSkeletonData = Array.from({ length: 6 }).map(() => ({
   id: Math.random().toString(),
   href: "#",
-  showCategory: false,
+  showNewsType: false,
   showSportName: false,
-  category: "News",
+  newsType: "News",
   imageSrc:
     "https://asuevents.asu.edu/sites/default/files/2024-07/football-2024.jpg",
   sportId: "lacrosse",

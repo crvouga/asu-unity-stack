@@ -11,6 +11,10 @@ import { findManyInputPropTypes } from "../../NewsStory/news-story-data-source/n
  * @typedef {import("../../NewsStory/news-story-data-source/news-story-data-source").FindManyInput} NewsStorySearchFormState
  */
 
+/**
+ * @typedef {NewsStorySearchFormState & {debouncedSearchQuery: string; update: (state: Partial<NewsStorySearchFormState>) => void; setSearchQuery: (searchQueryNew: string) => void}} NewsStorySearchForm
+ */
+
 const SEARCH_QUERY_DEBOUNCE_MS = 500;
 
 const useQueryState = createUseQueryState({
@@ -24,8 +28,9 @@ const useSearchQueryState = createUseQueryState({
 
 /**
  * @param {Partial<NewsStorySearchFormState> & {enableUrlState: boolean}} initial
+ * @returns {NewsStorySearchForm}
  */
-export const useNewsStorySearchFormState = initial => {
+export const useNewsStorySearchForm = initial => {
   const { enableUrlState, ...initialState } = initial;
 
   const [searchQuery, setSearchQuery] = useStateSwitch(
@@ -61,10 +66,6 @@ export const useNewsStorySearchFormState = initial => {
     update,
   };
 };
-
-/**
- * @typedef {NewsStorySearchFormState & {update: (state: Partial<NewsStorySearchFormState>) => void; setSearchQuery: (searchQueryNew: string) => void}} NewsStorySearchForm
- */
 
 export const newsStorySearchFormPropTypes = PropTypes.shape({
   ...findManyInputPropTypes,

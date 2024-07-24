@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { APP_CONFIG } from "../../../config";
 import { useBreakpoint } from "../../../utils/use-breakpoint";
 import { Icon } from "../../Icon_";
+import { useNewsTypesLoader } from "../../NewsStory/use-news-types-loader";
 import { Select } from "../../Select/Select";
 import { sportPropTypes } from "../../SportsTabs/sports-tabs";
 import { TextField } from "../../TextField/TextField";
@@ -28,13 +29,13 @@ const Root = styled.div`
  * newsStorySearchForm: import("./use-news-story-search-form").NewsStorySearchForm;
  * configLayout: import("../config-layout").ConfigLayout;
  * configInputs: import("../config-inputs").ConfigInputs;
- * sports: import("../../SportsTabs/sports-tabs").Sport[];
+ * sports: (import("../../SportsTabs/sports-tabs").Sport)[];
  * className?: string;
  * darkMode?: boolean;
  * orientation?: "horizontal" | "vertical";
  * }>}
  */
-export const GameTableForm = ({
+export const NewsStorySearchForm = ({
   style,
   newsStorySearchForm,
   configLayout,
@@ -45,6 +46,8 @@ export const GameTableForm = ({
   orientation,
 }) => {
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
+
+  const { allNewsTypes } = useNewsTypesLoader();
 
   const inputStyle = {
     flex: 1,
@@ -85,6 +88,26 @@ export const GameTableForm = ({
         />
       )}
 
+      {configLayout.includeInputNewsType && (
+        <Select
+          darkMode={darkMode}
+          style={inputStyle}
+          label={configInputs?.newsType?.label ?? ""}
+          placeholder={configInputs?.newsType?.placeholder ?? ""}
+          onChange={option =>
+            newsStorySearchForm.update({
+              newsType:
+                option.id === newsStorySearchForm.newsType ? null : option.id,
+            })
+          }
+          options={allNewsTypes.map(newsType => ({
+            label: newsType,
+            id: newsType,
+            active: newsType === newsStorySearchForm.newsType,
+          }))}
+        />
+      )}
+
       {configLayout.includeInputSportType && (
         <Select
           darkMode={darkMode}
@@ -111,7 +134,7 @@ export const GameTableForm = ({
   );
 };
 
-GameTableForm.propTypes = {
+NewsStorySearchForm.propTypes = {
   // @ts-ignore
   newsStorySearchForm: newsStorySearchFormPropTypes,
   // @ts-ignore

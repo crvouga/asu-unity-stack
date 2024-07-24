@@ -28,14 +28,24 @@ const AppContextProvider = ({ initialValue, children }) => {
     }
     return "";
   }
-
+  const [userName, setUserName] = React.useState("");
   useEffect(() => {
     if (value.loggedIn) {
-      value.userName = getCookie("SSONAME") || "";
+      const username = getCookie("SSONAME") || "";
+      setUserName(username);
     }
   }, [value.loggedIn]);
 
-  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider
+      value={{
+        ...value,
+        userName,
+      }}
+    >
+      {children}
+    </AppContext.Provider>
+  );
 };
 
 AppContextProvider.propTypes = {

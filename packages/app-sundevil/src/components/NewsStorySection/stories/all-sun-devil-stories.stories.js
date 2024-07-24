@@ -79,7 +79,7 @@ const newsStories = [
   },
 ];
 
-class CustomNewsStoryDataSource extends INewsStoryDataSource {
+export class CustomNewsStoryDataSource extends INewsStoryDataSource {
   // eslint-disable-next-line class-methods-use-this
   async findMany(input) {
     await new Promise(resolve => setTimeout(resolve, 100));
@@ -94,9 +94,9 @@ class CustomNewsStoryDataSource extends INewsStoryDataSource {
 
 /** @type {import("../index").NewsStorySectionProps} */
 const props = {
-  // newsStoryDataSource: {
-  //   type: "mock",
-  // },
+  newsStoryDataSource: {
+    type: "mock",
+  },
   // newsStoryDataSource: {
   //   type: "asu-news",
   //   url: "https://news.asu.edu/feed-json/sun_devil_athletics",
@@ -106,10 +106,10 @@ const props = {
   //   type: "static",
   //   newsStories,
   // },
-  newsStoryDataSource: {
-    type: "custom",
-    newsStoryDataSource: new CustomNewsStoryDataSource(),
-  },
+  // newsStoryDataSource: {
+  //   type: "custom",
+  //   newsStoryDataSource: new CustomNewsStoryDataSource(),
+  // },
   emptyStateMessage: "No stories available",
   // allStoriesHref: "#",
   // allStoriesLabel: "All Stories",
@@ -241,7 +241,12 @@ export default {
 };
 
 const Template = args => {
-  return <NewsStorySection {...args} {...props} />;
+  return (
+    <>
+      <NewsStorySection {...args} {...props} />
+      <div style={{ width: "100%", height: "1000px" }} />
+    </>
+  );
 };
 
 export const AllSunDevilsStoriesSection = Template.bind({

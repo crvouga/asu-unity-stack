@@ -1,3 +1,4 @@
+// @ts-check
 import PropTypes from "prop-types";
 import React, { useMemo } from "react";
 import styled from "styled-components";
@@ -18,6 +19,7 @@ import { newsStoriesSkeletonData } from "../NewsStory/NewsStoryCardGrid/news-sto
 import { NewsStoryCardCarousel } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardCarousel";
 import { NewsStoryCardGrid } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGrid";
 import { useNewsStoryDataSourceLoader } from "../NewsStory/use-news-story-data-source-loader";
+import { useSportIdsLoader } from "../NewsStory/use-sport-ids-loader";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 import { Skeleton } from "../Skeleton";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
@@ -27,10 +29,6 @@ import { configLayoutPropTypes, defaultConfigLayout } from "./config-layout";
 
 /**
  * @typedef {import("../Navigation").Sport} Sport
- */
-
-/**
- * @typedef {import("../NewsStoryCardGrid/NewsStoryCard").NewsStory} NewsStory
  */
 
 const Root = styled.section`
@@ -93,32 +91,29 @@ const NewsStorySectionInner = ({
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
 
+  const { allSportIds } = useSportIdsLoader();
+
   const newsStoryDataSourceLoader = useNewsStoryDataSourceLoader({
     sportId: selectedSportId === "all" ? null : selectedSportId,
   });
 
-  const skeleton = newsStoryDataSourceLoader.isLoading;
+  const skeleton = newsStoryDataSourceLoader.isLoadingInitial;
   const skeletonTabs = Boolean(
-    skeleton &&
-      removeSportsWithNoStories &&
-      newsStoryDataSourceLoader.allSportIds.length === 0
+    skeleton && removeSportsWithNoStories && allSportIds.length === 0
   );
   const empty =
     !newsStoryDataSourceLoader.isLoading &&
-    newsStoryDataSourceLoader.newsStories.length === 0;
+    newsStoryDataSourceLoader.rows.length === 0;
 
   const newsStoriesFinal = skeleton
     ? newsStoriesSkeletonData
-    : newsStoryDataSourceLoader.newsStories;
+    : newsStoryDataSourceLoader.rows;
   const sportsFinal = sportsWithSelectedTab.filter(sport => {
     if (skeletonTabs) {
       return true;
     }
     if (removeSportsWithNoStories) {
-      return (
-        newsStoryDataSourceLoader.allSportIds.includes(sport.id) ||
-        sport.id === "all"
-      );
+      return allSportIds.includes(sport.id) || sport.id === "all";
     }
     return true;
   });
@@ -138,6 +133,7 @@ const NewsStorySectionInner = ({
             <div className="container">
               <SportsTabsDesktop
                 skeleton={skeletonTabs}
+                // @ts-ignore
                 sports={sportsFinal}
                 onSportItemClick={sportId => () => setSelectedSportId(sportId)}
                 moreTabOrientation="horizontal"
@@ -150,17 +146,20 @@ const NewsStorySectionInner = ({
               key={selectedSport.id}
               newsStories={newsStoriesFinal}
               skeleton={skeleton}
+              // @ts-ignore
               empty={empty}
               emptyStateMessage={emptyStateMessage}
             />
             {hasAllStories && (
               <AllStoriesRoot>
+                {/* @ts-ignore */}
                 <Skeleton skeleton={skeleton} fitContent>
                   <Button
                     color="maroon"
                     size="small"
                     label={allStoriesLabel}
                     href={allStoriesHref}
+                    // @ts-ignore
                     skeleton={skeleton}
                   />
                 </Skeleton>
@@ -175,6 +174,7 @@ const NewsStorySectionInner = ({
           {configLayout.includeSportTabs && (
             <div className="container">
               <SportsTabsMobile
+                // @ts-ignore
                 sports={sportsFinal}
                 onSportItemClick={sportId => () => setSelectedSportId(sportId)}
                 skeleton={skeletonTabs}
@@ -186,6 +186,7 @@ const NewsStorySectionInner = ({
             <NewsStoryCardCarousel
               key={selectedSport.id}
               skeleton={skeleton}
+              // @ts-ignore
               newsStories={newsStoriesFinal}
               slidesOffsetBefore={sectionHeaderPosition.left}
               slidesOffsetAfter={
@@ -196,12 +197,14 @@ const NewsStorySectionInner = ({
               emptyStateMessage={emptyStateMessage}
               renderBottomRightContent={() =>
                 hasAllStories && (
+                  // @ts-ignore
                   <Skeleton skeleton={skeleton} fitContent>
                     <Button
                       color="maroon"
                       size="small"
                       label={allStoriesLabel}
                       href={allStoriesHref}
+                      // @ts-ignore
                       skeleton={skeleton}
                     />
                   </Skeleton>
@@ -216,18 +219,21 @@ const NewsStorySectionInner = ({
                 key={selectedSport.id}
                 newsStories={newsStoriesFinal}
                 skeleton={skeleton}
+                // @ts-ignore
                 empty={empty}
                 emptyStateMessage={emptyStateMessage}
                 columns={1}
               />
               {hasAllStories && (
                 <AllStoriesRoot>
+                  {/* @ts-ignore */}
                   <Skeleton skeleton={skeleton} fitContent>
                     <Button
                       color="maroon"
                       size="small"
                       label={allStoriesLabel}
                       href={allStoriesHref}
+                      // @ts-ignore
                       skeleton={skeleton}
                     />
                   </Skeleton>
@@ -238,17 +244,25 @@ const NewsStorySectionInner = ({
         </>
       )}
 
-      {configLayout.includeLoadMore && (
-        <div className="container d-flex justify-content-center align-items-center">
-          <LoadMoreButton {...loadMore} onClick={() => {}} loading={false} />
-        </div>
-      )}
+      {configLayout.includeLoadMore &&
+        loadMore &&
+        newsStoryDataSourceLoader.showLoadNextPage && (
+          <div className="container d-flex justify-content-center align-items-center">
+            <LoadMoreButton
+              {...loadMore}
+              onClick={newsStoryDataSourceLoader.loadNextPage}
+              loading={newsStoryDataSourceLoader.isLoading}
+            />
+          </div>
+        )}
     </Root>
   );
 };
 
 NewsStorySectionInner.propTypes = {
+  // @ts-ignore
   sectionHeader: SectionHeader.propTypes,
+  // @ts-ignore
   sports: PropTypes.arrayOf(sportSchema).isRequired,
   allStoriesLabel: PropTypes.string,
   allStoriesHref: PropTypes.string,
@@ -256,9 +270,13 @@ NewsStorySectionInner.propTypes = {
   emptyStateMessage: PropTypes.string,
   removeSportsWithNoStories: PropTypes.bool,
   newsStoryDataSource: newsStoryDataSourceSchema,
+  // @ts-ignore
   loadMore: LoadMoreButton.propTypes,
+  // @ts-ignore
   configForm: configFormPropTypes,
+  // @ts-ignore
   configLayout: configLayoutPropTypes,
+  // @ts-ignore
   configInputs: configInputsPropTypes,
 };
 
@@ -290,6 +308,7 @@ export const NewsStorySection = ({
   );
   return (
     <NewsStoryDataSourceProvider newsStoryDataSource={newsStoryDataSource}>
+      {/* @ts-ignore */}
       <NewsStorySectionInner {...props} />
     </NewsStoryDataSourceProvider>
   );

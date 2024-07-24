@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 
 import { updateAtIndex } from "./array";
+import { removeKey } from "./object";
 import * as Result from "./result";
 
 /**
@@ -40,24 +41,25 @@ const initState = () => {
  * @template TRow
  * @template TFilters
  * @param {{
- * filters?: TFilters
+ * query?: TFilters
  * limit?: number
  * offset?: number
- * toQueryKey: (filters?: TFilters) => string
- * loadPage: (input: { filters?: TFilters, offset: number, limit: number }) => Promise<import("./pagination").PaginationResult<TRow>>
+ * toQueryKey: (query?: TFilters) => string
+ * loadPage: (input: { query?: TFilters, offset: number, limit: number }) => Promise<import("./pagination").PaginationResult<TRow>>
  * }} input
  */
-export const useDataSourceLoader = input => {
+export const usePaginatedLoader = input => {
   const [state, setState] = useState(initState);
-  const currentQueryKey = input.toQueryKey(input.filters);
+  const currentQueryKey = input.toQueryKey(removeKey(input.query, "offset"));
   const currentQueryState = state[currentQueryKey] || initQueryState();
+
   const currentPageIndex = (currentQueryState?.pages.length ?? 0) - 1;
   const limit = input.limit ?? 5;
   const offset = currentPageIndex * limit;
   const currentPageState =
     currentQueryState?.pages[currentPageIndex] ?? Result.NotAsked;
 
-  const games = currentQueryState?.pages.flatMap(pageResult =>
+  const rows = currentQueryState?.pages.flatMap(pageResult =>
     pageResult.t === "ok" ? pageResult.value.rows : []
   );
 
@@ -65,7 +67,7 @@ export const useDataSourceLoader = input => {
     currentPageState.t === "loading" || currentPageState.t === "not-asked";
   const isLoadingInitial = isLoading && currentPageIndex === 0;
   const hasNextPage =
-    currentPageState.t === "ok" && currentPageState.value.total > games.length;
+    currentPageState.t === "ok" && currentPageState.value.total > rows.length;
   const showLoadNextPage = (hasNextPage || isLoading) && !isLoadingInitial;
 
   const loadPage = async () => {
@@ -74,7 +76,7 @@ export const useDataSourceLoader = input => {
     }
 
     const result = await Result.attempt(() =>
-      input.loadPage({ filters: input.filters, offset, limit })
+      input.loadPage({ query: input.query, offset, limit })
     );
     setState(statePrev => ({
       ...statePrev,
@@ -108,6 +110,6 @@ export const useDataSourceLoader = input => {
     showLoadNextPage,
     isLoading,
     isLoadingInitial,
-    games,
+    rows,
   };
 };

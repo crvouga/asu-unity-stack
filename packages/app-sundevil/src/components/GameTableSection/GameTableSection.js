@@ -155,7 +155,7 @@ const GameTableSectionInner = ({ ...props }) => {
       <GameTable
         {...props}
         {...props.gameTable}
-        games={gameDataSourceLoader.games}
+        games={gameDataSourceLoader.rows}
         footerButtons={footerButtons}
         footerLinks={footerLinks}
         skeletonRowCount={limit}

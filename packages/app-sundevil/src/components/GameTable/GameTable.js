@@ -147,7 +147,7 @@ const GameTable = ({
               label={button.label}
               size={button.size}
               onClick={() => {
-                window.open(button.link, "_blank");
+                window.open(button.link, button.target);
               }}
             />
           ))}
@@ -172,6 +172,7 @@ export const gameTableFooterButtonPropTypes = PropTypes.shape({
   size: PropTypes.string,
   href: PropTypes.string,
   icon: PropTypes.string,
+  target: PropTypes.string,
 });
 
 export const gameTableFooterLinkPropTypes = PropTypes.shape({

@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
-import React, { createContext, useContext } from "react";
+import React, {createContext, useContext, useEffect} from "react";
 
-import { HeaderPropTypes } from "../models/app-prop-types";
+import {HeaderPropTypes} from "../models/app-prop-types";
 
-const breakpoints = { Lg: "992px", Xl: "1260px" };
+const breakpoints = {Lg: "992px", Xl: "1260px"};
 
 const AppContext = createContext();
 
@@ -12,6 +12,28 @@ const AppContextProvider = ({ initialValue, children }) => {
     ...initialValue,
     breakpoint: breakpoints[initialValue.breakpoint],
   };
+
+  function getCookie(cname) {
+    var name = `${cname}=`;
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(";");
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == " ") {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  useEffect(() => {
+    if (value.loggedIn) {
+      value.userName = getCookie("SSONAME") || "";
+    }
+  }, [value.loggedIn]);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

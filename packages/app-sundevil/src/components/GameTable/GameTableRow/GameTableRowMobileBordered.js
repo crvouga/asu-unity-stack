@@ -6,6 +6,7 @@ import { Skeleton } from "../../Skeleton";
 import { defaultConfigCells } from "./config-cells";
 import { defaultConfigLayout } from "./config-layout";
 import { gameTableRowPropTypes } from "./game-table-row";
+import {formatTimeAmPm} from "../../../utils/formatTime";
 
 const Root = styled.div`
   display: flex;
@@ -122,7 +123,7 @@ export const GameTableRowMobileBordered = forwardRef(
                 <Title>{game?.title}</Title>
                 <Subtitles>
                   <Subtitle className="text-body-tertiary">
-                    {game?.time}
+                    {formatTimeAmPm(game?.time)}
                   </Subtitle>
                   <Subtitle className="text-body-tertiary">
                     {game?.venue}

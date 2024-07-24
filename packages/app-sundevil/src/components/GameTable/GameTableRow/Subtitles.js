@@ -2,11 +2,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import { APP_CONFIG } from "../../../config";
-import { deepMergeLeft } from "../../../utils/deep-merge-left";
-import { useBreakpoint } from "../../../utils/use-breakpoint";
-import { defaultConfigCells } from "./config-cells";
-import { gameTableRowPropTypes } from "./game-table-row";
+import {APP_CONFIG} from "../../../config";
+import {deepMergeLeft} from "../../../utils/deep-merge-left";
+import {useBreakpoint} from "../../../utils/use-breakpoint";
+import {defaultConfigCells} from "./config-cells";
+import {gameTableRowPropTypes} from "./game-table-row";
+import {formatTimeAmPm} from "../../../utils/formatTime";
 
 const Root = styled.div`
   display: flex;
@@ -79,7 +80,7 @@ export const Subtitles = ({
         isValidString(game?.subtitleChip) && (
           <SubtitleChip>{game?.subtitleChip}</SubtitleChip>
         )}
-      <Subtitle className="text-body-tertiary">{game?.time}</Subtitle>
+      <Subtitle className="text-body-tertiary">{formatTimeAmPm(game?.time)}</Subtitle>
       <Subtitle className="text-body-tertiary">{game?.venue}</Subtitle>
     </Root>
   );

@@ -42,7 +42,7 @@ const Header = styled.header`
         overflow: hidden;
       }
       .title {
-        margin: 0.5rem 0 0 0;
+        margin: 0.5rem 0;
       }
       a.unit-name {
         display: none;
@@ -112,7 +112,7 @@ const HeaderDiv = styled.div`
         overflow: hidden;
       }
       .title {
-        margin: 0.5rem 0 0 0;
+        margin: 0.5rem 0;
       }
       a.unit-name {
         display: none;

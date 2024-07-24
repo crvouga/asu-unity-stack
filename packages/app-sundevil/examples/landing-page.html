@@ -1343,6 +1343,12 @@
         renderWithinChildWhiteList: [".contextual"]
       });
     </script>
+
+    <style>
+      .my-button {
+        background-color: tomato !important;
+      }
+    </style>
     <script>
       const props = {
         // This will just generate random games
@@ -1372,6 +1378,8 @@
                 label: "Full schedule - Football",
                 size: "small",
                 href: "#",
+                class: "my-button",
+                className: "my-button"
               },
               {
                 color: "maroon",
@@ -1442,11 +1450,15 @@
             color: "gold",
             label: "Full schedule",
             size: "small",
+            // class: "my-button",
+            className: "my-button"
           },
           {
             color: "maroon",
             label: "Gear up for the game",
             size: "small",
+            class: "my-button",
+            // className: "my-button"
           },
         ],
         footerLinks: [

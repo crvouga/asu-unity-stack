@@ -108,7 +108,7 @@ const NewsStorySectionInner = ({
   const { allSportIds } = useSportIdsLoader();
 
   const newsStoryDataSourceLoader = useNewsStoryDataSourceLoader({
-    limit: propsNewsStoryDataSourceLoader?.limit,
+    limit,
     searchQuery: newsStorySearchFrom.debouncedSearchQuery,
     newsType: newsStorySearchFrom.newsType,
     sportId:

@@ -7,7 +7,7 @@ import { useNewsStoryDataSource } from "./NewsDataSourceContext";
 export const useNewsStoryDataSourceLoader = input => {
   const newsStoryDataSource = useNewsStoryDataSource();
   const paginatedLoader = usePaginatedLoader({
-    limit: input.limit,
+    limit: input.limit ?? 6,
     offset: input.offset ?? 0,
     query: input,
     toQueryKey: query => btoa(JSON.stringify(query ?? {})),

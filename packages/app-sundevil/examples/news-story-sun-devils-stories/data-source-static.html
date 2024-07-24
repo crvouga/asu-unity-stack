@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Load React. -->
+    <script
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+      crossorigin
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://unity.web.asu.edu/@asu/bootstrap4-theme/css/bootstrap-asu.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://asu.github.io/asu-unity-stack/@asu/unity-bootstrap-theme/css/unity-bootstrap-theme.bundle.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- *************************************************************** -->
+    <!-- include bundled scripts from packages -->
+    <script src="../dist/vendor.umd.js"></script>
+    <script src="../dist/sunDevil.umd.js"></script>
+  </head>
+
+  <body>
+    <div id="section-container">
+      <div>This will be removed</div>
+      <div class="contextual"></div>
+    </div>
+    <script>
+      const imageSrc =
+        "https://asuevents.asu.edu/sites/default/files/2024-07/football-2024.jpg";
+
+      // @ts-ignore
+      // eslint-disable-next-line no-unused-vars
+      const newsStories = [
+        {
+          id: "1",
+          href: "#",
+          showNewsType: false,
+          showSportName: false,
+          newsType: "News",
+          imageSrc,
+          sportName: "W. Lacrosse",
+          sportIconFaClassName: "fas fa-lacrosse",
+          title:
+            "Gigi Gaspar Named Pac-12 Lacrosse Scholar Athlete of the Year",
+        },
+        {
+          id: "2",
+          href: "#",
+          showNewsType: false,
+          showSportName: false,
+          newsType: "Video",
+          imageSrc,
+          sportName: "Football",
+          sportIconFaClassName: "fas fa-football-ball",
+          title: "Super Bowl #SunDevils4Life",
+        },
+        {
+          id: "3",
+          href: "#",
+          showNewsType: false,
+          showSportName: false,
+          newsType: "Video",
+          imageSrc,
+          sportName: "M. Golf",
+          sportIconFaClassName: "fas fa-golf-ball",
+          title:
+            "Men's Golf Gets No. 1 Seet at Rancho Santa Fe/The Farms Golf Club Regional",
+        },
+        {
+          id: "4",
+          href: "#",
+          showNewsType: false,
+          showSportName: false,
+          newsType: "News",
+          imageSrc,
+          sportName: "Vollyball",
+          sportIconFaClassName: "fas fa-volleyball-ball",
+          title: "Rohr Pac-12 Coach of the Year, Kensinger Honored",
+        },
+        {
+          id: "5",
+          href: "#",
+          showNewsType: false,
+          showSportName: false,
+          newsType: "Game Recap",
+          title:
+            "Lacrosse Downs Ducks, Will Face Stanford in Pac-12 Semifinals",
+          sportName: "W. Lacrosse",
+          imageSrc,
+          sportIconFaClassName: "fas fa-lacrosse",
+        },
+        {
+          id: "6",
+          href: "#",
+          showNewsType: false,
+          showSportName: false,
+          newsType: "News",
+          title: "Kensinger, Williamson Named All-Americans",
+          sportName: "Volleyball",
+          sportIconFaClassName: "fas fa-volleyball-ball",
+          imageSrc,
+        },
+      ];
+
+      const props = {
+        // newsStoryDataSource: {
+        //   type: "asu-news",
+        //   url: "https://news.asu.edu/feed-json/sun_devil_athletics",
+        //   timeout: 1500,
+        // },
+        // newsStoryDataSource: {
+        //   type: "mock",
+        // },
+        newsStoryDataSource: {
+          type: "static",
+          newsStories,
+        },
+        // newsStoryDataSource: {
+        //   type: "custom",
+        //   newsStoryDataSource: new CustomNewsStoryDataSource(),
+        // },
+        emptyStateMessage: "No stories available",
+        allStoriesHref: "#",
+        allStoriesLabel: "All Stories",
+        sectionHeader: {
+          title: "Sun Devil Stories",
+          sponsorBlock: {
+            text: "Presented by:",
+            name: "Desert Financial",
+            logo: "https://www.desertfinancial.com/globalassets/images/logos/desert-financial/df-logo_fullcolor_tm-cropped.svg",
+            url: "https://www.desertfinancial.com/",
+          },
+        },
+        removeSportsWithNoStories: false,
+        sports: [
+          {
+            name: "All Sports",
+            icon: "fas fa-sync-alt",
+            position: 1,
+            id: "all",
+          },
+          {
+            name: "Football",
+            icon: "fas fa-football-ball",
+            position: 2,
+            id: "football",
+          },
+          {
+            name: "M. Basketball",
+            icon: "fas fa-basketball-ball",
+            position: 3,
+            id: "basketball",
+          },
+          {
+            name: "Hockey",
+            icon: "fas fa-hockey-puck",
+            position: 4,
+            id: "hockey",
+          },
+          {
+            name: "Baseball",
+            icon: "fas fa-baseball-ball",
+            position: 5,
+            id: "baseball",
+          },
+          {
+            name: "W. Basketball",
+            icon: "fas fa-basketball-ball",
+            id: "w-basketball",
+            position: 6,
+          },
+          {
+            name: "Softball",
+            icon: "fas fa-futbol",
+            id: "softball",
+            position: 7,
+          },
+          {
+            name: "Soccer",
+            icon: "fas fa-baseball-ball",
+            id: "soccer",
+            position: 8,
+          },
+          {
+            name: "Swimming",
+            icon: "fas fa-swimmer",
+            id: "swimming",
+            position: 9,
+          },
+          {
+            name: "Golf",
+            icon: "fas fa-golf-ball",
+            id: "golf",
+            position: 10,
+          },
+          {
+            name: "Tennis",
+            icon: "fas fa-table-tennis",
+            id: "tennis",
+            position: 11,
+          },
+          {
+            name: "W. Lacrosse",
+            icon: "fas fa-lacrosse",
+            id: "w-lacrosse",
+            position: 12,
+          },
+        ],
+      };
+
+      initSunDevilsStoriesSection({
+        targetSelector: "#section-container",
+        props,
+        renderWithinChildWhiteList: [".contextual"],
+      });
+    </script>
+  </body>
+</html>

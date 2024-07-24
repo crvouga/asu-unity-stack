@@ -57,57 +57,57 @@
     <div style="width: 100%; height: 500px"></div>
     <script>
       const props = {
-        // gameDataSource: {
-        //   type: "custom",
-        //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
-        // },
+        // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4801-45080&t=OOxUjvuOdT8YyVSn-0
+        gameDataSource: {
+          type: "mock",
+          timeout: 200,
+        },
         // gameDataSource: {
         //   type: "custom",
         //   gameDataSource: new CustomGameDataSource(),
         // },
-        gameDataSource: {
-          type: "asu-events",
-          url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-          timeout: 800,
-        },
-        variant: "hero",
-        configOverlap: "sport-tabs-with-hero",
-        title: "Get Tickets",
-        subtitle:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        // gameDataSource: {
+        //   type: "asu-events",
+        //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+        //   timeout: 800,
+        // },
+        // variant: "hero",
+        variant: "default",
+        // configOverlap: "sport-tabs-with-hero",
+        title: "Upcoming Games",
+        // subtitle:
+        //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        subtitleLinks: [
+          // {
+          //   label: "See a list of free sporting events",
+          //   href: "#",
+          //   color: "muted",
+          // },
+        ],
+        // darkMode: true,
         darkMode: false,
         emptyStateMessage: "No games found",
-        configGameTableForm: {
-          // title: "Filter your results",
-          enableUrlState: false,
-        },
-        gameTable: {
-          configLayout: {
-            includeCellDate: true,
-            includeCellSportName: true,
-            includeCellVersus: true,
-            includeCellTitle: true,
-            includeCellTickets: true,
-          },
-          configCells: {
-            cellTitle: {
-              // subtitleFontWeight: "bold",
-              includeSubtitleChip: true,
-            },
-          },
+        gameDataSourceLoader: {
+          limit: 20,
         },
         configLayout: {
           includeInputSearch: true,
           includeInputSportType: true,
-          includeInputHomeOrAwaySelect: false,
-          includeInputVenueSelect: true,
-          includeInputSortBySelect: true,
+          includeInputHomeOrAwaySelect: true,
+          includeInputVenueSelect: false,
+          includeInputSortBySelect: false,
           includeSportsTabs: false,
           includeLoadMore: true,
+          includeSportTypeCheckboxList: false,
+          includeInputEventTypeSelect: false,
+          includeMaxAdmissionCostSelect: false,
+        },
+        configGameTableForm: {
+          title: "Filter your results",
         },
         configInputs: {
           searchInput: {
-            label: "Search by Event Name",
+            label: "Search tickets",
             placeholder: "Sun Devils vs. BYU, Season Tickets, Rose Bowl",
           },
           sportTypeSelect: {
@@ -125,6 +125,24 @@
           sortBySelect: {
             label: "Sort By:",
             placeholder: "Select one",
+          },
+          sportTypeCheckboxList: {
+            label: "Sport Type",
+          },
+        },
+        gameTable: {
+          configLayout: {
+            includeCellDate: true,
+            includeCellSportName: false,
+            includeCellVersus: false,
+            includeCellTitle: true,
+            includeCellTickets: true,
+          },
+          configCells: {
+            cellTitle: {
+              // subtitleFontWeight: "bold",
+              includeSubtitleChip: true,
+            },
           },
         },
         sports: [

@@ -16,6 +16,8 @@ import {
   NewsStorySection,
   VideoSection,
 } from "./components";
+import { SeasonsTicket } from "./components/SeasonsTicket";
+import {GroupTickets} from "./components/GroupTickets";
 
 /**
  * @description
@@ -263,5 +265,20 @@ export const initLinkTabsBar = input => {
   RenderReact({
     ...input,
     component: LinkTabsBar,
+  });
+};
+
+export const initSeasonsTicket = input => {
+  RenderReact({
+    ...input,
+    component: SeasonsTicket,
+  });
+};
+
+
+export const initGroupsTicket = input => {
+  RenderReact({
+    ...input,
+    component: GroupTickets,
   });
 };

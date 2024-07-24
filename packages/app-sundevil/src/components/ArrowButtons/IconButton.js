@@ -35,8 +35,8 @@ const Root = styled.button`
   }
 
   svg {
-    fill: currentColor !important;
-    color: currentColor !important;
+    fill: #000 !important;
+    color: #000 !important;
   }
 
   &:active {

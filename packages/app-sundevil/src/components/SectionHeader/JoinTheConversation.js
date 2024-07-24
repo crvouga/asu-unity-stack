@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { Icon, iconPropType } from "../Icon_";
 import { SocialMediaIcon } from "./SocialMediaIcon";
+import { SocialMediaIconButton } from "./SocialMediaIconButton";
 
 const Root = styled.div`
   display: flex;
@@ -18,22 +19,6 @@ const Title = styled.p`
   margin: 0;
   font-size: 16px;
   font-weight: 700;
-`;
-
-const SocialMediaIconButton = styled.a`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 48px;
-  height: 48px;
-  max-width: 48px;
-  max-height: 48px;
-  flex-shrink: 0;
-  flex-grow: 0;
-  border-radius: 50%;
-  background-color: #191919;
-  color: #fff;
-  text-decoration: none;
 `;
 
 const SocialMediaIconsRoot = styled.div`

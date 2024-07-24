@@ -7,8 +7,8 @@ export const IconTwitter = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="22"
-      height="19"
+      width="100%"
+      height="100%"
       viewBox="0 0 22 19"
       fill="none"
     >
@@ -24,8 +24,8 @@ export const IconFacebook = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="12"
-      height="22"
+      width="100%"
+      height="100%"
       viewBox="0 0 12 22"
       fill="none"
     >
@@ -41,8 +41,8 @@ export const IconInstagram = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="19"
+      width="100%"
+      height="100%"
       viewBox="0 0 20 19"
       fill="none"
     >

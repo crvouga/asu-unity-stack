@@ -35,6 +35,21 @@ const ICON_SIZE = {
   fontSize: "16px",
 };
 
+const StyledSportsTab = styled(SportsTab)`
+  ${({ darkMode, active }) => {
+    if (darkMode && !active) {
+      return `
+      &:hover {
+        i {
+            color: #fdc627 !important;
+        }
+      }
+      `;
+    }
+    return "";
+  }}
+`;
+
 /**
  * @type {React.FC<Props>}
  * */
@@ -88,16 +103,21 @@ export const SportsTabsDesktop = ({
         {!skeleton && (
           <>
             {sportTabs.map(sport => (
-              <SportsTab
+              <StyledSportsTab
                 key={sport.id}
                 onClick={onSportItemClick(sport.id)}
                 active={Boolean(sport.active)}
                 orientation="vertical"
                 darkMode={darkMode}
               >
-                <Icon title={sport.name} icon={sport.icon} style={ICON_SIZE} />
+                <Icon
+                  darkMode={darkMode}
+                  title={sport.name}
+                  icon={sport.icon}
+                  style={ICON_SIZE}
+                />
                 <div>{sport.name}</div>
-              </SportsTab>
+              </StyledSportsTab>
             ))}
             {sportsTabSkeletonData
               .slice(0, maxTabCount - sportTabs.length)
@@ -112,7 +132,7 @@ export const SportsTabsDesktop = ({
                 }
                 renderReference={input => {
                   return (
-                    <SportsTab
+                    <StyledSportsTab
                       // @ts-ignore
                       ref={input.ref}
                       onClick={() =>
@@ -132,7 +152,7 @@ export const SportsTabsDesktop = ({
                       <DropDownChevron open={input.open} style={ICON_SIZE} />
 
                       <div>More</div>
-                    </SportsTab>
+                    </StyledSportsTab>
                   );
                 }}
                 renderContent={() => {

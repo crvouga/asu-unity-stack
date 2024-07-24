@@ -87,6 +87,7 @@ const propsPropTypes = {
   color: PropTypes.oneOf(["default", "muted"]),
   darkMode: PropTypes.bool,
   empty: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 /**
@@ -98,6 +99,7 @@ const propsPropTypes = {
  * color?: "default" | "muted";
  * darkMode?: boolean;
  * empty?: boolean;
+ * className?: string;
  * }} Props
  */
 
@@ -106,14 +108,25 @@ const propsPropTypes = {
  */
 export const SportsTab = React.forwardRef(
   (
-    { children, active, onClick, empty, orientation, color, darkMode = false },
+    {
+      children,
+      active,
+      onClick,
+      empty,
+      orientation,
+      color,
+      darkMode = false,
+      className,
+    },
     ref
   ) => {
-    const className = active ? "active" : "inactive";
+    const classNameFinal = [className, active ? "active" : "inactive"]
+      .filter(Boolean)
+      .join(" ");
     return (
       <Root
         onClick={onClick}
-        className={className}
+        className={classNameFinal}
         role="button"
         tabIndex={0}
         ref={ref}

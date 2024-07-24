@@ -102,11 +102,11 @@ export const mergeIconProps = (props, icon) => {
 };
 
 const StyledIcon = styled.i`
-  color: inherit !important;
-  text-decoration: inherit !important;
+  color: inherit;
+  text-decoration: inherit;
   &:hover {
-    color: inherit !important;
-    text-decoration: inherit !important;
+    color: inherit;
+    text-decoration: inherit;
   }
 `;
 

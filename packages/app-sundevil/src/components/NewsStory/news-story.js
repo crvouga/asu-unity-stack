@@ -4,17 +4,17 @@ import PropTypes from "prop-types";
 /**
  * @typedef {{
  * id: string;
- * href?: string;
+ * href?: string | null;
  * title: string;
- * newsType?: string;
- * imageSrc?: string;
- * imageAlt?: string;
- * sportId?: string;
- * sportName?: string;
- * sportIconFaClassName?: string;
- * showNewsType?: boolean;
- * showSportName?: boolean;
- * youtubeVideoUrl?: string;
+ * newsType?: string | null;
+ * imageSrc?: string | null;
+ * imageAlt?: string | null;
+ * sportId?: string | null;
+ * sportName?: string | null;
+ * sportIconFaClassName?: string | null;
+ * showNewsType?: boolean | null;
+ * showSportName?: boolean | null;
+ * youtubeVideoUrl?: string | null;
  * }} NewsStory
  */
 

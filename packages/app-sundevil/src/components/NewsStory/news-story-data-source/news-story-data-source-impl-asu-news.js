@@ -6,25 +6,79 @@ import { NewsStoryDataSourceStatic } from "./news-story-data-source-impl-static"
 /**
  * @type {(node: unknown) => import("../news-story").NewsStory | null}
  */
-const mapNodeToNewsStory = node => {
+const mapItemToNewsStory = node => {
+  const id =
+    // @ts-ignore
+    node?.id ?? node?.nid;
+
+  const title =
+    // @ts-ignore
+    node?.title;
+
+  const newsType =
+    // @ts-ignore
+    node?.field_news_type;
+
+  const href =
+    // @ts-ignore
+    node?.ticketing_rsvp_url;
+
+  const imageSrc =
+    // @ts-ignore
+    node?.image_url?.src;
+
+  const imageAlt =
+    // @ts-ignore
+    node?.image_url?.alt;
+
+  const sportName =
+    // @ts-ignore
+    node?.field_sport_category;
+
+  const sportId = stringToSportId(sportName) ?? "";
+
   return {
-    // @ts-ignore
-    id: node?.nid,
-    // @ts-ignore
-    title: node?.title,
-    // @ts-ignore
-    newsType: node?.sport_event_type_category,
-    // @ts-ignore
-    href: node?.news_url,
-    // @ts-ignore
-    imageSrc: node?.image_url,
-    // @ts-ignore
-    imageAlt: node?.image_alt,
-    // @ts-ignore
-    sportId: stringToSportId(node?.sport_category),
-    // @ts-ignore
-    sportName: node?.sport_category,
+    id,
+    title,
+    newsType,
+    href,
+    imageSrc,
+    imageAlt,
+    sportId,
+    sportName,
+    showNewsType: false,
+    showSportName: false,
+    sportIconFaClassName: null,
+    youtubeVideoUrl: null,
   };
+};
+
+const jsonToItems = json => {
+  if (Array.isArray(json)) {
+    return json;
+  }
+
+  const nodes = json?.nodes;
+
+  if (Array.isArray(nodes)) {
+    return nodes;
+  }
+
+  const items = json?.items;
+
+  if (Array.isArray(items)) {
+    return items;
+  }
+
+  return [];
+};
+
+const jsonItemToItem = jsonItem => {
+  if ("node" in jsonItem) {
+    return jsonItem.node;
+  }
+
+  return jsonItem;
 };
 
 export class NewsStoryDataSourceAsuNews extends INewsStoryDataSource {
@@ -45,8 +99,10 @@ export class NewsStoryDataSourceAsuNews extends INewsStoryDataSource {
 
     const json = await fetched.json();
 
-    const newsStories = json?.nodes?.map(item =>
-      mapNodeToNewsStory(item?.node)
+    const items = jsonToItems(json);
+
+    const newsStories = items?.flatMap(
+      item => mapItemToNewsStory(jsonItemToItem(item)) ?? []
     );
 
     const dataSource = new NewsStoryDataSourceStatic({

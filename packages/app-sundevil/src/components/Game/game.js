@@ -4,6 +4,7 @@ export const gamePropTypes = PropTypes.shape({
   id: PropTypes.string,
   title: PropTypes.string,
   titleHref: PropTypes.string,
+  startDate: PropTypes.string,
   dateDay: PropTypes.string,
   dateMonth: PropTypes.string,
   homeTeamName: PropTypes.string.isRequired,

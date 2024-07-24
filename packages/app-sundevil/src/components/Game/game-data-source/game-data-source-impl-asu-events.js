@@ -11,7 +11,9 @@ const mapNodeToGame = data => {
   if (typeof data !== "object" || data === null) {
     return null;
   }
-  const startDate = new Date(data["very_start_date"]);
+
+  const startDateStr = data["very_start_date"];
+  const startDate = new Date(startDateStr);
   const startDay = startDate?.getDate().toString();
   const startMonth = startDate?.toLocaleString("default", { month: "short" });
   const startTimeHour12 = startDate?.toLocaleString("en-US", {
@@ -29,6 +31,7 @@ const mapNodeToGame = data => {
     id: data?.nid,
     gameType: data.game_type,
     sportId: data.sport_tag,
+    startDate: startDateStr,
     sportName: data.sport_tag,
     // @ts-ignore
     dateDay: startDay,

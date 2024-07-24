@@ -1,5 +1,5 @@
 import { matchSort } from "../../../utils/match-sort";
-import { asc, desc } from "../../../utils/sort";
+import { asc } from "../../../utils/sort";
 import { GameDataSourceSortBy, IGameDataSource } from "./game-data-source";
 
 const cleanString = str =>
@@ -73,11 +73,11 @@ export class GameDataSourceStatic extends IGameDataSource {
         }
 
         case GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST: {
-          return desc(game => game.date)(a, b);
+          return asc(game => new Date(game.startDate))(a, b);
         }
 
         default: {
-          return desc(game => game.date)(a, b);
+          return asc(game => new Date(game.startDate))(a, b);
         }
       }
     });

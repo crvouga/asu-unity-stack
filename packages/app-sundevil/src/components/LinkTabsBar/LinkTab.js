@@ -37,14 +37,12 @@ export const Root = styled.a`
   }
   &:hover {
     background-color: rgba(25, 25, 25, 0.1);
-    color: color-mix(in srgb, currentColor 60%, transparent);
   }
   gap: 0.5rem;
   ${({ focused }) => {
     if (focused) {
       return `
         background-color: rgba(25, 25, 25, 0.1);
-        color: color-mix(in srgb, currentColor 60%, transparent);
       `;
     }
     return "";

@@ -103,10 +103,10 @@ export const mergeIconProps = (props, icon) => {
 
 const StyledIcon = styled.i`
   color: inherit !important;
-  text-decoration: !important;
+  text-decoration: inherit !important;
   &:hover {
-    color: !important;
-    text-decoration: !important;
+    color: inherit !important;
+    text-decoration: inherit !important;
   }
 `;
 

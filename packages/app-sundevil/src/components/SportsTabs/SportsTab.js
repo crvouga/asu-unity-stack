@@ -12,7 +12,6 @@ const Root = styled.div`
     background-color: transparent;
 
     &:hover {
-      opacity: 0.8;
       background-color: ${({
         // @ts-ignore
         darkMode,

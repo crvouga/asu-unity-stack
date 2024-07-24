@@ -2,11 +2,11 @@ import React, { forwardRef } from "react";
 import styled from "styled-components";
 
 import { deepMergeLeft } from "../../../utils/deep-merge-left";
+import { formatTimeAmPm } from "../../../utils/formatTime";
 import { Skeleton } from "../../Skeleton";
 import { defaultConfigCells } from "./config-cells";
 import { defaultConfigLayout } from "./config-layout";
 import { gameTableRowPropTypes } from "./game-table-row";
-import {formatTimeAmPm} from "../../../utils/formatTime";
 
 const Root = styled.div`
   display: flex;

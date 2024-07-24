@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
 
-import { useBreakpoint } from "../../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../../config";
+import { useBreakpoint } from "../../../utils/use-breakpoint";
 import { ArrowButtons } from "../../ArrowButtons";
 import { Carousel, CarouselController, CarouselItem } from "../../Carousel";
 import { specialEventPropTypes } from "../special-event";

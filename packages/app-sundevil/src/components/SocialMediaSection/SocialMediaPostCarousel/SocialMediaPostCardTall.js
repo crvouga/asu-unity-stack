@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import { useBreakpoint } from "../../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../../config";
+import { useBreakpoint } from "../../../utils/use-breakpoint";
 import { Skeleton } from "../../Skeleton";
 import { Avatar } from "./Avatar";
 import * as SocialMediaPost from "./social-media-post";

@@ -2,14 +2,14 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { useBreakpoint } from "../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../config";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useElementContentPosition } from "../../utils/use-element-position";
 import { ButtonProp } from "../Button";
 import { BottomButtons } from "../Button/BottomButtons";
 import * as NewsStory from "../NewsStory/news-story";
-import { NewsStoryCardGridFeatured } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGrid";
 import { NewsStoryCardCarousel } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardCarousel";
+import { NewsStoryCardGridFeatured } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGrid";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 
 /**

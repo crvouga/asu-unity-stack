@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import React, { useMemo, useRef } from "react";
 import styled from "styled-components";
 
-import { useBreakpoint } from "../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../config";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import {
   useElementContentDimensions,
   useElementContentPosition,

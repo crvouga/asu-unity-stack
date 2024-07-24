@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { useBreakpoint } from "../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../config";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import { DropDown, DropDownSurface } from "../DropDown";
 import { DropDownChevron } from "../DropDown/DropDownChevron";
 import { Icon } from "../Icon_";

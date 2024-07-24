@@ -13,9 +13,12 @@ export const useGameVenuesLoader = () => {
       offset: 0,
       limit: Infinity,
     });
-    const allVenuesNew = Array.from(
-      new Set(found.rows.map(game => game.venue))
-    );
+
+    const allVenuesNew = Array.from(new Set(found.rows.map(game => game.venue)))
+      .filter(venue => typeof venue === "string")
+      .map(venue => venue.trim())
+      .filter(venue => venue.length > 0);
+
     setAllVenues(allVenuesNew);
   };
 

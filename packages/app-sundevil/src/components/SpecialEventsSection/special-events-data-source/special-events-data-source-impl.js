@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { specialEventPropTypes } from "../special-event";
 import { ISpecialEventsDataSource } from "./special-events-data-source";
 import { SpecialEventsDataSourceAsuEvents } from "./special-events-data-source-impl-asu-events";
+import { SpecialEventsDataSourceDrupalAPI } from "./special-events-data-source-impl-drupal-api";
 import { SpecialEventsDataSourceStatic } from "./special-events-data-source-impl-static";
 
 export const specialEventsDataSourcePropTypes = PropTypes.oneOfType([
@@ -12,6 +13,10 @@ export const specialEventsDataSourcePropTypes = PropTypes.oneOfType([
   }),
   PropTypes.shape({
     type: PropTypes.oneOf(["asu-events"]),
+    url: PropTypes.string,
+  }),
+  PropTypes.shape({
+    type: PropTypes.oneOf(["drupal-api"]),
     url: PropTypes.string,
   }),
   PropTypes.shape({
@@ -30,6 +35,9 @@ export const buildSpecialEventsDataSource = input => {
     }
     case "asu-events": {
       return new SpecialEventsDataSourceAsuEvents(input);
+    }
+    case "drupal-api": {
+      return new SpecialEventsDataSourceDrupalAPI(input);
     }
     case "custom": {
       return input.specialEventsDataSource;

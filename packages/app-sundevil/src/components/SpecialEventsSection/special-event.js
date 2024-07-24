@@ -1,5 +1,7 @@
 import PropsTypes from "prop-types";
 
+import { iconPropType } from "../Icon_";
+
 const buttonPropTypes = PropsTypes.shape({
   label: PropsTypes.string,
   href: PropsTypes.string,
@@ -19,6 +21,7 @@ export const specialEventPropTypes = PropsTypes.shape({
   imageAlt: PropsTypes.string,
   sportName: PropsTypes.string,
   sportIconFaClassName: PropsTypes.string,
+  sportIcon: iconPropType,
   title: PropsTypes.string,
   subtitles: PropsTypes.arrayOf(PropsTypes.string),
   body: PropsTypes.string,
@@ -32,6 +35,7 @@ export const specialEventPropTypes = PropsTypes.shape({
  * @property {string} [imageAlt]
  * @property {string} [sportName]
  * @property {string} [sportIconFaClassName]
+ * @property {any} [sportIcon]
  * @property {string} [title]
  * @property {string[]} [subtitles]
  * @property {string} [body]

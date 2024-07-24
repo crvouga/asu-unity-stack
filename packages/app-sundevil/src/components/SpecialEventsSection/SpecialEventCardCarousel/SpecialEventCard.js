@@ -4,11 +4,8 @@ import styled from "styled-components";
 
 import { Button } from "../../../../../components-core/src";
 import { AspectRatio16by9 } from "../../AspectRatio/AspectRatio16by9";
+import { Icon } from "../../Icon_";
 import { Skeleton } from "../../Skeleton";
-import {
-  sportNameToFaClassName,
-  stringToClosestSportName,
-} from "../../SportIcon/sport-name";
 import { specialEventPropTypes } from "../special-event";
 
 const CardRoot = styled.div`
@@ -48,7 +45,7 @@ const SportName = styled.p`
   font-weight: 700;
 `;
 
-const SportIcon = styled.i`
+const SportIcon = styled(Icon)`
   width: 12px;
   height: 12px;
   font-size: 12px;
@@ -108,11 +105,7 @@ const CardButtons = styled.div`
 export const SpecialEventCard = ({ specialEventCard, cardWidth, skeleton }) => {
   const cardRef = useRef();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
-  const sportIconFaClassName =
-    specialEventCard.sportIconFaClassName ??
-    sportNameToFaClassName(
-      stringToClosestSportName(specialEventCard.sportName)
-    );
+
   return (
     <Skeleton skeleton={skeleton}>
       <CardRoot
@@ -132,8 +125,8 @@ export const SpecialEventCard = ({ specialEventCard, cardWidth, skeleton }) => {
         </AspectRatio16by9>
         <CardContent>
           <SportHeading>
-            {typeof sportIconFaClassName === "string" && (
-              <SportIcon className={sportIconFaClassName} />
+            {specialEventCard?.sportIcon && (
+              <SportIcon icon={specialEventCard?.sportIcon} />
             )}
 
             <SportName>{specialEventCard.sportName}</SportName>

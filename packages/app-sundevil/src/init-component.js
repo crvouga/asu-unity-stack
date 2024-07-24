@@ -16,6 +16,7 @@ import {
   NewsStorySection,
   VideoSection,
 } from "./components";
+import { SeasonsTicket } from "./components/SeasonsTicket";
 
 /**
  * @description
@@ -263,5 +264,12 @@ export const initLinkTabsBar = input => {
   RenderReact({
     ...input,
     component: LinkTabsBar,
+  });
+};
+
+export const initSeasonsTicket = input => {
+  RenderReact({
+    ...input,
+    component: SeasonsTicket,
   });
 };

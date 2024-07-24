@@ -1,4 +1,5 @@
 // @ts-check
+import PropTypes from "prop-types";
 
 export const GameDataSourceSortBy = {
   DATE_NEWEST_TO_OLDEST: "DATE_NEWEST_TO_OLDEST",
@@ -18,8 +19,20 @@ window.GameDataSourceSortBy = GameDataSourceSortBy;
  * @property {string | null | undefined} [venueId]
  * @property {string | null | undefined} [eventType]
  * @property {number | null | undefined} [maxAdmissionCost]
- * @property {keyof GameDataSourceSortBy} [sortBy]
+ * @property {keyof typeof GameDataSourceSortBy} [sortBy]
  */
+
+export const findManyInputPropTypes = PropTypes.shape({
+  limit: PropTypes.number,
+  offset: PropTypes.number,
+  sportId: PropTypes.string,
+  gameType: PropTypes.string,
+  searchQuery: PropTypes.string,
+  venueId: PropTypes.string,
+  eventType: PropTypes.string,
+  maxAdmissionCost: PropTypes.number,
+  sortBy: PropTypes.oneOf(Object.values(GameDataSourceSortBy)),
+});
 
 export class IGameDataSource {
   /**

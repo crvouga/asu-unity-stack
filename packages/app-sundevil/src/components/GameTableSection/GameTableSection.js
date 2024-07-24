@@ -24,9 +24,9 @@ import { sportSchema } from "../SportsTabs/sports-tabs";
 import { configInputsSchema, defaultConfigInputs } from "./config-inputs";
 import { configLayoutSchema, defaultConfigLayout } from "./config-layout";
 import { ConfigOverlap, configOverlapSchema } from "./config-overlap";
-import { GameTableFormSidebar } from "./GameTableForm/GameTableFormSidebar";
-import { GameTableFormTopbar } from "./GameTableForm/GameTableFormTopbar";
-import { useGameTableForm } from "./GameTableForm/use-game-table-form";
+import { GameSearchFormSidebar } from "./GameSearchForm/GameSearchFormSidebar";
+import { GameSearchFormTopbar } from "./GameSearchForm/GameSearchFormTopbar";
+import { useGameSearchForm } from "./GameSearchForm/use-game-search-form";
 import { GameTableHero } from "./GameTableHero/GameTableHero";
 import { SidebarLayout } from "./SidebarLayout";
 
@@ -59,35 +59,36 @@ const GameTableSectionInner = ({ ...props }) => {
     defaultConfigInputs
   );
 
-  const gameTableForm = useGameTableForm({
+  const gameSearchForm = useGameSearchForm({
     enableUrlState: configGameTableForm?.enableUrlState ?? false,
     gameType: props?.tabs?.find(tab => tab?.active)?.gameType ?? "all",
     sportId: props?.sports?.find(sport => sport?.active)?.id ?? "all",
   });
 
   const gameDataSourceLoader = useGameDataSourceLoader({
-    gameType: gameTableForm.gameType === "all" ? null : gameTableForm.gameType,
-    sportId: gameTableForm.sportId === "all" ? null : gameTableForm.sportId,
-    searchQuery: gameTableForm.debouncedSearchQuery,
-    sortBy: gameTableForm.sortBy,
-    venueId: gameTableForm.venueId,
-    maxAdmissionCost: gameTableForm.maxAdmissionCost,
-    eventType: gameTableForm.eventType,
+    gameType:
+      gameSearchForm.gameType === "all" ? null : gameSearchForm.gameType,
+    sportId: gameSearchForm.sportId === "all" ? null : gameSearchForm.sportId,
+    searchQuery: gameSearchForm.debouncedSearchQuery,
+    sortBy: gameSearchForm.sortBy,
+    venueId: gameSearchForm.venueId,
+    maxAdmissionCost: gameSearchForm.maxAdmissionCost,
+    eventType: gameSearchForm.eventType,
     limit,
   });
 
   const sports = props.sports?.map(sport => ({
     ...sport,
-    active: sport.id === gameTableForm.sportId,
+    active: sport.id === gameSearchForm.sportId,
   }));
 
   const tabs = props.tabs?.map(tab => ({
     ...tab,
-    active: tab.id === gameTableForm.gameType,
+    active: tab.id === gameSearchForm.gameType,
   }));
 
   const onSportItemClick = clickedSportId => () =>
-    gameTableForm.update({ sportId: clickedSportId });
+    gameSearchForm.update({ sportId: clickedSportId });
 
   const activeSport = sports?.find(sport => Boolean(sport?.active));
   const footerButtons =
@@ -195,15 +196,15 @@ const GameTableSectionInner = ({ ...props }) => {
               {...mapSectionHeaderProps(props)}
               tabs={tabs}
               onTabItemClick={clickedGameType => () =>
-                gameTableForm.update({ gameType: clickedGameType })}
+                gameSearchForm.update({ gameType: clickedGameType })}
               style={{ paddingBottom: "32px" }}
             />
           )}
 
           {configLayout.variant === "default" && (
-            <GameTableFormTopbar
+            <GameSearchFormTopbar
               className="container"
-              gameTableForm={gameTableForm}
+              gameSearchForm={gameSearchForm}
               configInputs={configInputs}
               configLayout={configLayout}
               sports={sports}
@@ -239,9 +240,9 @@ const GameTableSectionInner = ({ ...props }) => {
           <SidebarLayout
             className="container"
             renderSidebar={() => (
-              <GameTableFormSidebar
+              <GameSearchFormSidebar
                 configGameTableForm={configGameTableForm}
-                gameTableForm={gameTableForm}
+                gameSearchForm={gameSearchForm}
                 configInputs={configInputs}
                 configLayout={configLayout}
                 sports={sports}

@@ -14,7 +14,7 @@ import { sportSchema } from "../../SportsTabs/sports-tabs";
 import { TextField } from "../../TextField/TextField";
 import { configInputsSchema } from "../config-inputs";
 import { configLayoutSchema } from "../config-layout";
-import { gameTableFormSchema } from "./use-game-table-form";
+import { gameSearchFormPropTypes } from "./use-game-search-form";
 
 const Root = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ const Root = styled.div`
 /**
  * @type {React.FC<{
  * style?: React.CSSProperties;
- * gameTableForm: import("./use-game-table-form").GameTableFormHook;
+ * gameSearchForm: import("./use-game-search-form").GameSearchForm;
  * configLayout: import("../config-layout").ConfigLayout;
  * configInputs: import("../config-inputs").ConfigInputs;
  * sports: import("../../SportsTabs/sports-tabs").Sport[];
@@ -39,7 +39,7 @@ const Root = styled.div`
  */
 export const GameTableForm = ({
   style,
-  gameTableForm,
+  gameSearchForm,
   configLayout,
   configInputs,
   sports,
@@ -83,8 +83,8 @@ export const GameTableForm = ({
           style={{ ...inputStyle, flex: 2 }}
           label={configInputs?.searchInput?.label ?? ""}
           placeholder={configInputs?.searchInput?.placeholder ?? ""}
-          value={gameTableForm.searchQuery}
-          onChange={gameTableForm.setSearchQuery}
+          value={gameSearchForm.searchQuery}
+          onChange={gameSearchForm.setSearchQuery}
           renderEndIcon={({ style: iconStyle }) => (
             <i
               style={iconStyle}
@@ -101,8 +101,8 @@ export const GameTableForm = ({
           label={configInputs.sportTypeSelect?.label ?? ""}
           placeholder={configInputs.sportTypeSelect?.placeholder ?? ""}
           onChange={option =>
-            gameTableForm.update({
-              sportId: option.id === gameTableForm.sportId ? null : option.id,
+            gameSearchForm.update({
+              sportId: option.id === gameSearchForm.sportId ? null : option.id,
             })
           }
           options={sports.map(sport => ({
@@ -121,8 +121,8 @@ export const GameTableForm = ({
           style={inputStyle}
           label={configInputs.sportTypeCheckboxList?.label ?? ""}
           onChange={option =>
-            gameTableForm.update({
-              sportId: option.id === gameTableForm.sportId ? null : option.id,
+            gameSearchForm.update({
+              sportId: option.id === gameSearchForm.sportId ? null : option.id,
             })
           }
           options={sports.map(sport => ({
@@ -143,14 +143,14 @@ export const GameTableForm = ({
           label={configInputs.venueSelect?.label ?? ""}
           placeholder={configInputs.venueSelect?.placeholder ?? ""}
           onChange={option =>
-            gameTableForm.update({
-              venueId: option.id === gameTableForm.venueId ? null : option.id,
+            gameSearchForm.update({
+              venueId: option.id === gameSearchForm.venueId ? null : option.id,
             })
           }
           options={allVenues.map(venueOption => ({
             label: venueOption,
             id: venueOption,
-            active: venueOption === gameTableForm.venueId,
+            active: venueOption === gameSearchForm.venueId,
           }))}
         />
       )}
@@ -162,20 +162,21 @@ export const GameTableForm = ({
           label={configInputs.homeOrAwaySelect?.label ?? ""}
           placeholder={configInputs.homeOrAwaySelect?.placeholder ?? ""}
           onChange={option =>
-            gameTableForm.update({
-              gameType: option.id === gameTableForm.gameType ? null : option.id,
+            gameSearchForm.update({
+              gameType:
+                option.id === gameSearchForm.gameType ? null : option.id,
             })
           }
           options={[
             {
               id: "home",
               label: "Home",
-              active: gameTableForm.gameType === "home",
+              active: gameSearchForm.gameType === "home",
             },
             {
               id: "away",
               label: "Away",
-              active: gameTableForm.gameType === "away",
+              active: gameSearchForm.gameType === "away",
             },
           ]}
         />
@@ -190,15 +191,15 @@ export const GameTableForm = ({
             label={configInputs.eventTypeSelect?.label ?? ""}
             placeholder={configInputs.eventTypeSelect?.placeholder ?? ""}
             onChange={option =>
-              gameTableForm.update({
+              gameSearchForm.update({
                 eventType:
-                  option.value === gameTableForm.eventType
+                  option.value === gameSearchForm.eventType
                     ? null
                     : option.value,
               })
             }
             options={configInputs.eventTypeSelect?.options.map(option => ({
-              active: option.value === gameTableForm.eventType,
+              active: option.value === gameSearchForm.eventType,
               id: option.id,
               label: option.label,
               value: option.value,
@@ -215,16 +216,16 @@ export const GameTableForm = ({
             label={configInputs.maxAdmissionCostSelect?.label ?? ""}
             placeholder={configInputs.maxAdmissionCostSelect?.placeholder ?? ""}
             onChange={option =>
-              gameTableForm.update({
+              gameSearchForm.update({
                 maxAdmissionCost:
-                  option.value === gameTableForm.maxAdmissionCost
+                  option.value === gameSearchForm.maxAdmissionCost
                     ? null
                     : option.value,
               })
             }
             options={configInputs.maxAdmissionCostSelect?.options.map(
               option => ({
-                active: option.value === gameTableForm.maxAdmissionCost,
+                active: option.value === gameSearchForm.maxAdmissionCost,
                 id: option.id,
                 label: option.label,
                 value: option.value,
@@ -240,9 +241,9 @@ export const GameTableForm = ({
           label={configInputs.sortBySelect?.label ?? ""}
           placeholder={configInputs.sortBySelect?.placeholder ?? ""}
           onChange={option => {
-            gameTableForm.update({
+            gameSearchForm.update({
               sortBy:
-                option.payload.sortBy === gameTableForm.sortBy
+                option.payload.sortBy === gameSearchForm.sortBy
                   ? GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST
                   : option.payload.sortBy,
             });
@@ -252,7 +253,7 @@ export const GameTableForm = ({
               id: "date",
               label: "Date",
               active:
-                gameTableForm.sortBy ===
+                gameSearchForm.sortBy ===
                 GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST,
               payload: {
                 sortBy: GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST,
@@ -262,7 +263,7 @@ export const GameTableForm = ({
               id: "event-name",
               label: "Event Name",
               active:
-                gameTableForm.sortBy === GameDataSourceSortBy.TITLE_A_TO_Z,
+                gameSearchForm.sortBy === GameDataSourceSortBy.TITLE_A_TO_Z,
               payload: {
                 sortBy: GameDataSourceSortBy.TITLE_A_TO_Z,
               },
@@ -276,7 +277,7 @@ export const GameTableForm = ({
 
 GameTableForm.propTypes = {
   // @ts-ignore
-  gameTableForm: gameTableFormSchema,
+  gameSearchForm: gameSearchFormPropTypes,
   // @ts-ignore
   configLayout: configLayoutSchema,
   // @ts-ignore

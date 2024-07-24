@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import { FilterFormTopBarLayout } from "../../FilterForm/FilterFormTopBarLayout";
-import { GameTableForm } from "./GameTableForm";
+import { GameTableForm } from "./GameSearchForm";
 
-export const GameTableFormTopbar = ({
+export const GameSearchFormTopbar = ({
   configGameTableForm,
-  gameTableForm,
+  gameSearchForm,
   configInputs,
   configLayout,
   sports,
@@ -20,7 +20,7 @@ export const GameTableFormTopbar = ({
       title={configGameTableForm?.title}
       renderForm={() => (
         <GameTableForm
-          gameTableForm={gameTableForm}
+          gameSearchForm={gameSearchForm}
           configInputs={configInputs}
           configLayout={configLayout}
           sports={sports}
@@ -31,7 +31,7 @@ export const GameTableFormTopbar = ({
   );
 };
 
-GameTableFormTopbar.propTypes = {
+GameSearchFormTopbar.propTypes = {
   ...GameTableForm.propTypes,
   configGameTableForm: PropTypes.shape({
     title: PropTypes.string,

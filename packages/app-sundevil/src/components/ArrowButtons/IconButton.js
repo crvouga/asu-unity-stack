@@ -31,7 +31,8 @@ const Root = styled.button`
   }
 
   svg {
-    fill: currentColor;
+    fill: currentColor !important;
+    color: currentColor !important;
   }
 
   &:active {

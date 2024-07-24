@@ -1,102 +1,14 @@
 // @ts-check
 import React from "react";
 
-import { INewsStoryDataSource } from "../../NewsStory/news-story-data-source/news-story-data-source";
 import { NewsStorySection } from "../index";
-
-const imageSrc =
-  "https://asuevents.asu.edu/sites/default/files/2024-07/football-2024.jpg";
-
-// @ts-ignore
-// eslint-disable-next-line no-unused-vars
-const newsStories = [
-  {
-    id: "1",
-    href: "#",
-    showNewsType: false,
-    showSportName: false,
-    newsType: "News",
-    imageSrc,
-    sportName: "W. Lacrosse",
-    sportIconFaClassName: "fas fa-lacrosse",
-    title: "Gigi Gaspar Named Pac-12 Lacrosse Scholar Athlete of the Year",
-  },
-  {
-    id: "2",
-    href: "#",
-    showNewsType: false,
-    showSportName: false,
-    newsType: "Video",
-    imageSrc,
-    sportName: "Football",
-    sportIconFaClassName: "fas fa-football-ball",
-    title: "Super Bowl #SunDevils4Life",
-  },
-  {
-    id: "3",
-    href: "#",
-    showNewsType: false,
-    showSportName: false,
-    newsType: "Video",
-    imageSrc,
-    sportName: "M. Golf",
-    sportIconFaClassName: "fas fa-golf-ball",
-    title:
-      "Men's Golf Gets No. 1 Seet at Rancho Santa Fe/The Farms Golf Club Regional",
-  },
-  {
-    id: "4",
-    href: "#",
-    showNewsType: false,
-    showSportName: false,
-    newsType: "News",
-    imageSrc,
-    sportName: "Vollyball",
-    sportIconFaClassName: "fas fa-volleyball-ball",
-    title: "Rohr Pac-12 Coach of the Year, Kensinger Honored",
-  },
-  {
-    id: "5",
-    href: "#",
-    showNewsType: false,
-    showSportName: false,
-    newsType: "Game Recap",
-    title: "Lacrosse Downs Ducks, Will Face Stanford in Pac-12 Semifinals",
-    sportName: "W. Lacrosse",
-    imageSrc,
-    sportIconFaClassName: "fas fa-lacrosse",
-  },
-  {
-    id: "6",
-    href: "#",
-    showNewsType: false,
-    showSportName: false,
-    newsType: "News",
-    title: "Kensinger, Williamson Named All-Americans",
-    sportName: "Volleyball",
-    sportIconFaClassName: "fas fa-volleyball-ball",
-    imageSrc,
-  },
-];
-
-export class CustomNewsStoryDataSource extends INewsStoryDataSource {
-  // eslint-disable-next-line class-methods-use-this
-  async findMany(input) {
-    await new Promise(resolve => setTimeout(resolve, 100));
-    return {
-      limit: input.limit ?? Infinity,
-      offset: input.offset ?? 0,
-      rows: newsStories,
-      total: newsStories.length,
-    };
-  }
-}
 
 /** @type {import("../index").NewsStorySectionProps} */
 const props = {
   newsStoryDataSource: {
     type: "mock",
   },
+
   // newsStoryDataSource: {
   //   type: "asu-news",
   //   url: "https://news.asu.edu/feed-json/sun_devil_athletics",
@@ -106,11 +18,10 @@ const props = {
   //   type: "static",
   //   newsStories,
   // },
-  // newsStoryDataSource: {
-  //   type: "custom",
-  //   newsStoryDataSource: new CustomNewsStoryDataSource(),
-  // },
-  emptyStateMessage: "No stories available",
+  newsStoryDataSourceLoader: {
+    limit: 12,
+  },
+  emptyStateMessage: "No news stories found",
   // allStoriesHref: "#",
   // allStoriesLabel: "All Stories",
   sectionHeader: {
@@ -127,6 +38,7 @@ const props = {
   configForm: {
     title: "Filter your results",
   },
+
   configLayout: {
     includeSportTabs: false,
     includeInputSearch: true,

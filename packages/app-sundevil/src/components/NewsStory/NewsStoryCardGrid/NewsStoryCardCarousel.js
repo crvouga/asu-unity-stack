@@ -8,7 +8,7 @@ import { EmptyStateMessage } from "../../EmptyState/EmptyStateMessage";
 import * as NewsStory from "../news-story";
 import {
   DEFAULT_EMPTY_STATE_MESSAGE,
-  newsStoriesSkeletonData,
+  newsStorySkeleton,
 } from "./news-stories-skeleton-data";
 import { NewsStoryCard } from "./NewsStoryCard";
 
@@ -106,7 +106,7 @@ export const NewsStoryCardCarousel = ({
         )}
         {skeleton && (
           <>
-            {newsStoriesSkeletonData.map(newsStory => (
+            {newsStorySkeleton.map(newsStory => (
               <CarouselItem
                 key={newsStory?.id ?? newsStory?.title}
                 style={{ width: "fit-content" }}
@@ -128,7 +128,7 @@ export const NewsStoryCardCarousel = ({
                   position: "relative",
                 }}
               >
-                <NewsStoryCard empty newsStory={newsStoriesSkeletonData[0]} />
+                <NewsStoryCard empty newsStory={newsStorySkeleton[0]} />
                 <EmptyStateMessage message={emptyStateMessage} />
               </div>
             </CarouselItem>

@@ -9,5 +9,6 @@ import * as NewsStory from "../../news-story";
 export const propTypes = {
   newsStories: PropTypes.arrayOf(NewsStory.newsStoryPropTypes).isRequired,
   skeleton: PropTypes.bool,
+  skeletonCount: PropTypes.number,
   emptyStateMessage: PropTypes.string,
 };

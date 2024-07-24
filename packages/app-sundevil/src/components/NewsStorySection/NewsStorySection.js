@@ -15,7 +15,6 @@ import {
   newsStoryDataSourcePropTypes,
 } from "../NewsStory/news-story-data-source/news-story-data-source-impl";
 import { NewsStoryDataSourceProvider } from "../NewsStory/NewsDataSourceContext";
-import { newsStoriesSkeletonData } from "../NewsStory/NewsStoryCardGrid/news-stories-skeleton-data";
 import { NewsStoryCardCarousel } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardCarousel";
 import { NewsStoryCardGrid } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGrid";
 import { useNewsStoryDataSourceLoader } from "../NewsStory/use-news-story-data-source-loader";
@@ -52,6 +51,8 @@ const LoadButtonRoot = styled.div`
   align-items: center;
 `;
 
+const DEFAULT_LIMIT = 6;
+
 /**
  * @type {React.FC<NewsStorySectionProps>}
  */
@@ -67,7 +68,9 @@ const NewsStorySectionInner = ({
   configForm: propsConfigForm,
   mobileVariant = "carousel",
   loadMore,
+  newsStoryDataSourceLoader: propsNewsStoryDataSourceLoader,
 }) => {
+  const limit = propsNewsStoryDataSourceLoader?.limit ?? DEFAULT_LIMIT;
   /** @type {import("./config-form").ConfigForm} */
   const configForm = propsConfigForm ?? {};
 
@@ -105,6 +108,7 @@ const NewsStorySectionInner = ({
   const { allSportIds } = useSportIdsLoader();
 
   const newsStoryDataSourceLoader = useNewsStoryDataSourceLoader({
+    limit: propsNewsStoryDataSourceLoader?.limit,
     searchQuery: newsStorySearchFrom.debouncedSearchQuery,
     newsType: newsStorySearchFrom.newsType,
     sportId:
@@ -120,10 +124,6 @@ const NewsStorySectionInner = ({
   const empty =
     !newsStoryDataSourceLoader.isLoading &&
     newsStoryDataSourceLoader.rows.length === 0;
-
-  const newsStoriesFinal = skeleton
-    ? newsStoriesSkeletonData
-    : newsStoryDataSourceLoader.rows;
 
   const sportsFinal = sportsWithSelectedTab.filter(sport => {
     if (skeletonTabs) {
@@ -172,11 +172,12 @@ const NewsStorySectionInner = ({
           )}
           <div className="container">
             <NewsStoryCardGrid
-              newsStories={newsStoriesFinal}
+              newsStories={newsStoryDataSourceLoader.rows}
               skeleton={skeleton}
               // @ts-ignore
               empty={empty}
               emptyStateMessage={emptyStateMessage}
+              skeletonCount={limit}
             />
             {hasAllStories && (
               <AllStoriesRoot>
@@ -215,7 +216,7 @@ const NewsStorySectionInner = ({
             <NewsStoryCardCarousel
               skeleton={skeleton}
               // @ts-ignore
-              newsStories={newsStoriesFinal}
+              newsStories={newsStoryDataSourceLoader.rows}
               slidesOffsetBefore={sectionHeaderPosition.left}
               slidesOffsetAfter={
                 window.innerWidth - sectionHeaderPosition.right
@@ -244,12 +245,13 @@ const NewsStorySectionInner = ({
           {mobileVariant === "column" && (
             <div className="container">
               <NewsStoryCardGrid
-                newsStories={newsStoriesFinal}
+                newsStories={newsStoryDataSourceLoader.rows}
                 skeleton={skeleton}
                 // @ts-ignore
                 empty={empty}
                 emptyStateMessage={emptyStateMessage}
                 columns={1}
+                skeletonCount={limit}
               />
               {hasAllStories && (
                 <AllStoriesRoot>
@@ -298,6 +300,10 @@ NewsStorySectionInner.propTypes = {
   removeSportsWithNoStories: PropTypes.bool,
   newsStoryDataSource: newsStoryDataSourcePropTypes,
   // @ts-ignore
+  newsStoryDataSourceLoader: PropTypes.shape({
+    limit: PropTypes.number,
+  }),
+  // @ts-ignore
   loadMore: LoadMoreButton.propTypes,
   // @ts-ignore
   configForm: configFormPropTypes,
@@ -315,6 +321,9 @@ NewsStorySectionInner.propTypes = {
  *  allStoriesHref?: string;
  *  skeleton?: boolean;
  *  newsStoryDataSource: object
+ *  newsStoryDataSourceLoader?: {
+ *    limit: number;
+ *  }
  *  emptyStateMessage?: string;
  *  removeSportsWithNoStories?: boolean;
  *  loadMore?: import("../LoadMoreButton").LoadMoreButtonProps

@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
+import { repeat } from "../../../../utils/repeat";
 import { EmptyStateMessage } from "../../../EmptyState/EmptyStateMessage";
 import {
   DEFAULT_EMPTY_STATE_MESSAGE,
-  newsStoriesSkeletonData,
+  newsStorySkeleton,
 } from "../news-stories-skeleton-data";
 import { NewsStoryCard } from "../NewsStoryCard";
 import * as newsStoryCardGrid from "./news-story-card-grid";
@@ -28,6 +29,7 @@ export const NewsStoryCardGrid = ({
   emptyStateMessage = DEFAULT_EMPTY_STATE_MESSAGE,
   empty = false,
   columns = 3,
+  skeletonCount = 6,
 }) => {
   return (
     <Root columns={columns}>
@@ -44,7 +46,7 @@ export const NewsStoryCardGrid = ({
 
       {skeleton && (
         <>
-          {newsStoriesSkeletonData.map(newsStory => (
+          {repeat(skeletonCount, newsStorySkeleton).map(newsStory => (
             <NewsStoryCard
               key={newsStory?.id ?? newsStory?.title}
               newsStory={newsStory}
@@ -56,7 +58,7 @@ export const NewsStoryCardGrid = ({
 
       {empty && (
         <>
-          {newsStoriesSkeletonData.slice(0, 3).map(newsStory => (
+          {repeat(3, newsStorySkeleton).map(newsStory => (
             <NewsStoryCard
               key={newsStory?.id ?? newsStory?.title}
               newsStory={newsStory}

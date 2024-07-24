@@ -1,7 +1,7 @@
 /**
- * @type {import("../news-story").NewsStory[]}
+ * @type {import("../news-story").NewsStory}
  */
-export const newsStoriesSkeletonData = Array.from({ length: 6 }).map(() => ({
+export const newsStorySkeleton = {
   id: Math.random().toString(),
   href: "#",
   showNewsType: false,
@@ -13,6 +13,6 @@ export const newsStoriesSkeletonData = Array.from({ length: 6 }).map(() => ({
   sportName: "W. Lacrosse",
   sportIconFaClassName: "fas fa-lacrosse",
   title: "lorem ipsum dolor sit amet consectetur adipiscing elit ",
-}));
+};
 
 export const DEFAULT_EMPTY_STATE_MESSAGE = "No stories available";

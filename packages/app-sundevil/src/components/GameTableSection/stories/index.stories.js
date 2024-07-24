@@ -144,12 +144,16 @@ AllSports.args = {
 
 export const SingleSport = Template.bind({});
 SingleSport.args = {
-  // gameDataSource: {
-  //   type: "asu-events",
-  //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-  // },
   gameDataSource: {
-    type: "mock",
+    type: "asu-events",
+    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+  },
+  // gameDataSource: {
+  //   type: "mock",
+  // },
+  gameDataSourceLoader: {
+    limit: 5,
+    sportId: "football",
   },
   title: "Upcoming Games",
   subtitle:

@@ -7,6 +7,7 @@ import { APP_CONFIG } from "../../config";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useElementContentDimensions } from "../../utils/use-element-position";
+import { findManyInputPropTypes } from "../Game/game-data-source";
 import {
   buildGameDataSource,
   gameDataSourcePropTypes,
@@ -44,8 +45,6 @@ const GameTableRoot = styled.div`
 `;
 
 const GameTableSectionInner = ({ ...props }) => {
-  const limit = props?.gameDataSourceLoader?.limit ?? 5;
-
   const configGameTableForm = props.configGameTableForm ?? {};
 
   const variant = props.variant ?? "default";
@@ -77,7 +76,8 @@ const GameTableSectionInner = ({ ...props }) => {
     venueId: gameSearchForm.venueId,
     maxAdmissionCost: gameSearchForm.maxAdmissionCost,
     eventType: gameSearchForm.eventType,
-    limit,
+    limit: 5,
+    ...props.gameDataSourceLoader,
   });
 
   const sports = props.sports?.map(sport => ({
@@ -162,7 +162,7 @@ const GameTableSectionInner = ({ ...props }) => {
         games={gameDataSourceLoader.rows}
         footerButtons={footerButtons}
         footerLinks={footerLinks}
-        skeletonRowCount={limit}
+        skeletonRowCount={gameDataSourceLoader.limit}
         skeleton={gameDataSourceLoader.isLoadingInitial}
         setFirstRowRef={ref => {
           gameTableFirstRowRef.current = ref;
@@ -289,9 +289,7 @@ GameTableSectionInner.propTypes = {
     title: PropTypes.string,
     enableUrlState: PropTypes.bool,
   }),
-  gameDataSourceLoader: PropTypes.shape({
-    limit: PropTypes.number,
-  }),
+  gameDataSourceLoader: findManyInputPropTypes,
   gameDataSource: gameDataSourcePropTypes,
 };
 

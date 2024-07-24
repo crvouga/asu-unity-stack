@@ -10,12 +10,14 @@ export const useGameDataSourceLoader = input => {
   const gameDataSource = useGameDataSource();
   return usePaginatedLoader({
     query: input,
+    limit: input.limit,
     toQueryKey: query => btoa(JSON.stringify(query ?? {})),
-    loadPage: ({ offset, limit, query }) =>
-      gameDataSource.findMany({
+    loadPage: ({ offset, limit, query }) => {
+      return gameDataSource.findMany({
         ...query,
         offset,
         limit,
-      }),
+      });
+    },
   });
 };

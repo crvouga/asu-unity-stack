@@ -40,7 +40,7 @@ GetTickets.args = {
   configOverlap: "sport-tabs-with-hero",
   title: "Get Tickets",
   subtitle:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit",
   subtitleLinks: [
     {
       label: "See a list of free sporting events",

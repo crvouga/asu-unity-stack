@@ -106,6 +106,7 @@ export const usePaginatedLoader = input => {
   };
 
   return {
+    limit,
     loadNextPage,
     showLoadNextPage,
     isLoading,

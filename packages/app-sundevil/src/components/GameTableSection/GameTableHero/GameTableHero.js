@@ -62,7 +62,7 @@ export const GameTableHero = ({
     <Root style={style} darkMode={darkMode}>
       <ContentRoot className="container">
         <Title>{title}</Title>
-        <Subtitle>{subtitle}</Subtitle>
+        <Subtitle dangerouslySetInnerHTML={{ __html: subtitle }} />
 
         {Array.isArray(subtitleLinks) && (
           <SubtitleLinks>

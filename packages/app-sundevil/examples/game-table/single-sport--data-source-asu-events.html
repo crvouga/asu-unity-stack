@@ -61,21 +61,25 @@
           type: "asu-events",
           url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
         },
-        title: "Upcoming Games",
-        loadMore: {
-          label: "Load More",
-          loadingLabel: "Loading...",
+        // gameDataSource: {
+        //   type: "mock",
+        // },
+        gameDataSourceLoader: {
+          limit: 5,
+          sportId: "football",
         },
+        title: "Upcoming Games",
         subtitle:
           "From the fall football season to the Maroon and Gold Spring game and at Camp Tontozona,\n there are football games and events throughout the year.",
+        emptyStateMessage: "No upcoming games",
+        subtitleFontWeight: "bold",
         subtitleLinks: [
           {
             label: "See Past Game Scores",
-            href: "https://example.com",
+            href: "#",
             fontWeight: "bold",
           },
         ],
-        emptyStateMessage: "No upcoming games",
         tabs: [
           {
             label: "All Games",
@@ -99,6 +103,10 @@
           logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg",
           url: "https://www.ford.com/",
         },
+        loadMore: {
+          label: "Load More",
+          loadingLabel: "Loading...",
+        },
 
         // footerButtons: [
         //   {
@@ -113,7 +121,6 @@
         //   },
         // ],
       };
-
       initGameTableSection({
         targetSelector: "#section-container",
         props,

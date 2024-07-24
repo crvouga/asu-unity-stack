@@ -50,7 +50,7 @@
   </head>
 
   <body>
-    <div id="section-container" style="padding-bottom: 20rem;">
+    <div id="section-container" style="padding-bottom: 20rem">
       <div>This will be removed</div>
       <div class="contextual"></div>
       <div>This will be removed</div>
@@ -58,23 +58,28 @@
     <script>
       const props = {
         gameDataSource: {
-          type: "mock",
+          type: "asu-events",
+          url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+        },
+        // gameDataSource: {
+        //   type: "mock",
+        // },
+        gameDataSourceLoader: {
+          limit: 5,
+          sportId: "football",
         },
         title: "Upcoming Games",
-        loadMore: {
-          label: "Load More",
-          loadingLabel: "Loading...",
-        },
         subtitle:
           "From the fall football season to the Maroon and Gold Spring game and at Camp Tontozona,\n there are football games and events throughout the year.",
+        emptyStateMessage: "No upcoming games",
+        subtitleFontWeight: "bold",
         subtitleLinks: [
           {
             label: "See Past Game Scores",
-            href: "https://example.com",
+            href: "#",
             fontWeight: "bold",
-          }
+          },
         ],
-        emptyStateMessage: "No upcoming games",
         tabs: [
           {
             label: "All Games",
@@ -97,6 +102,10 @@
           name: "Ford",
           logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg",
           url: "https://www.ford.com/",
+        },
+        loadMore: {
+          label: "Load More",
+          loadingLabel: "Loading...",
         },
 
         // footerButtons: [

@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
  * }} ConfigCells
  */
 
-export const configCellsSchema = PropTypes.shape({
+export const configCellsPropTypes = PropTypes.shape({
   cellTitle: PropTypes.shape({
     subtitleFontWeight: PropTypes.oneOf(["normal", "bold"]),
     includeSubtitleChip: PropTypes.bool,

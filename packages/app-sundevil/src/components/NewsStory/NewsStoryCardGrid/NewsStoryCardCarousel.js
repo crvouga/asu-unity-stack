@@ -148,7 +148,7 @@ export const NewsStoryCardCarousel = ({
   );
 };
 NewsStoryCardCarousel.propTypes = {
-  newsStories: PropTypes.arrayOf(NewsStory.newsStorySchema).isRequired,
+  newsStories: PropTypes.arrayOf(NewsStory.newsStoryPropTypes).isRequired,
   slidesOffsetAfter: PropTypes.number,
   slidesOffsetBefore: PropTypes.number,
   cardWidth: PropTypes.number,

@@ -236,7 +236,7 @@ const SectionHeader = forwardRef(
   }
 );
 
-const sponsorBlockSchema = PropTypes.shape({
+const sponsorBlockPropTypes = PropTypes.shape({
   name: PropTypes.string,
   logo: PropTypes.string,
   text: PropTypes.string,
@@ -255,7 +255,7 @@ SectionHeader.propTypes = {
       fontWeight: PropTypes.string,
     })
   ),
-  sponsorBlock: sponsorBlockSchema,
+  sponsorBlock: sponsorBlockPropTypes,
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

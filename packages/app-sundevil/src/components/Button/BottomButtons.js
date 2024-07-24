@@ -4,7 +4,7 @@ import React from "react";
 import { Button } from "../../../../components-core/src/index";
 import { mergeIconProps } from "../Icon_";
 import { Skeleton } from "../Skeleton";
-import { buttonSchema } from "./button-prop";
+import { buttonPropTypes } from "./button-prop";
 
 /**
  * @type {React.FC<{button: import("./button-prop").ButtonProp}>}
@@ -38,7 +38,7 @@ const EndIcon = ({ button }) => {
   return null;
 };
 EndIcon.propTypes = {
-  button: buttonSchema,
+  button: buttonPropTypes,
 };
 
 /**
@@ -65,6 +65,6 @@ export const BottomButtons = ({ buttons, skeleton }) => {
   );
 };
 BottomButtons.propTypes = {
-  buttons: PropTypes.arrayOf(buttonSchema),
+  buttons: PropTypes.arrayOf(buttonPropTypes),
   skeleton: PropTypes.bool,
 };

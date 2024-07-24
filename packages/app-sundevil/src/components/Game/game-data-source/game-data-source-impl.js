@@ -1,16 +1,16 @@
 // @ts-check
 import PropTypes from "prop-types";
 
-import { gameSchema } from "../game";
+import { gamePropTypes } from "../game";
 import { IGameDataSource } from "./game-data-source";
 import { GameDataSourceAsuEvents } from "./game-data-source-impl-asu-events";
 import { GameDataSourceMock } from "./game-data-source-impl-mock";
 import { GameDataSourceStatic } from "./game-data-source-impl-static";
 
-export const gameDataSourceSchema = PropTypes.oneOfType([
+export const gameDataSourcePropTypes = PropTypes.oneOfType([
   PropTypes.shape({
     type: PropTypes.oneOf(["static"]),
-    games: PropTypes.arrayOf(gameSchema),
+    games: PropTypes.arrayOf(gamePropTypes),
   }),
   PropTypes.shape({
     type: PropTypes.oneOf(["mock"]),

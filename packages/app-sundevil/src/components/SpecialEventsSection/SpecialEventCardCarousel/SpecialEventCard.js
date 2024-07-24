@@ -9,7 +9,7 @@ import {
   sportNameToFaClassName,
   stringToClosestSportName,
 } from "../../SportIcon/sport-name";
-import { specialEventSchema } from "../special-event";
+import { specialEventPropTypes } from "../special-event";
 
 const CardRoot = styled.div`
   display: flex;
@@ -169,7 +169,7 @@ export const SpecialEventCard = ({ specialEventCard, cardWidth, skeleton }) => {
 };
 
 SpecialEventCard.propTypes = {
-  specialEventCard: specialEventSchema,
+  specialEventCard: specialEventPropTypes,
   cardWidth: PropTypes.number,
   skeleton: PropTypes.bool,
 };

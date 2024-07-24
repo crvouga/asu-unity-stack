@@ -122,7 +122,7 @@ export const Select = ({
   );
 };
 
-const optionSchema = PropTypes.shape({
+const optionPropTypes = PropTypes.shape({
   id: PropTypes.string,
   label: PropTypes.string,
   active: PropTypes.bool,
@@ -138,7 +138,7 @@ Select.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
   // eslint-disable-next-line react/forbid-prop-types
-  options: PropTypes.arrayOf(optionSchema),
+  options: PropTypes.arrayOf(optionPropTypes),
   emptyStateMessage: PropTypes.string,
   darkMode: PropTypes.bool,
 };

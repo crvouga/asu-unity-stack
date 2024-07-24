@@ -1,6 +1,6 @@
 import PropsTypes from "prop-types";
 
-export const socialMediaPostSchema = PropsTypes.shape({
+export const socialMediaPostPropTypes = PropsTypes.shape({
   id: PropsTypes.string.isRequired,
   imageSrc: PropsTypes.string.isRequired,
   username: PropsTypes.string.isRequired,

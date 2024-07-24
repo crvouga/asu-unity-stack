@@ -63,10 +63,10 @@ export const useNewsStorySearchFormState = initial => {
 };
 
 /**
- * @typedef {NewsStorySearchFormState & {update: (state: Partial<NewsStorySearchFormState>) => void; setSearchQuery: (searchQueryNew: string) => void}} NewsStorySearchFormStateHook
+ * @typedef {NewsStorySearchFormState & {update: (state: Partial<NewsStorySearchFormState>) => void; setSearchQuery: (searchQueryNew: string) => void}} NewsStorySearchForm
  */
 
-export const newsStorySearchFormSchema = PropTypes.shape({
+export const newsStorySearchFormPropTypes = PropTypes.shape({
   ...findManyInputPropTypes,
   setSearchQuery: PropTypes.func,
   update: PropTypes.func,

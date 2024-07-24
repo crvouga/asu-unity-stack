@@ -11,7 +11,7 @@ import {
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 import {
   buildSpecialEventsDataSource,
-  specialEventsDataSourceSchema,
+  specialEventsDataSourcePropTypes,
 } from "./special-events-data-source/special-events-data-source-impl";
 import { SpecialEventCardCarousel } from "./SpecialEventCardCarousel";
 import { SpecialEventsDataSourceProvider } from "./SpecialEventsDataSourceContext";
@@ -63,7 +63,7 @@ const SpecialEventsSectionInner = ({ sectionHeader }) => {
 SpecialEventsSectionInner.propTypes = {
   sectionHeader: PropTypes.shape(SectionHeader.propTypes),
   cardCarousel: PropTypes.shape(SpecialEventCardCarousel.propTypes),
-  specialEventsDataSource: specialEventsDataSourceSchema,
+  specialEventsDataSource: specialEventsDataSourcePropTypes,
 };
 
 export const SpecialEventsSection = ({
@@ -87,5 +87,5 @@ export const SpecialEventsSection = ({
 SpecialEventsSection.propTypes = {
   sectionHeader: PropTypes.shape(SectionHeader.propTypes),
   cardCarousel: PropTypes.shape(SpecialEventCardCarousel.propTypes),
-  specialEventsDataSource: specialEventsDataSourceSchema,
+  specialEventsDataSource: specialEventsDataSourcePropTypes,
 };

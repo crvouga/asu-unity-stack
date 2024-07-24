@@ -21,6 +21,6 @@ export const SocialMediaPostCard = ({ socialMediaPost, variant }) => {
 };
 
 SocialMediaPostCard.propTypes = {
-  socialMediaPost: SocialMediaPost.socialMediaPostSchema.isRequired,
+  socialMediaPost: SocialMediaPost.socialMediaPostPropTypes.isRequired,
   variant: PropTypes.oneOf(["tall", "square"]).isRequired,
 };

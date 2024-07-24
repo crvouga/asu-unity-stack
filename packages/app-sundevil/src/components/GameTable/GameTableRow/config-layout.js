@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
  * }} ConfigLayout
  */
 
-export const configLayoutSchema = PropTypes.shape({
+export const configLayoutPropTypes = PropTypes.shape({
   includeCellDate: PropTypes.bool,
   includeCellSportName: PropTypes.bool,
   includeCellVersus: PropTypes.bool,

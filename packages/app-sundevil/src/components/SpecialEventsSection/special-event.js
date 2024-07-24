@@ -1,6 +1,6 @@
 import PropsTypes from "prop-types";
 
-const buttonSchema = PropsTypes.shape({
+const buttonPropTypes = PropsTypes.shape({
   label: PropsTypes.string,
   href: PropsTypes.string,
   color: PropsTypes.oneOf(["maroon", "dark"]),
@@ -13,7 +13,7 @@ const buttonSchema = PropsTypes.shape({
  * @property {"maroon" | "dark"} color
  */
 
-export const specialEventSchema = PropsTypes.shape({
+export const specialEventPropTypes = PropsTypes.shape({
   id: PropsTypes.string,
   imageSrc: PropsTypes.string,
   imageAlt: PropsTypes.string,
@@ -22,7 +22,7 @@ export const specialEventSchema = PropsTypes.shape({
   title: PropsTypes.string,
   subtitles: PropsTypes.arrayOf(PropsTypes.string),
   body: PropsTypes.string,
-  buttons: PropsTypes.arrayOf(buttonSchema),
+  buttons: PropsTypes.arrayOf(buttonPropTypes),
 });
 
 /**

@@ -6,12 +6,12 @@ import { useBreakpoint } from "../../../utils/use-breakpoint";
 import { APP_CONFIG } from "../../../config";
 import { ArrowButtons } from "../../ArrowButtons";
 import { Carousel, CarouselController, CarouselItem } from "../../Carousel";
-import { specialEventSchema } from "../special-event";
+import { specialEventPropTypes } from "../special-event";
 import { specialEventsSkeletonData } from "./special-events-skeleton-data";
 import { SpecialEventCard } from "./SpecialEventCard";
 
 const propTypes = {
-  cards: PropTypes.arrayOf(specialEventSchema.isRequired).isRequired,
+  cards: PropTypes.arrayOf(specialEventPropTypes.isRequired).isRequired,
   slidesOffsetBefore: PropTypes.number,
   cardWidth: PropTypes.number,
   skeleton: PropTypes.bool,

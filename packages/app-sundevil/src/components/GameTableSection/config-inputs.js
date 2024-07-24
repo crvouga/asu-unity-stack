@@ -1,7 +1,7 @@
 // @ts-check
 import PropTypes from "prop-types";
 
-const selectOptionSchema = PropTypes.shape({
+const selectOptionPropTypes = PropTypes.shape({
   label: PropTypes.string,
   id: PropTypes.string,
   active: PropTypes.bool,
@@ -18,7 +18,7 @@ const selectOptionSchema = PropTypes.shape({
  * }} SelectOption
  */
 
-export const configInputsSchema = PropTypes.shape({
+export const configInputsPropTypes = PropTypes.shape({
   searchInput: PropTypes.shape({
     label: PropTypes.string,
     placeholder: PropTypes.string,
@@ -42,12 +42,12 @@ export const configInputsSchema = PropTypes.shape({
   eventTypeSelect: PropTypes.shape({
     label: PropTypes.string,
     placeholder: PropTypes.string,
-    options: selectOptionSchema,
+    options: selectOptionPropTypes,
   }),
   maxAdmissionCostSelect: PropTypes.shape({
     label: PropTypes.string,
     placeholder: PropTypes.string,
-    options: selectOptionSchema,
+    options: selectOptionPropTypes,
   }),
 });
 

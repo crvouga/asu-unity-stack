@@ -80,7 +80,7 @@ const Content = styled.div`
   font-size: 12px;
 `;
 
-const propsSchema = {
+const propsPropTypes = {
   active: PropTypes.bool,
   children: PropTypes.node,
   onClick: PropTypes.func,
@@ -155,4 +155,4 @@ export const SportsTab = React.forwardRef(
 );
 
 // @ts-ignore
-SportsTab.propTypes = propsSchema;
+SportsTab.propTypes = propsPropTypes;

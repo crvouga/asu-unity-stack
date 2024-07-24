@@ -12,7 +12,7 @@ import { SportIcon } from "../SportIcon";
 import { stringToClosestSportName } from "../SportIcon/sport-name";
 import { TicketmasterLogo } from "./TicketmasterLogo";
 
-const buttonSchema = PropTypes.shape({
+const buttonPropTypes = PropTypes.shape({
   label: PropTypes.string.isRequired,
   href: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
@@ -27,7 +27,7 @@ const buttonSchema = PropTypes.shape({
  * @property {string} faClassName
  */
 
-const sportLinkItemSchema = PropTypes.shape({
+const sportLinkItemPropTypes = PropTypes.shape({
   label: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 });
@@ -37,9 +37,9 @@ const sportLinkItemSchema = PropTypes.shape({
  * @property {string} url
  */
 
-const sportSchema = PropTypes.shape({
+const sportPropTypes = PropTypes.shape({
   sportName: PropTypes.string.isRequired,
-  sportLinks: PropTypes.arrayOf(sportLinkItemSchema.isRequired).isRequired,
+  sportLinks: PropTypes.arrayOf(sportLinkItemPropTypes.isRequired).isRequired,
   icon: iconPropType,
   href: PropTypes.string,
 });
@@ -81,7 +81,7 @@ const SportLinkItem = ({ sportLinkItem }) => {
   );
 };
 SportLinkItem.propTypes = {
-  sportLinkItem: sportLinkItemSchema.isRequired,
+  sportLinkItem: sportLinkItemPropTypes.isRequired,
 };
 
 const SportItemLinksRoot = styled.div`
@@ -113,7 +113,7 @@ const SportItemLinks = ({ sport }) => {
   );
 };
 SportItemLinks.propTypes = {
-  sport: sportSchema.isRequired,
+  sport: sportPropTypes.isRequired,
 };
 
 const SportGridListItemRoot = styled.div`
@@ -197,7 +197,7 @@ const SportGridListItem = ({ sport, borderBottom }) => {
   );
 };
 SportGridListItem.propTypes = {
-  sport: sportSchema.isRequired,
+  sport: sportPropTypes.isRequired,
   borderBottom: PropTypes.bool,
 };
 
@@ -254,7 +254,7 @@ const Footer = ({ buttons }) => {
   );
 };
 Footer.propTypes = {
-  buttons: PropTypes.arrayOf(buttonSchema.isRequired).isRequired,
+  buttons: PropTypes.arrayOf(buttonPropTypes.isRequired).isRequired,
 };
 
 const FooterTicketMaster = styled.div`
@@ -338,9 +338,9 @@ const Root = styled.div`
   overflow: hidden;
 `;
 
-const propTypesSchema = {
-  sports: PropTypes.arrayOf(sportSchema.isRequired).isRequired,
-  buttons: PropTypes.arrayOf(buttonSchema.isRequired),
+const propTypesPropTypes = {
+  sports: PropTypes.arrayOf(sportPropTypes.isRequired).isRequired,
+  buttons: PropTypes.arrayOf(buttonPropTypes.isRequired),
 };
 
 /**
@@ -412,6 +412,6 @@ const HeaderContentSportLinks = ({ sports, buttons }) => {
     </Root>
   );
 };
-HeaderContentSportLinks.propTypes = propTypesSchema;
+HeaderContentSportLinks.propTypes = propTypesPropTypes;
 
 export { HeaderContentSportLinks };

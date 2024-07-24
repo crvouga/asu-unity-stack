@@ -17,7 +17,7 @@ import PropTypes from "prop-types";
  * }} ConfigLayout
  */
 
-export const configLayoutSchema = PropTypes.shape({
+export const configLayoutPropTypes = PropTypes.shape({
   variant: PropTypes.oneOf(["sidebar", "default"]),
   includeInputSearch: PropTypes.bool,
   includeInputSportType: PropTypes.bool,

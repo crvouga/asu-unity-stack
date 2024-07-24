@@ -1,13 +1,13 @@
 // @ts-check
 import PropTypes from "prop-types";
 
-import { newsStorySchema } from "../news-story";
+import { newsStoryPropTypes } from "../news-story";
 import { INewsStoryDataSource } from "./news-story-data-source";
 import { NewsStoryDataSourceAsuNews } from "./news-story-data-source-impl-asu-news";
 import { NewsStoryDataSourceMock } from "./news-story-data-source-impl-mock";
 import { NewsStoryDataSourceStatic } from "./news-story-data-source-impl-static";
 
-export const newsStoryDataSourceSchema = PropTypes.oneOfType([
+export const newsStoryDataSourcePropTypes = PropTypes.oneOfType([
   PropTypes.shape({
     type: PropTypes.oneOf(["asu-news"]),
     url: PropTypes.string,
@@ -18,7 +18,7 @@ export const newsStoryDataSourceSchema = PropTypes.oneOfType([
   }),
   PropTypes.shape({
     type: PropTypes.oneOf(["static"]),
-    newsStories: PropTypes.arrayOf(newsStorySchema),
+    newsStories: PropTypes.arrayOf(newsStoryPropTypes),
   }),
   PropTypes.shape({
     type: PropTypes.oneOf(["custom"]),

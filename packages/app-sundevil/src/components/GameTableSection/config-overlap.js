@@ -4,6 +4,6 @@ export const ConfigOverlap = {
   "first-row-with-hero": "first-row-with-hero",
   "sport-tabs-with-hero": "sport-tabs-with-hero",
 };
-export const configOverlapSchema = PropTypes.oneOf(
+export const configOverlapPropTypes = PropTypes.oneOf(
   Object.values(ConfigOverlap)
 );

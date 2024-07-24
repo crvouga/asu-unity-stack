@@ -17,14 +17,14 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
-import { sportNameSchema } from "./sport-name";
+import { sportNamePropTypes } from "./sport-name";
 
-const sportIconSchema = {
-  sportName: sportNameSchema.isRequired,
+const sportIconPropTypes = {
+  sportName: sportNamePropTypes.isRequired,
 };
 
 /**
- * @typedef {import('prop-types').InferProps<typeof sportIconSchema>} SportIconProps
+ * @typedef {import('prop-types').InferProps<typeof sportIconPropTypes>} SportIconProps
  */
 
 const iconMap = {
@@ -56,4 +56,4 @@ export const SportIcon = ({ sportName }) => {
   return <FontAwesomeIcon color="currentColor" icon={icon} />;
 };
 
-SportIcon.propTypes = sportIconSchema;
+SportIcon.propTypes = sportIconPropTypes;

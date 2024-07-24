@@ -7,7 +7,7 @@ import * as NewsStory from "../../news-story";
  */
 
 export const propTypes = {
-  newsStories: PropTypes.arrayOf(NewsStory.newsStorySchema).isRequired,
+  newsStories: PropTypes.arrayOf(NewsStory.newsStoryPropTypes).isRequired,
   skeleton: PropTypes.bool,
   emptyStateMessage: PropTypes.string,
 };

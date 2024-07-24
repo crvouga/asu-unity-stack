@@ -8,9 +8,9 @@ import { Button } from "../../../../components-core/src/components/Button";
 import { APP_CONFIG } from "../../config";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { EmptyStateMessage } from "../EmptyState/EmptyStateMessage";
-import { gameSchema } from "../Game/game";
-import { configCellsSchema } from "./GameTableRow/config-cells";
-import { configLayoutSchema } from "./GameTableRow/config-layout";
+import { gamePropTypes } from "../Game/game";
+import { configCellsPropTypes } from "./GameTableRow/config-cells";
+import { configLayoutPropTypes } from "./GameTableRow/config-layout";
 import { GameTableRow } from "./GameTableRow/GameTableRow";
 
 const Footer = styled.footer`
@@ -166,7 +166,7 @@ const GameTable = ({
   );
 };
 
-export const gameTableFooterButtonSchema = PropTypes.shape({
+export const gameTableFooterButtonPropTypes = PropTypes.shape({
   color: PropTypes.string,
   label: PropTypes.string,
   size: PropTypes.string,
@@ -174,23 +174,23 @@ export const gameTableFooterButtonSchema = PropTypes.shape({
   icon: PropTypes.string,
 });
 
-export const gameTableFooterLinkSchema = PropTypes.shape({
+export const gameTableFooterLinkPropTypes = PropTypes.shape({
   label: PropTypes.string,
   href: PropTypes.string,
 });
 
 GameTable.propTypes = {
   mobileRowVariant: PropTypes.oneOf(["divided", "bordered"]),
-  games: PropTypes.arrayOf(gameSchema),
+  games: PropTypes.arrayOf(gamePropTypes),
   skeleton: PropTypes.bool,
   skeletonRowCount: PropTypes.number,
-  footerButtons: PropTypes.arrayOf(gameTableFooterButtonSchema),
-  footerLinks: PropTypes.arrayOf(gameTableFooterLinkSchema),
+  footerButtons: PropTypes.arrayOf(gameTableFooterButtonPropTypes),
+  footerLinks: PropTypes.arrayOf(gameTableFooterLinkPropTypes),
   emptyStateMessage: PropTypes.string,
   emptyStateRowCount: PropTypes.number,
   setFirstRowRef: PropTypes.func,
-  configLayout: configLayoutSchema,
-  configCells: configCellsSchema,
+  configLayout: configLayoutPropTypes,
+  configCells: configCellsPropTypes,
 };
 
 export { GameTable };

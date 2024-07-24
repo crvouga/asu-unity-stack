@@ -104,8 +104,8 @@ export const VideoSection = ({
 
 VideoSection.propTypes = {
   sectionHeader: SectionHeader.propTypes,
-  newsStories: PropTypes.arrayOf(NewsStory.newsStorySchema),
-  bottomButtons: PropTypes.arrayOf(ButtonProp.buttonSchema),
+  newsStories: PropTypes.arrayOf(NewsStory.newsStoryPropTypes),
+  bottomButtons: PropTypes.arrayOf(ButtonProp.buttonPropTypes),
   skeleton: PropTypes.bool,
   maxCards: PropTypes.number,
 };

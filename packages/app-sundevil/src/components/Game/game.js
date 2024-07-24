@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export const gameSchema = PropTypes.shape({
+export const gamePropTypes = PropTypes.shape({
   id: PropTypes.string,
   title: PropTypes.string,
   titleHref: PropTypes.string,

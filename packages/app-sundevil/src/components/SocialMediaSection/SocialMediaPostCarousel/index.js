@@ -4,11 +4,11 @@ import styled from "styled-components";
 
 import { ArrowButtons } from "../../ArrowButtons";
 import { Carousel, CarouselController, CarouselItem } from "../../Carousel";
-import { socialMediaPostSchema } from "./social-media-post";
+import { socialMediaPostPropTypes } from "./social-media-post";
 import { SocialMediaPostCard } from "./SocialMediaPostCard";
 
 const propTypes = {
-  posts: PropTypes.arrayOf(socialMediaPostSchema.isRequired).isRequired,
+  posts: PropTypes.arrayOf(socialMediaPostPropTypes.isRequired).isRequired,
   loop: PropTypes.bool,
   slidesOffsetBefore: PropTypes.number,
   initialSlide: PropTypes.number,

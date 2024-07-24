@@ -2,16 +2,16 @@
 // @ts-ignore
 import PropTypes from "prop-types";
 
-import { gameSchema } from "../../Game/game";
-import { configCellsSchema } from "./config-cells";
-import { configLayoutSchema } from "./config-layout";
+import { gamePropTypes } from "../../Game/game";
+import { configCellsPropTypes } from "./config-cells";
+import { configLayoutPropTypes } from "./config-layout";
 
 export const gameTableRowPropTypes = {
-  game: gameSchema,
+  game: gamePropTypes,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
   skeleton: PropTypes.bool,
   empty: PropTypes.bool,
-  configCells: configCellsSchema,
-  configLayout: configLayoutSchema,
+  configCells: configCellsPropTypes,
+  configLayout: configLayoutPropTypes,
 };

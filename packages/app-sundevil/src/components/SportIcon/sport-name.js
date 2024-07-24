@@ -60,7 +60,7 @@ export const sportNameToFaClassNameMap = {
 export const sportNameToFaClassName = sportName =>
   sportNameToFaClassNameMap[sportName] ?? null;
 
-export const sportNameSchema = PropTypes.oneOf(SPORT_NAME);
+export const sportNamePropTypes = PropTypes.oneOf(SPORT_NAME);
 
 /** @type {(str: string | null | undefined) => string} */
 const normalize = str => str?.toLowerCase().replace(/[^a-z]/g, "") ?? "";

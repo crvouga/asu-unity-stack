@@ -9,10 +9,10 @@ import { deepMergeLeft } from "../../utils/deep-merge-left";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useElementContentPosition } from "../../utils/use-element-position";
 import { LoadMoreButton } from "../LoadMoreButton";
-import { sportSchema } from "../Navigation";
+import { sportPropTypes } from "../Navigation";
 import {
   buildNewsStoryDataSource,
-  newsStoryDataSourceSchema,
+  newsStoryDataSourcePropTypes,
 } from "../NewsStory/news-story-data-source/news-story-data-source-impl";
 import { NewsStoryDataSourceProvider } from "../NewsStory/NewsDataSourceContext";
 import { newsStoriesSkeletonData } from "../NewsStory/NewsStoryCardGrid/news-stories-skeleton-data";
@@ -263,13 +263,13 @@ NewsStorySectionInner.propTypes = {
   // @ts-ignore
   sectionHeader: SectionHeader.propTypes,
   // @ts-ignore
-  sports: PropTypes.arrayOf(sportSchema).isRequired,
+  sports: PropTypes.arrayOf(sportPropTypes).isRequired,
   allStoriesLabel: PropTypes.string,
   allStoriesHref: PropTypes.string,
   skeleton: PropTypes.bool,
   emptyStateMessage: PropTypes.string,
   removeSportsWithNoStories: PropTypes.bool,
-  newsStoryDataSource: newsStoryDataSourceSchema,
+  newsStoryDataSource: newsStoryDataSourcePropTypes,
   // @ts-ignore
   loadMore: LoadMoreButton.propTypes,
   // @ts-ignore

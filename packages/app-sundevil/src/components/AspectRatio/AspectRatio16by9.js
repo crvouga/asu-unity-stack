@@ -22,7 +22,7 @@ const Content = styled.div`
   aspect-ratio: 16 / 9;
 `;
 
-const propsSchema = {
+const propsPropTypes = {
   children: PropTypes.node,
 };
 
@@ -44,4 +44,4 @@ export const AspectRatio16by9 = ({ children }) => {
     </Root>
   );
 };
-AspectRatio16by9.propTypes = propsSchema;
+AspectRatio16by9.propTypes = propsPropTypes;

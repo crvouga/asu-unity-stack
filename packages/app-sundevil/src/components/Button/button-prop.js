@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-export const buttonSchema = PropTypes.shape({
+export const buttonPropTypes = PropTypes.shape({
   color: PropTypes.oneOf(["gold", "maroon", "gray", "dark"]),
   class: PropTypes.string,
   label: PropTypes.string,

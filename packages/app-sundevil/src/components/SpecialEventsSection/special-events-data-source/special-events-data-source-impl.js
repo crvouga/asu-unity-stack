@@ -1,14 +1,14 @@
 import PropTypes from "prop-types";
 
-import { specialEventSchema } from "../special-event";
+import { specialEventPropTypes } from "../special-event";
 import { ISpecialEventsDataSource } from "./special-events-data-source";
 import { SpecialEventsDataSourceAsuEvents } from "./special-events-data-source-impl-asu-events";
 import { SpecialEventsDataSourceStatic } from "./special-events-data-source-impl-static";
 
-export const specialEventsDataSourceSchema = PropTypes.oneOfType([
+export const specialEventsDataSourcePropTypes = PropTypes.oneOfType([
   PropTypes.shape({
     type: PropTypes.oneOf(["static"]),
-    specialEvents: PropTypes.arrayOf(specialEventSchema),
+    specialEvents: PropTypes.arrayOf(specialEventPropTypes),
   }),
   PropTypes.shape({
     type: PropTypes.oneOf(["asu-events"]),

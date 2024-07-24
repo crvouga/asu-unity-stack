@@ -18,7 +18,7 @@ import PropTypes from "prop-types";
  * }} NewsStory
  */
 
-export const newsStorySchema = PropTypes.shape({
+export const newsStoryPropTypes = PropTypes.shape({
   id: PropTypes.string,
   href: PropTypes.string,
   title: PropTypes.string.isRequired,

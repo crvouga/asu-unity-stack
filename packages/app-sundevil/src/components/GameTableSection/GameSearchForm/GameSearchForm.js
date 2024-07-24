@@ -10,10 +10,10 @@ import { GameDataSourceSortBy } from "../../Game/game-data-source";
 import { useGameVenuesLoader } from "../../Game/use-game-venues-loader";
 import { Icon } from "../../Icon_";
 import { Select } from "../../Select/Select";
-import { sportSchema } from "../../SportsTabs/sports-tabs";
+import { sportPropTypes } from "../../SportsTabs/sports-tabs";
 import { TextField } from "../../TextField/TextField";
-import { configInputsSchema } from "../config-inputs";
-import { configLayoutSchema } from "../config-layout";
+import { configInputsPropTypes } from "../config-inputs";
+import { configLayoutPropTypes } from "../config-layout";
 import { gameSearchFormPropTypes } from "./use-game-search-form";
 
 const Root = styled.div`
@@ -279,12 +279,12 @@ GameTableForm.propTypes = {
   // @ts-ignore
   gameSearchForm: gameSearchFormPropTypes,
   // @ts-ignore
-  configLayout: configLayoutSchema,
+  configLayout: configLayoutPropTypes,
   // @ts-ignore
-  configInputs: configInputsSchema,
+  configInputs: configInputsPropTypes,
   className: PropTypes.string,
   // @ts-ignore
-  sports: PropTypes.arrayOf(sportSchema),
+  sports: PropTypes.arrayOf(sportPropTypes),
   darkMode: PropTypes.bool,
   orientation: PropTypes.oneOf(["horizontal", "vertical"]),
   // eslint-disable-next-line react/forbid-prop-types

@@ -11,7 +11,7 @@ import PropTypes from "prop-types";
  * }} Sport
  */
 
-export const sportSchema = PropTypes.shape({
+export const sportPropTypes = PropTypes.shape({
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -28,6 +28,6 @@ export const sportSchema = PropTypes.shape({
  */
 
 export const basePropTypes = {
-  sports: PropTypes.arrayOf(sportSchema),
+  sports: PropTypes.arrayOf(sportPropTypes),
   onSportItemClick: PropTypes.func,
 };

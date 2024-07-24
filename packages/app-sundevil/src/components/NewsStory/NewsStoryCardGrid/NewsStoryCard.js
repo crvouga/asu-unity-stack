@@ -186,7 +186,7 @@ export const NewsStoryCard = ({
   );
 };
 NewsStoryCard.propTypes = {
-  newsStory: NewsStory.newsStorySchema.isRequired,
+  newsStory: NewsStory.newsStoryPropTypes.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
   skeleton: PropTypes.bool,

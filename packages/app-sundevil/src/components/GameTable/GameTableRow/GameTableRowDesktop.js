@@ -108,6 +108,8 @@ const Title = styled.a`
   max-width: 100%;
 `;
 
+const isCleanString = str => typeof str === "string" && str.trim().length > 0;
+
 export const GameTableRowDesktop = forwardRef((props, ref) => {
   const {
     // @ts-ignore
@@ -152,8 +154,14 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
         {configLayout.includeCellSportName && (
           <Cell>
             <CellSportName>
-              <SportIcon sportName={stringToClosestSportName(game?.sportId)} />
-              <p className="m-0">{game?.sportId}</p>
+              {isCleanString(game?.sportId) && (
+                <>
+                  <SportIcon
+                    sportName={stringToClosestSportName(game?.sportId)}
+                  />
+                  <p className="m-0">{game?.sportId}</p>
+                </>
+              )}
             </CellSportName>
           </Cell>
         )}

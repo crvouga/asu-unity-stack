@@ -9,21 +9,24 @@ import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useElementContentDimensions } from "../../utils/use-element-position";
 import {
   buildGameDataSource,
-  gameDataSourceSchema,
+  gameDataSourcePropTypes,
 } from "../Game/game-data-source/game-data-source-impl";
 import { GameDataSourceProvider } from "../Game/GameDataSourceContext";
 import { useGameDataSourceLoader } from "../Game/use-game-data-source-loader";
-import { GameTable, gameTableFooterButtonSchema } from "../GameTable/GameTable";
+import {
+  GameTable,
+  gameTableFooterButtonPropTypes,
+} from "../GameTable/GameTable";
 import {
   LoadMoreButton,
   loadMorePropTypes,
 } from "../LoadMoreButton/LoadMoreButton";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
-import { sportSchema } from "../SportsTabs/sports-tabs";
-import { configInputsSchema, defaultConfigInputs } from "./config-inputs";
-import { configLayoutSchema, defaultConfigLayout } from "./config-layout";
-import { ConfigOverlap, configOverlapSchema } from "./config-overlap";
+import { sportPropTypes } from "../SportsTabs/sports-tabs";
+import { configInputsPropTypes, defaultConfigInputs } from "./config-inputs";
+import { configLayoutPropTypes, defaultConfigLayout } from "./config-layout";
+import { ConfigOverlap, configOverlapPropTypes } from "./config-overlap";
 import { GameSearchFormSidebar } from "./GameSearchForm/GameSearchFormSidebar";
 import { GameSearchFormTopbar } from "./GameSearchForm/GameSearchFormTopbar";
 import { useGameSearchForm } from "./GameSearchForm/use-game-search-form";
@@ -265,20 +268,20 @@ const GameTableSectionInner = ({ ...props }) => {
   );
 };
 
-const sportSchemaGameTable = PropTypes.shape({
-  ...sportSchema,
-  footerButtons: PropTypes.arrayOf(gameTableFooterButtonSchema),
+const sportPropTypesGameTable = PropTypes.shape({
+  ...sportPropTypes,
+  footerButtons: PropTypes.arrayOf(gameTableFooterButtonPropTypes),
   footerLinks: PropTypes.arrayOf(PropTypes.string),
 });
 
 GameTableSectionInner.propTypes = {
   ...SectionHeader.propTypes,
   ...GameTable.propTypes,
-  sports: PropTypes.arrayOf(sportSchemaGameTable),
+  sports: PropTypes.arrayOf(sportPropTypesGameTable),
   loadMore: loadMorePropTypes,
-  configLayout: configLayoutSchema,
-  configInputs: configInputsSchema,
-  configOverlap: configOverlapSchema,
+  configLayout: configLayoutPropTypes,
+  configInputs: configInputsPropTypes,
+  configOverlap: configOverlapPropTypes,
   variant: PropTypes.oneOf(["default", "hero"]),
   gameTable: GameTable.propTypes,
   sectionHeader: SectionHeader.propTypes,
@@ -289,7 +292,7 @@ GameTableSectionInner.propTypes = {
   gameDataSourceLoader: PropTypes.shape({
     limit: PropTypes.number,
   }),
-  gameDataSource: gameDataSourceSchema,
+  gameDataSource: gameDataSourcePropTypes,
 };
 
 export const GameTableSection = ({

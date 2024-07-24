@@ -71,3 +71,6 @@ export class NewsStoryDataSourceMock extends INewsStoryDataSource {
     return dataSource.findMany(input);
   }
 }
+
+// @ts-ignore
+window.NewsStoryDataSourceMock = NewsStoryDataSourceMock;

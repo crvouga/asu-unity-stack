@@ -68,3 +68,6 @@ export class NewsStoryDataSourceStatic extends INewsStoryDataSource {
     };
   }
 }
+
+// @ts-ignore
+window.NewsStoryDataSourceStatic = NewsStoryDataSourceStatic;

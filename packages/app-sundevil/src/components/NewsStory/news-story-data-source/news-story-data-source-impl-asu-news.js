@@ -112,3 +112,6 @@ export class NewsStoryDataSourceAsuNews extends INewsStoryDataSource {
     return dataSource.findMany(input);
   }
 }
+
+// @ts-ignore
+window.NewsStoryDataSourceAsuNews = NewsStoryDataSourceAsuNews;

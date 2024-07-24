@@ -51,9 +51,3 @@ export const buildNewsStoryDataSource = input => {
 
 // @ts-ignore
 window.buildNewsStoryDataSource = buildNewsStoryDataSource;
-// @ts-ignore
-window.NewsStoryDataSourceAsuNews = NewsStoryDataSourceAsuNews;
-// @ts-ignore
-window.NewsStoryDataSourceMock = NewsStoryDataSourceMock;
-// @ts-ignore
-window.NewsStoryDataSourceStatic = NewsStoryDataSourceStatic;

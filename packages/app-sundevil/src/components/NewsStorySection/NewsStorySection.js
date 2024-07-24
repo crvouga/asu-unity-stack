@@ -93,10 +93,6 @@ const NewsStorySectionInner = ({
     active: sport.id === newsStorySearchFrom.sportId,
   }));
 
-  const selectedSport = sports.find(
-    sport => sport.id === newsStorySearchFrom.sportId
-  );
-
   const sectionHeaderRef = React.useRef();
   const sectionHeaderPosition = useElementContentPosition(sectionHeaderRef);
   const cardWidth = Math.abs(
@@ -128,6 +124,7 @@ const NewsStorySectionInner = ({
   const newsStoriesFinal = skeleton
     ? newsStoriesSkeletonData
     : newsStoryDataSourceLoader.rows;
+
   const sportsFinal = sportsWithSelectedTab.filter(sport => {
     if (skeletonTabs) {
       return true;

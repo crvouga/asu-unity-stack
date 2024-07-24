@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Social Media Card Section</title>
+
     <!-- Load React. -->
     <script
       src="https://unpkg.com/react@17/umd/react.production.min.js"
@@ -47,58 +47,36 @@
     <!-- include bundled scripts from packages -->
     <script src="../dist/vendor.umd.js"></script>
     <script src="../dist/sunDevil.umd.js"></script>
+    <style>
+      #hero {
+        background-color: black;
+        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
+          url("./sun-devils-hero.png") no-repeat center center;
+        background-size: cover;
+        height: 800px;
+      }
+      #section-container {
+        padding-bottom: 500px;
+      }
+    </style>
   </head>
 
   <body>
+    <div id="hero"></div>
     <div id="section-container">
       <div>This will be removed</div>
       <div class="contextual"></div>
     </div>
     <script>
-      class CustomGameDataSource extends IGameDataSource {
-        constructor() {
-          super();
-        }
-        async findMany(input) {
-          console.log(`CustomGameDataSource.findMany()`, input);
-          const rows = [
-            {
-              id: Math.random().toString(36).substring(2, 9),
-              gameType: "home",
-              ticketLink: "https://www.example.com",
-              ticketText: "Buy Tickets",
-              titleHref: "https://www.example.com",
-              title: "Sun Devils vs Wildcats",
-              dateDay: "25",
-              dateMonth: "Nov",
-              sportId: "football",
-              sportName: "Football",
-              homeTeamName: "Sun Devils",
-              homeTeamLogoSrc:
-                "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
-              awayTeamName: "Sun Devils",
-              awayTeamLogoSrc:
-                "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
-              time: "5:30pm",
-              venue: "Phoenix Muni Stadium",
-            },
-          ];
-          return {
-            limit: Infinity,
-            offset: 0,
-            total: rows.length,
-            rows,
-          };
-        }
-      }
       const props = {
-        // This allows for custom implementation of game data source
+        // This will just generate random games
         gameDataSource: {
-          type: "custom",
-          gameDataSource: new CustomGameDataSource(),
+          type: "mock",
         },
         title: "Upcoming Games",
         emptyStateMessage: "No upcoming games",
+        darkMode: true,
+        configOverlap: "sport-tabs-with-hero",
         sports: [
           {
             name: "All Sports",

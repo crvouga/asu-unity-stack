@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Social Media Card Section</title>
+
     <!-- Load React. -->
     <script
       src="https://unpkg.com/react@17/umd/react.production.min.js"
@@ -51,19 +51,86 @@
 
   <body>
     <div id="section-container">
-      <div>
-        This will be removed
-      </div>
+      <div>This will be removed</div>
       <div class="contextual"></div>
     </div>
+    <div style="width: 100%; height: 500px"></div>
     <script>
       const props = {
-        // This will just generate random games
+        // gameDataSource: {
+        //   type: "custom",
+        //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
+        // },
+        // gameDataSource: {
+        //   type: "custom",
+        //   gameDataSource: new CustomGameDataSource(),
+        // },
         gameDataSource: {
-          type: "mock",
+          type: "asu-events",
+          url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+          timeout: 800,
         },
-        title: "Upcoming Games",
-        emptyStateMessage: "No upcoming games",
+        variant: "hero",
+        configOverlap: "sport-tabs-with-hero",
+        title: "Get Tickets",
+        subtitle:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        // subtitleLinks: [
+        //   {
+        //     label: "See a list of free sporting events",
+        //     href: "#",
+        //     color: "muted",
+        //   },
+        // ],
+        darkMode: true,
+        emptyStateMessage: "No games found",
+        configLayout: {
+          includeInputSearch: false,
+          includeInputSportType: false,
+          includeInputHomeOrAwaySelect: false,
+          includeInputVenueSelect: false,
+          includeInputSortBySelect: false,
+          includeSportsTabs: true,
+          includeLoadMore: true,
+        },
+        configInputs: {
+          searchInput: {
+            label: "Search by Event Name",
+            placeholder: "Sun Devils vs. BYU, Season Tickets, Rose Bowl",
+          },
+          sportTypeSelect: {
+            label: "Sport Type",
+            placeholder: "Select one",
+          },
+          homeOrAwaySelect: {
+            label: "Home or away",
+            placeholder: "Select one",
+          },
+          venueSelect: {
+            label: "Venue",
+            placeholder: "Select one",
+          },
+          sortBySelect: {
+            label: "Sort By:",
+            placeholder: "Select one",
+          },
+        },
+        configGameTableForm: {
+          // title: "Filter your results",
+          enableUrlState: false,
+        },
+        gameTable: {
+          configLayout: {
+            includeSportNameCell: true,
+            includeVersusCell: true,
+          },
+          configCells: {
+            cellTitle: {
+              // subtitleFontWeight: "bold",
+              includeSubtitleChip: true,
+            },
+          },
+        },
         sports: [
           {
             name: "All Sports",
@@ -77,26 +144,6 @@
             icon: "fas fa-football-ball",
             position: 2,
             id: "football",
-            footerButtons: [
-              {
-                color: "gold",
-                label: "Full schedule - Football",
-                size: "small",
-                href: "#",
-              },
-              {
-                color: "maroon",
-                label: "Gear up for the game - Football",
-                size: "small",
-                href: "#",
-              },
-            ],
-            footerLinks: [
-              {
-                label: "See past game scores - Football",
-                href: "#",
-              },
-            ],
           },
           {
             name: "M. Basketball",
@@ -142,36 +189,12 @@
             id: "golf",
           },
         ],
-        sponsorBlock: {
-          text: "Presented By",
-          name: "Ford",
-          logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg",
-          url: "https://www.ford.com/",
-        },
-        footerButtons: [
-          {
-            color: "gold",
-            label: "Full schedule",
-            size: "small",
-          },
-          {
-            color: "maroon",
-            label: "Gear up for the game",
-            size: "small",
-          },
-        ],
-        footerLinks: [
-          {
-            label: "See past game scores",
-            href: "#",
-          },
-        ],
       };
 
       initGameTableSection({
         targetSelector: "#section-container",
         props,
-        renderWithinChildWhiteList: [".contextual"]
+        renderWithinChildWhiteList: [".contextual"],
       });
     </script>
   </body>

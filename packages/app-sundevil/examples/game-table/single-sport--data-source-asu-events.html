@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Social Media Card Section</title>
+
     <!-- Load React. -->
     <script
       src="https://unpkg.com/react@17/umd/react.production.min.js"
@@ -50,7 +50,7 @@
   </head>
 
   <body>
-    <div id="section-container" style="padding-bottom: 20rem;">
+    <div id="section-container" style="padding-bottom: 20rem">
       <div>This will be removed</div>
       <div class="contextual"></div>
       <div>This will be removed</div>
@@ -58,7 +58,8 @@
     <script>
       const props = {
         gameDataSource: {
-          type: "mock",
+          type: "asu-events",
+          url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
         },
         title: "Upcoming Games",
         loadMore: {
@@ -72,7 +73,7 @@
             label: "See Past Game Scores",
             href: "https://example.com",
             fontWeight: "bold",
-          }
+          },
         ],
         emptyStateMessage: "No upcoming games",
         tabs: [

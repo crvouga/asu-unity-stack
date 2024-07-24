@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Social Media Card Section</title>
+
     <!-- Load React. -->
     <script
       src="https://unpkg.com/react@17/umd/react.production.min.js"
@@ -55,11 +55,13 @@
       <div class="contextual"></div>
     </div>
     <script>
-      const props = {
-        // This will use a static list of games
-        gameDataSource: {
-          type: "static",
-          games: [
+      class CustomGameDataSource extends IGameDataSource {
+        constructor() {
+          super();
+        }
+        async findMany(input) {
+          console.log(`CustomGameDataSource.findMany()`, input);
+          const rows = [
             {
               id: Math.random().toString(36).substring(2, 9),
               gameType: "home",
@@ -80,7 +82,20 @@
               time: "5:30pm",
               venue: "Phoenix Muni Stadium",
             },
-          ],
+          ];
+          return {
+            limit: Infinity,
+            offset: 0,
+            total: rows.length,
+            rows,
+          };
+        }
+      }
+      const props = {
+        // This allows for custom implementation of game data source
+        gameDataSource: {
+          type: "custom",
+          gameDataSource: new CustomGameDataSource(),
         },
         title: "Upcoming Games",
         emptyStateMessage: "No upcoming games",

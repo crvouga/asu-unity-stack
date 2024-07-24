@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Social Media Card Section</title>
+
     <!-- Load React. -->
     <script
       src="https://unpkg.com/react@17/umd/react.production.min.js"
@@ -50,71 +50,52 @@
   </head>
 
   <body>
-    <div id="section-container" class="existing-class">
+    <div id="section-container">
       <div>This will be removed</div>
       <div class="contextual"></div>
     </div>
     <div style="width: 100%; height: 500px"></div>
     <script>
       const props = {
-        gameDataSource: {
-          type: "mock",
-        },
         // gameDataSource: {
-        //   type: "custom",
-        //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
+        //   type: "mock",
         // },
         // gameDataSource: {
         //   type: "custom",
         //   gameDataSource: new CustomGameDataSource(),
         // },
-        // gameDataSource: {
-        //   type: "asu-events",
-        //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-        //   timeout: 800,
-        // },
-        gameDataSourceLoader: {
-          limit: 10,
+        gameDataSource: {
+          type: "asu-events",
+          url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+          timeout: 800,
         },
-        variant: "hero",
-        configOverlap: "sport-tabs-with-hero",
-        title: "Get Tickets",
-        subtitle:
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        // variant: "hero",
+        // configOverlap: "sport-tabs-with-hero",
+        title: "Upcoming Games",
+        // subtitle:
+        //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        subtitleLinks: [
+          {
+            label: "See a list of free sporting events",
+            href: "#",
+            color: "muted",
+          },
+        ],
         darkMode: false,
         emptyStateMessage: "No games found",
         configGameTableForm: {
           title: "Filter your results",
-        },
-        configGameTableForm: {
-          // title: "Filter your results",
           enableUrlState: false,
         },
-        gameTable: {
-          configLayout: {
-            includeCellDate: true,
-            includeCellSportName: true,
-            includeCellVersus: false,
-            includeCellTitle: true,
-            includeCellTickets: true,
-          },
-          configCells: {
-            cellTitle: {
-              // subtitleFontWeight: "bold",
-              includeSubtitleChip: true,
-            },
-          },
-        },
         configLayout: {
-          variant: "sidebar",
           includeInputSearch: true,
           includeInputSportType: true,
-          includeInputHomeOrAwaySelect: false,
-          includeInputVenueSelect: true,
-          includeInputSortBySelect: true,
+          includeInputHomeOrAwaySelect: true,
+          includeInputVenueSelect: false,
+          includeInputSortBySelect: false,
           includeSportsTabs: false,
           includeLoadMore: true,
-          includeSportTypeCheckboxList: true,
+          includeSportTypeCheckboxList: false,
         },
         configInputs: {
           searchInput: {
@@ -141,11 +122,26 @@
             label: "Sport Type",
           },
         },
+
+        gameTable: {
+          configLayout: {
+            includeCellDate: true,
+            includeCellSportName: true,
+            includeCellVersus: true,
+            includeCellTitle: true,
+            includeCellTickets: true,
+          },
+          configCells: {
+            cellTitle: {
+              // subtitleFontWeight: "bold",
+              includeSubtitleChip: true,
+            },
+          },
+        },
         sports: [
           {
             name: "All Sports",
             icon: "fas fa-sync-alt",
-            active: true,
             position: 1,
             id: "all",
           },
@@ -154,6 +150,7 @@
             icon: "fas fa-football-ball",
             position: 2,
             id: "football",
+            active: true,
           },
           {
             name: "M. Basketball",
@@ -200,10 +197,7 @@
           },
         ],
       };
-
       initGameTableSection({
-        id: "testing-id",
-        class: "testing-class",
         targetSelector: "#section-container",
         props,
         renderWithinChildWhiteList: [".contextual"],

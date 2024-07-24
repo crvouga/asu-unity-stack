@@ -9,7 +9,7 @@ export * from "./SectionHeader";
 export * from "./SocialMediaSection";
 export * from "./SocialMediaSectionEmbedded";
 export * from "./SpecialEventsSection";
-export * from "./SunDevilStoriesSection";
+export * from "./NewsStorySection";
 export * from "./VideoSection";
 export * from "./LinkTabsBar";
 //

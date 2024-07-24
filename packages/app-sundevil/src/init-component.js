@@ -13,7 +13,7 @@ import {
   SocialMediaSectionEmbedded,
   SpecialEventsSection,
   SunDevilsHeader,
-  SunDevilStoriesSection,
+  NewsStorySection,
   VideoSection,
 } from "./components";
 
@@ -211,12 +211,15 @@ export const initSocialMediaSectionEmbedded = input => {
 };
 
 /** @type {InitComponent} */
-export const initSunDevilsStoriesSection = input => {
+export const initNewsStorySection = input => {
   RenderReact({
     ...input,
-    component: SunDevilStoriesSection,
+    component: NewsStorySection,
   });
 };
+
+// for backward compatibility
+export const initSunDevilsStoriesSection = initNewsStorySection;
 
 /** @type {InitComponent} */
 export const initSunDevilsHeader = input => {

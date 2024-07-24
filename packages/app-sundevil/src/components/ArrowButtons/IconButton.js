@@ -27,7 +27,11 @@ const Root = styled.button`
   &:hover,
   &:active {
     background-color: #000;
-    color: #fff;
+    color: #fff !important;
+  }
+
+  svg {
+    fill: currentColor;
   }
 
   &:active {

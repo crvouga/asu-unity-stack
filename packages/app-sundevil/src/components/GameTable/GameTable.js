@@ -61,6 +61,10 @@ const Root = styled.div`
   }
 `;
 
+const FooterLink = styled.a`
+  color: #8c1d40;
+`;
+
 const range = end => Array.from({ length: end }, (_, index) => index);
 
 const GameTable = ({
@@ -142,6 +146,7 @@ const GameTable = ({
         <Footer style={{ gap: "8px", paddingTop: "32px" }}>
           {footerButtons.map(button => (
             <Button
+              classes={[button?.class, button?.className]}
               key={button.label}
               color={button.color}
               label={button.label}
@@ -156,9 +161,13 @@ const GameTable = ({
       {footerLinks && footerLinks?.length > 0 && (
         <Footer style={{ gap: "8px", paddingTop: "24px" }}>
           {footerLinks.map(link => (
-            <a key={link.label} href={link.href} style={{ color: "#8c1d40" }}>
+            <FooterLink
+              key={link.label}
+              href={link.href}
+              className={link?.class ?? link?.className}
+            >
               {link.label}
-            </a>
+            </FooterLink>
           ))}
         </Footer>
       )}
@@ -173,11 +182,15 @@ export const gameTableFooterButtonPropTypes = PropTypes.shape({
   href: PropTypes.string,
   icon: PropTypes.string,
   target: PropTypes.string,
+  class: PropTypes.string,
+  className: PropTypes.string,
 });
 
 export const gameTableFooterLinkPropTypes = PropTypes.shape({
   label: PropTypes.string,
   href: PropTypes.string,
+  class: PropTypes.string,
+  className: PropTypes.string,
 });
 
 GameTable.propTypes = {

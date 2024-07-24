@@ -28,6 +28,10 @@ const Root = styled.button`
   &:active {
     background-color: #000;
     color: #fff !important;
+    svg {
+      fill: #fff !important;
+      color: #fff !important;
+    }
   }
 
   svg {

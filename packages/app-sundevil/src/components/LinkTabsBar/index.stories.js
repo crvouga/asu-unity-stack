@@ -37,7 +37,31 @@ const Template = args => (
       <LinkTabsBar {...args} />
     </div>
 
-    <div style={{ width: "100%", height: "3000px" }} />
+    <div style={{ width: "100%", height: "3000px" }}>
+      <div
+        style={{
+          width: "100%",
+          height: "200px",
+          backgroundColor: "transparent",
+        }}
+      />
+
+      <div
+        style={{ width: "100%", height: "200px", backgroundColor: "tomato" }}
+      />
+
+      <div
+        style={{
+          width: "100%",
+          height: "200px",
+          backgroundColor: "transparent",
+        }}
+      />
+
+      <div
+        style={{ width: "100%", height: "200px", backgroundColor: "tomato" }}
+      />
+    </div>
   </div>
 );
 

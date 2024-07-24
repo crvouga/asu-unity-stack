@@ -1,5 +1,6 @@
 // @ts-check
 import React from "react";
+import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
 import { useBreakpoint } from "../../utils/use-breakpoint";
@@ -56,6 +57,11 @@ const LinkTabsBarResponsive = props => {
 };
 LinkTabsBarResponsive.propTypes = linkTabsBarPropTypes;
 
+const Root = styled.div`
+  width: 100%;
+  background-color: #fff;
+`;
+
 export const LinkTabsBar = props => {
   const { links, disableActiveFromUrl, stickyPosition } = props;
   const currentUrl = useCurrentUrl();
@@ -65,6 +71,10 @@ export const LinkTabsBar = props => {
 
   useStickyPositionEffect(stickyPosition);
 
-  return <LinkTabsBarResponsive {...props} links={mappedLinks} />;
+  return (
+    <Root>
+      <LinkTabsBarResponsive {...props} links={mappedLinks} />
+    </Root>
+  );
 };
 LinkTabsBar.propTypes = linkTabsBarPropTypes;

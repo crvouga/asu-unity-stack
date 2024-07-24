@@ -47,9 +47,3 @@ export const buildGameDataSource = input => {
 
 // @ts-ignore
 window.buildGameDataSource = buildGameDataSource;
-// @ts-ignore
-window.GameDataSourceAsuEvents = GameDataSourceAsuEvents;
-// @ts-ignore
-window.GameDataSourceMock = GameDataSourceMock;
-// @ts-ignore
-window.GameDataSourceStatic = GameDataSourceStatic;

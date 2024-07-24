@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Load React. -->
+    <script
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+      crossorigin
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://unity.web.asu.edu/@asu/bootstrap4-theme/css/bootstrap-asu.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://asu.github.io/asu-unity-stack/@asu/unity-bootstrap-theme/css/unity-bootstrap-theme.bundle.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/63c5db143d.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- *************************************************************** -->
+    <!-- include bundled scripts from packages -->
+    <script src="../dist/vendor.umd.js"></script>
+    <script src="../dist/sunDevil.umd.js"></script>
+  </head>
+
+  <body>
+    <div id="section-container">
+      <div>This will be removed</div>
+      <div class="contextual"></div>
+    </div>
+    <div style="width: 100%; height: 500px"></div>
+    <script>
+      const props = {
+        // gameDataSource: {
+        //   type: "custom",
+        //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
+        // },
+        // gameDataSource: {
+        //   type: "custom",
+        //   gameDataSource: new CustomGameDataSource(),
+        // },
+        gameDataSource: {
+          type: "asu-events",
+          url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+          timeout: 800,
+        },
+        variant: "hero",
+        configOverlap: "sport-tabs-with-hero",
+        title: "Get Tickets",
+        subtitle:
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        darkMode: false,
+        emptyStateMessage: "No games found",
+        configGameTableForm: {
+          // title: "Filter your results",
+          enableUrlState: false,
+        },
+        gameTable: {
+          configLayout: {
+            includeCellDate: true,
+            includeCellSportName: true,
+            includeCellVersus: true,
+            includeCellTitle: true,
+            includeCellTickets: true,
+          },
+          configCells: {
+            cellTitle: {
+              // subtitleFontWeight: "bold",
+              includeSubtitleChip: true,
+            },
+          },
+        },
+        configLayout: {
+          includeInputSearch: true,
+          includeInputSportType: true,
+          includeInputHomeOrAwaySelect: false,
+          includeInputVenueSelect: true,
+          includeInputSortBySelect: true,
+          includeSportsTabs: false,
+          includeLoadMore: true,
+        },
+        configInputs: {
+          searchInput: {
+            label: "Search by Event Name",
+            placeholder: "Sun Devils vs. BYU, Season Tickets, Rose Bowl",
+          },
+          sportTypeSelect: {
+            label: "Sport Type",
+            placeholder: "Select one",
+          },
+          homeOrAwaySelect: {
+            label: "Home or away",
+            placeholder: "Select one",
+          },
+          venueSelect: {
+            label: "Venue",
+            placeholder: "Select one",
+          },
+          sortBySelect: {
+            label: "Sort By:",
+            placeholder: "Select one",
+          },
+        },
+        sports: [
+          {
+            name: "All Sports",
+            icon: "fas fa-sync-alt",
+            active: true,
+            position: 1,
+            id: "all",
+          },
+          {
+            name: "Football",
+            icon: "fas fa-football-ball",
+            position: 2,
+            id: "football",
+          },
+          {
+            name: "M. Basketball",
+            icon: "fas fa-basketball-ball",
+            position: 3,
+            id: "basketball",
+          },
+          {
+            name: "Hockey",
+            icon: "fas fa-hockey-puck",
+            position: 4,
+            id: "hockey",
+          },
+          {
+            name: "Baseball",
+            icon: "fas fa-baseball-ball",
+            position: 5,
+            id: "baseball",
+          },
+          {
+            name: "W. Basketball",
+            icon: "fas fa-basketball-ball",
+            id: "w-basketball",
+          },
+          {
+            name: "Softball",
+            icon: "fas fa-futbol",
+            id: "softball",
+          },
+          {
+            name: "Soccer",
+            icon: "fas fa-baseball-ball",
+            id: "soccer",
+          },
+          {
+            name: "Swimming",
+            icon: "fas fa-swimmer",
+            id: "swimming",
+          },
+          {
+            name: "Golf",
+            icon: "fas fa-golf-ball",
+            id: "golf",
+          },
+        ],
+      };
+
+      initGameTableSection({
+        targetSelector: "#section-container",
+        props,
+        renderWithinChildWhiteList: [".contextual"],
+      });
+    </script>
+  </body>
+</html>

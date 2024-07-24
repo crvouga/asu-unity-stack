@@ -91,3 +91,6 @@ export class GameDataSourceAsuEvents extends IGameDataSource {
     return found;
   }
 }
+
+// @ts-ignore
+window.GameDataSourceAsuEvents = GameDataSourceAsuEvents;

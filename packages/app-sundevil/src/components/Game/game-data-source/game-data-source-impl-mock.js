@@ -71,3 +71,6 @@ export class GameDataSourceMock extends IGameDataSource {
     return found;
   }
 }
+
+// @ts-ignore
+window.GameDataSourceMock = GameDataSourceMock;

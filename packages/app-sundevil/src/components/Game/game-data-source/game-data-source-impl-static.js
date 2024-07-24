@@ -94,3 +94,6 @@ export class GameDataSourceStatic extends IGameDataSource {
     };
   }
 }
+
+// @ts-ignore
+window.GameDataSourceStatic = GameDataSourceStatic;

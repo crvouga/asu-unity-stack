@@ -2,19 +2,6 @@
 import { IGameDataSource } from "./game-data-source";
 import { GameDataSourceStatic } from "./game-data-source-impl-static";
 
-const parseDate = dateString => {
-  const parts = dateString.split("-");
-  // eslint-disable-next-line no-restricted-syntax
-  for (const part of parts) {
-    const trimmed = part.trim();
-    const date = new Date(trimmed);
-    if (!Number.isNaN(date.getTime())) {
-      return date;
-    }
-  }
-  return null;
-};
-
 /**
  *
  * @param {any} data
@@ -24,7 +11,7 @@ const mapNodeToGame = data => {
   if (typeof data !== "object" || data === null) {
     return null;
   }
-  const startDate = parseDate(data.very_start_date);
+  const startDate = new Date(data["very_start_date"]);
   const startDay = startDate?.getDate().toString();
   const startMonth = startDate?.toLocaleString("default", { month: "short" });
   const startTimeHour12 = startDate?.toLocaleString("en-US", {
@@ -38,6 +25,7 @@ const mapNodeToGame = data => {
   const eventTypes = data["event_types"] ?? "";
 
   return {
+    // @ts-ignore
     id: data?.nid,
     gameType: data.game_type,
     sportId: data.sport_tag,

@@ -25,19 +25,19 @@ const Template = args => (
 export const Schedule = Template.bind({});
 Schedule.args = {
   // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4801-45080&t=OOxUjvuOdT8YyVSn-0
-  gameDataSource: {
-    type: "mock",
-    timeout: 200,
-  },
+  // gameDataSource: {
+  //   type: "mock",
+  //   timeout: 200,
+  // },
   // gameDataSource: {
   //   type: "custom",
   //   gameDataSource: new CustomGameDataSource(),
   // },
-  // gameDataSource: {
-  //   type: "asu-events",
-  //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-  //   timeout: 800,
-  // },
+  gameDataSource: {
+    type: "asu-events",
+    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+    timeout: 800,
+  },
   // variant: "hero",
   variant: "default",
   // configOverlap: "sport-tabs-with-hero",

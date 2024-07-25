@@ -108,7 +108,14 @@ export const GameTableRowMobileBordered = forwardRef(
     );
 
     return (
-      <Skeleton skeleton={skeleton} ref={ref}>
+      <Skeleton
+        skeleton={skeleton}
+        ref={ref}
+        style={{
+          height: "64px,",
+          maxHeight: "64px",
+        }}
+      >
         <div className="container">
           <Root
             aria-hidden={empty}

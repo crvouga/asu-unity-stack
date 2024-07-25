@@ -110,7 +110,14 @@ export const GameTableRowMobileDivided = forwardRef((props, ref) => {
   );
 
   return (
-    <Skeleton skeleton={skeleton} ref={ref}>
+    <Skeleton
+      skeleton={skeleton}
+      ref={ref}
+      style={{
+        height: "64px,",
+        maxHeight: "64px",
+      }}
+    >
       <div className="container">
         <Root
           aria-hidden={empty}

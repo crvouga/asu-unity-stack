@@ -1,4 +1,5 @@
 // @ts-check
+import { ISpecialEventsDataSource } from "./special-events-data-source";
 import { SpecialEventsDataSourceStatic } from "./special-events-data-source-impl-static";
 
 /*
@@ -52,7 +53,7 @@ const itemToSpecialEvent = item => {
     id: item?.id,
     // @ts-ignore
     sportName: item?.sport_tag,
-
+    // @ts-ignore
     subtitles: item?.subtitles ?? [],
   };
 };
@@ -71,11 +72,12 @@ const jsonToItems = json => {
   return [];
 };
 
-export class SpecialEventsDataSourceDrupalAPI {
+export class SpecialEventsDataSourceDrupalAPI extends ISpecialEventsDataSource {
   /**
    *
    */
   constructor({ url, timeout }) {
+    super();
     this.url = url;
     this.timeout = timeout;
   }

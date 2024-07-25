@@ -1,8 +1,11 @@
-export class SpecialEventsDataSourceStatic {
+import { ISpecialEventsDataSource } from "./special-events-data-source";
+
+export class SpecialEventsDataSourceStatic extends ISpecialEventsDataSource {
   /**
    *
    */
   constructor({ specialEvents }) {
+    super();
     this.specialEvents = Array.isArray(specialEvents) ? specialEvents : [];
   }
 

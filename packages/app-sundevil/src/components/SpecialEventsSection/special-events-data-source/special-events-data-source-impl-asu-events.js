@@ -1,4 +1,5 @@
 // @ts-check
+import { ISpecialEventsDataSource } from "./special-events-data-source";
 import { SpecialEventsDataSourceStatic } from "./special-events-data-source-impl-static";
 
 /**
@@ -24,11 +25,12 @@ const mapNodeToSpecialEvent = node => {
   };
 };
 
-export class SpecialEventsDataSourceAsuEvents {
+export class SpecialEventsDataSourceAsuEvents extends ISpecialEventsDataSource {
   /**
    *
    */
   constructor({ url, timeout }) {
+    super();
     this.url = url;
     this.timeout = timeout;
   }

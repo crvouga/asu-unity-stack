@@ -151,9 +151,8 @@ const GameTable = ({
               color={button.color}
               label={button.label}
               size={button.size}
-              onClick={() => {
-                window.open(button.link, button.target);
-              }}
+              href={button.href ?? button.link}
+              target={button.target}
             />
           ))}
         </Footer>

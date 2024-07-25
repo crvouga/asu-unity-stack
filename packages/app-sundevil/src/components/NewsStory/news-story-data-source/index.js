@@ -1,3 +1,2 @@
-export * from "./news-story-api";
-export * from "./news-story-api-impl";
-export * from "./news-story-api-provider";
+export * from "./news-story-data-source";
+export * from "./news-story-data-source-impl";

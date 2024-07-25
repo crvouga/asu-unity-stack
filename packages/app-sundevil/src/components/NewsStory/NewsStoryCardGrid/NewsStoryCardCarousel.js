@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
+import { repeat } from "../../../utils/repeat";
 import { ArrowButtons } from "../../ArrowButtons";
 import { Carousel, CarouselController, CarouselItem } from "../../Carousel";
 import { EmptyStateMessage } from "../../EmptyState/EmptyStateMessage";
@@ -11,8 +12,6 @@ import {
   newsStorySkeleton,
 } from "./news-stories-skeleton-data";
 import { NewsStoryCard } from "./NewsStoryCard";
-
-/** @typedef {import("./NewsStoryCard").NewsStory} */
 
 const Root = styled.div`
   /* Ensure swiper-container and swiper-slide have full width */
@@ -49,11 +48,15 @@ const WhitespaceFill = styled.div`
 
 /**
  * @typedef {{
- * newsStories: NewsStory[];
- * slidesOffsetBefore; number;
+ * newsStories: import("./NewsStoryCard").NewsStory[];
+ * slidesOffsetBefore?; number;
  * slidesOffsetAfter?: number;
  * cardWidth?: number;
- * renderBottomRightContent?: () => React.ReactNode
+ * renderBottomRightContent?: (() => React.ReactNode);
+ * skeleton?: boolean;
+ * empty?: boolean;
+ * emptyStateMessage?: string;
+ * skeletonCount?: number;
  * }} Props
  */
 
@@ -67,6 +70,7 @@ export const NewsStoryCardCarousel = ({
   emptyStateMessage = DEFAULT_EMPTY_STATE_MESSAGE,
   skeleton = false,
   empty = false,
+  skeletonCount = 6,
 }) => {
   const [carouselController] = React.useState(() => new CarouselController());
   const [index, setIndex] = React.useState(0);
@@ -106,7 +110,7 @@ export const NewsStoryCardCarousel = ({
         )}
         {skeleton && (
           <>
-            {newsStorySkeleton.map(newsStory => (
+            {repeat(newsStorySkeleton, skeletonCount).map(newsStory => (
               <CarouselItem
                 key={newsStory?.id ?? newsStory?.title}
                 style={{ width: "fit-content" }}
@@ -156,4 +160,5 @@ NewsStoryCardCarousel.propTypes = {
   skeleton: PropTypes.bool,
   empty: PropTypes.bool,
   emptyStateMessage: PropTypes.string,
+  skeletonCount: PropTypes.number,
 };

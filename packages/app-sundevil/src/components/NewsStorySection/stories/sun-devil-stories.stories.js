@@ -111,8 +111,22 @@ const props = {
     newsStoryDataSource: new CustomNewsStoryDataSource(),
   },
   emptyStateMessage: "No stories available",
-  allStoriesHref: "#",
-  allStoriesLabel: "All Stories",
+  footerButtons: [
+    {
+      label: "View All Stories",
+      href: "#",
+      // class: "button",
+      color: "maroon",
+      size: "small",
+    },
+  ],
+  footerLinks: [
+    {
+      label: "View All Stories",
+      href: "#",
+      class: "button",
+    },
+  ],
   sectionHeader: {
     title: "Sun Devil Stories",
     sponsorBlock: {
@@ -135,6 +149,22 @@ const props = {
       icon: "fas fa-football-ball",
       position: 2,
       id: "football",
+      footerButtons: [
+        {
+          label: "View All Stories -- Football",
+          href: "#",
+          // class: "button",
+          size: "small",
+          color: "gold",
+        },
+      ],
+      footerLinks: [
+        {
+          label: "View All Stories -- Football",
+          href: "#",
+          // class: "button",
+        },
+      ],
     },
     {
       name: "M. Basketball",

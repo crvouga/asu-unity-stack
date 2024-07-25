@@ -3,13 +3,11 @@ import PropTypes from "prop-types";
 import React, { useMemo } from "react";
 import styled from "styled-components";
 
-import { Button } from "../../../../components-core/src/index";
 import { APP_CONFIG } from "../../config";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useElementContentPosition } from "../../utils/use-element-position";
 import { LoadMoreButton } from "../LoadMoreButton";
-import { sportPropTypes } from "../Navigation";
 import {
   buildNewsStoryDataSource,
   newsStoryDataSourcePropTypes,
@@ -19,28 +17,19 @@ import { NewsStoryCardCarousel } from "../NewsStory/NewsStoryCardGrid/NewsStoryC
 import { NewsStoryCardGrid } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGrid";
 import { useNewsStoryDataSourceLoader } from "../NewsStory/use-news-story-data-source-loader";
 import { useSportIdsLoader } from "../NewsStory/use-sport-ids-loader";
+import { footerButtonPropTypes, SectionFooter } from "../SectionFooter";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
-import { Skeleton } from "../Skeleton";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
+import { sportWithFooterPropTypes } from "../SportsTabs/sports-tabs";
 import { configFormPropTypes } from "./config-form";
 import { configInputsPropTypes, defaultConfigInputs } from "./config-inputs";
 import { configLayoutPropTypes, defaultConfigLayout } from "./config-layout";
 import { NewsStorySearchFormTopbar } from "./NewsStorySearchForm/NewsStorySearchFormTopbar";
 import { useNewsStorySearchForm } from "./NewsStorySearchForm/use-news-story-search-form";
 
-/**
- * @typedef {import("../Navigation").Sport} Sport
- */
-
 const Root = styled.section`
   display: flex;
   flex-direction: column;
-`;
-
-const AllStoriesRoot = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-top: 3rem;
 `;
 
 const LoadButtonRoot = styled.div`
@@ -59,8 +48,6 @@ const DEFAULT_LIMIT = 6;
 const NewsStorySectionInner = ({
   sports,
   sectionHeader,
-  allStoriesHref,
-  allStoriesLabel,
   emptyStateMessage,
   removeSportsWithNoStories,
   configInputs: propsConfigInputs,
@@ -69,6 +56,8 @@ const NewsStorySectionInner = ({
   mobileVariant = "carousel",
   loadMore,
   newsStoryDataSourceLoader: propsNewsStoryDataSourceLoader,
+  footerButtons: propsFooterButtons,
+  footerLinks: propsFooterLinks,
 }) => {
   const limit = propsNewsStoryDataSourceLoader?.limit ?? DEFAULT_LIMIT;
   /** @type {import("./config-form").ConfigForm} */
@@ -135,7 +124,23 @@ const NewsStorySectionInner = ({
     return true;
   });
 
-  const hasAllStories = Boolean(allStoriesHref && allStoriesLabel);
+  const activeSport = sports.find(sport => Boolean(sport.active));
+  const footerButtons =
+    (Array.isArray(activeSport?.footerButtons) &&
+    activeSport?.footerButtons.length > 0
+      ? activeSport?.footerButtons
+      : propsFooterButtons) ?? [];
+
+  const footerLinks =
+    (Array.isArray(activeSport?.footerLinks) &&
+    activeSport?.footerLinks.length > 0
+      ? activeSport?.footerLinks
+      : propsFooterLinks) ?? [];
+
+  const hasFooter = footerButtons.length > 0 || footerLinks.length > 0;
+  const footer = hasFooter ? (
+    <SectionFooter footerButtons={footerButtons} footerLinks={footerLinks} />
+  ) : null;
 
   return (
     <Root>
@@ -151,7 +156,6 @@ const NewsStorySectionInner = ({
         configInputs={configInputs}
         configLayout={configLayout}
         configForm={configForm}
-        // @ts-ignore
         sports={sportsWithSelectedTab}
       />
 
@@ -161,7 +165,6 @@ const NewsStorySectionInner = ({
             <div className="container" style={{ paddingBottom: "32px" }}>
               <SportsTabsDesktop
                 skeleton={skeletonTabs}
-                // @ts-ignore
                 sports={sportsFinal}
                 onSportItemClick={sportId => () =>
                   newsStorySearchFrom.update({ sportId })}
@@ -172,28 +175,13 @@ const NewsStorySectionInner = ({
           )}
           <div className="container">
             <NewsStoryCardGrid
+              skeletonCount={limit ?? 6}
               newsStories={newsStoryDataSourceLoader.rows}
-              skeleton={skeleton}
-              // @ts-ignore
               empty={empty}
               emptyStateMessage={emptyStateMessage}
-              skeletonCount={limit}
+              skeleton={skeleton}
             />
-            {hasAllStories && (
-              <AllStoriesRoot>
-                {/* @ts-ignore */}
-                <Skeleton skeleton={skeleton} fitContent>
-                  <Button
-                    color="maroon"
-                    size="small"
-                    label={allStoriesLabel}
-                    href={allStoriesHref}
-                    // @ts-ignore
-                    skeleton={skeleton}
-                  />
-                </Skeleton>
-              </AllStoriesRoot>
-            )}
+            <div style={{ paddingTop: "32px" }}>{footer}</div>
           </div>
         </>
       )}
@@ -203,7 +191,6 @@ const NewsStorySectionInner = ({
           {configLayout.includeSportTabs && (
             <div className="container">
               <SportsTabsMobile
-                // @ts-ignore
                 sports={sportsFinal}
                 onSportItemClick={sportId => () =>
                   newsStorySearchFrom.update({ sportId })}
@@ -214,8 +201,8 @@ const NewsStorySectionInner = ({
 
           {mobileVariant === "carousel" && (
             <NewsStoryCardCarousel
+              number
               skeleton={skeleton}
-              // @ts-ignore
               newsStories={newsStoryDataSourceLoader.rows}
               slidesOffsetBefore={sectionHeaderPosition.left}
               slidesOffsetAfter={
@@ -224,21 +211,7 @@ const NewsStorySectionInner = ({
               cardWidth={cardWidth}
               empty={empty}
               emptyStateMessage={emptyStateMessage}
-              renderBottomRightContent={() =>
-                hasAllStories && (
-                  // @ts-ignore
-                  <Skeleton skeleton={skeleton} fitContent>
-                    <Button
-                      color="maroon"
-                      size="small"
-                      label={allStoriesLabel}
-                      href={allStoriesHref}
-                      // @ts-ignore
-                      skeleton={skeleton}
-                    />
-                  </Skeleton>
-                )
-              }
+              renderBottomRightContent={() => footer}
             />
           )}
 
@@ -247,27 +220,12 @@ const NewsStorySectionInner = ({
               <NewsStoryCardGrid
                 newsStories={newsStoryDataSourceLoader.rows}
                 skeleton={skeleton}
-                // @ts-ignore
                 empty={empty}
                 emptyStateMessage={emptyStateMessage}
                 columns={1}
                 skeletonCount={limit}
               />
-              {hasAllStories && (
-                <AllStoriesRoot>
-                  {/* @ts-ignore */}
-                  <Skeleton skeleton={skeleton} fitContent>
-                    <Button
-                      color="maroon"
-                      size="small"
-                      label={allStoriesLabel}
-                      href={allStoriesHref}
-                      // @ts-ignore
-                      skeleton={skeleton}
-                    />
-                  </Skeleton>
-                </AllStoriesRoot>
-              )}
+              {footer}
             </div>
           )}
         </>
@@ -289,10 +247,12 @@ const NewsStorySectionInner = ({
 };
 
 NewsStorySectionInner.propTypes = {
+  footerButtons: PropTypes.arrayOf(footerButtonPropTypes.isRequired),
+  footerLinks: PropTypes.arrayOf(footerButtonPropTypes.isRequired),
   // @ts-ignore
   sectionHeader: SectionHeader.propTypes,
   // @ts-ignore
-  sports: PropTypes.arrayOf(sportPropTypes).isRequired,
+  sports: PropTypes.arrayOf(sportWithFooterPropTypes).isRequired,
   allStoriesLabel: PropTypes.string,
   allStoriesHref: PropTypes.string,
   skeleton: PropTypes.bool,
@@ -315,10 +275,10 @@ NewsStorySectionInner.propTypes = {
 
 /**
  * @typedef {{
- *  sports: Sport[];
- *  sectionHeader: object;
- *  allStoriesLabel?: string;
- *  allStoriesHref?: string;
+ *  sports: import("../SportsTabs/sports-tabs").SportWithFooter[];
+ *  sectionHeader?: object;
+ *  footerButtons?: import("../SectionFooter/SectionFooter").FooterButton[]
+ *  footerLinks?: import("../SectionFooter/SectionFooter").FooterLink[]
  *  skeleton?: boolean;
  *  newsStoryDataSource: object
  *  newsStoryDataSourceLoader?: {

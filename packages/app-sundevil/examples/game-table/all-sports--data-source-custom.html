@@ -86,14 +86,16 @@
               eventType: "idk",
             },
           ];
-          return {
-            limit: Infinity,
-            offset: 0,
-            total: rows.length,
-            rows,
-          };
+
+
+          const dataSource = new GameDataSourceStatic({
+            games: rows,
+          })
+
+          return dataSource.findMany(input)
         }
       }
+
       const props = {
         // This allows for custom implementation of game data source
         gameDataSource: {

@@ -94,7 +94,9 @@ export const Select = ({
             </Button>
           )}
           renderEndIcon={({ style: iconStyle }) => (
-            <CollapseIcon style={iconStyle} open={open} />
+            <div key={open}>
+              <CollapseIcon style={iconStyle} open={open} />
+            </div>
           )}
         />
       )}

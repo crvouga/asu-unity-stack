@@ -51,19 +51,28 @@
 
   <body>
     <div id="section-container">
-      <div>
-        This will be removed
-      </div>
+      <div>This will be removed</div>
       <div class="contextual"></div>
     </div>
     <script>
       const props = {
         gameDataSource: {
           type: "asu-events",
-          url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics"
+          url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
         },
         title: "Upcoming Games",
         emptyStateMessage: "No upcoming games",
+        gameTable: {
+          configCells: {
+            cellTitle: {
+              // subtitleFontWeight: "bold",
+              includeSubtitleChip: true,
+            },
+            cellTicketButton: {
+              label: "Get Tickets Override",
+            },
+          },
+        },
         sports: [
           {
             name: "All Sports",
@@ -171,7 +180,7 @@
       initGameTableSection({
         targetSelector: "#section-container",
         props,
-        renderWithinChildWhiteList: [".contextual"]
+        renderWithinChildWhiteList: [".contextual"],
       });
     </script>
   </body>

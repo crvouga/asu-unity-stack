@@ -25,7 +25,11 @@ export const LinkTabsBarDropDown = ({ links }) => {
           onClick={() => setOpen(openPrev => !openPrev)}
           label={activeLink?.label}
           icon={activeLink?.icon}
-          renderIconEnd={() => <DropDownChevron open={isOpen} />}
+          renderIconEnd={() => (
+            <div open={isOpen}>
+              <DropDownChevron open={isOpen} />
+            </div>
+          )}
         />
       )}
       renderContent={() => (

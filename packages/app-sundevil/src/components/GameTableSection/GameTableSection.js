@@ -14,17 +14,15 @@ import {
 } from "../Game/game-data-source/game-data-source-impl";
 import { GameDataSourceProvider } from "../Game/GameDataSourceContext";
 import { useGameDataSourceLoader } from "../Game/use-game-data-source-loader";
-import {
-  GameTable,
-  gameTableFooterButtonPropTypes,
-} from "../GameTable/GameTable";
+import { GameTable } from "../GameTable/GameTable";
 import {
   LoadMoreButton,
   loadMorePropTypes,
 } from "../LoadMoreButton/LoadMoreButton";
+import { SectionFooter } from "../SectionFooter";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
-import { sportPropTypes } from "../SportsTabs/sports-tabs";
+import { sportWithFooterPropTypes } from "../SportsTabs/sports-tabs";
 import { configInputsPropTypes, defaultConfigInputs } from "./config-inputs";
 import { configLayoutPropTypes, defaultConfigLayout } from "./config-layout";
 import { ConfigOverlap, configOverlapPropTypes } from "./config-overlap";
@@ -162,8 +160,6 @@ const GameTableSectionInner = ({ ...props }) => {
         configCells={props.gameTable?.configCells}
         configLayout={props.gameTable?.configLayout}
         games={gameDataSourceLoader.rows}
-        footerButtons={footerButtons}
-        footerLinks={footerLinks}
         skeletonRowCount={gameDataSourceLoader.limit}
         skeleton={gameDataSourceLoader.isLoadingInitial}
         setFirstRowRef={ref => {
@@ -265,21 +261,20 @@ const GameTableSectionInner = ({ ...props }) => {
         {configLayout.variant === "default" &&
           isMobile &&
           renderGameTable({ className: "" })}
+
+        <SectionFooter
+          footerButtons={footerButtons}
+          footerLinks={footerLinks}
+        />
       </div>
     </>
   );
 };
 
-const sportPropTypesGameTable = PropTypes.shape({
-  ...sportPropTypes,
-  footerButtons: PropTypes.arrayOf(gameTableFooterButtonPropTypes),
-  footerLinks: PropTypes.arrayOf(PropTypes.string),
-});
-
 GameTableSectionInner.propTypes = {
   ...SectionHeader.propTypes,
   ...GameTable.propTypes,
-  sports: PropTypes.arrayOf(sportPropTypesGameTable),
+  sports: PropTypes.arrayOf(sportWithFooterPropTypes),
   loadMore: loadMorePropTypes,
   configLayout: configLayoutPropTypes,
   configInputs: configInputsPropTypes,
@@ -294,6 +289,15 @@ GameTableSectionInner.propTypes = {
   gameDataSourceLoader: findManyInputPropTypes,
   gameDataSource: gameDataSourcePropTypes,
 };
+
+//
+//
+//
+//
+//
+//
+//
+//
 
 export const GameTableSection = ({
   gameDataSource: gameDataSourceConfig,

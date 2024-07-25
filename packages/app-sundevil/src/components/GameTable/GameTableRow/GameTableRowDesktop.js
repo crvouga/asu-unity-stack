@@ -146,7 +146,11 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
   });
   return (
     // @ts-ignore
-    <Skeleton skeleton={skeleton} ref={ref}>
+    <Skeleton
+      skeleton={skeleton}
+      ref={ref}
+      style={{ height: "96px", maxHeight: "96px" }}
+    >
       <Root
         aria-hidden={empty}
         style={empty ? { opacity: 0, userSelect: "none" } : {}}

@@ -4,20 +4,14 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { Button } from "../../../../components-core/src/components/Button";
 import { APP_CONFIG } from "../../config";
+import { range } from "../../utils/range";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { EmptyStateMessage } from "../EmptyState/EmptyStateMessage";
 import { gamePropTypes } from "../Game/game";
 import { configCellsPropTypes } from "./GameTableRow/config-cells";
 import { configLayoutPropTypes } from "./GameTableRow/config-layout";
 import { GameTableRow } from "./GameTableRow/GameTableRow";
-
-const Footer = styled.footer`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-`;
 
 const Table = styled.div`
   width: 100%;
@@ -61,20 +55,12 @@ const Root = styled.div`
   }
 `;
 
-const FooterLink = styled.a`
-  color: #8c1d40;
-`;
-
-const range = end => Array.from({ length: end }, (_, index) => index);
-
-const GameTable = ({
+export const GameTable = ({
   skeleton,
   games,
-  footerButtons,
   emptyStateMessage,
   skeletonRowCount = 5,
   emptyStateRowCount = 5,
-  footerLinks,
   setFirstRowRef,
   configLayout,
   configCells,
@@ -141,69 +127,18 @@ const GameTable = ({
           </>
         )}
       </Table>
-
-      {footerButtons && footerButtons?.length > 0 && (
-        <Footer style={{ gap: "8px", paddingTop: "32px" }}>
-          {footerButtons.map(button => (
-            <Button
-              classes={[button?.class, button?.className]}
-              key={button.label}
-              color={button.color}
-              label={button.label}
-              size={button.size}
-              href={button.href ?? button.link}
-              target={button.target}
-            />
-          ))}
-        </Footer>
-      )}
-      {footerLinks && footerLinks?.length > 0 && (
-        <Footer style={{ gap: "8px", paddingTop: "24px" }}>
-          {footerLinks.map(link => (
-            <FooterLink
-              key={link.label}
-              href={link.href}
-              className={link?.class ?? link?.className}
-            >
-              {link.label}
-            </FooterLink>
-          ))}
-        </Footer>
-      )}
     </Root>
   );
 };
-
-export const gameTableFooterButtonPropTypes = PropTypes.shape({
-  color: PropTypes.string,
-  label: PropTypes.string,
-  size: PropTypes.string,
-  href: PropTypes.string,
-  icon: PropTypes.string,
-  target: PropTypes.string,
-  class: PropTypes.string,
-  className: PropTypes.string,
-});
-
-export const gameTableFooterLinkPropTypes = PropTypes.shape({
-  label: PropTypes.string,
-  href: PropTypes.string,
-  class: PropTypes.string,
-  className: PropTypes.string,
-});
 
 GameTable.propTypes = {
   mobileRowVariant: PropTypes.oneOf(["divided", "bordered"]),
   games: PropTypes.arrayOf(gamePropTypes),
   skeleton: PropTypes.bool,
   skeletonRowCount: PropTypes.number,
-  footerButtons: PropTypes.arrayOf(gameTableFooterButtonPropTypes),
-  footerLinks: PropTypes.arrayOf(gameTableFooterLinkPropTypes),
   emptyStateMessage: PropTypes.string,
   emptyStateRowCount: PropTypes.number,
   setFirstRowRef: PropTypes.func,
   configLayout: configLayoutPropTypes,
   configCells: configCellsPropTypes,
 };
-
-export { GameTable };

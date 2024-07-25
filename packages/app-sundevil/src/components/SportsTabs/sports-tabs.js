@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 
+import { footerButtonPropTypes, footerLinkPropTypes } from "../SectionFooter";
+
 /**
  * @typedef {{
  *  id: string;
@@ -31,3 +33,9 @@ export const basePropTypes = {
   sports: PropTypes.arrayOf(sportPropTypes),
   onSportItemClick: PropTypes.func,
 };
+
+export const sportWithFooterPropTypes = PropTypes.shape({
+  ...sportPropTypes,
+  footerButtons: PropTypes.arrayOf(footerButtonPropTypes),
+  footerLinks: PropTypes.arrayOf(footerLinkPropTypes),
+});

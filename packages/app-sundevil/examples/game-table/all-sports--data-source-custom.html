@@ -61,10 +61,11 @@
         }
         async findMany(input) {
           console.log(`CustomGameDataSource.findMany()`, input);
+
           const rows = [
             {
               id: Math.random().toString(36).substring(2, 9),
-              gameType: "home",
+              gameType: "home", // "home" | "away" | null
               ticketLink: "https://www.example.com",
               ticketText: "Buy Tickets",
               titleHref: "https://www.example.com",

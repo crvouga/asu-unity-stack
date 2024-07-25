@@ -116,8 +116,9 @@ export const Icon = ({ icon, ...props }) => {
   }
 
   const iconProps = mergeIconProps(props, icon);
+  const key = btoa(JSON.stringify(iconProps));
 
-  return <StyledIcon {...iconProps} />;
+  return <StyledIcon key={key} {...iconProps} />;
 };
 
 export const iconPropType = PropTypes.oneOfType([

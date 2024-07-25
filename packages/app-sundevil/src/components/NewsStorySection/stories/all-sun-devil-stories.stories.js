@@ -33,6 +33,22 @@ const props = {
     //   url: "https://www.desertfinancial.com/",
     // },
   },
+  footerButtons: [
+    {
+      label: "View All Stories",
+      href: "#",
+      // class: "button",
+      color: "maroon",
+      size: "small",
+    },
+  ],
+  footerLinks: [
+    {
+      label: "View All Stories",
+      href: "#",
+      class: "button",
+    },
+  ],
   mobileVariant: "column", // "carousel" | "column"
   removeSportsWithNoStories: false,
   configForm: {

@@ -10,6 +10,7 @@ import { BottomButtons } from "../Button/BottomButtons";
 import * as NewsStory from "../NewsStory/news-story";
 import { NewsStoryCardCarousel } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardCarousel";
 import { NewsStoryCardGridFeatured } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGrid";
+import { footerButtonPropTypes } from "../SectionFooter";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 
 /**
@@ -52,6 +53,8 @@ export const NewsZoneSection = ({
   sectionHeader,
   bottomButtons,
   skeleton,
+  // footerButtons,
+  // footerLinks,
   maxCards = DEFAULT_MAX_CARDS,
 }) => {
   const sectionHeaderRef = React.useRef();
@@ -105,4 +108,6 @@ NewsZoneSection.propTypes = {
   bottomButtons: PropTypes.arrayOf(ButtonProp.buttonPropTypes),
   skeleton: PropTypes.bool,
   maxCards: PropTypes.number,
+  footerButtons: PropTypes.arrayOf(footerButtonPropTypes),
+  footerLinks: PropTypes.arrayOf(footerButtonPropTypes),
 };

@@ -51,7 +51,12 @@ export const SportsTabsMobile = ({
               ref={input.ref}
               variant={variant}
               renderIcon={props => (
-                <Icon style={props?.style} icon={activeSport.icon} />
+                <Icon
+                  // This probably fixes some font awesome issues
+                  key={activeSport?.id ?? activeSport?.name}
+                  style={props?.style}
+                  icon={activeSport.icon}
+                />
               )}
               name={activeSport.name}
               open={input.open}

@@ -159,6 +159,8 @@ const GameTableSectionInner = ({ ...props }) => {
       <GameTable
         {...props}
         {...props.gameTable}
+        configCells={props.gameTable?.configCells}
+        configLayout={props.gameTable?.configLayout}
         games={gameDataSourceLoader.rows}
         footerButtons={footerButtons}
         footerLinks={footerLinks}

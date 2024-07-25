@@ -142,6 +142,21 @@ AllSports.args = {
       href: "#",
     },
   ],
+  gameTable: {
+    configLayout: {
+      includeSportNameCell: true,
+      includeVersusCell: true,
+    },
+    configCells: {
+      cellTitle: {
+        // subtitleFontWeight: "bold",
+        includeSubtitleChip: true,
+      },
+      cellTicketButton: {
+        label: "Get Tickets Override",
+      },
+    },
+  },
 };
 
 export const SingleSport = Template.bind({});

@@ -8,6 +8,7 @@ import { useElementSetMaxDimensions } from "../../../utils/use-element-set-max-d
 import { Skeleton } from "../../Skeleton";
 import { SportIcon } from "../../SportIcon";
 import { stringToClosestSportName } from "../../SportIcon/sport-name";
+import { defaultConfigCells } from "./config-cells";
 import { defaultConfigLayout } from "./config-layout";
 import { gameTableRowPropTypes } from "./game-table-row";
 import { Subtitles } from "./Subtitles";
@@ -120,6 +121,8 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
     empty,
     // @ts-ignore
     configLayout: configLayoutPartial,
+    // @ts-ignore
+    configCells: configCellsPartial,
   } = props;
 
   /** @type {import("../../Game").Game} */
@@ -128,6 +131,12 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
   const configLayout = deepMergeLeft(
     configLayoutPartial ?? {},
     defaultConfigLayout ?? {}
+  );
+
+  /** @type {import("./config-cells").ConfigCells} */
+  const configCells = deepMergeLeft(
+    configCellsPartial ?? {},
+    defaultConfigCells
   );
 
   const buttonCellRef = useRef(null);
@@ -192,7 +201,7 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
             style={{ minWidth: buttonCellMaxDimensions.width }}
           >
             <Button
-              label={game?.ticketText}
+              label={configCells?.cellTicketButton?.label ?? game?.ticketText}
               color="dark"
               size="small"
               renderIcon={() => (
@@ -201,9 +210,8 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
                   style={{ paddingRight: "10px" }}
                 />
               )}
-              onClick={() => {
-                window.open(game?.ticketLink, "_blank");
-              }}
+              href={game?.ticketLink}
+              target="_blank"
             />
           </Cell>
         )}

@@ -53,7 +53,7 @@ const itemToSpecialEvent = item => {
     // @ts-ignore
     sportName: item?.sport_tag,
 
-    subtitles: [],
+    subtitles: item?.subtitles ?? [],
   };
 };
 

@@ -1,5 +1,6 @@
 import { matchSort } from "../../../utils/match-sort";
 import { asc } from "../../../utils/sort";
+import { stringToSportId } from "../../Sport/sport-id";
 import { GameDataSourceSortBy, IGameDataSource } from "./game-data-source";
 
 const cleanString = str =>
@@ -31,7 +32,7 @@ export class GameDataSourceStatic extends IGameDataSource {
       items: this.games.filter(game => {
         const matchedSportId =
           typeof input?.sportId === "string" && input?.sportId?.length > 0
-            ? isEqual(cleanString, game?.sportId, input?.sportId)
+            ? isEqual(stringToSportId, game?.sportId, input?.sportId)
             : true;
 
         const matchedGameType =

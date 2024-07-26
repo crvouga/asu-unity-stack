@@ -1,5 +1,5 @@
 // @ts-check
-import { stringToSportId } from "../../Sport/sport";
+import { stringToSportId } from "../../Sport/sport-id";
 import { INewsStoryDataSource } from "./news-story-data-source";
 import { NewsStoryDataSourceStatic } from "./news-story-data-source-impl-static";
 

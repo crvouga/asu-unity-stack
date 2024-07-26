@@ -1,4 +1,5 @@
 // @ts-check
+import { stringToSportId } from "../../Sport/sport-id";
 import { IGameDataSource } from "./game-data-source";
 import { GameDataSourceStatic } from "./game-data-source-impl-static";
 
@@ -30,7 +31,7 @@ const mapNodeToGame = data => {
     // @ts-ignore
     id: data?.nid,
     gameType: data.game_type,
-    sportId: data.sport_tag,
+    sportId: stringToSportId(data.sport_tag) ?? data.sport_tag ?? null,
     startDate: startDateStr,
     sportName: data.sport_tag,
     // @ts-ignore

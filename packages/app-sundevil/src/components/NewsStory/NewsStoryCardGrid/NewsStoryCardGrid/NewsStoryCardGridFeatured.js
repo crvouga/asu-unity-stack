@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { range } from "../../../../utils/range";
+import { randomNewsStorySkeleton } from "../news-stories-skeleton-data";
 import { NewsStoryCard } from "../NewsStoryCard";
 import * as newsStoryCardGrid from "./news-story-card-grid";
 
@@ -41,17 +43,23 @@ export const NewsStoryCardGridFeatured = ({
   newsStories,
   skeleton,
   layout = "twoThirds",
+  maxCards = 3,
 }) => {
-  if (newsStories.length < 1) {
+  const newsStoriesFinal = skeleton
+    ? range(maxCards).map(() => randomNewsStorySkeleton())
+    : newsStories;
+
+  if (newsStoriesFinal.length < 1) {
     return null;
   }
 
-  const [featuredStory, ...otherStories] = newsStories;
+  const [featuredStory, ...otherStories] = newsStoriesFinal.slice(0, maxCards);
 
   return (
     <Root>
       <FeaturedCard layout={layout}>
         <NewsStoryCard
+          key={featuredStory?.id ?? featuredStory?.title}
           newsStory={featuredStory}
           skeleton={Boolean(skeleton)}
           size="large"
@@ -70,5 +78,6 @@ export const NewsStoryCardGridFeatured = ({
 
 NewsStoryCardGridFeatured.propTypes = {
   ...newsStoryCardGrid.propTypes,
+  maxCards: PropTypes.number,
   layout: PropTypes.oneOf(["twoThirds", "fullWidth"]),
 };

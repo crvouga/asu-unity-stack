@@ -20,7 +20,7 @@ export const specialEventPropTypes = PropsTypes.shape({
   imageSrc: PropsTypes.string,
   imageAlt: PropsTypes.string,
   sportName: PropsTypes.string,
-  sportIconFaClassName: PropsTypes.string,
+  sportIcon: PropsTypes.string,
   sportIcon: iconPropType,
   title: PropsTypes.string,
   subtitles: PropsTypes.arrayOf(PropsTypes.string),
@@ -34,7 +34,7 @@ export const specialEventPropTypes = PropsTypes.shape({
  * @property {string} [imageSrc]
  * @property {string} [imageAlt]
  * @property {string} [sportName]
- * @property {string} [sportIconFaClassName]
+ * @property {string} [sportIcon]
  * @property {any} [sportIcon]
  * @property {string} [title]
  * @property {string[]} [subtitles]

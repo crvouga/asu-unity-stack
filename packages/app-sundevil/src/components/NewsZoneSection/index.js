@@ -1,27 +1,36 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useElementContentPosition } from "../../utils/use-element-position";
 import { ButtonProp } from "../Button";
+import { EmptyStateMessage } from "../EmptyState/EmptyStateMessage";
 import * as NewsStory from "../NewsStory/news-story";
+import {
+  buildNewsStoryDataSource,
+  newsStoryDataSourcePropTypes,
+} from "../NewsStory/news-story-data-source/news-story-data-source-impl";
+import { NewsStoryDataSourceProvider } from "../NewsStory/NewsDataSourceContext";
+import { DEFAULT_EMPTY_STATE_MESSAGE } from "../NewsStory/NewsStoryCardGrid/news-stories-skeleton-data";
 import { NewsStoryCardCarousel } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardCarousel";
 import { NewsStoryCardGridFeatured } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGrid";
+import { useNewsStoryDataSourceLoader } from "../NewsStory/use-news-story-data-source-loader";
 import {
-  SectionFooter,
   footerButtonPropTypes,
   footerLinkPropTypes,
+  SectionFooter,
 } from "../SectionFooter";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
+import { useUrlSportId } from "../Sport/use-url-sport-id";
 
 /**
  * @typedef {import("../Navigation").Sport} Sport
  */
 
 /**
- * @typedef {import("../NewsStoryCardGrid/NewsStoryCard").NewsStory} NewsStory
+ * @typedef {import("../NewsStoryCardGrid/NewsStoryCard").NewsStory} NewsStory∏
  */
 
 /**
@@ -47,19 +56,40 @@ const FooterRoot = styled.div`
   padding-top: 3rem;
 `;
 
+const EmptyStateMessageRoot = styled.div`
+  display: flex;
+  width: 100%;
+  height: 480px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+`;
+
 const DEFAULT_MAX_CARDS = 3;
 
 /**
  * @type {React.FC<Props>}
  */
-export const NewsZoneSection = ({
-  newsStories,
+const NewsZoneSectionInner = ({
   sectionHeader,
-  skeleton,
+  skeleton: propsSkeleton,
   footerButtons,
   footerLinks,
-  maxCards = DEFAULT_MAX_CARDS,
+  emptyStateMessage = DEFAULT_EMPTY_STATE_MESSAGE,
+  maxCards: propsMaxCards = DEFAULT_MAX_CARDS,
+  newsStoryDataSourceLoader: propsNewsStoryDataSourceLoader,
 }) => {
+  const maxCards = propsNewsStoryDataSourceLoader?.limit ?? propsMaxCards;
+  const urlSportId = useUrlSportId();
+  const sportId = propsNewsStoryDataSourceLoader?.sportId ?? urlSportId ?? null;
+
+  const newsStoryDataSourceLoader = useNewsStoryDataSourceLoader({
+    limit: maxCards,
+    sportId,
+  });
+
+  const skeleton = propsSkeleton || newsStoryDataSourceLoader.isLoadingInitial;
+
   const sectionHeaderRef = React.useRef();
   const sectionHeaderPosition = useElementContentPosition(sectionHeaderRef);
   const cardWidth = Math.abs(
@@ -69,13 +99,17 @@ export const NewsZoneSection = ({
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
 
-  const newsStoriesSliced = newsStories.slice(0, maxCards);
+  const newsStoriesSliced =
+    newsStoryDataSourceLoader?.rows?.slice(0, maxCards) ?? [];
 
   const hasFooter = footerButtons?.length > 0 || footerLinks?.length > 0;
 
   const footer = hasFooter ? (
     <SectionFooter footerButtons={footerButtons} footerLinks={footerLinks} />
   ) : null;
+
+  const showEmptyState =
+    !newsStoryDataSourceLoader.isLoading && !newsStoriesSliced.length;
 
   return (
     <Root>
@@ -84,21 +118,28 @@ export const NewsZoneSection = ({
         ref={sectionHeaderRef}
       />
 
+      {showEmptyState && (
+        <EmptyStateMessageRoot>
+          <EmptyStateMessage message={emptyStateMessage} />
+        </EmptyStateMessageRoot>
+      )}
       {isMobile && (
         <NewsStoryCardCarousel
-          skeleton={Boolean(skeleton)}
+          skeleton={skeleton}
           newsStories={newsStoriesSliced}
           slidesOffsetBefore={sectionHeaderPosition.left}
           slidesOffsetAfter={window.innerWidth - sectionHeaderPosition.right}
           cardWidth={cardWidth}
           renderBottomRightContent={() => footer}
+          skeletonCount={maxCards}
         />
       )}
       {isDesktop && (
         <div className="container">
           <NewsStoryCardGridFeatured
             newsStories={newsStoriesSliced}
-            skeleton={Boolean(skeleton)}
+            skeleton={skeleton}
+            skeletonCount={maxCards}
           />
           {footer && <FooterRoot>{footer}</FooterRoot>}
         </div>
@@ -107,7 +148,7 @@ export const NewsZoneSection = ({
   );
 };
 
-NewsZoneSection.propTypes = {
+NewsZoneSectionInner.propTypes = {
   sectionHeader: SectionHeader.propTypes,
   newsStories: PropTypes.arrayOf(NewsStory.newsStoryPropTypes),
   bottomButtons: PropTypes.arrayOf(ButtonProp.buttonPropTypes),
@@ -115,4 +156,26 @@ NewsZoneSection.propTypes = {
   maxCards: PropTypes.number,
   footerButtons: PropTypes.arrayOf(footerButtonPropTypes),
   footerLinks: PropTypes.arrayOf(footerLinkPropTypes),
+  newsStoryDataSource: newsStoryDataSourcePropTypes,
+  newsStoryDataSourceLoader: PropTypes.shape({
+    limit: PropTypes.number,
+    sportId: PropTypes.string,
+  }),
+  emptyStateMessage: PropTypes.string,
 };
+
+export const NewsZoneSection = ({
+  newsStoryDataSource: newsStoryDataSourceConfig,
+  ...props
+}) => {
+  const newsStoryDataSource = useMemo(
+    () => buildNewsStoryDataSource(newsStoryDataSourceConfig),
+    [newsStoryDataSourceConfig]
+  );
+  return (
+    <NewsStoryDataSourceProvider newsStoryDataSource={newsStoryDataSource}>
+      <NewsZoneSectionInner {...props} />
+    </NewsStoryDataSourceProvider>
+  );
+};
+NewsZoneSection.propTypes = NewsZoneSectionInner.propTypes;

@@ -18,7 +18,7 @@ const newsStories = [
     newsType: "News",
     imageSrc,
     sportName: "W. Lacrosse",
-    sportIconFaClassName: "fas fa-lacrosse",
+    sportIcon: "fas fa-lacrosse",
     title: "Gigi Gaspar Named Pac-12 Lacrosse Scholar Athlete of the Year",
   },
   {
@@ -29,7 +29,7 @@ const newsStories = [
     newsType: "Video",
     imageSrc,
     sportName: "Football",
-    sportIconFaClassName: "fas fa-football-ball",
+    sportIcon: "fas fa-football-ball",
     title: "Super Bowl #SunDevils4Life",
   },
   {
@@ -40,7 +40,7 @@ const newsStories = [
     newsType: "Video",
     imageSrc,
     sportName: "M. Golf",
-    sportIconFaClassName: "fas fa-golf-ball",
+    sportIcon: "fas fa-golf-ball",
     title:
       "Men's Golf Gets No. 1 Seet at Rancho Santa Fe/The Farms Golf Club Regional",
   },
@@ -52,7 +52,7 @@ const newsStories = [
     newsType: "News",
     imageSrc,
     sportName: "Vollyball",
-    sportIconFaClassName: "fas fa-volleyball-ball",
+    sportIcon: "fas fa-volleyball-ball",
     title: "Rohr Pac-12 Coach of the Year, Kensinger Honored",
   },
   {
@@ -64,7 +64,7 @@ const newsStories = [
     title: "Lacrosse Downs Ducks, Will Face Stanford in Pac-12 Semifinals",
     sportName: "W. Lacrosse",
     imageSrc,
-    sportIconFaClassName: "fas fa-lacrosse",
+    sportIcon: "fas fa-lacrosse",
   },
   {
     id: "6",
@@ -74,7 +74,7 @@ const newsStories = [
     newsType: "News",
     title: "Kensinger, Williamson Named All-Americans",
     sportName: "Volleyball",
-    sportIconFaClassName: "fas fa-volleyball-ball",
+    sportIcon: "fas fa-volleyball-ball",
     imageSrc,
   },
 ];

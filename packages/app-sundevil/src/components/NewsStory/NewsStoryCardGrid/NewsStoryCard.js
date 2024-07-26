@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import styled from "styled-components";
 
+import { Icon } from "../../Icon_";
 import { Skeleton } from "../../Skeleton";
 import * as NewsStory from "../news-story";
 import { EmbeddedYoutubeVideo } from "./EmbeddedYoutubeVideo";
@@ -91,7 +92,7 @@ const SportName = styled.p`
   align-items: center;
 `;
 
-const SportNameIcon = styled.span`
+const StyledIcon = styled(Icon)`
   font-size: 12px;
   width: 12px;
   height: 12px;
@@ -157,9 +158,7 @@ export const NewsStoryCard = ({
         <Content>
           {newsStory.showSportName && (
             <SportName>
-              {newsStory.sportIconFaClassName && (
-                <SportNameIcon className={newsStory.sportIconFaClassName} />
-              )}
+              {newsStory.sportIcon && <StyledIcon icon={newsStory.sportIcon} />}
               {newsStory.sportName}
             </SportName>
           )}

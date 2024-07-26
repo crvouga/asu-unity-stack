@@ -1,6 +1,8 @@
 // @ts-check
 import PropTypes from "prop-types";
 
+import { iconPropType } from "../Icon_";
+
 /**
  * @typedef {{
  * id: string;
@@ -11,7 +13,7 @@ import PropTypes from "prop-types";
  * imageAlt?: string | null;
  * sportId?: string | null;
  * sportName?: string | null;
- * sportIconFaClassName?: string | null;
+ * sportIcon?: string | null;
  * showNewsType?: boolean | null;
  * showSportName?: boolean | null;
  * youtubeVideoUrl?: string | null;
@@ -27,7 +29,7 @@ export const newsStoryPropTypes = PropTypes.shape({
   imageAlt: PropTypes.string,
   sportId: PropTypes.string,
   sportName: PropTypes.string,
-  sportIconFaClassName: PropTypes.string,
+  sportIcon: iconPropType,
   showNewsType: PropTypes.bool,
   showSportName: PropTypes.bool,
   youtubeVideoUrl: PropTypes.string,

@@ -11,8 +11,15 @@ export const newsStorySkeleton = {
     "https://asuevents.asu.edu/sites/default/files/2024-07/football-2024.jpg",
   sportId: "lacrosse",
   sportName: "W. Lacrosse",
-  sportIconFaClassName: "fas fa-lacrosse",
+  sportIcon: "fas fa-lacrosse",
   title: "lorem ipsum dolor sit amet consectetur adipiscing elit ",
 };
 
 export const DEFAULT_EMPTY_STATE_MESSAGE = "No stories available";
+
+export const randomNewsStorySkeleton = () => {
+  return {
+    ...newsStorySkeleton,
+    id: Math.random().toString(),
+  };
+};

@@ -48,7 +48,7 @@ const mapItemToNewsStory = node => {
     sportName,
     showNewsType: false,
     showSportName: false,
-    sportIconFaClassName: null,
+    sportIcon: null,
     youtubeVideoUrl: null,
   };
 };

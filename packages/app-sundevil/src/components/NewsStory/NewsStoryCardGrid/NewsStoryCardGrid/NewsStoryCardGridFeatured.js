@@ -36,6 +36,7 @@ const Root = styled.div`
  * @property {NewsStory[]} newsStories
  * @property {boolean} [skeleton]
  * @property {'twoThirds' | 'fullWidth'} [layout='twoThirds']
+ * @property {number} [maxCards=3]
  */
 
 /** @type {React.FC<Props>} */

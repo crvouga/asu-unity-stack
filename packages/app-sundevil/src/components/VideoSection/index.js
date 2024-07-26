@@ -92,6 +92,7 @@ export const VideoSection = ({
             layout="fullWidth"
             newsStories={newsStoriesSliced}
             skeleton={Boolean(skeleton)}
+            maxCards={maxCards}
           />
           <BottomButtonsRoot>
             <BottomButtons buttons={bottomButtons} skeleton={skeleton} />

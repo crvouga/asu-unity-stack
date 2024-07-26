@@ -1,13 +1,14 @@
 // @ts-check
 
 import { matchSort } from "../../../utils/match-sort";
+import { stringToSportId } from "../../Sport/sport-id";
 import { INewsStoryDataSource } from "./news-story-data-source";
 
-const cleanEqual = (a, b) => {
-  if (typeof a === "string" && typeof b === "string") {
-    return a.toLowerCase().trim() === b.toLowerCase().trim();
-  }
-  return a === b;
+const cleanString = str =>
+  typeof str === "string" ? str?.toLowerCase().trim() : str;
+
+const isEqual = (keyFn, a, b) => {
+  return keyFn(a) === keyFn(b);
 };
 
 /**
@@ -42,12 +43,12 @@ export class NewsStoryDataSourceStatic extends INewsStoryDataSource {
       items: this.newsStories.filter(newsStory => {
         const matchSportId =
           typeof input?.sportId === "string" && input?.sportId?.length > 0
-            ? cleanEqual(newsStory.sportId, input.sportId)
+            ? isEqual(stringToSportId, newsStory.sportId, input.sportId)
             : true;
 
         const matchCategory =
           typeof input?.newsType === "string" && input?.newsType?.length > 0
-            ? cleanEqual(newsStory.newsType, input.newsType)
+            ? isEqual(cleanString, newsStory.newsType, input.newsType)
             : true;
 
         const match = matchSportId && matchCategory;

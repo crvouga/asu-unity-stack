@@ -126,13 +126,13 @@ AllSports.args = {
     {
       color: "gold",
       label: "Full schedule",
-      size: "small",
+      // size: "small",
       href: "#",
     },
     {
       color: "maroon",
       label: "Gear up for the game",
-      size: "small",
+      // size: "small",
       href: "#",
     },
   ],

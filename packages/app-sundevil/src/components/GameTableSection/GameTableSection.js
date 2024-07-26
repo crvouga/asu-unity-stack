@@ -103,6 +103,7 @@ const GameTableSectionInner = ({ ...props }) => {
   const footerButtons =
     activeSport?.footerButtons ?? props?.footerButtons ?? [];
   const footerLinks = activeSport?.footerLinks ?? props?.footerLinks ?? [];
+  const hasFooter = footerButtons.length > 0 || footerLinks.length > 0;
 
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
@@ -185,8 +186,6 @@ const GameTableSectionInner = ({ ...props }) => {
         )}
     </GameTableRoot>
   );
-
-  const hasFooter = footerButtons.length > 0 || footerLinks.length > 0;
 
   return (
     <>

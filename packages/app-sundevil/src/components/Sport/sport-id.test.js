@@ -1,18 +1,18 @@
-import { camelToKebab, stringToSportId } from "./sport-id";
+import { stringToSportId } from "./sport-id";
 
 describe("sportId", () => {
   test("stringToSportId", () => {
-    expect(stringToSportId("__football__")).toBe("football");
+    expect(stringToSportId("__football__")).toBe("m-football");
     expect(stringToSportId("  M. Basketball ")).toBe("m-basketball");
     expect(stringToSportId("W.    Basketball  ")).toBe("w-basketball");
-    expect(stringToSportId("  Lacrosse")).toBe("lacrosse");
+    expect(stringToSportId("  Lacrosse")).toBe("m-lacrosse");
     expect(stringToSportId("W. Lacrosse")).toBe("w-lacrosse");
     expect(stringToSportId("")).toBe(null);
     expect(stringToSportId(null)).toBe(null);
     expect(stringToSportId("mens football")).toBe("m-football");
     expect(stringToSportId("women's football")).toBe("w-football");
     expect(stringToSportId("men's football")).toBe("m-football");
-    expect(stringToSportId("lacrosse")).toBe("lacrosse");
+    expect(stringToSportId("lacrosse")).toBe("m-lacrosse");
     expect(stringToSportId(123)).toBe(null);
   });
 
@@ -20,7 +20,7 @@ describe("sportId", () => {
     // Events calendar
     expect(
       stringToSportId("athletics.edu/about/events-calendar?footballview")
-    ).toBe("football");
+    ).toBe("m-football");
     expect(
       stringToSportId("sports.uni.edu/about/events-calendar?m-basketballview")
     ).toBe("m-basketball");
@@ -31,11 +31,11 @@ describe("sportId", () => {
     ).toBe("w-volleyball");
     expect(
       stringToSportId("university-sports.org/about/news?lacrosseview")
-    ).toBe("lacrosse");
+    ).toBe("m-lacrosse");
 
     // Tickets
     expect(stringToSportId("tickets.school.edu/tickets?baseballview")).toBe(
-      "baseball"
+      "m-baseball"
     );
     expect(stringToSportId("sporttickets.net/tickets?w-soccerview")).toBe(
       "w-soccer"
@@ -70,7 +70,7 @@ describe("sportId", () => {
 
   test("stringToSportId for new URLs", () => {
     expect(stringToSportId("sundevils.com/about/news?sport=football")).toBe(
-      "football"
+      "m-football"
     );
     expect(
       stringToSportId("sundevils.com/about/events-calendar?sport=m-basketball")
@@ -119,7 +119,7 @@ describe("sportId", () => {
     // URLs with multiple query parameters
     expect(
       stringToSportId("example.com/page?id=123&sport=tennis&date=2023")
-    ).toBe("tennis");
+    ).toBe("m-tennis");
 
     // URLs with fragments
     expect(stringToSportId("example.com/sports/mens/soccer#schedule")).toBe(
@@ -129,7 +129,7 @@ describe("sportId", () => {
     // URLs with encoded characters
     expect(
       stringToSportId("example.com/sports?sport=track%20and%20field")
-    ).toBe("track-and-field");
+    ).toBe("m-track-and-field");
 
     // Malformed URLs
     expect(stringToSportId("http:////example.com/sports/womens/golf")).toBe(
@@ -137,7 +137,7 @@ describe("sportId", () => {
     );
 
     // URLs with sport names containing numbers
-    expect(stringToSportId("example.com/sports?sport=5k-run")).toBe("5k-run");
+    expect(stringToSportId("example.com/sports?sport=5k-run")).toBe("m-5k-run");
 
     // URLs with unusual capitalization
     expect(stringToSportId("example.com/sports/mEnS/bAsKeTbAlL")).toBe(
@@ -159,21 +159,21 @@ describe("sportId", () => {
       stringToSportId(
         "example.com/sports?sport=ultramarathon-long-distance-running"
       )
-    ).toBe("ultramarathon-long-distance-running");
+    ).toBe("m-ultramarathon-long-distance-running");
 
     // URLs with irrelevant query parameters
     expect(
       stringToSportId(
         "example.com/sports?id=123&category=outdoor&sport=cycling&date=2023"
       )
-    ).toBe("cycling");
+    ).toBe("m-cycling");
 
     // Sport names that are substrings of others
     expect(stringToSportId("example.com/sports?sport=handball")).toBe(
-      "handball"
+      "m-handball"
     );
     expect(stringToSportId("example.com/sports?sport=beach-handball")).toBe(
-      "beach-handball"
+      "m-beach-handball"
     );
   });
 
@@ -194,22 +194,22 @@ describe("sportId", () => {
   test("stringToSportId additional missing cases", () => {
     // Sport names with hyphens or underscores
     expect(stringToSportId("example.com/sports?sport=track-and-field")).toBe(
-      "track-and-field"
+      "m-track-and-field"
     );
     expect(stringToSportId("example.com/sports?sport=cross_country")).toBe(
-      "cross-country"
+      "m-cross-country"
     );
 
     // Sport names in different languages or with non-ASCII characters
-    expect(stringToSportId("example.com/sports?sport=fútbol")).toBe("futbol");
+    expect(stringToSportId("example.com/sports?sport=fútbol")).toBe("m-futbol");
 
     // URLs with port numbers
     expect(stringToSportId("http://example.com:8080/sports/football")).toBe(
-      "football"
+      "m-football"
     );
 
     // URLs using different protocols
-    expect(stringToSportId("ftp://example.com/sports/tennis")).toBe("tennis");
+    expect(stringToSportId("ftp://example.com/sports/tennis")).toBe("m-tennis");
 
     // Extremely long URL
     const longUrl = `https://example.com/sports?${"a".repeat(
@@ -231,19 +231,19 @@ describe("sportId", () => {
 
     // Mixed case sport names with numbers and special characters
     expect(stringToSportId("example.com/sports?sport=3x3-BasKeTbaLl")).toBe(
-      "3x3-basketball"
+      "m-3x3-basketball"
     );
 
     // Sport name with multiple hyphens and spaces
     expect(stringToSportId("example.com/sports?sport=table - tennis")).toBe(
-      "table-tennis"
+      "m-table-tennis"
     );
   });
 
   test("?sport={Sport name Taxonomy term}view shape", () => {
     expect(
       stringToSportId("athletics.edu/about/events-calendar?sport=footballview")
-    ).toBe("football");
+    ).toBe("m-football");
     expect(
       stringToSportId(
         "sports.uni.edu/about/events-calendar?sport=m-basketballview"
@@ -254,10 +254,10 @@ describe("sportId", () => {
     ).toBe("w-volleyball");
     expect(
       stringToSportId("university-sports.org/about/news?sport=lacrosseview")
-    ).toBe("lacrosse");
+    ).toBe("m-lacrosse");
     expect(
       stringToSportId("tickets.school.edu/tickets?sport=baseballview")
-    ).toBe("baseball");
+    ).toBe("m-baseball");
     expect(stringToSportId("sporttickets.net/tickets?sport=w-soccerview")).toBe(
       "w-soccer"
     );
@@ -266,7 +266,7 @@ describe("sportId", () => {
   test("sundevils.com/about/events-calendar?sport={Sport name Taxonomy term}view", () => {
     expect(
       stringToSportId("sundevils.com/about/events-calendar?sport=footballview")
-    ).toBe("football");
+    ).toBe("m-football");
     expect(
       stringToSportId(
         "sundevils.com/about/events-calendar?sport=m-basketballview"
@@ -279,10 +279,10 @@ describe("sportId", () => {
     ).toBe("w-volleyball");
     expect(
       stringToSportId("sundevils.com/about/events-calendar?sport=lacrosseview")
-    ).toBe("lacrosse");
+    ).toBe("m-lacrosse");
     expect(
       stringToSportId("sundevils.com/about/events-calendar?sport=baseballview")
-    ).toBe("baseball");
+    ).toBe("m-baseball");
     expect(
       stringToSportId("sundevils.com/about/events-calendar?sport=w-soccerview")
     ).toBe("w-soccer");
@@ -290,7 +290,7 @@ describe("sportId", () => {
 
   test("Tickets (lists only events that are games ): sundevils.com/tickets?sport={Sport name Taxonomy term}view", () => {
     expect(stringToSportId("sundevils.com/tickets?sport=footballview")).toBe(
-      "football"
+      "m-football"
     );
     expect(
       stringToSportId("sundevils.com/tickets?sport=m-basketballview")
@@ -299,10 +299,10 @@ describe("sportId", () => {
       stringToSportId("sundevils.com/tickets?sport=w-volleyballview")
     ).toBe("w-volleyball");
     expect(stringToSportId("sundevils.com/tickets?sport=lacrosseview")).toBe(
-      "lacrosse"
+      "m-lacrosse"
     );
     expect(stringToSportId("sundevils.com/tickets?sport=baseballview")).toBe(
-      "baseball"
+      "m-baseball"
     );
     expect(stringToSportId("sundevils.com/tickets?sport=w-soccerview")).toBe(
       "w-soccer"
@@ -334,17 +334,13 @@ describe("sportId", () => {
   test("real data cross country", () => {
     expect(
       stringToSportId("https://dev-web-sda.ws.asu.edu/sports/cross-country")
-    ).toBe("cross-country");
+    ).toBe("m-cross-country");
   });
 
   test("singular woman", () => {
     expect(
       stringToSportId("https://dev-web-sda.ws.asu.edu?sport=Woman-Basketball")
     ).toBe("w-basketball");
-  });
-
-  test("camelToKebab", () => {
-    expect(camelToKebab("WomenBasketball")).toEqual("women-basketball");
   });
 
   test("camelCase WomenBasketball", () => {

@@ -49,12 +49,29 @@ const isolateWords = (wordList, str) => {
 
 const pipe = (x, ...fns) => fns.reduce((acc, fn) => fn(acc), x);
 
+const ensureGenderPrefix = s => {
+  const genderWords = Object.keys(REPLACEMENTS);
+  genderWords.sort((a, b) => b.length - a.length);
+
+  if (genderWords.some(genderWord => s.startsWith(genderWord))) {
+    return s;
+  }
+
+  if (s.startsWith("m") || s.startsWith("w")) {
+    return s;
+  }
+
+  return `men ${s}`;
+};
+
 const clean = s => {
   if (typeof s !== "string" || s.length === 0) {
     return null;
   }
   return pipe(
     s,
+    s => ensureGenderPrefix(s),
+
     s => isolateWords(Object.keys(REPLACEMENTS), s).join(" "),
     // apply replacements first
     s => applyReplacements(REPLACEMENTS, s),

@@ -4,26 +4,26 @@ import ReactDOM from "react-dom";
 
 import { CookieConsent } from "../../component-cookie-consent/src/CookieConsent";
 import {
-  LinkTabsBar,
   GameTable,
   GameTableSection,
+  LinkTabsBar,
+  NewsStorySection,
   NewsZoneSection,
   SectionHeader,
   SocialMediaSection,
   SocialMediaSectionEmbedded,
   SpecialEventsSection,
   SunDevilsHeader,
-  NewsStorySection,
   VideoSection,
 } from "./components";
 import { GroupTickets } from "./components/GroupTickets";
 import { EnhanceExperence } from "./components/GroupTickets/enhanceExperence";
 import { GroupTicketsBySport } from "./components/GroupTickets/GroupTicketsBySport";
+import { PreviewSection } from "./components/GroupTickets/PreviewSection";
 import { SeasonsTicket } from "./components/SeasonsTicket";
 import { GroupTicketBenefit } from "./components/SeasonsTicket/GroupTicketBenifit";
+import { GroupTicketMiniPlans } from "./components/SeasonsTicket/GroupTicketMiniPlans";
 import { TicketsFooter } from "./components/SeasonsTicket/ticketsFooter";
-import {PreviewSection} from "./components/GroupTickets/PreviewSection";
-import {GroupTicketMiniPlans} from "./components/SeasonsTicket/GroupTicketMiniPlans";
 
 /**
  * @description
@@ -321,11 +321,11 @@ export const initPreviewSection = input => {
     ...input,
     component: PreviewSection,
   });
-}
+};
 
 export const initGroupTicketMiniPlans = input => {
   RenderReact({
     ...input,
     component: GroupTicketMiniPlans,
   });
-}
+};

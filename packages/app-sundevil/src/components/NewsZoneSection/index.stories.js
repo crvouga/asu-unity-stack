@@ -35,6 +35,7 @@ const props = {
       target: "_blank",
       color: "maroon",
       size: "small",
+      endIcon: "fa fas fa-arrow-right",
     },
   ],
   newsStories: [

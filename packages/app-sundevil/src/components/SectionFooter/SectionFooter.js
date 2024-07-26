@@ -5,6 +5,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../components-core/src/components/Button";
+import { Icon } from "../Icon_";
 
 const FooterBlock = styled.footer`
   display: flex;
@@ -40,6 +41,19 @@ export const SectionFooter = ({ footerButtons, footerLinks }) => {
               size={button.size}
               href={button.href ?? button.link}
               target={button.target}
+              renderIcon={() =>
+                button.icon ? (
+                  <Icon style={{ marginRight: "0.5rem" }} icon={button.icon} />
+                ) : null
+              }
+              renderEndIcon={() =>
+                button.endIcon ? (
+                  <Icon
+                    style={{ marginLeft: "0.5rem" }}
+                    icon={button.endIcon}
+                  />
+                ) : null
+              }
             />
           ))}
         </FooterBlock>

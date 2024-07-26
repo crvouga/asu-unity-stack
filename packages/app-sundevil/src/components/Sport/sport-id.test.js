@@ -1,3 +1,4 @@
+import { string } from "prop-types";
 import { camelToKebab, stringToSportId } from "./sport-id";
 
 describe("sportId", () => {
@@ -385,5 +386,11 @@ describe("sportId", () => {
 
   test("femaleBasketball", () => {
     expect(stringToSportId("femaleBasketball")).toBe("w-basketball");
+  });
+
+  test("real data mens ice hockey", () => {
+    expect(stringToSportId("/about/news?sport=mens-ice-hockeyview")).toBe(
+      "m-ice-hockey"
+    );
   });
 });

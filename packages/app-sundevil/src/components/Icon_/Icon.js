@@ -21,7 +21,6 @@ const isValidImageSrc = maybeImageSrc => {
   }
 
   try {
-    const url = new URL(maybeImageSrc);
     const validExtensions = [
       ".jpg",
       ".jpeg",
@@ -32,7 +31,7 @@ const isValidImageSrc = maybeImageSrc => {
       ".svg",
     ];
 
-    return validExtensions.some(ext => url.pathname.endsWith(ext));
+    return validExtensions.some(ext => maybeImageSrc.endsWith(ext));
   } catch (err) {
     return false;
   }

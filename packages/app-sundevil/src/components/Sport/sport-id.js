@@ -78,8 +78,14 @@ const includesProtocol = str => {
   return str.match(/^https?:\/\//);
 };
 
+const isRelativeUrl = str => {
+  return str.startsWith("/");
+};
+
 function isUrlLike(str) {
-  return includesTopLevelDomain(str) || includesProtocol(str);
+  return (
+    includesTopLevelDomain(str) || includesProtocol(str) || isRelativeUrl(str)
+  );
 }
 
 const ensureValidUrl = str => {

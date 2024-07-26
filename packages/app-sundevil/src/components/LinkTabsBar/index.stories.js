@@ -169,14 +169,14 @@ DebugProps.args = {
   },
   links: [
     {
-      mobileLabel: "Baseball Home",
+      mobileLabel: "Ice Hockey Home",
       href: "/sports/mens/baseball",
-      label: "Baseball",
+      // label: "Baseball",
       active: true,
       icon: {
-        icon_name: "fa-fas",
-        style: "fa-baseball",
-        src: "",
+        icon_name: "",
+        src: "/sites/default/files/2024-07/ice-hockey_2.svg",
+        style: "",
       },
     },
     {

@@ -6,11 +6,14 @@ import { APP_CONFIG } from "../../config";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useElementContentPosition } from "../../utils/use-element-position";
 import { ButtonProp } from "../Button";
-import { BottomButtons } from "../Button/BottomButtons";
 import * as NewsStory from "../NewsStory/news-story";
 import { NewsStoryCardCarousel } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardCarousel";
 import { NewsStoryCardGridFeatured } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGrid";
-import { footerButtonPropTypes } from "../SectionFooter";
+import {
+  SectionFooter,
+  footerButtonPropTypes,
+  footerLinkPropTypes,
+} from "../SectionFooter";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 
 /**
@@ -25,9 +28,10 @@ import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
  * @typedef {{
  *  newsStories: NewsStory[]
  *  sectionHeader: object;
- *  bottomButtons: ButtonProp.ButtonProp[]
  *  skeleton?: boolean;
  *  maxCards?: number;
+ *  footerButtons: import("../SectionFooter").FooterButton[]
+ *  footerLinks: import("../SectionFooter").FooterButton[]
  * }} Props
  */
 
@@ -37,7 +41,7 @@ const Root = styled.section`
   gap: 48px;
 `;
 
-const BottomButtonsRoot = styled.div`
+const FooterRoot = styled.div`
   display: flex;
   justify-content: center;
   padding-top: 3rem;
@@ -51,10 +55,9 @@ const DEFAULT_MAX_CARDS = 3;
 export const NewsZoneSection = ({
   newsStories,
   sectionHeader,
-  bottomButtons,
   skeleton,
-  // footerButtons,
-  // footerLinks,
+  footerButtons,
+  footerLinks,
   maxCards = DEFAULT_MAX_CARDS,
 }) => {
   const sectionHeaderRef = React.useRef();
@@ -67,6 +70,12 @@ export const NewsZoneSection = ({
   const isDesktop = !isMobile;
 
   const newsStoriesSliced = newsStories.slice(0, maxCards);
+
+  const hasFooter = footerButtons?.length > 0 || footerLinks?.length > 0;
+
+  const footer = hasFooter ? (
+    <SectionFooter footerButtons={footerButtons} footerLinks={footerLinks} />
+  ) : null;
 
   return (
     <Root>
@@ -82,9 +91,7 @@ export const NewsZoneSection = ({
           slidesOffsetBefore={sectionHeaderPosition.left}
           slidesOffsetAfter={window.innerWidth - sectionHeaderPosition.right}
           cardWidth={cardWidth}
-          renderBottomRightContent={() => (
-            <BottomButtons buttons={bottomButtons} skeleton={skeleton} />
-          )}
+          renderBottomRightContent={() => footer}
         />
       )}
       {isDesktop && (
@@ -93,9 +100,7 @@ export const NewsZoneSection = ({
             newsStories={newsStoriesSliced}
             skeleton={Boolean(skeleton)}
           />
-          <BottomButtonsRoot>
-            <BottomButtons buttons={bottomButtons} skeleton={skeleton} />
-          </BottomButtonsRoot>
+          {footer && <FooterRoot>{footer}</FooterRoot>}
         </div>
       )}
     </Root>
@@ -109,5 +114,5 @@ NewsZoneSection.propTypes = {
   skeleton: PropTypes.bool,
   maxCards: PropTypes.number,
   footerButtons: PropTypes.arrayOf(footerButtonPropTypes),
-  footerLinks: PropTypes.arrayOf(footerButtonPropTypes),
+  footerLinks: PropTypes.arrayOf(footerLinkPropTypes),
 };

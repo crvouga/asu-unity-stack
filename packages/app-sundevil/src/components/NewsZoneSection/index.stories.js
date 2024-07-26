@@ -28,14 +28,13 @@ const props = {
     ],
   },
   api_endpoint: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-  bottomButtons: [
+  footerButtons: [
     {
       href: "https://web-sda.ddev.site:8443//read-more",
       label: "Read more stories",
-      // class: "btn-default btn-maroon btn",
       target: "_blank",
-      // endIcon: "fa fas fa-solid fa-arrow-up-right-from-square",
       color: "maroon",
+      size: "small",
     },
   ],
   newsStories: [

@@ -26,32 +26,56 @@ const props = {
     imageAlt: "Group Tickets",
     interestFormLink: {
       href: "/",
-      text: "Interested in group tickets?",
+      text: "Interested form?",
       target: "_blank",
     },
     experienceList: [
       {
-        icon: "camera",
+        icon: {
+          svg_icon:
+            "https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/lacrosse-sticks-icon.png",
+          svg_icon_name: "Icon",
+        },
         text: "Group photo with Sparky",
       },
       {
-        icon: "camera",
+        icon: {
+          svg_icon:
+            "https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/lacrosse-sticks-icon.png",
+          svg_icon_name: "Icon",
+        },
         text: "High-five fan tunnel",
       },
       {
-        icon: "camera",
+        icon: {
+          svg_icon:
+            "https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/lacrosse-sticks-icon.png",
+          svg_icon_name: "Icon",
+        },
         text: "Standing with the team during the National Anthem",
       },
       {
-        icon: "camera",
+        icon: {
+          svg_icon:
+            "https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/lacrosse-sticks-icon.png",
+          svg_icon_name: "Icon",
+        },
         text: "Video board recognition",
       },
       {
-        icon: "rocket",
+        icon: {
+          svg_icon:
+            "https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/lacrosse-sticks-icon.png",
+          svg_icon_name: "Icon",
+        },
         text: "Stadium tours",
       },
       {
-        icon: "camera",
+        icon: {
+          svg_icon:
+            "https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/lacrosse-sticks-icon.png",
+          svg_icon_name: "Icon",
+        },
         text: "Halftime performances",
       },
     ],

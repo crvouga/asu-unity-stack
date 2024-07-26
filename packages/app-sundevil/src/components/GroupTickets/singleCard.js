@@ -36,20 +36,6 @@ const CardTitle = styled.p`
   font-weight: 700;
 `;
 
-const CardSubtitles = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-`;
-
-const CardSubtitle = styled.p`
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  font-weight: 700;
-  color: #747474;
-`;
-
 const CardBody = styled.div`
   flex: 1;
   width: 100%;

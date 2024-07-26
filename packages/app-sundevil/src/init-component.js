@@ -16,8 +16,14 @@ import {
   NewsStorySection,
   VideoSection,
 } from "./components";
+import { GroupTickets } from "./components/GroupTickets";
+import { EnhanceExperence } from "./components/GroupTickets/enhanceExperence";
+import { GroupTicketsBySport } from "./components/GroupTickets/GroupTicketsBySport";
 import { SeasonsTicket } from "./components/SeasonsTicket";
-import {GroupTickets} from "./components/GroupTickets";
+import { GroupTicketBenefit } from "./components/SeasonsTicket/GroupTicketBenifit";
+import { TicketsFooter } from "./components/SeasonsTicket/ticketsFooter";
+import {PreviewSection} from "./components/GroupTickets/PreviewSection";
+import {GroupTicketMiniPlans} from "./components/SeasonsTicket/GroupTicketMiniPlans";
 
 /**
  * @description
@@ -275,10 +281,51 @@ export const initSeasonsTicket = input => {
   });
 };
 
-
 export const initGroupsTicket = input => {
   RenderReact({
     ...input,
     component: GroupTickets,
   });
 };
+
+export const initTicketsFooter = input => {
+  RenderReact({
+    ...input,
+    component: TicketsFooter,
+  });
+};
+
+export const initGroupTicketBenefitSection = input => {
+  RenderReact({
+    ...input,
+    component: GroupTicketBenefit,
+  });
+};
+
+export const initEnhanceExperienceSection = input => {
+  RenderReact({
+    ...input,
+    component: EnhanceExperence,
+  });
+};
+
+export const initGroupTicketsBySport = input => {
+  RenderReact({
+    ...input,
+    component: GroupTicketsBySport,
+  });
+};
+
+export const initPreviewSection = input => {
+  RenderReact({
+    ...input,
+    component: PreviewSection,
+  });
+}
+
+export const initGroupTicketMiniPlans = input => {
+  RenderReact({
+    ...input,
+    component: GroupTicketMiniPlans,
+  });
+}

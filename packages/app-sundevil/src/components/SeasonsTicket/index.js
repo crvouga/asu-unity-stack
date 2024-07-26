@@ -2,7 +2,9 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { SectionHeader } from "../SectionHeader";
+import { GroupTicketBenefit } from "./GroupTicketBenifit";
+import { GroupTicketMiniPlans } from "./GroupTicketMiniPlans";
+import { TicketsFooter } from "./ticketsFooter";
 
 const Root = styled.section`
   display: flex;
@@ -14,29 +16,15 @@ export const SeasonsTicket = ({
   ticketHolderBenefits,
   miniPlans,
   buildMiniPlanLink,
-  importantDates,
+  footer,
   heroImage,
 }) => {
   return (
     <Root>
-      <div className="container">
-        <h1 style={{ fontSize: "40px", fontWeight: "700" }}>
-          Join the season ticket holder family and enjoy exclusive benefits
-        </h1>
-        <div className="row mt-6">
-          {ticketHolderBenefits.map(benefit => {
-            return (
-              <div className="col-12 col-md-3">
-                <div className="d-flex flex-column align-items-center text-center">
-                  <i className={`fa fa-${benefit.icon} text-4xl text-black`} />
-                  <h4 className="text-center">{benefit.title}</h4>
-                  <p className="text-muted-foreground">{benefit.description}</p>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+      <GroupTicketBenefit
+        ticketHolderBenefits={ticketHolderBenefits}
+        title="Season Ticket Holder Benefits"
+      />
 
       <div className="uds-hero-md has-btn-row mt-6">
         <div className="hero-overlay" />
@@ -86,60 +74,14 @@ export const SeasonsTicket = ({
         </div>
       </div>
 
-      <SectionHeader
+      <GroupTicketMiniPlans
         title="Mini plans"
-        subtitle="Mini plans are now available for the 2024 Sun Devil Football season. Choose one of each option within the categories below to create your plan."
+        description="Choose from one of our mini plans"
+        miniPlans={miniPlans}
+        cta={buildMiniPlanLink}
       />
 
-      <div className="container d-flex flex-column">
-        <div className="d-flex flex-column flex-md-row gap-2 w-100">
-          {miniPlans.map(miniPlan => {
-            return (
-              <div
-                className="w-100"
-                style={{ backgroundColor: "#E8E8E8", padding: "24px" }}
-              >
-                <div style={{ fontSize: "20px", fontWeight: "700" }}>
-                  <h3>{miniPlan.title}</h3>
-                </div>
-                <span style={{ fontSize: "16px", fontWeight: "400" }}>
-                  {miniPlan.description}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-        <a
-          href={buildMiniPlanLink.href}
-          style={{ alignSelf: "center", marginTop: "48px" }}
-          className="btn btn-default btn-gold"
-          target={buildMiniPlanLink.target}
-        >
-          Build your mini plan
-        </a>
-      </div>
-
-      <div style={{ backgroundColor: "#E8E8E8", marginTop: "96px" }}>
-        <div className="container">
-          <h1 style={{ fontSize: "40px", fontWeight: "700" }}>
-            Important season ticket holder dates
-          </h1>
-          <div className="row w-100">
-            {importantDates.map(date => {
-              return (
-                <div className="col-12 col-md-4" style={{ padding: "24px" }}>
-                  <div style={{ fontSize: "20px", fontWeight: "700" }}>
-                    {date.title}
-                  </div>
-                  <span style={{ fontSize: "16px", fontWeight: "400" }}>
-                    {date.description}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+      <TicketsFooter title={footer.title} data={footer.data} />
     </Root>
   );
 };
@@ -169,10 +111,13 @@ SeasonsTicket.propTypes = {
     text: PropTypes.string,
     target: PropTypes.string,
   }),
-  importantDates: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string,
-      description: PropTypes.string,
-    })
-  ),
+  footer: PropTypes.shape({
+    title: PropTypes.string,
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        description: PropTypes.string,
+      })
+    ),
+  }),
 };

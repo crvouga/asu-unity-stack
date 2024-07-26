@@ -8,6 +8,8 @@ export const buttonPropTypes = PropTypes.shape({
   href: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   target: PropTypes.string,
+  className: PropTypes.string,
+  link: PropTypes.string,
 });
 
 /**
@@ -20,4 +22,6 @@ export const buttonPropTypes = PropTypes.shape({
  * @property {string} [endIcon] Button end icon
  * @property {string} [target] Button target
  * @property {string} [class] Button class
+ * @property {string} [className] Button class name
+ * @property {string} [link] Button link
  */

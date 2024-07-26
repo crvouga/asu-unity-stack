@@ -16,6 +16,7 @@ import {
   SunDevilsHeader,
   VideoSection,
 } from "./components";
+import { ContactUsCTA } from "./components/ContactUsCTA";
 import { GroupTickets } from "./components/GroupTickets";
 import { EnhanceExperence } from "./components/GroupTickets/enhanceExperence";
 import { GroupTicketsBySport } from "./components/GroupTickets/GroupTicketsBySport";
@@ -327,5 +328,12 @@ export const initGroupTicketMiniPlans = input => {
   RenderReact({
     ...input,
     component: GroupTicketMiniPlans,
+  });
+};
+
+export const initContactUsCTA = input => {
+  RenderReact({
+    ...input,
+    component: ContactUsCTA,
   });
 };

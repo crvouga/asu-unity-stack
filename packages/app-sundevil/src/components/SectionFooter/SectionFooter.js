@@ -27,9 +27,9 @@ const Root = styled.div`
   gap: 24px;
 `;
 
-export const SectionFooter = ({ footerButtons, footerLinks }) => {
+export const SectionFooter = ({ footerButtons, footerLinks, style }) => {
   return (
-    <Root>
+    <Root style={style}>
       {footerButtons && footerButtons?.length > 0 && (
         <FooterBlock>
           {footerButtons.map(button => (
@@ -120,4 +120,6 @@ export const footerLinkPropTypes = PropTypes.shape({
 SectionFooter.propTypes = {
   footerButtons: PropTypes.arrayOf(footerButtonPropTypes),
   footerLinks: PropTypes.arrayOf(footerLinkPropTypes),
+  // eslint-disable-next-line react/forbid-prop-types
+  style: PropTypes.object,
 };

@@ -186,6 +186,8 @@ const GameTableSectionInner = ({ ...props }) => {
     </GameTableRoot>
   );
 
+  const hasFooter = footerButtons.length > 0 || footerLinks.length > 0;
+
   return (
     <>
       {variant === "hero" && (
@@ -270,10 +272,13 @@ const GameTableSectionInner = ({ ...props }) => {
           isMobile &&
           renderGameTable({ className: "" })}
 
-        <SectionFooter
-          footerButtons={footerButtons}
-          footerLinks={footerLinks}
-        />
+        {hasFooter && (
+          <SectionFooter
+            style={{ paddingTop: "48px" }}
+            footerButtons={footerButtons}
+            footerLinks={footerLinks}
+          />
+        )}
       </div>
     </>
   );

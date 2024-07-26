@@ -1,4 +1,3 @@
-import { string } from "prop-types";
 import { camelToKebab, stringToSportId } from "./sport-id";
 
 describe("sportId", () => {

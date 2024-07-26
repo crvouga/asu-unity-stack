@@ -167,7 +167,7 @@ const SportIconWrapper = styled.span`
 const StyledIcon = styled(Icon)`
   width: 16px;
   height: 16px;
-  color: var(--text-color-primary);
+  color: inherit;
 `;
 
 /**

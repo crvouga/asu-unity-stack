@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React from "react";
 
+import { GameDataSourceMock } from "../../Game/game-data-source";
 import { GameTableSection } from "../index";
 
 export default {
@@ -807,19 +808,19 @@ GetTicketsLightSidebar.args = {
 
 export const GetTicketsSportTabsOnly = Template.bind({});
 GetTicketsSportTabsOnly.args = {
-  // gameDataSource: {
-  //   type: "custom",
-  //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
-  // },
+  gameDataSource: {
+    type: "custom",
+    gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
+  },
   // gameDataSource: {
   //   type: "custom",
   //   gameDataSource: new CustomGameDataSource(),
   // },
-  gameDataSource: {
-    type: "asu-events",
-    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-    timeout: 800,
-  },
+  // gameDataSource: {
+  //   type: "asu-events",
+  //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+  //   timeout: 800,
+  // },
   variant: "hero",
   configOverlap: "sport-tabs-with-hero",
   title: "Get Tickets",

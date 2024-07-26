@@ -45,89 +45,6 @@
     </div>
 
     <script>
-      const imageSrc =
-        "https://asuevents.asu.edu/sites/default/files/2024-07/football-2024.jpg";
-
-      // @ts-ignore
-      // eslint-disable-next-line no-unused-vars
-      const newsStories = [
-        {
-          id: "1",
-          href: "#",
-          showNewsType: false,
-          showSportName: false,
-          newsType: "News",
-          sportId: "w-lacrosse",
-          imageSrc,
-          sportName: "W. Lacrosse",
-          sportIcon: "fas fa-lacrosse",
-          title:
-            "Gigi Gaspar Named Pac-12 Lacrosse Scholar Athlete of the Year",
-        },
-        {
-          id: "2",
-          href: "#",
-          showNewsType: false,
-          showSportName: false,
-          newsType: "Video",
-          imageSrc,
-          sportName: "Football",
-          sportId: "football",
-          sportIcon: "fas fa-football-ball",
-          title: "Super Bowl #SunDevils4Life",
-        },
-        {
-          id: "3",
-          href: "#",
-          showNewsType: false,
-          showSportName: false,
-          newsType: "Video",
-          imageSrc,
-          sportName: "M. Golf",
-          sportIcon: "fas fa-golf-ball",
-          sportId: "golf",
-          title:
-            "Men's Golf Gets No. 1 Seet at Rancho Santa Fe/The Farms Golf Club Regional",
-        },
-        {
-          id: "4",
-          href: "#",
-          showNewsType: false,
-          showSportName: false,
-          newsType: "News",
-          imageSrc,
-          sportName: "Vollyball",
-          sportIcon: "fas fa-volleyball-ball",
-          sportId: "volleyball",
-          title: "Rohr Pac-12 Coach of the Year, Kensinger Honored",
-        },
-        {
-          id: "5",
-          href: "#",
-          showNewsType: false,
-          showSportName: false,
-          newsType: "Game Recap",
-          title:
-            "Lacrosse Downs Ducks, Will Face Stanford in Pac-12 Semifinals",
-          sportName: "W. Lacrosse",
-          sportId: "w-lacrosse",
-          imageSrc,
-          sportIcon: "fas fa-lacrosse",
-        },
-        {
-          id: "6",
-          href: "#",
-          showNewsType: false,
-          showSportName: false,
-          newsType: "News",
-          title: "Kensinger, Williamson Named All-Americans",
-          sportName: "Volleyball",
-          sportId: "volleyball",
-          sportIcon: "fas fa-volleyball-ball",
-          imageSrc,
-        },
-      ];
-
       const itemToNewsStory = item => {
         return {
           id: item?.id,
@@ -145,7 +62,6 @@
       };
 
       class CustomNewsStoryDataSource extends INewsStoryDataSource {
-        // eslint-disable-next-line class-methods-use-this
         async findMany(input) {
           const response = await fetch(
             "https://dev-web-sda.ws.asu.edu/feeds/json/node/news"

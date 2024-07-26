@@ -33,8 +33,8 @@
 
     <!-- *************************************************************** -->
     <!-- include bundled scripts from packages -->
-    <script src="./dist/vendor.umd.js"></script>
-    <script src="./dist/sunDevil.umd.js"></script>
+    <script src="../dist/vendor.umd.js"></script>
+    <script src="../dist/sunDevil.umd.js"></script>
   </head>
 
   <body>
@@ -45,18 +45,6 @@
     </div>
 
     <script>
-      /**
-       * @typedef {import("./index").Sport} Sport
-       */
-
-      /**
-       * @typedef {import("./index").Props} Props
-       */
-
-      /**
-       * @typedef {import("../NewsStory/news-story").NewsStory} NewsStory
-       */
-
       const imageSrc =
         "https://asuevents.asu.edu/sites/default/files/2024-07/football-2024.jpg";
 
@@ -140,10 +128,31 @@
         },
       ];
 
+      const itemToNewsStory = item => {
+        return {
+          id: item?.id,
+          href: item?.ticketing_rsvp_url,
+          showNewsType: false,
+          showSportName: false,
+          newsType: "News",
+          title: item?.title,
+          sportName: item?.field_sport_category,
+          sportId: stringToSportId(item?.field_sport_category),
+          sportIcon: null,
+          imageSrc: item?.image_url?.src,
+          imageAlt: item?.image_url?.alt,
+        };
+      };
+
       class CustomNewsStoryDataSource extends INewsStoryDataSource {
         // eslint-disable-next-line class-methods-use-this
         async findMany(input) {
-          await new Promise(resolve => setTimeout(resolve, 1000));
+          const response = await fetch(
+            "https://dev-web-sda.ws.asu.edu/feeds/json/node/news"
+          );
+          const json = await response.json();
+          const items = Array.isArray(json) ? json : [json];
+          const newsStories = items.map(itemToNewsStory);
           const dataSource = new NewsStoryDataSourceStatic({
             newsStories,
           });

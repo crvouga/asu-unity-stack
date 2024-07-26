@@ -68,6 +68,7 @@ const GameTableSectionInner = ({ ...props }) => {
   });
 
   useUrlSportId(urlSportId => {
+    if (props.disableUrlSportId) return;
     gameSearchForm.update({ sportId: urlSportId ?? "all" });
   });
 
@@ -281,6 +282,7 @@ const GameTableSectionInner = ({ ...props }) => {
 GameTableSectionInner.propTypes = {
   ...SectionHeader.propTypes,
   ...GameTable.propTypes,
+  disableUrlSportId: PropTypes.bool,
   sports: PropTypes.arrayOf(sportWithFooterPropTypes),
   loadMore: loadMorePropTypes,
   configLayout: configLayoutPropTypes,

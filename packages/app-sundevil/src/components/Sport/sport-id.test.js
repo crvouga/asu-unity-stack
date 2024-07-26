@@ -1,4 +1,4 @@
-import { stringToSportId } from "./sport-id";
+import { camelToKebab, stringToSportId } from "./sport-id";
 
 describe("sportId", () => {
   test("stringToSportId", () => {
@@ -335,5 +335,55 @@ describe("sportId", () => {
     expect(
       stringToSportId("https://dev-web-sda.ws.asu.edu/sports/cross-country")
     ).toBe("cross-country");
+  });
+
+  test("singular woman", () => {
+    expect(
+      stringToSportId("https://dev-web-sda.ws.asu.edu?sport=Woman-Basketball")
+    ).toBe("w-basketball");
+  });
+
+  test("camelToKebab", () => {
+    expect(camelToKebab("WomenBasketball")).toEqual("women-basketball");
+  });
+
+  test("camelCase WomenBasketball", () => {
+    expect(
+      stringToSportId("https://dev-web-sda.ws.asu.edu?sport=WomenBasketball")
+    ).toBe("w-basketball");
+  });
+
+  test("camelCase MenBasketball", () => {
+    expect(
+      stringToSportId("https://dev-web-sda.ws.asu.edu?sport=MenBasketball")
+    ).toBe("m-basketball");
+  });
+
+  test("camelCase in path MenBasketball", () => {
+    expect(
+      stringToSportId("https://dev-web-sda.ws.asu.edu/sports/MenBasketball")
+    ).toBe("m-basketball");
+  });
+
+  test("camelCase in path WomenBasketball", () => {
+    expect(
+      stringToSportId("https://dev-web-sda.ws.asu.edu/sports/WomenBasketball")
+    ).toBe("w-basketball");
+  });
+
+  test("Menbasketball", () => {
+    expect(
+      stringToSportId("https://dev-web-sda.ws.asu.edu/sports/Menbasketball")
+    ).toBe("m-basketball");
+  });
+
+  test("MaleBasketball", () => {
+    expect(
+      stringToSportId("https://dev-web-sda.ws.asu.edu/sports/MaleBasketball")
+    ).toBe("m-basketball");
+  });
+
+  test("femaleBasketball", () => {
+    expect(stringToSportId("femaleBasketball")).toBe("w-basketball");
   });
 });

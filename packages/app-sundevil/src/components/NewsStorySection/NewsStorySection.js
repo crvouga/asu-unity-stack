@@ -19,6 +19,7 @@ import { useNewsStoryDataSourceLoader } from "../NewsStory/use-news-story-data-s
 import { useSportIdsLoader } from "../NewsStory/use-sport-ids-loader";
 import { footerButtonPropTypes, SectionFooter } from "../SectionFooter";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
+import { useUrlSportId } from "../Sport/use-url-sport-id";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportWithFooterPropTypes } from "../SportsTabs/sports-tabs";
 import { configFormPropTypes } from "./config-form";
@@ -58,6 +59,7 @@ const NewsStorySectionInner = ({
   newsStoryDataSourceLoader: propsNewsStoryDataSourceLoader,
   footerButtons: propsFooterButtons,
   footerLinks: propsFooterLinks,
+  disableUrlSportId,
 }) => {
   const limit = propsNewsStoryDataSourceLoader?.limit ?? DEFAULT_LIMIT;
   /** @type {import("./config-form").ConfigForm} */
@@ -78,6 +80,11 @@ const NewsStorySectionInner = ({
   const newsStorySearchFrom = useNewsStorySearchForm({
     enableUrlState: false,
     sportId: sports.find(sport => sport.active)?.id ?? "all",
+  });
+
+  useUrlSportId(urlSportId => {
+    if (disableUrlSportId) return;
+    newsStorySearchFrom.update({ sportId: urlSportId ?? "all" });
   });
 
   const sportsWithSelectedTab = sports.map(sport => ({
@@ -247,6 +254,7 @@ const NewsStorySectionInner = ({
 };
 
 NewsStorySectionInner.propTypes = {
+  disableUrlSportId: PropTypes.bool,
   footerButtons: PropTypes.arrayOf(footerButtonPropTypes.isRequired),
   footerLinks: PropTypes.arrayOf(footerButtonPropTypes.isRequired),
   // @ts-ignore
@@ -284,6 +292,7 @@ NewsStorySectionInner.propTypes = {
  *  newsStoryDataSourceLoader?: {
  *    limit: number;
  *  }
+ *  disableUrlSportId?: boolean;
  *  emptyStateMessage?: string;
  *  removeSportsWithNoStories?: boolean;
  *  loadMore?: import("../LoadMoreButton").LoadMoreButtonProps

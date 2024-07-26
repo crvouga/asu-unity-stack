@@ -8,7 +8,20 @@ const REPLACEMENTS = {
   "women's": "w",
   "mens'": "m",
   "womens'": "w",
+  "woman": "w",
+  "man": "m",
+  "woman's": "w",
+  "man's": "m",
+  "male": "m",
+  "female": "w",
 };
+
+export function camelToKebab(str) {
+  return str
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .replace(/([A-Z])([A-Z][a-z])/g, "$1-$2")
+    .toLowerCase();
+}
 
 const applyReplacements = (replacements, str) => {
   return Object.keys(replacements)
@@ -19,6 +32,21 @@ const applyReplacements = (replacements, str) => {
     );
 };
 
+const isolateWords = (wordList, str) => {
+  // longest words first
+  wordList.sort((a, b) => b.length - a.length);
+  const regex = new RegExp(`(${wordList.join("|")})`, "i");
+  const match = str.match(regex);
+
+  if (match) {
+    const isolatedWord = match[0];
+    const remainingString = str.slice(isolatedWord.length);
+    return [isolatedWord, remainingString];
+  }
+
+  return [str];
+};
+
 const pipe = (x, ...fns) => fns.reduce((acc, fn) => fn(acc), x);
 
 const clean = s => {
@@ -27,6 +55,7 @@ const clean = s => {
   }
   return pipe(
     s,
+    s => isolateWords(Object.keys(REPLACEMENTS), s).join(" "),
     // apply replacements first
     s => applyReplacements(REPLACEMENTS, s),
     // replace with hyphens
@@ -154,12 +183,13 @@ function normalizeSpecialCharacters(str) {
     match => specialCharMap[match] || match
   );
 }
+
 export function stringToSportId(str) {
   if (typeof str !== "string" || str.length === 0) {
     return null;
   }
   const simpleClean = normalizeSpecialCharacters(str.toLowerCase().trim());
-  // .replace(/[\u0300-\u036f]/g, "");
+
   if (isUrlLike(simpleClean)) {
     return cleanUrlLike(simpleClean);
   }

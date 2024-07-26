@@ -21,6 +21,8 @@ import {
 } from "../LoadMoreButton/LoadMoreButton";
 import { SectionFooter } from "../SectionFooter";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
+import { stringToSportId } from "../Sport/sport-id";
+import { useUrlSportId } from "../Sport/use-url-sport-id";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportWithFooterPropTypes } from "../SportsTabs/sports-tabs";
 import { configInputsPropTypes, defaultConfigInputs } from "./config-inputs";
@@ -65,6 +67,10 @@ const GameTableSectionInner = ({ ...props }) => {
     sportId: props?.sports?.find(sport => sport?.active)?.id ?? "all",
   });
 
+  useUrlSportId(urlSportId => {
+    gameSearchForm.update({ sportId: urlSportId ?? "all" });
+  });
+
   const gameDataSourceLoader = useGameDataSourceLoader({
     gameType:
       gameSearchForm.gameType === "all" ? null : gameSearchForm.gameType,
@@ -80,7 +86,8 @@ const GameTableSectionInner = ({ ...props }) => {
 
   const sports = props.sports?.map(sport => ({
     ...sport,
-    active: sport.id === gameSearchForm.sportId,
+    active:
+      stringToSportId(sport.id) === stringToSportId(gameSearchForm.sportId),
   }));
 
   const tabs = props.tabs?.map(tab => ({

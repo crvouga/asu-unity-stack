@@ -166,3 +166,6 @@ export function stringToSportId(str) {
   const output = clean(simpleClean);
   return output;
 }
+
+// @ts-ignore
+window.stringToSportId = stringToSportId;

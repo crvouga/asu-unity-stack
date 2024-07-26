@@ -330,4 +330,10 @@ describe("sportId", () => {
     );
     expect(stringToSportId("sundevils.com/sports/womens/golf")).toBe("w-golf");
   });
+
+  test("real data cross country", () => {
+    expect(
+      stringToSportId("https://dev-web-sda.ws.asu.edu/sports/cross-country")
+    ).toBe("cross-country");
+  });
 });

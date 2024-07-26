@@ -3,7 +3,7 @@ import React from "react";
 
 export const TicketsFooter = ({ data, title }) => {
   return (
-    <div style={{ backgroundColor: "#E8E8E8", marginTop: "96px" }}>
+    <div style={{ backgroundColor: "#E8E8E8", paddingTop: "96px", paddingBottom:"96px" }}>
       <div className="container">
         <h1 style={{ fontSize: "40px", fontWeight: "700" }}>{title}</h1>
         <div className="row w-100">

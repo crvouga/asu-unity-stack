@@ -7,7 +7,7 @@ const props = {
     {
       title: "Best ticket prices",
       description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.",
+        "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.</p>",
       icon: {
         svg_icon:
           "https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/lacrosse-sticks-icon.png",
@@ -101,7 +101,7 @@ const props = {
   ],
   buildMiniPlanLink: {
     href: "#",
-    text: "Build Your Mini Plan",
+    label: "Build Your Mini Plan",
     target: "_blank",
   },
   footer: {

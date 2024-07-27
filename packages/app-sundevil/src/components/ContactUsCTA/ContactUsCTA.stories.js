@@ -44,7 +44,11 @@ export default {
 };
 
 const Template = args => {
-  return <ContactUsCTA {...args} />;
+  return (
+    <div className="container">
+      <ContactUsCTA {...args} />
+    </div>
+  );
 };
 
 export const Default = Template.bind({});

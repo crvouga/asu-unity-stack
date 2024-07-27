@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { buttonPropTypes } from "../Button/button-prop";
 import { linkPropTypes } from "../Link/link-prop";
-import { ContactUsCTACard } from "./ContactUsCTACard";
+import { ContactUsCTACard } from "./contact-us-cta-card";
 import { ContactUsCTAFooter } from "./ContactUsCTAFooter";
 
 const Root = styled.div`

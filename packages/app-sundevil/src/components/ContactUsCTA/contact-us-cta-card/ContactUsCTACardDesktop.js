@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { Button } from "../../../../components-core/src/components/Button";
-import { buttonPropTypes } from "../Button/button-prop";
+import { Button } from "../../../../../components-core/src/components/Button";
+import { buttonPropTypes } from "../../Button/button-prop";
 
 // APP_CONFIG.breakpointMobile;
 
@@ -72,7 +72,7 @@ const ButtonRoot = styled.div`
  * https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4946-9137&t=npLkRT1OeHXVfTDe-0
  * @type {React.FC<Props>}
  */
-export const ContactUsCTACard = ({
+export const ContactUsCTACardDesktop = ({
   title,
   body,
   buttons,
@@ -96,16 +96,10 @@ export const ContactUsCTACard = ({
 };
 
 /**
- * @typedef {{
- *  imageSrc: string;
- *  imageAlt: string;
- *  title: string;
- *  body: string;
- *  buttons: import("../Button/button-prop").ButtonProp[];
- * }} Props
+ * @typedef {import("./contact-us-cta-card").Props} Props
  */
 
-ContactUsCTACard.propTypes = {
+ContactUsCTACardDesktop.propTypes = {
   imageSrc: PropTypes.string,
   imageAlt: PropTypes.string,
   title: PropTypes.string,

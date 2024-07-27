@@ -14,7 +14,10 @@ export const GroupTicketBenefit = ({ ticketHolderBenefits, title }) => {
               <div className="d-flex flex-column align-items-center text-center">
                 <Icon icon={benefit.icon} />
                 <h4 className="text-center">{benefit.title}</h4>
-                <p className="text-muted-foreground" dangerouslySetInnerHTML={{__html: benefit.description}}></p>
+                <p
+                  className="text-muted-foreground"
+                  dangerouslySetInnerHTML={{ __html: benefit.description }}
+                />
               </div>
             </div>
           );

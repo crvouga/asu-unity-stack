@@ -87,7 +87,12 @@ export const ContactUsCTACardDesktop = ({
         <Body dangerouslySetInnerHTML={{ __html: body }} />
         <ButtonRoot>
           {buttons.map(button => (
-            <Button key={button?.label} {...button} />
+            <Button
+              key={button?.label}
+              classes={button.class}
+              {...button}
+              width="100%"
+            />
           ))}
         </ButtonRoot>
       </Content>

@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { APP_CONFIG } from "../../config";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import { buttonPropTypes } from "../Button/button-prop";
 import { linkPropTypes } from "../Link/link-prop";
 import { ContactUsCTACard } from "./contact-us-cta-card";
@@ -13,7 +15,7 @@ const Root = styled.div`
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  gap: 32px;
+  gap: 28px;
 `;
 
 /**
@@ -28,7 +30,10 @@ export const ContactUsCTA = ({
   footerLinks,
   imageAlt,
   imageSrc,
+  hideFooterMobile = true,
 }) => {
+  const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
+  const hideFooter = Boolean(isMobile && hideFooterMobile);
   return (
     <Root className="container">
       <ContactUsCTACard
@@ -38,10 +43,12 @@ export const ContactUsCTA = ({
         imageSrc={imageSrc}
         title={title}
       />
-      <ContactUsCTAFooter
-        footerLinks={footerLinks}
-        footerLinksLabel={footerLinksLabel}
-      />
+      {!hideFooter && (
+        <ContactUsCTAFooter
+          footerLinks={footerLinks}
+          footerLinksLabel={footerLinksLabel}
+        />
+      )}
     </Root>
   );
 };
@@ -66,4 +73,5 @@ ContactUsCTA.propTypes = {
   buttons: PropTypes.arrayOf(buttonPropTypes),
   footerLinksLabel: PropTypes.string,
   footerLinks: PropTypes.arrayOf(linkPropTypes),
+  hideFooterMobile: PropTypes.bool,
 };

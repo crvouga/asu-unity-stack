@@ -14,6 +14,7 @@ import PropTypes from "prop-types";
  *  includeSportTypeCheckboxList: boolean
  *  includeInputEventTypeSelect: boolean
  *  includeMaxAdmissionCostSelect: boolean
+ *  includeAdmissionCostSelect: boolean
  * }} ConfigLayout
  */
 
@@ -29,6 +30,7 @@ export const configLayoutPropTypes = PropTypes.shape({
   includeSportTypeCheckboxList: PropTypes.bool,
   includeInputEventTypeSelect: PropTypes.bool,
   includeMaxAdmissionCostSelect: PropTypes.bool,
+  includeAdmissionCostSelect: PropTypes.bool,
 });
 
 /**
@@ -46,4 +48,22 @@ export const defaultConfigLayout = {
   includeSportTypeCheckboxList: false,
   includeInputEventTypeSelect: false,
   includeMaxAdmissionCostSelect: false,
+  includeAdmissionCostSelect: false,
+};
+
+/**
+ * @param {ConfigLayout} configLayout
+ * @returns {boolean}
+ */
+export const shouldIncludeForm = configLayout => {
+  return (
+    configLayout.includeInputSearch ||
+    configLayout.includeInputSportType ||
+    configLayout.includeInputVenueSelect ||
+    configLayout.includeInputHomeOrAwaySelect ||
+    configLayout.includeInputSortBySelect ||
+    configLayout.includeInputEventTypeSelect ||
+    configLayout.includeMaxAdmissionCostSelect ||
+    configLayout.includeAdmissionCostSelect
+  );
 };

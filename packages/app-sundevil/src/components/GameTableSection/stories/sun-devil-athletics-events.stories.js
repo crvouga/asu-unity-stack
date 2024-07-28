@@ -25,19 +25,19 @@ const Template = args => (
 export const SunDevilAthleticsEvents = Template.bind({});
 SunDevilAthleticsEvents.args = {
   // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4801-4633&t=LF0II0k8pEHIoz43-0
-  // gameDataSource: {
-  //   type: "mock",
-  //   timeout: 200,
-  // },
+  gameDataSource: {
+    type: "mock",
+    timeout: 400,
+  },
   // gameDataSource: {
   //   type: "custom",
   //   gameDataSource: new CustomGameDataSource(),
   // },
-  gameDataSource: {
-    type: "asu-events",
-    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-    timeout: 800,
-  },
+  // gameDataSource: {
+  //   type: "asu-events",
+  //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+  //   timeout: 800,
+  // },
   // variant: "hero",
   variant: "default",
   // configOverlap: "sport-tabs-with-hero",
@@ -67,7 +67,8 @@ SunDevilAthleticsEvents.args = {
     includeLoadMore: true,
     includeSportTypeCheckboxList: false,
     includeInputEventTypeSelect: true,
-    includeMaxAdmissionCostSelect: true,
+    includeMaxAdmissionCostSelect: false,
+    includeAdmissionCostSelect: true,
   },
   configGameTableForm: {
     title: "Filter your results",
@@ -117,42 +118,58 @@ SunDevilAthleticsEvents.args = {
         },
       ],
     },
-    maxAdmissionCostSelect: {
+    admissionCostSelect: {
       label: "Cost of admission",
       placeholder: "Select one",
       options: [
         {
           label: "Free",
           id: "free",
-          value: 0,
+          value: "free",
         },
         {
-          label: "$10",
-          id: "10",
-          value: 10,
-        },
-        {
-          label: "$20",
-          id: "20",
-          value: 20,
-        },
-        {
-          label: "$30",
-          id: "30",
-          value: 30,
-        },
-        {
-          label: "$40",
-          id: "40",
-          value: 40,
-        },
-        {
-          label: "$50",
-          id: "50",
-          value: 50,
+          label: "Price Varies",
+          id: "price_varies",
+          value: "price_varies",
         },
       ],
     },
+    // maxAdmissionCostSelect: {
+    //   label: "Cost of admission",
+    //   placeholder: "Select one",
+    //   options: [
+    //     {
+    //       label: "Free",
+    //       id: "free",
+    //       value: 0,
+    //     },
+    //     {
+    //       label: "$10",
+    //       id: "10",
+    //       value: 10,
+    //     },
+    //     {
+    //       label: "$20",
+    //       id: "20",
+    //       value: 20,
+    //     },
+    //     {
+    //       label: "$30",
+    //       id: "30",
+    //       value: 30,
+    //     },
+    //     {
+    //       label: "$40",
+    //       id: "40",
+    //       value: 40,
+    //     },
+    //     {
+    //       label: "$50",
+    //       id: "50",
+    //       value: 50,
+    //     },
+    //   ],
+    // },
   },
   gameTable: {
     mobileRowVariant: "divided", // or "bordered",

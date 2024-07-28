@@ -18,7 +18,8 @@ window.GameDataSourceSortBy = GameDataSourceSortBy;
  * @property {string | null | undefined} [searchQuery]
  * @property {string | null | undefined} [venueId]
  * @property {string | null | undefined} [eventType]
- * @property {number | null | undefined} [maxAdmissionCost]
+ * @property {number | null | undefined} [maxAdmissionCost] // deprecated use admissionCost
+ * @property {string | null | undefined} [admissionCost]
  * @property {keyof typeof GameDataSourceSortBy} [sortBy]
  */
 
@@ -30,7 +31,8 @@ export const findManyInputPropTypes = PropTypes.shape({
   searchQuery: PropTypes.string,
   venueId: PropTypes.string,
   eventType: PropTypes.string,
-  maxAdmissionCost: PropTypes.number,
+  maxAdmissionCost: PropTypes.number, // deprecated use admissionCost
+  admissionCost: PropTypes.string,
   sortBy: PropTypes.oneOf(Object.values(GameDataSourceSortBy)),
 });
 

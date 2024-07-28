@@ -73,15 +73,9 @@ const GameTableSectionInner = ({ ...props }) => {
   });
 
   const gameDataSourceLoader = useGameDataSourceLoader({
-    gameType:
-      gameSearchForm.gameType === "all" ? null : gameSearchForm.gameType,
-    sportId: gameSearchForm.sportId === "all" ? null : gameSearchForm.sportId,
-    searchQuery: gameSearchForm.debouncedSearchQuery,
-    sortBy: gameSearchForm.sortBy,
-    venueId: gameSearchForm.venueId,
-    maxAdmissionCost: gameSearchForm.maxAdmissionCost,
-    eventType: gameSearchForm.eventType,
     limit: 5,
+    searchQuery: gameSearchForm.debouncedSearchQuery,
+    ...gameSearchForm,
     ...props.gameDataSourceLoader,
   });
 

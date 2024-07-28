@@ -10,6 +10,8 @@ const isEqual = (keyFn, a, b) => {
   return keyFn(a) === keyFn(b);
 };
 
+const ALL_SPORT_ID = "all";
+
 export class GameDataSourceStatic extends IGameDataSource {
   /**
    * @param {{games: import("../game").Game[]}} input
@@ -23,6 +25,8 @@ export class GameDataSourceStatic extends IGameDataSource {
    * @type {import("./game-data-source").IGameDataSource['findMany']}
    */
   async findMany(input) {
+    const isAllSportId = isEqual(stringToSportId, ALL_SPORT_ID, input?.sportId);
+
     const filtered = matchSort({
       searchQuery: input?.searchQuery ?? "",
       toText: game =>
@@ -31,7 +35,9 @@ export class GameDataSourceStatic extends IGameDataSource {
         }`,
       items: this.games.filter(game => {
         const matchedSportId =
-          typeof input?.sportId === "string" && input?.sportId?.length > 0
+          typeof input?.sportId === "string" &&
+          input?.sportId?.length > 0 &&
+          !isAllSportId
             ? isEqual(stringToSportId, game?.sportId, input?.sportId)
             : true;
 
@@ -51,6 +57,11 @@ export class GameDataSourceStatic extends IGameDataSource {
             ? game?.admissionCost <= input?.maxAdmissionCost
             : true;
 
+        const matchedAdmissionCost =
+          typeof input?.admissionCost === "string"
+            ? isEqual(cleanString, game?.admissionCost, input?.admissionCost)
+            : true;
+
         const matchedEventType =
           typeof input?.eventType === "string" && input?.eventType.length > 0
             ? isEqual(cleanString, game?.eventType, input?.eventType)
@@ -61,7 +72,8 @@ export class GameDataSourceStatic extends IGameDataSource {
           matchedGameType &&
           matchedVenueId &&
           matchedMaxAdmissionCost &&
-          matchedEventType;
+          matchedEventType &&
+          matchedAdmissionCost;
 
         return matched;
       }),

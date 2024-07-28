@@ -16,7 +16,7 @@ const ALL_SPORT_IDS = [
 
 const ALL_GAME_TYPE = ["all", "home", "away"];
 
-const ALL_ADMISSION_COST = [0, 10, 20, 30, 40, 50];
+const ALL_ADMISSION_COST = ["free", "price_varies"];
 
 const ALL_EVENT_TYPE = ["game", "practice", "scrimmage"];
 

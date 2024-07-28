@@ -13,7 +13,7 @@ const selectOptionPropTypes = PropTypes.shape({
  * id: string;
  * label?: string;
  * placeholder?: string;
- * active?:boolean;
+ * active?: boolean;
  * value?: string | number | null | undefined;
  * }} SelectOption
  */
@@ -49,6 +49,11 @@ export const configInputsPropTypes = PropTypes.shape({
     placeholder: PropTypes.string,
     options: selectOptionPropTypes,
   }),
+  admissionCostSelect: PropTypes.shape({
+    label: PropTypes.string,
+    placeholder: PropTypes.string,
+    options: selectOptionPropTypes,
+  }),
 });
 
 /**
@@ -72,6 +77,7 @@ export const configInputsPropTypes = PropTypes.shape({
  *  sportTypeCheckboxList?: ConfigInput,
  *  eventTypeSelect?: ConfigSelectInput,
  *  maxAdmissionCostSelect?: ConfigSelectInput,
+ *  admissionCostSelect?: ConfigSelectInput,
  * }} ConfigInputs
  */
 
@@ -106,6 +112,10 @@ export const defaultConfigInputs = {
   maxAdmissionCostSelect: {
     label: "Cost of admission",
     placeholder: "Select one",
+  },
+  admissionCostSelect: {
+    label: "Cost of admission",
+    placeholder: "Select",
   },
   eventTypeSelect: {
     label: "Event Type",

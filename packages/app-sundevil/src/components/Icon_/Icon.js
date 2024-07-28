@@ -112,7 +112,15 @@ export const mergeIconProps = (props, icon) => {
   return propsNew;
 };
 
-const Root = styled.div``;
+const Root = styled.span`
+  color: inherit !important;
+  &:hover {
+    color: inherit !important;
+  }
+  &:focus {
+    color: inherit !important;
+  }
+`;
 
 export const Icon = ({ icon, ...props }) => {
   const ref = useRef(null);

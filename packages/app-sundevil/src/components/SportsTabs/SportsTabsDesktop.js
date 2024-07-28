@@ -40,7 +40,7 @@ const StyledSportsTab = styled(SportsTab)`
     if (darkMode && !active) {
       return `
       &:hover {
-        i {
+        i, span {
             color: #fdc627 !important;
         }
       }
@@ -62,7 +62,7 @@ export const SportsTabsDesktop = ({
   darkMode = false,
   className,
 }) => {
-  sports?.sort((a, b) => a.position - b.position);
+  sports?.sort((a, b) => (a?.position ?? 0) - (b?.position ?? 0));
   const isTablet = useBreakpoint(APP_CONFIG.breakpointTablet);
   const maxTabCount = isTablet ? 6 : 9;
   // @ts-ignore

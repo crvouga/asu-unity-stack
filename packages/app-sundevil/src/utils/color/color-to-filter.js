@@ -1,3 +1,4 @@
+// copied from https://github.com/angel-rs/css-color-filter-generator/
 /* eslint-disable */
 
 function expandHex(hextexp) {

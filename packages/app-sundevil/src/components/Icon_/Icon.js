@@ -70,19 +70,21 @@ const toIconProps = icon => {
       style: {
         width: "1rem",
         height: "1rem",
-        display: "inline-block",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundImage: `url(${imageSrc})`,
         filter,
+        textDecoration: "none",
       },
     };
   }
 
   if (isFontAwesomeIconObject(icon)) {
     return {
-      style: {},
+      style: {
+        textDecoration: "none",
+      },
       className: `fa ${icon?.style} fa-${icon?.icon_name}`,
     };
   }
@@ -104,23 +106,16 @@ export const mergeIconProps = (props, icon) => {
     style: {
       ...iconProps?.style,
       ...props?.style,
+      textDecoration: "none",
     },
   };
   return propsNew;
 };
 
-const StyledIcon = styled.i`
-  color: inherit;
-  text-decoration: inherit;
-  &:hover {
-    color: inherit;
-    text-decoration: inherit;
-  }
-`;
+const Root = styled.div``;
 
 export const Icon = ({ icon, ...props }) => {
   const ref = useRef(null);
-
   const color = useColor(ref);
 
   if (!isValidIcon(icon)) {
@@ -134,7 +129,7 @@ export const Icon = ({ icon, ...props }) => {
 
   const key = btoa(JSON.stringify(iconProps));
 
-  return <StyledIcon ref={ref} key={key} {...iconProps} />;
+  return <Root key={key} ref={ref} {...iconProps} />;
 };
 
 export const iconPropType = PropTypes.oneOfType([

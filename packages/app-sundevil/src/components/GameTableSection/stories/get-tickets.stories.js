@@ -116,6 +116,14 @@ GetTickets.args = {
       id: "football",
     },
     {
+      name: "Lacrosse",
+      icon: {
+        src: "https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/lacrosse-sticks-icon.png",
+      },
+      position: 2,
+      id: "lacrosse",
+    },
+    {
       name: "M. Basketball",
       icon: "fas fa-basketball-ball",
       position: 3,

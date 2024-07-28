@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
+
+import { colorToFilter } from "../../utils/color/color-to-filter";
+import { useColor } from "../../utils/color/use-color";
 
 /** @type {(icon: unknown) => icon is {icon_name: string, style: string}} */
 const isFontAwesomeIconObject = icon =>
@@ -60,6 +63,8 @@ const toIconProps = icon => {
   const imageSrc = iconToImageSrc(icon);
 
   if (typeof imageSrc === "string") {
+    const filter = colorToFilter(icon.color);
+
     return {
       className: "",
       style: {
@@ -70,6 +75,7 @@ const toIconProps = icon => {
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundImage: `url(${imageSrc})`,
+        filter,
       },
     };
   }
@@ -91,7 +97,10 @@ export const mergeIconProps = (props, icon) => {
   const iconProps = toIconProps(icon);
   const propsNew = {
     ...props,
-    className: `${props?.className ?? ""} ${iconProps?.className ?? ""}`,
+    className: [props?.className, iconProps?.className]
+      .filter(Boolean)
+      .join(" "),
+
     style: {
       ...iconProps?.style,
       ...props?.style,
@@ -110,14 +119,22 @@ const StyledIcon = styled.i`
 `;
 
 export const Icon = ({ icon, ...props }) => {
+  const ref = useRef(null);
+
+  const color = useColor(ref);
+
   if (!isValidIcon(icon)) {
     return null;
   }
 
-  const iconProps = mergeIconProps(props, icon);
+  const iconProps = mergeIconProps(
+    props,
+    typeof icon === "object" && icon ? { ...icon, color } : icon
+  );
+
   const key = btoa(JSON.stringify(iconProps));
 
-  return <StyledIcon key={key} {...iconProps} />;
+  return <StyledIcon ref={ref} key={key} {...iconProps} />;
 };
 
 export const iconPropType = PropTypes.oneOfType([
@@ -126,6 +143,7 @@ export const iconPropType = PropTypes.oneOfType([
 ]);
 
 Icon.propTypes = {
+  color: PropTypes.string,
   icon: iconPropType,
   title: PropTypes.string,
 };

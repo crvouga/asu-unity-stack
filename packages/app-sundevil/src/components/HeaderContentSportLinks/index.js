@@ -164,17 +164,12 @@ const SportIconWrapper = styled.span`
   color: inherit !important;
 `;
 
-const StyledIcon = styled(Icon)`
-  width: 16px;
-  height: 16px;
-  color: inherit;
-`;
-
 /**
  * @param {{sport: Sport; borderBottom?: boolean}} props
  */
 const SportGridListItem = ({ sport, borderBottom }) => {
   const sportName = stringToClosestSportName(sport.sportName);
+
   return (
     <SportGridListItemRoot
       // @ts-ignore
@@ -183,7 +178,7 @@ const SportGridListItem = ({ sport, borderBottom }) => {
       <SportNameLink href={sport.href}>
         <SportIconWrapper>
           {sport.icon ? (
-            <StyledIcon icon={sport.icon} />
+            <Icon icon={sport.icon} />
           ) : (
             <SportIcon sportName={sportName} />
           )}

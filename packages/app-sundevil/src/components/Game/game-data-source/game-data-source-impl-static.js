@@ -138,7 +138,23 @@ export class GameDataSourceStatic extends IGameDataSource {
     };
 
     if (this.shouldLog) {
+      const gameIdFreq = this.games.reduce(
+        (acc, game) => ({
+          ...acc,
+          [game.id]: (acc[game.id] ?? 0) + 1,
+        }),
+        {}
+      );
+      const warningDuplicateIds = Object.entries(gameIdFreq)
+        .filter(([_, freq]) => freq > 1)
+        .map(([id]) => id);
+
+      const gameIds = this.games.map(game => game.id);
+      const hasDuplicateIds = new Set(gameIds).size !== gameIds.length;
+
       this.log("findMany", {
+        hasDuplicateIds,
+        warningDuplicateIds,
         //
         input,
         games: this.games,

@@ -98,208 +98,236 @@
           super();
         }
         async findMany(input) {
-          const response = await fetch("https://dev-web-sda.ws.asu.edu/feeds/json/node/special_events");
+          const response = await fetch(
+            "https://dev-web-sda.ws.asu.edu/feeds/json/node/special_events"
+          );
           const data = await response.json();
           const items = Array.isArray(data) ? data : [data];
           const games = items.map(itemToGame);
-          const dataSource = new GameDataSourceStatic({ games, shouldLog: true });
+          const dataSource = new GameDataSourceStatic({
+            games,
+            shouldLog: true,
+          });
           return dataSource.findMany(input);
         }
       }
       const props = {
-        // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4801-4633&t=LF0II0k8pEHIoz43-0
-        // gameDataSource: {
-        //   type: "mock",
-        //   timeout: 400,
-        // },
+        title: "Upcoming games",
+        subtitle: null,
+        is_sport_type: "0",
+        gameDataSourceLoader: {},
+        sponsorBlock: [
+          {
+            logo: "https://web-sda.ddev.site:8443//sites/default/files/2024-07/Group%20%282%29.png",
+            text: "Presented by:",
+            url: "https://ford.com",
+            name: "Ford",
+          },
+        ],
+        sports: [
+          {
+            id: "all",
+            active: true,
+            name: "All",
+            icon: {
+              icon_name: "rotate",
+              style: "fa-fas",
+              settings:
+                'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+            },
+            position: 1,
+            footerButtons: [
+              {
+                href: "https://web-sda.ddev.site:8443/sports/schedule",
+                label: "Full schedule",
+                class: "btn-default btn-gold btn",
+                target: "_self",
+              },
+              {
+                href: "https://web-sda.ddev.site:8443/shop",
+                label: "Gear up for the game",
+                class: "btn-default btn-maroon btn",
+                target: "_self",
+              },
+            ],
+            footerLinks: [
+              {
+                label: "See Past Game Scores",
+                href: "http://example.com",
+              },
+            ],
+          },
+          {
+            id: "football",
+            active: false,
+            name: "Football",
+            icon: {
+              icon_name: "football",
+              style: "fa-fas",
+              settings:
+                'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+            },
+            position: 2,
+            footerButtons: [
+              {
+                href: "http://example.com",
+                label: "Full schedule",
+                class: "btn-default btn-gold btn",
+                target: "_self",
+              },
+              {
+                href: "http://example.com",
+                label: "Gear up for the game",
+                class: "btn-default btn-maroon btn",
+                target: "_self",
+              },
+            ],
+            footerLinks: [
+              {
+                label: "See Past Game Scores",
+                href: "http://example.com",
+              },
+            ],
+          },
+          {
+            id: "m-basketball",
+            active: false,
+            name: "M. Basketball",
+            icon: {
+              svg_icon:
+                "https://web-sda.ddev.site:8443//sites/default/files/2024-07/basketball_7.svg",
+              svg_icon_name: "basketball_7.svg",
+            },
+            position: 3,
+            footerButtons: [
+              {
+                href: "http://example.com",
+                label: "Full schedule",
+                class: "btn-default btn-gold btn",
+                target: "_self",
+              },
+              {
+                href: "http://example.com",
+                label: "Gear up for the game",
+                class: "btn-default btn-maroon btn",
+                target: "_self",
+              },
+            ],
+            footerLinks: [
+              {
+                label: "See Past Game Scores",
+                href: "http://example.com",
+              },
+            ],
+          },
+          {
+            id: "m-ice-hockey",
+            active: false,
+            name: "M. Ice Hockey",
+            icon: {
+              svg_icon:
+                "https://web-sda.ddev.site:8443//sites/default/files/2024-07/ice-hockey_1.svg",
+              svg_icon_name: "ice-hockey_1.svg",
+            },
+            position: 4,
+            footerButtons: [
+              {
+                href: "http://example.com",
+                label: "Full schedule",
+                class: "btn-default btn-gold btn",
+                target: "_self",
+              },
+              {
+                href: "http://example.com",
+                label: "Gear up for the game",
+                class: "btn-default btn-maroon btn",
+                target: "_self",
+              },
+            ],
+            footerLinks: [
+              {
+                label: "See Past Game Scores",
+                href: "http://example.com",
+              },
+            ],
+          },
+          {
+            id: "baseball",
+            active: false,
+            name: "Baseball",
+            icon: {
+              icon_name: "baseball-bat-ball",
+              style: "fa-fas",
+              settings:
+                'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+            },
+            position: 5,
+            footerButtons: [
+              {
+                href: "http://example.com",
+                label: "Full schedule",
+                class: "btn-default btn-gold btn",
+                target: "_self",
+              },
+              {
+                href: "http://example.com",
+                label: "Gear up for the game",
+                class: "btn-default btn-maroon btn",
+                target: "_self",
+              },
+            ],
+            footerLinks: [
+              {
+                label: "See Past Game Scores",
+                href: "http://example.com",
+              },
+            ],
+          },
+        ],
+        configLayout: {
+          includeInputSportType: true,
+        },
+        configInputs: {
+          sportTypeSelect: {
+            label: "Sport Type",
+            placeholder: "Select one",
+            options: [],
+          },
+        },
+        configOverlap: "sport-tabs-with-hero",
+        darkMode: true,
+        emptyStateMessage: "No upcoming games",
+        gameTable: {
+          configLayout: {
+            includeCellDate: true,
+            includeCellSportName: true,
+            includeCellVersus: true,
+            includeCellTitle: true,
+            includeCellTickets: true,
+          },
+          cellsConfig: {
+            titleCell: {
+              subtitleFontWeight: "bold",
+            },
+          },
+        },
         gameDataSource: {
           type: "custom",
           gameDataSource: new CustomGameDataSource(),
         },
-        // gameDataSource: {
-        //   type: "asu-events",
-        //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-        //   timeout: 800,
-        // },
-        // variant: "hero",
-        variant: "default",
-        // configOverlap: "sport-tabs-with-hero",
-        title: "Upcoming Games",
-        // subtitle:
-        //   "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        subtitleLinks: [
-          // {
-          //   label: "See a list of free sporting events",
-          //   href: "#",
-          //   color: "muted",
-          // },
-        ],
-        // darkMode: true,
-        darkMode: false,
-        emptyStateMessage: "No games found",
-        gameDataSourceLoader: {
-          limit: 20,
-        },
-        configLayout: {
-          includeInputSearch: true,
-          includeInputSportType: false,
-          includeInputHomeOrAwaySelect: false,
-          includeInputVenueSelect: false,
-          includeInputSortBySelect: false,
-          includeSportsTabs: false,
-          includeLoadMore: true,
-          includeSportTypeCheckboxList: false,
-          includeInputEventTypeSelect: true,
-          includeMaxAdmissionCostSelect: false,
-          includeAdmissionCostSelect: true,
-        },
         configGameTableForm: {
           title: "Filter your results",
         },
-        configInputs: {
-          searchInput: {
-            label: "Search tickets",
-            placeholder: "Sun Devils vs. BYU, Season Tickets, Rose Bowl",
-          },
-          sportTypeSelect: {
-            label: "Sport Type",
-            placeholder: "Select one",
-          },
-          homeOrAwaySelect: {
-            label: "Home or away",
-            placeholder: "Select one",
-          },
-          venueSelect: {
-            label: "Venue",
-            placeholder: "Select one",
-          },
-          sortBySelect: {
-            label: "Sort By:",
-            placeholder: "Select one",
-          },
-          sportTypeCheckboxList: {
-            label: "Sport Type",
-          },
-          eventTypeSelect: {
-            label: "Event Type",
-            placeholder: "Select one",
-            options: [
-              {
-                label: "Game",
-                id: "game",
-                value: "game",
-              },
-              {
-                label: "Practice",
-                id: "practice",
-                value: "practice",
-              },
-              {
-                label: "Scrimmage",
-                id: "scrimmage",
-                value: "scrimmage",
-              },
-            ],
-          },
-          admissionCostSelect: {
-            label: "Cost of admission",
-            placeholder: "Select one",
-            options: [
-              {
-                label: "Free",
-                id: "free",
-                value: "free",
-                active: true,
-              },
-              {
-                label: "Price Varies",
-                id: "price_varies",
-                value: "price_varies",
-              },
-            ],
-          },
-        },
-        gameTable: {
-          mobileRowVariant: "divided", // or "bordered",
-          configLayout: {
-            includeCellDate: true,
-            includeCellSportName: false,
-            includeCellVersus: false,
-            includeCellTitle: true,
-            includeCellTickets: true,
-          },
-          configCells: {
-            cellTitle: {
-              // subtitleFontWeight: "bold",
-              includeSubtitleChip: true,
-            },
-          },
-        },
-        sports: [
-          {
-            name: "All Sports",
-            icon: "fas fa-sync-alt",
-            active: true,
-            position: 1,
-            id: "all",
-          },
-          {
-            name: "Football",
-            icon: "fas fa-football-ball",
-            position: 2,
-            id: "football",
-          },
-          {
-            name: "M. Basketball",
-            icon: "fas fa-basketball-ball",
-            position: 3,
-            id: "basketball",
-          },
-          {
-            name: "Hockey",
-            icon: "fas fa-hockey-puck",
-            position: 4,
-            id: "hockey",
-          },
-          {
-            name: "Baseball",
-            icon: "fas fa-baseball-ball",
-            position: 5,
-            id: "baseball",
-          },
-          {
-            name: "W. Basketball",
-            icon: "fas fa-basketball-ball",
-            id: "w-basketball",
-          },
-          {
-            name: "Softball",
-            icon: "fas fa-futbol",
-            id: "softball",
-          },
-          {
-            name: "Soccer",
-            icon: "fas fa-baseball-ball",
-            id: "soccer",
-          },
-          {
-            name: "Swimming",
-            icon: "fas fa-swimmer",
-            id: "swimming",
-          },
-          {
-            name: "Golf",
-            icon: "fas fa-golf-ball",
-            id: "golf",
-          },
-        ],
+        variant: "hero",
       };
+
 
       initGameTableSection({
         targetSelector: "#section-container",
         props,
         renderWithinChildWhiteList: [".contextual"],
       });
+
     </script>
   </body>
 </html>

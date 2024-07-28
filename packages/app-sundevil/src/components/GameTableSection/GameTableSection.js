@@ -44,6 +44,13 @@ const GameTableRoot = styled.div`
   width: 100%;
 `;
 
+const ensureObject = obj => {
+  if (typeof obj === "object" && obj !== null && !Array.isArray(obj)) {
+    return obj;
+  }
+  return {};
+};
+
 const GameTableSectionInner = ({ ...props }) => {
   const configGameTableForm = props.configGameTableForm ?? {};
 
@@ -51,13 +58,13 @@ const GameTableSectionInner = ({ ...props }) => {
 
   /** @type {import("./config-layout").ConfigLayout} */
   const configLayout = deepMergeLeft(
-    props.configLayout ?? {},
+    ensureObject(props.configLayout),
     defaultConfigLayout
   );
 
   /** @type {import("./config-inputs").ConfigInputs} */
   const configInputs = deepMergeLeft(
-    props.configInputs ?? {},
+    ensureObject(props.configInputs),
     defaultConfigInputs
   );
 
@@ -166,12 +173,8 @@ const GameTableSectionInner = ({ ...props }) => {
     }
   };
 
-  const gameTableKey = gameDataSourceLoader.rows
-    .map(row => (typeof row === "object" && row && "id" in row ? row?.id : ""))
-    .join(",");
-
   const renderGameTable = ({ className = "" } = {}) => (
-    <GameTableRoot className={className} key={gameTableKey}>
+    <GameTableRoot className={className}>
       <GameTable
         {...props}
         {...props.gameTable}

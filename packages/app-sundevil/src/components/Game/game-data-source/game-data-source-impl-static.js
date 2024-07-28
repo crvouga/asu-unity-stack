@@ -95,6 +95,7 @@ export class GameDataSourceStatic extends IGameDataSource {
         if (this.shouldLog) {
           filterLog.push({
             game,
+            input,
             matched,
             matchedSportId,
             matchedGameType,

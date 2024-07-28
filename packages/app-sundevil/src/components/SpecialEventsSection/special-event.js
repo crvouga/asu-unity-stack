@@ -20,7 +20,6 @@ export const specialEventPropTypes = PropsTypes.shape({
   imageSrc: PropsTypes.string,
   imageAlt: PropsTypes.string,
   sportName: PropsTypes.string,
-  sportIcon: PropsTypes.string,
   sportIcon: iconPropType,
   title: PropsTypes.string,
   subtitles: PropsTypes.arrayOf(PropsTypes.string),

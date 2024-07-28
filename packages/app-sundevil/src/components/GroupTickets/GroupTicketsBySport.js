@@ -4,10 +4,10 @@ import React from "react";
 import { SectionHeader } from "../SectionHeader";
 import { SingleCard } from "./singleCard";
 
-export const GroupTicketsBySport = ({ sportsGroupCard, title }) => {
+export const GroupTicketsBySport = ({ sportsGroupCard, title, subtitle }) => {
   return (
     <>
-      <SectionHeader title={title} />
+      <SectionHeader title={title} subtitle={subtitle} />
       <div className="container">
         <div className="row w-100">
           {sportsGroupCard.map(card => {
@@ -32,4 +32,5 @@ GroupTicketsBySport.propTypes = {
     })
   ),
   title: PropTypes.string,
+  subtitle: PropTypes.string,
 };

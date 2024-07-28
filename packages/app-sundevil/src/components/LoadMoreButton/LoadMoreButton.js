@@ -18,7 +18,7 @@ const Root = styled.button`
 
 const Icon = styled.i``;
 
-export const LoadMoreButton = ({ label, loading, loadingLabel, onClick }) => {
+export const LoadMoreButton = ({ label, loading, placeholder, onClick }) => {
   return (
     <Root
       type="button"
@@ -28,7 +28,7 @@ export const LoadMoreButton = ({ label, loading, loadingLabel, onClick }) => {
       disabled={loading}
     >
       {loading ? (
-        loadingLabel ?? "Loading..."
+        placeholder ?? "Loading..."
       ) : (
         <>
           {label ?? "Load More"}

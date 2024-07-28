@@ -94,12 +94,18 @@ const toIconProps = icon => {
 
 const isValidIcon = icon => toIconProps(icon) !== null;
 
+export const SUN_DEVILS_ICON_CLASS_NAME = "sun-devils-icon";
+
 /** @type {(props: Record<string, unknown>, icon: unknown) => Record<string, unknown>} */
 export const mergeIconProps = (props, icon) => {
   const iconProps = toIconProps(icon);
   const propsNew = {
     ...props,
-    className: [props?.className, iconProps?.className]
+    className: [
+      props?.className,
+      iconProps?.className,
+      SUN_DEVILS_ICON_CLASS_NAME,
+    ]
       .filter(Boolean)
       .join(" "),
 

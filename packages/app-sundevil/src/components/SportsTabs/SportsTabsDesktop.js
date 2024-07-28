@@ -7,7 +7,7 @@ import { APP_CONFIG } from "../../config";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { DropDown, DropDownSurface } from "../DropDown";
 import { DropDownChevron } from "../DropDown/DropDownChevron";
-import { Icon } from "../Icon_";
+import { Icon, SUN_DEVILS_ICON_CLASS_NAME } from "../Icon_";
 import { Skeleton } from "../Skeleton";
 import { sportsTabSkeletonData } from "./sports-tab-skeleton-data";
 import { basePropTypes } from "./sports-tabs";
@@ -40,7 +40,7 @@ const StyledSportsTab = styled(SportsTab)`
     if (darkMode && !active) {
       return `
       &:hover {
-        i, span {
+        i, span, svg, ${SUN_DEVILS_ICON_CLASS_NAME} {
             color: #fdc627 !important;
         }
       }

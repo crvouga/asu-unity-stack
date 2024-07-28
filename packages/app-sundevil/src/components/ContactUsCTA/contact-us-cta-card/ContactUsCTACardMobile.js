@@ -21,7 +21,7 @@ const BackgroundImage = styled.img`
   position: absolute;
   top: 0;
   left: 0;
-  z-index: -1;
+  z-index: 0;
 `;
 
 const Content = styled.div`
@@ -35,6 +35,7 @@ const Content = styled.div`
   padding: 3rem;
   gap: 16px;
   padding-top: ${IMAGE_HEIGHT * 0.8}px;
+  z-index: 1;
 `;
 
 const Title = styled.p`

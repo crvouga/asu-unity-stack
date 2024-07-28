@@ -7,7 +7,7 @@ import { APP_CONFIG } from "../../config";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useElementContentDimensions } from "../../utils/use-element-position";
-import { findManyInputPropTypes } from "../Game/game-data-source";
+import { ALL_SPORT_ID, findManyInputPropTypes } from "../Game/game-data-source";
 import {
   buildGameDataSource,
   gameDataSourcePropTypes,
@@ -64,12 +64,23 @@ const GameTableSectionInner = ({ ...props }) => {
   const gameSearchForm = useGameSearchForm({
     enableUrlState: configGameTableForm?.enableUrlState ?? false,
     gameType: props?.tabs?.find(tab => tab?.active)?.gameType ?? "all",
-    sportId: props?.sports?.find(sport => sport?.active)?.id ?? "all",
+    sportId: props?.sports?.find(sport => sport?.active)?.id ?? ALL_SPORT_ID,
+    admissionCost:
+      configInputs.admissionCostSelect?.options?.find(option => option.active)
+        ?.value ?? null,
+    eventType:
+      configInputs.eventTypeSelect?.options?.find(option => option.active)
+        ?.value ?? null,
+    maxAdmissionCost: Number(
+      configInputs.maxAdmissionCostSelect?.options?.find(
+        option => option.active
+      )?.value ?? null
+    ),
   });
 
   useUrlSportId(urlSportId => {
     if (props.disableUrlSportId) return;
-    gameSearchForm.update({ sportId: urlSportId ?? "all" });
+    gameSearchForm.update({ sportId: urlSportId ?? ALL_SPORT_ID });
   });
 
   const gameDataSourceLoader = useGameDataSourceLoader({

@@ -10,21 +10,31 @@ const isEqual = (keyFn, a, b) => {
   return keyFn(a) === keyFn(b);
 };
 
-const ALL_SPORT_ID = "all";
+export const ALL_SPORT_ID = "all";
 
 export class GameDataSourceStatic extends IGameDataSource {
   /**
    * @param {{games: import("../game").Game[]}} input
    */
-  constructor({ games }) {
+  constructor({ games, shouldLog }) {
     super();
     this.games = games;
+    this.shouldLog = shouldLog;
+  }
+
+  log() {
+    if (this.shouldLog) {
+      // eslint-disable-next-line no-console, prefer-rest-params
+      console.log("GameDataSourceStatic", ...arguments);
+    }
   }
 
   /**
    * @type {import("./game-data-source").IGameDataSource['findMany']}
    */
   async findMany(input) {
+    this.log("findMany input", input);
+
     const isAllSportId = isEqual(stringToSportId, ALL_SPORT_ID, input?.sportId);
 
     const filtered = matchSort({
@@ -58,7 +68,8 @@ export class GameDataSourceStatic extends IGameDataSource {
             : true;
 
         const matchedAdmissionCost =
-          typeof input?.admissionCost === "string"
+          typeof input?.admissionCost === "string" &&
+          String(input?.admissionCost).length > 0
             ? isEqual(cleanString, game?.admissionCost, input?.admissionCost)
             : true;
 
@@ -99,12 +110,16 @@ export class GameDataSourceStatic extends IGameDataSource {
     const limit = input?.limit ?? Infinity;
     const sliced = sorted.slice(offset, offset + limit);
 
-    return {
+    const output = {
       limit: input?.limit ?? Infinity,
       offset: input?.offset ?? 0,
       rows: sliced,
       total: filtered.length,
     };
+
+    this.log("findMany - output", { output, sliced, sorted, filtered });
+
+    return output;
   }
 }
 

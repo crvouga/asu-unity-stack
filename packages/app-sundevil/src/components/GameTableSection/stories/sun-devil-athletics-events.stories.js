@@ -126,6 +126,7 @@ SunDevilAthleticsEvents.args = {
           label: "Free",
           id: "free",
           value: "free",
+          active: true,
         },
         {
           label: "Price Varies",

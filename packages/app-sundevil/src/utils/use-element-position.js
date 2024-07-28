@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 export const useElementPosition = ref => {
   const [position, setPosition] = useState({
@@ -8,32 +8,24 @@ export const useElementPosition = ref => {
     bottom: 0,
   });
 
-  // eslint-disable-next-line consistent-return
-  useEffect(() => {
+  const handlePosition = useCallback(() => {
     if (ref.current) {
-      const handlePosition = () => {
-        const { left, top, right, bottom } =
-          ref.current.getBoundingClientRect();
-
-        setPosition({
-          left,
-          top,
-          right,
-          bottom,
-        });
-      };
-
-      handlePosition();
-
-      window.addEventListener("resize", handlePosition);
-      window.addEventListener("scroll", handlePosition);
-
-      return () => {
-        window.removeEventListener("resize", handlePosition);
-        window.removeEventListener("scroll", handlePosition);
-      };
+      const { left, top, right, bottom } = ref.current.getBoundingClientRect();
+      setPosition({ left, top, right, bottom });
     }
   }, [ref]);
+
+  useEffect(() => {
+    handlePosition();
+
+    window.addEventListener("resize", handlePosition);
+    window.addEventListener("scroll", handlePosition);
+
+    return () => {
+      window.removeEventListener("resize", handlePosition);
+      window.removeEventListener("scroll", handlePosition);
+    };
+  }, [handlePosition]);
 
   return position;
 };
@@ -46,46 +38,48 @@ export const useElementContentPosition = ref => {
     bottom: 0,
   });
 
-  useEffect(() => {
+  const handlePosition = useCallback(() => {
     if (ref.current) {
-      const handlePosition = () => {
-        const elementRect = ref.current.getBoundingClientRect();
-        const parentRect = ref.current.offsetParent.getBoundingClientRect();
-
-        const paddingLeft = parseInt(
-          window.getComputedStyle(ref.current).paddingLeft,
-          10
-        );
-        const paddingRight = parseInt(
-          window.getComputedStyle(ref.current).paddingRight,
-          10
-        );
-
-        const leftContent = elementRect.left - parentRect.left + paddingLeft;
-        const rightContent = elementRect.right - parentRect.left - paddingRight;
-        const topContent = elementRect.top - parentRect.top;
-        const bottomContent = elementRect.bottom - parentRect.top;
-
-        setPosition({
-          left: leftContent,
-          top: topContent,
-          right: rightContent,
-          bottom: bottomContent,
-        });
+      const elementRect = ref.current.getBoundingClientRect();
+      const parentRect = ref.current.offsetParent?.getBoundingClientRect() ?? {
+        left: 0,
+        top: 0,
       };
 
-      handlePosition();
+      const paddingLeft = parseInt(
+        window.getComputedStyle(ref.current).paddingLeft,
+        10
+      );
+      const paddingRight = parseInt(
+        window.getComputedStyle(ref.current).paddingRight,
+        10
+      );
 
-      window.addEventListener("resize", handlePosition);
-      window.addEventListener("scroll", handlePosition);
+      const leftContent = elementRect.left - parentRect.left + paddingLeft;
+      const rightContent = elementRect.right - parentRect.left - paddingRight;
+      const topContent = elementRect.top - parentRect.top;
+      const bottomContent = elementRect.bottom - parentRect.top;
 
-      return () => {
-        window.removeEventListener("resize", handlePosition);
-        window.removeEventListener("scroll", handlePosition);
-      };
+      setPosition({
+        left: leftContent,
+        top: topContent,
+        right: rightContent,
+        bottom: bottomContent,
+      });
     }
-    return () => {};
   }, [ref]);
+
+  useEffect(() => {
+    handlePosition();
+
+    window.addEventListener("resize", handlePosition);
+    window.addEventListener("scroll", handlePosition);
+
+    return () => {
+      window.removeEventListener("resize", handlePosition);
+      window.removeEventListener("scroll", handlePosition);
+    };
+  }, [handlePosition]);
 
   return position;
 };
@@ -93,28 +87,24 @@ export const useElementContentPosition = ref => {
 export const useElementDimensions = ref => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  // eslint-disable-next-line consistent-return
-  useEffect(() => {
+  const handleDimensions = useCallback(() => {
     if (ref.current) {
-      const handleDimensions = () => {
-        const { width, height } = ref?.current?.getBoundingClientRect?.() ?? {
-          width: 0,
-          height: 0,
-        };
-        setDimensions({ width, height });
-      };
-
-      handleDimensions();
-
-      window.addEventListener("resize", handleDimensions);
-      window.addEventListener("scroll", handleDimensions);
-
-      return () => {
-        window.removeEventListener("resize", handleDimensions);
-        window.removeEventListener("scroll", handleDimensions);
-      };
+      const { width, height } = ref.current.getBoundingClientRect();
+      setDimensions({ width, height });
     }
   }, [ref]);
+
+  useEffect(() => {
+    handleDimensions();
+
+    window.addEventListener("resize", handleDimensions);
+    window.addEventListener("scroll", handleDimensions);
+
+    return () => {
+      window.removeEventListener("resize", handleDimensions);
+      window.removeEventListener("scroll", handleDimensions);
+    };
+  }, [handleDimensions]);
 
   return dimensions;
 };
@@ -122,48 +112,45 @@ export const useElementDimensions = ref => {
 export const useElementContentDimensions = ref => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  // eslint-disable-next-line consistent-return
-  useEffect(() => {
+  const handleDimensions = useCallback(() => {
     if (ref.current) {
-      const handleDimensions = () => {
-        const { width, height } = ref?.current?.getBoundingClientRect?.() ?? {
-          width: 0,
-          height: 0,
-        };
+      const { width, height } = ref.current.getBoundingClientRect();
 
-        const paddingLeft = parseInt(
-          window.getComputedStyle(ref.current).paddingLeft,
-          10
-        );
-        const paddingRight = parseInt(
-          window.getComputedStyle(ref.current).paddingRight,
-          10
-        );
-        const paddingTop = parseInt(
-          window.getComputedStyle(ref.current).paddingTop,
-          10
-        );
-        const paddingBottom = parseInt(
-          window.getComputedStyle(ref.current).paddingBottom,
-          10
-        );
-        setDimensions({
-          width: width - paddingLeft - paddingRight,
-          height: height - paddingTop - paddingBottom,
-        });
-      };
+      const paddingLeft = parseInt(
+        window.getComputedStyle(ref.current).paddingLeft,
+        10
+      );
+      const paddingRight = parseInt(
+        window.getComputedStyle(ref.current).paddingRight,
+        10
+      );
+      const paddingTop = parseInt(
+        window.getComputedStyle(ref.current).paddingTop,
+        10
+      );
+      const paddingBottom = parseInt(
+        window.getComputedStyle(ref.current).paddingBottom,
+        10
+      );
 
-      handleDimensions();
-
-      window.addEventListener("resize", handleDimensions);
-      window.addEventListener("scroll", handleDimensions);
-
-      return () => {
-        window.removeEventListener("resize", handleDimensions);
-        window.removeEventListener("scroll", handleDimensions);
-      };
+      setDimensions({
+        width: width - paddingLeft - paddingRight,
+        height: height - paddingTop - paddingBottom,
+      });
     }
   }, [ref]);
+
+  useEffect(() => {
+    handleDimensions();
+
+    window.addEventListener("resize", handleDimensions);
+    window.addEventListener("scroll", handleDimensions);
+
+    return () => {
+      window.removeEventListener("resize", handleDimensions);
+      window.removeEventListener("scroll", handleDimensions);
+    };
+  }, [handleDimensions]);
 
   return dimensions;
 };

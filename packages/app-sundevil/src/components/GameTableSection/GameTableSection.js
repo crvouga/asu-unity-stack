@@ -166,8 +166,12 @@ const GameTableSectionInner = ({ ...props }) => {
     }
   };
 
+  const gameTableKey = gameDataSourceLoader.rows
+    .map(row => (typeof row === "object" && row && "id" in row ? row?.id : ""))
+    .join(",");
+
   const renderGameTable = ({ className = "" } = {}) => (
-    <GameTableRoot className={className}>
+    <GameTableRoot className={className} key={gameTableKey}>
       <GameTable
         {...props}
         {...props.gameTable}
@@ -176,8 +180,11 @@ const GameTableSectionInner = ({ ...props }) => {
         games={gameDataSourceLoader.rows}
         skeletonRowCount={gameDataSourceLoader.limit}
         skeleton={gameDataSourceLoader.isLoadingInitial}
-        setFirstRowRef={ref => {
-          gameTableFirstRowRef.current = ref;
+        setFirstRowRef={node => {
+          if (gameTableFirstRowRef.current) {
+            gameTableFirstRowRef.current = null;
+          }
+          gameTableFirstRowRef.current = node;
         }}
       />
 

@@ -25,18 +25,18 @@ const Template = args => (
 
 export const GetTickets = Template.bind({});
 GetTickets.args = {
-  // gameDataSource: {
-  //   type: "mock",
-  // },
+  gameDataSource: {
+    type: "mock",
+  },
   // gameDataSource: {
   //   type: "custom",
   //   gameDataSource: new CustomGameDataSource(),
   // },
-  gameDataSource: {
-    type: "asu-events",
-    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-    timeout: 800,
-  },
+  // gameDataSource: {
+  //   type: "asu-events",
+  //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+  //   timeout: 800,
+  // },
   variant: "hero",
   configOverlap: "sport-tabs-with-hero",
   title: "Get Tickets",
@@ -171,18 +171,18 @@ GetTickets.args = {
 
 export const GetTicketsUpcomingGames = Template.bind({});
 GetTicketsUpcomingGames.args = {
-  // gameDataSource: {
-  //   type: "mock",
-  // },
+  gameDataSource: {
+    type: "mock",
+  },
   // gameDataSource: {
   //   type: "custom",
   //   gameDataSource: new CustomGameDataSource(),
   // },
-  gameDataSource: {
-    type: "asu-events",
-    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-    timeout: 800,
-  },
+  // gameDataSource: {
+  //   type: "asu-events",
+  //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+  //   timeout: 800,
+  // },
   // variant: "hero",
   // configOverlap: "sport-tabs-with-hero",
   title: "Upcoming Games",
@@ -322,10 +322,13 @@ GetTicketsOverlapFirstRow.args = {
   //   gameDataSource: new CustomGameDataSource(),
   // },
   gameDataSource: {
-    type: "asu-events",
-    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-    timeout: 800,
+    type: "mock",
   },
+  // gameDataSource: {
+  //   type: "asu-events",
+  //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+  //   timeout: 800,
+  // },
   variant: "hero",
   configOverlap: "first-row-with-hero",
   title: "Get Tickets",
@@ -437,15 +440,18 @@ GetTicketsOverlapWithSportTabs.args = {
   //   type: "custom",
   //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
   // },
+  gameDataSource: {
+    type: "mock",
+  },
   // gameDataSource: {
   //   type: "custom",
   //   gameDataSource: new CustomGameDataSource(),
   // },
-  gameDataSource: {
-    type: "asu-events",
-    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-    timeout: 800,
-  },
+  // gameDataSource: {
+  //   type: "asu-events",
+  //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+  //   timeout: 800,
+  // },
   variant: "hero",
   configOverlap: "sport-tabs-with-hero",
   title: "Get Tickets",
@@ -546,6 +552,9 @@ GetTicketsOverlapWithSportTabs.args = {
 
 export const GetTicketsLight = Template.bind({});
 GetTicketsLight.args = {
+  gameDataSource: {
+    type: "mock",
+  },
   // gameDataSource: {
   //   type: "custom",
   //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
@@ -554,11 +563,11 @@ GetTicketsLight.args = {
   //   type: "custom",
   //   gameDataSource: new CustomGameDataSource(),
   // },
-  gameDataSource: {
-    type: "asu-events",
-    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-    timeout: 800,
-  },
+  // gameDataSource: {
+  //   type: "asu-events",
+  //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+  //   timeout: 800,
+  // },
   variant: "hero",
   configOverlap: "sport-tabs-with-hero",
   title: "Get Tickets",

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { GameTableForm } from "./GameSearchForm";
+import { GameSearchForm } from "./GameSearchForm";
 
 const Root = styled.div`
   display: flex;
@@ -33,7 +33,7 @@ export const GameSearchFormSidebar = ({
         configGameTableForm?.title.length > 0 && (
           <Title>{configGameTableForm?.title}</Title>
         )}
-      <GameTableForm
+      <GameSearchForm
         style={{
           gap: "2.5rem",
         }}
@@ -48,7 +48,7 @@ export const GameSearchFormSidebar = ({
 };
 
 GameSearchFormSidebar.propTypes = {
-  ...GameTableForm.propTypes,
+  ...GameSearchForm.propTypes,
   configGameTableForm: PropTypes.shape({
     title: PropTypes.string,
   }),

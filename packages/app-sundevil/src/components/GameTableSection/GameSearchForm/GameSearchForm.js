@@ -5,16 +5,21 @@ import styled from "styled-components";
 
 import { APP_CONFIG } from "../../../config";
 import { useBreakpoint } from "../../../utils/use-breakpoint";
-import { CheckboxList } from "../../CheckboxList/CheckboxList";
-import { GameDataSourceSortBy } from "../../Game/game-data-source";
-import { useGameVenuesLoader } from "../../Game/use-game-venues-loader";
-import { Icon } from "../../Icon_";
-import { Select } from "../../Select/Select";
 import { sportPropTypes } from "../../SportsTabs/sports-tabs";
-import { TextField } from "../../TextField/TextField";
 import { configInputsPropTypes } from "../config-inputs";
 import { configLayoutPropTypes, shouldIncludeForm } from "../config-layout";
+import { GameSearchFormContext } from "./GameSearchFormContext";
+import { InputAdmissionCost } from "./Inputs/InputAdmissionCost";
+import { InputEventTypeSelect } from "./Inputs/InputEventTypeSelect";
+import { InputGameTypeSelect } from "./Inputs/InputGameTypeSelect";
+import { InputMaxAdmissionCost } from "./Inputs/InputMaxAdmissionCost";
+import { InputSearch } from "./Inputs/InputSearch";
+import { InputSortBySelect } from "./Inputs/InputSortBySelect";
+import { InputSportTypeCheckboxList } from "./Inputs/InputSportTypeCheckboxList";
+import { InputSportTypeSelect } from "./Inputs/InputSportTypeSelect";
+import { InputVenueSelect } from "./Inputs/InputVenueSelect";
 import { gameSearchFormPropTypes } from "./use-game-search-form";
+import { useGameSearchFormInputOptions } from "./use-game-search-form-input-options";
 
 const Root = styled.div`
   display: flex;
@@ -25,19 +30,8 @@ const Root = styled.div`
   flex-wrap: wrap;
 `;
 
-/**
- * @type {React.FC<{
- * style?: React.CSSProperties;
- * gameSearchForm: import("./use-game-search-form").GameSearchForm;
- * configLayout: import("../config-layout").ConfigLayout;
- * configInputs: import("../config-inputs").ConfigInputs;
- * sports: import("../../SportsTabs/sports-tabs").Sport[];
- * className?: string;
- * darkMode?: boolean;
- * orientation?: "horizontal" | "vertical";
- * }>}
- */
-export const GameTableForm = ({
+/** @type {React.FC<Props>} */
+export const GameSearchForm = ({
   style,
   gameSearchForm,
   configLayout,
@@ -47,7 +41,7 @@ export const GameTableForm = ({
   darkMode,
   orientation,
 }) => {
-  const { allVenues } = useGameVenuesLoader();
+  const gameSearchFormInputOptions = useGameSearchFormInputOptions();
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
 
@@ -62,236 +56,61 @@ export const GameTableForm = ({
   }
 
   return (
-    <Root
-      style={style}
-      className={className}
-      // @ts-ignore
-      orientation={orientation}
+    <GameSearchFormContext.Provider
+      value={{
+        configInputs,
+        configLayout,
+        darkMode,
+        gameSearchForm,
+        gameSearchFormInputOptions,
+        sports,
+        orientation,
+        inputStyle,
+        isDesktop,
+        isMobile,
+      }}
     >
-      {configLayout.includeInputSearch && (
-        <TextField
-          darkMode={darkMode}
-          style={{ ...inputStyle, flex: 2 }}
-          label={configInputs?.searchInput?.label ?? ""}
-          placeholder={configInputs?.searchInput?.placeholder ?? ""}
-          value={gameSearchForm.searchQuery}
-          onChange={gameSearchForm.setSearchQuery}
-          renderEndIcon={({ style: iconStyle }) => (
-            <i
-              style={iconStyle}
-              className="fa fas fa-solid fa-magnifying-glass"
-            />
-          )}
-        />
-      )}
+      <Root
+        style={style}
+        className={className}
+        // @ts-ignore
+        orientation={orientation}
+      >
+        <InputSearch />
 
-      {configLayout.includeInputSportType && (
-        <Select
-          darkMode={darkMode}
-          style={inputStyle}
-          label={configInputs.sportTypeSelect?.label ?? ""}
-          placeholder={configInputs.sportTypeSelect?.placeholder ?? ""}
-          onChange={option =>
-            gameSearchForm.update({
-              sportId: option.id === gameSearchForm.sportId ? null : option.id,
-            })
-          }
-          options={sports.map(sport => ({
-            label: sport.name,
-            id: sport.id,
-            active: sport.active,
-            renderStart: ({ style: iconStyle }) => (
-              <Icon icon={sport.icon} style={iconStyle} />
-            ),
-          }))}
-        />
-      )}
+        <InputSportTypeSelect />
 
-      {configLayout.includeSportTypeCheckboxList && isDesktop && (
-        <CheckboxList
-          style={inputStyle}
-          label={configInputs.sportTypeCheckboxList?.label ?? ""}
-          onChange={option =>
-            gameSearchForm.update({
-              sportId: option.id === gameSearchForm.sportId ? null : option.id,
-            })
-          }
-          options={sports.map(sport => ({
-            label: sport.name,
-            id: sport.id,
-            active: sport.active,
-            renderStart: ({ style: iconStyle }) => (
-              <Icon icon={sport.icon} style={iconStyle} />
-            ),
-          }))}
-        />
-      )}
+        <InputSportTypeCheckboxList />
 
-      {configLayout.includeInputVenueSelect && (
-        <Select
-          darkMode={darkMode}
-          style={inputStyle}
-          label={configInputs.venueSelect?.label ?? ""}
-          placeholder={configInputs.venueSelect?.placeholder ?? ""}
-          onChange={option =>
-            gameSearchForm.update({
-              venueId: option.id === gameSearchForm.venueId ? null : option.id,
-            })
-          }
-          options={allVenues.map(venueOption => ({
-            label: venueOption,
-            id: venueOption,
-            active: venueOption === gameSearchForm.venueId,
-          }))}
-        />
-      )}
+        <InputVenueSelect />
 
-      {configLayout.includeInputHomeOrAwaySelect && (
-        <Select
-          darkMode={darkMode}
-          style={inputStyle}
-          label={configInputs.homeOrAwaySelect?.label ?? ""}
-          placeholder={configInputs.homeOrAwaySelect?.placeholder ?? ""}
-          onChange={option =>
-            gameSearchForm.update({
-              gameType:
-                option.id === gameSearchForm.gameType ? null : option.id,
-            })
-          }
-          options={[
-            {
-              id: "home",
-              label: "Home",
-              active: gameSearchForm.gameType === "home",
-            },
-            {
-              id: "away",
-              label: "Away",
-              active: gameSearchForm.gameType === "away",
-            },
-          ]}
-        />
-      )}
+        <InputGameTypeSelect />
 
-      {configLayout.includeInputEventTypeSelect &&
-        Array.isArray(configInputs.eventTypeSelect?.options) &&
-        configInputs.eventTypeSelect?.options.length > 0 && (
-          <Select
-            darkMode={darkMode}
-            style={inputStyle}
-            label={configInputs.eventTypeSelect?.label ?? ""}
-            placeholder={configInputs.eventTypeSelect?.placeholder ?? ""}
-            onChange={option =>
-              gameSearchForm.update({
-                eventType:
-                  option.value === gameSearchForm.eventType
-                    ? null
-                    : option.value,
-              })
-            }
-            options={configInputs.eventTypeSelect?.options.map(option => ({
-              active: option.value === gameSearchForm.eventType,
-              id: option.id,
-              label: option.label,
-              value: option.value,
-            }))}
-          />
-        )}
+        <InputEventTypeSelect />
 
-      {configLayout.includeMaxAdmissionCostSelect &&
-        Array.isArray(configInputs.maxAdmissionCostSelect?.options) &&
-        configInputs.maxAdmissionCostSelect?.options.length > 0 && (
-          <Select
-            darkMode={darkMode}
-            style={inputStyle}
-            label={configInputs.maxAdmissionCostSelect?.label ?? ""}
-            placeholder={configInputs.maxAdmissionCostSelect?.placeholder ?? ""}
-            onChange={option =>
-              gameSearchForm.update({
-                maxAdmissionCost:
-                  option.value === gameSearchForm.maxAdmissionCost
-                    ? null
-                    : option.value,
-              })
-            }
-            options={configInputs.maxAdmissionCostSelect?.options.map(
-              option => ({
-                active: option.value === gameSearchForm.maxAdmissionCost,
-                id: option.id,
-                label: option.label,
-                value: option.value,
-              })
-            )}
-          />
-        )}
+        <InputMaxAdmissionCost />
 
-      {configLayout.includeAdmissionCostSelect &&
-        Array.isArray(configInputs.admissionCostSelect?.options) &&
-        configInputs.admissionCostSelect?.options.length > 0 && (
-          <Select
-            darkMode={darkMode}
-            style={inputStyle}
-            label={configInputs.admissionCostSelect?.label ?? ""}
-            placeholder={configInputs.admissionCostSelect?.placeholder ?? ""}
-            onChange={option =>
-              gameSearchForm.update({
-                admissionCost:
-                  option.value === gameSearchForm.admissionCost
-                    ? null
-                    : option.value,
-              })
-            }
-            options={configInputs.admissionCostSelect?.options.map(option => ({
-              active: option.value === gameSearchForm.admissionCost,
-              id: option.id,
-              label: option.label,
-              value: option.value,
-            }))}
-          />
-        )}
+        <InputAdmissionCost />
 
-      {configLayout.includeInputSortBySelect && (
-        <Select
-          darkMode={darkMode}
-          style={inputStyle}
-          label={configInputs.sortBySelect?.label ?? ""}
-          placeholder={configInputs.sortBySelect?.placeholder ?? ""}
-          onChange={option => {
-            gameSearchForm.update({
-              sortBy:
-                option.payload.sortBy === gameSearchForm.sortBy
-                  ? GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST
-                  : option.payload.sortBy,
-            });
-          }}
-          options={[
-            {
-              id: "date",
-              label: "Date",
-              active:
-                gameSearchForm.sortBy ===
-                GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST,
-              payload: {
-                sortBy: GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST,
-              },
-            },
-            {
-              id: "event-name",
-              label: "Event Name",
-              active:
-                gameSearchForm.sortBy === GameDataSourceSortBy.TITLE_A_TO_Z,
-              payload: {
-                sortBy: GameDataSourceSortBy.TITLE_A_TO_Z,
-              },
-            },
-          ]}
-        />
-      )}
-    </Root>
+        <InputSortBySelect />
+      </Root>
+    </GameSearchFormContext.Provider>
   );
 };
 
-GameTableForm.propTypes = {
+/**
+ * @typedef {{
+ * style?: React.CSSProperties;
+ * gameSearchForm: import("./use-game-search-form").GameSearchForm;
+ * configLayout: import("../config-layout").ConfigLayout;
+ * configInputs: import("../config-inputs").ConfigInputs;
+ * sports: import("../../SportsTabs/sports-tabs").Sport[];
+ * className?: string;
+ * darkMode?: boolean;
+ * orientation?: "horizontal" | "vertical";
+ * }} Props
+ */
+GameSearchForm.propTypes = {
   // @ts-ignore
   gameSearchForm: gameSearchFormPropTypes,
   // @ts-ignore

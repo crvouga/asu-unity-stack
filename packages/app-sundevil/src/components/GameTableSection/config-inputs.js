@@ -18,42 +18,26 @@ const selectOptionPropTypes = PropTypes.shape({
  * }} SelectOption
  */
 
+const configInputPropTypes = PropTypes.shape({
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+});
+
+const configSelectInputPropTypes = PropTypes.shape({
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  options: PropTypes.arrayOf(selectOptionPropTypes),
+});
+
 export const configInputsPropTypes = PropTypes.shape({
-  searchInput: PropTypes.shape({
-    label: PropTypes.string,
-    placeholder: PropTypes.string,
-  }),
-  sportTypeSelect: PropTypes.shape({
-    label: PropTypes.string,
-    placeholder: PropTypes.string,
-  }),
-  homeOrAwaySelect: PropTypes.shape({
-    label: PropTypes.string,
-    placeholder: PropTypes.string,
-  }),
-  venueSelect: PropTypes.shape({
-    label: PropTypes.string,
-    placeholder: PropTypes.string,
-  }),
-  sortBySelect: PropTypes.shape({
-    label: PropTypes.string,
-    placeholder: PropTypes.string,
-  }),
-  eventTypeSelect: PropTypes.shape({
-    label: PropTypes.string,
-    placeholder: PropTypes.string,
-    options: selectOptionPropTypes,
-  }),
-  maxAdmissionCostSelect: PropTypes.shape({
-    label: PropTypes.string,
-    placeholder: PropTypes.string,
-    options: selectOptionPropTypes,
-  }),
-  admissionCostSelect: PropTypes.shape({
-    label: PropTypes.string,
-    placeholder: PropTypes.string,
-    options: selectOptionPropTypes,
-  }),
+  searchInput: configInputPropTypes,
+  sportTypeSelect: configSelectInputPropTypes,
+  homeOrAwaySelect: configSelectInputPropTypes,
+  venueSelect: configSelectInputPropTypes,
+  sortBySelect: configSelectInputPropTypes,
+  eventTypeSelect: configSelectInputPropTypes,
+  maxAdmissionCostSelect: configSelectInputPropTypes,
+  admissionCostSelect: configSelectInputPropTypes,
 });
 
 /**
@@ -70,11 +54,11 @@ export const configInputsPropTypes = PropTypes.shape({
 /**
  * @typedef {{
  *  searchInput?: ConfigInput,
- *  sportTypeSelect?: ConfigInput,
- *  homeOrAwaySelect?: ConfigInput,
- *  venueSelect?: ConfigInput,
- *  sortBySelect?: ConfigInput,
- *  sportTypeCheckboxList?: ConfigInput,
+ *  sportTypeSelect?: ConfigSelectInput,
+ *  homeOrAwaySelect?: ConfigSelectInput,
+ *  venueSelect?: ConfigSelectInput,
+ *  sortBySelect?: ConfigSelectInput,
+ *  sportTypeCheckboxList?: ConfigSelectInput,
  *  eventTypeSelect?: ConfigSelectInput,
  *  maxAdmissionCostSelect?: ConfigSelectInput,
  *  admissionCostSelect?: ConfigSelectInput,

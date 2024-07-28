@@ -5,6 +5,7 @@ import { gamePropTypes } from "../game";
 import { IGameDataSource } from "./game-data-source";
 import { GameDataSourceAsuEvents } from "./game-data-source-impl-asu-events";
 import { GameDataSourceMock } from "./game-data-source-impl-mock";
+import { GameDataSourceSpecialEvents } from "./game-data-source-impl-special-events";
 import { GameDataSourceStatic } from "./game-data-source-impl-static";
 
 export const gameDataSourcePropTypes = PropTypes.oneOfType([
@@ -18,6 +19,11 @@ export const gameDataSourcePropTypes = PropTypes.oneOfType([
   PropTypes.shape({
     type: PropTypes.oneOf(["asu-events"]),
     url: PropTypes.string,
+  }),
+  PropTypes.shape({
+    type: PropTypes.oneOf(["special-events"]),
+    url: PropTypes.string,
+    shouldLog: PropTypes.bool,
   }),
   PropTypes.shape({
     type: PropTypes.oneOf(["custom"]),
@@ -35,6 +41,9 @@ export const buildGameDataSource = input => {
     }
     case "asu-events": {
       return new GameDataSourceAsuEvents(input);
+    }
+    case "special-events": {
+      return new GameDataSourceSpecialEvents(input);
     }
     case "custom": {
       return input.gameDataSource;

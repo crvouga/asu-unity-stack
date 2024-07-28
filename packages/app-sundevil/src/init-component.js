@@ -16,6 +16,7 @@ import {
   SunDevilsHeader,
   VideoSection,
 } from "./components";
+import { CardSection } from "./components/CardSection";
 import { ContactUsCTA } from "./components/ContactUsCTA";
 import { GroupTickets } from "./components/GroupTickets";
 import { EnhanceExperence } from "./components/GroupTickets/enhanceExperence";
@@ -335,5 +336,12 @@ export const initContactUsCTA = input => {
   RenderReact({
     ...input,
     component: ContactUsCTA,
+  });
+};
+
+export const initCardSection = input => {
+  RenderReact({
+    ...input,
+    component: CardSection,
   });
 };

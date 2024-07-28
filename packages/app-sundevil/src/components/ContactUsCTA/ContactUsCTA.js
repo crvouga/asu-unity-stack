@@ -35,7 +35,7 @@ export const ContactUsCTA = ({
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const hideFooter = Boolean(isMobile && hideFooterMobile);
   return (
-    <Root>
+    <Root className="container">
       <ContactUsCTACard
         body={body}
         buttons={buttons}

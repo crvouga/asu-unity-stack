@@ -16,6 +16,7 @@ export const GroupTicketBenefit = ({ ticketHolderBenefits, title }) => {
                 <h4 className="text-center">{benefit.title}</h4>
                 <p
                   className="text-muted-foreground"
+                  // eslint-disable-next-line react/no-danger
                   dangerouslySetInnerHTML={{ __html: benefit.description }}
                 />
               </div>

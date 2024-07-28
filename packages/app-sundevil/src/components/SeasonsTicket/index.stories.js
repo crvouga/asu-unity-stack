@@ -149,7 +149,7 @@ export const Default = Template.bind({
 });
 
 export default {
-  title: "Seasons Ticket",
+  title: "Season Tickets / Seasons Ticket",
   component: args => <SeasonsTicket {...args} />,
   parameters: {
     docs: {

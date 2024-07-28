@@ -56,16 +56,66 @@
     </div>
     <div style="width: 100%; height: 500px"></div>
     <script>
+      const itemToGame = item => {
+        return {
+          id: item.id,
+          gameType: item.game_type, // "home" | "away" | null
+          ticketLink: item.ticketing_rsvp_url,
+          ticketText: item.ticketing_rsvp_txt || "Buy Tickets",
+          titleHref: item.field_cta,
+          title: item.title,
+          dateDay: new Date(parseInt(item.start_date) * 1000)
+            .getDate()
+            .toString(),
+          dateMonth: new Date(parseInt(item.start_date) * 1000).toLocaleString(
+            "default",
+            { month: "short" }
+          ),
+          sportId: stringToSportId(item.sport_tag),
+          sportName: item.sport_tag,
+          startDate: new Date(parseInt(item.start_date) * 1000).toISOString(),
+          homeTeamName: "Sun Devils",
+          homeTeamLogoSrc:
+            "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
+          awayTeamName: "Sun Devils",
+          awayTeamLogoSrc:
+            "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
+          time: new Date(parseInt(item.start_date) * 1000).toLocaleTimeString(
+            [],
+            {
+              hour: "2-digit",
+              minute: "2-digit",
+            }
+          ),
+          venue: item.locations,
+          subtitleChip: "Gameday",
+          admissionCost: item.field_cost_value,
+          eventType: item.game_type,
+        };
+      };
+      class CustomGameDataSource extends IGameDataSource {
+        constructor() {
+          super();
+        }
+        async findMany(input) {
+          const response = await fetch("https://dev-web-sda.ws.asu.edu/feeds/json/node/special_events");
+          const data = await response.json();
+          const items = Array.isArray(data) ? data : [data];
+          const games = items.map(itemToGame);
+          const dataSource = new GameDataSourceStatic({ games, shouldLog: true });
+          return dataSource.findMany(input);
+        }
+      }
       const props = {
         // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4801-4633&t=LF0II0k8pEHIoz43-0
-        gameDataSource: {
-          type: "mock",
-          timeout: 400,
-        },
         // gameDataSource: {
-        //   type: "custom",
-        //   gameDataSource: new CustomGameDataSource(),
+        //   type: "mock",
+        //   timeout: 400,
         // },
+        gameDataSource: {
+          type: "custom",
+          gameDataSource: new CustomGameDataSource(),
+        },
         // gameDataSource: {
         //   type: "asu-events",
         //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
@@ -159,6 +209,7 @@
                 label: "Free",
                 id: "free",
                 value: "free",
+                active: true,
               },
               {
                 label: "Price Varies",
@@ -167,42 +218,6 @@
               },
             ],
           },
-          // maxAdmissionCostSelect: {
-          //   label: "Cost of admission",
-          //   placeholder: "Select one",
-          //   options: [
-          //     {
-          //       label: "Free",
-          //       id: "free",
-          //       value: 0,
-          //     },
-          //     {
-          //       label: "$10",
-          //       id: "10",
-          //       value: 10,
-          //     },
-          //     {
-          //       label: "$20",
-          //       id: "20",
-          //       value: 20,
-          //     },
-          //     {
-          //       label: "$30",
-          //       id: "30",
-          //       value: 30,
-          //     },
-          //     {
-          //       label: "$40",
-          //       id: "40",
-          //       value: 40,
-          //     },
-          //     {
-          //       label: "$50",
-          //       id: "50",
-          //       value: 50,
-          //     },
-          //   ],
-          // },
         },
         gameTable: {
           mobileRowVariant: "divided", // or "bordered",
@@ -279,7 +294,6 @@
           },
         ],
       };
-
 
       initGameTableSection({
         targetSelector: "#section-container",

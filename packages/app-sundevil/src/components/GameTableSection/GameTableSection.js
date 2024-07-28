@@ -7,7 +7,7 @@ import { APP_CONFIG } from "../../config";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useElementContentDimensions } from "../../utils/use-element-position";
-import { ALL_SPORT_ID, findManyInputPropTypes } from "../Game/game-data-source";
+import { ALL_ID, findManyInputPropTypes } from "../Game/game-data-source";
 import {
   buildGameDataSource,
   gameDataSourcePropTypes,
@@ -64,7 +64,7 @@ const GameTableSectionInner = ({ ...props }) => {
   const gameSearchForm = useGameSearchForm({
     enableUrlState: configGameTableForm?.enableUrlState ?? false,
     gameType: props?.tabs?.find(tab => tab?.active)?.gameType ?? "all",
-    sportId: props?.sports?.find(sport => sport?.active)?.id ?? ALL_SPORT_ID,
+    sportId: props?.sports?.find(sport => sport?.active)?.id ?? ALL_ID,
     admissionCost:
       configInputs.admissionCostSelect?.options?.find(option => option.active)
         ?.value ?? null,
@@ -80,7 +80,7 @@ const GameTableSectionInner = ({ ...props }) => {
 
   useUrlSportId(urlSportId => {
     if (props.disableUrlSportId) return;
-    gameSearchForm.update({ sportId: urlSportId ?? ALL_SPORT_ID });
+    gameSearchForm.update({ sportId: urlSportId ?? ALL_ID });
   });
 
   const gameDataSourceLoader = useGameDataSourceLoader({

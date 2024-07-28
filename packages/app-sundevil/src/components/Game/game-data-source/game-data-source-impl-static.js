@@ -10,7 +10,8 @@ const isEqual = (keyFn, a, b) => {
   return keyFn(a) === keyFn(b);
 };
 
-export const ALL_SPORT_ID = "all";
+export const ALL_ID = "all";
+const isAllId = id => isEqual(cleanString, ALL_ID, id);
 
 export class GameDataSourceStatic extends IGameDataSource {
   /**
@@ -33,9 +34,7 @@ export class GameDataSourceStatic extends IGameDataSource {
    * @type {import("./game-data-source").IGameDataSource['findMany']}
    */
   async findMany(input) {
-    this.log("findMany input", input);
-
-    const isAllSportId = isEqual(stringToSportId, ALL_SPORT_ID, input?.sportId);
+    const filterLog = [];
 
     const filtered = matchSort({
       searchQuery: input?.searchQuery ?? "",
@@ -47,17 +46,21 @@ export class GameDataSourceStatic extends IGameDataSource {
         const matchedSportId =
           typeof input?.sportId === "string" &&
           input?.sportId?.length > 0 &&
-          !isAllSportId
+          !isAllId(input?.sportId)
             ? isEqual(stringToSportId, game?.sportId, input?.sportId)
             : true;
 
         const matchedGameType =
-          typeof input?.gameType === "string" && input?.gameType.length > 0
+          typeof input?.gameType === "string" &&
+          input?.gameType.length > 0 &&
+          !isAllId(input?.gameType)
             ? isEqual(cleanString, game?.gameType, input?.gameType)
             : true;
 
         const matchedVenueId =
-          typeof input?.venueId === "string" && input?.venueId.length > 0
+          typeof input?.venueId === "string" &&
+          input?.venueId.length > 0 &&
+          !isAllId(input?.venueId)
             ? isEqual(cleanString, game?.venue, input?.venueId)
             : true;
 
@@ -69,12 +72,15 @@ export class GameDataSourceStatic extends IGameDataSource {
 
         const matchedAdmissionCost =
           typeof input?.admissionCost === "string" &&
-          String(input?.admissionCost).length > 0
+          String(input?.admissionCost).length > 0 &&
+          !isAllId(input?.admissionCost)
             ? isEqual(cleanString, game?.admissionCost, input?.admissionCost)
             : true;
 
         const matchedEventType =
-          typeof input?.eventType === "string" && input?.eventType.length > 0
+          typeof input?.eventType === "string" &&
+          input?.eventType.length > 0 &&
+          !isAllId(input?.eventType)
             ? isEqual(cleanString, game?.eventType, input?.eventType)
             : true;
 
@@ -85,6 +91,19 @@ export class GameDataSourceStatic extends IGameDataSource {
           matchedMaxAdmissionCost &&
           matchedEventType &&
           matchedAdmissionCost;
+
+        if (this.shouldLog) {
+          filterLog.push({
+            game,
+            matched,
+            matchedSportId,
+            matchedGameType,
+            matchedVenueId,
+            matchedMaxAdmissionCost,
+            matchedAdmissionCost,
+            matchedEventType,
+          });
+        }
 
         return matched;
       }),
@@ -117,7 +136,25 @@ export class GameDataSourceStatic extends IGameDataSource {
       total: filtered.length,
     };
 
-    this.log("findMany - output", { output, sliced, sorted, filtered });
+    if (this.shouldLog) {
+      this.log("findMany", {
+        //
+        input,
+        games: this.games,
+        //
+        filtered,
+        filterLog,
+        filterLogHits: filterLog.filter(f => f.matched),
+        filterLogMisses: filterLog.filter(f => !f.matched),
+        //
+        sliced,
+        //
+        sorted,
+        GameDataSourceSortBy,
+        //
+        output,
+      });
+    }
 
     return output;
   }

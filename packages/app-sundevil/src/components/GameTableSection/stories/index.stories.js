@@ -209,7 +209,7 @@ SingleSport.args = {
   },
   loadMore: {
     label: "Load More",
-    loadingLabel: "Loading...",
+    placeholder: "Loading...",
   },
 
   // footerButtons: [

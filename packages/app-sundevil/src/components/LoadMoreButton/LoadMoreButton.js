@@ -41,7 +41,7 @@ export const LoadMoreButton = ({ label, loading, loadingLabel, onClick }) => {
 
 LoadMoreButton.propTypes = {
   label: PropTypes.string,
-  loadingLabel: PropTypes.string,
+  placeholder: PropTypes.string,
   loading: PropTypes.bool,
   onClick: PropTypes.func,
 };

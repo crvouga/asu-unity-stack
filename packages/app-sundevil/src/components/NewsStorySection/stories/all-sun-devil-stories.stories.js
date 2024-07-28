@@ -78,7 +78,7 @@ const props = {
   },
   loadMore: {
     label: "Load More",
-    loadingLabel: "Loading...",
+    placeholder: "Loading...",
   },
   sports: [
     {

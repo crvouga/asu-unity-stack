@@ -1,19 +1,18 @@
-import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { Button } from "../../../../../components-core/src/components/Button";
+import { Button } from "../../../../components-core/src/components/Button";
 import { cardPropTypes } from "./card-prop";
 
 const Root = styled.div`
   display: flex;
   flex-wrap: nowrap;
-  flex-direction: ${({ reverse }) => (reverse ? "row-reverse" : "row")};
+  flex-direction: column;
   border: 1px solid #e0e0e0;
 `;
 
 const Image = styled.img`
-  width: 50%;
+  width: 100%;
   height: auto;
   flex: 1;
   object-fit: cover;
@@ -25,11 +24,11 @@ const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
-  padding: 3rem;
+  padding: 1.5rem;
 `;
 
 const Title = styled.p`
-  font-size: 32px;
+  font-size: 24px;
   margin: 0;
   padding: 0;
   font-weight: bold;
@@ -52,9 +51,9 @@ const ButtonRoot = styled.div`
  * https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=5684-858&t=9IhK8Vy1oD4OHGJB-0
  * @type {React.FC<Props>}
  */
-export const CardDesktop = ({ card, reverse }) => {
+export const CardMobile = ({ card }) => {
   return (
-    <Root reverse={reverse}>
+    <Root>
       <Image src={card.imageSrc} alt={card.imageAlt} />
       <Content>
         <Title>{card.title}</Title>
@@ -64,6 +63,7 @@ export const CardDesktop = ({ card, reverse }) => {
             <Button
               {...button}
               key={button.label ?? button.href}
+              size={button.size ?? "small"}
               color={button.color ?? "maroon"}
             />
           ))}
@@ -76,11 +76,9 @@ export const CardDesktop = ({ card, reverse }) => {
 /**
  * @typedef {{
  * card: import("./card-prop").CardProp
- * reverse?: boolean
  * }} Props
  */
 
-CardDesktop.propTypes = {
+CardMobile.propTypes = {
   card: cardPropTypes.isRequired,
-  reverse: PropTypes.bool,
 };

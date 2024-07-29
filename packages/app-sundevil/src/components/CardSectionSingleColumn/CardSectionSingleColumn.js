@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { Card } from "./Card/Card";
-import { cardPropTypes } from "./Card/card-prop";
+import { Card } from "../Card/Card";
+import { cardPropTypes } from "../Card/card-prop";
 
 const Root = styled.div`
   display: flex;
@@ -32,7 +32,7 @@ export const CardSectionSingleColumn = ({ cards, alternate = true }) => {
 
 /**
  * @typedef {{
- * cards?: import("./Card/card-prop").CardProp[]
+ * cards?: import("../Card/card-prop").CardProp[]
  * alternate?: boolean
  * }} Props
  */

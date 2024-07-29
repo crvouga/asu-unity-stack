@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import { buttonPropTypes } from "../../Button/button-prop";
+import { buttonPropTypes } from "../Button/button-prop";
 
 // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=5684-466&t=Lk449MGqW6u2RcCn-0
 /**
@@ -9,7 +9,7 @@ import { buttonPropTypes } from "../../Button/button-prop";
  *  imageAlt: string
  *  title: string
  *  description: string
- *  buttons: import("../../Button/button-prop").ButtonProp[]
+ *  buttons?: import("../../Button/button-prop").ButtonProp[]
  * }} CardProp
  */
 

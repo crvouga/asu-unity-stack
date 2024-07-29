@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import { APP_CONFIG } from "../../../config";
-import { useBreakpoint } from "../../../utils/use-breakpoint";
+import { APP_CONFIG } from "../../config";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import { cardPropTypes } from "./card-prop";
 import { CardDesktop } from "./CardDesktop";
 import { CardMobile } from "./CardMobile";

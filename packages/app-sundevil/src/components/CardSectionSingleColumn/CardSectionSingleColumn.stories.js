@@ -53,7 +53,7 @@ const props = {
 };
 
 export default {
-  title: "CardSection / CardSection",
+  title: "Card Section / Card Section Single Column",
   component: args => <CardSectionSingleColumn {...args} />,
   parameters: {
     docs: {

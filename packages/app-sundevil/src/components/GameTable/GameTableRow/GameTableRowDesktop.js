@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { Button } from "../../../../../components-core/src/components/Button";
 import { deepMergeLeft } from "../../../utils/deep-merge-left";
+import { idToLabel } from "../../../utils/id-to-label";
 import { useElementSetMaxDimensions } from "../../../utils/use-element-set-max-dimensions";
 import { Skeleton } from "../../Skeleton";
 import { SportIcon } from "../../SportIcon";
@@ -172,7 +173,7 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
                   <SportIcon
                     sportName={stringToClosestSportName(game?.sportId)}
                   />
-                  <p className="m-0">{game?.sportId}</p>
+                  <p className="m-0">{idToLabel(game?.sportId)}</p>
                 </>
               )}
             </CellSportName>

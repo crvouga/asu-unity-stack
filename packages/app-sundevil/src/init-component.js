@@ -16,6 +16,7 @@ import {
   SunDevilsHeader,
   VideoSection,
 } from "./components";
+import { CardSectionSingleColumn } from "./components/CardSectionSingleColumn";
 import { ContactUsCTA } from "./components/ContactUsCTA";
 import { GroupTickets } from "./components/GroupTickets";
 import { EnhanceExperence } from "./components/GroupTickets/enhanceExperence";
@@ -26,7 +27,6 @@ import { SeasonsTicket } from "./components/SeasonsTicket";
 import { GroupTicketBenefit } from "./components/SeasonsTicket/GroupTicketBenifit";
 import { GroupTicketMiniPlans } from "./components/SeasonsTicket/GroupTicketMiniPlans";
 import { TicketsFooter } from "./components/SeasonsTicket/ticketsFooter";
-import { SingleColumnCardSection } from "./components/SingleColumnCardSection";
 
 /**
  * @description
@@ -340,10 +340,10 @@ export const initContactUsCTA = input => {
   });
 };
 
-export const initSingleColumnCardSection = input => {
+export const initCardSectionSingleColumn = input => {
   RenderReact({
     ...input,
-    component: SingleColumnCardSection,
+    component: CardSectionSingleColumn,
   });
 };
 

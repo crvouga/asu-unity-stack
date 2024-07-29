@@ -16,7 +16,7 @@ const Root = styled.div`
  * https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=5684-858&t=9IhK8Vy1oD4OHGJB-0
  * @type {React.FC<Props>}
  */
-export const SingleColumnCardSection = ({ cards, alternate = true }) => {
+export const CardSectionSingleColumn = ({ cards, alternate = true }) => {
   return (
     <Root className="container">
       {cards?.map((card, index) => (
@@ -37,7 +37,7 @@ export const SingleColumnCardSection = ({ cards, alternate = true }) => {
  * }} Props
  */
 
-SingleColumnCardSection.propTypes = {
+CardSectionSingleColumn.propTypes = {
   // @ts-ignore
   cards: PropTypes.arrayOf(cardPropTypes),
   alternate: PropTypes.bool,

@@ -1,10 +1,10 @@
 // @ts-check
 import React from "react";
 
-import { SingleColumnCardSection } from "./SingleColumnCardSection";
+import { CardSectionSingleColumn } from "./CardSectionSingleColumn";
 
 // Mock up https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4448-12633&t=vfGSyD27IARFA28D-0
-/** @type {import("./SingleColumnCardSection").Props} */
+/** @type {import("./CardSectionSingleColumn").Props} */
 const props = {
   cards: [
     {
@@ -54,7 +54,7 @@ const props = {
 
 export default {
   title: "CardSection / CardSection",
-  component: args => <SingleColumnCardSection {...args} />,
+  component: args => <CardSectionSingleColumn {...args} />,
   parameters: {
     docs: {
       description: {
@@ -65,7 +65,7 @@ export default {
 };
 
 const Template = args => {
-  return <SingleColumnCardSection {...args} />;
+  return <CardSectionSingleColumn {...args} />;
 };
 
 export const Default = Template.bind({});

@@ -109,29 +109,21 @@ export const mapSectionHeaderProps = props => {
   return mapPropsSponsorBlock(props);
 };
 
-const SectionHeader = forwardRef(
-  // @ts-ignore
+/**
+ * @type {React.FC<SectionHeaderProps>}
+ */
+export const SectionHeader = forwardRef(
   (
     {
-      // @ts-ignore
       title,
-      // @ts-ignore
       subtitle,
-      // @ts-ignore
       tabs,
-      // @ts-ignore
       sponsorBlock,
-      // @ts-ignore
       social,
-      // @ts-ignore
       onTabItemClick,
-      // @ts-ignore
       darkMode = false,
-      //  @ts-ignore
       subtitleFontWeight = "normal",
-      //  @ts-ignore
       subtitleLinks = [],
-      // @ts-ignore
       style,
     },
     ref
@@ -208,6 +200,7 @@ const SectionHeader = forwardRef(
                   {tabs && tabs.length > 0 && (
                     <Tabs
                       tabs={tabs}
+                      // @ts-ignore
                       onTabItemClick={onTabItemClick}
                       stretch={isMobile}
                     />
@@ -236,6 +229,21 @@ const SectionHeader = forwardRef(
   }
 );
 
+/**
+ * @typedef {Object} SectionHeaderProps
+ * @property {string} [title]
+ * @property {string} [subtitle]
+ * @property {string} [subtitleFontWeight]
+ * @property {Array<{ label: string, color: string; href: string, fontWeight: string; url: string }>} [subtitleLinks]
+ * @property {Array<{ id: string, label: string, active: boolean }>} [tabs]
+ * @property {Array<import("./JoinTheConversation").SocialProp>} [social]
+ * @property {{name: string, logo: string, text: string, url: string}} [sponsorBlock]
+ * @property {boolean} [darkMode]
+ * @property {Function} [onTabItemClick]
+ * @property {React.CSSProperties} [style]
+ *
+ */
+
 const sponsorBlockPropTypes = PropTypes.shape({
   name: PropTypes.string,
   logo: PropTypes.string,
@@ -243,8 +251,7 @@ const sponsorBlockPropTypes = PropTypes.shape({
   url: PropTypes.string,
 });
 
-SectionHeader.propTypes = {
-  // @ts-ignore
+export const sectionHeaderPropTypes = PropTypes.shape({
   title: PropTypes.string,
   subtitle: PropTypes.string,
   subtitleFontWeight: PropTypes.string,
@@ -253,6 +260,8 @@ SectionHeader.propTypes = {
       label: PropTypes.string,
       href: PropTypes.string,
       fontWeight: PropTypes.string,
+      url: PropTypes.string,
+      color: PropTypes.string,
     })
   ),
   sponsorBlock: sponsorBlockPropTypes,
@@ -268,7 +277,9 @@ SectionHeader.propTypes = {
   darkMode: PropTypes.bool,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
-};
+});
 
-export { SectionHeader };
-//
+// @ts-ignore
+SectionHeader.propTypes = {
+  ...sectionHeaderPropTypes,
+};

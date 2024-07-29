@@ -28,6 +28,15 @@ const SocialMediaIconsRoot = styled.div`
   gap: 16px;
 `;
 
+/**
+ * @typedef {{
+ * label: string,
+ * url: string,
+ * faClassName: string,
+ * icon: import("../Icon_").Icon
+ * }} SocialProp
+ */
+
 export const socialPropType = PropTypes.shape({
   label: PropTypes.string,
   url: PropTypes.string.isRequired,

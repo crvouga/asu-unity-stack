@@ -3,6 +3,7 @@ import React from "react";
 
 import { Select, stringsToOptions } from "../../../Select/Select";
 import { useGameSearchFormContext } from "../GameSearchFormContext";
+import { firstNonEmpty } from "./utils";
 
 export const InputVenueSelect = () => {
   const {
@@ -14,10 +15,11 @@ export const InputVenueSelect = () => {
     inputStyle,
   } = useGameSearchFormContext();
 
-  const options =
-    configInputs.venueSelect?.options ??
-    stringsToOptions(gameSearchFormInputOptions.allVenues) ??
-    [];
+  const options = firstNonEmpty(
+    configInputs.venueSelect?.options,
+    stringsToOptions(gameSearchFormInputOptions.allVenues),
+    []
+  );
 
   const optionsWithActive = options.map(option => ({
     ...option,

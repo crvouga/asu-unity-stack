@@ -3,6 +3,7 @@ import React from "react";
 
 import { Select, stringsToOptions } from "../../../Select/Select";
 import { useGameSearchFormContext } from "../GameSearchFormContext";
+import { firstNonEmpty } from "./utils";
 
 export const InputAdmissionCost = () => {
   const {
@@ -14,10 +15,11 @@ export const InputAdmissionCost = () => {
     gameSearchFormInputOptions,
   } = useGameSearchFormContext();
 
-  const options =
-    configInputs.admissionCostSelect?.options ??
-    stringsToOptions(gameSearchFormInputOptions.allAdmissionCost) ??
-    [];
+  const options = firstNonEmpty(
+    configInputs.admissionCostSelect?.options,
+    stringsToOptions(gameSearchFormInputOptions.allAdmissionCost),
+    []
+  );
 
   const optionsWithActive = options.map(option => ({
     ...option,

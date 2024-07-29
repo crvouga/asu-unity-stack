@@ -3,6 +3,7 @@ import React from "react";
 
 import { Select, stringsToOptions } from "../../../Select/Select";
 import { useGameSearchFormContext } from "../GameSearchFormContext";
+import { firstNonEmpty } from "./utils";
 
 const DEFAULT_OPTIONS = [
   {
@@ -27,11 +28,12 @@ export const InputGameTypeSelect = () => {
     gameSearchFormInputOptions,
   } = useGameSearchFormContext();
 
-  const options =
-    configInputs.homeOrAwaySelect?.options ??
-    stringsToOptions(gameSearchFormInputOptions.allGameTypes) ??
-    DEFAULT_OPTIONS ??
-    [];
+  const options = firstNonEmpty(
+    configInputs.homeOrAwaySelect?.options,
+    stringsToOptions(gameSearchFormInputOptions.allGameTypes),
+    DEFAULT_OPTIONS,
+    []
+  );
 
   const optionsWithActive = options.map(option => ({
     ...option,

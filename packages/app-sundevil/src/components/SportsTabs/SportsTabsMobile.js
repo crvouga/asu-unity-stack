@@ -7,7 +7,7 @@ import { DropDownSurface } from "../DropDown/DropDownSurface";
 import { Icon } from "../Icon_";
 import { SelectBase } from "../Select/SelectBase";
 import { Skeleton } from "../Skeleton";
-import { basePropTypes } from "./sports-tabs";
+import { basePropTypes, sortSportTabs } from "./sports-tabs";
 import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 
 /**
@@ -20,13 +20,13 @@ import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
  * @type {React.FC<Props>}
  * */
 export const SportsTabsMobile = ({
-  sports = [],
+  sports: propsSports = [],
   onSportItemClick,
   skeleton,
   variant,
   className,
 }) => {
-  sports?.sort((a, b) => a.position - b.position);
+  const sports = sortSportTabs(propsSports);
   const activeSport = sports.find(sport => Boolean(sport.active));
   if (!activeSport) return null;
 

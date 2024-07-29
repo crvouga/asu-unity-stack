@@ -35,6 +35,26 @@ export const basePropTypes = {
 };
 
 /**
+ * @type {(sportTabs: Sport[]) => Sport[]}
+ */
+export const sortSportTabs = sportTabs => {
+  try {
+    const copied = Array.isArray(sportTabs) ? [...sportTabs] : [];
+
+    copied.sort((a, b) =>
+      String(a?.id ?? "").localeCompare(String(b?.id ?? ""))
+    );
+    copied.sort(
+      (a, b) => (a?.position ?? Infinity) - (b?.position ?? Infinity)
+    );
+
+    return copied;
+  } catch (error) {
+    return sportTabs;
+  }
+};
+
+/**
  * @typedef {import('../SectionFooter/SectionFooter').FooterButton} FooterButton
  */
 

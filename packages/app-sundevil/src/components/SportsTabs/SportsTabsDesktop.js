@@ -10,7 +10,7 @@ import { DropDownChevron } from "../DropDown/DropDownChevron";
 import { Icon, SUN_DEVILS_ICON_CLASS_NAME } from "../Icon_";
 import { Skeleton } from "../Skeleton";
 import { sportsTabSkeletonData } from "./sports-tab-skeleton-data";
-import { basePropTypes } from "./sports-tabs";
+import { basePropTypes, sortSportTabs } from "./sports-tabs";
 import { SportsTab } from "./SportsTab";
 import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 
@@ -54,7 +54,7 @@ const StyledSportsTab = styled(SportsTab)`
  * @type {React.FC<Props>}
  * */
 export const SportsTabsDesktop = ({
-  sports = [],
+  sports: propsSports = [],
   onSportItemClick,
   moreTabOrientation,
   moreTabColor,
@@ -62,7 +62,8 @@ export const SportsTabsDesktop = ({
   darkMode = false,
   className,
 }) => {
-  sports?.sort((a, b) => (a?.position ?? 0) - (b?.position ?? 0));
+  const sports = sortSportTabs(propsSports);
+
   const isTablet = useBreakpoint(APP_CONFIG.breakpointTablet);
   const maxTabCount = isTablet ? 6 : 9;
   // @ts-ignore

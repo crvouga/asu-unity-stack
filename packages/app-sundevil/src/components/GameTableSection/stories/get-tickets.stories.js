@@ -22,17 +22,17 @@ const Template = args => (
   </>
 );
 
-// const gameDateSource = {
-//   type: "special-events",
-// };
-
-const gameDateSource = {
-  type: "mock",
+const gameDataSource = {
+  type: "special-events",
 };
+
+// const gameDataSource = {
+//   type: "mock",
+// };
 
 export const GetTickets = Template.bind({});
 GetTickets.args = {
-  gameDateSource,
+  gameDataSource,
   variant: "hero",
   configOverlap: "sport-tabs-with-hero",
   title: "Get Tickets",
@@ -48,14 +48,18 @@ GetTickets.args = {
   darkMode: true,
   emptyStateMessage: "No games found",
   configLayout: {
+    variant: "default",
     includeInputSearch: true,
     includeInputSportType: true,
     includeInputHomeOrAwaySelect: true,
     includeInputVenueSelect: true,
-    includeInputSortBySelect: true,
     includeSportsTabs: true,
     includeLoadMore: true,
+    includeInputSortBySelect: true,
     includeSportTypeCheckboxList: false,
+    includeInputEventTypeSelect: true,
+    includeMaxAdmissionCostSelect: true,
+    includeAdmissionCostSelect: true,
   },
   configInputs: {
     searchInput: {
@@ -80,6 +84,19 @@ GetTickets.args = {
     },
     sportTypeCheckboxList: {
       label: "Sport Type",
+      placeholder: "Select one",
+    },
+    maxAdmissionCostSelect: {
+      label: "Cost of admission",
+      placeholder: "Select one",
+    },
+    admissionCostSelect: {
+      label: "Cost of admission",
+      placeholder: "Select",
+    },
+    eventTypeSelect: {
+      label: "Event Type",
+      placeholder: "Select one",
     },
   },
   gameTable: {
@@ -167,7 +184,7 @@ GetTickets.args = {
 
 export const GetTicketsUpcomingGames = Template.bind({});
 GetTicketsUpcomingGames.args = {
-  gameDateSource,
+  gameDataSource,
   // gameDataSource: {
   //   type: "mock",
   // },
@@ -310,7 +327,7 @@ GetTicketsUpcomingGames.args = {
 
 export const GetTicketsOverlapFirstRow = Template.bind({});
 GetTicketsOverlapFirstRow.args = {
-  gameDateSource,
+  gameDataSource,
   // gameDataSource: {
   //   type: "custom",
   //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
@@ -434,7 +451,7 @@ GetTicketsOverlapFirstRow.args = {
 
 export const GetTicketsOverlapWithSportTabs = Template.bind({});
 GetTicketsOverlapWithSportTabs.args = {
-  gameDateSource,
+  gameDataSource,
   // gameDataSource: {
   //   type: "custom",
   //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),
@@ -551,7 +568,7 @@ GetTicketsOverlapWithSportTabs.args = {
 
 export const GetTicketsLight = Template.bind({});
 GetTicketsLight.args = {
-  gameDateSource,
+  gameDataSource,
   // gameDataSource: {
   //   type: "mock",
   // },
@@ -683,7 +700,7 @@ GetTicketsLight.args = {
 
 export const GetTicketsLightSidebar = Template.bind({});
 GetTicketsLightSidebar.args = {
-  gameDateSource,
+  gameDataSource,
   // gameDataSource: {
   //   type: "mock",
   // },
@@ -826,7 +843,7 @@ GetTicketsLightSidebar.args = {
 
 export const GetTicketsSportTabsOnly = Template.bind({});
 GetTicketsSportTabsOnly.args = {
-  gameDateSource,
+  gameDataSource,
   // gameDataSource: {
   //   type: "special-events",
   //   // gameDataSource: new GameDataSourceMock({ timeout: 1000 }),

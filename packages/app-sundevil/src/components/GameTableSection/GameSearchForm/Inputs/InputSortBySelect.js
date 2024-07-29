@@ -1,16 +1,36 @@
 // @ts-check
 import React from "react";
 
-import { GameDataSourceSortBy } from "../../../Game/game-data-source";
+import {
+  GameDataSourceSortBy,
+  gameDataSourceSortByToLabel,
+} from "../../../Game/game-data-source";
 import { Select } from "../../../Select/Select";
 import { useGameSearchFormContext } from "../GameSearchFormContext";
+
+export const DEFAULT_OPTIONS = Object.values(GameDataSourceSortBy).map(
+  sortBy => ({
+    id: sortBy,
+    label: gameDataSourceSortByToLabel(sortBy),
+    value: sortBy,
+  })
+);
 
 export const InputSortBySelect = () => {
   const { configInputs, configLayout, gameSearchForm, inputStyle, darkMode } =
     useGameSearchFormContext();
 
+  const options = DEFAULT_OPTIONS;
+
+  const optionsWithActive = options.map(option => ({
+    ...option,
+    active: option.value === gameSearchForm.sortBy,
+  }));
+
   return (
-    configLayout.includeInputSortBySelect && (
+    configLayout.includeInputSortBySelect &&
+    Array.isArray(options) &&
+    options.length > 0 && (
       <Select
         darkMode={darkMode}
         style={inputStyle}
@@ -19,31 +39,10 @@ export const InputSortBySelect = () => {
         onChange={option => {
           gameSearchForm.update({
             sortBy:
-              option.payload.sortBy === gameSearchForm.sortBy
-                ? GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST
-                : option.payload.sortBy,
+              option.value === gameSearchForm.sortBy ? null : option.value,
           });
         }}
-        options={[
-          {
-            id: "date",
-            label: "Date",
-            active:
-              gameSearchForm.sortBy ===
-              GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST,
-            payload: {
-              sortBy: GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST,
-            },
-          },
-          {
-            id: "event-name",
-            label: "Event Name",
-            active: gameSearchForm.sortBy === GameDataSourceSortBy.TITLE_A_TO_Z,
-            payload: {
-              sortBy: GameDataSourceSortBy.TITLE_A_TO_Z,
-            },
-          },
-        ]}
+        options={optionsWithActive}
       />
     )
   );

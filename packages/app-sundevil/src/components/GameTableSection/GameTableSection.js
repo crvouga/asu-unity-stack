@@ -335,6 +335,7 @@ export const GameTableSection = ({
     () => buildGameDataSource(gameDataSourceConfig),
     [gameDataSourceConfig]
   );
+
   return (
     <GameDataSourceProvider gameDataSource={gameDataSource}>
       <GameTableSectionInner {...props} />

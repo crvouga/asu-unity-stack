@@ -1,17 +1,33 @@
 // @ts-check
 import React from "react";
 
-import { Select } from "../../../Select/Select";
+import { Select, stringsToOptions } from "../../../Select/Select";
 import { useGameSearchFormContext } from "../GameSearchFormContext";
 
 export const InputAdmissionCost = () => {
-  const { configInputs, configLayout, gameSearchForm, inputStyle, darkMode } =
-    useGameSearchFormContext();
+  const {
+    configInputs,
+    configLayout,
+    gameSearchForm,
+    inputStyle,
+    darkMode,
+    gameSearchFormInputOptions,
+  } = useGameSearchFormContext();
+
+  const options =
+    configInputs.admissionCostSelect?.options ??
+    stringsToOptions(gameSearchFormInputOptions.allAdmissionCost) ??
+    [];
+
+  const optionsWithActive = options.map(option => ({
+    ...option,
+    active: option.value === gameSearchForm.admissionCost,
+  }));
 
   return (
     configLayout.includeAdmissionCostSelect &&
-    Array.isArray(configInputs.admissionCostSelect?.options) &&
-    configInputs.admissionCostSelect?.options.length > 0 && (
+    Array.isArray(options) &&
+    options.length > 0 && (
       <Select
         darkMode={darkMode}
         style={inputStyle}
@@ -25,12 +41,7 @@ export const InputAdmissionCost = () => {
                 : option.value,
           })
         }
-        options={configInputs.admissionCostSelect?.options.map(option => ({
-          active: option.value === gameSearchForm.admissionCost,
-          id: option.id,
-          label: option.label,
-          value: option.value,
-        }))}
+        options={optionsWithActive}
       />
     )
   );

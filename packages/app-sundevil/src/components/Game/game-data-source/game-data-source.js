@@ -6,6 +6,17 @@ export const GameDataSourceSortBy = {
   TITLE_A_TO_Z: "TITLE_A_TO_Z",
 };
 
+export const gameDataSourceSortByToLabel = sortBy => {
+  switch (sortBy) {
+    case GameDataSourceSortBy.DATE_NEWEST_TO_OLDEST:
+      return "Date";
+    case GameDataSourceSortBy.TITLE_A_TO_Z:
+      return "Event Name";
+    default:
+      return null;
+  }
+};
+
 // @ts-ignore
 window.GameDataSourceSortBy = GameDataSourceSortBy;
 

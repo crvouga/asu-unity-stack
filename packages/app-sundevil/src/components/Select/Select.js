@@ -8,6 +8,7 @@ import { DropDown, DropDownSurface } from "../DropDown";
 import { LabelledInputBase } from "../InputBase/LabelledInputBase";
 import { SelectOption } from "./SelectOption";
 import { SelectOptionEmpty } from "./SelectOptionEmpty";
+import { idToLabel } from "../../utils/id-to-label";
 
 const Button = styled.button`
   border: none !important;
@@ -132,6 +133,19 @@ const optionPropTypes = PropTypes.shape({
   payload: PropTypes.any,
   renderStart: PropTypes.func,
 });
+
+export const stringsToOptions = strings => {
+  if (!Array.isArray(strings)) {
+    return [];
+  }
+
+  return strings.map(str => ({
+    id: str,
+    label: idToLabel(str) ?? str,
+    value: str,
+    active: false,
+  }));
+};
 
 Select.propTypes = {
   label: PropTypes.string.isRequired,

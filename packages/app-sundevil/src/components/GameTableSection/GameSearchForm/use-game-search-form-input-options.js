@@ -8,10 +8,16 @@ const toCleanUniqueStrings = strings => {
     return [];
   }
 
-  return Array.from(new Set(strings))
+  const cleaned = strings
     .filter(str => typeof str === "string")
     .map(str => str.trim())
     .filter(str => str.length > 0);
+
+  const unique = Array.from(new Set(cleaned));
+
+  const sorted = unique.sort();
+
+  return sorted;
 };
 
 /**

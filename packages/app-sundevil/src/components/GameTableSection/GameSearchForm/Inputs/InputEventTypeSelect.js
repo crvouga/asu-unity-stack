@@ -1,17 +1,33 @@
 // @ts-check
 import React from "react";
 
-import { Select } from "../../../Select/Select";
+import { Select, stringsToOptions } from "../../../Select/Select";
 import { useGameSearchFormContext } from "../GameSearchFormContext";
 
 export const InputEventTypeSelect = () => {
-  const { configInputs, configLayout, gameSearchForm, inputStyle, darkMode } =
-    useGameSearchFormContext();
+  const {
+    configInputs,
+    configLayout,
+    gameSearchForm,
+    inputStyle,
+    darkMode,
+    gameSearchFormInputOptions,
+  } = useGameSearchFormContext();
+
+  const options =
+    configInputs.eventTypeSelect?.options ??
+    stringsToOptions(gameSearchFormInputOptions.allEventTypes) ??
+    [];
+
+  const optionsWithActive = options.map(option => ({
+    ...option,
+    active: option.value === gameSearchForm.eventType,
+  }));
 
   return (
     configLayout.includeInputEventTypeSelect &&
-    Array.isArray(configInputs.eventTypeSelect?.options) &&
-    configInputs.eventTypeSelect?.options.length > 0 && (
+    Array.isArray(options) &&
+    options.length > 0 && (
       <Select
         darkMode={darkMode}
         style={inputStyle}
@@ -23,12 +39,7 @@ export const InputEventTypeSelect = () => {
               option.value === gameSearchForm.eventType ? null : option.value,
           })
         }
-        options={configInputs.eventTypeSelect?.options.map(option => ({
-          active: option.value === gameSearchForm.eventType,
-          id: option.id,
-          label: option.label,
-          value: option.value,
-        }))}
+        options={optionsWithActive}
       />
     )
   );

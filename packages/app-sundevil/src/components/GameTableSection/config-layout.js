@@ -42,7 +42,7 @@ export const defaultConfigLayout = {
   includeInputSportType: false,
   includeInputHomeOrAwaySelect: false,
   includeInputVenueSelect: false,
-  includeSportsTabs: true,
+  includeSportsTabs: false,
   includeLoadMore: false,
   includeInputSortBySelect: false,
   includeSportTypeCheckboxList: false,

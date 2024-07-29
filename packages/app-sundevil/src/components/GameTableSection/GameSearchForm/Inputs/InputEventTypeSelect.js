@@ -26,8 +26,7 @@ export const InputEventTypeSelect = () => {
 
   return (
     configLayout.includeInputEventTypeSelect &&
-    Array.isArray(options) &&
-    options.length > 0 && (
+    Array.isArray(options) && (
       <Select
         darkMode={darkMode}
         style={inputStyle}

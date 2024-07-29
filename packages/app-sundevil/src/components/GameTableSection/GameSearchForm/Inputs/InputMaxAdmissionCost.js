@@ -10,8 +10,7 @@ export const InputMaxAdmissionCost = () => {
 
   return (
     configLayout.includeMaxAdmissionCostSelect &&
-    Array.isArray(configInputs.maxAdmissionCostSelect?.options) &&
-    configInputs.maxAdmissionCostSelect?.options.length > 0 && (
+    Array.isArray(configInputs.maxAdmissionCostSelect?.options) && (
       <Select
         darkMode={darkMode}
         style={inputStyle}

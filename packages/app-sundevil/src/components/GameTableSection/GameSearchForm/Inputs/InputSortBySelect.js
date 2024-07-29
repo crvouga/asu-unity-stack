@@ -29,8 +29,7 @@ export const InputSortBySelect = () => {
 
   return (
     configLayout.includeInputSortBySelect &&
-    Array.isArray(options) &&
-    options.length > 0 && (
+    Array.isArray(options) && (
       <Select
         darkMode={darkMode}
         style={inputStyle}

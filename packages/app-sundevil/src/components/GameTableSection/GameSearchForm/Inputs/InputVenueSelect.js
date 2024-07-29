@@ -1,7 +1,7 @@
 // @ts-check
 import React from "react";
 
-import { Select } from "../../../Select/Select";
+import { Select, stringsToOptions } from "../../../Select/Select";
 import { useGameSearchFormContext } from "../GameSearchFormContext";
 
 export const InputVenueSelect = () => {
@@ -14,8 +14,19 @@ export const InputVenueSelect = () => {
     inputStyle,
   } = useGameSearchFormContext();
 
+  const options =
+    configInputs.venueSelect?.options ??
+    stringsToOptions(gameSearchFormInputOptions.allVenues) ??
+    [];
+
+  const optionsWithActive = options.map(option => ({
+    ...option,
+    active: option.value === gameSearchForm.venueId,
+  }));
+
   return (
-    configLayout.includeInputVenueSelect && (
+    configLayout.includeInputVenueSelect &&
+    Array.isArray(options) && (
       <Select
         darkMode={darkMode}
         style={inputStyle}
@@ -26,11 +37,7 @@ export const InputVenueSelect = () => {
             venueId: option.id === gameSearchForm.venueId ? null : option.id,
           })
         }
-        options={gameSearchFormInputOptions.allVenues.map(venueOption => ({
-          label: venueOption,
-          id: venueOption,
-          active: venueOption === gameSearchForm.venueId,
-        }))}
+        options={optionsWithActive}
       />
     )
   );

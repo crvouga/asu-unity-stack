@@ -26,8 +26,7 @@ export const InputAdmissionCost = () => {
 
   return (
     configLayout.includeAdmissionCostSelect &&
-    Array.isArray(options) &&
-    options.length > 0 && (
+    Array.isArray(options) && (
       <Select
         darkMode={darkMode}
         style={inputStyle}

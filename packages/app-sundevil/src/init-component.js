@@ -22,6 +22,7 @@ import { GroupTickets } from "./components/GroupTickets";
 import { EnhanceExperence } from "./components/GroupTickets/enhanceExperence";
 import { GroupTicketsBySport } from "./components/GroupTickets/GroupTicketsBySport";
 import { PreviewSection } from "./components/GroupTickets/PreviewSection";
+import { NonTicketedIntro } from "./components/NonTicketedIntro";
 import { SeasonsTicket } from "./components/SeasonsTicket";
 import { GroupTicketBenefit } from "./components/SeasonsTicket/GroupTicketBenifit";
 import { GroupTicketMiniPlans } from "./components/SeasonsTicket/GroupTicketMiniPlans";
@@ -343,5 +344,12 @@ export const initCardSection = input => {
   RenderReact({
     ...input,
     component: CardSection,
+  });
+};
+
+export const initNonTicketedIntro = input => {
+  RenderReact({
+    ...input,
+    component: NonTicketedIntro,
   });
 };

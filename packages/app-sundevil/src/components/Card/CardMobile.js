@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../components-core/src/components/Button";
+import { Image } from "../Image";
 import { cardPropTypes } from "./card-prop";
 
 const Root = styled.div`
@@ -11,7 +12,7 @@ const Root = styled.div`
   border: 1px solid #e0e0e0;
 `;
 
-const Image = styled.img`
+const StyledImage = styled(Image)`
   width: 100%;
   height: auto;
   flex: 1;
@@ -54,7 +55,7 @@ const ButtonRoot = styled.div`
 export const CardMobile = ({ card }) => {
   return (
     <Root>
-      <Image src={card.imageSrc} alt={card.imageAlt} />
+      <StyledImage src={card.imageSrc} alt={card.imageAlt} />
       <Content>
         <Title>{card.title}</Title>
         <Description dangerouslySetInnerHTML={{ __html: card.description }} />

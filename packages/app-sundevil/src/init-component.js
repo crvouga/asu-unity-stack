@@ -17,6 +17,7 @@ import {
   VideoSection,
 } from "./components";
 import { CardSectionSingleColumn } from "./components/CardSectionSingleColumn";
+import { CardSectionThreeColumn } from "./components/CardSectionThreeColumn";
 import { ContactUsCTA } from "./components/ContactUsCTA";
 import { GroupTickets } from "./components/GroupTickets";
 import { EnhanceExperence } from "./components/GroupTickets/enhanceExperence";
@@ -344,6 +345,13 @@ export const initCardSectionSingleColumn = input => {
   RenderReact({
     ...input,
     component: CardSectionSingleColumn,
+  });
+};
+
+export const initCardSectionThreeColumn = input => {
+  RenderReact({
+    ...input,
+    component: CardSectionThreeColumn,
   });
 };
 

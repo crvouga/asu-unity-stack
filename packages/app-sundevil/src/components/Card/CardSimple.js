@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { AspectRatio16by9 } from "../AspectRatio/AspectRatio16by9";
+import { Image } from "../Image";
 import { cardPropTypes } from "./card-prop";
 
 const Root = styled.div`
@@ -9,9 +11,9 @@ const Root = styled.div`
   flex-direction: column;
 `;
 
-const Image = styled.img`
+const StyledImage = styled(Image)`
   width: 100%;
-  height: auto;
+  height: 100%;
   flex: 1;
   object-fit: cover;
 `;
@@ -45,7 +47,9 @@ const Description = styled.p`
 export const CardSimple = ({ card }) => {
   return (
     <Root>
-      <Image src={card.imageSrc} alt={card.imageAlt} />
+      <AspectRatio16by9>
+        <StyledImage src={card.imageSrc} alt={card.imageAlt} />
+      </AspectRatio16by9>
       <Content>
         <Title>{card.title}</Title>
         <Description dangerouslySetInnerHTML={{ __html: card.description }} />

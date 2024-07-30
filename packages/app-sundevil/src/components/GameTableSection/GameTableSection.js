@@ -51,6 +51,17 @@ const ensureObject = obj => {
   return {};
 };
 
+// https://github.com/remix-run/react-router/issues/8834#issuecomment-1118083034
+// The root used to be a fragment it may be causing an issue
+const Root = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow: hidden;
+`;
+
 const GameTableSectionInner = ({ ...props }) => {
   const configGameTableForm = props.configGameTableForm ?? {};
 
@@ -203,7 +214,7 @@ const GameTableSectionInner = ({ ...props }) => {
   );
 
   return (
-    <>
+    <Root>
       {variant === "hero" && (
         <GameTableHero
           title={props.title}
@@ -294,7 +305,7 @@ const GameTableSectionInner = ({ ...props }) => {
           />
         )}
       </div>
-    </>
+    </Root>
   );
 };
 

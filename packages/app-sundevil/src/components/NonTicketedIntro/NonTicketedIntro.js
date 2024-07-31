@@ -27,6 +27,7 @@ const Disclaimer = styled.p`
 `;
 
 /**
+ * https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4946-8618&t=y8n7tOHFoV6bMZzz-0
  * @type {React.FC<Props>}
  */
 export const NonTicketedIntro = ({ sectionHeader, sports, disclaimer }) => {

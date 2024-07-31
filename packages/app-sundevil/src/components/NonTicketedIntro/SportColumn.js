@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { APP_CONFIG } from "../../config";
 import { Icon } from "../Icon_";
 import {
   sportGenderToString,
@@ -17,20 +16,8 @@ const Root = styled.div`
   gap: 8px;
   flex-direction: column;
   justify-content: flex-start;
-  min-width: 50%;
-  @media (min-width: ${APP_CONFIG.breakpointMobile}) {
-    min-width: 0;
-  }
-  flex: 1;
-  padding: 24px;
-`;
-
-const Caption = styled.p`
-  margin: 0;
-  padding: 0;
-  font-size: 12px;
-  text-align: center;
-  color: #747474;
+  width: min-content;
+  padding: 24px 0px;
 `;
 
 const Title = styled.p`
@@ -40,6 +27,18 @@ const Title = styled.p`
   text-align: center;
   font-weight: 700;
   color: #191919;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 120px;
+`;
+
+const Caption = styled.p`
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  text-align: center;
+  color: #747474;
+  white-space: nowrap;
 `;
 
 const wrapParens = str => `(${str})`;

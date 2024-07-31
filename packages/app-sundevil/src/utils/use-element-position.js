@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const useElementPosition = ref => {
   const [position, setPosition] = useState({
@@ -19,7 +19,10 @@ export const useElementPosition = ref => {
     handlePosition();
 
     window.addEventListener("resize", handlePosition);
-    window.addEventListener("scroll", handlePosition);
+    window.addEventListener("scroll", handlePosition, {
+      capture: true,
+      passive: true,
+    });
 
     return () => {
       window.removeEventListener("resize", handlePosition);
@@ -73,7 +76,10 @@ export const useElementContentPosition = ref => {
     handlePosition();
 
     window.addEventListener("resize", handlePosition);
-    window.addEventListener("scroll", handlePosition);
+    window.addEventListener("scroll", handlePosition, {
+      capture: true,
+      passive: true,
+    });
 
     return () => {
       window.removeEventListener("resize", handlePosition);
@@ -84,73 +90,43 @@ export const useElementContentPosition = ref => {
   return position;
 };
 
-export const useElementDimensions = ref => {
+export const useElementContentDimensions = (ref, enabled = true) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  const handleDimensions = useCallback(() => {
+  const measureDimensions = useCallback(() => {
     if (ref.current) {
       const { width, height } = ref.current.getBoundingClientRect();
-      setDimensions({ width, height });
-    }
-  }, [ref]);
+      const style = window.getComputedStyle(ref.current);
+      const paddingLeft = parseFloat(style.paddingLeft);
+      const paddingRight = parseFloat(style.paddingRight);
+      const paddingTop = parseFloat(style.paddingTop);
+      const paddingBottom = parseFloat(style.paddingBottom);
 
-  useEffect(() => {
-    handleDimensions();
+      const newWidth = width - paddingLeft - paddingRight;
+      const newHeight = height - paddingTop - paddingBottom;
 
-    window.addEventListener("resize", handleDimensions);
-    window.addEventListener("scroll", handleDimensions);
-
-    return () => {
-      window.removeEventListener("resize", handleDimensions);
-      window.removeEventListener("scroll", handleDimensions);
-    };
-  }, [handleDimensions]);
-
-  return dimensions;
-};
-
-export const useElementContentDimensions = ref => {
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-
-  const handleDimensions = useCallback(() => {
-    if (ref.current) {
-      const { width, height } = ref.current.getBoundingClientRect();
-
-      const paddingLeft = parseInt(
-        window.getComputedStyle(ref.current).paddingLeft,
-        10
-      );
-      const paddingRight = parseInt(
-        window.getComputedStyle(ref.current).paddingRight,
-        10
-      );
-      const paddingTop = parseInt(
-        window.getComputedStyle(ref.current).paddingTop,
-        10
-      );
-      const paddingBottom = parseInt(
-        window.getComputedStyle(ref.current).paddingBottom,
-        10
-      );
-
-      setDimensions({
-        width: width - paddingLeft - paddingRight,
-        height: height - paddingTop - paddingBottom,
+      setDimensions(prev => {
+        if (prev.width !== newWidth || prev.height !== newHeight) {
+          return { width: newWidth, height: newHeight };
+        }
+        return prev;
       });
     }
   }, [ref]);
 
   useEffect(() => {
-    handleDimensions();
+    if (!enabled || !ref.current) return () => {};
 
-    window.addEventListener("resize", handleDimensions);
-    window.addEventListener("scroll", handleDimensions);
+    const resizeObserver = new ResizeObserver(measureDimensions);
+    resizeObserver.observe(ref.current);
+
+    // Initial measurement
+    measureDimensions();
 
     return () => {
-      window.removeEventListener("resize", handleDimensions);
-      window.removeEventListener("scroll", handleDimensions);
+      resizeObserver.disconnect();
     };
-  }, [handleDimensions]);
+  }, [ref, enabled, measureDimensions]);
 
   return dimensions;
 };

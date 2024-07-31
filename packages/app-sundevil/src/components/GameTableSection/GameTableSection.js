@@ -51,8 +51,6 @@ const ensureObject = obj => {
   return {};
 };
 
-// https://github.com/remix-run/react-router/issues/8834#issuecomment-1118083034
-// The root used to be a fragment it may be causing an issue
 const Root = styled.div`
   display: flex;
   flex-direction: column;

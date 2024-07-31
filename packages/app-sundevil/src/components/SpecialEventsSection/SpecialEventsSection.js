@@ -4,10 +4,8 @@ import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
 import { useBreakpoint } from "../../utils/use-breakpoint";
-import {
-  useElementContentDimensions,
-  useElementContentPosition,
-} from "../../utils/use-element-position";
+import { useElementContentPosition } from "../../utils/use-element-content-position";
+import { useElementContentDimensions } from "../../utils/use-element-content-dimensions";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 import {
   buildSpecialEventsDataSource,

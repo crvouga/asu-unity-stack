@@ -131,7 +131,7 @@ const NewsStorySectionInner = ({
     return true;
   });
 
-  const activeSport = sports.find(sport => Boolean(sport.active));
+  const activeSport = sportsFinal.find(sport => Boolean(sport.active));
   const footerButtons =
     (Array.isArray(activeSport?.footerButtons) &&
     activeSport?.footerButtons.length > 0

@@ -28,6 +28,13 @@ const Root = styled.div`
 `;
 
 export const SectionFooter = ({ footerButtons, footerLinks, style }) => {
+  const hasFooterButtons =
+    Array.isArray(footerButtons) && footerButtons.length > 0;
+  const hasFooterLinks = Array.isArray(footerLinks) && footerLinks.length > 0;
+  const hasContent = hasFooterButtons || hasFooterLinks;
+  if (!hasContent) {
+    return null;
+  }
   return (
     <Root style={style}>
       {footerButtons && footerButtons?.length > 0 && (

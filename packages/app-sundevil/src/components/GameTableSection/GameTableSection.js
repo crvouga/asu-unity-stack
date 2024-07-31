@@ -59,7 +59,10 @@ const Root = styled.div`
   margin: 0;
   padding: 0;
   width: 100%;
+  /*
+  DO NOT ADD THIS. It will break overlap styles.
   overflow: hidden;
+  */
 `;
 
 const GameTableSectionInner = ({ ...props }) => {

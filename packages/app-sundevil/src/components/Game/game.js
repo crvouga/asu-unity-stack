@@ -18,7 +18,7 @@ export const gamePropTypes = PropTypes.shape({
   gameType: PropTypes.string, // "home" | "away"
   sportId: PropTypes.string,
   subtitleChip: PropTypes.string,
-  admissionCost: PropTypes.number,
+  admissionCost: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   eventType: PropTypes.string,
 });
 

@@ -23,7 +23,8 @@ import { GroupTickets } from "./components/GroupTickets";
 import { EnhanceExperence } from "./components/GroupTickets/enhanceExperence";
 import { GroupTicketsBySport } from "./components/GroupTickets/GroupTicketsBySport";
 import { PreviewSection } from "./components/GroupTickets/PreviewSection";
-import { NonTicketedIntro } from "./components/NonTicketedIntro";
+import { IconTextColumnsSection } from "./components/IconTextColumnsSection";
+import { NonTicketedIntro } from "./components/IconTextColumnsSection/NonTicketedIntro";
 import { SeasonsTicket } from "./components/SeasonsTicket";
 import { GroupTicketBenefit } from "./components/SeasonsTicket/GroupTicketBenifit";
 import { GroupTicketMiniPlans } from "./components/SeasonsTicket/GroupTicketMiniPlans";
@@ -352,6 +353,13 @@ export const initCardSectionThreeColumn = input => {
   RenderReact({
     ...input,
     component: CardSectionThreeColumn,
+  });
+};
+
+export const initIconTextColumnsSection = input => {
+  RenderReact({
+    ...input,
+    component: IconTextColumnsSection,
   });
 };
 

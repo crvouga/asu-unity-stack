@@ -3,8 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { SectionHeader, sectionHeaderPropTypes } from "../SectionHeader";
-import { sportPropTypes as sportTabPropTypes } from "../SportsTabs/sports-tabs";
-import { SportColumn } from "./SportColumn";
+import { iconColumnPropType, IconTextColumn } from "./IconTextColumn";
 
 const Root = styled.div`
   display: flex;
@@ -12,7 +11,7 @@ const Root = styled.div`
   gap: 12px;
 `;
 
-const SportColumns = styled.div`
+const Columns = styled.div`
   display: flex;
   align-items: flex-start;
   width: 100%;
@@ -26,19 +25,46 @@ const Disclaimer = styled.p`
   color: #747474;
 `;
 
+const ensureNumber = value => {
+  if (typeof value !== "number") {
+    return Infinity;
+  }
+
+  // eslint-disable-next-line use-isnan
+  if (value === NaN) {
+    return Infinity;
+  }
+
+  return value;
+};
+
+const sortColumns = columns => {
+  if (!Array.isArray(columns)) {
+    return [];
+  }
+  return columns.sort(
+    (a, b) => ensureNumber(a?.position) - ensureNumber(b?.position)
+  );
+};
+
 /**
  * https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4946-8618&t=y8n7tOHFoV6bMZzz-0
  * @type {React.FC<Props>}
  */
-export const NonTicketedIntro = ({ sectionHeader, sports, disclaimer }) => {
+export const IconTextColumnsSection = ({
+  sectionHeader,
+  columns,
+  disclaimer,
+}) => {
+  const sortedColumns = sortColumns(columns);
   return (
     <Root>
       <SectionHeader {...sectionHeader} />
-      <SportColumns className="container">
-        {sports.map(sport => (
-          <SportColumn key={sport?.id ?? sport?.name} sport={sport} />
+      <Columns className="container">
+        {sortedColumns.map(column => (
+          <IconTextColumn key={column?.id ?? column?.name} column={column} />
         ))}
-      </SportColumns>
+      </Columns>
       <div className="container">
         <Disclaimer>{disclaimer}</Disclaimer>
       </div>
@@ -47,25 +73,15 @@ export const NonTicketedIntro = ({ sectionHeader, sports, disclaimer }) => {
 };
 
 /**
- * @typedef {import("../SportsTabs/sports-tabs").Sport & {gender?: string | null; caption?; string | null}} Sport
- */
-
-const sportPropType = PropTypes.shape({
-  ...sportTabPropTypes,
-  gender: PropTypes.string,
-  caption: PropTypes.string,
-});
-
-/**
  * @typedef {{
  * sectionHeader: import("../SectionHeader").SectionHeaderProps
- * sports: Sport[]
+ * columns: import("./IconTextColumn").IconTextColumnProps[]
  * disclaimer: string
  * }} Props
  */
 
-NonTicketedIntro.propTypes = {
+IconTextColumnsSection.propTypes = {
   sectionHeader: sectionHeaderPropTypes,
   disclaimer: PropTypes.string,
-  sports: PropTypes.arrayOf(sportPropType),
+  columns: PropTypes.arrayOf(iconColumnPropType),
 };

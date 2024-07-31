@@ -5,11 +5,6 @@ import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
 import { Icon } from "../Icon_";
-import {
-  sportGenderToString,
-  stringToSportGender,
-} from "../Sport/sport-gender";
-import { sportPropTypes as sportTabPropTypes } from "../SportsTabs/sports-tabs";
 
 const Root = styled.div`
   display: flex;
@@ -46,42 +41,44 @@ const Caption = styled.p`
   white-space: nowrap;
 `;
 
-const wrapParens = str => `(${str})`;
-
 /**
  * @type {React.FC<Props>}
  */
-export const SportColumn = ({ sport }) => {
-  const caption =
-    sport.caption ??
-    wrapParens(sportGenderToString(stringToSportGender(sport.gender))) ??
-    null;
-
+export const IconTextColumn = ({ column }) => {
   return (
     <Root>
-      <Icon icon={sport.icon} />
-      <Title>{sport.name}</Title>
-      {caption && <Caption>{caption}</Caption>}
+      <Icon icon={column.icon} />
+      <Title>{column.title}</Title>
+      {column.caption && <Caption>{column.caption}</Caption>}
     </Root>
   );
 };
 
 /**
- * @typedef {import("../SportsTabs/sports-tabs").Sport & {gender?: string | null; caption?: string | null}} SportColumn
+ * @typedef {{
+ *  id: string;
+ *  title: string;
+ *  icon?: string;
+ *  caption?: string;
+ *  position?: number;
+ * }} IconTextColumnProps
  */
 
-export const sportColumnPropType = PropTypes.shape({
-  ...sportTabPropTypes,
+export const iconColumnPropType = PropTypes.shape({
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   gender: PropTypes.string,
+  position: PropTypes.number,
   caption: PropTypes.string,
 });
 
 /**
  * @typedef {{
- *  sport: SportColumn
+ *  column: IconTextColumn
  * }} Props
  */
 
-SportColumn.propTypes = {
-  sport: sportColumnPropType,
+IconTextColumn.propTypes = {
+  column: iconColumnPropType,
 };

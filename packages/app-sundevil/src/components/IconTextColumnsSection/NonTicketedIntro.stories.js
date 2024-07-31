@@ -74,7 +74,7 @@ const props = {
 };
 
 export default {
-  title: "NonTicketedIntro / NonTicketedIntro",
+  title: "Icon Text Columns Section / Non Ticketed Intro",
   component: args => <NonTicketedIntro {...args} />,
   parameters: {
     docs: {

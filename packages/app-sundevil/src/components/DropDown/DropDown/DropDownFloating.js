@@ -38,7 +38,7 @@ export const DropDownFloating = ({
     <>
       {renderReference({ ref: refs.setReference, open })}
       {open && (
-        <div ref={refs.setFloating} style={{ ...floatingStyles, zIndex: 9999 }}>
+        <div ref={refs.setFloating} style={{ ...floatingStyles, zIndex: 10 }}>
           {renderContent({ referenceWidth })}
         </div>
       )}

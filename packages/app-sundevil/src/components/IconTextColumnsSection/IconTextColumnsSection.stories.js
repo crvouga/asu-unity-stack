@@ -31,6 +31,7 @@ const nonTicketedProps = {
   columnFit: "shrink",
   columnContentAlignment: "center",
   mobileColumnCount: 2,
+  columnIconStyle: {},
   columns: [
     {
       id: "w-beach-volleyball",
@@ -109,6 +110,10 @@ With options to target, engage with and activate faculty/staff, students and fan
   columnContentAlignment: "start",
   columnsTitle: "The power of the ASU Sun Devils includes:",
   mobileColumnCount: 1,
+  columnIconStyle: {
+    fontSize: "24px",
+    marginBottom: "8px",
+  },
   columns: [
     {
       id: "maps",

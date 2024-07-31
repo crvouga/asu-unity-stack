@@ -102,6 +102,7 @@ const Body = styled.p`
  */
 export const IconTextColumn = ({
   column,
+  columnIconStyle = {},
   columnFit = Fit.shrink,
   columnContentAlignment = Alignment.center,
 }) => {
@@ -115,10 +116,20 @@ export const IconTextColumn = ({
 
   return (
     <Root columnContentAlignment={columnContentAlignment} columnFit={columnFit}>
-      {column.icon && <Icon icon={column.icon} />}
-      {column.title && <Title>{column.title}</Title>}
-      {column.body && <Body>{column.body}</Body>}
-      {column.caption && <Caption>{column.caption}</Caption>}
+      {column.icon && (
+        <div style={columnIconStyle}>
+          <Icon icon={column.icon} />
+        </div>
+      )}
+      {column.title && (
+        <Title dangerouslySetInnerHTML={{ __html: column.title }} />
+      )}
+      {column.body && (
+        <Body dangerouslySetInnerHTML={{ __html: column.body }} />
+      )}
+      {column.caption && (
+        <Caption dangerouslySetInnerHTML={{ __html: column.caption }} />
+      )}
     </Root>
   );
 };
@@ -148,10 +159,13 @@ export const iconColumnPropType = PropTypes.shape({
  *  columnContentAlignment: import('./alignment').Alignment
  *  columnFit: import("./fit").Fit
  *  column: IconTextColumn
+ *  columnIconStyle: React.CSSProperties
  * }} Props
  */
 
 IconTextColumn.propTypes = {
   columnFit: fitPropTypes,
   column: iconColumnPropType,
+  // eslint-disable-next-line react/forbid-prop-types
+  columnIconStyle: PropTypes.object,
 };

@@ -97,6 +97,7 @@ export const IconTextColumnsSection = ({
   disclaimer,
   footerButtons,
   footerLinks,
+  columnIconStyle,
   columnsTitle,
   mobileColumnCount,
 }) => {
@@ -125,6 +126,7 @@ export const IconTextColumnsSection = ({
             column={column}
             columnFit={columnFit}
             columnContentAlignment={columnContentAlignment}
+            columnIconStyle={columnIconStyle}
           />
         ))}
       </Columns>
@@ -150,6 +152,7 @@ export const IconTextColumnsSection = ({
  * columns: import("./IconTextColumn").IconTextColumnProps[]
  * disclaimer?: string
  * columnFit: import("./fit").Fit
+ * columnIconStyle?: React.CSSProperties
  * columnContentAlignment: import("./alignment").Alignment
  * columnsTitle?: string
  * footerButtons?: import("../SectionFooter").FooterButtonProps[]
@@ -163,6 +166,8 @@ IconTextColumnsSection.propTypes = {
   mobileColumnCount: PropTypes.number,
   columns: PropTypes.arrayOf(iconColumnPropType),
   columnFit: fitPropTypes,
+  // eslint-disable-next-line react/forbid-prop-types
+  columnIconStyle: PropTypes.object,
   columnContentAlignment: alignmentPropTypes,
   columnsTitle: PropTypes.string,
   footerButtons: PropTypes.arrayOf(footerButtonPropTypes),

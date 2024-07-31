@@ -11,6 +11,7 @@ const Root = styled.div`
   flex-wrap: nowrap;
   flex-direction: ${({ reverse }) => (reverse ? "row-reverse" : "row")};
   border: 1px solid #e0e0e0;
+  height: 489px;
 `;
 
 const StyledImage = styled(Image)`

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { APP_CONFIG } from "../../config";
 import { Icon } from "../Icon_";
 import {
   sportGenderToString,
@@ -18,6 +19,10 @@ const Root = styled.div`
   justify-content: flex-start;
   width: min-content;
   padding: 24px 0px;
+
+  @media (max-width: ${APP_CONFIG.breakpointMobile}) {
+    width: 50%;
+  }
 `;
 
 const Title = styled.p`

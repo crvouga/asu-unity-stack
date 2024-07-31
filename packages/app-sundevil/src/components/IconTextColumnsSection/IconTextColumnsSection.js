@@ -1,3 +1,5 @@
+// https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4946-8618&t=y8n7tOHFoV6bMZzz-0
+// https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4946-8618&t=y8n7tOHFoV6bMZzz-0
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
@@ -17,7 +19,7 @@ import { iconColumnPropType, IconTextColumn } from "./IconTextColumn";
 const Root = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 32px;
 `;
 
 const isPositiveNumber = value => typeof value === "number" && value > 0;
@@ -51,9 +53,11 @@ const Disclaimer = styled.p`
   color: #747474;
 `;
 
-const ColumnsTitle = styled.h2`
-  font-size: 24px;
+const ColumnsTitle = styled.p`
   font-weight: bold;
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
 `;
 
 const ensureNumber = value => {
@@ -82,6 +86,7 @@ const isCleanString = str => typeof str === "string" && str.trim().length > 0;
 
 /**
  * https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4946-8618&t=y8n7tOHFoV6bMZzz-0
+ * https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4946-8618&t=y8n7tOHFoV6bMZzz-0
  * @type {React.FC<Props>}
  */
 export const IconTextColumnsSection = ({
@@ -97,14 +102,22 @@ export const IconTextColumnsSection = ({
 }) => {
   const sortedColumns = sortColumns(columns);
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
+  const isDesktop = !isMobile;
   const columnCount = isMobile ? mobileColumnCount ?? 2 : null;
   return (
     <Root>
       <SectionHeader {...sectionHeader} />
-      {isCleanString(columnsTitle) && (
-        <ColumnsTitle className="container">{columnsTitle}</ColumnsTitle>
+      {isMobile && (
+        <SectionFooter
+          footerButtons={footerButtons}
+          footerLinks={footerLinks}
+        />
       )}
-
+      {isCleanString(columnsTitle) && (
+        <div className="container">
+          <ColumnsTitle>{columnsTitle}</ColumnsTitle>
+        </div>
+      )}
       <Columns className="container" columnCount={columnCount}>
         {sortedColumns.map(column => (
           <IconTextColumn
@@ -120,7 +133,12 @@ export const IconTextColumnsSection = ({
           <Disclaimer>{disclaimer}</Disclaimer>
         </div>
       )}
-      <SectionFooter footerButtons={footerButtons} footerLinks={footerLinks} />
+      {isDesktop && (
+        <SectionFooter
+          footerButtons={footerButtons}
+          footerLinks={footerLinks}
+        />
+      )}
     </Root>
   );
 };

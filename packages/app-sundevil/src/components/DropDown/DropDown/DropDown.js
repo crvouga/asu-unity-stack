@@ -10,7 +10,7 @@ const DropDownImpl = {
 };
 
 // Floating UI is causing performance issues
-const DROPDOWN_IMPL = DropDownImpl.Simple;
+const DROPDOWN_IMPL = DropDownImpl.FloatingUI;
 
 /**
  * @type {React.FC<import("./drop-down-props").Props>}

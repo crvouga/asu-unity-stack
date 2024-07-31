@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
 import { useBreakpoint } from "../../utils/use-breakpoint";
-import { useElementContentPosition } from "../../utils/use-element-position";
+import { useElementContentPosition } from "../../utils/use-element-content-position";
 import { ButtonProp } from "../Button";
 import { EmptyStateMessage } from "../EmptyState/EmptyStateMessage";
 import * as NewsStory from "../NewsStory/news-story";

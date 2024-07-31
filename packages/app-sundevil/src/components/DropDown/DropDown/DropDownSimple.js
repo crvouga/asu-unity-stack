@@ -1,45 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import styled from "styled-components";
 
 import { propTypes } from "./drop-down-props";
-
-const DropdownContainer = styled.div`
-  position: relative;
-`;
-
-const DropdownContent = styled.div`
-  position: absolute;
-  z-index: 9999;
-  ${({ position }) => {
-    switch (position) {
-      case "bottom-end":
-        return `
-          top: 100%;
-          right: 0;
-        `;
-      case "bottom-start":
-        return `
-          top: 100%;
-          left: 0;
-        `;
-      case "top-end":
-        return `
-          bottom: 100%;
-          right: 0;
-        `;
-      case "top-start":
-        return `
-          bottom: 100%;
-          left: 0;
-        `;
-      default:
-        return `
-          top: 100%;
-          left: 0;
-        `;
-    }
-  }}
-`;
 
 /**
  * @type {React.FC<import("./drop-down-props").Props>}
@@ -75,15 +36,48 @@ export const DropDownSimple = ({
     };
   }, [open, onClose]);
 
+  useEffect(() => {
+    if (referenceRef.current) {
+      referenceRef.current.style.position = "relative";
+    }
+
+    if (dropdownRef.current) {
+      dropdownRef.current.style.position = "absolute";
+      dropdownRef.current.style.zIndex = "9999";
+
+      switch (position) {
+        case "bottom-end":
+          dropdownRef.current.style.top = "100%";
+          dropdownRef.current.style.right = "0";
+          break;
+        case "bottom-start":
+          dropdownRef.current.style.top = "100%";
+          dropdownRef.current.style.left = "0";
+          break;
+        case "top-end":
+          dropdownRef.current.style.bottom = "100%";
+          dropdownRef.current.style.right = "0";
+          break;
+        case "top-start":
+          dropdownRef.current.style.bottom = "100%";
+          dropdownRef.current.style.left = "0";
+          break;
+        default:
+          dropdownRef.current.style.top = "100%";
+          dropdownRef.current.style.left = "0";
+      }
+    }
+  }, [position, open]);
+
   return (
-    <DropdownContainer>
+    <>
       {renderReference({ ref: referenceRef, open })}
-      {open && (
-        <DropdownContent ref={dropdownRef} position={position}>
-          {renderContent({ referenceWidth: referenceRef.current?.offsetWidth })}
-        </DropdownContent>
-      )}
-    </DropdownContainer>
+      {open &&
+        renderContent({
+          ref: dropdownRef,
+          referenceWidth: referenceRef.current?.offsetWidth,
+        })}
+    </>
   );
 };
 

@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { APP_CONFIG } from "../../config";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
 import { useBreakpoint } from "../../utils/use-breakpoint";
-import { useElementContentPosition } from "../../utils/use-element-position";
+import { useElementContentPosition } from "../../utils/use-element-content-position";
 import { LoadMoreButton } from "../LoadMoreButton";
 import {
   buildNewsStoryDataSource,

@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { APP_CONFIG } from "../../config";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
 import { useBreakpoint } from "../../utils/use-breakpoint";
-import { useElementContentDimensions } from "../../utils/use-element-position";
+import { useElementContentDimensions } from "../../utils/use-element-content-dimensions";
 import { ALL_ID, findManyInputPropTypes } from "../Game/game-data-source";
 import {
   buildGameDataSource,

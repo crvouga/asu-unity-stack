@@ -1,4 +1,8 @@
-import { autoUpdate, shift, useFloating } from "@floating-ui/react";
+import {
+  //  autoUpdate,
+  shift,
+  useFloating,
+} from "@floating-ui/react";
 import React, { useEffect } from "react";
 
 import { useElementPosition } from "../../../utils/use-element-position";
@@ -16,7 +20,8 @@ export const DropDownFloating = ({
 }) => {
   const { refs, floatingStyles } = useFloating({
     strategy: "fixed",
-    whileElementsMounted: autoUpdate,
+    // This may be causing performance issues. Commenting out for now.
+    // whileElementsMounted: autoUpdate,
     placement: position ?? "bottom-end",
     middleware: [
       shift({

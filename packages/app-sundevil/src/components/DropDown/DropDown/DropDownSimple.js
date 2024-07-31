@@ -37,35 +37,39 @@ export const DropDownSimple = ({
   }, [open, onClose]);
 
   useEffect(() => {
-    if (referenceRef.current) {
-      referenceRef.current.style.position = "relative";
-    }
-
-    if (dropdownRef.current) {
-      dropdownRef.current.style.position = "absolute";
-      dropdownRef.current.style.zIndex = "9999";
+    if (open && referenceRef.current && dropdownRef.current) {
+      const referenceRect = referenceRef.current.getBoundingClientRect();
+      const dropdownRect = dropdownRef.current.getBoundingClientRect();
+      let top;
+      let left;
 
       switch (position) {
         case "bottom-end":
-          dropdownRef.current.style.top = "100%";
-          dropdownRef.current.style.right = "0";
+          top = referenceRect.bottom;
+          left = referenceRect.right - dropdownRect.width;
           break;
         case "bottom-start":
-          dropdownRef.current.style.top = "100%";
-          dropdownRef.current.style.left = "0";
+          top = referenceRect.bottom;
+          left = referenceRect.left;
           break;
         case "top-end":
-          dropdownRef.current.style.bottom = "100%";
-          dropdownRef.current.style.right = "0";
+          top = referenceRect.top - dropdownRect.height;
+          left = referenceRect.right - dropdownRect.width;
           break;
         case "top-start":
-          dropdownRef.current.style.bottom = "100%";
-          dropdownRef.current.style.left = "0";
+          top = referenceRect.top - dropdownRect.height;
+          left = referenceRect.left;
           break;
         default:
-          dropdownRef.current.style.top = "100%";
-          dropdownRef.current.style.left = "0";
+          top = referenceRect.bottom;
+          left = referenceRect.left;
       }
+
+      // Update dropdownRef styles directly
+      dropdownRef.current.style.position = "fixed";
+      dropdownRef.current.style.zIndex = "9999";
+      dropdownRef.current.style.top = `${top}px`;
+      dropdownRef.current.style.left = `${left}px`;
     }
   }, [position, open]);
 

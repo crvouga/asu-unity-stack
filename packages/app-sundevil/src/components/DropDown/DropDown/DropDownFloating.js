@@ -1,10 +1,7 @@
-import {
-  //  autoUpdate,
-  shift,
-  useFloating,
-} from "@floating-ui/react";
-import React, { useEffect } from "react";
+import { autoUpdate, shift, useFloating } from "@floating-ui/react";
+import React from "react";
 
+import { useClickOutside } from "../../../utils/use-click-outside";
 import { useElementPosition } from "../../../utils/use-element-position";
 import { propTypes } from "./drop-down-props";
 
@@ -20,8 +17,7 @@ export const DropDownFloating = ({
 }) => {
   const { refs, floatingStyles } = useFloating({
     strategy: "fixed",
-    // This may be causing performance issues. Commenting out for now.
-    // whileElementsMounted: autoUpdate,
+    whileElementsMounted: autoUpdate,
     placement: position ?? "bottom-end",
     middleware: [
       shift({
@@ -31,28 +27,7 @@ export const DropDownFloating = ({
     ],
   });
 
-  const handleClickOutside = event => {
-    if (
-      refs.reference.current &&
-      !refs.reference.current.contains(event.target) &&
-      refs.floating.current &&
-      !refs.floating.current.contains(event.target)
-    ) {
-      onClose();
-    }
-  };
-
-  useEffect(() => {
-    if (open) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [open]);
+  useClickOutside([refs.reference, refs.floating], onClose);
 
   const referencePosition = useElementPosition(refs.reference);
   const referenceWidth = Math.abs(

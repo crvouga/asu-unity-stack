@@ -46,6 +46,15 @@ const StyledSportsTab = styled(SportsTab)`
       }
       `;
     }
+    if (!darkMode && !active) {
+      return `
+      &:hover {
+        i, span, svg, ${SUN_DEVILS_ICON_CLASS_NAME} {
+            color: #8c1d40 !important;
+        }
+      }
+      `;
+    }
     return "";
   }}
 `;

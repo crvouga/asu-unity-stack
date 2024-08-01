@@ -74,7 +74,7 @@ const StyledSocialIcon = styled(SocialIcon)`
 export const JoinTheConversation = ({ social }) => {
   return (
     <Root id="social-media">
-      <Title>Join the Conversation:</Title>
+      <Title>Join the conversation:</Title>
       <SocialMediaIconsRoot>
         {social.map((socialItem, index) => (
           <SocialMediaIconButton

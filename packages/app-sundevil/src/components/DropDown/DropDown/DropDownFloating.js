@@ -1,4 +1,4 @@
-import { autoUpdate, shift, useFloating } from "@floating-ui/react";
+import { autoUpdate, useFloating } from "@floating-ui/react";
 import React from "react";
 
 import { useClickOutside } from "../../../utils/use-click-outside";
@@ -19,12 +19,6 @@ export const DropDownFloating = ({
     strategy: "fixed",
     whileElementsMounted: autoUpdate,
     placement: position ?? "bottom-end",
-    middleware: [
-      shift({
-        crossAxis: false,
-        mainAxis: true,
-      }),
-    ],
   });
 
   useClickOutside([refs.reference, refs.floating], onClose);

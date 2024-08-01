@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
 import { useBreakpoint } from "../../utils/use-breakpoint";
-import { useElementContentPosition } from "../../utils/use-element-content-position";
+import { useElementContentXPosition } from "../../utils/use-element-content-x-position";
 import { ButtonProp } from "../Button";
 import { EmptyStateMessage } from "../EmptyState/EmptyStateMessage";
 import * as NewsStory from "../NewsStory/news-story";
@@ -91,7 +91,7 @@ const NewsZoneSectionInner = ({
   const skeleton = propsSkeleton || newsStoryDataSourceLoader.isLoadingInitial;
 
   const sectionHeaderRef = React.useRef();
-  const sectionHeaderPosition = useElementContentPosition(sectionHeaderRef);
+  const sectionHeaderPosition = useElementContentXPosition(sectionHeaderRef);
   const cardWidth = Math.abs(
     sectionHeaderPosition.left - sectionHeaderPosition.right
   );

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useRef } from "react";
 import styled from "styled-components";
 
-import { useElementPosition } from "../../utils/use-element-position";
+import { useElementXPosition } from "../../utils/use-element-x-position";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 import { SocialMediaPostCarousel } from "./SocialMediaPostCarousel";
 
@@ -14,7 +14,7 @@ const Root = styled.section`
 
 export const SocialMediaSection = ({ sectionHeader, postCarousel }) => {
   const sectionHeaderRef = useRef();
-  const sectionHeaderPosition = useElementPosition(sectionHeaderRef);
+  const sectionHeaderPosition = useElementXPosition(sectionHeaderRef);
   const shouldPreventJitter = sectionHeaderPosition.left > 0;
 
   return (

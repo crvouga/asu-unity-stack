@@ -2,7 +2,7 @@ import { autoUpdate, shift, useFloating } from "@floating-ui/react";
 import React from "react";
 
 import { useClickOutside } from "../../../utils/use-click-outside";
-import { useElementPosition } from "../../../utils/use-element-position";
+import { useElementContentDimensions } from "../../../utils/use-element-content-dimensions";
 import { propTypes } from "./drop-down-props";
 
 /**
@@ -29,10 +29,8 @@ export const DropDownFloating = ({
 
   useClickOutside([refs.reference, refs.floating], onClose);
 
-  const referencePosition = useElementPosition(refs.reference);
-  const referenceWidth = Math.abs(
-    referencePosition.left - referencePosition.right
-  );
+  const referenceDimensions = useElementContentDimensions(refs.reference);
+  const referenceWidth = referenceDimensions.width;
 
   return (
     <>

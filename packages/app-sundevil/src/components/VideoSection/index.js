@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
 import { useBreakpoint } from "../../utils/use-breakpoint";
-import { useElementContentPosition } from "../../utils/use-element-content-position";
+import { useElementContentXPosition } from "../../utils/use-element-content-x-position";
 import { ButtonProp } from "../Button";
 import { BottomButtons } from "../Button/BottomButtons";
 import * as NewsStory from "../NewsStory/news-story";
@@ -55,7 +55,7 @@ export const VideoSection = ({
   maxCards = DEFAULT_MAX_CARDS,
 }) => {
   const sectionHeaderRef = React.useRef();
-  const sectionHeaderPosition = useElementContentPosition(sectionHeaderRef);
+  const sectionHeaderPosition = useElementContentXPosition(sectionHeaderRef);
   const cardWidth = Math.abs(
     sectionHeaderPosition.left - sectionHeaderPosition.right
   );

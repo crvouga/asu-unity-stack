@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { APP_CONFIG } from "../../config";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
 import { useBreakpoint } from "../../utils/use-breakpoint";
-import { useElementContentPosition } from "../../utils/use-element-content-position";
+import { useElementContentXPosition } from "../../utils/use-element-content-x-position";
 import { LoadMoreButton } from "../LoadMoreButton";
 import {
   buildNewsStoryDataSource,
@@ -93,7 +93,7 @@ const NewsStorySectionInner = ({
   }));
 
   const sectionHeaderRef = React.useRef();
-  const sectionHeaderPosition = useElementContentPosition(sectionHeaderRef);
+  const sectionHeaderPosition = useElementContentXPosition(sectionHeaderRef);
   const cardWidth = Math.abs(
     sectionHeaderPosition.left - sectionHeaderPosition.right
   );

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
 import { useBreakpoint } from "../../utils/use-breakpoint";
-import { useElementContentPosition } from "../../utils/use-element-content-position";
+import { useElementContentXPosition } from "../../utils/use-element-content-x-position";
 import { useElementContentDimensions } from "../../utils/use-element-content-dimensions";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 import {
@@ -31,7 +31,7 @@ const SpecialEventsSectionInner = ({ sectionHeader }) => {
   });
 
   const sectionHeaderRef = useRef();
-  const sectionHeaderPosition = useElementContentPosition(sectionHeaderRef);
+  const sectionHeaderPosition = useElementContentXPosition(sectionHeaderRef);
   const sectionHeaderDimensions = useElementContentDimensions(sectionHeaderRef);
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const cardWidth = isMobile

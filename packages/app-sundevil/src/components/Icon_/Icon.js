@@ -70,12 +70,15 @@ const toIconProps = icon => {
       style: {
         width: "1rem",
         height: "1rem",
-        backgroundSize: "cover",
+        // backgroundSize: "cover", // <- Don't do this. It will cutoff the image
+        backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundImage: `url(${imageSrc})`,
         filter,
         textDecoration: "none",
+        overflow: "visible",
+        position: "relative",
       },
     };
   }

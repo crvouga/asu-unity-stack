@@ -11,9 +11,19 @@ export const useElementContentXPosition = elementRef => {
 
   const handleContentXPosition = useCallback(() => {
     if (elementRef.current) {
-      const { clientLeft, clientWidth, scrollLeft } = elementRef.current;
-      const left = clientLeft - scrollLeft;
-      const right = left + clientWidth;
+      const rect = elementRef.current.getBoundingClientRect();
+      const offsetParentRect = elementRef.current.offsetParent
+        ? elementRef.current.offsetParent.getBoundingClientRect()
+        : { left: 0 };
+      const { scrollLeft } = elementRef.current;
+      const computedStyle = window.getComputedStyle(elementRef.current);
+      const paddingLeft = parseFloat(computedStyle.paddingLeft);
+      const paddingRight = parseFloat(computedStyle.paddingRight);
+      const contentWidth = rect.width - paddingLeft - paddingRight;
+
+      const baseX = rect.left - offsetParentRect.left;
+      const left = baseX + paddingLeft - scrollLeft;
+      const right = left + contentWidth;
 
       if (
         left !== lastContentXPosition.current.left ||
@@ -38,6 +48,9 @@ export const useElementContentXPosition = elementRef => {
       resizeObserver.observe(elementRef.current);
     }
 
+    window.addEventListener("scroll", debouncedHandleContentXPosition);
+    window.addEventListener("resize", debouncedHandleContentXPosition);
+
     // Initial position calculation
     handleContentXPosition();
 
@@ -46,6 +59,8 @@ export const useElementContentXPosition = elementRef => {
         cancelAnimationFrame(rafId.current);
       }
       resizeObserver.disconnect();
+      window.removeEventListener("scroll", debouncedHandleContentXPosition);
+      window.removeEventListener("resize", debouncedHandleContentXPosition);
     };
   }, [elementRef, handleContentXPosition, debouncedHandleContentXPosition]);
 

@@ -20,6 +20,7 @@ import { CardSectionSingleColumn } from "./components/CardSectionSingleColumn";
 import { CardSectionThreeColumn } from "./components/CardSectionThreeColumn";
 import { ContactUsCTA } from "./components/ContactUsCTA";
 import { GroupTickets } from "./components/GroupTickets";
+import { CardGrid } from "./components/GroupTickets/CardGrid";
 import { EnhanceExperience } from "./components/GroupTickets/EnhanceExperience";
 import { PreviewSection } from "./components/GroupTickets/PreviewSection";
 import { IconTextColumnsSection } from "./components/IconTextColumnsSection";
@@ -316,7 +317,7 @@ export const initEnhanceExperienceSection = input => {
 export const initCardGrid = input => {
   RenderReact({
     ...input,
-    component: initCardGrid,
+    component: CardGrid,
   });
 };
 

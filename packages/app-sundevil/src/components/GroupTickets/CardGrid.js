@@ -11,9 +11,13 @@ const Root = styled.div`
   gap: 42px;
 `;
 
+const firstNonEmpty = (...arrays) => {
+  return arrays.find(array => Array.isArray(array) && array.length > 0) ?? [];
+};
+
 export const CardGrid = ({
   cards,
-  sectionHeader,
+  sectionHeader = {},
   // For backwards compatibility
   sportsGroupCard,
   // For backwards compatibility
@@ -21,7 +25,7 @@ export const CardGrid = ({
   // For backwards compatibility
   subtitle,
 }) => {
-  const cardsFinal = cards || sportsGroupCard || [];
+  const cardsFinal = firstNonEmpty(cards, sportsGroupCard, []);
   return (
     <Root>
       <SectionHeader title={title} subtitle={subtitle} {...sectionHeader} />
@@ -29,7 +33,10 @@ export const CardGrid = ({
         <div className="row w-100">
           {cardsFinal.map(card => {
             return (
-              <div className="col-12 col-md-4">
+              <div
+                className="col-12 col-md-4"
+                key={`${card?.title}${card?.body}${card?.description}`}
+              >
                 <SingleCard card={card} />
               </div>
             );

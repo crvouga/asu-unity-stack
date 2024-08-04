@@ -27,7 +27,7 @@ const CardContent = styled.div`
   flex-direction: column;
   flex: 1;
   gap: 8px;
-  padding: 12px 0 32px 0;
+  padding: 12px 0 48px 0;
   flex-shrink: 0;
 `;
 

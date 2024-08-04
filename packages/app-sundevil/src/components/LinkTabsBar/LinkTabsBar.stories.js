@@ -322,4 +322,8 @@ SportTickets.args = {
       href: "#",
     },
   ],
+
+  sponsorHref: null,
+  sponsorLogoSrc: " ",
+  sponsorLogoAlt: " ",
 };

@@ -63,9 +63,12 @@ export const LinkTabsBarMobile = ({
         <LinkTabsRoot>
           <LinkTabsBarDropDown links={links} />
         </LinkTabsRoot>
-        <SponsorRoot href={sponsorHref}>
-          <SponsorImage src={sponsorLogoSrc} alt={sponsorLogoAlt} />
-        </SponsorRoot>
+        {typeof sponsorLogoSrc === "string" &&
+          sponsorLogoSrc.trim().length > 0 && (
+            <SponsorRoot href={sponsorHref}>
+              <SponsorImage src={sponsorLogoSrc} alt={sponsorLogoAlt} />
+            </SponsorRoot>
+          )}
       </Content>
     </Root>
   );

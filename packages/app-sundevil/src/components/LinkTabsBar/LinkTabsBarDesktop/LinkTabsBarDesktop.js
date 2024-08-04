@@ -73,13 +73,13 @@ export const LinkTabsBarDesktop = ({
             alignment={alignment}
           />
         </LinkTabsRoot>
-        <SponsorRoot href={sponsorHref}>
-          <SponsorImage
-            href={sponsorHref}
-            src={sponsorLogoSrc}
-            alt={sponsorLogoAlt}
-          />
-        </SponsorRoot>
+
+        {typeof sponsorLogoSrc === "string" &&
+          sponsorLogoSrc.trim().length > 0 && (
+            <SponsorRoot href={sponsorHref}>
+              <SponsorImage src={sponsorLogoSrc} alt={sponsorLogoAlt} />
+            </SponsorRoot>
+          )}
       </Content>
     </Root>
   );

@@ -47,6 +47,7 @@ const LinkTabsTitle = styled.div`
   height: 100%;
   padding: 0 24px;
   color: #191919;
+  white-space: nowrap;
 `;
 
 export const LinkTabs = ({

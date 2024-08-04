@@ -46,6 +46,7 @@ const LinkTabsRoot = styled.div`
   height: 100%;
   flex: 1;
   overflow: hidden;
+  width: 100%;
 `;
 
 export const LinkTabsBarDesktop = ({
@@ -55,17 +56,21 @@ export const LinkTabsBarDesktop = ({
   sponsorLogoAlt,
   maxLinkCountBreakpoints,
   moreTabLabel,
+  alignment,
+  title,
 }) => {
   const containerRef = useRef(null);
   const maxLinkCount = useMaxLinkCount(maxLinkCountBreakpoints);
   return (
-    <Root>
+    <Root alignment={alignment}>
       <Content className="container">
         <LinkTabsRoot ref={containerRef}>
           <LinkTabs
+            title={title}
             links={links}
             maxLinkCount={maxLinkCount}
             moreTabLabel={moreTabLabel}
+            alignment={alignment}
           />
         </LinkTabsRoot>
         <SponsorRoot href={sponsorHref}>

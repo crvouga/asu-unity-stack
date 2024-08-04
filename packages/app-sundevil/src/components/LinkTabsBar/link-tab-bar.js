@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 
+import { alignmentPropTypes } from "./alignment";
 import { linkTabPropType } from "./link";
 import { maxLinkCountBreakpointsPropType } from "./max-link-count";
 
@@ -15,4 +16,6 @@ export const linkTabsBarPropTypes = PropTypes.shape({
     navbarSelector: PropTypes.string,
     stickyElementSelector: PropTypes.string,
   }),
+  alignment: alignmentPropTypes,
+  title: PropTypes.string,
 });

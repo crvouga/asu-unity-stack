@@ -284,3 +284,42 @@ DebugProps.args = {
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfbwJU0mLkyyoKkok_jMppnBtEbsWNYJja3A&s",
   sponsorLogoAlt: " ",
 };
+
+export const SportTickets = Template.bind({});
+SportTickets.args = {
+  disableActiveFromUrl: false,
+  stickyPosition: {
+    navbarSelector: "#navbar",
+    stickyElementSelector: "#link-tabs",
+  },
+  maxLinkCountBreakpoints: {
+    mobile: 2,
+    tablet: 4,
+    smallDesktop: 6,
+    desktop: 8,
+  },
+  alignment: "center",
+  title: "On this page:",
+  links: [
+    {
+      label: "Single Game",
+      href: "#",
+    },
+    {
+      label: "Season",
+      href: "#",
+    },
+    {
+      label: "Mini plans",
+      href: "#",
+    },
+    {
+      label: "Group",
+      href: "#",
+    },
+    {
+      label: "Premium",
+      href: "#",
+    },
+  ],
+};

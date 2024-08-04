@@ -22,6 +22,7 @@ export const useStickyPositionEffect = stickyPosition => {
     const updateStickyPosition = () => {
       stickyElement.style.position = "sticky";
       stickyElement.style.top = `${navbar.offsetHeight}px`;
+      stickyElement.style.zIndex = 10;
     };
 
     updateStickyPosition(); // Initial update

@@ -327,3 +327,49 @@ SportTickets.args = {
   sponsorLogoSrc: " ",
   sponsorLogoAlt: " ",
 };
+
+export const YourGameDayGuide = Template.bind({});
+YourGameDayGuide.args = {
+  disableActiveFromUrl: false,
+  stickyPosition: {
+    navbarSelector: "#navbar",
+    stickyElementSelector: "#link-tabs",
+  },
+  maxLinkCountBreakpoints: {
+    mobile: 1,
+    tablet: 3,
+    smallDesktop: 3,
+    desktop: 5,
+  },
+  alignment: "center",
+  title: " ",
+  links: [
+    {
+      label: "Stadium Policies",
+      href: "#",
+    },
+    {
+      label: "Game Day Spirit",
+      href: "#",
+    },
+    {
+      label: "Getting Here",
+      href: "#",
+    },
+    {
+      label: "Stadium Services",
+      href: "#",
+    },
+    {
+      label: "Clubs and Tailgating",
+      href: "#",
+    },
+    {
+      label: "Emergency and Safety Info",
+      href: "#",
+    },
+  ],
+  sponsorHref: " ",
+  sponsorLogoSrc: " ",
+  sponsorLogoAlt: " ",
+};

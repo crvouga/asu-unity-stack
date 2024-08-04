@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 import { Button } from "../../../../components-core/src";
 import { AspectRatio16by9 } from "../AspectRatio/AspectRatio16by9";
+import { buttonPropTypes } from "../Button/button-prop";
+import { Icon } from "../Icon_";
 import { Skeleton } from "../Skeleton";
 
 const CardRoot = styled.div`
@@ -25,7 +27,7 @@ const CardContent = styled.div`
   flex-direction: column;
   flex: 1;
   gap: 8px;
-  padding: 24px;
+  padding: 12px 0 32px 0;
   flex-shrink: 0;
 `;
 
@@ -37,7 +39,6 @@ const CardTitle = styled.p`
 `;
 
 const CardBody = styled.div`
-  flex: 1;
   width: 100%;
 `;
 
@@ -67,6 +68,7 @@ const CardButtons = styled.div`
   padding-top: 6px;
 `;
 
+// https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4946-10693&t=C3qkTw4K6TZjJmgN-0
 export const SingleCard = ({ card }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const cardRef = useRef();
@@ -93,36 +95,43 @@ export const SingleCard = ({ card }) => {
           <CardBodyText dangerouslySetInnerHTML={{ __html: card.body }} />
         </CardBody>
 
-        <CardButtons>
-          {card.buttons.map(button => (
-            <Button
-              key={button.label}
-              color={button.color}
-              ariaLabel={button.label}
-              href={button.href}
-              label={button.label}
-              size="small"
-            />
-          ))}
-        </CardButtons>
+        {Array.isArray(card?.buttons) && card.buttons?.length > 0 && (
+          <CardButtons>
+            {card.buttons.map(button => (
+              <Button
+                key={button.label}
+                color={button.color}
+                ariaLabel={button.label}
+                href={button.href}
+                label={button.label}
+                size="small"
+                renderEndIcon={() =>
+                  button?.endIcon ? (
+                    <Icon
+                      style={{ marginLeft: "0.5rem" }}
+                      icon={button.endIcon}
+                    />
+                  ) : null
+                }
+                {...button}
+              />
+            ))}
+          </CardButtons>
+        )}
       </CardContent>
     </CardRoot>
   );
 };
 
+export const cardPropTypes = PropTypes.shape({
+  imageSrc: PropTypes.string,
+  imageAlt: PropTypes.string,
+  title: PropTypes.string,
+  subtitles: PropTypes.arrayOf(PropTypes.string),
+  body: PropTypes.string,
+  buttons: PropTypes.arrayOf(buttonPropTypes),
+});
+
 SingleCard.propTypes = {
-  card: PropTypes.shape({
-    imageSrc: PropTypes.string,
-    imageAlt: PropTypes.string,
-    title: PropTypes.string,
-    subtitles: PropTypes.arrayOf(PropTypes.string),
-    body: PropTypes.string,
-    buttons: PropTypes.arrayOf(
-      PropTypes.shape({
-        label: PropTypes.string,
-        color: PropTypes.string,
-        href: PropTypes.string,
-      })
-    ),
-  }),
+  card: cardPropTypes,
 };

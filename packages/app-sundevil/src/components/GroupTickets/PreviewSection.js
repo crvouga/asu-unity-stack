@@ -12,33 +12,37 @@ export const PreviewSection = ({
   return (
     <>
       <SectionHeader title={title} subtitle={description} />
-      <div className="container">
-        <div className="row">
-          {images.map(image => (
-            <div className="col-md-4">
-              <img src={image.src} className="img-fluid" alt={image.alt} />
-            </div>
-          ))}
+      {Array.isArray(images) && images.length > 0 && (
+        <div className="container">
+          <div className="row">
+            {images.map(image => (
+              <div className="col-md-4">
+                <img src={image.src} className="img-fluid" alt={image.alt} />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
-      <div className="container">
-        <h1 style={{ fontSize: "24px", fontWeight: "700" }}>
-          {interestedSection.title}
-        </h1>
-        <p style={{ fontSize: "16px", fontWeight: "400" }}>
-          {interestedSection.description}
-        </p>
-        <p style={{ fontSize: "16px", fontWeight: "400" }}>
-          <a href={`mailto:${interestedSection.phone}`}>
-            ${interestedSection.phone}
-          </a>{" "}
-          or{" "}
-          <a href={`mailto:${interestedSection.email}`}>
-            ${interestedSection.email}
-          </a>
-        </p>
-      </div>
+      {interestedSection && (
+        <div className="container">
+          <h1 style={{ fontSize: "24px", fontWeight: "700" }}>
+            {interestedSection.title}
+          </h1>
+          <p style={{ fontSize: "16px", fontWeight: "400" }}>
+            {interestedSection.description}
+          </p>
+          <p style={{ fontSize: "16px", fontWeight: "400" }}>
+            <a href={`mailto:${interestedSection.phone}`}>
+              ${interestedSection.phone}
+            </a>{" "}
+            or{" "}
+            <a href={`mailto:${interestedSection.email}`}>
+              ${interestedSection.email}
+            </a>
+          </p>
+        </div>
+      )}
     </>
   );
 };

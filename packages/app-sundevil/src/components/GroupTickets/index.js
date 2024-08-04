@@ -3,8 +3,8 @@ import React from "react";
 import styled from "styled-components";
 
 import { TicketsFooter } from "../SeasonsTicket/ticketsFooter";
-import { EnhanceExperence } from "./enhanceExperence";
-import { GroupTicketsBySport } from "./GroupTicketsBySport";
+import { CardGrid } from "./CardGrid";
+import { EnhanceExperience } from "./EnhanceExperience";
 import { PreviewSection } from "./PreviewSection";
 
 const Root = styled.section`
@@ -19,15 +19,16 @@ export const GroupTickets = ({ faqs, sportsGroupCard, textImageBlock }) => {
       <PreviewSection
         title="Bring the whole crew"
         description="Group ticket packages are the perfect way to create a personalized and memorable Sun Devil game experience. Starting at just 15 tickets, groups can take advantage of ticket discounts, early access to games, tailgates, premium areas, exclusive tours, fundraising opportunities, and so much more."
-        image={[]}
+        images={[]}
+        interestedSection={null}
       />
 
-      <GroupTicketsBySport
+      <CardGrid
         sportsGroupCard={sportsGroupCard}
         title="Group tickets by sport"
       />
 
-      <EnhanceExperence
+      <EnhanceExperience
         title="Enhance your experience"
         description="Group tickets can be enhanced with unique experiences such as:"
         experienceList={textImageBlock.experienceList}

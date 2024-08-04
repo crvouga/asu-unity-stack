@@ -3,7 +3,7 @@ import React from "react";
 
 import { Icon } from "../Icon_";
 
-export const EnhanceExperence = ({
+export const EnhanceExperience = ({
   title,
   description,
   experienceList,
@@ -68,7 +68,7 @@ export const EnhanceExperence = ({
   );
 };
 
-EnhanceExperence.propTypes = {
+EnhanceExperience.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   experienceList: PropTypes.arrayOf(

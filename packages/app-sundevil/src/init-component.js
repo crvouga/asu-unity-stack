@@ -20,8 +20,7 @@ import { CardSectionSingleColumn } from "./components/CardSectionSingleColumn";
 import { CardSectionThreeColumn } from "./components/CardSectionThreeColumn";
 import { ContactUsCTA } from "./components/ContactUsCTA";
 import { GroupTickets } from "./components/GroupTickets";
-import { EnhanceExperence } from "./components/GroupTickets/enhanceExperence";
-import { GroupTicketsBySport } from "./components/GroupTickets/GroupTicketsBySport";
+import { EnhanceExperience } from "./components/GroupTickets/EnhanceExperience";
 import { PreviewSection } from "./components/GroupTickets/PreviewSection";
 import { IconTextColumnsSection } from "./components/IconTextColumnsSection";
 import { NonTicketedIntro } from "./components/IconTextColumnsSection/NonTicketedIntro";
@@ -310,16 +309,19 @@ export const initGroupTicketBenefitSection = input => {
 export const initEnhanceExperienceSection = input => {
   RenderReact({
     ...input,
-    component: EnhanceExperence,
+    component: EnhanceExperience,
   });
 };
 
-export const initGroupTicketsBySport = input => {
+export const initCardGrid = input => {
   RenderReact({
     ...input,
-    component: GroupTicketsBySport,
+    component: initCardGrid,
   });
 };
+
+// For backward compatibility
+export const initGroupTicketsBySport = initCardGrid;
 
 export const initPreviewSection = input => {
   RenderReact({

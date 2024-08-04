@@ -7,6 +7,7 @@ export const buttonPropTypes = PropTypes.shape({
   size: PropTypes.string,
   href: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  endIcon: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   target: PropTypes.string,
   className: PropTypes.string,
   link: PropTypes.string,

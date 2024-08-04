@@ -22,13 +22,21 @@ const Template = args => (
       style={{
         width: "100%",
         height: "80px",
-        backgroundColor: "black",
         position: "fixed",
         top: 0,
         left: 0,
         zIndex: 1000,
       }}
-    />
+    >
+      <div
+        style={{
+          backgroundColor: "black",
+          width: "100%",
+          height: "100%",
+        }}
+      />
+      <div id="navbar-portal" />
+    </div>
     <div
       style={{ width: "100%", height: "500px", backgroundColor: "#efefef" }}
     />
@@ -65,13 +73,13 @@ const Template = args => (
   </div>
 );
 
+// stickyPosition: {
+//   navbarSelector: "#navbar",
+//   stickyElementSelector: "#link-tabs",
+// },
 export const Default = Template.bind({});
 Default.args = {
   disableActiveFromUrl: false,
-  stickyPosition: {
-    navbarSelector: "#navbar",
-    stickyElementSelector: "#link-tabs",
-  },
   maxLinkCountBreakpoints: {
     mobile: 2,
     tablet: 4,
@@ -159,6 +167,7 @@ DebugProps.args = {
   disableActiveFromUrl: false,
   stickyPosition: {
     navbarSelector: "#navbar",
+    navbarPortalSelector: "#navbar-portal",
     stickyElementSelector: "#link-tabs",
   },
   maxLinkCountBreakpoints: {
@@ -291,6 +300,7 @@ SportTickets.args = {
   stickyPosition: {
     navbarSelector: "#navbar",
     stickyElementSelector: "#link-tabs",
+    navbarPortalSelector: "#navbar-portal",
   },
   maxLinkCountBreakpoints: {
     mobile: 2,
@@ -334,6 +344,7 @@ YourGameDayGuide.args = {
   stickyPosition: {
     navbarSelector: "#navbar",
     stickyElementSelector: "#link-tabs",
+    navbarPortalSelector: "#navbar-portal",
   },
   maxLinkCountBreakpoints: {
     mobile: 1,

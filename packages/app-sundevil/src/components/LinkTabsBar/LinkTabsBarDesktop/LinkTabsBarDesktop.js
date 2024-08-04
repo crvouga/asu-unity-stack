@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { forwardRef, useRef } from "react";
 import styled from "styled-components";
 
 import { linkTabsBarPropTypes } from "../link-tab-bar";
@@ -13,6 +13,7 @@ export const Root = styled.div`
   height: 62px;
   max-height: 62px;
   border-bottom: 1px solid #d0d0d0;
+  background-color: #fff;
 `;
 
 const SponsorImage = styled.img`
@@ -49,39 +50,44 @@ const LinkTabsRoot = styled.div`
   width: 100%;
 `;
 
-export const LinkTabsBarDesktop = ({
-  links = [],
-  sponsorHref,
-  sponsorLogoSrc,
-  sponsorLogoAlt,
-  maxLinkCountBreakpoints,
-  moreTabLabel,
-  alignment,
-  title,
-}) => {
-  const containerRef = useRef(null);
-  const maxLinkCount = useMaxLinkCount(maxLinkCountBreakpoints);
-  return (
-    <Root alignment={alignment}>
-      <Content className="container">
-        <LinkTabsRoot ref={containerRef}>
-          <LinkTabs
-            title={title}
-            links={links}
-            maxLinkCount={maxLinkCount}
-            moreTabLabel={moreTabLabel}
-            alignment={alignment}
-          />
-        </LinkTabsRoot>
+export const LinkTabsBarDesktop = forwardRef(
+  (
+    {
+      links = [],
+      sponsorHref,
+      sponsorLogoSrc,
+      sponsorLogoAlt,
+      maxLinkCountBreakpoints,
+      moreTabLabel,
+      alignment,
+      title,
+    },
+    ref
+  ) => {
+    const containerRef = useRef(null);
+    const maxLinkCount = useMaxLinkCount(maxLinkCountBreakpoints);
+    return (
+      <Root ref={ref} alignment={alignment}>
+        <Content className="container">
+          <LinkTabsRoot ref={containerRef}>
+            <LinkTabs
+              title={title}
+              links={links}
+              maxLinkCount={maxLinkCount}
+              moreTabLabel={moreTabLabel}
+              alignment={alignment}
+            />
+          </LinkTabsRoot>
 
-        {typeof sponsorLogoSrc === "string" &&
-          sponsorLogoSrc.trim().length > 0 && (
-            <SponsorRoot href={sponsorHref}>
-              <SponsorImage src={sponsorLogoSrc} alt={sponsorLogoAlt} />
-            </SponsorRoot>
-          )}
-      </Content>
-    </Root>
-  );
-};
+          {typeof sponsorLogoSrc === "string" &&
+            sponsorLogoSrc.trim().length > 0 && (
+              <SponsorRoot href={sponsorHref}>
+                <SponsorImage src={sponsorLogoSrc} alt={sponsorLogoAlt} />
+              </SponsorRoot>
+            )}
+        </Content>
+      </Root>
+    );
+  }
+);
 LinkTabsBarDesktop.propTypes = linkTabsBarPropTypes;

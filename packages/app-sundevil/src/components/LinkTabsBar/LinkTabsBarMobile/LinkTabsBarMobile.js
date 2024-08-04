@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 
 import { linkTabsBarPropTypes } from "../link-tab-bar";
@@ -12,6 +12,7 @@ export const Root = styled.div`
   height: 62px;
   max-height: 62px;
   border-bottom: 1px solid #d0d0d0;
+  background-color: #fff;
 `;
 
 const SponsorImage = styled.img`
@@ -51,26 +52,23 @@ const Content = styled.div`
   height: 100%;
 `;
 
-export const LinkTabsBarMobile = ({
-  links = [],
-  sponsorHref,
-  sponsorLogoSrc,
-  sponsorLogoAlt,
-}) => {
-  return (
-    <Root>
-      <Content className="container">
-        <LinkTabsRoot>
-          <LinkTabsBarDropDown links={links} />
-        </LinkTabsRoot>
-        {typeof sponsorLogoSrc === "string" &&
-          sponsorLogoSrc.trim().length > 0 && (
-            <SponsorRoot href={sponsorHref}>
-              <SponsorImage src={sponsorLogoSrc} alt={sponsorLogoAlt} />
-            </SponsorRoot>
-          )}
-      </Content>
-    </Root>
-  );
-};
+export const LinkTabsBarMobile = forwardRef(
+  ({ links = [], sponsorHref, sponsorLogoSrc, sponsorLogoAlt }, ref) => {
+    return (
+      <Root ref={ref}>
+        <Content className="container">
+          <LinkTabsRoot>
+            <LinkTabsBarDropDown links={links} />
+          </LinkTabsRoot>
+          {typeof sponsorLogoSrc === "string" &&
+            sponsorLogoSrc.trim().length > 0 && (
+              <SponsorRoot href={sponsorHref}>
+                <SponsorImage src={sponsorLogoSrc} alt={sponsorLogoAlt} />
+              </SponsorRoot>
+            )}
+        </Content>
+      </Root>
+    );
+  }
+);
 LinkTabsBarMobile.propTypes = linkTabsBarPropTypes;

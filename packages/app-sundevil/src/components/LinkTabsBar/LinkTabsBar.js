@@ -2,7 +2,8 @@
 // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=7278-6895&t=GryWYEeDobWHRTpE-0
 // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=2913-15764&t=GryWYEeDobWHRTpE-0
 // @ts-check
-import React from "react";
+import React, { forwardRef } from "react";
+import { createPortal } from "react-dom";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
@@ -11,7 +12,7 @@ import { useCurrentUrl } from "../../utils/use-current-url";
 import { linkTabsBarPropTypes } from "./link-tab-bar";
 import { LinkTabsBarDesktop } from "./LinkTabsBarDesktop/LinkTabsBarDesktop";
 import { LinkTabsBarMobile } from "./LinkTabsBarMobile/LinkTabsBarMobile";
-import { useStickyPositionEffect } from "./use-sticky-position-effect";
+import { useIsOverlapped } from "./use-is-overlapping";
 
 /**
  *
@@ -44,26 +45,37 @@ const mapActiveLinkFromUrl = (currentUrl, links) => {
   }));
 };
 
-const LinkTabsBarResponsive = props => {
-  const { links } = props;
+const LinkTabsBarResponsive = forwardRef((props, ref) => {
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
 
   if (isMobile) {
-    const linksMobile = links.map(link => ({
+    // @ts-ignore
+    const linksMobile = props.links.map(link => ({
       ...link,
       label: link.mobileLabel ?? link.label,
     }));
-    return <LinkTabsBarMobile {...props} links={linksMobile} />;
+    // @ts-ignore
+    return <LinkTabsBarMobile {...props} links={linksMobile} ref={ref} />;
   }
 
-  return <LinkTabsBarDesktop {...props} links={links} />;
-};
+  // @ts-ignore
+  return <LinkTabsBarDesktop {...props} links={props.links} ref={ref} />;
+});
+// @ts-ignore
 LinkTabsBarResponsive.propTypes = linkTabsBarPropTypes;
 
 const Root = styled.div`
   width: 100%;
   background-color: #fff;
 `;
+
+const safeQuerySelector = (selector, defaultValue = null) => {
+  try {
+    return document.querySelector(selector) ?? defaultValue;
+  } catch (error) {
+    return defaultValue;
+  }
+};
 
 export const LinkTabsBar = props => {
   const { links, disableActiveFromUrl, stickyPosition } = props;
@@ -72,11 +84,22 @@ export const LinkTabsBar = props => {
     ? links
     : mapActiveLinkFromUrl(currentUrl, links);
 
-  useStickyPositionEffect(stickyPosition);
+  const isOverlapping = useIsOverlapped(stickyPosition);
+
+  const navbarPortal = safeQuerySelector(
+    stickyPosition.navbarPortalSelector,
+    null
+  );
 
   return (
     <Root>
       <LinkTabsBarResponsive {...props} links={mappedLinks} />
+      {isOverlapping &&
+        navbarPortal &&
+        createPortal(
+          <LinkTabsBarResponsive {...props} links={mappedLinks} />,
+          navbarPortal
+        )}
     </Root>
   );
 };

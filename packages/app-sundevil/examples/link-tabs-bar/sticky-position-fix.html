@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Load React. -->
+    <script
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+      crossorigin
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://unity.web.asu.edu/@asu/bootstrap4-theme/css/bootstrap-asu.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://asu.github.io/asu-unity-stack/@asu/unity-bootstrap-theme/css/unity-bootstrap-theme.bundle.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/63c5db143d.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- *************************************************************** -->
+    <!-- include bundled scripts from packages -->
+    <script src="../dist/vendor.umd.js"></script>
+    <script src="../dist/sunDevil.umd.js"></script>
+  </head>
+
+  <body>
+    <div style="width: 100%; height: 100%">
+      <div
+        id="navbar"
+        style="
+          width: 100%;
+          position: fixed;
+          top: 0;
+          left: 0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          z-index: 100;
+        "
+      >
+        <div
+          style="
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: black;
+            color: white;
+          "
+        >
+          Nav Bar
+        </div>
+        <div style="width: 100%" id="navbar-portal"></div>
+      </div>
+      <div
+        style="
+          background-color: black;
+          background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
+            url('./sun-devils-hero.png') no-repeat center center;
+          background-size: cover;
+          height: 800px;
+          z-index: 100;
+        "
+      ></div>
+      <div>
+        <div>
+          <div>
+            <div id="container"></div>
+          </div>
+        </div>
+      </div>
+      <div style="width: 100%; height: 3000px"></div>
+    </div>
+    <script>
+      const props = {
+        disableActiveFromUrl: false,
+        stickyPosition: {
+          navbarSelector: "#navbar",
+          stickyElementSelector: "#container",
+          navbarPortalSelector: "#navbar-portal",
+        },
+        maxLinkCountBreakpoints: {
+          mobile: 2,
+          tablet: 4,
+          smallDesktop: 6,
+          desktop: 8,
+        },
+        alignment: "center",
+        title: "On this page:",
+        links: [
+          {
+            label: "Single Game",
+            href: "#",
+          },
+          {
+            label: "Season",
+            href: "#",
+          },
+          {
+            label: "Mini plans",
+            href: "#",
+          },
+          {
+            label: "Group",
+            href: "#",
+          },
+          {
+            label: "Premium",
+            href: "#",
+          },
+        ],
+
+        sponsorHref: null,
+        sponsorLogoSrc: " ",
+        sponsorLogoAlt: " ",
+      };
+      initLinkTabsBar({
+        targetSelector: "#container",
+        props,
+      });
+    </script>
+  </body>
+</html>

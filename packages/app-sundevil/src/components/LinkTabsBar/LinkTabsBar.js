@@ -12,7 +12,7 @@ import { useCurrentUrl } from "../../utils/use-current-url";
 import { linkTabsBarPropTypes } from "./link-tab-bar";
 import { LinkTabsBarDesktop } from "./LinkTabsBarDesktop/LinkTabsBarDesktop";
 import { LinkTabsBarMobile } from "./LinkTabsBarMobile/LinkTabsBarMobile";
-import { useIsOverlapped } from "./use-is-overlapping";
+import { useShowPortalElement } from "./use-show-portal-element";
 
 /**
  *
@@ -84,7 +84,7 @@ export const LinkTabsBar = props => {
     ? links
     : mapActiveLinkFromUrl(currentUrl, links);
 
-  const isOverlapping = useIsOverlapped(stickyPosition);
+  const showPortalElement = useShowPortalElement(stickyPosition);
 
   const navbarPortal = safeQuerySelector(
     stickyPosition.navbarPortalSelector,
@@ -94,7 +94,7 @@ export const LinkTabsBar = props => {
   return (
     <Root>
       <LinkTabsBarResponsive {...props} links={mappedLinks} />
-      {isOverlapping &&
+      {showPortalElement &&
         navbarPortal &&
         createPortal(
           <LinkTabsBarResponsive {...props} links={mappedLinks} />,

@@ -80,27 +80,52 @@ GroupTicketsBySport.args = {
       imageSrc: "https://picsum.photos/300/300",
       imageAlt: "Football",
       body: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.",
-      buttons: [
-        {
-          label: "Get tickets",
-          color: "gold",
-          href: "/",
-          size: "small",
-          endIcon: "fa fas fa-ticket-alt",
-        },
-        {
-          label: "Tailgate packages",
-          color: "primary",
-          href: "/",
-          size: "small",
-        },
-        {
-          label: "Interest form",
-          color: "primary",
-          href: "/",
-          size: "small",
-        },
+      buttonRows: [
+        [
+          {
+            label: "Get tickets",
+            color: "gold",
+            href: "/",
+            size: "small",
+            endIcon: "fa fas fa-ticket-alt",
+          },
+        ],
+        [
+          {
+            label: "Tailgate packages",
+            color: "primary",
+            href: "/",
+            size: "small",
+          },
+          {
+            label: "Interest form",
+            color: "primary",
+            href: "/",
+            size: "small",
+          },
+        ],
       ],
+      // buttons: [
+      //   {
+      //     label: "Get tickets",
+      //     color: "gold",
+      //     href: "/",
+      //     size: "small",
+      //     endIcon: "fa fas fa-ticket-alt",
+      //   },
+      //   {
+      //     label: "Tailgate packages",
+      //     color: "primary",
+      //     href: "/",
+      //     size: "small",
+      //   },
+      //   {
+      //     label: "Interest form",
+      //     color: "primary",
+      //     href: "/",
+      //     size: "small",
+      //   },
+      // ],
     },
     {
       title: "Football",

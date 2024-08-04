@@ -68,6 +68,8 @@ const CardButtons = styled.div`
   padding-top: 6px;
 `;
 
+const isCleanArray = array => Array.isArray(array) && array.length > 0;
+
 // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4946-10693&t=C3qkTw4K6TZjJmgN-0
 export const SingleCard = ({ card }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -95,7 +97,37 @@ export const SingleCard = ({ card }) => {
           <CardBodyText dangerouslySetInnerHTML={{ __html: card.body }} />
         </CardBody>
 
-        {Array.isArray(card?.buttons) && card.buttons?.length > 0 && (
+        {isCleanArray(card?.buttonRows) &&
+          card.buttonRows.map(
+            buttonRow =>
+              isCleanArray(buttonRow) && (
+                <CardButtons
+                  key={buttonRow?.map(button => button.label ?? "")?.join("")}
+                >
+                  {buttonRow.map(button => (
+                    <Button
+                      key={button.label}
+                      color={button.color}
+                      ariaLabel={button.label}
+                      href={button.href}
+                      label={button.label}
+                      size="small"
+                      renderEndIcon={() =>
+                        button?.endIcon ? (
+                          <Icon
+                            style={{ marginLeft: "0.5rem" }}
+                            icon={button.endIcon}
+                          />
+                        ) : null
+                      }
+                      {...button}
+                    />
+                  ))}
+                </CardButtons>
+              )
+          )}
+
+        {isCleanArray(card?.buttons) && (
           <CardButtons>
             {card.buttons.map(button => (
               <Button
@@ -130,6 +162,17 @@ export const cardPropTypes = PropTypes.shape({
   subtitles: PropTypes.arrayOf(PropTypes.string),
   body: PropTypes.string,
   buttons: PropTypes.arrayOf(buttonPropTypes),
+  buttonRows: PropTypes.arrayOf(
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string,
+        color: PropTypes.string,
+        href: PropTypes.string,
+        size: PropTypes.string,
+        endIcon: PropTypes.string,
+      })
+    )
+  ),
 });
 
 SingleCard.propTypes = {

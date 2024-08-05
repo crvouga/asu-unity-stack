@@ -31,6 +31,9 @@ const Title = styled.p`
   font-size: 16px;
   font-weight: bold;
   width: 100%;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const CellDate = styled.div`

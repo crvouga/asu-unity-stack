@@ -25,5 +25,9 @@ export function formatTimeAmPm(time) {
       amPm = "";
       return time;
   }
-  return `${time.slice(0, -2)} ${amPm}`;
+  let timeStr = time.slice(0, -2);
+  if (timeStr.startsWith("0")) {
+    timeStr = timeStr.slice(1);
+  }
+  return `${timeStr} ${amPm}`;
 }

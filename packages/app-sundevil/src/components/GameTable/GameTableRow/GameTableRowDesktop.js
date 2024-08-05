@@ -108,6 +108,9 @@ const Title = styled.a`
   font-weight: bold;
   width: fit-content;
   max-width: 100%;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const isCleanString = str => typeof str === "string" && str.trim().length > 0;

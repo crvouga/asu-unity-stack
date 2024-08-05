@@ -30,6 +30,10 @@ const Title = styled.p`
   font-size: 16px;
   font-weight: bold;
   width: 100%;
+  // underline on hover
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const Subtitles = styled.div`

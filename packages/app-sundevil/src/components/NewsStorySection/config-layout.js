@@ -22,7 +22,7 @@ export const configLayoutPropTypes = PropTypes.shape({
  * @type {ConfigLayout}
  */
 export const defaultConfigLayout = {
-  includeSportTabs: false,
+  includeSportsTabs: false,
   includeInputSearch: false,
   includeInputNewsType: false,
   includeInputSportType: false,

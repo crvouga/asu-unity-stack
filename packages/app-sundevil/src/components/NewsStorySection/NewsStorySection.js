@@ -168,7 +168,7 @@ const NewsStorySectionInner = ({
 
       {isDesktop && (
         <>
-          {configLayout.includeSportTabs && (
+          {configLayout.includeSportsTabs && (
             <div className="container" style={{ paddingBottom: "32px" }}>
               <SportsTabsDesktop
                 skeleton={skeletonTabs}
@@ -195,7 +195,7 @@ const NewsStorySectionInner = ({
 
       {isMobile && (
         <>
-          {configLayout.includeSportTabs && (
+          {configLayout.includeSportsTabs && (
             <div className="container">
               <SportsTabsMobile
                 sports={sportsFinal}
@@ -239,7 +239,6 @@ const NewsStorySectionInner = ({
       )}
 
       {configLayout.includeLoadMore &&
-        loadMore &&
         newsStoryDataSourceLoader.showLoadNextPage && (
           <LoadButtonRoot>
             <LoadMoreButton

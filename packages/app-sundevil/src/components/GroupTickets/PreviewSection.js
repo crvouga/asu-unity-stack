@@ -29,18 +29,7 @@ export const PreviewSection = ({
           <h1 style={{ fontSize: "24px", fontWeight: "700" }}>
             {interestedSection.title}
           </h1>
-          <p style={{ fontSize: "16px", fontWeight: "400" }}>
-            {interestedSection.description}
-          </p>
-          <p style={{ fontSize: "16px", fontWeight: "400" }}>
-            <a href={`mailto:${interestedSection.phone}`}>
-              ${interestedSection.phone}
-            </a>{" "}
-            or{" "}
-            <a href={`mailto:${interestedSection.email}`}>
-              ${interestedSection.email}
-            </a>
-          </p>
+          <p style={{ fontSize: "16px", fontWeight: "400" }}  dangerouslySetInnerHTML={{ __html: interestedSection.description }} />
         </div>
       )}
     </>
@@ -59,7 +48,5 @@ PreviewSection.propTypes = {
   interestedSection: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
-    email: PropTypes.string,
-    phone: PropTypes.string,
   }),
 };

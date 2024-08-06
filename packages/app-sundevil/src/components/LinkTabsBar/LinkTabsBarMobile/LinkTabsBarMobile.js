@@ -53,10 +53,10 @@ const Content = styled.div`
 `;
 
 export const LinkTabsBarMobile = forwardRef(
-  ({ links = [], sponsorHref, sponsorLogoSrc, sponsorLogoAlt }, ref) => {
+  ({ links = [], sponsorHref, sponsorLogoSrc, sponsorLogoAlt, style }, ref) => {
     return (
       <Root ref={ref}>
-        <Content className="container">
+        <Content className="container" style={style}>
           <LinkTabsRoot>
             <LinkTabsBarDropDown links={links} />
           </LinkTabsRoot>

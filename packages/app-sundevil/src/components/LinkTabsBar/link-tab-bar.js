@@ -13,9 +13,11 @@ export const linkTabsBarPropTypes = PropTypes.shape({
   maxLinkCountBreakpoints: maxLinkCountBreakpointsPropType,
   disableActiveFromUrl: PropTypes.bool,
   stickyPosition: PropTypes.shape({
-    navbarSelector: PropTypes.string,
+    navbarPortalSelector: PropTypes.string,
     stickyElementSelector: PropTypes.string,
   }),
   alignment: alignmentPropTypes,
   title: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  style: PropTypes.object,
 });

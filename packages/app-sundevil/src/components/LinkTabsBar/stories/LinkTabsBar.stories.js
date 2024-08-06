@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from "react";
 
-import { LinkTabsBar } from "./index";
+import { LinkTabsBar } from "../index";
 
 export default {
   title: "Link Tabs / Link Tabs Bar",
@@ -73,10 +73,6 @@ const Template = args => (
   </div>
 );
 
-// stickyPosition: {
-//   navbarSelector: "#navbar",
-//   stickyElementSelector: "#link-tabs",
-// },
 export const Default = Template.bind({});
 Default.args = {
   disableActiveFromUrl: false,
@@ -166,7 +162,6 @@ DebugProps.args = {
   title: "Baseball anchor menu",
   disableActiveFromUrl: false,
   stickyPosition: {
-    navbarSelector: "#navbar",
     navbarPortalSelector: "#navbar-portal",
     stickyElementSelector: "#link-tabs",
   },
@@ -298,7 +293,6 @@ export const SportTickets = Template.bind({});
 SportTickets.args = {
   disableActiveFromUrl: false,
   stickyPosition: {
-    navbarSelector: "#navbar",
     stickyElementSelector: "#link-tabs",
     navbarPortalSelector: "#navbar-portal",
   },
@@ -342,7 +336,6 @@ export const YourGameDayGuide = Template.bind({});
 YourGameDayGuide.args = {
   disableActiveFromUrl: false,
   stickyPosition: {
-    navbarSelector: "#navbar",
     stickyElementSelector: "#link-tabs",
     navbarPortalSelector: "#navbar-portal",
   },

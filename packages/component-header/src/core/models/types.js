@@ -118,6 +118,7 @@
  * @property {string} site
  * @property {string} renderDiv - Can be either "true" or "false".
  * @property {UniversalNavBarProps | null} [universalNavbar]
+ * @property {string} [stickyPortalEntranceId]
  */
 
 export const JSDOC = "jsdoc";

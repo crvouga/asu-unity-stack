@@ -1,16 +1,12 @@
-import { useEffect, useState, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-const safeQuerySelector = selector => {
-  try {
-    return document.querySelector(selector) ?? null;
-  } catch (error) {
-    return null;
-  }
-};
+import { cacheQuerySelector } from "../../utils/query-selector-cached";
+import { querySelectorSafe } from "../../utils/query-selector-safe";
+
+const querySelectorSafeAndCached = cacheQuerySelector(querySelectorSafe);
 
 /**
  * @param {{
- *  navbarSelector?: string,
  *  stickyElementSelector?: string
  *  navbarPortalSelector?: string
  * }} options
@@ -19,20 +15,30 @@ export const useShowPortalElement = options => {
   const [showPortalElement, setShowPortalElement] = useState(false);
 
   const checkOverlap = useCallback(() => {
-    const navbar = safeQuerySelector(
-      options.navbarSelector
+    const navbarPortal = querySelectorSafeAndCached(
+      options?.navbarPortalSelector
     )?.getBoundingClientRect();
-    const stickyElement = safeQuerySelector(
-      options.stickyElementSelector
+    const stickyElement = querySelectorSafeAndCached(
+      options?.stickyElementSelector
     )?.getBoundingClientRect();
 
-    setShowPortalElement(navbar.bottom > stickyElement.top);
-  }, [showPortalElement]);
+    if (!navbarPortal || !stickyElement) {
+      return;
+    }
+
+    const shouldShow = showPortalElement
+      ? navbarPortal.bottom >= stickyElement.bottom
+      : navbarPortal.bottom >= stickyElement.top;
+
+    if (shouldShow !== showPortalElement) {
+      setShowPortalElement(shouldShow);
+    }
+  }, [showPortalElement, options]);
 
   useEffect(() => {
     checkOverlap();
 
-    window.addEventListener("scroll", checkOverlap);
+    window.addEventListener("scroll", checkOverlap, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", checkOverlap);

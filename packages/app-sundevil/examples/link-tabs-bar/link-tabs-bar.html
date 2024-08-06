@@ -68,6 +68,7 @@
         "
       >
         Nav Bar
+        <div  style="width: 100%; height: 1px;" id="navbar-portal"></div>
       </div>
       <div
         style="
@@ -85,7 +86,7 @@
     <script>
       const props = {
         stickyPosition: {
-          navbarSelector: "#navbar", // The selector of the navbar that the sticky element should be aligned with
+          navbarPortalSelector: "#navbar-portal", // The selector of the navbar that the sticky element should be aligned with
           stickyElementSelector: "#container", // The selector of the element that should be sticky
         },
         disableActiveFromUrl: false,

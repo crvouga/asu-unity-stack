@@ -13,6 +13,7 @@ import { linkTabsBarPropTypes } from "./link-tab-bar";
 import { LinkTabsBarDesktop } from "./LinkTabsBarDesktop/LinkTabsBarDesktop";
 import { LinkTabsBarMobile } from "./LinkTabsBarMobile/LinkTabsBarMobile";
 import { useShowPortalElement } from "./use-show-portal-element";
+import { querySelectorSafe } from "../../utils/query-selector-safe";
 
 /**
  *
@@ -69,14 +70,6 @@ const Root = styled.div`
   background-color: #fff;
 `;
 
-const safeQuerySelector = (selector, defaultValue = null) => {
-  try {
-    return document.querySelector(selector) ?? defaultValue;
-  } catch (error) {
-    return defaultValue;
-  }
-};
-
 export const LinkTabsBar = props => {
   const { links, disableActiveFromUrl, stickyPosition } = props;
   const currentUrl = useCurrentUrl(); // TODO change it to props based do not pick from URL directly
@@ -86,20 +79,25 @@ export const LinkTabsBar = props => {
 
   const showPortalElement = useShowPortalElement(stickyPosition);
 
-  const navbarPortal = safeQuerySelector(
-    stickyPosition.navbarPortalSelector,
-    null
-  );
+  const navbarPortal = querySelectorSafe(stickyPosition?.navbarPortalSelector);
+
+  const showPortal = Boolean(showPortalElement && navbarPortal);
 
   return (
     <Root>
-      <LinkTabsBarResponsive {...props} links={mappedLinks} />
-      {showPortalElement &&
-        navbarPortal &&
+      <LinkTabsBarResponsive
+        {...props}
+        style={{ opacity: showPortal ? 0 : 1 }}
+        links={mappedLinks}
+      />
+      {showPortal ? (
         createPortal(
           <LinkTabsBarResponsive {...props} links={mappedLinks} />,
           navbarPortal
-        )}
+        )
+      ) : (
+        <></>
+      )}
     </Root>
   );
 };

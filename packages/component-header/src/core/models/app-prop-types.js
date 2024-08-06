@@ -118,6 +118,7 @@ const HeaderPropTypes = {
   mobile: MobilePropTypes,
   universalNavbar: UniversalNavbarPropTypes,
   footers: PropTypes.arrayOf(NavTreePropFooter),
+  stickyPortalEntranceId: PropTypes.string,
 };
 
 export {

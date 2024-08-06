@@ -44,6 +44,7 @@ const ASUHeader = ({
   renderDiv = "false",
   universalNavbar,
   mobile,
+  stickyPortalEntranceId,
 }) => {
   const navTree = tryAddActivePage(rawNavTree);
   const mobileNavTree = tryAddActivePage(rawMobileNavTree);
@@ -98,6 +99,15 @@ const ASUHeader = ({
         breakpoint={breakpoint}
       >
         <HeaderMain />
+        {typeof stickyPortalEntranceId === "string" &&
+          stickyPortalEntranceId.trim().length > 0 && (
+            <div
+              style={{
+                width: "100%",
+              }}
+              id={stickyPortalEntranceId}
+            />
+          )}
       </Wrapper>
     );
   };

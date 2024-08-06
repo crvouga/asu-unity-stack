@@ -79,7 +79,7 @@ const safeQuerySelector = (selector, defaultValue = null) => {
 
 export const LinkTabsBar = props => {
   const { links, disableActiveFromUrl, stickyPosition } = props;
-  const currentUrl = useCurrentUrl();
+  const currentUrl = useCurrentUrl(); // TODO change it to props based do not pick from URL directly
   const mappedLinks = disableActiveFromUrl
     ? links
     : mapActiveLinkFromUrl(currentUrl, links);

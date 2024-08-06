@@ -33,6 +33,7 @@ const Title = styled.p`
   width: 100%;
   &:hover {
     text-decoration: underline;
+    cursor: pointer;
   }
 `;
 

@@ -29,3 +29,9 @@ export const Base = Template.bind({});
 Base.args = {
   ...drupalSocialMediaSectionProps,
 };
+
+export const EmptyEmbed = Template.bind({});
+EmptyEmbed.args = {
+  ...drupalSocialMediaSectionProps,
+  embed_code: "",
+};

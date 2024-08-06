@@ -185,7 +185,9 @@ const mapNavTreeItem = navTreeItem => {
 
 /** @type {(props: HeaderProps['navTree']) => HeaderProps['navTree']}  */
 const mapNavTree = navTree =>
-  navTree.map(assocNavTreeVariant).map(mapNavTreeItem);
+  Array.isArray(navTree)
+    ? navTree.map(assocNavTreeVariant).map(mapNavTreeItem)
+    : [];
 
 /** @type {(props: HeaderProps) => HeaderProps}  */
 const mapProps = props => ({

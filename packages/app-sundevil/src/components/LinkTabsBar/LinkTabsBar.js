@@ -7,13 +7,13 @@ import { createPortal } from "react-dom";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
+import { querySelectorSafe } from "../../utils/query-selector-safe";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useCurrentUrl } from "../../utils/use-current-url";
 import { linkTabsBarPropTypes } from "./link-tab-bar";
 import { LinkTabsBarDesktop } from "./LinkTabsBarDesktop/LinkTabsBarDesktop";
 import { LinkTabsBarMobile } from "./LinkTabsBarMobile/LinkTabsBarMobile";
 import { useShowPortalElement } from "./use-show-portal-element";
-import { querySelectorSafe } from "../../utils/query-selector-safe";
 
 /**
  *

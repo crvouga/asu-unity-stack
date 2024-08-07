@@ -109,7 +109,11 @@ const NewsZoneSectionInner = ({
   const hasFooter = footerButtons?.length > 0 || footerLinks?.length > 0;
 
   const footer = hasFooter ? (
-    <SectionFooter footerButtons={footerButtons} footerLinks={footerLinks} />
+    <SectionFooter
+      disablePadding
+      footerButtons={footerButtons}
+      footerLinks={footerLinks}
+    />
   ) : null;
 
   const showEmptyState =

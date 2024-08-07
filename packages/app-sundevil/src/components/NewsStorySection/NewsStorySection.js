@@ -150,7 +150,11 @@ const NewsStorySectionInner = ({
 
   const hasFooter = footerButtons.length > 0 || footerLinks.length > 0;
   const footer = hasFooter ? (
-    <SectionFooter footerButtons={footerButtons} footerLinks={footerLinks} />
+    <SectionFooter
+      disablePadding={mobileVariant === "carousel"}
+      footerButtons={footerButtons}
+      footerLinks={footerLinks}
+    />
   ) : null;
 
   return (

@@ -23,11 +23,19 @@ const Root = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 16px;
   gap: 24px;
+  padding: ${({
+    // @ts-ignore
+    disablePadding,
+  }) => (disablePadding ? "" : "16px")};
 `;
 
-export const SectionFooter = ({ footerButtons, footerLinks, style }) => {
+export const SectionFooter = ({
+  disablePadding = false,
+  footerButtons,
+  footerLinks,
+  style,
+}) => {
   const hasFooterButtons =
     Array.isArray(footerButtons) && footerButtons.length > 0;
   const hasFooterLinks = Array.isArray(footerLinks) && footerLinks.length > 0;
@@ -36,7 +44,11 @@ export const SectionFooter = ({ footerButtons, footerLinks, style }) => {
     return null;
   }
   return (
-    <Root style={style}>
+    <Root
+      // @ts-ignore
+      disablePadding={disablePadding}
+      style={style}
+    >
       {footerButtons && footerButtons?.length > 0 && (
         <FooterBlock>
           {footerButtons.map(button => (
@@ -115,6 +127,7 @@ export const footerButtonPropTypes = PropTypes.shape({
  * @property {string | null | undefined} [link]
  * @property {string | null | undefined} [class]
  * @property {string | null | undefined} [className]
+ * @property {boolean | null | undefined} [disablePadding]
  */
 
 export const footerLinkPropTypes = PropTypes.shape({
@@ -125,6 +138,7 @@ export const footerLinkPropTypes = PropTypes.shape({
 });
 
 SectionFooter.propTypes = {
+  disablePadding: PropTypes.bool,
   footerButtons: PropTypes.arrayOf(footerButtonPropTypes),
   footerLinks: PropTypes.arrayOf(footerLinkPropTypes),
   // eslint-disable-next-line react/forbid-prop-types

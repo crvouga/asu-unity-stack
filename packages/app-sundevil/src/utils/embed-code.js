@@ -18,9 +18,20 @@ export const useEmbeddedCode = ({ embedCode, ref }) => {
   }, [embedCode]);
 };
 
+const isEmbedCodeValid = embedCode => {
+  return (
+    embedCode && typeof embedCode === "string" && embedCode.trim().length > 0
+  );
+};
+
 export const EmbeddedCode = ({ embedCode }) => {
   const ref = useRef();
   useEmbeddedCode({ embedCode, ref });
+
+  if (!isEmbedCodeValid(embedCode)) {
+    return null;
+  }
+
   return <div ref={ref} />;
 };
 EmbeddedCode.propTypes = {

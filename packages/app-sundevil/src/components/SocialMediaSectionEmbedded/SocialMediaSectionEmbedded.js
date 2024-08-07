@@ -11,16 +11,7 @@ const Root = styled.section`
   gap: 16px;
 `;
 
-const isEmbedCodeValid = embedCode => {
-  return (
-    embedCode && typeof embedCode === "string" && embedCode.trim().length > 0
-  );
-};
-
 export const SocialMediaSectionEmbedded = ({ sectionHeader, embedCode }) => {
-  if (!isEmbedCodeValid(embedCode)) {
-    return null;
-  }
   return (
     <Root>
       <SectionHeader {...mapSectionHeaderProps(sectionHeader)} />

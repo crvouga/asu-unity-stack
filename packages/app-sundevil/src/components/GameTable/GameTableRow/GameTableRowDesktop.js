@@ -149,6 +149,15 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
     elementRef: buttonCellRef,
     elementSetId: "button-cell",
   });
+
+  const ticketButtonLabel =
+    configCells?.cellTicketButton?.label ?? game?.ticketText;
+
+  const shouldRenderTicketIcon =
+    configCells?.cellTicketButton?.autoTicketIcon === true &&
+    typeof ticketButtonLabel === "string" &&
+    ticketButtonLabel.toLowerCase().includes("ticket");
+
   return (
     // @ts-ignore
     <Skeleton
@@ -210,15 +219,20 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
             style={{ minWidth: buttonCellMaxDimensions.width }}
           >
             <Button
-              label={configCells?.cellTicketButton?.label ?? game?.ticketText}
+              label={ticketButtonLabel}
               color="dark"
               size="small"
-              renderIcon={() => (
-                <i
-                  className="fa fa-fas fa-ticket"
-                  style={{ paddingRight: "10px" }}
-                />
-              )}
+              renderIcon={() => {
+                if (shouldRenderTicketIcon) {
+                  return (
+                    <i
+                      className="fa fa-fas fa-ticket"
+                      style={{ paddingRight: "10px" }}
+                    />
+                  );
+                }
+                return null;
+              }}
               href={game?.ticketLink}
               target="_blank"
             />

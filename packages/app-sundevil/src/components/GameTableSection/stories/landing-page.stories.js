@@ -398,6 +398,7 @@ LandingPage.args = {
     configCells: {
       cellTicketButton: {
         label: "Get Tickets",
+        autoTicketIcon: true,
       },
       cellTitle: {
         includeSubtitleChip: true,

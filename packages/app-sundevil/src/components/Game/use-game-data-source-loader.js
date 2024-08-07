@@ -12,12 +12,14 @@ export const useGameDataSourceLoader = input => {
     query: input,
     limit: input.limit,
     toQueryKey: query => btoa(JSON.stringify(query ?? {})),
-    loadPage: ({ offset, limit, query }) => {
-      return gameDataSource.findMany({
+    loadPage: async ({ offset, limit, query }) => {
+      const found = await gameDataSource.findMany({
         ...query,
         offset,
         limit,
       });
+
+      return found;
     },
   });
 };

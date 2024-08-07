@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
  * }
  * cellTicketButton: {
  *  label?: string | null;
+ *  autoTicketIcon?: boolean | null;
  * }
  * }} ConfigCells
  */
@@ -20,6 +21,7 @@ export const configCellsPropTypes = PropTypes.shape({
   }),
   cellTicketButton: PropTypes.shape({
     label: PropTypes.string,
+    autoTicketIcon: PropTypes.bool,
   }),
 });
 
@@ -33,5 +35,6 @@ export const defaultConfigCells = {
   },
   cellTicketButton: {
     label: null,
+    autoTicketIcon: true,
   },
 };

@@ -110,6 +110,10 @@ Schedule.args = {
         // subtitleFontWeight: "bold",
         includeSubtitleChip: true,
       },
+      cellTicketButton: {
+        label: "Get Tickets",
+        autoTicketIcon: true,
+      },
     },
   },
   sports: [

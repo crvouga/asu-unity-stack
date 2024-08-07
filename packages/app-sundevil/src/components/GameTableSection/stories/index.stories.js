@@ -24,9 +24,13 @@ const Template = args => (
 
 export const AllSports = Template.bind({});
 AllSports.args = {
+  // gameDataSource: {
+  //   type: "asu-events",
+  //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+  // },
   gameDataSource: {
-    type: "asu-events",
-    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+    type: "mock",
+    // url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
   },
   // gameDataSource: {
   //   type: "custom",
@@ -36,8 +40,8 @@ AllSports.args = {
   //   type: "custom",
   //   gameDataSource: new CustomGameDataSource(),
   // },
-  title: "Upcoming Games",
-  emptyStateMessage: "No upcoming games",
+  title: "Upcoming Games All Sports",
+  emptyStateMessage: "No upcoming games for all sports",
   sports: [
     {
       name: "All Sports",
@@ -154,6 +158,7 @@ AllSports.args = {
       },
       cellTicketButton: {
         label: "Get Tickets Override",
+        autoTicketIcon: true,
       },
     },
   },
@@ -171,6 +176,22 @@ SingleSport.args = {
   gameDataSourceLoader: {
     limit: 5,
     sportId: "football",
+  },
+  gameTable: {
+    configLayout: {
+      includeSportNameCell: true,
+      includeVersusCell: true,
+    },
+    configCells: {
+      cellTitle: {
+        // subtitleFontWeight: "bold",
+        includeSubtitleChip: true,
+      },
+      cellTicketButton: {
+        label: "Get Tickets Override",
+        autoTicketIcon: false,
+      },
+    },
   },
   title: "Upcoming Games",
   subtitle:

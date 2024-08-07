@@ -112,6 +112,10 @@ GetTickets.args = {
         // subtitleFontWeight: "bold",
         includeSubtitleChip: true,
       },
+      cellTicketButton: {
+        label: "Get Tickets Override",
+        autoTicketIcon: true,
+      },
     },
   },
   sports: [
@@ -262,6 +266,10 @@ GetTicketsUpcomingGames.args = {
       cellTitle: {
         // subtitleFontWeight: "bold",
         includeSubtitleChip: true,
+      },
+      cellTicketButton: {
+        label: "Get Tickets Override",
+        autoTicketIcon: true,
       },
     },
   },
@@ -605,6 +613,10 @@ GetTicketsLight.args = {
         // subtitleFontWeight: "bold",
         includeSubtitleChip: true,
       },
+      cellTicketButton: {
+        label: "Get Tickets Override",
+        autoTicketIcon: true,
+      },
     },
   },
   configLayout: {
@@ -742,6 +754,10 @@ GetTicketsLightSidebar.args = {
       cellTitle: {
         // subtitleFontWeight: "bold",
         includeSubtitleChip: true,
+      },
+      cellTicketButton: {
+        label: "Get Tickets Override",
+        autoTicketIcon: true,
       },
     },
   },
@@ -911,6 +927,10 @@ GetTicketsSportTabsOnly.args = {
       cellTitle: {
         // subtitleFontWeight: "bold",
         includeSubtitleChip: true,
+      },
+      cellTicketButton: {
+        label: "Get Tickets Override",
+        autoTicketIcon: true,
       },
     },
   },

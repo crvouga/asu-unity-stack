@@ -2,6 +2,9 @@ function isObject(item) {
   return item && typeof item === "object" && !Array.isArray(item);
 }
 
+/**
+ * Deep merge two objects, with the left object taking precedence over the right object.
+ */
 export function deepMergeLeft(target, source) {
   if (!isObject(target) || !isObject(source)) {
     return target;

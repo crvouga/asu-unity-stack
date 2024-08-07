@@ -13,6 +13,10 @@ import {
   newsStoryDataSourcePropTypes,
 } from "../NewsStory/news-story-data-source/news-story-data-source-impl";
 import { NewsStoryDataSourceProvider } from "../NewsStory/NewsDataSourceContext";
+import {
+  configCardPropTypes,
+  NewsStoryCardConfigProvider,
+} from "../NewsStory/NewsStoryCardGrid/config-card";
 import { DEFAULT_EMPTY_STATE_MESSAGE } from "../NewsStory/NewsStoryCardGrid/news-stories-skeleton-data";
 import { NewsStoryCardCarousel } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardCarousel";
 import { NewsStoryCardGridFeatured } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGrid";
@@ -162,10 +166,12 @@ NewsZoneSectionInner.propTypes = {
     sportId: PropTypes.string,
   }),
   emptyStateMessage: PropTypes.string,
+  configCard: configCardPropTypes,
 };
 
 export const NewsZoneSection = ({
   newsStoryDataSource: newsStoryDataSourceConfig,
+  configCard,
   ...props
 }) => {
   const newsStoryDataSource = useMemo(
@@ -173,9 +179,11 @@ export const NewsZoneSection = ({
     [newsStoryDataSourceConfig]
   );
   return (
-    <NewsStoryDataSourceProvider newsStoryDataSource={newsStoryDataSource}>
-      <NewsZoneSectionInner {...props} />
-    </NewsStoryDataSourceProvider>
+    <NewsStoryCardConfigProvider value={configCard}>
+      <NewsStoryDataSourceProvider newsStoryDataSource={newsStoryDataSource}>
+        <NewsZoneSectionInner {...props} />
+      </NewsStoryDataSourceProvider>
+    </NewsStoryCardConfigProvider>
   );
 };
 NewsZoneSection.propTypes = NewsZoneSectionInner.propTypes;

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 export const configLayoutPropTypes = PropTypes.shape({
-  includeSportTabs: PropTypes.bool,
+  includeSportsTabs: PropTypes.bool,
   includeInputSearch: PropTypes.bool,
   includeInputNewsType: PropTypes.bool,
   includeInputSportType: PropTypes.bool,
@@ -10,7 +10,7 @@ export const configLayoutPropTypes = PropTypes.shape({
 
 /**
  * @typedef {{
- *  includeSportTabs: boolean;
+ *  includeSportsTabs: boolean;
  *  includeInputSearch: boolean;
  *  includeInputNewsType: boolean;
  *  includeInputSportType :boolean;

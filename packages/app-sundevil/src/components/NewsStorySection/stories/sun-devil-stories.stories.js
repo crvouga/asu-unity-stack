@@ -94,6 +94,11 @@ class CustomNewsStoryDataSource extends INewsStoryDataSource {
 
 /** @type {import("../index").NewsStorySectionProps} */
 const props = {
+  configCard: {
+    titleFontSize: "1.5rem",
+    titleFontWeight: "bold",
+    titleMaxLines: 5,
+  },
   // newsStoryDataSource: {
   //   type: "mock",
   // },

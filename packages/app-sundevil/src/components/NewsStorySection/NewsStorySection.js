@@ -13,6 +13,10 @@ import {
   newsStoryDataSourcePropTypes,
 } from "../NewsStory/news-story-data-source/news-story-data-source-impl";
 import { NewsStoryDataSourceProvider } from "../NewsStory/NewsDataSourceContext";
+import {
+  configCardPropTypes,
+  NewsStoryCardConfigProvider,
+} from "../NewsStory/NewsStoryCardGrid/config-card";
 import { NewsStoryCardCarousel } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardCarousel";
 import { NewsStoryCardGrid } from "../NewsStory/NewsStoryCardGrid/NewsStoryCardGrid";
 import { useNewsStoryDataSourceLoader } from "../NewsStory/use-news-story-data-source-loader";
@@ -278,6 +282,8 @@ NewsStorySectionInner.propTypes = {
   configLayout: configLayoutPropTypes,
   // @ts-ignore
   configInputs: configInputsPropTypes,
+  // @ts-ignore
+  configCard: configCardPropTypes,
 };
 
 /**
@@ -299,11 +305,13 @@ NewsStorySectionInner.propTypes = {
  *  configLayout?: import("./config-layout").ConfigLayout
  *  configInputs?: import("./config-inputs").ConfigInputs
  *  mobileVariant?: "carousel" | "column"
+ *  configCard?: import("../NewsStory/NewsStoryCardGrid/config-card").ConfigCard
  * }} NewsStorySectionProps
  */
 
 export const NewsStorySection = ({
   newsStoryDataSource: newsStoryDataSourceConfig,
+  configCard,
   ...props
 }) => {
   const newsStoryDataSource = useMemo(
@@ -311,10 +319,12 @@ export const NewsStorySection = ({
     [newsStoryDataSourceConfig]
   );
   return (
-    <NewsStoryDataSourceProvider newsStoryDataSource={newsStoryDataSource}>
-      {/* @ts-ignore */}
-      <NewsStorySectionInner {...props} />
-    </NewsStoryDataSourceProvider>
+    <NewsStoryCardConfigProvider value={configCard}>
+      <NewsStoryDataSourceProvider newsStoryDataSource={newsStoryDataSource}>
+        {/* @ts-ignore */}
+        <NewsStorySectionInner {...props} />
+      </NewsStoryDataSourceProvider>
+    </NewsStoryCardConfigProvider>
   );
 };
 NewsStorySection.propTypes = NewsStorySectionInner.propTypes;

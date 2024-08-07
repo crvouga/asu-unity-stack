@@ -31,11 +31,11 @@ export const configInputsPropTypes = PropTypes.shape({
  */
 export const defaultConfigInputs = {
   newsType: {
-    label: "News Type",
+    label: "News type",
     placeholder: "Select one",
   },
   sportType: {
-    label: "Sport Type",
+    label: "Sport type",
     placeholder: "Select one",
   },
   search: {

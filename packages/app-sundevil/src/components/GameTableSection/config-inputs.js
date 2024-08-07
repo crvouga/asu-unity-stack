@@ -70,11 +70,11 @@ export const configInputsPropTypes = PropTypes.shape({
  */
 export const defaultConfigInputs = {
   searchInput: {
-    label: "Search by Event Name",
+    label: "Search by event name",
     placeholder: "Sun Devils vs. BYU, Season Tickets, Rose Bowl",
   },
   sportTypeSelect: {
-    label: "Sport Type",
+    label: "Sport type",
     placeholder: "Select one",
   },
   homeOrAwaySelect: {
@@ -90,7 +90,7 @@ export const defaultConfigInputs = {
     placeholder: "Select one",
   },
   sportTypeCheckboxList: {
-    label: "Sport Type",
+    label: "Sport type",
     placeholder: "Select one",
   },
   maxAdmissionCostSelect: {
@@ -102,7 +102,7 @@ export const defaultConfigInputs = {
     placeholder: "Select",
   },
   eventTypeSelect: {
-    label: "Event Type",
+    label: "Event type",
     placeholder: "Select one",
   },
 };

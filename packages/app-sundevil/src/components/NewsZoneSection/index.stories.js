@@ -112,6 +112,11 @@ class CustomNewsStoryDataSource extends INewsStoryDataSource {
 
 const props = {
   title: "News Zone",
+  configCard: {
+    titleFontSize: "24px",
+    titleMaxLines: 2,
+    titleFontWeight: "bold",
+  },
   newsStoryDataSource: {
     type: "custom",
     newsStoryDataSource: new CustomNewsStoryDataSource(),

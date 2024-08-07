@@ -2,9 +2,11 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import styled from "styled-components";
 
+import { ensureNormalNumber } from "../../../utils/ensure-number";
 import { Icon } from "../../Icon_";
 import { Skeleton } from "../../Skeleton";
 import * as NewsStory from "../news-story";
+import { useNewsStoryCardConfig } from "./config-card";
 import { EmbeddedYoutubeVideo } from "./EmbeddedYoutubeVideo";
 
 const Root = styled.a`
@@ -47,15 +49,22 @@ const BackgroundImage = styled.img`
 
 const Title = styled.div`
   color: white;
-  font-size: ${({ size }) => (size === "large" ? "40px" : "24px")};
-  font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   display: -webkit-box;
   -webkit-line-clamp: 2; /* Number of lines to show */
   -webkit-box-orient: vertical;
-  line-height: 1.2; /* Adjust the line height as needed */
   overflow: hidden;
-  max-height: 2.4em; /* (line-height * number of lines) */
+  ${({ configCard }) => {
+    const LINE_HEIGHT = `calc(${configCard.titleFontSize} * 1.2)`;
+    const maxHeight = `calc(${LINE_HEIGHT} * ${configCard.titleMaxLines})`;
+    return `
+      font-weight: ${configCard.titleFontWeight};
+      font-size: ${configCard.titleFontSize};
+      -webkit-line-clamp: ${ensureNormalNumber(configCard.titleMaxLines)};
+      line-height: ${LINE_HEIGHT};
+      max-height: ${maxHeight};
+    `;
+  }}
 `;
 
 const Content = styled.div`
@@ -132,6 +141,7 @@ export const NewsStoryCard = ({
   size = "default",
   empty = false,
 }) => {
+  const configCard = useNewsStoryCardConfig();
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
@@ -169,7 +179,9 @@ export const NewsStoryCard = ({
             {newsStory.showNewsType && newsStory.newsType && (
               <Category>{newsStory.newsType}</Category>
             )}
-            <Title size={size}>{newsStory.title}</Title>
+            <Title configCard={configCard} size={size}>
+              {newsStory.title}
+            </Title>
           </ContentBottom>
         </Content>
         <EmbeddedYoutubeVideo

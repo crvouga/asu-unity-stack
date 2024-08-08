@@ -8,6 +8,8 @@ import { Ads } from "./Ads";
 const props = {
   // width: 970,
   // height: 66,
+  storage: window.localStorage,
+  storageKey: "sun-devils-ads",
   ads: [
     {
       imageSrc: "https://tpc.googlesyndication.com/simgad/15906690503191566407",

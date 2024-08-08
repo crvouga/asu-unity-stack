@@ -17,7 +17,7 @@ export const linkTabsBarPropTypes = PropTypes.shape({
     stickyElementSelector: PropTypes.string,
   }),
   alignment: alignmentPropTypes,
-  title: PropTypes.string,
+  anchorTitle: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
 });

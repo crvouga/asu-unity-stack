@@ -60,7 +60,7 @@ export const LinkTabsBarDesktop = forwardRef(
       maxLinkCountBreakpoints,
       moreTabLabel,
       alignment,
-      title,
+      anchorTitle,
       style,
     },
     ref
@@ -72,7 +72,7 @@ export const LinkTabsBarDesktop = forwardRef(
         <Content className="container">
           <LinkTabsRoot ref={containerRef}>
             <LinkTabs
-              title={title}
+              title={anchorTitle}
               links={links}
               maxLinkCount={maxLinkCount}
               moreTabLabel={moreTabLabel}

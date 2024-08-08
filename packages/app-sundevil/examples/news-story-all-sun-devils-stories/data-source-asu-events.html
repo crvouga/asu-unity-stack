@@ -49,14 +49,14 @@
         //   type: "custom",
         //   newsStoryDataSource: new CustomNewsStoryDataSource(),
         // },
-        // newsStoryDataSource: {
-        //   type: "mock",
-        // },
         newsStoryDataSource: {
-          type: "asu-news",
-          url: "http://127.0.0.1:3002/packages/app-sundevil/examples/news-story-sun-devils-stories/news.json", // Served with vscode live preview
-          timeout: 1500,
+          type: "mock",
         },
+        // newsStoryDataSource: {
+        //   type: "asu-news",
+        //   url: "http://127.0.0.1:3002/packages/app-sundevil/examples/news-story-sun-devils-stories/news.json", // Served with vscode live preview
+        //   timeout: 1500,
+        // },
         // newsStoryDataSource: {
         //   type: "static",
         //   newsStories,
@@ -76,7 +76,8 @@
           //   url: "https://www.desertfinancial.com/",
           // },
         },
-        mobileVariant: "column", // "carousel" | "column"
+        // mobileVariant: "column", // "carousel" | "column"
+        mobileVariant: "carousel",
         removeSportsWithNoStories: false,
         configForm: {
           title: "Filter your results",
@@ -87,7 +88,7 @@
           includeInputSearch: true,
           includeInputNewsType: true,
           includeInputSportType: true,
-          includeLoadMore: true,
+          includeLoadMore: false,
         },
         configInputs: {
           search: {

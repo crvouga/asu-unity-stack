@@ -145,6 +145,10 @@ export const NewsStoryCard = ({
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
+  if (!newsStory) {
+    return null;
+  }
+
   return (
     <Skeleton
       skeleton={Boolean(skeleton)}

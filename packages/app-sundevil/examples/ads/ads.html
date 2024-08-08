@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Load React. -->
+    <script
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+      crossorigin
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://unity.web.asu.edu/@asu/bootstrap4-theme/css/bootstrap-asu.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://asu.github.io/asu-unity-stack/@asu/unity-bootstrap-theme/css/unity-bootstrap-theme.bundle.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/63c5db143d.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- *************************************************************** -->
+    <!-- include bundled scripts from packages -->
+    <script src="../../dist/vendor.umd.js"></script>
+    <script src="../../dist/sunDevil.umd.js"></script>
+  </head>
+
+  <body>
+    <div id="ad-container-1" style="width: 100%; max-width: 800px; margin: auto"></div>
+    <div style="width: 100%; height: 200px"></div>
+    <div id="ad-container-2" style="width: 100%; max-width: 1000px; margin: auto"></div>
+    <div style="width: 100%; height: 200px"></div>
+    <div id="ad-container-3" style="width: 100%; max-width: 600px; margin: auto"></div>
+    <div style="width: 100%; height: 500px"></div>
+    <script>
+      /** @type {import("./Ads").Props} */
+      const props1 = {
+        // width: 970,
+        // height: 66,
+        // storage: window.localStorage, // or window.sessionStorage
+        storageKey: "sun-devils-ads-1", //Important to provide unique storageKey so ad component instances can cycle independently
+        ads: [
+          {
+            imageSrc:
+              "https://tpc.googlesyndication.com/simgad/15906690503191566407",
+            imageAlt: "Placeholder",
+            href: "https://www.example.com",
+            // width: 970,
+            // height: 66,
+          },
+          {
+            imageSrc:
+              "https://tpc.googlesyndication.com/simgad/4947683613591479131",
+            imageAlt: "Placeholder",
+            href: "https://www.example.com",
+            // width: 970,
+            // height: 66,
+          },
+          {
+            imageSrc:
+              "https://tpc.googlesyndication.com/simgad/8450655694590921544",
+            imageAlt: "Placeholder",
+            href: "https://www.example.com",
+            // width: 728,
+            // height: 90,
+          },
+        ],
+      };
+      initAds({
+        targetSelector: "#ad-container-1",
+        props: props1,
+      });
+
+      /** @type {import("./Ads").Props} */
+      const props2 = {
+        // width: 970,
+        // height: 66,
+        // storage: window.localStorage, // or window.sessionStorage
+        storageKey: "sun-devils-ads-2", //Important to provide unique storageKey so ad component instances can cycle independently
+        ads: [
+
+          {
+            imageSrc:
+              "https://tpc.googlesyndication.com/simgad/4947683613591479131",
+            imageAlt: "Placeholder",
+            href: "https://www.example.com",
+            // width: 970,
+            // height: 66,
+          },
+          {
+            imageSrc:
+              "https://tpc.googlesyndication.com/simgad/15906690503191566407",
+            imageAlt: "Placeholder",
+            href: "https://www.example.com",
+            // width: 970,
+            // height: 66,
+          },
+        ],
+      };
+      initAds({
+        targetSelector: "#ad-container-2",
+        props: props2,
+      });
+
+      /** @type {import("./Ads").Props} */
+      const props3 = {
+        // width: 970,
+        // height: 66,
+        // storage: window.localStorage, // or window.sessionStorage
+        storageKey: "sun-devils-ads-3", //Important to provide unique storageKey so ad component instances can cycle independently
+        ads: [
+          {
+            imageSrc:
+              "https://tpc.googlesyndication.com/simgad/15906690503191566407",
+            imageAlt: "Placeholder",
+            href: "https://www.example.com",
+            // width: 970,
+            // height: 66,
+          },
+          {
+            imageSrc:
+              "https://tpc.googlesyndication.com/simgad/8450655694590921544",
+            imageAlt: "Placeholder",
+            href: "https://www.example.com",
+            // width: 728,
+            // height: 90,
+          },
+          {
+            imageSrc:
+              "https://tpc.googlesyndication.com/simgad/4947683613591479131",
+            imageAlt: "Placeholder",
+            href: "https://www.example.com",
+            // width: 970,
+            // height: 66,
+          },
+          {
+            imageSrc:
+              "https://tpc.googlesyndication.com/simgad/4947683613591479131",
+            imageAlt: "Placeholder",
+            href: "https://www.example.com",
+            // width: 970,
+            // height: 66,
+          },
+        ],
+      };
+      initAds({
+        targetSelector: "#ad-container-3",
+        props: props3,
+      });
+    </script>
+  </body>
+</html>

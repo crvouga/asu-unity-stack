@@ -3,7 +3,6 @@ import React from "react";
 
 import { Ads } from "./Ads";
 
-// Mock up https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4448-12633&t=vfGSyD27IARFA28D-0
 /** @type {import("./Ads").Props} */
 const props = {
   // width: 970,

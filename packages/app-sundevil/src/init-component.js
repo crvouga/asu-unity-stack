@@ -16,6 +16,7 @@ import {
   SunDevilsHeader,
   VideoSection,
 } from "./components";
+import { Ads } from "./components/Ads";
 import { CardSectionSingleColumn } from "./components/CardSectionSingleColumn";
 import { CardSectionThreeColumn } from "./components/CardSectionThreeColumn";
 import { ContactUsCTA } from "./components/ContactUsCTA";
@@ -370,5 +371,12 @@ export const initNonTicketedIntro = input => {
   RenderReact({
     ...input,
     component: NonTicketedIntro,
+  });
+};
+
+export const initAds = input => {
+  RenderReact({
+    ...input,
+    component: Ads,
   });
 };

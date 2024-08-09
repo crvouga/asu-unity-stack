@@ -120,6 +120,7 @@ export const SingleCard = ({ card }) => {
                           />
                         ) : null
                       }
+                      classes={button.class || button.className}
                       {...button}
                     />
                   ))}
@@ -145,6 +146,7 @@ export const SingleCard = ({ card }) => {
                     />
                   ) : null
                 }
+                classes={button.class || button.className}
                 {...button}
               />
             ))}
@@ -162,17 +164,7 @@ export const cardPropTypes = PropTypes.shape({
   subtitles: PropTypes.arrayOf(PropTypes.string),
   body: PropTypes.string,
   buttons: PropTypes.arrayOf(buttonPropTypes),
-  buttonRows: PropTypes.arrayOf(
-    PropTypes.arrayOf(
-      PropTypes.shape({
-        label: PropTypes.string,
-        color: PropTypes.string,
-        href: PropTypes.string,
-        size: PropTypes.string,
-        endIcon: PropTypes.string,
-      })
-    )
-  ),
+  buttonRows: PropTypes.arrayOf(PropTypes.arrayOf(buttonPropTypes)),
 });
 
 SingleCard.propTypes = {

@@ -37,7 +37,7 @@ export const Ads = ({
           width: ad.width ?? width ?? "100%",
           height: ad.height ?? height ?? "auto",
           overflow: "hidden",
-          objectFit: "cover",
+          objectFit: "contain", // Don't use objectFit: "cover" since it will cut off the image
         }}
       />
     </a>

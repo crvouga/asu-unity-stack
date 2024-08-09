@@ -12,6 +12,7 @@ import { gamePropTypes } from "../Game/game";
 import { configCellsPropTypes } from "./GameTableRow/config-cells";
 import { configLayoutPropTypes } from "./GameTableRow/config-layout";
 import { GameTableRow } from "./GameTableRow/GameTableRow";
+import { ElementSetMaxDimensionsProvider } from "../../utils/use-element-set-max-dimensions";
 
 const Table = styled.div`
   width: 100%;
@@ -76,58 +77,60 @@ export const GameTable = ({
   const isRow = !isSkeleton && games.length > 0;
 
   return (
-    <Root>
-      <Table className={isMobile ? "content-box" : "border-box"}>
-        {isSkeleton && (
-          <BorderBottom>
-            {range(skeletonRowCount).map(index => (
-              <GameTableRow
-                key={index}
-                // @ts-ignore
-                skeleton
-                ref={index === 0 ? setFirstRowRef : null}
-                configLayout={configLayout}
-                configCells={configCells}
-                mobileRowVariant={mobileRowVariant}
-              />
-            ))}
-          </BorderBottom>
-        )}
+    <ElementSetMaxDimensionsProvider>
+      <Root>
+        <Table className={isMobile ? "content-box" : "border-box"}>
+          {isSkeleton && (
+            <BorderBottom>
+              {range(skeletonRowCount).map(index => (
+                <GameTableRow
+                  key={index}
+                  // @ts-ignore
+                  skeleton
+                  ref={index === 0 ? setFirstRowRef : null}
+                  configLayout={configLayout}
+                  configCells={configCells}
+                  mobileRowVariant={mobileRowVariant}
+                />
+              ))}
+            </BorderBottom>
+          )}
 
-        {isRow && (
-          <AlternateBackground>
-            {games.map((game, index) => (
-              <GameTableRow
-                key={game.id}
-                // @ts-ignore
-                game={game}
-                ref={index === 0 ? setFirstRowRef : null}
-                configLayout={configLayout}
-                configCells={configCells}
-                mobileRowVariant={mobileRowVariant}
-              />
-            ))}
-          </AlternateBackground>
-        )}
+          {isRow && (
+            <AlternateBackground>
+              {games.map((game, index) => (
+                <GameTableRow
+                  key={game.id}
+                  // @ts-ignore
+                  game={game}
+                  ref={index === 0 ? setFirstRowRef : null}
+                  configLayout={configLayout}
+                  configCells={configCells}
+                  mobileRowVariant={mobileRowVariant}
+                />
+              ))}
+            </AlternateBackground>
+          )}
 
-        {isEmpty && (
-          <>
-            {range(emptyStateRowCount).map(index => (
-              <GameTableRow
-                key={index}
-                // @ts-ignore
-                empty
-                ref={index === 0 ? setFirstRowRef : null}
-                configLayout={configLayout}
-                configCells={configCells}
-                mobileRowVariant={mobileRowVariant}
-              />
-            ))}
-            <EmptyStateMessage message={emptyStateMessage} />
-          </>
-        )}
-      </Table>
-    </Root>
+          {isEmpty && (
+            <>
+              {range(emptyStateRowCount).map(index => (
+                <GameTableRow
+                  key={index}
+                  // @ts-ignore
+                  empty
+                  ref={index === 0 ? setFirstRowRef : null}
+                  configLayout={configLayout}
+                  configCells={configCells}
+                  mobileRowVariant={mobileRowVariant}
+                />
+              ))}
+              <EmptyStateMessage message={emptyStateMessage} />
+            </>
+          )}
+        </Table>
+      </Root>
+    </ElementSetMaxDimensionsProvider>
   );
 };
 

@@ -1,6 +1,10 @@
 // @ts-nocheck
 import React from "react";
 
+import {
+  GameDataSourceMock,
+  IGameDataSource,
+} from "../../Game/game-data-source";
 import { GameTableSection } from "../index";
 
 export default {
@@ -29,6 +33,31 @@ const Template = args => (
     <div style={{ width: "100%", height: "1000px" }} />
   </>
 );
+
+class CustomGameDataSource extends IGameDataSource {
+  constructor() {
+    super();
+    this.dataSource = new GameDataSourceMock({
+      timeout: 1000,
+    });
+  }
+
+  async findMany(input) {
+    const found = await this.dataSource.findMany(input);
+
+    const rowsNew = found.rows.map(row => {
+      return {
+        ...row,
+        ticketText: Math.random() > 0.9 ? "Get tickets" : "More info",
+      };
+    });
+
+    return {
+      ...found,
+      rows: rowsNew,
+    };
+  }
+}
 
 export const LandingPage = Template.bind({});
 LandingPage.args = {
@@ -389,6 +418,7 @@ LandingPage.args = {
   ],
   configLayout: {
     includeSportsTabs: true,
+    includeLoadMore: true,
   },
   configInputs: null,
   configOverlap: "sport-tabs-with-hero",
@@ -397,7 +427,7 @@ LandingPage.args = {
   gameTable: {
     configCells: {
       cellTicketButton: {
-        label: "Get Tickets",
+        // label: "Get tickets override",
         autoTicketIcon: true,
       },
       cellTitle: {
@@ -406,7 +436,7 @@ LandingPage.args = {
     },
   },
   gameDataSource: {
-    type: "mock",
-    gameDataSource: {},
+    type: "custom",
+    gameDataSource: new CustomGameDataSource(),
   },
 };

@@ -6,6 +6,7 @@ import { Button } from "../../../../../components-core/src/components/Button";
 import { deepMergeLeft } from "../../../utils/deep-merge-left";
 import { idToLabel } from "../../../utils/id-to-label";
 import { useElementSetMaxDimensions } from "../../../utils/use-element-set-max-dimensions";
+import { useId } from "../../../utils/use-id";
 import { Skeleton } from "../../Skeleton";
 import { SportIcon } from "../../SportIcon";
 import { stringToClosestSportName } from "../../SportIcon/sport-name";
@@ -144,10 +145,13 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
     defaultConfigCells
   );
 
-  const buttonCellRef = useRef(null);
-  const buttonCellMaxDimensions = useElementSetMaxDimensions({
-    elementRef: buttonCellRef,
-    elementSetId: "button-cell",
+  const componentId = useId();
+
+  const ticketCellRef = useRef(null);
+  const ticketCellMaxDimensions = useElementSetMaxDimensions({
+    elementRef: ticketCellRef,
+    elementSetId: "game-table-ticket-cell",
+    elementId: componentId,
   });
 
   const ticketButtonLabel =
@@ -215,8 +219,8 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
         {configLayout.includeCellTickets && (
           <Cell
             className="btn-ticket text-center align-middle px-2"
-            ref={buttonCellRef}
-            style={{ minWidth: buttonCellMaxDimensions.width }}
+            ref={ticketCellRef}
+            style={{ minWidth: ticketCellMaxDimensions.width }}
           >
             <Button
               label={ticketButtonLabel}

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { Icon } from "../Icon_";
+import { Icon, iconPropType } from "../Icon_";
 import { Alignment } from "./alignment";
 import { Fit, fitPropTypes } from "./fit";
 
@@ -138,7 +138,7 @@ export const IconTextColumn = ({
  * @typedef {{
  *  id: string;
  *  title?: string | null;
- *  icon?: string | null;
+ *  icon?: any | null;
  *  caption?: string | null;
  *  body?: string | null
  *  position?: number | null;
@@ -148,7 +148,7 @@ export const IconTextColumn = ({
 export const iconColumnPropType = PropTypes.shape({
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  icon: iconPropType,
   position: PropTypes.number,
   body: PropTypes.string,
   caption: PropTypes.string,

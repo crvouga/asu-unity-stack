@@ -117,7 +117,10 @@ With options to target, engage with and activate faculty/staff, students and fan
   columns: [
     {
       id: "maps",
-      icon: "fas fa-map-marked-alt",
+      // icon: "fas fa-map-marked-alt",
+      icon: {
+        src: "https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/lacrosse-sticks-icon.png",
+      },
       title: null,
       caption: null,
       position: 0,

@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { colorToFilter } from "../../utils/color/color-to-filter";
 import { useColor } from "../../utils/color/use-color";
+import { useFontSize } from "../../utils/use-font-size";
 
 /** @type {(icon: unknown) => icon is {icon_name: string, style: string}} */
 const isFontAwesomeIconObject = icon =>
@@ -52,9 +53,10 @@ const iconToImageSrc = icon => {
 };
 
 /** @type {( icon: unknown) => Record<string, unknown>} */
-const toIconProps = icon => {
+export const toIconProps = icon => {
   if (typeof icon === "string") {
     return {
+      type: "classString",
       style: {},
       className: icon,
     };
@@ -66,10 +68,11 @@ const toIconProps = icon => {
     const filter = colorToFilter(icon.color);
 
     return {
+      type: "image",
       className: "",
       style: {
-        width: "1rem",
-        height: "1rem",
+        width: icon?.width ?? "1rem",
+        height: icon?.height ?? "1rem",
         // backgroundSize: "cover", // <- Don't do this. It will cutoff the image
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
@@ -85,6 +88,7 @@ const toIconProps = icon => {
 
   if (isFontAwesomeIconObject(icon)) {
     return {
+      type: "fontAwesome",
       style: {
         textDecoration: "none",
       },
@@ -102,6 +106,7 @@ export const SUN_DEVILS_ICON_CLASS_NAME = "sun-devils-icon";
 /** @type {(props: Record<string, unknown>, icon: unknown) => Record<string, unknown>} */
 export const mergeIconProps = (props, icon) => {
   const iconProps = toIconProps(icon);
+  delete iconProps["type"];
   const propsNew = {
     ...props,
     className: [
@@ -122,6 +127,8 @@ export const mergeIconProps = (props, icon) => {
 };
 
 const Root = styled.span`
+  /* Important for image icons to render correctly */
+  display: inline-block;
   color: inherit !important;
   &:hover {
     color: inherit !important;
@@ -134,6 +141,7 @@ const Root = styled.span`
 export const Icon = ({ icon, ...props }) => {
   const ref = useRef(null);
   const color = useColor(ref);
+  const fontSize = useFontSize(ref);
 
   if (!isValidIcon(icon)) {
     return null;
@@ -141,7 +149,14 @@ export const Icon = ({ icon, ...props }) => {
 
   const iconProps = mergeIconProps(
     props,
-    typeof icon === "object" && icon ? { ...icon, color } : icon
+    typeof icon === "object" && icon
+      ? {
+          ...icon,
+          color,
+          width: fontSize,
+          height: fontSize,
+        }
+      : icon
   );
 
   const key = btoa(JSON.stringify(iconProps));

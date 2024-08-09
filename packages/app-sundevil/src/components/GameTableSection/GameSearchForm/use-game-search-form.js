@@ -10,6 +10,8 @@ import { findManyInputPropTypes } from "../../Game/game-data-source";
  * @typedef {import("../../Game/game-data-source/game-data-source").FindManyInput} GameSearchFormState
  */
 
+export const gameSearchFormStatePropTypes = findManyInputPropTypes;
+
 const SEARCH_QUERY_DEBOUNCE_MS = 500;
 
 const useQueryState = createUseQueryState({
@@ -22,10 +24,10 @@ const useSearchQueryState = createUseQueryState({
 });
 
 /**
- * @param {Partial<GameSearchFormState> & {enableUrlState: boolean}} initial
+ * @param {{initialState: Partial<GameSearchFormState>, enableUrlState: boolean}} input
  */
-export const useGameSearchForm = initial => {
-  const { enableUrlState, ...initialState } = initial;
+export const useGameSearchForm = input => {
+  const { enableUrlState, initialState } = input;
 
   const [searchQuery, setSearchQuery] = useStateSwitch(
     enableUrlState,

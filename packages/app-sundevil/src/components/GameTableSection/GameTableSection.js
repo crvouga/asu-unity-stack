@@ -30,7 +30,10 @@ import { configLayoutPropTypes, defaultConfigLayout } from "./config-layout";
 import { ConfigOverlap, configOverlapPropTypes } from "./config-overlap";
 import { GameSearchFormSidebar } from "./GameSearchForm/GameSearchFormSidebar";
 import { GameSearchFormTopbar } from "./GameSearchForm/GameSearchFormTopbar";
-import { useGameSearchForm } from "./GameSearchForm/use-game-search-form";
+import {
+  gameSearchFormStatePropTypes,
+  useGameSearchForm,
+} from "./GameSearchForm/use-game-search-form";
 import { GameTableHero } from "./GameTableHero/GameTableHero";
 import { SidebarLayout } from "./SidebarLayout";
 
@@ -82,23 +85,28 @@ const GameTableSectionInner = ({ ...props }) => {
 
   const gameSearchForm = useGameSearchForm({
     enableUrlState: configGameTableForm?.enableUrlState ?? false,
-    gameType: props?.tabs?.find(tab => tab?.active)?.gameType ?? "all",
-    sportId: props?.sports?.find(sport => sport?.active)?.id ?? ALL_ID,
-    admissionCost:
-      configInputs.admissionCostSelect?.options?.find(option => option.active)
-        ?.value ?? null,
-    eventType:
-      configInputs.eventTypeSelect?.options?.find(option => option.active)
-        ?.value ?? null,
-    maxAdmissionCost: Number(
-      configInputs.maxAdmissionCostSelect?.options?.find(
-        option => option.active
-      )?.value ?? null
-    ),
+    initialState: {
+      gameType: props?.tabs?.find(tab => tab?.active)?.gameType ?? ALL_ID,
+      sportId: props?.sports?.find(sport => sport?.active)?.id ?? ALL_ID,
+      admissionCost:
+        configInputs.admissionCostSelect?.options?.find(option => option.active)
+          ?.value ?? null,
+      eventType:
+        configInputs.eventTypeSelect?.options?.find(option => option.active)
+          ?.value ?? null,
+      maxAdmissionCost: Number(
+        configInputs.maxAdmissionCostSelect?.options?.find(
+          option => option.active
+        )?.value ?? null
+      ),
+      ...(props?.gameSearchForm?.initialState ?? {}),
+    },
   });
 
   useUrlSportId(urlSportId => {
-    if (props.disableUrlSportId) return;
+    if (props.disableUrlSportId) {
+      return;
+    }
     gameSearchForm.update({ sportId: urlSportId ?? ALL_ID });
   });
 
@@ -328,6 +336,9 @@ GameTableSectionInner.propTypes = {
   }),
   gameDataSourceLoader: findManyInputPropTypes,
   gameDataSource: gameDataSourcePropTypes,
+  gameSearchForm: PropTypes.shape({
+    initialState: gameSearchFormStatePropTypes,
+  }),
 };
 
 //

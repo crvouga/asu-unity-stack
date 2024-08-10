@@ -426,9 +426,12 @@ LandingPage.args = {
   ],
   configNoData: {
     hide: true,
-    // hideBehavior: "initially-hidden",
-    hideBehavior: "initially-visible",
+    hideBehavior: "initially-hidden",
+    // hideBehavior: "initially-visible",
     message: "No upcoming games",
+    hideBasedOn: {
+      sportId: "all",
+    },
   },
   configLayout: {
     includeSportsTabs: true,

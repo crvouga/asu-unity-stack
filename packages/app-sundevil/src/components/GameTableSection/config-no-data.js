@@ -29,7 +29,9 @@ export const defaultConfigNoData = {
   hide: false,
   hideBehavior: "initially-hidden",
   message: null,
-  hideBasedOn: null,
+  hideBasedOn: {
+    sportId: "all",
+  },
 };
 
 /**
@@ -42,7 +44,7 @@ const initState = () => {
 /**
  * @type {(input: {configNoData: ConfigNoData, shouldLog: boolean }) => {shouldHide: boolean}}
  */
-export const useConfigNoData = ({ configNoData, shouldLog }) => {
+export const useNoDataState = ({ configNoData, shouldLog }) => {
   const gameDataSource = useGameDataSource();
   const [state, setState] = useState(initState);
 

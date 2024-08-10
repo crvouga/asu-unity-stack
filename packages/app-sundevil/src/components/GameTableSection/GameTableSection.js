@@ -29,7 +29,11 @@ import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportWithFooterPropTypes } from "../SportsTabs/sports-tabs";
 import { configInputsPropTypes, defaultConfigInputs } from "./config-inputs";
 import { configLayoutPropTypes, defaultConfigLayout } from "./config-layout";
-import { configNoDataPropTypes, defaultConfigNoData } from "./config-no-data";
+import {
+  configNoDataPropTypes,
+  defaultConfigNoData,
+  useNoDataState,
+} from "./config-no-data";
 import {
   configOverlapPropTypes,
   getHeroOverlapStyles,
@@ -180,29 +184,10 @@ const GameTableSectionInner = ({ ...props }) => {
     "No games found"
   );
 
-  const shouldHideInitiallyHidden =
-    configNoData?.hide &&
-    configNoData?.hideBehavior === "initially-hidden" &&
-    gameDataSourceLoader.rows.length === 0;
-
-  const shouldHideInitiallyVisible =
-    configNoData?.hide &&
-    configNoData?.hideBehavior === "initially-visible" &&
-    !gameDataSourceLoader.isLoadingInitial &&
-    gameDataSourceLoader.rows.length === 0;
-
-  const shouldHide = shouldHideInitiallyHidden || shouldHideInitiallyVisible;
-
-  if (props.shouldLog) {
-    log({
-      message: "no data log",
-      configNoData,
-      shouldHideInitiallyHidden,
-      shouldHideInitiallyVisible,
-      shouldHide,
-      gameDataSourceLoader,
-    });
-  }
+  const { shouldHide } = useNoDataState({
+    configNoData,
+    shouldLog: props.shouldLog,
+  });
 
   const renderGameTable = ({ className = "" } = {}) => (
     <GameTableRoot className={className}>

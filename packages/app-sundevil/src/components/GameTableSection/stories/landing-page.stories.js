@@ -45,6 +45,14 @@ class CustomGameDataSource extends IGameDataSource {
   async findMany(input) {
     const found = await this.dataSource.findMany(input);
 
+    if (Math.random() > 0.5) {
+      return {
+        ...input,
+        rows: [],
+        total: 0,
+      };
+    }
+
     const rowsNew = found.rows.map(row => {
       return {
         ...row,
@@ -416,6 +424,12 @@ LandingPage.args = {
     //   ],
     // },
   ],
+  configNoData: {
+    hide: true,
+    // hideBehavior: "initially-hidden",
+    hideBehavior: "initially-visible",
+    message: "No upcoming games",
+  },
   configLayout: {
     includeSportsTabs: true,
     includeLoadMore: true,
@@ -423,7 +437,7 @@ LandingPage.args = {
   configInputs: null,
   configOverlap: "sport-tabs-with-hero",
   darkMode: true,
-  emptyStateMessage: "No upcoming games",
+  shouldLog: true,
   gameTable: {
     configCells: {
       cellTicketButton: {

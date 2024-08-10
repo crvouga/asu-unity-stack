@@ -5,6 +5,8 @@ import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
+import { ensureObject } from "../../utils/ensure-object";
+import { firstCleanString } from "../../utils/first-clean-string";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useElementContentDimensions } from "../../utils/use-element-content-dimensions";
 import { ALL_ID, findManyInputPropTypes } from "../Game/game-data-source";
@@ -27,7 +29,12 @@ import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportWithFooterPropTypes } from "../SportsTabs/sports-tabs";
 import { configInputsPropTypes, defaultConfigInputs } from "./config-inputs";
 import { configLayoutPropTypes, defaultConfigLayout } from "./config-layout";
-import { ConfigOverlap, configOverlapPropTypes } from "./config-overlap";
+import { configNoDataPropTypes, defaultConfigNoData } from "./config-no-data";
+import {
+  configOverlapPropTypes,
+  getHeroOverlapStyles,
+  getOverlapStyles,
+} from "./config-overlap";
 import { GameSearchFormSidebar } from "./GameSearchForm/GameSearchFormSidebar";
 import { GameSearchFormTopbar } from "./GameSearchForm/GameSearchFormTopbar";
 import {
@@ -47,13 +54,6 @@ const GameTableRoot = styled.div`
   width: 100%;
 `;
 
-const ensureObject = obj => {
-  if (typeof obj === "object" && obj !== null && !Array.isArray(obj)) {
-    return obj;
-  }
-  return {};
-};
-
 const Root = styled.div`
   display: flex;
   flex-direction: column;
@@ -67,6 +67,9 @@ const Root = styled.div`
 `;
 
 const GameTableSectionInner = ({ ...props }) => {
+  // eslint-disable-next-line no-console
+  const log = props.shouldLog ? console.log : () => {};
+
   const configGameTableForm = props.configGameTableForm ?? {};
 
   const variant = props.variant ?? "default";
@@ -81,6 +84,12 @@ const GameTableSectionInner = ({ ...props }) => {
   const configInputs = deepMergeLeft(
     ensureObject(props.configInputs),
     defaultConfigInputs
+  );
+
+  /** @type {import("./config-no-data").ConfigNoData} */
+  const configNoData = deepMergeLeft(
+    ensureObject(props.configNoData),
+    defaultConfigNoData
   );
 
   const gameSearchForm = useGameSearchForm({
@@ -106,6 +115,12 @@ const GameTableSectionInner = ({ ...props }) => {
   useUrlSportId(urlSportId => {
     if (props.disableUrlSportId) {
       return;
+    }
+    if (props.shouldLog) {
+      log({
+        urlSportId,
+        message: "sport id from url log",
+      });
     }
     gameSearchForm.update({ sportId: urlSportId ?? ALL_ID });
   });
@@ -155,43 +170,39 @@ const GameTableSectionInner = ({ ...props }) => {
   const headerRef = useRef(null);
   const headerDimensions = useElementContentDimensions(headerRef);
 
-  const getOverlapStyles = () => {
-    switch (props?.configOverlap) {
-      case ConfigOverlap["first-row-with-hero"]: {
-        return {
-          marginTop:
-            (headerDimensions.height + gameTableFirstRowDimensions.height) * -1,
-        };
-      }
-      case ConfigOverlap["sport-tabs-with-hero"]: {
-        return {
-          marginTop: -headerDimensions.height,
-        };
-      }
-      default: {
-        return {};
-      }
-    }
-  };
+  const noDataMessage = firstCleanString(
+    // TODO: move to only support props.configNoData?.message
+    configNoData?.message,
+    // Deprecated prop. Use configNoData.message instead.
+    props.gameTable?.emptyStateMessage,
+    // Deprecated prop. Use configNoData.message instead.
+    props?.emptyStateMessage,
+    "No games found"
+  );
 
-  const getHeroOverlapStyles = () => {
-    switch (props?.configOverlap) {
-      case ConfigOverlap["first-row-with-hero"]: {
-        return {
-          paddingBottom:
-            headerDimensions.height + gameTableFirstRowDimensions.height,
-        };
-      }
-      case ConfigOverlap["sport-tabs-with-hero"]: {
-        return {
-          paddingBottom: headerDimensions.height,
-        };
-      }
-      default: {
-        return {};
-      }
-    }
-  };
+  const shouldHideInitiallyHidden =
+    configNoData?.hide &&
+    configNoData?.hideBehavior === "initially-hidden" &&
+    gameDataSourceLoader.rows.length === 0;
+
+  const shouldHideInitiallyVisible =
+    configNoData?.hide &&
+    configNoData?.hideBehavior === "initially-visible" &&
+    !gameDataSourceLoader.isLoadingInitial &&
+    gameDataSourceLoader.rows.length === 0;
+
+  const shouldHide = shouldHideInitiallyHidden || shouldHideInitiallyVisible;
+
+  if (props.shouldLog) {
+    log({
+      message: "no data log",
+      configNoData,
+      shouldHideInitiallyHidden,
+      shouldHideInitiallyVisible,
+      shouldHide,
+      gameDataSourceLoader,
+    });
+  }
 
   const renderGameTable = ({ className = "" } = {}) => (
     <GameTableRoot className={className}>
@@ -209,6 +220,7 @@ const GameTableSectionInner = ({ ...props }) => {
           }
           gameTableFirstRowRef.current = node;
         }}
+        emptyStateMessage={noDataMessage}
       />
 
       {configLayout.includeLoadMore &&
@@ -223,18 +235,32 @@ const GameTableSectionInner = ({ ...props }) => {
   );
 
   return (
-    <Root>
+    <Root
+      style={{
+        display: shouldHide ? "none" : undefined,
+      }}
+    >
       {variant === "hero" && (
         <GameTableHero
           title={props.title}
           subtitle={props.subtitle}
           subtitleLinks={props.subtitleLinks}
-          style={getHeroOverlapStyles()}
+          style={getHeroOverlapStyles({
+            configOverlap: props.configOverlap,
+            headerDimensions,
+            gameTableFirstRowDimensions,
+          })}
           darkMode={props.darkMode}
         />
       )}
 
-      <div style={getOverlapStyles()}>
+      <div
+        style={getOverlapStyles({
+          configOverlap: props.configOverlap,
+          headerDimensions,
+          gameTableFirstRowDimensions,
+        })}
+      >
         <div ref={headerRef}>
           {variant === "default" && (
             <SectionHeader
@@ -339,6 +365,8 @@ GameTableSectionInner.propTypes = {
   gameSearchForm: PropTypes.shape({
     initialState: gameSearchFormStatePropTypes,
   }),
+  configNoData: configNoDataPropTypes,
+  shouldLog: PropTypes.bool,
 };
 
 //

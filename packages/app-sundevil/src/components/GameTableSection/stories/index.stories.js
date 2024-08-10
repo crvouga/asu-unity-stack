@@ -1,6 +1,10 @@
 // @ts-nocheck
 import React from "react";
 
+import {
+  GameDataSourceMock,
+  IGameDataSource,
+} from "../../Game/game-data-source";
 import { GameTableSection } from "../index";
 
 export default {
@@ -164,15 +168,48 @@ AllSports.args = {
   },
 };
 
+class CustomGameDataSource extends IGameDataSource {
+  constructor() {
+    super();
+    this.dataSource = new GameDataSourceMock({
+      timeout: 1000,
+    });
+  }
+
+  async findMany(input) {
+    const found = await this.dataSource.findMany(input);
+
+    const rowsNew = found.rows.map(row => {
+      return {
+        ...row,
+        ticketText: Math.random() > 0.9 ? "Get tickets" : "More info",
+      };
+    });
+
+    return {
+      ...found,
+      rows: rowsNew,
+    };
+  }
+}
+
 export const SingleSport = Template.bind({});
 SingleSport.args = {
-  gameDataSource: {
-    type: "asu-events",
-    url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-  },
+  // gameDataSource: {
+  //   type: "asu-events",
+  //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+  // },
   // gameDataSource: {
   //   type: "mock",
   // },
+  configNoData: {
+    hide: true,
+    hideBehavior: "initially-hidden",
+  },
+  gameDataSource: {
+    type: "custom",
+    gameDataSource: new CustomGameDataSource(),
+  },
   gameDataSourceLoader: {
     limit: 5,
     sportId: "football",

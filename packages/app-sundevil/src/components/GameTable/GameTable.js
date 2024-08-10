@@ -7,12 +7,12 @@ import styled from "styled-components";
 import { APP_CONFIG } from "../../config";
 import { range } from "../../utils/range";
 import { useBreakpoint } from "../../utils/use-breakpoint";
+import { ElementSetMaxDimensionsProvider } from "../../utils/use-element-set-max-dimensions";
 import { EmptyStateMessage } from "../EmptyState/EmptyStateMessage";
 import { gamePropTypes } from "../Game/game";
 import { configCellsPropTypes } from "./GameTableRow/config-cells";
 import { configLayoutPropTypes } from "./GameTableRow/config-layout";
 import { GameTableRow } from "./GameTableRow/GameTableRow";
-import { ElementSetMaxDimensionsProvider } from "../../utils/use-element-set-max-dimensions";
 
 const Table = styled.div`
   width: 100%;

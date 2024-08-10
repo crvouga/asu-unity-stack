@@ -8,7 +8,7 @@ import { useGameDataSource } from "./GameDataSourceContext";
  */
 export const useGameDataSourceLoader = input => {
   const gameDataSource = useGameDataSource();
-  return usePaginatedLoader({
+  const paginatedLoader = usePaginatedLoader({
     query: input,
     limit: input.limit,
     toQueryKey: query => btoa(JSON.stringify(query ?? {})),
@@ -22,4 +22,5 @@ export const useGameDataSourceLoader = input => {
       return found;
     },
   });
+  return paginatedLoader;
 };

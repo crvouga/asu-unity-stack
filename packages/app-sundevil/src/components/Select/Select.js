@@ -2,13 +2,13 @@ import PropTypes from "prop-types";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+import { idToLabel } from "../../utils/id-to-label";
 import { useFocus } from "../../utils/use-focus";
 import { CollapseIcon } from "../CollapseIcon/CollapseIcon";
 import { DropDown, DropDownSurface } from "../DropDown";
 import { LabelledInputBase } from "../InputBase/LabelledInputBase";
 import { SelectOption } from "./SelectOption";
 import { SelectOptionEmpty } from "./SelectOptionEmpty";
-import { idToLabel } from "../../utils/id-to-label";
 
 const Button = styled.button`
   border: none !important;

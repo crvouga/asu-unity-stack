@@ -25,7 +25,6 @@ const Root = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  overflow: hidden;
   flex-wrap: nowrap;
 `;
 
@@ -136,6 +135,9 @@ export const SportsTabsDesktop = ({
               ))}
             {moreSports.length > 0 && (
               <DropDown
+                style={{
+                  flex: 1,
+                }}
                 open={state.opened === "dropdown"}
                 onClose={() =>
                   setState(currentState => ({ ...currentState, opened: null }))

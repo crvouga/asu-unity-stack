@@ -11,17 +11,15 @@ export const DropDownSimple = ({
   onClose,
   renderContent,
   renderReference,
+  style,
 }) => {
-  const referenceRef = useRef(null);
-  const dropdownRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = event => {
       if (
-        referenceRef.current &&
-        !referenceRef.current.contains(event.target) &&
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target)
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
       ) {
         onClose();
       }
@@ -36,52 +34,29 @@ export const DropDownSimple = ({
     };
   }, [open, onClose]);
 
-  useEffect(() => {
-    if (open && referenceRef.current && dropdownRef.current) {
-      const referenceRect = referenceRef.current.getBoundingClientRect();
-      const dropdownRect = dropdownRef.current.getBoundingClientRect();
-      let top;
-      let left;
+  const containerStyle = {
+    ...style,
+    position: "relative",
+  };
 
-      switch (position) {
-        case "bottom-end":
-          top = referenceRect.bottom;
-          left = referenceRect.right - dropdownRect.width;
-          break;
-        case "bottom-start":
-          top = referenceRect.bottom;
-          left = referenceRect.left;
-          break;
-        case "top-end":
-          top = referenceRect.top - dropdownRect.height;
-          left = referenceRect.right - dropdownRect.width;
-          break;
-        case "top-start":
-          top = referenceRect.top - dropdownRect.height;
-          left = referenceRect.left;
-          break;
-        default:
-          top = referenceRect.bottom;
-          left = referenceRect.left;
-      }
-
-      // Update dropdownRef styles directly
-      dropdownRef.current.style.position = "fixed";
-      dropdownRef.current.style.zIndex = "9999";
-      dropdownRef.current.style.top = `${top}px`;
-      dropdownRef.current.style.left = `${left}px`;
-    }
-  }, [position, open]);
+  const dropdownStyle = {
+    position: "absolute",
+    display: open ? "block" : "none",
+    zIndex: 20,
+    ...(position.startsWith("bottom") ? { top: "100%" } : { bottom: "100%" }),
+    ...(position.endsWith("end") ? { right: 0 } : { left: 0 }),
+  };
 
   return (
-    <>
-      {renderReference({ ref: referenceRef, open })}
-      {open &&
-        renderContent({
-          ref: dropdownRef,
-          referenceWidth: referenceRef.current?.offsetWidth,
-        })}
-    </>
+    <div ref={containerRef} style={containerStyle}>
+      {renderReference({ open })}
+      <div style={dropdownStyle}>
+        {open &&
+          renderContent({
+            referenceWidth: containerRef.current?.getBoundingClientRect().width,
+          })}
+      </div>
+    </div>
   );
 };
 

@@ -44,6 +44,7 @@ export const SportsTabsMobile = ({
         onClose={() =>
           setState(currentState => ({ ...currentState, opened: null }))
         }
+        style={{ height: "100%", width: "100%" }}
         renderReference={input => {
           return (
             <SelectBase

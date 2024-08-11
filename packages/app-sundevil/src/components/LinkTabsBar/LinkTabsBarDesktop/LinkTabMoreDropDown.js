@@ -13,7 +13,8 @@ export const LinkTabMoreDropDown = ({ links, moreTabLabel = "More" }) => {
     <DropDown
       open={open}
       onClose={() => setOpen(false)}
-      position="bottom-start"
+      style={{ height: "100%" }}
+      position="bottom-end"
       renderReference={({ ref, open: isOpen }) => (
         <LinkTab
           as="button"

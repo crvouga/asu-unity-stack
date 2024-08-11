@@ -29,7 +29,6 @@ const SponsorRoot = styled.a`
   margin: 0;
   height: 100%;
   padding: 12px 0px;
-  overflow: hidden;
   border-left: 1px solid #d0d0d0;
   flex-shrink: 1;
 `;
@@ -39,7 +38,6 @@ const LinkTabsRoot = styled.div`
   align-items: center;
   height: 100%;
   flex: 1;
-  overflow: hidden;
   flex-shrink: 0;
 `;
 

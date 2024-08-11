@@ -70,6 +70,7 @@ export const Select = ({
     <DropDown
       open={open}
       onClose={() => setOpen(false)}
+      style={style}
       renderReference={({ ref }) => (
         <LabelledInputBase
           darkMode={darkMode}

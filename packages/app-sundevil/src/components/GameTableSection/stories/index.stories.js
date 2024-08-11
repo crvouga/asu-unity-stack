@@ -205,14 +205,17 @@ SingleSport.args = {
   configNoData: {
     hide: true,
     hideBehavior: "initially-hidden",
-  },
-  gameDataSource: {
-    type: "custom",
-    gameDataSource: new CustomGameDataSource(),
+    hideBasedOn: {
+      // sportId: "w-swimming",
+    },
   },
   gameDataSourceLoader: {
     limit: 5,
     sportId: "football",
+  },
+  gameDataSource: {
+    type: "custom",
+    gameDataSource: new CustomGameDataSource(),
   },
   gameTable: {
     configLayout: {

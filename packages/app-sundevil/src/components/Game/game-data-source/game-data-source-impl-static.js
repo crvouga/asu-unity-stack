@@ -13,6 +13,15 @@ const isEqual = (keyFn, a, b) => {
 export const ALL_ID = "all";
 const isAllId = id => isEqual(cleanString, ALL_ID, id);
 
+const normalizeDate = date => {
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  return d;
+};
+
+const isRightSameOrFutureDate = (date1, date2) =>
+  normalizeDate(new Date(date1)) <= normalizeDate(new Date(date2));
+
 export class GameDataSourceStatic extends IGameDataSource {
   /**
    * @param {{games: import("../game").Game[]}} input
@@ -84,13 +93,18 @@ export class GameDataSourceStatic extends IGameDataSource {
             ? isEqual(cleanString, game?.eventType, input?.eventType)
             : true;
 
+        const matchedPresentOrFuture = game.startDate
+          ? isRightSameOrFutureDate(new Date(), game.startDate)
+          : true;
+
         const matched =
           matchedSportId &&
           matchedGameType &&
           matchedVenueId &&
           matchedMaxAdmissionCost &&
           matchedEventType &&
-          matchedAdmissionCost;
+          matchedAdmissionCost &&
+          matchedPresentOrFuture;
 
         if (this.shouldLog) {
           filterLog.push({
@@ -103,6 +117,7 @@ export class GameDataSourceStatic extends IGameDataSource {
             matchedMaxAdmissionCost,
             matchedAdmissionCost,
             matchedEventType,
+            matchedPresentOrFuture,
           });
         }
 

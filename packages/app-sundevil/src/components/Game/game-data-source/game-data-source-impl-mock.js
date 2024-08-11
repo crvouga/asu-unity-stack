@@ -38,6 +38,7 @@ const games = [];
     dateDay: "25",
     dateMonth: "Nov",
     sportId,
+    startDate: new Date().toISOString(),
     sportName: "Sport Name",
     homeTeamName: "Arizona State Sun Devils",
     homeTeamLogoSrc:

@@ -82,6 +82,10 @@ Default.args = {
     smallDesktop: 6,
     desktop: 8,
   },
+  stickyPosition: {
+    navbarPortalSelector: "#navbar-portal",
+    stickyElementSelector: "#link-tabs",
+  },
   links: [
     {
       mobileLabel: "Football Home",
@@ -293,8 +297,8 @@ export const SportTickets = Template.bind({});
 SportTickets.args = {
   disableActiveFromUrl: false,
   stickyPosition: {
-    stickyElementSelector: "#link-tabs",
     navbarPortalSelector: "#navbar-portal",
+    stickyElementSelector: "#link-tabs",
   },
   maxLinkCountBreakpoints: {
     mobile: 2,

@@ -1,9 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 
-import { cacheQuerySelector } from "../../utils/query-selector-cached";
 import { querySelectorSafe } from "../../utils/query-selector-safe";
 
-const querySelectorSafeAndCached = cacheQuerySelector(querySelectorSafe);
+const querySelectorSafeAndCached = querySelectorSafe;
 
 /**
  * @param {{

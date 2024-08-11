@@ -1,3 +1,6 @@
+/**
+ * This can cause bugs be careful
+ */
 export const cacheQuerySelector = querySelector => {
   const cache = new Map();
   return selector => {

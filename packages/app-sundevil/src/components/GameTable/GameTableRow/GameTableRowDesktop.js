@@ -222,10 +222,9 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
             ref={ticketCellRef}
             style={{ minWidth: ticketCellMaxDimensions.width }}
           >
+            {/* @ts-ignore */}
             <Button
               label={ticketButtonLabel}
-              color="dark"
-              size="small"
               renderIcon={() => {
                 if (shouldRenderTicketIcon) {
                   return (
@@ -238,7 +237,7 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
                 return null;
               }}
               href={game?.ticketLink}
-              target="_blank"
+              {...configCells?.cellTicketButton?.button}
             />
           </Cell>
         )}

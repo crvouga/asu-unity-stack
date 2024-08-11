@@ -1,6 +1,8 @@
 // @ts-check
 import PropTypes from "prop-types";
 
+import { buttonPropTypes } from "../../Button/button-prop";
+
 /**
  * @typedef {{
  * cellTitle: {
@@ -10,7 +12,8 @@ import PropTypes from "prop-types";
  * cellTicketButton: {
  *  label?: string | null;
  *  autoTicketIcon?: boolean | null;
- * }
+ *  button?: import("../../Button/button-prop").ButtonProp | null;
+ * },
  * }} ConfigCells
  */
 
@@ -22,6 +25,7 @@ export const configCellsPropTypes = PropTypes.shape({
   cellTicketButton: PropTypes.shape({
     label: PropTypes.string,
     autoTicketIcon: PropTypes.bool,
+    button: buttonPropTypes,
   }),
 });
 
@@ -36,5 +40,10 @@ export const defaultConfigCells = {
   cellTicketButton: {
     label: null,
     autoTicketIcon: true,
+    button: {
+      color: "dark",
+      size: "small",
+      // target: "_blank", // Rule: By default links should open in the same tab
+    },
   },
 };

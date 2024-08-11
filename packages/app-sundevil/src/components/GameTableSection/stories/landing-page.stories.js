@@ -424,14 +424,17 @@ LandingPage.args = {
     //   ],
     // },
   ],
+  gameDataSource: {
+    type: "mock",
+  },
   configNoData: {
-    hide: true,
-    hideBehavior: "initially-hidden",
+    // hide: true,
+    // hideBehavior: "initially-hidden",
     // hideBehavior: "initially-visible",
-    message: "No upcoming games",
-    hideBasedOn: {
-      sportId: "all",
-    },
+    // message: "No upcoming games",
+    // hideBasedOn: {
+    // sportId: "all",
+    // },
   },
   configLayout: {
     includeSportsTabs: true,

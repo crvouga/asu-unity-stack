@@ -181,6 +181,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
         title={
           link.type === "icon-home" && title ? `${title} home page` : link.text
         }
+        style={{ cursor: "pointer" }}
       >
         {renderNavLinks}
       </a>

@@ -109,6 +109,19 @@ export const mapSectionHeaderProps = props => {
   return mapPropsSponsorBlock(props);
 };
 
+const Title = styled.div`
+  color: ${({
+    // @ts-ignore
+    darkMode,
+  }) => (darkMode ? "#fff" : "#191919")};
+  font-weight: bold;
+  font-size: 40px;
+
+  @media (max-width: ${APP_CONFIG.breakpointMobile}) {
+    font-size: 24px;
+  }
+`;
+
 /**
  * @type {React.FC<SectionHeaderProps>}
  */
@@ -149,9 +162,12 @@ export const SectionHeader = forwardRef(
           <div className="row">
             <div className="col-md-8 col-sm-12">
               <div className="d-flex flex-row align-items-end justify-content-between gap-2 pt-2">
-                <h2 className={`m-0 ${darkMode ? "text-white" : "text-black"}`}>
+                <Title
+                  // @ts-ignore
+                  darkMode={darkMode}
+                >
                   {title}
-                </h2>
+                </Title>
                 <div className="mt-auto d-flex d-sm-flex d-md-none justify-content-end">
                   <SponsorBlock
                     href={sponsorBlock?.url}

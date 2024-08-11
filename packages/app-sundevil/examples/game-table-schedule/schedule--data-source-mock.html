@@ -86,9 +86,14 @@
         ],
         // darkMode: true,
         darkMode: false,
-        emptyStateMessage: "No games found",
         gameDataSourceLoader: {
           limit: 20,
+        },
+        configNoData: {
+          hide: false,
+          hideBehavior: "initially-hidden", //  "initially-hidden" | "initially-visible" | null;
+          hideBasedOn: {},
+          message: "No games found",
         },
         configLayout: {
           includeInputSearch: true,

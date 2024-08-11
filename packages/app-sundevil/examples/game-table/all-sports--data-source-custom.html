@@ -98,6 +98,12 @@
       }
 
       const props = {
+        configNoData: {
+          hide: false,
+          hideBehavior: "initially-hidden", //  "initially-hidden" | "initially-visible" | null;
+          hideBasedOn: {},
+          message: "No games found",
+        },
         // This allows for custom implementation of game data source
         gameDataSource: {
           type: "custom",

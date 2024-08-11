@@ -65,6 +65,12 @@
         //   type: "custom",
         //   gameDataSource: new CustomGameDataSource(),
         // },
+        configNoData: {
+          hide: false,
+          hideBehavior: "initially-hidden", //  "initially-hidden" | "initially-visible" | null;
+          hideBasedOn: {},
+          message: "No games found",
+        },
         gameDataSource: {
           type: "asu-events",
           url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",

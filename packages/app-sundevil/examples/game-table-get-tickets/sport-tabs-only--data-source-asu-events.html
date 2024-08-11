@@ -57,6 +57,12 @@
     <div style="width: 100%; height: 500px"></div>
     <script>
       const props = {
+        configNoData: {
+          hide: false,
+          hideBehavior: "initially-hidden", //  "initially-hidden" | "initially-visible" | null;
+          hideBasedOn: {},
+          message: "No games found",
+        },
         // gameDataSource: {
         //   type: "custom",
         //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),

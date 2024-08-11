@@ -57,16 +57,24 @@
     </div>
     <script>
       const props = {
-        gameDataSource: {
-          type: "asu-events",
-          url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
+        configNoData: {
+          hide: true,
+          hideBehavior: "initially-hidden", //  "initially-hidden" | "initially-visible" | null;
+          hideBasedOn: {
+            sportId: "soccer",
+          },
+          message: "No games found",
         },
         // gameDataSource: {
-        //   type: "mock",
+        //   type: "asu-events",
+        //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
         // },
+        gameDataSource: {
+          type: "mock",
+        },
         gameDataSourceLoader: {
           limit: 5,
-          sportId: "football",
+          sportId: "soccer",
         },
         gameTable: {
           configCells: {

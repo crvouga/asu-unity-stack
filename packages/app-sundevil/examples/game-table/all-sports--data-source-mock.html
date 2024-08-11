@@ -58,6 +58,12 @@
     </div>
     <script>
       const props = {
+        configNoData: {
+          hide: false,
+          hideBehavior: "initially-hidden", //  "initially-hidden" | "initially-visible" | null;
+          hideBasedOn: {},
+          message: "No games found",
+        },
         // This will just generate random games
         gameDataSource: {
           type: "mock",

@@ -60,6 +60,12 @@
         gameDataSource: {
           type: "mock",
         },
+        configNoData: {
+          hide: false,
+          hideBehavior: "initially-hidden", //  "initially-hidden" | "initially-visible" | null;
+          hideBasedOn: {},
+          message: "No games found",
+        },
         // gameDataSource: {
         //   type: "custom",
         //   gameDataSource: new GameDataSourceMock({ timeout: 1000 }),

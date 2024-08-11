@@ -28,9 +28,8 @@ const SponsorRoot = styled.a`
   padding: 0;
   margin: 0;
   height: 100%;
+  padding: 12px 0px;
   overflow: hidden;
-  padding: 12px;
-  padding-left: 0;
   border-left: 1px solid #d0d0d0;
   flex-shrink: 1;
 `;

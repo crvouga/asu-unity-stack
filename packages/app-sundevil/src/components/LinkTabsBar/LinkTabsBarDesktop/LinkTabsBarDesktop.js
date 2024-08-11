@@ -29,7 +29,7 @@ const SponsorRoot = styled.a`
   margin: 0;
   height: 100%;
   overflow: hidden;
-  padding: 12px;
+  padding: 12px 0px;
   flex-shrink: 0;
 `;
 

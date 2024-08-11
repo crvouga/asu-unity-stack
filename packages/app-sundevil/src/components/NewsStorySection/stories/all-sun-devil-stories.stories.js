@@ -56,7 +56,7 @@ const props = {
   },
 
   configLayout: {
-    includeSportTabs: false,
+    includeSportsTabs: false,
     includeInputSearch: true,
     includeInputNewsType: true,
     includeInputSportType: true,
@@ -78,7 +78,7 @@ const props = {
   },
   loadMore: {
     label: "Load More",
-    placeholder: "Loading...",
+    loadingLabel: "Loading...",
   },
   sports: [
     {

@@ -55,7 +55,7 @@ const PresentedByContainer = styled.div`
 `;
 
 const Logo = styled.img`
-  height: 40px;
+  max-height: 40px;
 `;
 
 export {

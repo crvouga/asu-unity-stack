@@ -15,7 +15,7 @@ const Root = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 1.3rem;
+  font-size: 20px;
   font-weight: bold;
   padding: 0;
 `;

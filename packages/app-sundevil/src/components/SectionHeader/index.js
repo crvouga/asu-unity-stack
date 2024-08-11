@@ -122,6 +122,22 @@ const Title = styled.div`
   }
 `;
 
+const SponsorBlockTitle = styled.div`
+  color: ${({
+    // @ts-ignore
+    darkMode,
+  }) => (darkMode ? "#fff" : "#191919")};
+  font-weight: bold;
+  font-size: 16px;
+  text-align: left;
+
+  @media (max-width: ${APP_CONFIG.breakpointMobile}) {
+    font-size: 12px;
+  }
+
+  white-space: nowrap;
+`;
+
 /**
  * @type {React.FC<SectionHeaderProps>}
  */
@@ -168,18 +184,17 @@ export const SectionHeader = forwardRef(
                 >
                   {title}
                 </Title>
-                <div className="mt-auto d-flex d-sm-flex d-md-none justify-content-end">
+                <div className="mt-auto d-flex d-sm-flex d-md-none align-items-start justify-content-end">
                   <SponsorBlock
                     href={sponsorBlock?.url}
-                    className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
+                    className="d-flex flex-column flex-sm-column flex-md-row align-items-start gap-1"
                   >
-                    <h5
-                      className={`m-0 ${
-                        darkMode ? "text-white" : "text-black"
-                      }`}
+                    <SponsorBlockTitle
+                      // @ts-ignore
+                      darkMode={darkMode}
                     >
                       {sponsorBlock?.text}
-                    </h5>
+                    </SponsorBlockTitle>
                     <Logo src={sponsorBlock?.logo} alt={sponsorBlock?.name} />
                   </SponsorBlock>
                 </div>
@@ -232,9 +247,12 @@ export const SectionHeader = forwardRef(
                 href={sponsorBlock?.url}
                 className="d-flex flex-row align-items-center justify-content-end gap-2"
               >
-                <h5 className={`m-0 ${darkMode ? "text-white" : "text-black"}`}>
+                <SponsorBlockTitle
+                  // @ts-ignore
+                  darkMode={darkMode}
+                >
                   {sponsorBlock?.text}
-                </h5>
+                </SponsorBlockTitle>
                 <Logo src={sponsorBlock?.logo} alt={sponsorBlock?.name} />
               </SponsorBlock>
             </div>

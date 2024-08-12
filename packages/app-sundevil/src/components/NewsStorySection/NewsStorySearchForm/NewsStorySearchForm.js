@@ -114,7 +114,12 @@ export const NewsStorySearchForm = ({
                   : option.id,
             })
           }
-          options={newsTypeOptions}
+          options={newsTypeOptions.map(option => ({
+            ...option,
+            active:
+              cleanString(option.id) ===
+              cleanString(newsStorySearchForm.newsType),
+          }))}
         />
       )}
 

@@ -77,15 +77,15 @@ const props = {
       placeholder: "Select one",
       options: [
         {
-          label: "Free",
-          id: "free",
-          value: "free",
+          label: "Video",
+          id: "video",
+          value: "video",
           active: true,
         },
         {
-          label: "Price Varies",
-          id: "price_varies",
-          value: "price_varies",
+          label: "Hello",
+          id: "hello",
+          value: "hello",
         },
       ],
     },

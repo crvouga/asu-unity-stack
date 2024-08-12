@@ -11,6 +11,8 @@ import { findManyInputPropTypes } from "../../NewsStory/news-story-data-source/n
  * @typedef {import("../../NewsStory/news-story-data-source/news-story-data-source").FindManyInput} NewsStorySearchFormState
  */
 
+export const newsStoryFormStatePropTypes = findManyInputPropTypes;
+
 /**
  * @typedef {NewsStorySearchFormState & {debouncedSearchQuery: string; update: (state: Partial<NewsStorySearchFormState>) => void; setSearchQuery: (searchQueryNew: string) => void}} NewsStorySearchForm
  */

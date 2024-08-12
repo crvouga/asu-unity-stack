@@ -1,21 +1,31 @@
 import PropTypes from "prop-types";
 
-const configInputPropTypes = PropTypes.shape({
-  label: PropTypes.string,
-  placeholder: PropTypes.string,
-});
-
-export const configInputsPropTypes = PropTypes.shape({
-  search: configInputPropTypes,
-  newsType: configInputPropTypes,
-  sportType: configInputPropTypes,
-});
-
 /**
  * @typedef {{
  * label: string;
  * placeholder: string;
  * }}ConfigInput
+ */
+
+const selectOptionPropTypes = PropTypes.shape({
+  label: PropTypes.string,
+  id: PropTypes.string,
+  active: PropTypes.bool,
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+});
+
+/**
+ * @typedef {{
+ * id: string;
+ * label?: string;
+ * placeholder?: string;
+ * active?: boolean;
+ * value?: string | number | null | undefined;
+ * }} SelectOption
+ */
+
+/**
+ * @typedef {ConfigInput & {options?: SelectOption[]}} ConfigSelectInput
  */
 
 /**
@@ -25,6 +35,24 @@ export const configInputsPropTypes = PropTypes.shape({
  *  sportType: ConfigInput;
  * }} ConfigInputs
  */
+
+const configInputPropTypes = PropTypes.shape({
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+});
+
+const configSelectInputPropTypes = PropTypes.shape({
+  label: PropTypes.string,
+  placeholder: PropTypes.string,
+  initialValueId: PropTypes.string,
+  options: PropTypes.arrayOf(selectOptionPropTypes),
+});
+
+export const configInputsPropTypes = PropTypes.shape({
+  search: configInputPropTypes,
+  newsType: configSelectInputPropTypes,
+  sportType: configInputPropTypes,
+});
 
 /**
  * @type {ConfigInputs}

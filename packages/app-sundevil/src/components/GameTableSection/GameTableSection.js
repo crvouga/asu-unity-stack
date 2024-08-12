@@ -126,7 +126,10 @@ const GameTableSectionInner = ({ ...props }) => {
         message: "sport id from url log",
       });
     }
-    gameSearchForm.update({ sportId: urlSportId ?? ALL_ID });
+    gameSearchForm.update({
+      sportId:
+        urlSportId ?? props?.gameSearchForm?.initialState?.sportId ?? ALL_ID,
+    });
   });
 
   const gameDataSourceLoader = useGameDataSourceLoader({

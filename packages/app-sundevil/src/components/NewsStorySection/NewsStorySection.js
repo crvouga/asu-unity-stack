@@ -7,6 +7,7 @@ import { APP_CONFIG } from "../../config";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useElementContentXPosition } from "../../utils/use-element-content-x-position";
+import { ALL_ID } from "../Game";
 import { LoadMoreButton } from "../LoadMoreButton";
 import {
   buildNewsStoryDataSource,
@@ -83,12 +84,15 @@ const NewsStorySectionInner = ({
 
   const newsStorySearchFrom = useNewsStorySearchForm({
     enableUrlState: false,
-    sportId: sports.find(sport => sport.active)?.id ?? "all",
+    sportId: sports.find(sport => sport.active)?.id ?? ALL_ID,
+    ...configForm.initialState,
   });
 
   useUrlSportId(urlSportId => {
     if (disableUrlSportId) return;
-    newsStorySearchFrom.update({ sportId: urlSportId ?? "all" });
+    newsStorySearchFrom.update({
+      sportId: urlSportId ?? configForm?.initialState?.sportId ?? ALL_ID,
+    });
   });
 
   const sportsWithSelectedTab = sports.map(sport => ({

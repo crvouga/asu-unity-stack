@@ -8,6 +8,7 @@ import { useBreakpoint } from "../../../utils/use-breakpoint";
 import { Icon } from "../../Icon_";
 import { useNewsTypesLoader } from "../../NewsStory/use-news-types-loader";
 import { Select } from "../../Select/Select";
+import { stringToSportId } from "../../Sport/sport-id";
 import { sportPropTypes } from "../../SportsTabs/sports-tabs";
 import { TextField } from "../../TextField/TextField";
 import { configInputsPropTypes } from "../config-inputs";
@@ -22,6 +23,10 @@ const Root = styled.div`
   gap: 1rem;
   flex-wrap: wrap;
 `;
+
+const cleanString = str => {
+  return str?.toString?.()?.toLowerCase?.()?.trim?.();
+};
 
 /**
  * @type {React.FC<{
@@ -87,7 +92,6 @@ export const NewsStorySearchForm = ({
           )}
         />
       )}
-
       {configLayout.includeInputNewsType && (
         <Select
           darkMode={darkMode}
@@ -103,7 +107,9 @@ export const NewsStorySearchForm = ({
           options={allNewsTypes.map(newsType => ({
             label: newsType,
             id: newsType,
-            active: newsType === newsStorySearchForm.newsType,
+            active:
+              cleanString(newsType) ===
+              cleanString(newsStorySearchForm.newsType),
           }))}
         />
       )}
@@ -123,7 +129,9 @@ export const NewsStorySearchForm = ({
           options={sports.map(sport => ({
             label: sport.name,
             id: sport.id,
-            active: sport.active,
+            active:
+              stringToSportId(sport.id) ===
+              stringToSportId(newsStorySearchForm.sportId),
             renderStart: ({ style: iconStyle }) => (
               <Icon icon={sport.icon} style={iconStyle} />
             ),

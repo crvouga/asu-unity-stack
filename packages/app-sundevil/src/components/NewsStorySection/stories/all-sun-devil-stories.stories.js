@@ -53,6 +53,10 @@ const props = {
   removeSportsWithNoStories: false,
   configForm: {
     title: "Filter your results",
+    initialState: {
+      newsType: "Video",
+      sportId: "m-football",
+    },
   },
 
   configLayout: {
@@ -62,6 +66,7 @@ const props = {
     includeInputSportType: true,
     includeLoadMore: true,
   },
+
   configInputs: {
     search: {
       label: "Search stories",

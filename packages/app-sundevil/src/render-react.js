@@ -1,9 +1,6 @@
 // @ts-check
-import React, { StrictMode } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import { StyleSheetManager } from "styled-components";
-
-import { PreventFlashOfUnstyledContent } from "./prevent-flash-of-unstyled-content";
 
 /**
  * @description
@@ -123,18 +120,7 @@ export const RenderReact = ({
   }
 
   const renderComponent = targetElement => {
-    ReactDOM.render(
-      <StrictMode>
-        <StyleSheetManager>
-          <PreventFlashOfUnstyledContent
-            enabled={enabledPreventFlashOfUnstyledContent}
-          >
-            {React.createElement(component, props)}
-          </PreventFlashOfUnstyledContent>
-        </StyleSheetManager>
-      </StrictMode>,
-      targetElement
-    );
+    ReactDOM.render(React.createElement(component, props), targetElement);
   };
 
   if (renderWithinChild) {

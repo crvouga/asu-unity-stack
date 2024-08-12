@@ -25,7 +25,7 @@ import { PreviewSection } from "./components/GroupTickets/PreviewSection";
 import { IconTextColumnsSection } from "./components/IconTextColumnsSection";
 import { NonTicketedIntro } from "./components/IconTextColumnsSection/NonTicketedIntro";
 import { SeasonsTicket } from "./components/SeasonsTicket";
-import { GroupTicketBenefit } from "./components/SeasonsTicket/GroupTicketBenifit";
+import { GroupTicketBenefit } from "./components/SeasonsTicket/GroupTicketBenefit";
 import { GroupTicketMiniPlans } from "./components/SeasonsTicket/GroupTicketMiniPlans";
 import { TicketsFooter } from "./components/SeasonsTicket/ticketsFooter";
 import { RenderReact } from "./render-react";

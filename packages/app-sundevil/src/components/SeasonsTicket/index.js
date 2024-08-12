@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { GroupTicketBenefit } from "./GroupTicketBenifit";
+import { GroupTicketBenefit } from "./GroupTicketBenefit";
 import { GroupTicketMiniPlans } from "./GroupTicketMiniPlans";
 import { TicketsFooter } from "./ticketsFooter";
 

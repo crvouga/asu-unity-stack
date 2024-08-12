@@ -71,8 +71,9 @@ export const TextField = ({
     <LabelledInputBase
       label={label}
       darkMode={darkMode}
-      style={style}
+      style={{ ...style, cursor: "pointer" }}
       focused={focused}
+      onClick={() => inputRef.current.focus()}
       renderInput={({ id, style: inputStyle }) => (
         <InputContainer>
           <Placeholder inputStyle={inputStyle} hasValue={Boolean(value)}>

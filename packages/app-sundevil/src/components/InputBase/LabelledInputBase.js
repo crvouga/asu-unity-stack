@@ -46,10 +46,13 @@ const InputRoot = styled.div`
 `;
 
 export const LabelledInputBase = forwardRef(
-  ({ label, renderInput, renderEndIcon, style, darkMode, focused }, ref) => {
+  (
+    { label, renderInput, renderEndIcon, style, darkMode, focused, onClick },
+    ref
+  ) => {
     const id = useId();
     return (
-      <Root style={style} ref={ref} darkMode={darkMode}>
+      <Root style={style} ref={ref} darkMode={darkMode} onClick={onClick}>
         {typeof label === "string" && label.length > 0 && (
           <Label htmlFor={id}>{label}</Label>
         )}
@@ -84,4 +87,5 @@ LabelledInputBase.propTypes = {
   style: PropTypes.object,
   darkMode: PropTypes.bool,
   focused: PropTypes.bool,
+  onClick: PropTypes.func,
 };

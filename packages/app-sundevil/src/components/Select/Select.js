@@ -77,14 +77,10 @@ export const Select = ({
           focused={focused}
           ref={ref}
           label={label}
-          style={style}
+          style={{ ...style, cursor: "pointer" }}
+          onClick={() => setOpen(openPrev => !openPrev)}
           renderInput={({ id, style: buttonStyle }) => (
-            <Button
-              ref={buttonRef}
-              style={buttonStyle}
-              id={id}
-              onClick={() => setOpen(openPrev => !openPrev)}
-            >
+            <Button ref={buttonRef} style={buttonStyle} id={id}>
               {active ? (
                 <>
                   {active.renderStart?.({ style: { paddingRight: "0.5rem" } })}

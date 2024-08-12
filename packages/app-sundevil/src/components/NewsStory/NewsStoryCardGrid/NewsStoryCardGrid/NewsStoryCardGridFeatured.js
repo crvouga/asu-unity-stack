@@ -16,19 +16,22 @@ const FeaturedCard = styled.div`
 `;
 
 const Root = styled.div`
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 1fr;
   gap: 1rem;
   width: 100%;
+`;
 
-  & > * {
-    height: 100%;
-  }
-
-  & > ${FeaturedCard} {
-    grid-row: span 2;
-  }
+const Inset0 = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 /**
@@ -55,6 +58,24 @@ export const NewsStoryCardGridFeatured = ({
   }
 
   const [featuredStory, ...otherStories] = newsStoriesFinal.slice(0, maxCards);
+
+  if (otherStories.length === 0) {
+    return (
+      <Root style={{ position: "relative" }}>
+        {range(6).map(() => (
+          <NewsStoryCard newsStory={randomNewsStorySkeleton()} skeleton />
+        ))}
+        <Inset0>
+          <NewsStoryCard
+            key={featuredStory?.id ?? featuredStory?.title}
+            newsStory={featuredStory}
+            skeleton={Boolean(skeleton)}
+            size="large"
+          />
+        </Inset0>
+      </Root>
+    );
+  }
 
   return (
     <Root>

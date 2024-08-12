@@ -117,9 +117,13 @@ const props = {
     titleMaxLines: 2,
     titleFontWeight: "bold",
   },
+  // newsStoryDataSource: {
+  //   type: "custom",
+  //   newsStoryDataSource: new CustomNewsStoryDataSource(),
+  // },
   newsStoryDataSource: {
-    type: "custom",
-    newsStoryDataSource: new CustomNewsStoryDataSource(),
+    type: "static",
+    newsStories: newsStories.slice(0, 3),
   },
   newsStoryDataSourceLoader: {
     // sportId: "football",

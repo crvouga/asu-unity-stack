@@ -56,7 +56,9 @@ const Card = ({ benefit, mobile }) => {
             <Icon icon={benefit.icon} />
           </div>
           <div className="col-10 d-flex flex-column align-items-start text-left gap-1">
-            <h4 className="text-left m-0">{benefit.title}</h4>
+            <h4 style={{ fontSize: "20px" }} className="text-left m-0">
+              {benefit.title}
+            </h4>
             <p
               className="text-muted-foreground m-0"
               // eslint-disable-next-line react/no-danger
@@ -73,7 +75,9 @@ const Card = ({ benefit, mobile }) => {
         <div style={{ fontSize: "24px" }}>
           <Icon icon={benefit.icon} />
         </div>
-        <h4 className="text-center">{benefit.title}</h4>
+        <h4 style={{ fontSize: "24px" }} className="text-center">
+          {benefit.title}
+        </h4>
         <p
           className="text-muted-foreground"
           // eslint-disable-next-line react/no-danger

@@ -388,4 +388,12 @@ describe("sportId", () => {
       "m-ice-hockey"
     );
   });
+
+  test("wrestling", () => {
+    expect(stringToSportId("wrestling")).toBe("wrestling");
+
+    expect(stringToSportId("men's wrestling")).toBe("m-wrestling");
+
+    expect(stringToSportId("women's wrestling")).toBe("w-wrestling");
+  });
 });

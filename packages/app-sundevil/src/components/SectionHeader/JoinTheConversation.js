@@ -46,13 +46,20 @@ export const socialPropType = PropTypes.shape({
 
 const SocialIcon = ({ social, className }) => {
   if (social?.icon) {
-    return <Icon className={className} icon={social.icon} />;
+    return (
+      <Icon
+        className={className}
+        icon={social.icon}
+        alt={social?.label ?? " "}
+      />
+    );
   }
 
   return (
     <SocialMediaIcon
       className={className}
-      name={social.label.trim().toLowerCase()}
+      name={social?.label.trim().toLowerCase()}
+      alt={social?.label ?? " "}
     />
   );
 };
@@ -80,6 +87,8 @@ export const JoinTheConversation = ({ social }) => {
           <SocialMediaIconButton
             key={socialItem.label ?? social.faClassName ?? index}
             href={socialItem.url}
+            aria-label={socialItem.label}
+            title={socialItem.label}
           >
             <StyledSocialIcon social={socialItem} />
           </SocialMediaIconButton>

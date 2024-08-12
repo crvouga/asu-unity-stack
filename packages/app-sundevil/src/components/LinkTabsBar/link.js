@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 
+import { safeEncode } from "../../utils/encode";
 import { iconPropType } from "../Icon_";
 
 export const linkTabPropType = PropTypes.shape({
@@ -12,13 +13,11 @@ export const linkTabPropType = PropTypes.shape({
 });
 
 export const linkTabToKey = link => {
-  return btoa(
-    JSON.stringify([
-      link?.mobileLabel,
-      link?.label,
-      link?.icon,
-      link?.href,
-      link?.active,
-    ])
-  );
+  return safeEncode([
+    link?.mobileLabel,
+    link?.label,
+    link?.icon,
+    link?.href,
+    link?.active,
+  ]);
 };

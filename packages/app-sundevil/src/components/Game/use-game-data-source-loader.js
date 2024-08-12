@@ -1,5 +1,6 @@
 // @ts-check
 
+import { safeEncode } from "../../utils/encode";
 import { usePaginatedLoader } from "../../utils/use-paginated-loader";
 import { useGameDataSource } from "./GameDataSourceContext";
 
@@ -11,7 +12,7 @@ export const useGameDataSourceLoader = input => {
   const paginatedLoader = usePaginatedLoader({
     query: input,
     limit: input.limit,
-    toQueryKey: query => btoa(JSON.stringify(query ?? {})),
+    toQueryKey: query => safeEncode(query ?? {}),
     loadPage: async ({ offset, limit, query }) => {
       const found = await gameDataSource.findMany({
         ...query,

@@ -1,3 +1,4 @@
+import { safeEncode } from "../../utils/encode";
 import { usePaginatedLoader } from "../../utils/use-paginated-loader";
 import { useNewsStoryDataSource } from "./NewsDataSourceContext";
 
@@ -10,7 +11,7 @@ export const useNewsStoryDataSourceLoader = input => {
     limit: input.limit ?? 6,
     offset: input.offset ?? 0,
     query: input,
-    toQueryKey: query => btoa(JSON.stringify(query ?? {})),
+    toQueryKey: query => safeEncode(query ?? {}),
     loadPage: ({ offset, limit, query }) =>
       newsStoryDataSource.findMany({
         limit,

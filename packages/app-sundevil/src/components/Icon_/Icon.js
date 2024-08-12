@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { colorToFilter } from "../../utils/color/color-to-filter";
 import { useColor } from "../../utils/color/use-color";
+import { safeEncode } from "../../utils/encode";
 import { useFontSize } from "../../utils/use-font-size";
 
 /** @type {(icon: unknown) => icon is {icon_name: string, style: string}} */
@@ -159,7 +160,7 @@ export const Icon = ({ icon, ...props }) => {
       : icon
   );
 
-  const key = btoa(JSON.stringify(iconProps));
+  const key = safeEncode(iconProps);
 
   return <Root key={key} ref={ref} {...iconProps} />;
 };

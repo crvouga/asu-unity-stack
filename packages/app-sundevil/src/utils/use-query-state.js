@@ -1,6 +1,8 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-const encode = value => btoa(JSON.stringify(value));
+import { safeEncode } from "./encode";
+
+const encode = value => safeEncode(value);
 const decode = encoded => JSON.parse(atob(encoded));
 
 const pushQueryParam = (key, value) => {

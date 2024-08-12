@@ -69,9 +69,14 @@
     <!-- https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4051-12639&t=llhijNvVuVxWfsbn-0 -->
     <style>
       .hero__root {
-        background-color: black;
-        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
-          url("../sun-devils-hero.png") no-repeat center center;
+        /* background-color: black; */
+        /* background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
+          url("../sun-devils-hero.png") no-repeat center center; */
+        background-blend-mode: multiply;
+        /* Gradient copied from mockup -> https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4051-12639&t=llhijNvVuVxWfsbn-0 */
+        background: radial-gradient(51.5% 51.5% at 50% 50%, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 100%),
+          linear-gradient(180deg, rgba(0, 0, 0, 0) 60.25%, rgba(0, 0, 0, 0.75) 94.46%),
+          url("https://s3-alpha-sig.figma.com/img/3214/733a/1acb150bf2f76b0cc9db37bc021cb372?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cX-QFeJ0ayfHeY3f8yjWrwzQ2THQGt7QxNzpg3n73wdqWUfwmXmI14GG5rmvnLjNs95nqW5Z9YYOiky~NaKv4yHAuEDMpmMGLi8T1RUg0d2gCWxJ97o~qk9EFDffM40jsP1TmGvP-079GSAktjzRhQ93WDNq4evTw17zX2cN8yaPYpoAEvPGKeHwpF~A8Z81Ar~YuD-UKxoiWZfe5xp0BkPD9OI6uc3NwEsR9jPeU9TU0~rVnLzf8gtKukxPfCyaNJVhNnkW0VKZ0FgCjH3TACH06eN4PfbVrDzKQhyX7O~ObhzVbIqGFzJPrqyTPF12nrQr7F3yiIXYb9Edoa-3cg__") no-repeat center center;
         background-size: cover;
         height: 100dvh;
         display: flex;
@@ -88,12 +93,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        text-shadow: 0px 8px 24px 0px #000000;
       }
 
       .hero__subtitle {
         font-weight: 400;
         max-width: 480px;
         text-align: center;
+        text-shadow: 0px 8px 24px 0px #000000;
       }
 
       .hero__pitchfork {

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Load React. -->
+    <script
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+      crossorigin
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://unity.web.asu.edu/@asu/bootstrap4-theme/css/bootstrap-asu.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://asu.github.io/asu-unity-stack/@asu/unity-bootstrap-theme/css/unity-bootstrap-theme.bundle.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/63c5db143d.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body>
+    <!-- https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4051-12639&t=llhijNvVuVxWfsbn-0 -->
+    <style>
+      .section-hero__root {
+        width: 100%;
+        height: 734px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-blend-mode: multiply;
+        color: #ffffff;
+        background: radial-gradient(
+            51.5% 51.5% at 50% 50%,
+            rgba(0, 0, 0, 0.65) 0%,
+            rgba(0, 0, 0, 0) 100%
+          ),
+          linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0) 60.25%,
+            rgba(0, 0, 0, 0.85) 94.46%
+          ),
+          url("https://s3-alpha-sig.figma.com/img/248b/4b6f/c1db0d17af21c96bd7c7ffa0eba4193e?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=W6n0Yjva00EMLPsnlgqHj9HKm~28ek~3DKB7bEHt326269SIsM72u5UWndp2QBey1aCO9rM-zwho~vopuG0eHnCdnO519xHizoBqOo6ih81aSFP9ToG7AbKeK2w7guuY66UjNqk6rjORx7fRKHl8zVaxL--e~l1XtgpiNWUFljpmKvHduR0-BUJFDt-35AUo0kpZyl8Xgkqk4dAzeXdPtIf01rGpiH~4TTwsj0-oAp0RG9qqrWW4e5uadHfeA-t0FsthQTQ5HClUlUoq4C~RKEu1-SC7cnt59tWNqbpdTxkdeO9k-ZDisBQQnXPyGa3XLAyzPpHsLIifncsPhOn26A__");
+        background-size: cover;
+        background-position: start;
+        background-repeat: no-repeat;
+      }
+
+      .section-hero__title {
+        font-size: 96px;
+        text-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
+        font-weight: 700;
+      }
+
+      .section-hero__subtitle {
+        padding-top: 6px;
+        font-size: 20px;
+        text-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
+      }
+
+      .section-hero__subtitle > a {
+        color: #ffffff;
+        text-decoration: underline;
+      }
+
+      .section-hero__button-root {
+        padding-top: 42px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+      }
+
+      /* Mobile Styles */
+      @media (max-width: 999px) {
+        .section-hero__root {
+          height: 312px;
+        }
+        .section-hero__title {
+          font-size: 40px;
+        }
+        .section-hero__subtitle {
+          font-size: 16px;
+        }
+        .section-hero__button-root {
+          padding-top: 24px;
+        }
+        .section-hero__button-root--desktop {
+          display: none;
+        }
+      }
+
+      /* Desktop Styles */
+      @media (min-width: 1000px) {
+        .section-hero__button-root--mobile {
+          display: none;
+        }
+      }
+    </style>
+
+    <div class="section-hero__root">
+      <div class="section-hero__title">Wear your pride.</div>
+      <div class="section-hero__subtitle">
+        Shop the <a href="#">Sun Devil Store</a> for exclusive gear.
+      </div>
+      <div class="section-hero__button-root section-hero__button-root--mobile">
+        <button class="btn btn-gold btn-md">Shop now</button>
+      </div>
+      <div class="section-hero__button-root section-hero__button-root--desktop">
+        <button class="btn btn-gold">Shop Women's</button>
+        <button class="btn btn-gold">Shop Kids's</button>
+        <button class="btn btn-gold">Shop Men's</button>
+      </div>
+    </div>
+  </body>
+</html>

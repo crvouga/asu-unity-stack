@@ -9,7 +9,10 @@ import { Icon } from "../Icon_";
 const Title = styled.div`
   font-weight: 700;
   font-size: 40px;
+  width: fit-content;
+  text-align: center;
   @media (max-width: ${APP_CONFIG.breakpointMobile}) {
+    text-align: left;
     font-size: 24px;
   }
 `;
@@ -19,9 +22,9 @@ export const GroupTicketBenefit = ({ ticketHolderBenefits, title }) => {
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
 
   return (
-    <div className="container">
+    <div className="container d-flex flex-column align-items-center justify-content-center">
       <Title>{title}</Title>
-      <div className="row pt-6 gap-6">
+      <div className="row pt-6">
         {ticketHolderBenefits.map(benefit => (
           <Card
             key={`${benefit.title}${benefit.description}`}
@@ -44,7 +47,7 @@ const benefitPropTypes = PropTypes.shape({
 const Card = ({ benefit, mobile }) => {
   if (mobile) {
     return (
-      <div className="col-12">
+      <div className="col-12 p-2">
         <div className="row">
           <div
             className="col-2 d-flex flex-column align-items-center"
@@ -65,7 +68,7 @@ const Card = ({ benefit, mobile }) => {
     );
   }
   return (
-    <div className="col-12 col-md-3">
+    <div className="col-12 col-md-3 p-2">
       <div className="d-flex flex-column align-items-center text-center">
         <div style={{ fontSize: "24px" }}>
           <Icon icon={benefit.icon} />

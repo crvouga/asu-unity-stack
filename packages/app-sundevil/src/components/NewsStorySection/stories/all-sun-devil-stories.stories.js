@@ -26,6 +26,7 @@ const props = {
   // allStoriesLabel: "All Stories",
   sectionHeader: {
     title: "All Sun Devil Stories",
+    subtitleLinks: [],
     // sponsorBlock: {
     //   text: "Presented by:",
     //   name: "Desert Financial",

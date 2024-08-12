@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 
 export const PreventFlashOfUnstyledContent = ({
+  enabled = false,
   children,
   timeout = 3000,
   loadingIndicator = null,
@@ -42,6 +43,10 @@ export const PreventFlashOfUnstyledContent = ({
     };
   }, [timeout, pollingInterval]);
 
+  if (!enabled) {
+    return children;
+  }
+
   return (
     <>
       <div style={{ visibility: isStylesLoaded ? "visible" : "hidden" }}>
@@ -57,4 +62,5 @@ PreventFlashOfUnstyledContent.propTypes = {
   timeout: PropTypes.number,
   loadingIndicator: PropTypes.node,
   pollingInterval: PropTypes.number, // Optional: allow custom polling interval
+  enabled: PropTypes.bool,
 };

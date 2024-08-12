@@ -73,6 +73,8 @@ const filterDOM = (
  * to render the component inside. This is used in conjunction with
  * renderWithinChild.
  * @property {boolean} [log] - Whether to log debug information.
+ * @property {boolean} [enabledPreventFlashOfUnstyledContent] - Whether to
+ * enable the PreventFlashOfUnstyledContent component.
  */
 
 const REACT_CHILD_TARGET_ID = "react-child-target";
@@ -95,6 +97,7 @@ export const RenderReact = ({
   renderWithinChildReactId = REACT_CHILD_TARGET_ID,
   renderWithinChildWhiteList = DEFAULT_WHITE_LIST,
   log = false,
+  enabledPreventFlashOfUnstyledContent = false,
 }) => {
   const consoleLog = (msg, ...args) => {
     if (log) {
@@ -123,7 +126,9 @@ export const RenderReact = ({
     ReactDOM.render(
       <StrictMode>
         <StyleSheetManager>
-          <PreventFlashOfUnstyledContent>
+          <PreventFlashOfUnstyledContent
+            enabled={enabledPreventFlashOfUnstyledContent}
+          >
             {React.createElement(component, props)}
           </PreventFlashOfUnstyledContent>
         </StyleSheetManager>

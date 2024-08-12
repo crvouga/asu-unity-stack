@@ -91,7 +91,7 @@ const ImageSectionMobile = ({
   return (
     <div
       className="container"
-      style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+      style={{ display: "flex", flexDirection: "column", gap: "28px" }}
     >
       {isValidImage(imageLarge) && (
         <Image
@@ -114,7 +114,7 @@ const ImageSectionMobile = ({
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
-          gap: "12px",
+          gap: "28px",
         }}
       >
         {isValidImage(imageSmallLeft) && (

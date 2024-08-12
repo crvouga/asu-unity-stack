@@ -8,6 +8,7 @@ export const linkTabPropType = PropTypes.shape({
   icon: iconPropType,
   href: PropTypes.string,
   active: PropTypes.bool,
+  iconAlt: PropTypes.string,
 });
 
 export const linkTabToKey = link => {

@@ -71,6 +71,7 @@ export const LinkTabs = ({
           active={link.active}
           href={link.href}
           icon={link.icon}
+          iconAlt={link.iconAlt ?? link.label ?? link.mobileLabel ?? " "}
           label={link.label}
         />
       ))}

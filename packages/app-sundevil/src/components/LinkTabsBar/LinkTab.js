@@ -84,9 +84,24 @@ const Label = styled.div`
 
 export const LinkTab = forwardRef(
   (
-    { active, focused, href, icon, renderIconEnd, onClick, label, as, style },
+    {
+      active,
+      focused,
+      href,
+      iconAlt,
+      icon,
+      renderIconEnd,
+      onClick,
+      label,
+      as,
+      style,
+    },
     ref
   ) => {
+    const hasLabel = typeof label === "string" && label.trim().length > 0;
+    const isIconOnly = Boolean(!hasLabel && icon);
+    const ariaLabel = iconAlt ?? label ?? " ";
+    const ariaLabelFinal = isIconOnly ? ariaLabel : undefined;
     return (
       <Root
         style={style}
@@ -96,12 +111,12 @@ export const LinkTab = forwardRef(
         as={as}
         onClick={onClick}
         ref={ref}
+        title={ariaLabelFinal}
+        aria-label={ariaLabelFinal}
       >
         <LabelRoot>
           {icon && <Icon icon={icon} />}
-          {typeof label === "string" && label.trim().length > 0 && (
-            <Label>{label}</Label>
-          )}
+          {hasLabel && <Label>{label}</Label>}
         </LabelRoot>
         {renderIconEnd && renderIconEnd()}
       </Root>
@@ -111,6 +126,7 @@ export const LinkTab = forwardRef(
 LinkTab.propTypes = {
   href: PropTypes.string,
   icon: iconPropType,
+  iconAlt: PropTypes.string,
   renderIconEnd: PropTypes.func,
   label: PropTypes.string,
   as: PropTypes.elementType,

@@ -1,9 +1,9 @@
 // @ts-check
 import React from "react";
 
+import { firstNonEmpty } from "../../../../utils/first-non-empty";
 import { Select, stringsToOptions } from "../../../Select/Select";
 import { useGameSearchFormContext } from "../GameSearchFormContext";
-import { firstNonEmpty } from "./utils";
 
 export const InputAdmissionCost = () => {
   const {

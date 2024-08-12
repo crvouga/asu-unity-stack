@@ -31,8 +31,8 @@ const selectOptionPropTypes = PropTypes.shape({
 /**
  * @typedef {{
  *  search: ConfigInput;
- *  newsType: ConfigInput;
- *  sportType: ConfigInput;
+ *  newsType: ConfigSelectInput;
+ *  sportType: ConfigSelectInput;
  * }} ConfigInputs
  */
 
@@ -51,7 +51,7 @@ const configSelectInputPropTypes = PropTypes.shape({
 export const configInputsPropTypes = PropTypes.shape({
   search: configInputPropTypes,
   newsType: configSelectInputPropTypes,
-  sportType: configInputPropTypes,
+  sportType: configSelectInputPropTypes,
 });
 
 /**

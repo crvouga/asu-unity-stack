@@ -4,10 +4,11 @@ import React from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../../config";
+import { firstNonEmpty } from "../../../utils/first-non-empty";
 import { useBreakpoint } from "../../../utils/use-breakpoint";
 import { Icon } from "../../Icon_";
 import { useNewsTypesLoader } from "../../NewsStory/use-news-types-loader";
-import { Select } from "../../Select/Select";
+import { Select, stringsToOptions } from "../../Select/Select";
 import { stringToSportId } from "../../Sport/sport-id";
 import { sportPropTypes } from "../../SportsTabs/sports-tabs";
 import { TextField } from "../../TextField/TextField";
@@ -53,6 +54,11 @@ export const NewsStorySearchForm = ({
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
 
   const { allNewsTypes } = useNewsTypesLoader();
+  const newsTypeOptions = firstNonEmpty(
+    configInputs?.newsType?.options,
+    stringsToOptions(allNewsTypes),
+    []
+  );
 
   const inputStyle = {
     flex: 1,
@@ -92,6 +98,7 @@ export const NewsStorySearchForm = ({
           )}
         />
       )}
+
       {configLayout.includeInputNewsType && (
         <Select
           darkMode={darkMode}
@@ -101,16 +108,13 @@ export const NewsStorySearchForm = ({
           onChange={option =>
             newsStorySearchForm.update({
               newsType:
-                option.id === newsStorySearchForm.newsType ? null : option.id,
+                cleanString(option.id) ===
+                cleanString(newsStorySearchForm.newsType)
+                  ? null
+                  : option.id,
             })
           }
-          options={allNewsTypes.map(newsType => ({
-            label: newsType,
-            id: newsType,
-            active:
-              cleanString(newsType) ===
-              cleanString(newsStorySearchForm.newsType),
-          }))}
+          options={newsTypeOptions}
         />
       )}
 

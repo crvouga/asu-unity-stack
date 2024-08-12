@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { firstNonEmpty } from "../../utils/first-non-empty";
 import { SectionHeader, sectionHeaderPropTypes } from "../SectionHeader";
 import { cardPropTypes, SingleCard } from "./Card";
 
@@ -10,10 +11,6 @@ const Root = styled.div`
   flex-direction: column;
   gap: 42px;
 `;
-
-const firstNonEmpty = (...arrays) => {
-  return arrays.find(array => Array.isArray(array) && array.length > 0) ?? [];
-};
 
 export const CardGrid = ({
   cards,

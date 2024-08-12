@@ -75,6 +75,19 @@ const props = {
     newsType: {
       label: "News type",
       placeholder: "Select one",
+      options: [
+        {
+          label: "Free",
+          id: "free",
+          value: "free",
+          active: true,
+        },
+        {
+          label: "Price Varies",
+          id: "price_varies",
+          value: "price_varies",
+        },
+      ],
     },
     sportType: {
       label: "Sports",

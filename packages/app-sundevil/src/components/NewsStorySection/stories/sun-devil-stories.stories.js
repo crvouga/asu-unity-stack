@@ -142,6 +142,7 @@ const props = {
     },
   },
   removeSportsWithNoStories: false,
+
   sports: [
     {
       name: "All Sports",

@@ -94,7 +94,6 @@ export const RenderReact = ({
   renderWithinChildReactId = REACT_CHILD_TARGET_ID,
   renderWithinChildWhiteList = DEFAULT_WHITE_LIST,
   log = false,
-  enabledPreventFlashOfUnstyledContent = false,
 }) => {
   const consoleLog = (msg, ...args) => {
     if (log) {

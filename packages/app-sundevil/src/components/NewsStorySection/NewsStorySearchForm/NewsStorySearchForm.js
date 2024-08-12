@@ -127,7 +127,10 @@ export const NewsStorySearchForm = ({
           onChange={option =>
             newsStorySearchForm.update({
               sportId:
-                option.id === newsStorySearchForm.sportId ? null : option.id,
+                stringToSportId(option.id) ===
+                stringToSportId(newsStorySearchForm.sportId)
+                  ? null
+                  : option.id,
             })
           }
           options={sports.map(sport => ({

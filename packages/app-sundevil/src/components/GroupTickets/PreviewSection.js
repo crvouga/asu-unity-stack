@@ -1,28 +1,31 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 
+import { APP_CONFIG } from "../../config";
+import { useBreakpoint } from "../../utils/use-breakpoint";
 import { Image } from "../Image";
 import { SectionHeader } from "../SectionHeader";
 
-const circularIndex = (array, index) => {
-  if (!Array.isArray(array) || array.length === 0) {
-    return null;
-  }
-  if (typeof index !== "number") {
-    return null;
-  }
-  return array[(index + array.length) % array.length];
-};
+const imagePropTypes = PropTypes.shape({
+  src: PropTypes.string,
+  alt: PropTypes.string,
+});
+
+const isValidImage = image =>
+  typeof image === "object" &&
+  image &&
+  image.src &&
+  typeof image.src === "string";
 
 export const PreviewSection = ({
   title,
   description,
-  images,
   interestedSection,
-  columnWidthValuesTemplate = ["25%", "50%", "25%"],
+  imageSmallLeft,
+  imageLarge,
+  imageSmallRight,
 }) => {
-  const [minHeight, setMinHeight] = useState(Infinity);
-
+  const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   return (
     <div
       style={{
@@ -34,46 +37,18 @@ export const PreviewSection = ({
     >
       <SectionHeader title={title} subtitle={description} />
 
-      {Array.isArray(images) && images.length > 0 && (
-        <div className="container">
-          <div
-            className="row"
-            style={{
-              width: "100%",
-              height: `${minHeight}px`,
-              overflow: "hidden",
-            }}
-          >
-            {images.map((image, index) => {
-              const columnWidthValue = circularIndex(
-                columnWidthValuesTemplate,
-                index
-              );
-              return (
-                <div
-                  // eslint-disable-next-line react/no-array-index-key
-                  key={`${image.src}${image.alt}${index}`}
-                  style={{ width: columnWidthValue, height: "100%" }}
-                >
-                  <Image
-                    src={image.src}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                    alt={image.alt}
-                    onHeight={imageHeight => {
-                      setMinHeight(currentMinHeight =>
-                        Math.min(currentMinHeight, imageHeight)
-                      );
-                    }}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        </div>
+      {isMobile ? (
+        <ImageSectionMobile
+          imageSmallLeft={imageSmallLeft}
+          imageLarge={imageLarge}
+          imageSmallRight={imageSmallRight}
+        />
+      ) : (
+        <ImageSectionDesktop
+          imageSmallLeft={imageSmallLeft}
+          imageLarge={imageLarge}
+          imageSmallRight={imageSmallRight}
+        />
       )}
 
       {interestedSection && (
@@ -102,16 +77,156 @@ export const PreviewSection = ({
   );
 };
 
+const ImageSectionMobile = ({
+  imageSmallLeft,
+  imageLarge,
+  imageSmallRight,
+}) => {
+  const [minHeight, setMinHeight] = useState(Infinity);
+
+  const onHeight = imageHeight => {
+    setMinHeight(currentMinHeight => Math.min(currentMinHeight, imageHeight));
+  };
+
+  return (
+    <div
+      className="container"
+      style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+    >
+      {isValidImage(imageLarge) && (
+        <Image
+          src={imageLarge.src}
+          style={{
+            width: "100%",
+            objectFit: "cover",
+          }}
+          alt={imageLarge.alt}
+          onHeight={onHeight}
+        />
+      )}
+
+      <div
+        style={{
+          width: "100%",
+          height: `${minHeight}px`,
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "12px",
+        }}
+      >
+        {isValidImage(imageSmallLeft) && (
+          <Image
+            src={imageSmallLeft.src}
+            style={{
+              width: "50%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+            alt={imageSmallLeft.alt}
+            onHeight={onHeight}
+          />
+        )}
+
+        {isValidImage(imageSmallRight) && (
+          <Image
+            src={imageSmallRight.src}
+            style={{
+              width: "50%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+            alt={imageSmallRight.alt}
+            onHeight={onHeight}
+          />
+        )}
+      </div>
+    </div>
+  );
+};
+ImageSectionMobile.propTypes = {
+  imageSmallLeft: imagePropTypes,
+  imageLarge: imagePropTypes,
+  imageSmallRight: imagePropTypes,
+};
+
+const ImageSectionDesktop = ({
+  imageSmallLeft,
+  imageLarge,
+  imageSmallRight,
+}) => {
+  const [minHeight, setMinHeight] = useState(Infinity);
+
+  const onHeight = imageHeight => {
+    setMinHeight(currentMinHeight => Math.min(currentMinHeight, imageHeight));
+  };
+
+  return (
+    <div className="container">
+      <div
+        className="row"
+        style={{
+          width: "100%",
+          height: `${minHeight}px`,
+          overflow: "hidden",
+        }}
+      >
+        {isValidImage(imageSmallLeft) && (
+          <Image
+            src={imageSmallLeft.src}
+            style={{
+              width: "25%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+            alt={imageSmallLeft.alt}
+            onHeight={onHeight}
+          />
+        )}
+        {isValidImage(imageLarge) && (
+          <Image
+            src={imageLarge.src}
+            style={{
+              width: "50%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+            alt={imageLarge.alt}
+            onHeight={onHeight}
+          />
+        )}
+
+        {isValidImage(imageSmallRight) && (
+          <Image
+            src={imageSmallRight.src}
+            style={{
+              width: "25%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+            alt={imageSmallRight.alt}
+            onHeight={onHeight}
+          />
+        )}
+      </div>
+    </div>
+  );
+};
+
+ImageSectionDesktop.propTypes = {
+  imageSmallLeft: imagePropTypes,
+  imageLarge: imagePropTypes,
+  imageSmallRight: imagePropTypes,
+};
+
 PreviewSection.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  images: PropTypes.arrayOf(
-    PropTypes.shape({
-      src: PropTypes.string,
-      alt: PropTypes.string,
-    })
-  ),
-  columnWidthValuesTemplate: PropTypes.arrayOf(PropTypes.string),
+  imageSmallLeft: imagePropTypes,
+  imageLarge: imagePropTypes,
+  imageSmallRight: imagePropTypes,
   interestedSection: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,

@@ -6,20 +6,19 @@ const props = {
   title: "Bring the whole crew",
   description:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi. Aliquam in hendrerit urna.",
-  images: [
-    {
-      src: "https://picsum.photos/300/300",
-      alt: "Football",
-    },
-    {
-      src: "https://picsum.photos/300/300",
-      alt: "Football",
-    },
-    {
-      src: "https://picsum.photos/300/300",
-      alt: "Football",
-    },
-  ],
+
+  imageSmallLeft: {
+    src: "https://picsum.photos/300/300",
+    alt: "Football",
+  },
+  imageSmallRight: {
+    src: "https://picsum.photos/300/300",
+    alt: "Football",
+  },
+  imageLarge: {
+    src: "https://picsum.photos/300/300",
+    alt: "Football",
+  },
   interestedSection: {
     title: "Interested?",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",

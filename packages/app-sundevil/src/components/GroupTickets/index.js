@@ -19,7 +19,6 @@ export const GroupTickets = ({ faqs, sportsGroupCard, textImageBlock }) => {
       <PreviewSection
         title="Bring the whole crew"
         description="Group ticket packages are the perfect way to create a personalized and memorable Sun Devil game experience. Starting at just 15 tickets, groups can take advantage of ticket discounts, early access to games, tailgates, premium areas, exclusive tours, fundraising opportunities, and so much more."
-        images={[]}
         interestedSection={null}
       />
 

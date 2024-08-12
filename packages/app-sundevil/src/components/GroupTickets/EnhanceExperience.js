@@ -60,7 +60,7 @@ export const EnhanceExperience = ({
         <img
           height={555}
           width={486}
-          src={image.imageSrc}
+          src={image.imageSrc ?? " "}
           alt={image.imageAlt}
         />
       </div>

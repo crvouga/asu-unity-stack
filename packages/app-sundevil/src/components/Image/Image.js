@@ -30,7 +30,7 @@ export const Image = ({ src, alt, className, style, onHeight }) => {
       <ImageBase
         ref={ref}
         src={src}
-        alt={alt}
+        alt={alt ?? " "}
         onLoad={() => {
           setIsImageLoaded(true);
         }}

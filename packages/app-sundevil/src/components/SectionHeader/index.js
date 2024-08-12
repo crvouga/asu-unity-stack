@@ -195,7 +195,10 @@ export const SectionHeader = forwardRef(
                     >
                       {sponsorBlock?.text}
                     </SponsorBlockTitle>
-                    <Logo src={sponsorBlock?.logo} alt={sponsorBlock?.name} />
+                    <Logo
+                      src={sponsorBlock?.logo}
+                      alt={sponsorBlock?.name ?? " "}
+                    />
                   </SponsorBlock>
                 </div>
               </div>
@@ -253,7 +256,10 @@ export const SectionHeader = forwardRef(
                 >
                   {sponsorBlock?.text}
                 </SponsorBlockTitle>
-                <Logo src={sponsorBlock?.logo} alt={sponsorBlock?.name} />
+                <Logo
+                  src={sponsorBlock?.logo}
+                  alt={sponsorBlock?.name ?? " "}
+                />
               </SponsorBlock>
             </div>
           </div>

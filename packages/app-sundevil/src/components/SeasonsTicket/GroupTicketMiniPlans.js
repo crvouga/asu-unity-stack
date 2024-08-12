@@ -65,7 +65,7 @@ export const GroupTicketMiniPlans = ({
       <SectionHeader title={title} subtitle={description} />
 
       <ContentRoot>
-        <BackgroundImage src={backgroundSrc} alt={backgroundAlt} />
+        <BackgroundImage src={backgroundSrc} alt={backgroundAlt ?? " "} />
         <Content className="container" isMobile={isMobile}>
           {Array.isArray(miniPlans) && miniPlans.length > 0 && (
             <div className="d-flex flex-column flex-md-row gap-3 w-100">

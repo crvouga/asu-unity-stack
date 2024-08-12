@@ -86,7 +86,7 @@ export const SingleCard = ({ card }) => {
         <Skeleton skeleton={!isImageLoaded}>
           <CardImage
             src={card.imageSrc}
-            alt={card.imageAlt}
+            alt={card.imageAlt ?? " "}
             onLoad={() => setIsImageLoaded(true)}
           />
         </Skeleton>

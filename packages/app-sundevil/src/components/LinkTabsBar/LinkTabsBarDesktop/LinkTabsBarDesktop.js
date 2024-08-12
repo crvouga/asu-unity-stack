@@ -81,7 +81,10 @@ export const LinkTabsBarDesktop = forwardRef(
           {typeof sponsorLogoSrc === "string" &&
             sponsorLogoSrc.trim().length > 0 && (
               <SponsorRoot href={sponsorHref}>
-                <SponsorImage src={sponsorLogoSrc} alt={sponsorLogoAlt} />
+                <SponsorImage
+                  src={sponsorLogoSrc}
+                  alt={sponsorLogoAlt ?? " "}
+                />
               </SponsorRoot>
             )}
         </Content>

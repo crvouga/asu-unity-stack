@@ -78,7 +78,7 @@ export const SocialMediaPostCardSquare = ({ socialMediaPost }) => {
       <ImageSkeletonWrapper skeleton={!isImageLoaded}>
         <Image
           src={socialMediaPost.imageSrc}
-          alt="Post Image"
+          alt=" "
           onLoad={() => setIsImageLoaded(true)}
         />
       </ImageSkeletonWrapper>

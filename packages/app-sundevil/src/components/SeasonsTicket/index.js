@@ -31,7 +31,7 @@ export const SeasonsTicket = ({
         <img
           className="hero"
           src={heroImage.src}
-          alt={heroImage.alt}
+          alt={heroImage.alt ?? " "}
           width={heroImage.width}
           height={heroImage.height}
           loading="lazy"

@@ -118,7 +118,7 @@ export const SpecialEventCard = ({ specialEventCard, cardWidth, skeleton }) => {
           <Skeleton skeleton={!isImageLoaded}>
             <CardImage
               src={specialEventCard.imageSrc}
-              alt={specialEventCard.imageAlt}
+              alt={specialEventCard.imageAlt ?? " "}
               onLoad={() => setIsImageLoaded(true)}
             />
           </Skeleton>

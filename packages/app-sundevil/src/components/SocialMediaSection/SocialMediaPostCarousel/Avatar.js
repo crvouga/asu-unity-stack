@@ -39,7 +39,7 @@ export const Avatar = ({ src, alt, size }) => {
     <AvatarImage
       size={size}
       src={src}
-      alt={alt}
+      alt={alt ?? " "}
       onError={() => setError(true)}
     />
   );

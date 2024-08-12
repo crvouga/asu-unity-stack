@@ -30,7 +30,7 @@ export const Ads = ({
     <a href={ad.href} style={{ width: "fit-content", height: "fit-content" }}>
       <img
         src={ad.imageSrc}
-        alt={ad.imageAlt}
+        alt={ad.imageAlt ?? " "}
         width={ad.width ?? width ?? "100%"}
         height={ad.height ?? height ?? "auto"}
         style={{

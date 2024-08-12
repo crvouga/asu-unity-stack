@@ -81,7 +81,7 @@ export const ContactUsCTACardDesktop = ({
 }) => {
   return (
     <Root>
-      <BackgroundImage src={imageSrc} alt={imageAlt} />
+      <BackgroundImage src={imageSrc} alt={imageAlt ?? " "} />
       <Content>
         <Title>{title}</Title>
         <Body dangerouslySetInnerHTML={{ __html: body }} />

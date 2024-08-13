@@ -95,14 +95,14 @@ export const LinkTab = forwardRef(
       label,
       as,
       style,
-      iconTooltip
+      iconTooltip,
     },
     ref
   ) => {
     const hasLabel = typeof label === "string" && label.trim().length > 0;
     const isIconOnly = Boolean(!hasLabel && icon);
     const ariaLabel = iconAlt ?? label ?? " ";
-    const ariaLabelFinal = isIconOnly ? ariaLabel : undefined;
+    const ariaLabelFinal = isIconOnly ? iconTooltip ?? ariaLabel : undefined;
     return (
       <Root
         style={style}
@@ -116,14 +116,24 @@ export const LinkTab = forwardRef(
         aria-label={ariaLabelFinal}
       >
         <LabelRoot>
-          {icon &&
-          <div class="uds-tooltip-container">
-          <Icon icon={icon} />
-          {iconTooltip && (<div role="tooltip" class="uds-tooltip-description" id="tooltip-desc-1">
-            <span class="uds-tooltip-heading" dangerouslySetInnerHTML={{__html: iconTooltip}}></span>
-        </div>)}
-          </div>
-          }
+          {icon && (
+            <div className="uds-tooltip-container">
+              <Icon icon={icon} />
+              {iconTooltip && (
+                <div
+                  role="tooltip"
+                  className="uds-tooltip-description"
+                  id="tooltip-desc-1"
+                >
+                  <span
+                    className="uds-tooltip-heading"
+                    // eslint-disable-next-line react/no-danger
+                    dangerouslySetInnerHTML={{ __html: iconTooltip }}
+                  />
+                </div>
+              )}
+            </div>
+          )}
           {hasLabel && <Label>{label}</Label>}
         </LabelRoot>
         {renderIconEnd && renderIconEnd()}
@@ -141,6 +151,7 @@ LinkTab.propTypes = {
   onClick: PropTypes.func,
   active: PropTypes.bool,
   focused: PropTypes.bool,
+  iconTooltip: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
 };

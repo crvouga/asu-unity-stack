@@ -86,14 +86,17 @@ Default.args = {
     navbarPortalSelector: "#navbar-portal",
     stickyElementSelector: "#link-tabs",
   },
+  iconTooltip: "Tooltip Football",
   links: [
     {
       mobileLabel: "Football Home",
       icon: "fa fas fa-football",
       href: "#football",
       active: true,
+      iconTooltip: "Tooltip Football",
     },
     {
+      iconTooltip: "Tooltip Baseball",
       mobileLabel: "Baseball Home",
       href: "#baseball",
       label: "Baseball",

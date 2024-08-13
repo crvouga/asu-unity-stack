@@ -51,6 +51,8 @@ const SocialIcon = ({ social, className }) => {
         className={className}
         icon={social.icon}
         alt={social?.label ?? " "}
+        title={social?.label ?? undefined}
+        aria-label={social?.label ?? undefined}
       />
     );
   }
@@ -60,6 +62,8 @@ const SocialIcon = ({ social, className }) => {
       className={className}
       name={social?.label.trim().toLowerCase()}
       alt={social?.label ?? " "}
+      title={social?.label ?? " "}
+      aria-label={social?.label ?? " "}
     />
   );
 };

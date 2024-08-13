@@ -101,8 +101,8 @@ export const LinkTab = forwardRef(
   ) => {
     const hasLabel = typeof label === "string" && label.trim().length > 0;
     const isIconOnly = Boolean(!hasLabel && icon);
-    const ariaLabel = iconAlt ?? label ?? " ";
-    const ariaLabelFinal = isIconOnly ? iconTooltip ?? ariaLabel : undefined;
+    const ariaLabel = iconAlt || label || " ";
+    const ariaLabelFinal = isIconOnly ? iconTooltip || ariaLabel : undefined;
     return (
       <Root
         style={style}

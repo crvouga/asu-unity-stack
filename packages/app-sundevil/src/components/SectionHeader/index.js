@@ -185,21 +185,23 @@ export const SectionHeader = forwardRef(
                   {title}
                 </Title>
                 <div className="mt-auto d-flex d-sm-flex d-md-none align-items-start justify-content-end">
-                  {sponsorBlock?.logo && <SponsorBlock
-                    href={sponsorBlock?.url}
-                    className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
-                  >
-                    <SponsorBlockTitle
-                      // @ts-ignore
-                      darkMode={darkMode}
+                  {sponsorBlock?.logo && (
+                    <SponsorBlock
+                      href={sponsorBlock?.url}
+                      className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
                     >
-                      {sponsorBlock?.text}
-                    </SponsorBlockTitle>
-                    <Logo
-                      src={sponsorBlock?.logo}
-                      alt={sponsorBlock?.name ?? " "}
-                    />
-                  </SponsorBlock>}
+                      <SponsorBlockTitle
+                        // @ts-ignore
+                        darkMode={darkMode}
+                      >
+                        {sponsorBlock?.text}
+                      </SponsorBlockTitle>
+                      <Logo
+                        src={sponsorBlock?.logo}
+                        alt={sponsorBlock?.name ?? " "}
+                      />
+                    </SponsorBlock>
+                  )}
                 </div>
               </div>
               {hasHeaderBody && (
@@ -246,21 +248,23 @@ export const SectionHeader = forwardRef(
               )}
             </div>
             <div className="col-md-4 col-sm-0 mt-auto d-none d-sm-none d-md-flex justify-content-end">
-              <SponsorBlock
-                href={sponsorBlock?.url}
-                className="d-flex flex-row align-items-center justify-content-end gap-2"
-              >
-                <SponsorBlockTitle
-                  // @ts-ignore
-                  darkMode={darkMode}
+              {sponsorBlock?.logo && (
+                <SponsorBlock
+                  href={sponsorBlock?.url}
+                  className="d-flex flex-row align-items-center justify-content-end gap-2"
                 >
-                  {sponsorBlock?.text}
-                </SponsorBlockTitle>
-                <Logo
-                  src={sponsorBlock?.logo}
-                  alt={sponsorBlock?.name ?? " "}
-                />
-              </SponsorBlock>
+                  <SponsorBlockTitle
+                    // @ts-ignore
+                    darkMode={darkMode}
+                  >
+                    {sponsorBlock?.text}
+                  </SponsorBlockTitle>
+                  <Logo
+                    src={sponsorBlock?.logo}
+                    alt={sponsorBlock?.name ?? " "}
+                  />
+                </SponsorBlock>
+              )}
             </div>
           </div>
         )}

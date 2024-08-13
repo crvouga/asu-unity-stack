@@ -60,6 +60,7 @@ export const LinkTabsBarDesktop = forwardRef(
       alignment,
       anchorTitle,
       style,
+      iconTooltip,
     },
     ref
   ) => {
@@ -75,6 +76,7 @@ export const LinkTabsBarDesktop = forwardRef(
               maxLinkCount={maxLinkCount}
               moreTabLabel={moreTabLabel}
               alignment={alignment}
+              iconTooltip={iconTooltip}
             />
           </LinkTabsRoot>
 

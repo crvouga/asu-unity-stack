@@ -48,10 +48,7 @@ const CardBodyText = styled.p`
   font-size: 16px;
   color: #191919;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
 
   & > * {
     margin: 0;

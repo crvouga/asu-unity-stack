@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
-import React, {createContext, useContext, useEffect} from "react";
+import React, { createContext, useContext, useEffect } from "react";
 
-import {HeaderPropTypes} from "../models/app-prop-types";
+import { HeaderPropTypes } from "../models/app-prop-types";
 
-const breakpoints = {Lg: "992px", Xl: "1260px"};
+const breakpoints = { Lg: "992px", Xl: "1260px" };
 
 const AppContext = createContext();
 
@@ -14,11 +14,11 @@ const AppContextProvider = ({ initialValue, children }) => {
   };
 
   function getCookie(cname) {
-    var name = `${cname}=`;
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(";");
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
+    const name = `${cname}=`;
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const ca = decodedCookie.split(";");
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
       while (c.charAt(0) == " ") {
         c = c.substring(1);
       }

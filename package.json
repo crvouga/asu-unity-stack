@@ -3,7 +3,7 @@
   "private": true,
   "license": "MIT",
   "volta": {
-    "node": "18.16.0",
+    "node": "22.6.0",
     "yarn": "1.22.10"
   },
   "workspaces": [

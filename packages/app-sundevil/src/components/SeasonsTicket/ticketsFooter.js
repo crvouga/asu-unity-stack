@@ -25,8 +25,7 @@ export const TicketsFooter = ({ data, title }) => {
                 >
                   {date.title}
                 </div>
-                <span style={{ fontSize: "16px", fontWeight: "400" }}>
-                  {date.description}
+                <span style={{ fontSize: "16px", fontWeight: "400" }} dangerouslySetInnerHTML={{__html: date.description}}>
                 </span>
               </div>
             );

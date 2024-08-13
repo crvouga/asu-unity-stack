@@ -95,6 +95,7 @@ export const LinkTab = forwardRef(
       label,
       as,
       style,
+      iconTooltip
     },
     ref
   ) => {
@@ -115,7 +116,14 @@ export const LinkTab = forwardRef(
         aria-label={ariaLabelFinal}
       >
         <LabelRoot>
-          {icon && <Icon icon={icon} />}
+          {icon &&
+          <div class="uds-tooltip-container">
+          <Icon icon={icon} />
+          {iconTooltip && (<div role="tooltip" class="uds-tooltip-description" id="tooltip-desc-1">
+            <span class="uds-tooltip-heading" dangerouslySetInnerHTML={{__html: iconTooltip}}></span>
+        </div>)}
+          </div>
+          }
           {hasLabel && <Label>{label}</Label>}
         </LabelRoot>
         {renderIconEnd && renderIconEnd()}

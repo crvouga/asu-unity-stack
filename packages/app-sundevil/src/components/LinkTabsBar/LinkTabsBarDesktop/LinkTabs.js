@@ -56,6 +56,7 @@ export const LinkTabs = ({
   maxLinkCount,
   moreTabLabel,
   alignment,
+  iconTooltip
 }) => {
   const visibleLinks = links.slice(0, maxLinkCount);
   const collapsedLinks = links.slice(maxLinkCount);
@@ -73,6 +74,7 @@ export const LinkTabs = ({
           icon={link.icon}
           iconAlt={link.iconAlt ?? link.label ?? link.mobileLabel ?? " "}
           label={link.label}
+          iconTooltip={iconTooltip}
         />
       ))}
       {Array.isArray(collapsedLinks) && collapsedLinks.length > 0 && (

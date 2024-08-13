@@ -187,7 +187,7 @@ export const SectionHeader = forwardRef(
                 <div className="mt-auto d-flex d-sm-flex d-md-none align-items-start justify-content-end">
                   {sponsorBlock?.logo && <SponsorBlock
                     href={sponsorBlock?.url}
-                    className="d-flex flex-column flex-sm-column flex-md-row align-items-start gap-1"
+                    className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
                   >
                     <SponsorBlockTitle
                       // @ts-ignore

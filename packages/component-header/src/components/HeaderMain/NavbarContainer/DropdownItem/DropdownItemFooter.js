@@ -17,7 +17,7 @@ const Root = styled.div`
 
 const Text = styled.p`
   margin: 0;
-  padding: 0;
+  padding: 0 24px;
   font-size: 1.15rem;
   font-weight: bold;
   /* NOTE: These styles fix a bug found in the deployed site not seen inside the storybooks in this repo */
@@ -32,12 +32,13 @@ const ImageOnlyRoot = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 1.5rem 0rem;
+  padding: 1.5rem 24px;
 `;
 
 const ButtonWithTextRoot = styled.div`
   height: 75px;
   width: 100%;
+  padding: 0 24px;
   font-weight: bold;
   min-width: 100%;
   gap: 2rem;

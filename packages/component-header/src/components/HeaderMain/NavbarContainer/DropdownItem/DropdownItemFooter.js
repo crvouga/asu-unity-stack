@@ -17,7 +17,7 @@ const Root = styled.div`
 
 const Text = styled.p`
   margin: 0;
-  padding: 0 24px;
+  padding: 0 0;
   font-size: 1.15rem;
   font-weight: bold;
   /* NOTE: These styles fix a bug found in the deployed site not seen inside the storybooks in this repo */

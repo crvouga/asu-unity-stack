@@ -1022,7 +1022,7 @@ export const testHeaderProps = {
 
       mobile: {
         // navTreeItemVariant: "none",
-        hideFooter: true,
+        // hideFooter: true,
       },
     },
     {

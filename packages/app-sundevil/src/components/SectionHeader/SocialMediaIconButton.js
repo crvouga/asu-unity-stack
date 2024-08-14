@@ -12,7 +12,7 @@ export const SocialMediaIconButton = styled.a`
   max-height: 48px;
   flex-shrink: 0;
   flex-grow: 0;
-  border-radius: 2px;
+  border-radius: 50%;
   background-color: #191919;
   color: #fff;
   text-decoration: none;

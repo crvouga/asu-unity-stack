@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { Icon, iconPropType } from "../Icon_";
+import { Icon, iconPropType, toIconName } from "../Icon_";
 import { SocialMediaIcon } from "./SocialMediaIcon";
 import { SocialMediaIconButton } from "./SocialMediaIconButton";
 
@@ -46,13 +46,14 @@ export const socialPropType = PropTypes.shape({
 
 const SocialIcon = ({ social, className }) => {
   if (social?.icon) {
+    const ariaLabel = social?.label ?? toIconName(social.icon) ?? " ";
     return (
       <Icon
         className={className}
         icon={social.icon}
-        alt={social?.label ?? " "}
-        title={social?.label ?? undefined}
-        aria-label={social?.label ?? undefined}
+        alt={ariaLabel}
+        title={ariaLabel}
+        aria-label={ariaLabel}
       />
     );
   }
@@ -87,16 +88,21 @@ export const JoinTheConversation = ({ social }) => {
     <Root id="social-media">
       <Title>Join the conversation:</Title>
       <SocialMediaIconsRoot>
-        {social.map((socialItem, index) => (
-          <SocialMediaIconButton
-            key={socialItem.label ?? social.faClassName ?? index}
-            href={socialItem.url}
-            aria-label={socialItem.label}
-            title={socialItem.label}
-          >
-            <StyledSocialIcon social={socialItem} />
-          </SocialMediaIconButton>
-        ))}
+        {social.map((socialItem, index) => {
+          const ariaLabel =
+            socialItem.label ?? toIconName(socialItem?.icon) ?? " ";
+
+          return (
+            <SocialMediaIconButton
+              key={socialItem.label ?? social.faClassName ?? index}
+              href={socialItem.url}
+              aria-label={ariaLabel}
+              title={ariaLabel}
+            >
+              <StyledSocialIcon social={socialItem} />
+            </SocialMediaIconButton>
+          );
+        })}
       </SocialMediaIconsRoot>
     </Root>
   );

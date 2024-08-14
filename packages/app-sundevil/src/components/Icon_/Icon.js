@@ -20,6 +20,13 @@ const isFontAwesomeIconObject = icon =>
       icon.style.trim().length > 0
   );
 
+export const toIconName = icon => {
+  if (isFontAwesomeIconObject(icon)) {
+    return icon?.icon_name ?? " ";
+  }
+  return " ";
+};
+
 const isValidImageSrc = maybeImageSrc => {
   if (!maybeImageSrc || typeof maybeImageSrc !== "string") {
     return false;

@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 
+import { CollapseIcon } from "../../CollapseIcon/CollapseIcon";
 import { DropDown, DropDownSurface } from "../../DropDown";
-import { DropDownChevron } from "../../DropDown/DropDownChevron";
 import { DropDownItem } from "../../DropDown/DropDownItem";
 import { linkTabPropType, linkTabToKey } from "../link";
 import { LinkTab } from "../LinkTab";
@@ -22,7 +22,11 @@ export const LinkTabMoreDropDown = ({ links, moreTabLabel = "More" }) => {
           ref={ref}
           onClick={() => setOpen(openPrev => !openPrev)}
           label={moreTabLabel}
-          renderIconEnd={() => <DropDownChevron open={isOpen} />}
+          renderIconEnd={() => (
+            <div key={isOpen}>
+              <CollapseIcon open={isOpen} />
+            </div>
+          )}
           active={links.some(link => link.active)}
         />
       )}

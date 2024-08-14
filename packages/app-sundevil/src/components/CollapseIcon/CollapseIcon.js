@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const ChevronIcon = styled.span`
   font-size: 16px;
-  color: #191919;
+  color: inherit;
 `;
 
 export const CollapseIcon = ({ open, style }) => {

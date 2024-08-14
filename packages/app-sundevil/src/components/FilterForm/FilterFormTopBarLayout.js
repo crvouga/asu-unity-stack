@@ -45,7 +45,9 @@ export const FilterFormTopBarLayout = ({ title, className, renderForm }) => {
       <Root className={className}>
         <CollapseRoot onClick={toggleOpen}>
           {hasTitle && <Title>{title}</Title>}
-          <CollapseIcon open={open} />
+          <div key={String(open)}>
+            <CollapseIcon open={open} />
+          </div>
         </CollapseRoot>
         {open ? (
           formComponent

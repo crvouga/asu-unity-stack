@@ -5,8 +5,8 @@ import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
 import { useBreakpoint } from "../../utils/use-breakpoint";
+import { CollapseIcon } from "../CollapseIcon/CollapseIcon";
 import { DropDown, DropDownSurface } from "../DropDown";
-import { DropDownChevron } from "../DropDown/DropDownChevron";
 import { Icon, SUN_DEVILS_ICON_CLASS_NAME } from "../Icon_";
 import { Skeleton } from "../Skeleton";
 import { sportsTabSkeletonData } from "./sports-tab-skeleton-data";
@@ -161,7 +161,9 @@ export const SportsTabsDesktop = ({
                       color={moreTabColor ?? "default"}
                       darkMode={darkMode}
                     >
-                      <DropDownChevron open={input.open} style={ICON_SIZE} />
+                      <div key={String(input.open)}>
+                        <CollapseIcon open={input.open} style={ICON_SIZE} />
+                      </div>
 
                       <div>More</div>
                     </StyledSportsTab>

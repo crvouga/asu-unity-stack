@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 
+import { CollapseIcon } from "../../CollapseIcon/CollapseIcon";
 import { DropDown, DropDownSurface } from "../../DropDown";
-import { DropDownChevron } from "../../DropDown/DropDownChevron";
 import { DropDownItem } from "../../DropDown/DropDownItem";
 import { linkTabPropType, linkTabToKey } from "../link";
 import { LinkTab } from "../LinkTab";
@@ -28,7 +28,7 @@ export const LinkTabsBarDropDown = ({ links }) => {
           icon={activeLink?.icon}
           renderIconEnd={() => (
             <div open={isOpen}>
-              <DropDownChevron open={isOpen} />
+              <CollapseIcon open={isOpen} />
             </div>
           )}
         />

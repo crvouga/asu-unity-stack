@@ -103,6 +103,7 @@ export const LinkTab = forwardRef(
     const isIconOnly = Boolean(!hasLabel && icon);
     const ariaLabel = iconAlt || label || " ";
     const ariaLabelFinal = isIconOnly ? iconTooltip || ariaLabel : undefined;
+    const iconComponent = icon ? <Icon icon={icon} /> : null;
     return (
       <Root
         style={style}
@@ -116,9 +117,9 @@ export const LinkTab = forwardRef(
         aria-label={ariaLabelFinal}
       >
         <LabelRoot>
-          {icon && (
+          {iconComponent && (
             <div className="uds-tooltip-container">
-              <Icon icon={icon} />
+              {iconComponent}
               {iconTooltip && (
                 <div
                   role="tooltip"

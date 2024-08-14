@@ -164,8 +164,8 @@ export const NewsStoryCard = ({
       >
         <BackgroundImageSkeletonWrapper skeleton={!isImageLoaded}>
           <BackgroundImage
-            alt=" "
-            src={newsStory.imageSrc}
+            alt={newsStory?.imageAlt ?? " "}
+            src={newsStory?.imageSrc}
             onLoad={() => setIsImageLoaded(true)}
           />
         </BackgroundImageSkeletonWrapper>

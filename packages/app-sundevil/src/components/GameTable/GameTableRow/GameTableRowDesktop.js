@@ -7,6 +7,7 @@ import { deepMergeLeft } from "../../../utils/deep-merge-left";
 import { idToLabel } from "../../../utils/id-to-label";
 import { useElementSetMaxDimensions } from "../../../utils/use-element-set-max-dimensions";
 import { useId } from "../../../utils/use-id";
+import { isGameTicketed } from "../../Game/game";
 import { Skeleton } from "../../Skeleton";
 import { SportIcon } from "../../SportIcon";
 import { stringToClosestSportName } from "../../SportIcon/sport-name";
@@ -159,8 +160,7 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
 
   const shouldRenderTicketIcon =
     configCells?.cellTicketButton?.autoTicketIcon === true &&
-    typeof ticketButtonLabel === "string" &&
-    ticketButtonLabel.toLowerCase().includes("ticket");
+    isGameTicketed(game);
 
   return (
     // @ts-ignore

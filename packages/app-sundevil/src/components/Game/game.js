@@ -24,7 +24,24 @@ export const gamePropTypes = PropTypes.shape({
   eventType: PropTypes.string,
 });
 
-export const isGameTicketed = game => Boolean(game?.ticketLink);
+/**
+ * @param {Game} game
+ * @returns {boolean}
+ */
+export const isGameNonTicketed = game => {
+  if (typeof game?.admissionCost === "string") {
+    return Boolean(game?.admissionCost?.includes("free"));
+  }
+  return false;
+};
+
+/**
+ * @param {Game} game
+ * @returns {boolean}
+ */
+export const isGameTicketed = game => {
+  return !isGameNonTicketed(game);
+};
 
 /**
  * @typedef {object} Game

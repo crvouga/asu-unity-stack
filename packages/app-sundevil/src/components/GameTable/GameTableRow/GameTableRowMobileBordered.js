@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { deepMergeLeft } from "../../../utils/deep-merge-left";
 import { formatTimeAmPm } from "../../../utils/formatTime";
+import { isGameTicketed } from "../../Game/game";
 import { Skeleton } from "../../Skeleton";
 import { defaultConfigCells } from "./config-cells";
 import { defaultConfigLayout } from "./config-layout";
@@ -150,8 +151,11 @@ export const GameTableRowMobileBordered = forwardRef(
                 aria-label={game?.ticketText}
                 href={game?.ticketLink}
               >
-                {/* <i className="fa fa-fas fa-ticket" /> */}
-                <i className="fa fa-fas fa-info" />
+                {isGameTicketed(game) ? (
+                  <i className="fa fa-fas fa-ticket" />
+                ) : (
+                  <i className="fa fa-fas fa-info" />
+                )}
               </TicketButton>
             )}
           </Root>

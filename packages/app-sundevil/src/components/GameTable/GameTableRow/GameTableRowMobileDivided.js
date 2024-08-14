@@ -2,6 +2,7 @@ import React, { forwardRef } from "react";
 import styled from "styled-components";
 
 import { deepMergeLeft } from "../../../utils/deep-merge-left";
+import { isGameTicketed } from "../../Game/game";
 import { Skeleton } from "../../Skeleton";
 import { defaultConfigLayout } from "./config-layout";
 import { gameTableRowPropTypes } from "./game-table-row";
@@ -147,8 +148,11 @@ export const GameTableRowMobileDivided = forwardRef((props, ref) => {
                 aria-label={game?.ticketText}
                 href={game?.ticketLink}
               >
-                {/* <i className="fa fa-fas fa-ticket" /> */}
-                <i className="fa fa-fas fa-info" />
+                {isGameTicketed(game) ? (
+                  <i className="fa fa-fas fa-ticket" />
+                ) : (
+                  <i className="fa fa-fas fa-info" />
+                )}
               </TicketButton>
             </CellTicketButton>
           )}

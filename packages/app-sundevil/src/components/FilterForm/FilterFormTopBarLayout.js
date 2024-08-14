@@ -63,7 +63,12 @@ export const FilterFormTopBarLayout = ({
             </Title>
           )}
           <div key={String(open)}>
-            <CollapseIcon open={open} />
+            <CollapseIcon
+              style={{
+                color: darkMode ? "#fff !important" : "#191919 !important",
+              }}
+              open={open}
+            />
           </div>
         </CollapseRoot>
         {open ? (

@@ -21,7 +21,7 @@ const Root = styled.div`
   gap: 1rem;
 `;
 
-const Title = styled.p`
+const Title = styled.a`
   padding: 0;
   margin: 0;
   overflow: hidden;
@@ -30,7 +30,8 @@ const Title = styled.p`
   font-size: 16px;
   font-weight: bold;
   width: 100%;
-  // underline on hover
+  color: #191919 !important;
+  text-decoration: none;
   &:hover {
     text-decoration: underline;
     cursor: pointer;
@@ -132,7 +133,7 @@ export const GameTableRowMobileBordered = forwardRef(
 
             {configLayout.includeCellTitle && (
               <TitleRoot>
-                <Title>{game?.title}</Title>
+                <Title href={game?.titleHref}>{game?.title}</Title>
                 <Subtitles>
                   <Subtitle className="text-body-tertiary">
                     {formatTimeAmPm(game?.time)}

@@ -98,8 +98,6 @@ const CellTitle = styled.div`
 `;
 
 const Title = styled.a`
-  color: #000 !important;
-  text-decoration: none;
   font-size: 24px;
   padding: 0;
   margin: 0;
@@ -109,6 +107,8 @@ const Title = styled.a`
   font-weight: bold;
   width: fit-content;
   max-width: 100%;
+  color: #191919 !important;
+  text-decoration: none;
   &:hover {
     text-decoration: underline;
     cursor: pointer;

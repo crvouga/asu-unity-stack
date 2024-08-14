@@ -22,7 +22,7 @@ const Root = styled.div`
   }
 `;
 
-const Title = styled.p`
+const Title = styled.a`
   padding: 0;
   margin: 0;
   overflow: hidden;
@@ -31,6 +31,8 @@ const Title = styled.p`
   font-size: 16px;
   font-weight: bold;
   width: 100%;
+  color: #191919 !important;
+  text-decoration: none;
   &:hover {
     text-decoration: underline;
     cursor: pointer;
@@ -135,7 +137,7 @@ export const GameTableRowMobileDivided = forwardRef((props, ref) => {
           )}
           {configLayout.includeCellTitle && (
             <CellTitle>
-              <Title>{game?.title}</Title>
+              <Title href={game?.titleHref}>{game?.title}</Title>
               <Subtitles {...props} />
             </CellTitle>
           )}

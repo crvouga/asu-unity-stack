@@ -53,7 +53,7 @@ const CellDate = styled.div`
   align-items: center;
 `;
 
-const TicketButton = styled.button`
+const TicketButton = styled.a`
   padding: 0;
   margin: 0;
   border: none;
@@ -144,11 +144,8 @@ export const GameTableRowMobileDivided = forwardRef((props, ref) => {
           {configLayout.includeCellTickets && (
             <CellTicketButton>
               <TicketButton
-                type="button"
                 aria-label={game?.ticketText}
-                onClick={() => {
-                  window.open(game?.ticketLink, "_blank");
-                }}
+                href={game?.ticketLink}
               >
                 <i className="fa fa-fas fa-ticket" />
               </TicketButton>

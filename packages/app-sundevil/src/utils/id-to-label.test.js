@@ -36,4 +36,8 @@ describe("idToLabel", () => {
   test("bad input null", () => {
     expect(idToLabel(null)).toBe("");
   });
+
+  test("respect acronyms", () => {
+    expect(idToLabel("ASU venue")).toBe("ASU venue");
+  });
 });

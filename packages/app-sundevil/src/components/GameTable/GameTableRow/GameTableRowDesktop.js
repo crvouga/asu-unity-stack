@@ -200,9 +200,15 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
         {configLayout.includeCellVersus && (
           <Cell>
             <CellVersus>
-              <CellVersusLogo src={game?.homeTeamLogoSrc} alt=" " />
+              <CellVersusLogo
+                src={game?.homeTeamLogoSrc}
+                alt={game?.homeTeamLogoAlt ?? " "}
+              />
               <CellVersusVS>vs</CellVersusVS>
-              <CellVersusLogo src={game?.awayTeamLogoSrc} alt=" " />
+              <CellVersusLogo
+                src={game?.awayTeamLogoSrc}
+                alt={game?.awayTeamLogoAlt ?? " "}
+              />
             </CellVersus>
           </Cell>
         )}

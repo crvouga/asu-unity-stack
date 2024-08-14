@@ -7,6 +7,12 @@ const Root = styled.p`
   margin: 0;
   font-size: 12px;
   font-weight: bold;
+  a:link {
+  }
+  a:active,
+  a:hover {
+    text-decoration: underline;
+  }
 `;
 
 const OfficialAthleticsSite = ({ href }) => {

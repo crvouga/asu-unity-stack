@@ -106,7 +106,7 @@ export const SocialMediaPostCardTall = ({ socialMediaPost }) => {
       <ImageSkeletonWrapper skeleton={!isImageLoaded}>
         <Image
           src={socialMediaPost.imageSrc}
-          alt=" "
+          alt={socialMediaPost.imageAlt ?? " "}
           onLoad={() => setIsImageLoaded(true)}
         />
       </ImageSkeletonWrapper>
@@ -114,7 +114,7 @@ export const SocialMediaPostCardTall = ({ socialMediaPost }) => {
         <ContentRoot>
           <Avatar
             src={socialMediaPost.avatarSrc}
-            alt="Avatar"
+            alt={socialMediaPost.avatarAlt ?? " "}
             size={avatarSize}
           />
           <ContentTextRoot>

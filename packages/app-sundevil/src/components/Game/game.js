@@ -9,8 +9,10 @@ export const gamePropTypes = PropTypes.shape({
   dateMonth: PropTypes.string,
   homeTeamName: PropTypes.string.isRequired,
   homeTeamLogoSrc: PropTypes.string.isRequired,
+  homeTeamLogoAlt: PropTypes.string,
   awayTeamName: PropTypes.string.isRequired,
   awayTeamLogoSrc: PropTypes.string.isRequired,
+  awayTeamLogoAlt: PropTypes.string,
   time: PropTypes.string.isRequired,
   venue: PropTypes.string.isRequired,
   ticketLink: PropTypes.string,
@@ -31,8 +33,10 @@ export const gamePropTypes = PropTypes.shape({
  * @property {string} dateMonth
  * @property {string} homeTeamName
  * @property {string} homeTeamLogoSrc
+ * @property {string} homeTeamLogoAlt
  * @property {string} awayTeamName
  * @property {string} awayTeamLogoSrc
+ * @property {string} awayTeamLogoAlt
  * @property {string} time
  * @property {string} venue
  * @property {string} ticketLink

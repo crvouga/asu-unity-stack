@@ -6,6 +6,7 @@ import { isGameTicketed } from "../../Game/game";
 import { Skeleton } from "../../Skeleton";
 import { defaultConfigLayout } from "./config-layout";
 import { gameTableRowPropTypes } from "./game-table-row";
+import { INFO_ICON_CLASS_NAME, TICKET_ICON_CLASS_NAME } from "./icon";
 import { Subtitles } from "./Subtitles";
 
 const Root = styled.div`
@@ -33,7 +34,7 @@ const Title = styled.a`
   font-weight: bold;
   width: 100%;
   color: #191919 !important;
-  text-decoration: none;
+  text-decoration: none !important;
   &:hover {
     text-decoration: underline;
     cursor: pointer;
@@ -69,6 +70,7 @@ const TicketButton = styled.a`
   width: 32px;
   height: 32px;
   flex-shrink: 0;
+  text-decoration: none !important;
 `;
 
 const CellTitle = styled.div`
@@ -147,11 +149,18 @@ export const GameTableRowMobileDivided = forwardRef((props, ref) => {
               <TicketButton
                 aria-label={game?.ticketText}
                 href={game?.ticketLink}
+                style={{ textDecoration: "none !important" }}
               >
                 {isGameTicketed(game) ? (
-                  <i className="fa fa-fas fa-ticket" />
+                  <i
+                    style={{ textDecoration: "none !important" }}
+                    className={TICKET_ICON_CLASS_NAME}
+                  />
                 ) : (
-                  <i className="fa fa-fas fa-info" />
+                  <i
+                    style={{ textDecoration: "none !important" }}
+                    className={INFO_ICON_CLASS_NAME}
+                  />
                 )}
               </TicketButton>
             </CellTicketButton>

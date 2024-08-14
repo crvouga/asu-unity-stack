@@ -8,6 +8,7 @@ import { Skeleton } from "../../Skeleton";
 import { defaultConfigCells } from "./config-cells";
 import { defaultConfigLayout } from "./config-layout";
 import { gameTableRowPropTypes } from "./game-table-row";
+import { INFO_ICON_CLASS_NAME, TICKET_ICON_CLASS_NAME } from "./icon";
 
 const Root = styled.div`
   display: flex;
@@ -64,7 +65,7 @@ const Date = styled.p`
   padding-bottom: 18px;
 `;
 
-const TicketButton = styled.button`
+const TicketButton = styled.a`
   padding: 0;
   margin: 0;
   border: none;
@@ -79,6 +80,7 @@ const TicketButton = styled.button`
   width: 32px;
   height: 32px;
   flex-shrink: 0;
+  text-decoration: none !important;
 `;
 
 const TitleRoot = styled.div`
@@ -150,11 +152,18 @@ export const GameTableRowMobileBordered = forwardRef(
               <TicketButton
                 aria-label={game?.ticketText}
                 href={game?.ticketLink}
+                style={{ textDecoration: "none !important" }}
               >
                 {isGameTicketed(game) ? (
-                  <i className="fa fa-fas fa-ticket" />
+                  <i
+                    style={{ textDecoration: "none !important" }}
+                    className={TICKET_ICON_CLASS_NAME}
+                  />
                 ) : (
-                  <i className="fa fa-fas fa-info" />
+                  <i
+                    style={{ textDecoration: "none !important" }}
+                    className={INFO_ICON_CLASS_NAME}
+                  />
                 )}
               </TicketButton>
             )}

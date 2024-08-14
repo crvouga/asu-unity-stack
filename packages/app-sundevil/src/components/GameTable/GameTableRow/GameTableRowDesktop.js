@@ -14,6 +14,7 @@ import { stringToClosestSportName } from "../../SportIcon/sport-name";
 import { defaultConfigCells } from "./config-cells";
 import { defaultConfigLayout } from "./config-layout";
 import { gameTableRowPropTypes } from "./game-table-row";
+import { INFO_ICON_CLASS_NAME, TICKET_ICON_CLASS_NAME } from "./icon";
 import { Subtitles } from "./Subtitles";
 
 const Root = styled.div`
@@ -234,16 +235,19 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
               renderIcon={() => {
                 const iconStyle = {
                   paddingRight: "10px",
+                  textDecoration: "none !important",
                 };
 
                 if (shouldRenderTicketIcon) {
                   return (
-                    <i className="fa fa-fas fa-ticket" style={iconStyle} />
+                    <i className={TICKET_ICON_CLASS_NAME} style={iconStyle} />
                   );
                 }
 
                 if (isGameNonTicketed(game)) {
-                  return <i className="fa fa-fas fa-info" style={iconStyle} />;
+                  return (
+                    <i className={INFO_ICON_CLASS_NAME} style={iconStyle} />
+                  );
                 }
 
                 return null;

@@ -39,26 +39,39 @@ const Root = styled.div`
   background-color: #fff;
 `;
 
+const fallbackFirstActiveLink = links => {
+  const isAllInactive = links.every(link => !link.active);
+  if (isAllInactive) {
+    return links.map((link, index) => ({
+      ...link,
+      active: index === 0,
+    }));
+  }
+  return links;
+};
+
 /**
  * This will highlight section links on scroll
  */
 const useLinks = ({ links = [], linkTabsRef }) => {
   const getLinks = () => {
-    return links.reduce((acc, link) => {
-      const section = querySelectorSafe(link.href);
+    return fallbackFirstActiveLink(
+      links.reduce((acc, link) => {
+        const section = querySelectorSafe(link.href);
 
-      if (isOverlapping(linkTabsRef.current, section)) {
-        return [
-          ...acc.map(accLink => ({ ...accLink, active: false })),
-          {
-            ...link,
-            active: true,
-          },
-        ];
-      }
+        if (isOverlapping(linkTabsRef.current, section)) {
+          return [
+            ...acc.map(accLink => ({ ...accLink, active: false })),
+            {
+              ...link,
+              active: true,
+            },
+          ];
+        }
 
-      return [...acc, { ...link, active: false }];
-    }, []);
+        return [...acc, { ...link, active: false }];
+      }, [])
+    );
   };
 
   const [alteredLinks, setAlteredLinks] = useState(getLinks);

@@ -55,8 +55,19 @@ const Template = args => (
       />
 
       <div
-        style={{ width: "100%", height: "200px", backgroundColor: "tomato" }}
-      />
+        style={{
+          width: "100%",
+          height: "200px",
+          backgroundColor: "tomato",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          color: "white",
+        }}
+        id="football-roster"
+      >
+        Roster
+      </div>
 
       <div
         style={{
@@ -67,8 +78,42 @@ const Template = args => (
       />
 
       <div
-        style={{ width: "100%", height: "200px", backgroundColor: "tomato" }}
+        style={{
+          width: "100%",
+          height: "200px",
+          backgroundColor: "tomato",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          color: "white",
+        }}
+        id="football-news"
+      >
+        News
+      </div>
+
+      <div
+        style={{
+          width: "100%",
+          height: "200px",
+          backgroundColor: "transparent",
+        }}
       />
+
+      <div
+        style={{
+          width: "100%",
+          height: "200px",
+          backgroundColor: "tomato",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          color: "white",
+        }}
+        id="football-coaches"
+      >
+        Coaches
+      </div>
     </div>
   </div>
 );
@@ -121,6 +166,7 @@ Default.args = {
       href: "#football-roster",
       active: false,
     },
+
     {
       label: "News",
       href: "#football-news",

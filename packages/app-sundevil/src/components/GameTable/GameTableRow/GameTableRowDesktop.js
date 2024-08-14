@@ -7,7 +7,7 @@ import { deepMergeLeft } from "../../../utils/deep-merge-left";
 import { idToLabel } from "../../../utils/id-to-label";
 import { useElementSetMaxDimensions } from "../../../utils/use-element-set-max-dimensions";
 import { useId } from "../../../utils/use-id";
-import { isGameTicketed } from "../../Game/game";
+import { isGameNonTicketed, isGameTicketed } from "../../Game/game";
 import { Skeleton } from "../../Skeleton";
 import { SportIcon } from "../../SportIcon";
 import { stringToClosestSportName } from "../../SportIcon/sport-name";
@@ -240,6 +240,16 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
                     />
                   );
                 }
+
+                if (isGameNonTicketed(game)) {
+                  return (
+                    <i
+                      className="fa fa-fas fa-info"
+                      style={{ paddingRight: "10px" }}
+                    />
+                  );
+                }
+
                 return null;
               }}
               href={game?.ticketLink}

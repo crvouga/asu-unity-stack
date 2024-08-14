@@ -232,22 +232,18 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
             <Button
               label={ticketButtonLabel}
               renderIcon={() => {
+                const iconStyle = {
+                  paddingRight: "10px",
+                };
+
                 if (shouldRenderTicketIcon) {
                   return (
-                    <i
-                      className="fa fa-fas fa-ticket"
-                      style={{ paddingRight: "10px" }}
-                    />
+                    <i className="fa fa-fas fa-ticket" style={iconStyle} />
                   );
                 }
 
                 if (isGameNonTicketed(game)) {
-                  return (
-                    <i
-                      className="fa fa-fas fa-info"
-                      style={{ paddingRight: "10px" }}
-                    />
-                  );
+                  return <i className="fa fa-fas fa-info" style={iconStyle} />;
                 }
 
                 return null;

@@ -1,5 +1,6 @@
 // @ts-check
 
+import { ALL_ID } from "../../../select-all-option";
 import { INewsStoryDataSource } from "./news-story-data-source";
 import { NewsStoryDataSourceStatic } from "./news-story-data-source-impl-static";
 
@@ -11,7 +12,7 @@ const imageSrc =
   "https://asuevents.asu.edu/sites/default/files/2024-07/football-2024.jpg";
 
 const ALL_SPORT_IDS = [
-  "all",
+  ALL_ID,
   "football",
   "basketball",
   "hockey",

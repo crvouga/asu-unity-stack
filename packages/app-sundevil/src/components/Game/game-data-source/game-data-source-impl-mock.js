@@ -1,8 +1,9 @@
+import { ALL_ID } from "../../../select-all-option";
 import { IGameDataSource } from "./game-data-source";
 import { GameDataSourceStatic } from "./game-data-source-impl-static";
 
 const ALL_SPORT_IDS = [
-  "all",
+  ALL_ID,
   "football",
   "basketball",
   "hockey",
@@ -14,7 +15,7 @@ const ALL_SPORT_IDS = [
   "golf",
 ];
 
-const ALL_GAME_TYPE = ["all", "home", "away"];
+const ALL_GAME_TYPE = [ALL_ID, "home", "away"];
 
 const ALL_ADMISSION_COST = ["free", "price_varies"];
 

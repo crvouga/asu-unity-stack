@@ -1,17 +1,10 @@
+import { isAllId } from "../../../select-all-option";
+import { cleanString } from "../../../utils/clean-string";
+import { isEqual } from "../../../utils/is-equal";
 import { matchSort } from "../../../utils/match-sort";
 import { asc } from "../../../utils/sort";
 import { stringToSportId } from "../../Sport/sport-id";
 import { GameDataSourceSortBy, IGameDataSource } from "./game-data-source";
-
-const cleanString = str =>
-  typeof str === "string" ? str?.toLowerCase().trim() : str;
-
-const isEqual = (keyFn, a, b) => {
-  return keyFn(a) === keyFn(b);
-};
-
-export const ALL_ID = "all";
-const isAllId = id => isEqual(cleanString, ALL_ID, id);
 
 const normalizeDate = date => {
   const d = new Date(date);

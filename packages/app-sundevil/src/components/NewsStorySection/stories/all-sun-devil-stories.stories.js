@@ -1,6 +1,7 @@
 // @ts-check
 import React from "react";
 
+import { ALL_ID } from "../../../select-all-option";
 import { NewsStorySection } from "../index";
 
 /** @type {import("../index").NewsStorySectionProps} */
@@ -104,7 +105,7 @@ const props = {
       name: "All Sports",
       icon: "fas fa-sync-alt",
       position: 1,
-      id: "all",
+      id: ALL_ID,
     },
     {
       name: "Football",

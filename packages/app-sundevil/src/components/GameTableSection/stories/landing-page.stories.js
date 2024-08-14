@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React from "react";
 
+import { ALL_ID } from "../../../select-all-option";
 import {
   GameDataSourceMock,
   IGameDataSource,
@@ -83,7 +84,7 @@ LandingPage.args = {
   ],
   sports: [
     {
-      id: "all",
+      id: ALL_ID,
       active: true,
       name: "All",
       icon: {
@@ -433,7 +434,7 @@ LandingPage.args = {
     // hideBehavior: "initially-visible",
     // message: "No upcoming games",
     // hideBasedOn: {
-    // sportId: "all",
+    // sportId: ALL_ID,
     // },
   },
   configLayout: {
@@ -455,8 +456,8 @@ LandingPage.args = {
       },
     },
   },
-  gameDataSource: {
-    type: "custom",
-    gameDataSource: new CustomGameDataSource(),
-  },
+  // gameDataSource: {
+  //   type: "custom",
+  //   gameDataSource: new CustomGameDataSource(),
+  // },
 };

@@ -4,10 +4,10 @@ import React, { useMemo } from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
+import { ALL_ID, isAllId } from "../../select-all-option";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useElementContentXPosition } from "../../utils/use-element-content-x-position";
-import { ALL_ID } from "../Game";
 import { LoadMoreButton } from "../LoadMoreButton";
 import {
   buildNewsStoryDataSource,
@@ -115,10 +115,9 @@ const NewsStorySectionInner = ({
     limit,
     searchQuery: newsStorySearchFrom.debouncedSearchQuery,
     newsType: newsStorySearchFrom.newsType,
-    sportId:
-      newsStorySearchFrom.sportId === "all"
-        ? null
-        : newsStorySearchFrom.sportId,
+    sportId: isAllId(newsStorySearchFrom.sportId)
+      ? null
+      : newsStorySearchFrom.sportId,
   });
 
   const skeleton = newsStoryDataSourceLoader.isLoadingInitial;
@@ -134,7 +133,7 @@ const NewsStorySectionInner = ({
       return true;
     }
     if (removeSportsWithNoStories) {
-      return allSportIds.includes(sport.id) || sport.id === "all";
+      return allSportIds.includes(sport.id) || isAllId(sport.id);
     }
     return true;
   });

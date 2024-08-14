@@ -1,6 +1,7 @@
 // @ts-check
 import { useEffect, useState } from "react";
 
+import { ALL_ID } from "../../select-all-option";
 import * as Result from "../../utils/result";
 import { useNewsStoryDataSource } from "./NewsDataSourceContext";
 
@@ -25,7 +26,7 @@ const getAllSportIds = async newsStoryDataSource => {
     []
   );
   const sportIds = Array.from(
-    new Set(newsStories.map(newsStory => newsStory.sportId ?? "all"))
+    new Set(newsStories.map(newsStory => newsStory.sportId ?? ALL_ID))
   );
   return sportIds;
 };

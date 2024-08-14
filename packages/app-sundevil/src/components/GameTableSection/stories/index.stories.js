@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React from "react";
 
+import { ALL_ID } from "../../../select-all-option";
 import {
   GameDataSourceMock,
   IGameDataSource,
@@ -52,7 +53,7 @@ AllSports.args = {
       icon: "fas fa-sync-alt",
       active: true,
       position: 1,
-      id: "all",
+      id: ALL_ID,
     },
     {
       name: "Football",
@@ -249,7 +250,7 @@ SingleSport.args = {
     {
       label: "All Games",
       active: true,
-      id: "all",
+      id: ALL_ID,
     },
     {
       label: "Home",

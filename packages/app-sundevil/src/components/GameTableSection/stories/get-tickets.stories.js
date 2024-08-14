@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React from "react";
 
+import { ALL_ID } from "../../../select-all-option";
 import { GameTableSection } from "../index";
 
 export default {
@@ -124,7 +125,7 @@ GetTickets.args = {
       icon: "fas fa-sync-alt",
       active: true,
       position: 1,
-      id: "all",
+      id: ALL_ID,
     },
     {
       name: "Football",
@@ -278,7 +279,7 @@ GetTicketsUpcomingGames.args = {
       name: "All Sports",
       icon: "fas fa-sync-alt",
       position: 1,
-      id: "all",
+      id: ALL_ID,
     },
     {
       name: "Football",
@@ -403,7 +404,7 @@ GetTicketsOverlapFirstRow.args = {
       icon: "fas fa-sync-alt",
       active: true,
       position: 1,
-      id: "all",
+      id: ALL_ID,
     },
     {
       name: "Football",
@@ -520,7 +521,7 @@ GetTicketsOverlapWithSportTabs.args = {
       icon: "fas fa-sync-alt",
       active: true,
       position: 1,
-      id: "all",
+      id: ALL_ID,
     },
     {
       name: "Football",
@@ -656,7 +657,7 @@ GetTicketsLight.args = {
       icon: "fas fa-sync-alt",
       active: true,
       position: 1,
-      id: "all",
+      id: ALL_ID,
     },
     {
       name: "Football",
@@ -803,7 +804,7 @@ GetTicketsLightSidebar.args = {
       icon: "fas fa-sync-alt",
       active: true,
       position: 1,
-      id: "all",
+      id: ALL_ID,
     },
     {
       name: "Football",
@@ -940,7 +941,7 @@ GetTicketsSportTabsOnly.args = {
       icon: "fas fa-sync-alt",
       active: true,
       position: 1,
-      id: "all",
+      id: ALL_ID,
     },
     {
       name: "Football",

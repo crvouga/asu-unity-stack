@@ -2,6 +2,7 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
+import { ALL_ID } from "../../select-all-option";
 import * as Result from "../../utils/result";
 import { findManyInputPropTypes } from "../Game/game-data-source";
 import { useGameDataSource } from "../Game/GameDataSourceContext";
@@ -30,7 +31,7 @@ export const defaultConfigNoData = {
   hideBehavior: "initially-hidden",
   message: null,
   hideBasedOn: {
-    sportId: "all",
+    sportId: ALL_ID,
   },
 };
 

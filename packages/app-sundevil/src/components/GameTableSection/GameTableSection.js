@@ -103,10 +103,10 @@ const GameTableSectionInner = ({ ...props }) => {
       sportId: props?.sports?.find(sport => sport?.active)?.id ?? ALL_ID,
       admissionCost:
         configInputs.admissionCostSelect?.options?.find(option => option.active)
-          ?.value ?? null,
+          ?.value ?? ALL_ID,
       eventType:
         configInputs.eventTypeSelect?.options?.find(option => option.active)
-          ?.value ?? null,
+          ?.value ?? ALL_ID,
       maxAdmissionCost: Number(
         configInputs.maxAdmissionCostSelect?.options?.find(
           option => option.active

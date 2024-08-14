@@ -47,7 +47,9 @@ GetTickets.args = {
     },
   ],
   darkMode: true,
-  emptyStateMessage: "No games found",
+  configNoData: {
+    message: "No games found",
+  },
   configLayout: {
     variant: "default",
     includeInputSearch: true,
@@ -88,7 +90,7 @@ GetTickets.args = {
       placeholder: "Select one",
     },
     maxAdmissionCostSelect: {
-      label: "Cost of admission",
+      label: "Max cost of admission",
       placeholder: "Select one",
     },
     admissionCostSelect: {
@@ -98,6 +100,13 @@ GetTickets.args = {
     eventTypeSelect: {
       label: "Event Type",
       placeholder: "Select one",
+    },
+  },
+  configGameTableForm: {
+    initialState: {
+      sportType: ALL_ID,
+      homeOrAway: ALL_ID,
+      venueId: ALL_ID,
     },
   },
   gameTable: {
@@ -215,9 +224,16 @@ GetTicketsUpcomingGames.args = {
     },
   ],
   darkMode: false,
-  emptyStateMessage: "No games found",
+  configNoData: {
+    message: "No games found",
+  },
   configGameTableForm: {
     title: "Filter your results",
+    initialState: {
+      sportType: ALL_ID,
+      homeOrAway: ALL_ID,
+      venueId: ALL_ID,
+    },
   },
   configLayout: {
     includeInputSearch: true,
@@ -366,7 +382,9 @@ GetTicketsOverlapFirstRow.args = {
     },
   ],
   darkMode: true,
-  emptyStateMessage: "No games found",
+  configNoData: {
+    message: "No games found",
+  },
   configLayout: {
     includeInputSearch: true,
     includeInputSportType: true,
@@ -483,7 +501,9 @@ GetTicketsOverlapWithSportTabs.args = {
   subtitle:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   darkMode: true,
-  emptyStateMessage: "No games found",
+  configNoData: {
+    message: "No games found",
+  },
   configLayout: {
     includeInputSearch: true,
     includeInputSportType: false,
@@ -600,7 +620,9 @@ GetTicketsLight.args = {
   subtitle:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   darkMode: false,
-  emptyStateMessage: "No games found",
+  configNoData: {
+    message: "No games found",
+  },
   gameTable: {
     configLayout: {
       includeCellDate: true,
@@ -739,7 +761,9 @@ GetTicketsLightSidebar.args = {
   subtitle:
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   darkMode: false,
-  emptyStateMessage: "No games found",
+  configNoData: {
+    message: "No games found",
+  },
   configGameTableForm: {
     title: "Filter your results",
   },
@@ -887,7 +911,9 @@ GetTicketsSportTabsOnly.args = {
   //   },
   // ],
   darkMode: true,
-  emptyStateMessage: "No games found",
+  configNoData: {
+    message: "No games found",
+  },
   configLayout: {
     includeInputSearch: false,
     includeInputSportType: false,

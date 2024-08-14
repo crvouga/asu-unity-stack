@@ -27,7 +27,7 @@ window.GameDataSourceSortBy = GameDataSourceSortBy;
  * @property {string | null | undefined} [sportId]
  * @property {string | null | undefined} [gameType]
  * @property {string | null | undefined} [searchQuery]
- * @property {string | null | undefined} [venueId]
+ * @property {string | number | null | undefined} [venueId]
  * @property {string | number | null | undefined} [eventType]
  * @property {number | null | undefined} [maxAdmissionCost] // deprecated use admissionCost
  * @property {string | number | null | undefined} [admissionCost]

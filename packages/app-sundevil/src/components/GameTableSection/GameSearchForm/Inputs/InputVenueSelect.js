@@ -2,7 +2,11 @@
 import React from "react";
 
 import { firstNonEmpty } from "../../../../utils/first-non-empty";
-import { Select, stringsToOptions } from "../../../Select/Select";
+import {
+  includeAllOptionWhen,
+  Select,
+  stringsToOptions,
+} from "../../../Select/Select";
 import { useGameSearchFormContext } from "../GameSearchFormContext";
 
 export const InputVenueSelect = () => {
@@ -21,7 +25,10 @@ export const InputVenueSelect = () => {
     []
   );
 
-  const optionsWithActive = options.map(option => ({
+  const optionsWithActive = includeAllOptionWhen(
+    configInputs.venueSelect?.includeAllOption,
+    options
+  ).map(option => ({
     ...option,
     active: option.value === gameSearchForm.venueId,
   }));

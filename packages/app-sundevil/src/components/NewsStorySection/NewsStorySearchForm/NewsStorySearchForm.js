@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../../config";
+import { cleanString } from "../../../utils/clean-string";
 import { firstNonEmpty } from "../../../utils/first-non-empty";
 import { useBreakpoint } from "../../../utils/use-breakpoint";
 import { Icon } from "../../Icon_";
@@ -24,10 +25,6 @@ const Root = styled.div`
   gap: 1rem;
   flex-wrap: wrap;
 `;
-
-const cleanString = str => {
-  return str?.toString?.()?.toLowerCase?.()?.trim?.();
-};
 
 /**
  * @type {React.FC<{

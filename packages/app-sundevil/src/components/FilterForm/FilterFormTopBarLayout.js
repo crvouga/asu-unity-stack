@@ -18,6 +18,10 @@ const Title = styled.div`
   font-size: 20px;
   font-weight: bold;
   padding: 0;
+  color: ${({
+    // @ts-ignore
+    darkMode,
+  }) => (darkMode ? "white" : "#191919")};
 `;
 
 const CollapseRoot = styled.button`
@@ -31,7 +35,12 @@ const CollapseRoot = styled.button`
   cursor: pointer;
 `;
 
-export const FilterFormTopBarLayout = ({ title, className, renderForm }) => {
+export const FilterFormTopBarLayout = ({
+  title,
+  className,
+  renderForm,
+  darkMode,
+}) => {
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const [open, setOpen] = useState(false);
   const toggleOpen = () => setOpen(prev => !prev);
@@ -44,7 +53,15 @@ export const FilterFormTopBarLayout = ({ title, className, renderForm }) => {
     return (
       <Root className={className}>
         <CollapseRoot onClick={toggleOpen}>
-          {hasTitle && <Title>{title}</Title>}
+          {hasTitle && (
+            <Title
+              // @ts-ignore
+              darkMode={darkMode}
+              key={darkMode}
+            >
+              {title}
+            </Title>
+          )}
           <div key={String(open)}>
             <CollapseIcon open={open} />
           </div>
@@ -60,7 +77,14 @@ export const FilterFormTopBarLayout = ({ title, className, renderForm }) => {
 
   return (
     <Root className={className}>
-      {hasTitle && <Title>{title}</Title>}
+      {hasTitle && (
+        <Title
+          // @ts-ignore
+          darkMode={darkMode}
+        >
+          {title}
+        </Title>
+      )}
       {formComponent}
     </Root>
   );
@@ -68,6 +92,7 @@ export const FilterFormTopBarLayout = ({ title, className, renderForm }) => {
 
 FilterFormTopBarLayout.propTypes = {
   title: PropTypes.string,
+  darkMode: PropTypes.bool,
   renderForm: PropTypes.func.isRequired,
   className: PropTypes.string,
 };

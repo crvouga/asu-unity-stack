@@ -1,16 +1,25 @@
 // @ts-check
 import React from "react";
 
-import { Select } from "../../../Select/Select";
+import { includeAllOptionWhen, Select } from "../../../Select/Select";
 import { useGameSearchFormContext } from "../GameSearchFormContext";
 
 export const InputMaxAdmissionCost = () => {
   const { configInputs, configLayout, gameSearchForm, inputStyle, darkMode } =
     useGameSearchFormContext();
 
+  const options = includeAllOptionWhen(
+    configInputs.maxAdmissionCostSelect?.options
+  ).map(option => ({
+    active: option.value === gameSearchForm.maxAdmissionCost,
+    id: option.id,
+    label: option.label,
+    value: option.value,
+  }));
+
   return (
     configLayout.includeMaxAdmissionCostSelect &&
-    Array.isArray(configInputs.maxAdmissionCostSelect?.options) && (
+    Array.isArray(options) && (
       <Select
         darkMode={darkMode}
         style={inputStyle}
@@ -24,12 +33,7 @@ export const InputMaxAdmissionCost = () => {
                 : option.value,
           })
         }
-        options={configInputs.maxAdmissionCostSelect?.options.map(option => ({
-          active: option.value === gameSearchForm.maxAdmissionCost,
-          id: option.id,
-          label: option.label,
-          value: option.value,
-        }))}
+        options={options}
       />
     )
   );

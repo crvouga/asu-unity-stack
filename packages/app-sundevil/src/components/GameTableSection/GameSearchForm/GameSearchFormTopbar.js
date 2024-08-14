@@ -1,8 +1,8 @@
 // @ts-check
-import PropTypes from "prop-types";
 import React from "react";
 
 import { FilterFormTopBarLayout } from "../../FilterForm/FilterFormTopBarLayout";
+import { configFormPropTypes } from "./config-form";
 import { GameSearchForm } from "./GameSearchForm";
 
 export const GameSearchFormTopbar = ({
@@ -18,6 +18,7 @@ export const GameSearchFormTopbar = ({
     <FilterFormTopBarLayout
       className={className}
       title={configGameTableForm?.title}
+      darkMode={darkMode}
       renderForm={() => (
         <GameSearchForm
           gameSearchForm={gameSearchForm}
@@ -33,7 +34,5 @@ export const GameSearchFormTopbar = ({
 
 GameSearchFormTopbar.propTypes = {
   ...GameSearchForm.propTypes,
-  configGameTableForm: PropTypes.shape({
-    title: PropTypes.string,
-  }),
+  configGameTableForm: configFormPropTypes,
 };

@@ -56,8 +56,8 @@ const props = {
   configForm: {
     title: "Filter your results",
     initialState: {
-      newsType: "Video",
-      sportId: "m-football",
+      newsType: "all",
+      sportId: "all",
     },
   },
 
@@ -79,10 +79,15 @@ const props = {
       placeholder: "Select one",
       options: [
         {
+          label: "All",
+          id: ALL_ID,
+          value: ALL_ID,
+          active: true,
+        },
+        {
           label: "Video",
           id: "video",
           value: "video",
-          active: true,
         },
         {
           label: "Hello",

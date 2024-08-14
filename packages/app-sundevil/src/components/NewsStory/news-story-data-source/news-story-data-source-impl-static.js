@@ -12,10 +12,13 @@ import { INewsStoryDataSource } from "./news-story-data-source";
  */
 
 export class NewsStoryDataSourceStatic extends INewsStoryDataSource {
-  constructor({ newsStories = [], shouldLog = false } = {}) {
+  constructor(input = {}) {
     super();
-    this.newsStories = Array.isArray(newsStories) ? newsStories : [];
-    this.shouldLog = shouldLog;
+    this.newsStories = Array.isArray(input.newsStories)
+      ? input.newsStories
+      : [];
+    this.shouldLog = input.shouldLog;
+    this.isAllId = isAllId;
   }
 
   log() {
@@ -50,14 +53,14 @@ export class NewsStoryDataSourceStatic extends INewsStoryDataSource {
         const matchedSportId =
           typeof input?.sportId === "string" &&
           input?.sportId?.length > 0 &&
-          !isAllId(input?.newsType)
+          !this.isAllId(input?.newsType)
             ? isEqual(stringToSportId, newsStory.sportId, input.sportId)
             : true;
 
         const matchedCategory =
           typeof input?.newsType === "string" &&
           input?.newsType?.length > 0 &&
-          !isAllId(input?.newsType)
+          !this.isAllId(input?.newsType)
             ? isEqual(cleanString, newsStory.newsType, input.newsType)
             : true;
 

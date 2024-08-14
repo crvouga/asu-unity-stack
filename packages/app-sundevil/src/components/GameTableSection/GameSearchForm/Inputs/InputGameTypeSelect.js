@@ -2,7 +2,11 @@
 import React from "react";
 
 import { firstNonEmpty } from "../../../../utils/first-non-empty";
-import { Select, stringsToOptions } from "../../../Select/Select";
+import {
+  includeAllOptionWhen,
+  Select,
+  stringsToOptions,
+} from "../../../Select/Select";
 import { useGameSearchFormContext } from "../GameSearchFormContext";
 
 const DEFAULT_OPTIONS = [
@@ -35,7 +39,10 @@ export const InputGameTypeSelect = () => {
     []
   );
 
-  const optionsWithActive = options.map(option => ({
+  const optionsWithActive = includeAllOptionWhen(
+    configInputs.homeOrAwaySelect?.includeAllOption,
+    options
+  ).map(option => ({
     ...option,
     active: option.value === gameSearchForm.gameType,
   }));

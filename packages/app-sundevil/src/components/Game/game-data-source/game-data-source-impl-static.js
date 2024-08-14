@@ -19,10 +19,11 @@ export class GameDataSourceStatic extends IGameDataSource {
   /**
    * @param {{games: import("../game").Game[]}} input
    */
-  constructor({ games, shouldLog }) {
+  constructor(input) {
     super();
-    this.games = games;
-    this.shouldLog = shouldLog;
+    this.games = Array.isArray(input.games) ? input.games : [];
+    this.shouldLog = input.shouldLog;
+    this.isAllId = isAllId;
   }
 
   log() {
@@ -48,21 +49,21 @@ export class GameDataSourceStatic extends IGameDataSource {
         const matchedSportId =
           typeof input?.sportId === "string" &&
           input?.sportId?.length > 0 &&
-          !isAllId(input?.sportId)
+          !this.isAllId(input?.sportId)
             ? isEqual(stringToSportId, game?.sportId, input?.sportId)
             : true;
 
         const matchedGameType =
           typeof input?.gameType === "string" &&
           input?.gameType.length > 0 &&
-          !isAllId(input?.gameType)
+          !this.isAllId(input?.gameType)
             ? isEqual(cleanString, game?.gameType, input?.gameType)
             : true;
 
         const matchedVenueId =
           typeof input?.venueId === "string" &&
           input?.venueId.length > 0 &&
-          !isAllId(input?.venueId)
+          !this.isAllId(input?.venueId)
             ? isEqual(cleanString, game?.venue, input?.venueId)
             : true;
 
@@ -75,14 +76,14 @@ export class GameDataSourceStatic extends IGameDataSource {
         const matchedAdmissionCost =
           typeof input?.admissionCost === "string" &&
           String(input?.admissionCost).length > 0 &&
-          !isAllId(input?.admissionCost)
+          !this.isAllId(input?.admissionCost)
             ? isEqual(cleanString, game?.admissionCost, input?.admissionCost)
             : true;
 
         const matchedEventType =
           typeof input?.eventType === "string" &&
           input?.eventType.length > 0 &&
-          !isAllId(input?.eventType)
+          !this.isAllId(input?.eventType)
             ? isEqual(cleanString, game?.eventType, input?.eventType)
             : true;
 

@@ -4,12 +4,13 @@ import React, { useMemo, useRef } from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
+import { ALL_ID } from "../../select-all-option";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
 import { ensureObject } from "../../utils/ensure-object";
 import { firstCleanString } from "../../utils/first-clean-string";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useElementContentDimensions } from "../../utils/use-element-content-dimensions";
-import { ALL_ID, findManyInputPropTypes } from "../Game/game-data-source";
+import { findManyInputPropTypes } from "../Game/game-data-source";
 import {
   buildGameDataSource,
   gameDataSourcePropTypes,
@@ -39,12 +40,13 @@ import {
   getHeroOverlapStyles,
   getOverlapStyles,
 } from "./config-overlap";
+import {
+  configFormPropTypes,
+  defaultConfigForm,
+} from "./GameSearchForm/config-form";
 import { GameSearchFormSidebar } from "./GameSearchForm/GameSearchFormSidebar";
 import { GameSearchFormTopbar } from "./GameSearchForm/GameSearchFormTopbar";
-import {
-  gameSearchFormStatePropTypes,
-  useGameSearchForm,
-} from "./GameSearchForm/use-game-search-form";
+import { useGameSearchForm } from "./GameSearchForm/use-game-search-form";
 import { GameTableHero } from "./GameTableHero/GameTableHero";
 import { SidebarLayout } from "./SidebarLayout";
 
@@ -74,9 +76,13 @@ const GameTableSectionInner = ({ ...props }) => {
   // eslint-disable-next-line no-console
   const log = props.shouldLog ? console.log : () => {};
 
-  const configGameTableForm = props.configGameTableForm ?? {};
-
   const variant = props.variant ?? "default";
+
+  /** @type {import("./GameSearchForm/config-form").ConfigForm} */
+  const configGameTableForm = deepMergeLeft(
+    ensureObject(props.configGameTableForm),
+    defaultConfigForm
+  );
 
   /** @type {import("./config-layout").ConfigLayout} */
   const configLayout = deepMergeLeft(
@@ -99,25 +105,46 @@ const GameTableSectionInner = ({ ...props }) => {
   const gameSearchForm = useGameSearchForm({
     enableUrlState: configGameTableForm?.enableUrlState ?? false,
     initialState: {
-      gameType: props?.tabs?.find(tab => tab?.active)?.gameType ?? ALL_ID,
-      sportId: props?.sports?.find(sport => sport?.active)?.id ?? ALL_ID,
+      gameType:
+        configGameTableForm?.initialState?.gameType ??
+        props?.tabs?.find(tab => tab?.active)?.gameType ??
+        ALL_ID,
+
+      sportId:
+        configGameTableForm?.initialState?.sportId ??
+        props?.sports?.find(sport => sport?.active)?.id ??
+        ALL_ID,
+
       admissionCost:
+        configGameTableForm?.initialState?.admissionCost ??
         configInputs.admissionCostSelect?.options?.find(option => option.active)
-          ?.value ?? ALL_ID,
+          ?.value ??
+        ALL_ID,
+
       eventType:
+        configGameTableForm?.initialState?.eventType ??
         configInputs.eventTypeSelect?.options?.find(option => option.active)
-          ?.value ?? ALL_ID,
-      maxAdmissionCost: Number(
-        configInputs.maxAdmissionCostSelect?.options?.find(
-          option => option.active
-        )?.value ?? null
-      ),
-      ...(props?.gameSearchForm?.initialState ?? {}),
+          ?.value ??
+        ALL_ID,
+
+      venueId:
+        configGameTableForm?.initialState?.venueId ??
+        configInputs.venueSelect?.options?.find(option => option.active)
+          ?.value ??
+        ALL_ID,
+
+      maxAdmissionCost:
+        configGameTableForm?.initialState?.maxAdmissionCost ??
+        Number(
+          configInputs.maxAdmissionCostSelect?.options?.find(
+            option => option.active
+          )?.value ?? null
+        ),
     },
   });
 
   useUrlSportId(urlSportId => {
-    if (props.disableUrlSportId) {
+    if (props?.disableUrlSportId) {
       return;
     }
     if (props.shouldLog) {
@@ -128,7 +155,7 @@ const GameTableSectionInner = ({ ...props }) => {
     }
     gameSearchForm.update({
       sportId:
-        urlSportId ?? props?.gameSearchForm?.initialState?.sportId ?? ALL_ID,
+        urlSportId ?? configGameTableForm?.initialState?.sportId ?? ALL_ID,
     });
   });
 
@@ -178,14 +205,25 @@ const GameTableSectionInner = ({ ...props }) => {
   const headerDimensions = useElementContentDimensions(headerRef);
 
   const noDataMessage = firstCleanString(
-    // TODO: move to only support props.configNoData?.message
-    configNoData?.message,
-    // Deprecated prop. Use configNoData.message instead.
-    props.gameTable?.emptyStateMessage,
-    // Deprecated prop. Use configNoData.message instead.
-    props?.emptyStateMessage,
+    configNoData?.message, // TODO: move to only support props.configNoData?.message
+    props.gameTable?.emptyStateMessage, // TODO: Deprecated prop. Use configNoData.message instead.
+    props?.emptyStateMessage, // TODO: Deprecated prop. Use configNoData.message instead.
     "No games found"
   );
+
+  if (typeof props.gameTable?.emptyStateMessage === "string") {
+    // eslint-disable-next-line no-console
+    console.warn(
+      "GameTableSection: The prop `gameTable.emptyStateMessage` is deprecated. Use `props.configNoData.message` instead."
+    );
+  }
+
+  if (typeof props.emptyStateMessage === "string") {
+    // eslint-disable-next-line no-console
+    console.warn(
+      "GameTableSection: The prop `emptyStateMessage` is deprecated. Use `props.configNoData.message` instead."
+    );
+  }
 
   const { shouldHide } = useNoDataState({
     configNoData,
@@ -267,8 +305,9 @@ const GameTableSectionInner = ({ ...props }) => {
               configInputs={configInputs}
               configLayout={configLayout}
               sports={sports}
-              configGameTableForm={configGameTableForm}
               darkMode={props.darkMode}
+              // @ts-ignore
+              configGameTableForm={configGameTableForm}
             />
           )}
 
@@ -300,12 +339,13 @@ const GameTableSectionInner = ({ ...props }) => {
             className="container"
             renderSidebar={() => (
               <GameSearchFormSidebar
-                configGameTableForm={configGameTableForm}
                 gameSearchForm={gameSearchForm}
                 configInputs={configInputs}
                 configLayout={configLayout}
                 sports={sports}
                 darkMode={props.darkMode}
+                // @ts-ignore
+                configGameTableForm={configGameTableForm}
               />
             )}
             renderContent={() => renderGameTable()}
@@ -333,8 +373,8 @@ const GameTableSectionInner = ({ ...props }) => {
 };
 
 GameTableSectionInner.propTypes = {
-  ...SectionHeader.propTypes,
-  ...GameTable.propTypes,
+  ...SectionHeader.propTypes, // TODO remove spread props. Use sectionHeader prop instead
+  ...GameTable.propTypes, // TODO remove spread props. Use gameTable prop instead
   disableUrlSportId: PropTypes.bool,
   sports: PropTypes.arrayOf(sportWithFooterPropTypes),
   loadMore: loadMorePropTypes,
@@ -344,15 +384,9 @@ GameTableSectionInner.propTypes = {
   variant: PropTypes.oneOf(["default", "hero"]),
   gameTable: GameTable.propTypes,
   sectionHeader: SectionHeader.propTypes,
-  configGameTableForm: PropTypes.shape({
-    title: PropTypes.string,
-    enableUrlState: PropTypes.bool,
-  }),
+  configGameTableForm: configFormPropTypes,
   gameDataSourceLoader: findManyInputPropTypes,
   gameDataSource: gameDataSourcePropTypes,
-  gameSearchForm: PropTypes.shape({
-    initialState: gameSearchFormStatePropTypes,
-  }),
   configNoData: configNoDataPropTypes,
   shouldLog: PropTypes.bool,
 };

@@ -2,7 +2,7 @@
 import React from "react";
 
 import { Icon } from "../../../Icon_";
-import { Select } from "../../../Select/Select";
+import { includeAllOptionWhen, Select } from "../../../Select/Select";
 import { useGameSearchFormContext } from "../GameSearchFormContext";
 
 export const InputSportTypeSelect = () => {
@@ -14,6 +14,18 @@ export const InputSportTypeSelect = () => {
     gameSearchForm,
     inputStyle,
   } = useGameSearchFormContext();
+
+  const options = includeAllOptionWhen(
+    configInputs.sportTypeSelect?.includeAllOption,
+    sports
+  ).map(sport => ({
+    label: sport.name,
+    id: sport.id,
+    active: sport.active,
+    renderStart: ({ style: iconStyle }) => (
+      <Icon icon={sport.icon} style={iconStyle} />
+    ),
+  }));
 
   return (
     configLayout.includeInputSportType && (
@@ -27,14 +39,7 @@ export const InputSportTypeSelect = () => {
             sportId: option.id === gameSearchForm.sportId ? null : option.id,
           })
         }
-        options={sports.map(sport => ({
-          label: sport.name,
-          id: sport.id,
-          active: sport.active,
-          renderStart: ({ style: iconStyle }) => (
-            <Icon icon={sport.icon} style={iconStyle} />
-          ),
-        }))}
+        options={options}
       />
     )
   );

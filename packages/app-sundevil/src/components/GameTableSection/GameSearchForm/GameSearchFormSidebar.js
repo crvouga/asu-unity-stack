@@ -1,8 +1,8 @@
 // @ts-check
-import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { configFormPropTypes } from "./config-form";
 import { GameSearchForm } from "./GameSearchForm";
 
 const Root = styled.div`
@@ -49,7 +49,5 @@ export const GameSearchFormSidebar = ({
 
 GameSearchFormSidebar.propTypes = {
   ...GameSearchForm.propTypes,
-  configGameTableForm: PropTypes.shape({
-    title: PropTypes.string,
-  }),
+  configGameTableForm: configFormPropTypes,
 };

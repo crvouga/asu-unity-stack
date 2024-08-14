@@ -54,7 +54,9 @@ Schedule.args = {
   ],
   // darkMode: true,
   darkMode: false,
-  emptyStateMessage: "No games found",
+  configNoData: {
+    message: "No games found",
+  },
   gameDataSourceLoader: {
     limit: 20,
   },

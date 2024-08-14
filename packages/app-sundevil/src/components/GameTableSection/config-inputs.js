@@ -6,6 +6,7 @@ const selectOptionPropTypes = PropTypes.shape({
   id: PropTypes.string,
   active: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  includeAllOption: PropTypes.bool,
 });
 
 /**
@@ -27,6 +28,7 @@ const configSelectInputPropTypes = PropTypes.shape({
   label: PropTypes.string,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(selectOptionPropTypes),
+  includeAllOption: PropTypes.bool,
 });
 
 export const configInputsPropTypes = PropTypes.shape({
@@ -48,7 +50,7 @@ export const configInputsPropTypes = PropTypes.shape({
  */
 
 /**
- * @typedef {ConfigInput & {options?: SelectOption[]}} ConfigSelectInput
+ * @typedef {ConfigInput & {options?: SelectOption[]; includeAllOption?: boolean;}} ConfigSelectInput
  */
 
 /**
@@ -76,33 +78,41 @@ export const defaultConfigInputs = {
   sportTypeSelect: {
     label: "Sport type",
     placeholder: "Select one",
+    includeAllOption: true,
   },
   homeOrAwaySelect: {
     label: "Home or away",
     placeholder: "Select one",
+    includeAllOption: true,
   },
   venueSelect: {
     label: "Venue",
     placeholder: "Select one",
+    includeAllOption: true,
   },
   sortBySelect: {
     label: "Sort By:",
     placeholder: "Select one",
+    includeAllOption: true,
   },
   sportTypeCheckboxList: {
     label: "Sport type",
     placeholder: "Select one",
+    includeAllOption: true,
   },
   maxAdmissionCostSelect: {
-    label: "Cost of admission",
+    label: "Max cost of admission",
     placeholder: "Select one",
+    includeAllOption: true,
   },
   admissionCostSelect: {
     label: "Cost of admission",
     placeholder: "Select",
+    includeAllOption: true,
   },
   eventTypeSelect: {
     label: "Event type",
     placeholder: "Select one",
+    includeAllOption: true,
   },
 };

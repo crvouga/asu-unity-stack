@@ -2,7 +2,11 @@ import PropTypes from "prop-types";
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+import { ALL_ID, ALL_LABEL } from "../../select-all-option";
+import { cleanString } from "../../utils/clean-string";
+import { ensureArray } from "../../utils/ensure-array";
 import { idToLabel } from "../../utils/id-to-label";
+import { isEqual } from "../../utils/is-equal";
 import { useFocus } from "../../utils/use-focus";
 import { CollapseIcon } from "../CollapseIcon/CollapseIcon";
 import { DropDown, DropDownSurface } from "../DropDown";
@@ -132,16 +136,49 @@ const optionPropTypes = PropTypes.shape({
 });
 
 export const stringsToOptions = strings => {
-  if (!Array.isArray(strings)) {
-    return [];
-  }
-
-  return strings.map(str => ({
+  return ensureArray(strings).map(str => ({
     id: str,
     label: idToLabel(str) ?? str,
     value: str,
     active: false,
   }));
+};
+
+export const includeAllOption = (
+  options,
+  allId = ALL_ID,
+  allLabel = ALL_LABEL
+) => {
+  const hasAllOption = ensureArray(options).some(option =>
+    isEqual(cleanString, option.id, allId)
+  );
+
+  if (hasAllOption) {
+    return ensureArray(options);
+  }
+
+  return [
+    {
+      id: allId,
+      label: allLabel,
+      value: allId,
+      active: false,
+    },
+    ...ensureArray(options),
+  ];
+};
+
+export const includeAllOptionWhen = (
+  predicate,
+  options,
+  allId = ALL_ID,
+  allLabel = ALL_LABEL
+) => {
+  if (predicate) {
+    return includeAllOption(ensureArray(options), allId, allLabel);
+  }
+
+  return ensureArray(options);
 };
 
 Select.propTypes = {

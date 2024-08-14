@@ -13,6 +13,7 @@ export const Ads = ({
   ads,
   storageKey = "sun-devils-ads/current-index",
   storage = window.localStorage,
+  target,
 }) => {
   const currentIndex = useCycleIndexOnLoad({
     storageKey,
@@ -27,7 +28,11 @@ export const Ads = ({
   }
 
   return (
-    <a href={ad.href} style={{ width: "fit-content", height: "fit-content" }}>
+    <a
+      href={ad.href}
+      target={ad.target ?? target ?? undefined}
+      style={{ width: "fit-content", height: "fit-content" }}
+    >
       <img
         src={ad.imageSrc}
         alt={ad.imageAlt ?? " "}
@@ -51,6 +56,7 @@ export const Ads = ({
  * storageKey?: string;
  * storage?: Storage;
  * ads: Array<import("./ad").Ad>
+ * target?: string;
  * }} Props
  */
 
@@ -59,6 +65,7 @@ Ads.propTypes = {
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   ads: PropTypes.arrayOf(adPropTypes),
   storageKey: PropTypes.string,
+  target: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   storage: PropTypes.object,
 };

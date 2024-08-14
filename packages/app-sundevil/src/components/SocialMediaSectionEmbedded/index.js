@@ -6,6 +6,7 @@ import { SocialMediaSectionEmbedded as SocialMediaSectionEmbeddedCore } from "./
 const drupalSocialMediaHandlePropTypes = PropTypes.shape({
   // eslint-disable-next-line react/forbid-prop-types
   icon: PropTypes.object,
+  label: PropTypes.string,
   link: PropTypes.string,
 });
 
@@ -38,6 +39,8 @@ const drupalPropsToProps = maybeDrupalProps => {
       subtitle: drupalProps?.body,
       social: ensureArray(drupalProps?.social_media_handles).map(handle => {
         return {
+          ...handle,
+          label: handle?.label,
           url: handle?.link,
           icon: handle?.icon,
         };

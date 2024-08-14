@@ -147,7 +147,8 @@ export const GameTableRowMobileDivided = forwardRef((props, ref) => {
                 aria-label={game?.ticketText}
                 href={game?.ticketLink}
               >
-                <i className="fa fa-fas fa-ticket" />
+                {/* <i className="fa fa-fas fa-ticket" /> */}
+                <i className="fa fa-fas fa-info" />
               </TicketButton>
             </CellTicketButton>
           )}

@@ -24,6 +24,8 @@ export const gamePropTypes = PropTypes.shape({
   eventType: PropTypes.string,
 });
 
+export const isGameTicketed = game => Boolean(game?.ticketLink);
+
 /**
  * @typedef {object} Game
  * @property {string} sportId

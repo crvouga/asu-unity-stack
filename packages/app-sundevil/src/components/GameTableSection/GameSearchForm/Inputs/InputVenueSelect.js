@@ -21,7 +21,11 @@ export const InputVenueSelect = () => {
 
   const options = firstNonEmpty(
     configInputs.venueSelect?.options,
-    stringsToOptions(gameSearchFormInputOptions.allVenues),
+    stringsToOptions(gameSearchFormInputOptions.allVenues).map(option => ({
+      ...option,
+      // Rare case where the id is the proper label
+      label: option.id.toString(),
+    })),
     []
   );
 

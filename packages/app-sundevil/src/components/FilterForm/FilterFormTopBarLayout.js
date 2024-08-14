@@ -21,7 +21,7 @@ const Title = styled.div`
   color: ${({
     // @ts-ignore
     darkMode,
-  }) => (darkMode ? "white" : "#191919")};
+  }) => (darkMode ? "#fff !important" : "#191919 !important")};
 `;
 
 const CollapseRoot = styled.button`

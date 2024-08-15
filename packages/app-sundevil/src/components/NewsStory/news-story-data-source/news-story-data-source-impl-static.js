@@ -53,7 +53,7 @@ export class NewsStoryDataSourceStatic extends INewsStoryDataSource {
         const matchedSportId =
           typeof input?.sportId === "string" &&
           input?.sportId?.length > 0 &&
-          !this.isAllId(input?.newsType)
+          !this.isAllId(input?.sportId)
             ? isEqual(stringToSportId, newsStory.sportId, input.sportId)
             : true;
 

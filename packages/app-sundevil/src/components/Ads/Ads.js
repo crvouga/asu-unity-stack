@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import { adPropTypes } from "./ad";
+import { Ad, adPropTypes } from "./ad";
 import { useCycleIndexOnLoad } from "./use-cycle-index-on-load";
 
 /**
@@ -28,24 +28,16 @@ export const Ads = ({
   }
 
   return (
-    <a
-      href={ad.href}
-      target={ad.target ?? target ?? undefined}
-      style={{ width: "fit-content", height: "fit-content" }}
+    <div
+      style={{
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
     >
-      <img
-        src={ad.imageSrc}
-        alt={ad.imageAlt ?? " "}
-        width={ad.width ?? width ?? "100%"}
-        height={ad.height ?? height ?? "auto"}
-        style={{
-          width: ad.width ?? width ?? "100%",
-          height: ad.height ?? height ?? "auto",
-          overflow: "hidden",
-          objectFit: "contain", // Don't use objectFit: "cover" since it will cut off the image
-        }}
-      />
-    </a>
+      <Ad ad={ad} width={width} height={height} target={target} />
+    </div>
   );
 };
 

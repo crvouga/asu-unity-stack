@@ -98,7 +98,14 @@ export const RenderReact = ({
   renderWithinChildReactId = REACT_CHILD_TARGET_ID,
   renderWithinChildWhiteList = DEFAULT_WHITE_LIST,
   log = false,
-  loadingStyle = {},
+  loadingStyle = {
+    width: "100%",
+    backgroundColor: "transparent",
+    padding: "1rem",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   loadingText = "Loading...",
 }) => {
   const consoleLog = (msg, ...args) => {

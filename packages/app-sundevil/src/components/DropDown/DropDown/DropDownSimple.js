@@ -72,7 +72,7 @@ export const DropDownSimple = ({
     zIndex: 20,
     ...(position.startsWith("bottom") ? { top: "100%" } : { bottom: "100%" }),
     ...(position.endsWith("end") ? { right: 0 } : { left: 0 }),
-    maxHeight: maxHeight ? `${maxHeight}px` : "none",
+    maxHeight: maxHeight ? `${maxHeight}px` : "80vh",
     overflowY: "auto",
   };
 

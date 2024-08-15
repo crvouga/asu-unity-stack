@@ -30,6 +30,8 @@ export const Ad = ({ ad, width, height, target }) => {
   return (
     <a
       href={ad.href}
+      title={ad.linkTitle}
+      aria-label={ad.linkTitle}
       target={ad.target ?? target ?? undefined}
       style={{
         width: "fit-content",

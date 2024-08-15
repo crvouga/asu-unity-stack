@@ -10,7 +10,7 @@ import { DropDown, DropDownSurface } from "../DropDown";
 import { Icon, SUN_DEVILS_ICON_CLASS_NAME } from "../Icon_";
 import { Skeleton } from "../Skeleton";
 import { sportsTabSkeletonData } from "./sports-tab-skeleton-data";
-import { basePropTypes, sortSportTabs } from "./sports-tabs";
+import { basePropTypes, cleanSportTabs } from "./sports-tabs";
 import { SportsTab } from "./SportsTab";
 import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 
@@ -70,7 +70,7 @@ export const SportsTabsDesktop = ({
   darkMode = false,
   className,
 }) => {
-  const sports = sortSportTabs(propsSports);
+  const sports = cleanSportTabs(propsSports);
 
   const isTablet = useBreakpoint(APP_CONFIG.breakpointTablet);
   const maxTabCount = isTablet ? 6 : 9;

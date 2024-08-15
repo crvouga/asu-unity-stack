@@ -7,7 +7,7 @@ import { DropDownSurface } from "../DropDown/DropDownSurface";
 import { Icon } from "../Icon_";
 import { SelectBase } from "../Select/SelectBase";
 import { Skeleton } from "../Skeleton";
-import { basePropTypes, sortSportTabs } from "./sports-tabs";
+import { basePropTypes, cleanSportTabs } from "./sports-tabs";
 import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 
 /**
@@ -26,7 +26,7 @@ export const SportsTabsMobile = ({
   variant,
   className,
 }) => {
-  const sports = sortSportTabs(propsSports);
+  const sports = cleanSportTabs(propsSports);
   const activeSport = sports.find(sport => Boolean(sport.active));
   if (!activeSport) return null;
 

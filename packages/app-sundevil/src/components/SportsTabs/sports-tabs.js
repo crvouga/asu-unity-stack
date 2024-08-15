@@ -37,7 +37,7 @@ export const basePropTypes = {
 /**
  * @type {(sportTabs: Sport[]) => Sport[]}
  */
-export const sortSportTabs = sportTabs => {
+const sortSportTabs = sportTabs => {
   try {
     const copied = Array.isArray(sportTabs) ? [...sportTabs] : [];
 
@@ -52,6 +52,34 @@ export const sortSportTabs = sportTabs => {
   } catch (error) {
     return sportTabs;
   }
+};
+
+/**
+ * @param {Sport[]} sportTabs
+ * @returns {Sport[]}
+ */
+const dedupeSportTabs = sportTabs => {
+  try {
+    const seen = new Set();
+    return sportTabs.filter(sport => {
+      if (seen.has(sport.id)) {
+        return false;
+      }
+      seen.add(sport.id);
+      return true;
+    });
+  } catch (error) {
+    return sportTabs;
+  }
+};
+
+/**
+ *
+ * @param {Sport[]} sportTabs
+ * @returns {Sport[]}
+ */
+export const cleanSportTabs = sportTabs => {
+  return sortSportTabs(dedupeSportTabs(sportTabs));
 };
 
 /**

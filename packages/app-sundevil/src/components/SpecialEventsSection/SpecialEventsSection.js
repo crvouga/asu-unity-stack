@@ -27,7 +27,7 @@ const DESKTOP_CARD_WIDTH = 588;
 const SpecialEventsSectionInner = ({ sectionHeader }) => {
   const { isLoading, specialEvents } = useSpecialEventsLoader({
     offset: 0,
-    limit: 10,
+    limit: Infinity,
   });
 
   const sectionHeaderRef = useRef();

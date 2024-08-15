@@ -151,6 +151,7 @@ export const GameTableRowMobileBordered = forwardRef(
             {configLayout.includeCellTickets && (
               <TicketButton
                 aria-label={game?.ticketText}
+                title={game?.ticketText}
                 href={game?.ticketLink}
                 style={{ textDecoration: "none !important" }}
               >

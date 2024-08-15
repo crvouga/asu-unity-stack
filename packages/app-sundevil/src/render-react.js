@@ -98,15 +98,17 @@ export const RenderReact = ({
   renderWithinChildReactId = REACT_CHILD_TARGET_ID,
   renderWithinChildWhiteList = DEFAULT_WHITE_LIST,
   log = false,
-  loadingStyle = {
-    width: "100%",
-    backgroundColor: "transparent",
-    padding: "1rem",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  loadingText = "Loading...",
+  // loadingStyle = {
+  //   width: "100%",
+  //   backgroundColor: "transparent",
+  //   padding: "1rem",
+  //   display: "flex",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  // },
+  // loadingText = "Loading...",
+  loadingStyle = {},
+  loadingText = "",
 }) => {
   const consoleLog = (msg, ...args) => {
     if (log) {

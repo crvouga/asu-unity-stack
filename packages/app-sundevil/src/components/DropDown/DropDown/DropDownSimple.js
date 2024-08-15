@@ -74,7 +74,6 @@ export const DropDownSimple = ({
     ...(position.endsWith("end") ? { right: 0 } : { left: 0 }),
     maxHeight: maxHeight ? `${maxHeight}px` : "none",
     overflowY: "auto",
-    boxSizing: "border-box",
   };
 
   return (

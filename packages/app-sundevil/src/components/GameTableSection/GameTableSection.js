@@ -76,7 +76,7 @@ const Root = styled.div`
   */
 `;
 
-const useUrlSportIdWithFallback = (sports, onSportId) => {
+export const useUrlSportIdWithFallback = (sports, onSportId) => {
   useUrlSportId(urlSportId => {
     const existingWithSameId = sports?.find(sport =>
       isEqual(stringToSportId, sport.id, urlSportId)
@@ -173,7 +173,7 @@ const GameTableSectionInner = ({ ...props }) => {
     },
   });
 
-  useUrlSportIdWithFallback(props?.sports ?? [], urlSportId => {
+  useUrlSportId(urlSportId => {
     if (props?.disableUrlSportId) {
       return;
     }

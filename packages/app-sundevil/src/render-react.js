@@ -1,5 +1,5 @@
 // @ts-check
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 
 /**
@@ -72,6 +72,10 @@ const filterDOM = (
  * @property {boolean} [log] - Whether to log debug information.
  * @property {boolean} [enabledPreventFlashOfUnstyledContent] - Whether to
  * enable the PreventFlashOfUnstyledContent component.
+ *
+ * @property {object} [loadingStyle] - The style object to apply to the loading
+ * @property {string} [loadingText] - The text to display while the component is loading.
+ *
  */
 
 const REACT_CHILD_TARGET_ID = "react-child-target";
@@ -94,6 +98,8 @@ export const RenderReact = ({
   renderWithinChildReactId = REACT_CHILD_TARGET_ID,
   renderWithinChildWhiteList = DEFAULT_WHITE_LIST,
   log = false,
+  loadingStyle = {},
+  loadingText = "Loading...",
 }) => {
   const consoleLog = (msg, ...args) => {
     if (log) {
@@ -119,7 +125,18 @@ export const RenderReact = ({
   }
 
   const renderComponent = targetElement => {
-    ReactDOM.render(React.createElement(component, props), targetElement);
+    ReactDOM.render(
+      <Suspense
+        fallback={
+          <div style={loadingStyle} aria-busy="true">
+            {loadingText}
+          </div>
+        }
+      >
+        {React.createElement(component, props)}
+      </Suspense>,
+      targetElement
+    );
   };
 
   if (renderWithinChild) {

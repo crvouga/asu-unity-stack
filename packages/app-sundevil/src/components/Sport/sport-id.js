@@ -220,5 +220,17 @@ export function stringToSportId(str) {
   return output;
 }
 
+export function stringToSportIdWithoutGender(str) {
+  const sportId = stringToSportId(str);
+  if (!sportId) {
+    return null;
+  }
+  if (sportId.startsWith("m-") || sportId.startsWith("w-")) {
+    return sportId.slice(2);
+  }
+  return sportId;
+}
+
+window.stringToSportIdWithoutGender = stringToSportIdWithoutGender;
 // @ts-ignore
 window.stringToSportId = stringToSportId;

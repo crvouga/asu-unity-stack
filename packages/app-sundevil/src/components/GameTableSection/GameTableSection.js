@@ -8,6 +8,7 @@ import { ALL_ID } from "../../select-all-option";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
 import { ensureObject } from "../../utils/ensure-object";
 import { firstCleanString } from "../../utils/first-clean-string";
+import { isEqual } from "../../utils/is-equal";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { useElementContentDimensions } from "../../utils/use-element-content-dimensions";
 import { findManyInputPropTypes } from "../Game/game-data-source";
@@ -24,7 +25,10 @@ import {
 } from "../LoadMoreButton/LoadMoreButton";
 import { SectionFooter } from "../SectionFooter";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
-import { stringToSportId } from "../Sport/sport-id";
+import {
+  stringToSportId,
+  stringToSportIdWithoutGender,
+} from "../Sport/sport-id";
 import { useUrlSportId } from "../Sport/use-url-sport-id";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportWithFooterPropTypes } from "../SportsTabs/sports-tabs";
@@ -71,6 +75,32 @@ const Root = styled.div`
   overflow: hidden;
   */
 `;
+
+const useUrlSportIdWithFallback = (sports, onSportId) => {
+  useUrlSportId(urlSportId => {
+    const existingWithSameId = sports?.find(sport =>
+      isEqual(stringToSportId, sport.id, urlSportId)
+    );
+
+    if (existingWithSameId) {
+      onSportId(existingWithSameId.id);
+      return null;
+    }
+
+    const existingWithSameSport = sports?.find(sport =>
+      isEqual(stringToSportIdWithoutGender, sport.id, urlSportId)
+    );
+
+    if (existingWithSameSport) {
+      onSportId({
+        sportId: existingWithSameSport.id,
+      });
+      return null;
+    }
+
+    return null;
+  });
+};
 
 const GameTableSectionInner = ({ ...props }) => {
   // eslint-disable-next-line no-console
@@ -143,16 +173,18 @@ const GameTableSectionInner = ({ ...props }) => {
     },
   });
 
-  useUrlSportId(urlSportId => {
+  useUrlSportIdWithFallback(props?.sports ?? [], urlSportId => {
     if (props?.disableUrlSportId) {
       return;
     }
+
     if (props.shouldLog) {
       log({
         urlSportId,
         message: "sport id from url log",
       });
     }
+
     gameSearchForm.update({
       sportId:
         urlSportId ?? configGameTableForm?.initialState?.sportId ?? ALL_ID,

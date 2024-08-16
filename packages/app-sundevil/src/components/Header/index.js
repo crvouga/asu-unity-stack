@@ -62,6 +62,7 @@ const mapNavTreeItemButtons = navTreeItem => {
 /** @type {(props: NavTreeItemVariant) => NavTreeItemVariant} */
 const mapNavTreeItemToSportLinks = navTreeItem => {
   return {
+    href: navTreeItem.href,
     id: navTreeItem.id,
     type: navTreeItem.type,
     text: navTreeItem.text,

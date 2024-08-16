@@ -168,7 +168,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
       <a
         ref={refs.setReference}
         onClick={handleClick}
-        href={link.href}
+        href={link.href ?? "/"}
         aria-expanded={() => "true"} // eslint-disable-line no-nested-ternary
         aria-owns={
           link.items || link.renderContent ? `dropdown-${link.id}` : null

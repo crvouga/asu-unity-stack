@@ -1,8 +1,40 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Ad, adPropTypes } from "./ad";
 import { useCycleIndexOnLoad } from "./use-cycle-index-on-load";
+
+const useDataLayers = ({ ad, onMount }) => {
+  useEffect(() => {
+    if (typeof onMount === "function") {
+      const maybeCleanUp = onMount?.({
+        ad,
+        adId: ad?.id,
+      });
+      return () => {
+        if (typeof maybeCleanUp === "function") {
+          maybeCleanUp?.();
+        }
+      };
+    }
+
+    if (
+      typeof window !== "undefined" &&
+      typeof window.dataLayer !== "undefined" &&
+      typeof window.dataLayer.push === "function" &&
+      typeof ad?.id === "string"
+    ) {
+      window.dataLayer.push({
+        event: "Pageview",
+        ad_id: ad?.id,
+      });
+    }
+
+    return () => {
+      //
+    };
+  }, [ad]);
+};
 
 /**
  * @type {React.Fc<Props>}
@@ -15,6 +47,7 @@ export const Ads = ({
   storage = window.localStorage,
   target,
   id,
+  onMount,
 }) => {
   const currentIndex = useCycleIndexOnLoad({
     storageKey,
@@ -23,6 +56,8 @@ export const Ads = ({
   });
 
   const ad = Array.isArray(ads) ? ads[currentIndex] : null;
+
+  useDataLayers({ ad, onMount });
 
   if (!ad) {
     return null;
@@ -52,6 +87,7 @@ export const Ads = ({
  * ads: Array<import("./ad").Ad>
  * target?: string;
  * id?: string;
+ * onMount?: () => void;
  * }} Props
  */
 
@@ -64,4 +100,5 @@ Ads.propTypes = {
   target: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   storage: PropTypes.object,
+  onMount: PropTypes.func,
 };

@@ -59,7 +59,11 @@ export const DropdownItemFooter = ({ footer }) => {
         <ImageOnlyRoot>
           <img
             width={footer.imageWidth}
-            height={footer.imageHeight}
+            height={footer.imageHeight ?? "auto"}
+            style={{
+              maxWidth: "100%",
+              objectFit: "container",
+            }}
             src={footer.imageSrc}
             alt={footer.imageAlt}
           />

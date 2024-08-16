@@ -20,7 +20,8 @@ export const DropDownSimple = ({
   const updateMaxHeight = () => {
     if (dropdownRef.current && containerRef.current) {
       const containerRect = containerRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
+      const viewportHeight =
+        window.visualViewport?.height || window.innerHeight;
       let availableHeight;
 
       if (position.startsWith("bottom")) {
@@ -29,7 +30,9 @@ export const DropDownSimple = ({
         availableHeight = containerRect.top;
       }
 
-      setMaxHeight(availableHeight - 10); // Subtract 10px for some padding
+      const PADDING = 12;
+
+      setMaxHeight(availableHeight - PADDING);
     }
   };
 
@@ -72,8 +75,9 @@ export const DropDownSimple = ({
     zIndex: 20,
     ...(position.startsWith("bottom") ? { top: "100%" } : { bottom: "100%" }),
     ...(position.endsWith("end") ? { right: 0 } : { left: 0 }),
-    maxHeight: maxHeight ? `${Math.min(maxHeight, 500)}px` : "80vh",
+    maxHeight: maxHeight ? `${Math.min(maxHeight, 600)}px` : "80dvh",
     overflowY: "auto",
+    border: "1px solid #d0d0d0",
   };
 
   return (

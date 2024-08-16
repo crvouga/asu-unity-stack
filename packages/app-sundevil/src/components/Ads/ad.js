@@ -10,6 +10,7 @@ import React from "react";
  * linkTitle?: string;
  * width?: string | number | null | undefined;
  * height?: string | number | null | undefined;
+ * id?: string;
  * }} Ad
  */
 
@@ -21,6 +22,7 @@ export const adPropTypes = PropTypes.shape({
   target: PropTypes.string,
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  id: PropTypes.string,
 });
 
 /**
@@ -29,6 +31,7 @@ export const adPropTypes = PropTypes.shape({
 export const Ad = ({ ad, width, height, target }) => {
   return (
     <a
+      id={ad?.id}
       href={ad.href}
       title={ad.linkTitle}
       aria-label={ad.linkTitle}

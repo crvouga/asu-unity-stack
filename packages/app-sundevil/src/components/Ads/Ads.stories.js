@@ -9,11 +9,13 @@ const props = {
   // height: 66,
   storage: window.localStorage,
   storageKey: "sun-devils-ads",
+  id: "root-ad",
   ads: [
     {
       imageSrc: "https://tpc.googlesyndication.com/simgad/15906690503191566407",
       imageAlt: "Placeholder",
       href: "https://www.example.com",
+      id: "some-ad",
       // width: 970,
       // height: 66,
     },

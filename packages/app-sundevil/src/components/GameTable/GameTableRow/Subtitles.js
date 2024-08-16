@@ -30,6 +30,7 @@ const Subtitle = styled.p`
   text-overflow: ellipsis;
   white-space: nowrap;
   flex-shrink: 1;
+  color: #747474;
   min-width: 0;
 `;
 
@@ -80,10 +81,8 @@ export const Subtitles = ({
         isValidString(game?.subtitleChip) && (
           <SubtitleChip>{game?.subtitleChip}</SubtitleChip>
         )}
-      <Subtitle className="text-body-tertiary">
-        {formatTimeAmPm(game?.time)}
-      </Subtitle>
-      <Subtitle className="text-body-tertiary">{game?.venue}</Subtitle>
+      <Subtitle>{formatTimeAmPm(game?.time)}</Subtitle>
+      <Subtitle>{game?.venue}</Subtitle>
     </Root>
   );
 };

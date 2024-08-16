@@ -55,6 +55,7 @@ const Subtitle = styled.p`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: #747474;
 `;
 
 const Date = styled.p`
@@ -138,12 +139,8 @@ export const GameTableRowMobileBordered = forwardRef(
               <TitleRoot>
                 <Title href={game?.titleHref}>{game?.title}</Title>
                 <Subtitles>
-                  <Subtitle className="text-body-tertiary">
-                    {formatTimeAmPm(game?.time)}
-                  </Subtitle>
-                  <Subtitle className="text-body-tertiary">
-                    {game?.venue}
-                  </Subtitle>
+                  <Subtitle>{formatTimeAmPm(game?.time)}</Subtitle>
+                  <Subtitle>{game?.venue}</Subtitle>
                 </Subtitles>
               </TitleRoot>
             )}

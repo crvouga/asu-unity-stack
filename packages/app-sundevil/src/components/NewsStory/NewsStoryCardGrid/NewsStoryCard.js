@@ -149,6 +149,9 @@ export const NewsStoryCard = ({
     return null;
   }
 
+  const hasHref =
+    typeof newsStory.href === "string" && newsStory.href.trim().length > 0;
+
   return (
     <Skeleton
       skeleton={Boolean(skeleton)}
@@ -160,7 +163,8 @@ export const NewsStoryCard = ({
       <Root
         href={newsStory.href}
         style={style}
-        clickable={typeof newsStory.href === "string"}
+        as={hasHref ? "a" : "div"}
+        clickable={hasHref}
       >
         <BackgroundImageSkeletonWrapper skeleton={!isImageLoaded}>
           <BackgroundImage

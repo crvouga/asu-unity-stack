@@ -148,7 +148,7 @@ export const SpecialEventCard = ({ specialEventCard, cardWidth, skeleton }) => {
               <Button
                 key={button.label}
                 color={button.color}
-                ariaLabel={button.label}
+                ariaLabel={button?.ariaLabel ?? specialEventCard?.title ?? " "}
                 href={button.href}
                 label={button.label}
                 size="small"

@@ -46,6 +46,8 @@ const itemToSpecialEvent = item => {
               color: "maroon",
               href: buttonHref,
               label: buttonLabel,
+              // @ts-ignore
+              ariaLabel: item?.title ?? " ",
             },
           ]
         : [],

@@ -12,6 +12,7 @@ const buttonPropTypes = PropsTypes.shape({
  * @typedef {Object} Button
  * @property {string} label
  * @property {string} href
+ * @property {string} ariaLabel
  * @property {"maroon" | "dark"} color
  */
 

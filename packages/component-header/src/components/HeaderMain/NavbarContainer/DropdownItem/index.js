@@ -141,7 +141,7 @@ const DropdownItem = forwardRef(
         // @ts-ignore
         breakpoint={breakpoint}
       >
-        {renderContent?.()}
+        {renderContent?.({ listId })}
         {items?.length > 0 && (
           <div
             id={MULTIPLE_SUBMENUS ? listId : undefined}

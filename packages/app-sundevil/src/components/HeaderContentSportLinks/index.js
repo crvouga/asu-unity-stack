@@ -336,12 +336,14 @@ const Root = styled.div`
 const propTypesPropTypes = {
   sports: PropTypes.arrayOf(sportPropTypes.isRequired).isRequired,
   buttons: PropTypes.arrayOf(buttonPropTypes.isRequired),
+  id: PropTypes.string.isRequired,
 };
 
 /**
  * @typedef {Object} Props
  * @property {Sport[]} sports
  * @property {ButtonProp[]} buttons
+ * @property {string} id
  */
 
 const COLUMN_HEIGHT = 5;
@@ -369,12 +371,12 @@ const toColumnKey = column => column.map(sport => sport.sportName).join("");
  * @link https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-108410&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width
  * @link https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-108411&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width
  */
-const HeaderContentSportLinks = ({ sports, buttons }) => {
+const HeaderContentSportLinks = ({ sports, buttons, id }) => {
   const columns = chunk(sports, COLUMN_HEIGHT);
   const { elementsRef, maxWidth } = useMaxWidth(columns.length);
   const isTablet = useBreakpoint(APP_CONFIG.breakpointTablet);
   return (
-    <Root>
+    <Root id={id}>
       <Vars />
       <SportGridList>
         {columns.map((column, columnIndex) => (

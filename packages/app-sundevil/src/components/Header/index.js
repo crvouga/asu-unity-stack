@@ -8,7 +8,7 @@ import { Icon } from "../Icon_";
 import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps} BaseHeaderProps */
-/** @typedef {BaseHeaderProps & {officialSiteHref: string}} HeaderProps */
+/** @typedef {BaseHeaderProps & {officialSiteHref: string; officialSiteHrefStyle?: Record<string, unknown>}} HeaderProps */
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps['navTree'][0]} NavTreeItem */
 
@@ -68,8 +68,9 @@ const mapNavTreeItemToSportLinks = navTreeItem => {
     text: navTreeItem.text,
     footers: navTreeItem.footers,
     buttons: navTreeItem.buttons,
-    renderContent: () => (
+    renderContent: ({ listId = "" } = {}) => (
       <HeaderContentSportLinks
+        id={listId}
         buttons={[]}
         sports={(navTreeItem.items ?? []).flatMap(column =>
           column.map(item => {
@@ -195,7 +196,12 @@ const mapProps = props => ({
   ...props,
   navTree: mapNavTree(props.navTree),
   universalNavbar: {
-    renderStart: () => <OfficialAthleticsSite href={props.officialSiteHref} />,
+    renderStart: () => (
+      <OfficialAthleticsSite
+        hrefStyle={props.officialSiteHrefStyle}
+        href={props.officialSiteHref}
+      />
+    ),
     hideMobile: false,
     searchPlaceholder: "Search Sun Devil Athletics",
     disableTopGradient: true,

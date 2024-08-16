@@ -15,14 +15,19 @@ const Root = styled.p`
   }
 `;
 
-const OfficialAthleticsSite = ({ href }) => {
+const OfficialAthleticsSite = ({ href, hrefStyle }) => {
   return (
     <Root>
-      The official athletics site of <a href={href}>Arizona State University</a>
+      The official athletics site of{" "}
+      <a style={hrefStyle} href={href}>
+        Arizona State University
+      </a>
     </Root>
   );
 };
 OfficialAthleticsSite.propTypes = {
   href: PropTypes.string,
+  // eslint-disable-next-line react/forbid-prop-types
+  hrefStyle: PropTypes.object,
 };
 export { OfficialAthleticsSite };

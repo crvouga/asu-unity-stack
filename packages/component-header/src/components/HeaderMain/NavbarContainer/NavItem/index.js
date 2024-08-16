@@ -156,6 +156,9 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
     return <></>;
   }
 
+  const linkTitle =
+    link.type === "icon-home" && title ? `${title} home page` : link.text;
+
   return (
     <NavItemWrapper
       // @ts-ignore
@@ -171,16 +174,17 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
         href={link.href ?? "/"}
         aria-expanded={() => "true"} // eslint-disable-line no-nested-ternary
         aria-owns={
-          link.items || link.renderContent ? `dropdown-${link.id}` : null
+          (link.items && Array.isArray(link.items) && link.items.length > 0) ||
+          link.renderContent
+            ? `dropdown-${link.id}`
+            : null
         }
         className={`${link.class ? link.class : ""}${
           link.selected ? " nav-item-selected" : ""
         }${opened ? " open-link" : ""}`}
         tabIndex={0}
         data-testid="nav-item"
-        title={
-          link.type === "icon-home" && title ? `${title} home page` : link.text
-        }
+        title={linkTitle}
         style={{ cursor: "pointer" }}
       >
         {renderNavLinks}

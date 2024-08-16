@@ -30,7 +30,7 @@ export const DropDownSimple = ({
         availableHeight = containerRect.top;
       }
 
-      const PADDING = 12;
+      const PADDING = 16;
 
       setMaxHeight(availableHeight - PADDING);
     }

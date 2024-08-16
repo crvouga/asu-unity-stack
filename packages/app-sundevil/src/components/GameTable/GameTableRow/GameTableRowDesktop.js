@@ -50,6 +50,7 @@ const CellDate = styled.div`
   justify-content: center;
   align-items: start;
   padding: 1rem;
+  gap: 4px;
 `;
 
 const CellSportName = styled.div`
@@ -177,8 +178,28 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
         {configLayout.includeCellDate && (
           <Cell>
             <CellDate>
-              <h5 className="m-0 lh-1">{game?.dateMonth}.</h5>
-              <h2 className="m-0">{game?.dateDay}</h2>
+              <div
+                style={{
+                  margin: 0,
+                  padding: 0,
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  lineHeight: "16px",
+                }}
+              >
+                {game?.dateMonth}.
+              </div>
+              <div
+                style={{
+                  lineHeight: "40px",
+                  margin: 0,
+                  padding: 0,
+                  fontSize: "40px",
+                  fontWeight: "bold",
+                }}
+              >
+                {game?.dateDay}
+              </div>
             </CellDate>
           </Cell>
         )}

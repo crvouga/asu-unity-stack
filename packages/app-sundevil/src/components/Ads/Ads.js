@@ -28,6 +28,11 @@ const useDataLayers = ({ ad, onMount }) => {
         event: "Pageview",
         ad_id: ad?.id,
       });
+    } else {
+      // eslint-disable-next-line no-console
+      console.warn(
+        "pushing data layer event for Ad component failed. window.dataLayer.push is not a function or ad.id is not a string"
+      );
     }
 
     return () => {

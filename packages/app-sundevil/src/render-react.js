@@ -116,64 +116,74 @@ export const RenderReact = ({
       console.log(msg, ...args);
     }
   };
-  const target = document.querySelector(targetSelector);
+  const targets = document.querySelectorAll(targetSelector);
 
-  if (!target) {
-    consoleLog("target not found", targetSelector);
+  if (!targets.length) {
+    consoleLog("no target(s) not found for: ", targetSelector);
     return;
   }
 
-  if (typeof id === "string") {
-    consoleLog("setting id on target", id);
-    target.id = id;
-  }
-
-  if (typeof class_ === "string") {
-    consoleLog("setting class on target", class_);
-    target.classList.add(class_);
-  }
-
-  const renderComponent = targetElement => {
-    ReactDOM.render(
-      <Suspense
-        fallback={
-          <div style={loadingStyle} aria-busy="true">
-            {loadingText}
-          </div>
-        }
-      >
-        {React.createElement(component, props)}
-      </Suspense>,
-      targetElement
-    );
-  };
-
-  if (renderWithinChild) {
-    consoleLog("is rendering within child");
-    if (!renderWithinChildWhiteList.includes(`#${renderWithinChildReactId}`)) {
-      renderWithinChildWhiteList.push(`#${renderWithinChildReactId}`);
+  targets.forEach(target => {
+    if (!target) {
+      consoleLog("target not found", targetSelector);
+      return;
     }
 
-    consoleLog("looking for child target", `#${renderWithinChildReactId}`);
-    let targetChild = target.querySelector(`#${renderWithinChildReactId}`);
-
-    if (!targetChild) {
-      consoleLog("child target not found", `#${renderWithinChildReactId}`);
-      const targetChildNew = document.createElement("div");
-      consoleLog("created new child target", targetChildNew);
-      targetChildNew.id = renderWithinChildReactId;
-      consoleLog("added id to new child target", targetChildNew);
-      target.appendChild(targetChildNew);
-      consoleLog("appended new child target", targetChildNew);
-      targetChild = targetChildNew;
+    if (typeof id === "string") {
+      consoleLog("setting id on target", id);
+      // eslint-disable-next-line no-param-reassign
+      target.id = id;
     }
-    consoleLog("found child target", targetChild);
-    filterDOM(consoleLog, target, renderWithinChildWhiteList);
-    consoleLog("filtered DOM", target, renderWithinChildWhiteList);
-    renderComponent(targetChild);
-    consoleLog("rendered component", component, props, targetChild);
-  } else {
-    consoleLog("rendering to target", target);
-    renderComponent(target);
-  }
+
+    if (typeof class_ === "string") {
+      consoleLog("setting class on target", class_);
+      target.classList.add(class_);
+    }
+
+    const renderComponent = targetElement => {
+      ReactDOM.render(
+        <Suspense
+          fallback={
+            <div style={loadingStyle} aria-busy="true">
+              {loadingText}
+            </div>
+          }
+        >
+          {React.createElement(component, props)}
+        </Suspense>,
+        targetElement
+      );
+    };
+
+    if (renderWithinChild) {
+      consoleLog("is rendering within child");
+      if (
+        !renderWithinChildWhiteList.includes(`#${renderWithinChildReactId}`)
+      ) {
+        renderWithinChildWhiteList.push(`#${renderWithinChildReactId}`);
+      }
+
+      consoleLog("looking for child target", `#${renderWithinChildReactId}`);
+      let targetChild = target.querySelector(`#${renderWithinChildReactId}`);
+
+      if (!targetChild) {
+        consoleLog("child target not found", `#${renderWithinChildReactId}`);
+        const targetChildNew = document.createElement("div");
+        consoleLog("created new child target", targetChildNew);
+        targetChildNew.id = renderWithinChildReactId;
+        consoleLog("added id to new child target", targetChildNew);
+        target.appendChild(targetChildNew);
+        consoleLog("appended new child target", targetChildNew);
+        targetChild = targetChildNew;
+      }
+      consoleLog("found child target", targetChild);
+      filterDOM(consoleLog, target, renderWithinChildWhiteList);
+      consoleLog("filtered DOM", target, renderWithinChildWhiteList);
+      renderComponent(targetChild);
+      consoleLog("rendered component", component, props, targetChild);
+    } else {
+      consoleLog("rendering to target", target);
+      renderComponent(target);
+    }
+  });
 };

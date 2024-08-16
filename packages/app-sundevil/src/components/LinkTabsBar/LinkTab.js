@@ -103,7 +103,7 @@ export const LinkTab = forwardRef(
     const isIconOnly = Boolean(!hasLabel && icon);
     const ariaLabel = iconAlt || label || " ";
     const ariaLabelFinal = isIconOnly ? iconTooltip || ariaLabel : undefined;
-    const iconComponent = icon ? <Icon icon={icon} /> : null;
+
     return (
       <Root
         style={style}
@@ -117,24 +117,7 @@ export const LinkTab = forwardRef(
         aria-label={ariaLabelFinal}
       >
         <LabelRoot>
-          {iconComponent && (
-            <div className="uds-tooltip-container">
-              {iconComponent}
-              {iconTooltip && (
-                <div
-                  role="tooltip"
-                  className="uds-tooltip-description"
-                  id="tooltip-desc-1"
-                >
-                  <span
-                    className="uds-tooltip-heading"
-                    // eslint-disable-next-line react/no-danger
-                    dangerouslySetInnerHTML={{ __html: iconTooltip }}
-                  />
-                </div>
-              )}
-            </div>
-          )}
+          {icon ? <Icon icon={icon} /> : null}
           {hasLabel && <Label>{label}</Label>}
         </LabelRoot>
         {renderIconEnd && renderIconEnd()}

@@ -8,7 +8,7 @@ import { Icon } from "../Icon_";
 import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps} BaseHeaderProps */
-/** @typedef {BaseHeaderProps & {officialSiteHref: string; officialSiteHrefStyle?: Record<string, unknown>}} HeaderProps */
+/** @typedef {BaseHeaderProps & {officialSiteHref: string; officialSiteHrefStyle?: Record<string, unknown>, officialSite: import("../OfficialAthleticsSite").OfficialAthleticsSiteProps}} HeaderProps */
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps['navTree'][0]} NavTreeItem */
 
@@ -198,8 +198,11 @@ const mapProps = props => ({
   universalNavbar: {
     renderStart: () => (
       <OfficialAthleticsSite
+        // @ts-ignore
         hrefStyle={props.officialSiteHrefStyle}
+        // @ts-ignore
         href={props.officialSiteHref}
+        {...props.officialSite}
       />
     ),
     hideMobile: false,
@@ -227,4 +230,5 @@ export const SunDevilsHeader = props => {
 SunDevilsHeader.propTypes = {
   ...ASUHeader.propTypes,
   officialSiteHref: PropTypes.string.isRequired,
+  officialSite: OfficialAthleticsSite.propTypes,
 };

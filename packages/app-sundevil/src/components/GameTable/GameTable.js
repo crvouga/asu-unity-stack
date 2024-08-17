@@ -28,14 +28,17 @@ const BorderBottom = styled.div`
   }
 `;
 
-const AlternateBackground = styled.div`
+const Background = styled.div`
   width: 100%;
-  & > div:nth-child(even) {
-    background-color: #fafafa;
-  }
   & > *:not(:last-child) {
     border-bottom: 1px solid #d0d0d0;
   }
+  background-color: #fff;
+  /*
+  & > div:nth-child(even) {
+    background-color: #fafafa;
+  }
+  */
 `;
 
 const Root = styled.div`
@@ -97,7 +100,7 @@ export const GameTable = ({
           )}
 
           {isRow && (
-            <AlternateBackground>
+            <Background>
               {games.map((game, index) => (
                 <GameTableRow
                   key={game.id}
@@ -109,7 +112,7 @@ export const GameTable = ({
                   mobileRowVariant={mobileRowVariant}
                 />
               ))}
-            </AlternateBackground>
+            </Background>
           )}
 
           {isEmpty && (

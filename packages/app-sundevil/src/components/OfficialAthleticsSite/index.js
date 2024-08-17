@@ -15,18 +15,35 @@ const Root = styled.p`
   }
 `;
 
-const OfficialAthleticsSite = ({ href, hrefStyle }) => {
+const OfficialAthleticsSite = ({
+  href,
+  hrefStyle,
+  hrefText = "Arizona State University",
+  text = "The official athletics site of",
+}) => {
   return (
     <Root>
-      The official athletics site of{" "}
+      {text}{" "}
       <a style={hrefStyle} href={href}>
-        Arizona State University
+        {hrefText}
       </a>
     </Root>
   );
 };
+
+/**
+ * @typedef {object} OfficialAthleticsSiteProps
+ * @property {string} href
+ * @property {string} text
+ * @property {string} hrefText
+ * @property {Record<string, unknown>} hrefStyle
+ *
+ */
+
 OfficialAthleticsSite.propTypes = {
   href: PropTypes.string,
+  text: PropTypes.string,
+  hrefText: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   hrefStyle: PropTypes.object,
 };

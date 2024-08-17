@@ -32,6 +32,14 @@ export const testHeaderProps = {
   searchUrl: "https://search.asu.edu/search",
   site: "web-sda.ddev.site",
   officialSiteHref: "#",
+  officialSite: {
+    href: "#",
+    hrefStyle: {
+      color: "black",
+    },
+    hrefText: "Arizona State University",
+    text: "The official athletics site of",
+  },
   navTree: [
     {
       href: "/123",

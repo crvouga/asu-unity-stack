@@ -30,7 +30,8 @@ const Subtitle = styled.p`
   text-overflow: ellipsis;
   white-space: nowrap;
   flex-shrink: 1;
-  color: #747474;
+  /* color: #747474 */
+  color: rgb(116, 116, 116);
   min-width: 0;
 `;
 

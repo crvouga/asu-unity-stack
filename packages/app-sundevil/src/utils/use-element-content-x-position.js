@@ -48,7 +48,6 @@ export const useElementContentXPosition = elementRef => {
       resizeObserver.observe(elementRef.current);
     }
 
-    window.addEventListener("scroll", debouncedHandleContentXPosition);
     window.addEventListener("resize", debouncedHandleContentXPosition);
 
     // Initial position calculation
@@ -59,7 +58,6 @@ export const useElementContentXPosition = elementRef => {
         cancelAnimationFrame(rafId.current);
       }
       resizeObserver.disconnect();
-      window.removeEventListener("scroll", debouncedHandleContentXPosition);
       window.removeEventListener("resize", debouncedHandleContentXPosition);
     };
   }, [elementRef, handleContentXPosition, debouncedHandleContentXPosition]);

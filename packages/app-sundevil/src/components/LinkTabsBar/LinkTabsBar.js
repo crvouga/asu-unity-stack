@@ -80,11 +80,19 @@ const useLinks = ({ links = [], linkTabsRef }) => {
     const onScroll = () => {
       setAlteredLinks(getLinks());
     };
-    window.addEventListener("scroll", onScroll, {
+    let timeout;
+    const onScrollDebounced = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        onScroll();
+      }, 100);
+    };
+
+    window.addEventListener("scroll", onScrollDebounced, {
       passive: true,
     });
     return () => {
-      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("scroll", onScrollDebounced);
     };
   }, []);
 

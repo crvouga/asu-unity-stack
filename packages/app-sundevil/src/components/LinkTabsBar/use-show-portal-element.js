@@ -2,8 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 
 import { querySelectorSafe } from "../../utils/query-selector-safe";
 
-const querySelectorSafeAndCached = querySelectorSafe;
-
 /**
  * @param {{
  *  stickyElementSelector?: string
@@ -14,10 +12,10 @@ export const useShowPortalElement = options => {
   const [showPortalElement, setShowPortalElement] = useState(false);
 
   const checkOverlap = useCallback(() => {
-    const navbarPortal = querySelectorSafeAndCached(
+    const navbarPortal = querySelectorSafe(
       options?.navbarPortalSelector
     )?.getBoundingClientRect();
-    const stickyElement = querySelectorSafeAndCached(
+    const stickyElement = querySelectorSafe(
       options?.stickyElementSelector
     )?.getBoundingClientRect();
 

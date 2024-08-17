@@ -160,10 +160,6 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
   const ticketButtonLabel =
     configCells?.cellTicketButton?.label ?? game?.ticketText;
 
-  const shouldRenderTicketIcon =
-    configCells?.cellTicketButton?.autoTicketIcon === true &&
-    isGameTicketed(game);
-
   return (
     // @ts-ignore
     <Skeleton
@@ -259,7 +255,10 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
                   textDecoration: "none !important",
                 };
 
-                if (shouldRenderTicketIcon) {
+                if (
+                  configCells?.cellTicketButton?.autoTicketIcon === true &&
+                  isGameTicketed(game)
+                ) {
                   return (
                     <i className={TICKET_ICON_CLASS_NAME} style={iconStyle} />
                   );

@@ -35,7 +35,7 @@ export const testHeaderProps = {
   officialSite: {
     href: "#",
     hrefStyle: {
-      color: "black",
+      // color: "black",
     },
     hrefText: "Arizona State University",
     text: "The official athletics site of",

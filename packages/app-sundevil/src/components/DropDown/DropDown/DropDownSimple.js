@@ -46,11 +46,19 @@ export const DropDownSimple = ({
       }
     };
 
+    let timeout;
+    const updateMaxHeightDebounced = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        updateMaxHeight();
+      }, 200);
+    };
+
     if (open) {
       document.addEventListener("mousedown", handleClickOutside);
       updateMaxHeight();
-      window.addEventListener("resize", updateMaxHeight);
-      window.addEventListener("scroll", updateMaxHeight, {
+      window.addEventListener("resize", updateMaxHeightDebounced);
+      window.addEventListener("scroll", updateMaxHeightDebounced, {
         capture: true,
         passive: true,
       });
@@ -58,8 +66,8 @@ export const DropDownSimple = ({
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
-      window.removeEventListener("resize", updateMaxHeight);
-      window.removeEventListener("scroll", updateMaxHeight);
+      window.removeEventListener("resize", updateMaxHeightDebounced);
+      window.removeEventListener("scroll", updateMaxHeightDebounced);
     };
   }, [open, onClose]);
 

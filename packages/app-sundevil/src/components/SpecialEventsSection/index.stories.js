@@ -5,6 +5,47 @@ import { ISpecialEventsDataSource } from "./special-events-data-source/special-e
 import { SpecialEventsDataSourceStatic } from "./special-events-data-source/special-events-data-source-impl-static";
 import { SpecialEventsSection } from "./SpecialEventsSection";
 
+const randomBody = () => {
+  const words = [
+    "Lorem",
+    "ipsum",
+    "dolor",
+    "sit",
+    "amet",
+    "consectetur",
+    "adipiscing",
+    "elit",
+    "Ut",
+    "et",
+    "massa",
+    "mi",
+    "Aliquam",
+    "in",
+    "hendrerit",
+    "urna",
+    "Pellentesque",
+    "sit",
+    "amet",
+    "sapien",
+    "fringilla",
+    "mattis",
+    "ligula",
+    "consectetur",
+    "ultrices",
+  ];
+
+  const wordsFinal = [];
+
+  for (let i = 0; i < Math.random() * 10; i += 1) {
+    const randomWords = words.sort(() => Math.random() - 0.5);
+    wordsFinal.push(
+      ...randomWords.slice(0, Math.floor(Math.random() * randomWords.length))
+    );
+  }
+
+  return wordsFinal.join(" ");
+};
+
 /** @type {import("./special-event").SpecialEvent} */
 const cardBase = {
   imageSrc:
@@ -15,11 +56,13 @@ const cardBase = {
       color: "maroon",
       href: "#",
       label: "Learn More",
+      ariaLabel: "Learn more about the Maroon and Gold Spring Game",
     },
     {
       color: "dark",
       href: "#",
       label: "More Info",
+      ariaLabel: "More information about the Maroon and Gold Spring Game",
     },
   ],
   sportName: "Football",
@@ -37,6 +80,7 @@ const specialEvents = [
     title: "Don't miss the Maroon and Gold Spring Game",
     sportName: "Football",
     sportIcon: "fas fa-football-ball",
+    body: randomBody(),
   },
   {
     ...cardBase,
@@ -46,6 +90,7 @@ const specialEvents = [
     title: "2024 Pac-12 Men's Golf Championships",
     sportName: "Golf",
     sportIcon: "fas fa-golf-ball",
+    body: randomBody(),
   },
   {
     ...cardBase,
@@ -55,6 +100,7 @@ const specialEvents = [
     title: "Sun Devil Legends Luncheon",
     sportName: "All Sports",
     sportIcon: "fas fa-sync-alt",
+    body: randomBody(),
   },
 ];
 

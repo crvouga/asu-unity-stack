@@ -82,12 +82,15 @@ const CardBodyText = styled.p`
   padding: 0;
   font-size: 16px;
   color: #191919;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+  line-height: 1.2em;
+  max-height: 2.4em; /* 2 lines * 1.2em line-height */
   overflow: hidden;
-  text-overflow: ellipsis;
+  position: relative;
+  word-wrap: break-word;
+
+  /* Ensure child elements don't break the layout */
   & > * {
+    display: inline;
     margin: 0;
     padding: 0;
   }

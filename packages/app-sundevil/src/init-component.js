@@ -2,6 +2,13 @@
 
 import React from "react";
 
+// Do not use React.lazy for these component(s)
+import { SunDevilsHeader } from "./components/Header";
+// const SunDevilsHeader = React.lazy(() =>
+//   import("./components/Header").then(module => ({
+//     default: module.SunDevilsHeader,
+//   }))
+// );
 import { RenderReact } from "./render-react";
 
 const CookieConsent = React.lazy(() =>
@@ -60,11 +67,7 @@ const PreviewSection = React.lazy(() =>
     default: module.PreviewSection,
   }))
 );
-const SunDevilsHeader = React.lazy(() =>
-  import("./components/Header").then(module => ({
-    default: module.SunDevilsHeader,
-  }))
-);
+
 const IconTextColumnsSection = React.lazy(() =>
   import("./components/IconTextColumnsSection").then(module => ({
     default: module.IconTextColumnsSection,

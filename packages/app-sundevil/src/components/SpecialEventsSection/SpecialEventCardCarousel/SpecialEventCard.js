@@ -87,6 +87,7 @@ const CardBodyText = styled.p`
   overflow: hidden;
   position: relative;
   word-wrap: break-word;
+  text-overflow: ellipsis;
 
   /* Ensure child elements don't break the layout */
   & > * {

@@ -110,7 +110,7 @@ export const NewsStoryCardCarousel = ({
         )}
         {skeleton && (
           <>
-            {repeat(newsStorySkeleton, skeletonCount).map(newsStory => (
+            {repeat(skeletonCount, newsStorySkeleton).map(newsStory => (
               <CarouselItem
                 key={newsStory?.id ?? newsStory?.title}
                 style={{ width: "fit-content" }}

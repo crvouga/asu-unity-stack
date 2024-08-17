@@ -83,7 +83,7 @@ const newsStories = [
 class CustomNewsStoryDataSource extends INewsStoryDataSource {
   // eslint-disable-next-line class-methods-use-this
   async findMany(input) {
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise(resolve => setTimeout(resolve, 2000));
     return {
       limit: input.limit ?? Infinity,
       offset: input.offset ?? 0,
@@ -126,6 +126,10 @@ const props = {
       size: "small",
     },
   ],
+  // @ts-ignore
+  configLayout: {
+    includeSportsTabs: true,
+  },
   footerLinks: [
     {
       label: "View All Stories",

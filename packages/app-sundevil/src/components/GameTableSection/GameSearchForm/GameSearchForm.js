@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import { APP_CONFIG } from "../../../config";
 import { useBreakpoint } from "../../../utils/use-breakpoint";
+import { findManyInputPropTypes } from "../../Game/game-data-source";
 import { sportPropTypes } from "../../SportsTabs/sports-tabs";
 import { configInputsPropTypes } from "../config-inputs";
 import { configLayoutPropTypes, shouldIncludeForm } from "../config-layout";
@@ -34,6 +35,7 @@ const Root = styled.div`
 export const GameSearchForm = ({
   style,
   gameSearchForm,
+  gameDataSourceLoader,
   configLayout,
   configInputs,
   sports,
@@ -41,7 +43,9 @@ export const GameSearchForm = ({
   darkMode,
   orientation,
 }) => {
-  const gameSearchFormInputOptions = useGameSearchFormInputOptions();
+  const gameSearchFormInputOptions = useGameSearchFormInputOptions({
+    gameDataSourceLoader,
+  });
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
 
@@ -102,6 +106,7 @@ export const GameSearchForm = ({
  * @typedef {{
  * style?: React.CSSProperties;
  * gameSearchForm: import("./use-game-search-form").GameSearchForm;
+ * gameDataSourceLoader: import("../../Game/game-data-source/game-data-source").FindManyInput;
  * configLayout: import("../config-layout").ConfigLayout;
  * configInputs: import("../config-inputs").ConfigInputs;
  * sports: import("../../SportsTabs/sports-tabs").Sport[];
@@ -122,6 +127,8 @@ GameSearchForm.propTypes = {
   sports: PropTypes.arrayOf(sportPropTypes),
   darkMode: PropTypes.bool,
   orientation: PropTypes.oneOf(["horizontal", "vertical"]),
+  // @ts-ignore
+  gameDataSourceLoader: findManyInputPropTypes,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
 };

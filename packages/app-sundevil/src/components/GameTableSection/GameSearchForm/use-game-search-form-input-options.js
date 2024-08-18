@@ -69,12 +69,16 @@ const gamesToState = games => {
   };
 };
 
-export const useGameSearchFormInputOptions = () => {
+/**
+ * @param {{gameDataSourceLoader: import("../../Game/game-data-source/game-data-source").FindManyInput}} input
+ */
+export const useGameSearchFormInputOptions = ({ gameDataSourceLoader }) => {
   const gameDataSource = useGameDataSource();
   const [state, setState] = useState(initGameSearchFormInputOptions);
 
   const load = async () => {
     const found = await gameDataSource.findMany({
+      ...gameDataSourceLoader,
       offset: 0,
       limit: Infinity,
     });

@@ -72,6 +72,7 @@ GetTickets.args = {
     sportTypeSelect: {
       label: "Sport Type",
       placeholder: "Select one",
+      filterOptionsAvailableInDataSource: true,
     },
     homeOrAwaySelect: {
       label: "Home or away",

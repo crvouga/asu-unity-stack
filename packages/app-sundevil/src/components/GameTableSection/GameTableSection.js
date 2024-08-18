@@ -200,8 +200,7 @@ const GameTableSectionInner = ({ ...props }) => {
 
   const sports = props.sports?.map(sport => ({
     ...sport,
-    active:
-      stringToSportId(sport.id) === stringToSportId(gameSearchForm.sportId),
+    active: isEqual(stringToSportId, sport.id, gameSearchForm.sportId),
   }));
 
   const tabs = props.tabs?.map(tab => ({
@@ -333,6 +332,7 @@ const GameTableSectionInner = ({ ...props }) => {
           {configLayout.variant === "default" && (
             <GameSearchFormTopbar
               className="container"
+              gameDataSourceLoader={props.gameDataSourceLoader ?? {}}
               gameSearchForm={gameSearchForm}
               configInputs={configInputs}
               configLayout={configLayout}
@@ -371,6 +371,7 @@ const GameTableSectionInner = ({ ...props }) => {
             className="container"
             renderSidebar={() => (
               <GameSearchFormSidebar
+                gameDataSourceLoader={props.gameDataSourceLoader ?? {}}
                 gameSearchForm={gameSearchForm}
                 configInputs={configInputs}
                 configLayout={configLayout}

@@ -2,11 +2,13 @@
 import React from "react";
 
 import { FilterFormTopBarLayout } from "../../FilterForm/FilterFormTopBarLayout";
+import { findManyInputPropTypes } from "../../Game/game-data-source";
 import { configFormPropTypes } from "./config-form";
 import { GameSearchForm } from "./GameSearchForm";
 
 export const GameSearchFormTopbar = ({
   configGameTableForm,
+  gameDataSourceLoader,
   gameSearchForm,
   configInputs,
   configLayout,
@@ -21,6 +23,7 @@ export const GameSearchFormTopbar = ({
       darkMode={darkMode}
       renderForm={() => (
         <GameSearchForm
+          gameDataSourceLoader={gameDataSourceLoader}
           gameSearchForm={gameSearchForm}
           configInputs={configInputs}
           configLayout={configLayout}
@@ -34,5 +37,6 @@ export const GameSearchFormTopbar = ({
 
 GameSearchFormTopbar.propTypes = {
   ...GameSearchForm.propTypes,
+  gameDataSourceLoader: findManyInputPropTypes,
   configGameTableForm: configFormPropTypes,
 };

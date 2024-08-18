@@ -29,6 +29,7 @@ const configSelectInputPropTypes = PropTypes.shape({
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(selectOptionPropTypes),
   includeAllOption: PropTypes.bool,
+  filterOptionsAvailableInDataSource: PropTypes.bool,
 });
 
 export const configInputsPropTypes = PropTypes.shape({
@@ -50,7 +51,7 @@ export const configInputsPropTypes = PropTypes.shape({
  */
 
 /**
- * @typedef {ConfigInput & {options?: SelectOption[]; includeAllOption?: boolean;}} ConfigSelectInput
+ * @typedef {ConfigInput & {options?: SelectOption[]; includeAllOption?: boolean; filterOptionsAvailableInDataSource?: boolean}} ConfigSelectInput
  */
 
 /**
@@ -79,6 +80,7 @@ export const defaultConfigInputs = {
     label: "Sport type",
     placeholder: "Select one",
     includeAllOption: true,
+    filterOptionsAvailableInDataSource: false,
   },
   homeOrAwaySelect: {
     label: "Home or away",

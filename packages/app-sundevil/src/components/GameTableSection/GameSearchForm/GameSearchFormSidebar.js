@@ -2,6 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 
+import { findManyInputPropTypes } from "../../Game/game-data-source";
 import { configFormPropTypes } from "./config-form";
 import { GameSearchForm } from "./GameSearchForm";
 
@@ -20,6 +21,7 @@ const Title = styled.div`
 
 export const GameSearchFormSidebar = ({
   configGameTableForm,
+  gameDataSourceLoader,
   gameSearchForm,
   configInputs,
   configLayout,
@@ -37,6 +39,7 @@ export const GameSearchFormSidebar = ({
         style={{
           gap: "2.5rem",
         }}
+        gameDataSourceLoader={gameDataSourceLoader}
         gameSearchForm={gameSearchForm}
         configInputs={configInputs}
         configLayout={configLayout}
@@ -49,5 +52,6 @@ export const GameSearchFormSidebar = ({
 
 GameSearchFormSidebar.propTypes = {
   ...GameSearchForm.propTypes,
+  gameDataSourceLoader: findManyInputPropTypes,
   configGameTableForm: configFormPropTypes,
 };

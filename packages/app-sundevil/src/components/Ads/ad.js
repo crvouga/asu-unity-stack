@@ -44,7 +44,7 @@ export const Ad = ({ ad, width, height, target, onClick }) => {
       }}
       onClick={event => {
         event?.preventDefault?.();
-        onClick?.();
+        onClick?.({ ad });
 
         const targetFinal = ad.target ?? target ?? "_blank";
 

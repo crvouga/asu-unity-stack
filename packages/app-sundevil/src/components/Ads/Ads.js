@@ -99,8 +99,8 @@ export const Ads = ({
  * ads: Array<import("./ad").Ad>
  * target?: string;
  * id?: string;
- * onMount?: () => void;
- * onClickAd?: () => void
+ * onMount?: (payload: unknown) => void;
+ * onClickAd?: (payload: unknown) => void
  * }} Props
  */
 

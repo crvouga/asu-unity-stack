@@ -63,6 +63,15 @@
         // height: 66,
         // storage: window.localStorage, // or window.sessionStorage
         storageKey: "sun-devils-ads-1", //Important to provide unique storageKey so ad component instances can cycle independently
+        onMount: (payload) => {
+          // Custom data layer code can be added here
+          console.log('onMount', payload);
+        },
+        onClickAd: (payload) => {
+          // Custom data layer code can be added here
+          console.log('onClickAd', payload);
+        },
+
         ads: [
           {
             imageSrc:
@@ -101,6 +110,15 @@
         // height: 66,
         // storage: window.localStorage, // or window.sessionStorage
         storageKey: "sun-devils-ads-2", //Important to provide unique storageKey so ad component instances can cycle independently
+        target: "_blank",
+        onMount: (payload) => {
+          // Custom data layer code can be added here
+          console.log('onMount', payload);
+        },
+        onClickAd: (payload) => {
+          // Custom data layer code can be added here
+          console.log('onClickAd', payload);
+        },
         ads: [
 
           {
@@ -108,6 +126,7 @@
               "https://tpc.googlesyndication.com/simgad/4947683613591479131",
             imageAlt: "Placeholder",
             href: "https://www.example.com",
+            // target: "_blank",
             // width: 970,
             // height: 66,
           },
@@ -116,6 +135,7 @@
               "https://tpc.googlesyndication.com/simgad/15906690503191566407",
             imageAlt: "Placeholder",
             href: "https://www.example.com",
+            // target: "_self",
             // width: 970,
             // height: 66,
           },
@@ -132,6 +152,14 @@
         // height: 66,
         // storage: window.localStorage, // or window.sessionStorage
         storageKey: "sun-devils-ads-3", //Important to provide unique storageKey so ad component instances can cycle independently
+        onMount: (payload) => {
+          // Custom data layer code can be added here
+          console.log('onMount', payload);
+        },
+        onClickAd: (payload) => {
+          // Custom data layer code can be added here
+          console.log('onClickAd', payload);
+        },
         ads: [
           {
             imageSrc:

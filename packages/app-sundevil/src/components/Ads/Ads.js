@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 
+import { pushDataLayer } from "../../data-layers";
 import { Ad, adPropTypes } from "./ad";
 import { useCycleIndexOnLoad } from "./use-cycle-index-on-load";
 
-const useDataLayers = ({ ad, onMount }) => {
+function useDataLayers({ ad, onMount }) {
   useEffect(() => {
     if (typeof onMount === "function") {
       const maybeCleanUp = onMount?.({
@@ -18,28 +19,27 @@ const useDataLayers = ({ ad, onMount }) => {
       };
     }
 
-    if (
-      typeof window !== "undefined" &&
-      typeof window.dataLayer !== "undefined" &&
-      typeof window.dataLayer.push === "function" &&
-      typeof ad?.id === "string"
-    ) {
-      window.dataLayer.push({
-        event: "Pageview",
-        ad_id: ad?.id,
-      });
-    } else {
-      // eslint-disable-next-line no-console
-      console.warn(
-        "pushing data layer event for Ad component failed. window.dataLayer.push is not a function or ad.id is not a string"
-      );
-    }
+    pushDataLayer({
+      event: "ad_impression",
+      ad_id: ad?.id,
+    });
 
     return () => {
       //
     };
   }, [ad]);
-};
+
+  const onClickAd = () => {
+    pushDataLayer({
+      event: "ad_click",
+      ad_id: ad?.id,
+    });
+  };
+
+  return {
+    onClickAd,
+  };
+}
 
 /**
  * @type {React.Fc<Props>}
@@ -53,6 +53,7 @@ export const Ads = ({
   target,
   id,
   onMount,
+  onClickAd: propsOnClickAd,
 }) => {
   const currentIndex = useCycleIndexOnLoad({
     storageKey,
@@ -62,7 +63,7 @@ export const Ads = ({
 
   const ad = Array.isArray(ads) ? ads[currentIndex] : null;
 
-  useDataLayers({ ad, onMount });
+  const { onClickAd } = useDataLayers({ ad, onMount });
 
   if (!ad) {
     return null;
@@ -78,7 +79,13 @@ export const Ads = ({
         justifyContent: "center",
       }}
     >
-      <Ad ad={ad} width={width} height={height} target={target} />
+      <Ad
+        onClick={propsOnClickAd ?? onClickAd}
+        ad={ad}
+        width={width}
+        height={height}
+        target={target}
+      />
     </div>
   );
 };
@@ -93,6 +100,7 @@ export const Ads = ({
  * target?: string;
  * id?: string;
  * onMount?: () => void;
+ * onClickAd?: () => void
  * }} Props
  */
 
@@ -106,4 +114,5 @@ Ads.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   storage: PropTypes.object,
   onMount: PropTypes.func,
+  onClickAd: PropTypes.func,
 };

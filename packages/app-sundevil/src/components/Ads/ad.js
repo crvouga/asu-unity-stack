@@ -11,6 +11,7 @@ import React from "react";
  * width?: string | number | null | undefined;
  * height?: string | number | null | undefined;
  * id?: string;
+ * onClick?: () => void;
  * }} Ad
  */
 
@@ -26,9 +27,9 @@ export const adPropTypes = PropTypes.shape({
 });
 
 /**
- * @type {React.FC<{ ad: Ad, width?: number | string, height?: number | string, target?: string }>}
+ * @type {React.FC<{ ad: Ad, width?: number | string, height?: number | string, target?: string, onClick: () => void }>}
  */
-export const Ad = ({ ad, width, height, target }) => {
+export const Ad = ({ ad, width, height, target, onClick }) => {
   return (
     <a
       id={ad?.id}
@@ -40,6 +41,14 @@ export const Ad = ({ ad, width, height, target }) => {
         width: "fit-content",
         height: "fit-content",
         maxWidth: "100%",
+      }}
+      onClick={event => {
+        event?.preventDefault?.();
+        onClick?.();
+
+        const targetFinal = ad.target ?? target ?? "_blank";
+
+        window?.open?.(ad.href, targetFinal);
       }}
     >
       <img
@@ -63,4 +72,5 @@ Ad.propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   target: PropTypes.string,
+  onClick: PropTypes.func,
 };

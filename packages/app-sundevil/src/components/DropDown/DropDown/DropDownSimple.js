@@ -1,6 +1,34 @@
 import React, { useEffect, useRef, useState } from "react";
+import styled from "styled-components";
 
 import { propTypes } from "./drop-down-props";
+
+const StyledDropdownContent = styled.div`
+  /* Scrollbar styles for WebKit browsers */
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 3px;
+  }
+
+  /* Scrollbar styles for Firefox */
+  scrollbar-width: thin;
+
+  /* Other styles */
+  position: absolute;
+  display: ${props => (props.open ? "block" : "none")};
+  z-index: 20;
+  ${props =>
+    props.position.startsWith("bottom") ? "top: 100%;" : "bottom: 100%;"}
+  ${props => (props.position.endsWith("end") ? "right: 0;" : "left: 0;")}
+  max-height: ${props =>
+    props.maxHeight ? `${Math.min(props.maxHeight, 600)}px` : "80dvh"};
+  overflow-y: auto;
+  border: 1px solid #d0d0d0;
+`;
 
 /**
  * @type {React.FC<import("./drop-down-props").Props>}
@@ -76,27 +104,20 @@ export const DropDownSimple = ({
     position: "relative",
   };
 
-  /** @type {React.CSSProperties} */
-  const dropdownStyle = {
-    position: "absolute",
-    display: open ? "block" : "none",
-    zIndex: 20,
-    ...(position.startsWith("bottom") ? { top: "100%" } : { bottom: "100%" }),
-    ...(position.endsWith("end") ? { right: 0 } : { left: 0 }),
-    maxHeight: maxHeight ? `${Math.min(maxHeight, 600)}px` : "80dvh",
-    overflowY: "auto",
-    border: "1px solid #d0d0d0",
-  };
-
   return (
     <div ref={containerRef} style={containerStyle}>
       {renderReference({ open })}
-      <div ref={dropdownRef} style={dropdownStyle}>
+      <StyledDropdownContent
+        ref={dropdownRef}
+        open={open}
+        position={position}
+        maxHeight={maxHeight}
+      >
         {open &&
           renderContent({
             referenceWidth: containerRef.current?.getBoundingClientRect().width,
           })}
-      </div>
+      </StyledDropdownContent>
     </div>
   );
 };

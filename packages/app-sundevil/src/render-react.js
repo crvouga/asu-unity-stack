@@ -187,3 +187,6 @@ export const RenderReact = ({
     }
   });
 };
+
+// @ts-ignore
+window.RenderReact = RenderReact;

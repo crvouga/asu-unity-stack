@@ -28,6 +28,7 @@ const StyledDropdownContent = styled.div`
     props.maxHeight ? `${Math.min(props.maxHeight, 600)}px` : "80dvh"};
   overflow-y: auto;
   border: 1px solid #d0d0d0;
+  background-color: #fff;
 `;
 
 /**
@@ -90,6 +91,10 @@ export const DropDownSimple = ({
         capture: true,
         passive: true,
       });
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("resize", updateMaxHeightDebounced);
+      window.removeEventListener("scroll", updateMaxHeightDebounced);
     }
 
     return () => {

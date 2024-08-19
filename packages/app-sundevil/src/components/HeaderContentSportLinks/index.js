@@ -151,6 +151,7 @@ const SportNameLink = styled.a`
   whitespace: nowrap;
   &:hover {
     color: var(--text-color-brand);
+    text-decoration: underline;
   }
 `;
 

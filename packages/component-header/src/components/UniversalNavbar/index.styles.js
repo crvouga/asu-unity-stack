@@ -84,7 +84,9 @@ const Wrapper = styled.div`
           justify-items: start;
           width: 100%;
           .nav-link {
-            width: 50%;
+            min-width: 50%;
+            flex: 1;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             height: 100%;

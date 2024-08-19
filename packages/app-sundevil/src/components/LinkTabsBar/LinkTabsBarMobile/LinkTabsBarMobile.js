@@ -36,8 +36,7 @@ const LinkTabsRoot = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  flex: 1;
-  flex-shrink: 0;
+  min-width: 0;
 `;
 
 const Content = styled.div`
@@ -54,7 +53,16 @@ export const LinkTabsBarMobile = forwardRef(
       <Root ref={ref}>
         <Content style={style}>
           <LinkTabsRoot>
-            <LinkTabsBarDropDown links={links} />
+            <div
+              style={{
+                width: "100%",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <LinkTabsBarDropDown links={links} />
+            </div>
           </LinkTabsRoot>
           {typeof sponsorLogoSrc === "string" &&
             sponsorLogoSrc.trim().length > 0 && (

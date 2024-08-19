@@ -41,6 +41,9 @@ NavLinkIcon.propTypes = {
   children: PropTypes.node,
 };
 
+const isHashHref = href =>
+  href && typeof href === "string" && href?.includes?.("#");
+
 /**
  * @typedef {import('../../../../core/models/types').NavTreeProps} NavTreeProps
  */
@@ -50,7 +53,6 @@ NavLinkIcon.propTypes = {
  * @returns {JSX.Element}
  *
  */
-
 const NavItem = ({ link, setItemOpened, itemOpened }) => {
   const clickRef = useRef(null);
   const opened = link.id === itemOpened;
@@ -159,6 +161,13 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
   const linkTitle =
     link.type === "icon-home" && title ? `${title} home page` : link.text;
 
+  const onClickedLink = (input = {}) => {
+    const href = input?.href ?? input?.link?.href ?? input?.link?.url ?? "";
+    if (isHashHref(href)) {
+      setItemOpened(null);
+    }
+  };
+
   return (
     <NavItemWrapper
       // @ts-ignore
@@ -192,6 +201,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
 
       {typeof link.renderContent === "function" && (
         <DropdownItem
+          onClickedLink={onClickedLink}
           items={[]}
           renderContent={link.renderContent}
           isMega={link.isMega}
@@ -210,6 +220,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
 
       {isDropdown && Array.isArray(link.items) && link.items.length > 0 && (
         <DropdownItem
+          onClickedLink={onClickedLink}
           items={link.items}
           isMega={link.isMega}
           // @ts-ignore

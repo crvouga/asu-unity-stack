@@ -28,6 +28,7 @@ import { DropdownWrapper } from "./index.styles";
  *  style?: object
  *  mobile?: import("../../../../core/models/types").NavTreeItemsConfig
  *  footers?: import("../../../../core/models/types").NavTreePropFooter[]
+ *  onClickedLink?: Function
  * }} DropdownItemProps
  */
 
@@ -46,6 +47,7 @@ const DropdownItem = forwardRef(
       style,
       mobile,
       footers,
+      onClickedLink,
     },
     ref
   ) => {
@@ -70,7 +72,7 @@ const DropdownItem = forwardRef(
     }, []);
 
     const stopPropagation = e => {
-      e.stopPropagation();
+      e?.stopPropagation?.();
     };
 
     const renderItem = (link, index) => {
@@ -116,7 +118,10 @@ const DropdownItem = forwardRef(
         >
           <a
             href={link.href}
-            onClick={stopPropagation}
+            onClick={e => {
+              onClickedLink?.({ e, link, href: link?.href });
+              stopPropagation?.(e);
+            }}
             onFocus={() =>
               trackGAEvent({ text: link.text, component: dropdownName })
             }
@@ -207,6 +212,7 @@ DropdownItem.propTypes = {
   mobile: NavTreeItemsConfig,
   // @ts-ignore
   footers: PropTypes.arrayOf(NavTreePropFooter),
+  onClickedLink: PropTypes.func,
 };
 
 export { DropdownItem };

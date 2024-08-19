@@ -69,6 +69,7 @@
  * @property {boolean} [searchDisableDataLayers]
  * @property {string} [searchPlaceholder]
  * @property {boolean} [disableTopGradient]
+ * @property {boolean} [hideSignIn]
  */
 
 /**

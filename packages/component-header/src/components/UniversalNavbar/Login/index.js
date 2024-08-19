@@ -18,7 +18,12 @@ const Login = () => {
     onLoginClick,
     onLogoutClick,
     breakpoint,
+    universalNavbar,
   } = useAppContext();
+
+  if (universalNavbar?.hideSignIn) {
+    return null;
+  }
 
   return (
     // @ts-ignore

@@ -208,6 +208,8 @@ const mapProps = props => ({
     hideMobile: false,
     searchPlaceholder: "Search Sun Devil Athletics",
     disableTopGradient: true,
+    hideSignIn: true,
+    ...props.universalNavbar,
   },
   mobile: {
     // we're now going to use the default hamburger button

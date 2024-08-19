@@ -61,6 +61,7 @@ const UniversalNavbarPropTypes = PropTypes.shape({
   hideMobile: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
   disableTopGradient: PropTypes.bool,
+  hideSignIn: PropTypes.bool,
 });
 
 const NavTreePropFooter = PropTypes.shape({

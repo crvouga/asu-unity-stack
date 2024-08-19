@@ -25,10 +25,9 @@ const SponsorRoot = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
   margin: 0;
   height: 100%;
-  padding: 12px 16px;
+  padding: 12px 12px 12px 16px;
   border-left: 1px solid #d0d0d0;
   flex-shrink: 1;
 `;
@@ -53,7 +52,7 @@ export const LinkTabsBarMobile = forwardRef(
   ({ links = [], sponsorHref, sponsorLogoSrc, sponsorLogoAlt, style }, ref) => {
     return (
       <Root ref={ref}>
-        <Content className="container" style={style}>
+        <Content style={style}>
           <LinkTabsRoot>
             <LinkTabsBarDropDown links={links} />
           </LinkTabsRoot>

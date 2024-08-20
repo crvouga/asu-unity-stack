@@ -37,6 +37,7 @@ const LinkTabsRoot = styled.div`
   align-items: center;
   height: 100%;
   min-width: 0;
+  flex: 1;
 `;
 
 const Content = styled.div`
@@ -56,7 +57,7 @@ export const LinkTabsBarMobile = forwardRef(
             <div
               style={{
                 width: "100%",
-                overflow: "hidden",
+                height: "100%",
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
               }}

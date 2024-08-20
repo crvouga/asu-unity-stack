@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 // @ts-check
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
@@ -76,6 +77,8 @@ const filterDOM = (
  * @property {object} [loadingStyle] - The style object to apply to the loading
  * @property {string} [loadingText] - The text to display while the component is loading.
  *
+ * @property {number} [hiddenTimeout] - The style object to apply to the loading
+ *
  */
 
 const REACT_CHILD_TARGET_ID = "react-child-target";
@@ -109,6 +112,7 @@ export const RenderReact = ({
   // loadingText = "Loading...",
   loadingStyle = {},
   loadingText = "",
+  hiddenTimeout = 0,
 }) => {
   const consoleLog = (msg, ...args) => {
     if (log) {
@@ -127,6 +131,25 @@ export const RenderReact = ({
     if (!target) {
       consoleLog("target not found", targetSelector);
       return;
+    }
+
+    if (
+      typeof hiddenTimeout === "number" &&
+      hiddenTimeout > 0 &&
+      target instanceof HTMLElement
+    ) {
+      consoleLog("setting hidden timeout", hiddenTimeout);
+      target.style.opacity = "0";
+      target.style.pointerEvents = "none";
+      target.ariaBusy = "true";
+      consoleLog("setting hidden timeout", hiddenTimeout);
+
+      setTimeout(() => {
+        consoleLog("setting opacity to 1");
+        target.style.opacity = "1";
+        target.style.pointerEvents = "auto";
+        target.ariaBusy = "false";
+      }, hiddenTimeout);
     }
 
     if (typeof id === "string") {

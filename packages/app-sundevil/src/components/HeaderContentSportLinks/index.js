@@ -42,6 +42,7 @@ const sportPropTypes = PropTypes.shape({
   sportLinks: PropTypes.arrayOf(sportLinkItemPropTypes.isRequired).isRequired,
   icon: iconPropType,
   href: PropTypes.string,
+  onClickedLink: PropTypes.func,
 });
 /**
  * @typedef {Object} Sport
@@ -49,6 +50,7 @@ const sportPropTypes = PropTypes.shape({
  * @property {string} sportName
  * @property {SportLinkItem[]} sportLinks
  * @property {string | object} [icon]
+ * @property {Function} [onClickedLink]
  */
 
 const SportLinkItemLink = styled.a`
@@ -69,18 +71,23 @@ const SportLinkItemRoot = styled.div`
 `;
 
 /**
- * @param {{sportLinkItem: SportLinkItem}} props
+ * @param {{sportLinkItem: SportLinkItem; onClick?: Function}} props
  */
-const SportLinkItem = ({ sportLinkItem }) => {
+const SportLinkItem = ({ sportLinkItem, onClick }) => {
   return (
     <SportLinkItemRoot key={sportLinkItem.label}>
-      <SportLinkItemLink href={sportLinkItem.url}>
+      <SportLinkItemLink
+        href={sportLinkItem.url}
+        // @ts-ignore
+        onClick={onClick}
+      >
         {sportLinkItem.label}
       </SportLinkItemLink>
     </SportLinkItemRoot>
   );
 };
 SportLinkItem.propTypes = {
+  onClick: PropTypes.func,
   sportLinkItem: sportLinkItemPropTypes.isRequired,
 };
 
@@ -98,21 +105,28 @@ const SportItemLinksRoot = styled.div`
 `;
 
 /**
- * @param {{sport: Sport}} props
+ * @param {{sport: Sport, onClickedLink?: Function}} props
  */
-const SportItemLinks = ({ sport }) => {
+const SportItemLinks = ({ sport, onClickedLink }) => {
   return (
     <SportItemLinksRoot>
       {sport.sportLinks.map(sportLinkItem => (
         <SportLinkItem
           key={sportLinkItem.label}
           sportLinkItem={sportLinkItem}
+          onClick={e => {
+            onClickedLink?.({
+              e,
+              href: sportLinkItem.url,
+            });
+          }}
         />
       ))}
     </SportItemLinksRoot>
   );
 };
 SportItemLinks.propTypes = {
+  onClickedLink: PropTypes.func,
   sport: sportPropTypes.isRequired,
 };
 
@@ -166,9 +180,9 @@ const SportIconWrapper = styled.span`
 `;
 
 /**
- * @param {{sport: Sport; borderBottom?: boolean}} props
+ * @param {{sport: Sport; borderBottom?: boolean; onClickedLink?: Function}} props
  */
-const SportGridListItem = ({ sport, borderBottom }) => {
+const SportGridListItem = ({ sport, borderBottom, onClickedLink }) => {
   const sportName = stringToClosestSportName(sport.sportName);
 
   return (
@@ -176,7 +190,15 @@ const SportGridListItem = ({ sport, borderBottom }) => {
       // @ts-ignore
       borderBottom={borderBottom}
     >
-      <SportNameLink href={sport.href}>
+      <SportNameLink
+        href={sport.href}
+        onClick={e => {
+          onClickedLink?.({
+            e,
+            href: sport?.href,
+          });
+        }}
+      >
         <SportIconWrapper>
           {sport.icon ? (
             <Icon icon={sport.icon} />
@@ -187,7 +209,7 @@ const SportGridListItem = ({ sport, borderBottom }) => {
         {sport.sportName}
       </SportNameLink>
       <SportLinksRoot>
-        <SportItemLinks sport={sport} />
+        <SportItemLinks sport={sport} onClickedLink={onClickedLink} />
       </SportLinksRoot>
     </SportGridListItemRoot>
   );
@@ -195,6 +217,7 @@ const SportGridListItem = ({ sport, borderBottom }) => {
 SportGridListItem.propTypes = {
   sport: sportPropTypes.isRequired,
   borderBottom: PropTypes.bool,
+  onClickedLink: PropTypes.func,
 };
 
 const FooterRoot = styled.div`
@@ -338,6 +361,7 @@ const propTypesPropTypes = {
   sports: PropTypes.arrayOf(sportPropTypes.isRequired).isRequired,
   buttons: PropTypes.arrayOf(buttonPropTypes.isRequired),
   id: PropTypes.string.isRequired,
+  onClickedLink: PropTypes.func.isRequired,
 };
 
 /**
@@ -345,6 +369,7 @@ const propTypesPropTypes = {
  * @property {Sport[]} sports
  * @property {ButtonProp[]} buttons
  * @property {string} id
+ * @property {Function} onClickedLink
  */
 
 const COLUMN_HEIGHT = 5;
@@ -372,7 +397,7 @@ const toColumnKey = column => column.map(sport => sport.sportName).join("");
  * @link https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-108410&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width
  * @link https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=728-108411&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width
  */
-const HeaderContentSportLinks = ({ sports, buttons, id }) => {
+const HeaderContentSportLinks = ({ sports, buttons, id, onClickedLink }) => {
   const columns = chunk(sports, COLUMN_HEIGHT);
   const { elementsRef, maxWidth } = useMaxWidth(columns.length);
   const isTablet = useBreakpoint(APP_CONFIG.breakpointTablet);
@@ -394,6 +419,7 @@ const HeaderContentSportLinks = ({ sports, buttons, id }) => {
               <SportGridListItem
                 key={sport.sportName}
                 sport={sport}
+                onClickedLink={onClickedLink}
                 borderBottom={
                   isTablet &&
                   !(

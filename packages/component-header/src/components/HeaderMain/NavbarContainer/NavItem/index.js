@@ -162,7 +162,8 @@ const NavItem = ({ link, setItemOpened, itemOpened, toggleMobileMenu }) => {
     link.type === "icon-home" && title ? `${title} home page` : link.text;
 
   const onClickedLink = (input = {}) => {
-    const href = input?.href ?? input?.link?.href ?? input?.link?.url ?? "";
+    const href =
+      input?.href ?? input?.url ?? input?.link?.href ?? input?.link?.url ?? "";
     if (isHashHref(href)) {
       setItemOpened(null);
       toggleMobileMenu();

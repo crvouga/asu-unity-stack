@@ -48,7 +48,6 @@ const patchRemoveChild = ({ shouldLog = false, swallowError = true } = {}) => {
           .map(childNode => log("child.nodeValue", childNode.nodeValue))
       );
       log("child.parentNode", child.parentNode.outerHTML);
-      // debugger;
       if (child.parentNode !== this) {
         log("Cannot remove a child from a different parent", child, this);
 

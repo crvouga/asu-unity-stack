@@ -25,7 +25,7 @@ const Wrapper = styled.nav`
       justify-content: flex-start;
       overflow-y: auto;
       ${({ universalNavbar }) =>
-        universalNavbar.disableTopGradient
+        universalNavbar?.disableTopGradient
           ? ""
           : `
             > *:last-child {

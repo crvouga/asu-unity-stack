@@ -42,23 +42,26 @@ export const testHeaderProps = {
   },
   navTree: [
     {
-      href: "/123",
+      href: "/",
       text: "Home",
       icon: "",
       items: "",
       buttons: "",
       extra_section: "",
       is_sports_type: false,
+      mobile: {
+        hide: false,
+      },
       type: "icon-home",
       class: "home",
     },
     {
-      href: "/sports",
+      href: "#sports",
       text: "Men\u0027s Sports",
       items: [
         [
           {
-            href: "/sports/baseball",
+            href: "#sports-baseball",
             text: "Baseball",
             icon: {
               icon_name: "baseball",
@@ -68,15 +71,15 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/tickets", text: "Tickets" },
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#tickets", text: "Tickets" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/m-basketball",
+            href: "#sports-m-basketball",
             text: "M. Basketball",
             icon: {
               icon_name: "basketball",
@@ -86,15 +89,15 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/tickets", text: "Tickets" },
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#tickets", text: "Tickets" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/m-cross-country",
+            href: "#sports-m-cross-country",
             text: "M. Cross Country",
             icon: {
               icon_name: "person-running",
@@ -104,14 +107,14 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/football",
+            href: "#sports-football",
             text: "Football",
             icon: {
               icon_name: "football",
@@ -121,15 +124,15 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/tickets", text: "Tickets" },
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#tickets", text: "Tickets" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/m-golf",
+            href: "#sports-m-golf",
             text: "M. Golf",
             icon: {
               icon_name: "golf-ball-tee",
@@ -139,14 +142,14 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/ice-hockey",
+            href: "#sports-ice-hockey",
             text: "Ice Hockey",
             icon: {
               icon_name: "hockey-puck",
@@ -156,15 +159,15 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/tickets", text: "Tickets" },
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#tickets", text: "Tickets" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/m-swimming-and-diving",
+            href: "#sports-m-swimming-and-diving",
             text: "M. Swimming and Diving",
             icon: {
               src: "https://svgsilh.com/svg_v2/40798.svg",
@@ -175,14 +178,14 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/m-tennis",
+            href: "#sports-m-tennis",
             text: "M. Tennis",
             icon: {
               icon_name: "racquet",
@@ -192,14 +195,14 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/m-track-and-field",
+            href: "#sports-m-track-and-field",
             text: "M. Track and Field",
             icon: {
               icon_name: "shirt-running",
@@ -209,14 +212,14 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/schedule", text: "Schedule" },
-              { href: "/rooster", text: "Rooster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#rooster", text: "Rooster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/wrestling",
+            href: "#sports-wrestling",
             text: "Wrestling",
             icon: {
               icon_name: "luchador",
@@ -226,17 +229,17 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
         ],
       ],
       buttons: [
         {
-          href: "/tickets",
+          href: "#tickets",
           text: "Buy tickets",
           color: "gold",
 
@@ -264,12 +267,12 @@ export const testHeaderProps = {
       ],
     },
     {
-      href: "/sports",
+      href: "#sports",
       text: "Woman\u0027s Sports",
       items: [
         [
           {
-            href: "/sports/w-basketball",
+            href: "#sports-w-basketball",
             text: "W. Basketball",
             icon: {
               icon_name: "basketball",
@@ -279,15 +282,15 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/tickets", text: "Tickets" },
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#tickets", text: "Tickets" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/beach-volleyball",
+            href: "#sports-beach-volleyball",
             text: "Beach Volleyball",
             icon: {
               icon_name: "volleyball",
@@ -297,14 +300,14 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/w-cross-country",
+            href: "#sports-w-cross-country",
             text: "W. Cross Country",
             icon: {
               icon_name: "person-running",
@@ -314,14 +317,14 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/w-golf",
+            href: "#sports-w-golf",
             text: "W. Golf",
             icon: {
               icon_name: "golf-ball-tee",
@@ -331,14 +334,14 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/gymnastics",
+            href: "#sports-gymnastics",
             text: "Gymnastics",
             icon: {
               icon_name: "person-falling",
@@ -348,28 +351,28 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/lacrosse",
+            href: "#sports-lacrosse",
             text: "Lacrosse",
             icon: {
               src: "https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/lacrosse-sticks-icon.png",
             },
             type: null,
             extra_links: [
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/w-soccer",
+            href: "#sports-w-soccer",
             text: "W. Soccer",
             icon: {
               icon_name: "futbol",
@@ -379,14 +382,14 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/softball",
+            href: "#sports-softball",
             text: "Softball",
             icon: {
               icon_name: "baseball",
@@ -396,15 +399,15 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/tickets", text: "Tickets" },
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#tickets", text: "Tickets" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/w-swimming-and-diving",
+            href: "#sports-w-swimming-and-diving",
             text: "W. Swimming and Diving",
             icon: {
               icon_name: "person-swimming",
@@ -414,14 +417,14 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/w-tennis",
+            href: "#sports-w-tennis",
             text: "W. Tennis",
             icon: {
               icon_name: "racquet",
@@ -431,14 +434,14 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/w-track-and-field",
+            href: "#sports-w-track-and-field",
             text: "W. Track and Field",
             icon: {
               icon_name: "shirt-running",
@@ -448,14 +451,14 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/schedule", text: "Schedule" },
-              { href: "/roster", text: "Roster" },
-              { href: "/stats", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#schedule", text: "Schedule" },
+              { href: "#roster", text: "Roster" },
+              { href: "#stats", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/triathlon",
+            href: "#sports-triathlon",
             text: "Triathlon",
             icon: {
               icon_name: "circle-nodes",
@@ -465,14 +468,14 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/Schedule", text: "Schedule" },
-              { href: "/Roster", text: "Roster" },
-              { href: "/Roster", text: "Stats" },
-              { href: "/news", text: "News" },
+              { href: "#Schedule", text: "Schedule" },
+              { href: "#Roster", text: "Roster" },
+              { href: "#Roster", text: "Stats" },
+              { href: "#news", text: "News" },
             ],
           },
           {
-            href: "/sports/volleyball",
+            href: "#sports-volleyball",
             text: "Volleyball",
             icon: {
               icon_name: "volleyball",
@@ -482,14 +485,14 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/sports", text: "Schedule" },
-              { href: "/sports", text: "Roster" },
-              { href: "/sports", text: "Stats" },
-              { href: "/sports", text: "News" },
+              { href: "#sports", text: "Schedule" },
+              { href: "#sports", text: "Roster" },
+              { href: "#sports", text: "Stats" },
+              { href: "#sports", text: "News" },
             ],
           },
           {
-            href: "/sports/water-polo",
+            href: "#sports-water-polo",
             text: "Water Polo",
             icon: {
               icon_name: "person-swimming",
@@ -499,10 +502,10 @@ export const testHeaderProps = {
             },
             type: null,
             extra_links: [
-              { href: "/sports", text: "Schedule" },
-              { href: "/sports", text: "Roster" },
-              { href: "/sports", text: "Stats" },
-              { href: "/sports", text: "News" },
+              { href: "#sports", text: "Schedule" },
+              { href: "#sports", text: "Roster" },
+              { href: "#sports", text: "Stats" },
+              { href: "#sports", text: "News" },
             ],
           },
         ],
@@ -536,12 +539,12 @@ export const testHeaderProps = {
       is_sports_type: true,
     },
     {
-      href: "/tickets",
+      href: "#tickets",
       text: "Tickets",
       items: [
         [
           {
-            href: "/tickets/single-game-tickets",
+            href: "#tickets/single-game-tickets",
             text: "Single Game Tickets",
             icon: {
               icon_name: "ticket",
@@ -553,7 +556,7 @@ export const testHeaderProps = {
             extra_links: "",
           },
           {
-            href: "/tickets/football",
+            href: "#tickets/football",
             text: "Football",
             icon: {
               icon_name: "futbol",
@@ -565,7 +568,7 @@ export const testHeaderProps = {
             extra_links: "",
           },
           {
-            href: "/tickets/m-basketball",
+            href: "#tickets/m-basketball",
             text: "M. Basketball",
             icon: {
               icon_name: "basketball",
@@ -577,7 +580,7 @@ export const testHeaderProps = {
             extra_links: "",
           },
           {
-            href: "/tickets/w-basketball",
+            href: "#tickets/w-basketball",
             text: "W. Basketball",
             icon: {
               icon_name: "basketball",
@@ -589,7 +592,7 @@ export const testHeaderProps = {
             extra_links: "",
           },
           {
-            href: "/tickets/ice-hockey",
+            href: "#tickets/ice-hockey",
             text: "Ice Hockey",
             icon: {
               icon_name: "hockey-puck",
@@ -601,7 +604,7 @@ export const testHeaderProps = {
             extra_links: "",
           },
           {
-            href: "/tickets/baseball",
+            href: "#tickets/baseball",
             text: "Baseball",
             icon: {
               icon_name: "baseball",
@@ -613,7 +616,7 @@ export const testHeaderProps = {
             extra_links: "",
           },
           {
-            href: "/tickets/softball",
+            href: "#tickets/softball",
             text: "Softball",
             icon: {
               icon_name: "baseball",
@@ -625,7 +628,7 @@ export const testHeaderProps = {
             extra_links: "",
           },
           {
-            href: "/tickets/volleyball",
+            href: "#tickets/volleyball",
             text: "Volleyball",
             icon: {
               icon_name: "volleyball",
@@ -637,7 +640,7 @@ export const testHeaderProps = {
             extra_links: "",
           },
           {
-            href: "/tickets/wrestling",
+            href: "#tickets/wrestling",
             text: "Wrestling",
             icon: {
               icon_name: "luchador",
@@ -649,7 +652,7 @@ export const testHeaderProps = {
             extra_links: "",
           },
           {
-            href: "/tickets/gymnastics",
+            href: "#tickets/gymnastics",
             text: "Gymnastics",
             icon: {
               icon_name: "person-falling",
@@ -661,7 +664,7 @@ export const testHeaderProps = {
             extra_links: "",
           },
           {
-            href: "/tickets/soccer",
+            href: "#tickets/soccer",
             text: "Soccer",
             icon: {
               icon_name: "futbol",
@@ -673,7 +676,7 @@ export const testHeaderProps = {
             extra_links: "",
           },
           {
-            href: "/tickets/lacrosse",
+            href: "#tickets/lacrosse",
             text: "Lacrosse",
             icon: {
               src: "https://uxwing.com/wp-content/themes/uxwing/download/sport-and-awards/lacrosse-sticks-icon.png",
@@ -682,7 +685,7 @@ export const testHeaderProps = {
             extra_links: "",
           },
           {
-            href: "/tickets/see-a-list-of-free-sporting-events",
+            href: "#tickets/see-a-list-of-free-sporting-events",
             text: "See a List of Free Sporting Events",
 
             variant: "muted",
@@ -723,35 +726,35 @@ export const testHeaderProps = {
         ],
         [
           {
-            href: "/tickets-just-for-you",
+            href: "#tickets-just-for-you",
             text: "Tickets Just for You",
 
             type: "heading",
             extra_links: "",
           },
           {
-            href: "/tickets-just-for-you/asu-students",
+            href: "#tickets-just-for-you/asu-students",
             text: "ASU Students",
 
             type: null,
             extra_links: "",
           },
           {
-            href: "/tickets-just-for-you/asu-young-alumni",
+            href: "#tickets-just-for-you/asu-young-alumni",
             text: "ASU Young Alumni",
 
             type: null,
             extra_links: "",
           },
           {
-            href: "/tickets-just-for-you/asu-faculty-and-staff",
+            href: "#tickets-just-for-you/asu-faculty-and-staff",
             text: "ASU Faculty and Staff",
 
             type: null,
             extra_links: "",
           },
           {
-            href: "/tickets-just-for-you/military-and-first-responders",
+            href: "#tickets-just-for-you/military-and-first-responders",
             text: "Military and First Responders",
 
             type: null,
@@ -798,7 +801,7 @@ export const testHeaderProps = {
       ],
       buttons: [
         {
-          href: "/tickets",
+          href: "#tickets",
           text: "See all ticketing info",
           color: "gold",
         },
@@ -871,7 +874,7 @@ export const testHeaderProps = {
             extra_links: "",
           },
           {
-            href: "/for-kids/sports-camps",
+            href: "/for-kids#sports-camps",
             text: "Sports Camps",
 
             type: null,
@@ -973,7 +976,7 @@ export const testHeaderProps = {
             extra_links: "",
           },
           {
-            href: "/history-and-traditions/sports-hall-of-fame",
+            href: "/history-and-traditions#sports-hall-of-fame",
             text: "Sports Hall of Fame",
 
             type: null,

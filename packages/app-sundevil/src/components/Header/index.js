@@ -59,37 +59,53 @@ const mapNavTreeItemButtons = navTreeItem => {
   };
 };
 
+const ensureArray = value => (Array.isArray(value) ? value : [value]);
+
 /** @type {(props: NavTreeItemVariant) => NavTreeItemVariant} */
 const mapNavTreeItemToSportLinks = navTreeItem => {
+  const sports = ensureArray(navTreeItem.items).flatMap(column =>
+    ensureArray(column).map(item => {
+      const extraLinks = ensureArray(item?.extra_links);
+
+      return {
+        href: item.href,
+        sportName: item.text,
+        sportLinks: extraLinks.map(extraLink => {
+          return {
+            label: extraLink.text,
+            url: extraLink.href,
+          };
+        }),
+        icon: item.icon,
+      };
+    })
+  );
+
+  const allHrefs = new Set(
+    ensureArray(sports).flatMap(sport => [
+      sport.href,
+      ...ensureArray(sport.sportLinks).map(link => link.url),
+    ])
+  );
+
+  const selected = allHrefs.has(
+    window.location.pathname + window.location.search
+  );
+
   return {
+    selected,
     href: navTreeItem.href,
     id: navTreeItem.id,
     type: navTreeItem.type,
     text: navTreeItem.text,
     footers: navTreeItem.footers,
     buttons: navTreeItem.buttons,
-    renderContent: ({ listId = "" } = {}) => (
+    renderContent: ({ listId = "", onClickedLink = () => {} } = {}) => (
       <HeaderContentSportLinks
         id={listId}
         buttons={[]}
-        sports={(navTreeItem.items ?? []).flatMap(column =>
-          column.map(item => {
-            const extraLinks = Array.isArray(item.extra_links)
-              ? item?.extra_links
-              : [];
-            return {
-              href: item.href,
-              sportName: item.text,
-              sportLinks: extraLinks.map(extraLink => {
-                return {
-                  label: extraLink.text,
-                  url: extraLink.href,
-                };
-              }),
-              icon: item.icon,
-            };
-          })
-        )}
+        onClickedLink={onClickedLink}
+        sports={sports}
       />
     ),
   };
@@ -97,10 +113,9 @@ const mapNavTreeItemToSportLinks = navTreeItem => {
 
 /** @type {(props: NavTreeItemVariant) => NavTreeItemVariant}  */
 const mapNavTreeItemItems = navTreeItem => {
-  const items = Array.isArray(navTreeItem.items) ? navTreeItem.items : [];
   return {
     ...navTreeItem,
-    items: items.map(item => {
+    items: navTreeItem.items?.map?.(item => {
       if (Array.isArray(item)) {
         return item.map(mapNavTreeItemItem);
       }
@@ -185,6 +200,27 @@ const mapNavTreeItem = navTreeItem => {
   }
 };
 
+const ensureOnlyOneSelectedItem = navTree => {
+  if (!Array.isArray(navTree) || navTree.length === 0) {
+    return navTree;
+  }
+  const selectedItemIndex = navTree.findIndex(item => item?.selected);
+
+  const navTreeNew = navTree.map((item, index) => {
+    if (index === selectedItemIndex) {
+      return {
+        ...item,
+        selected: true,
+      };
+    }
+    return {
+      ...item,
+      selected: false,
+    };
+  });
+  return navTreeNew;
+};
+
 /** @type {(props: HeaderProps['navTree']) => HeaderProps['navTree']}  */
 const mapNavTree = navTree =>
   Array.isArray(navTree)
@@ -194,7 +230,7 @@ const mapNavTree = navTree =>
 /** @type {(props: HeaderProps) => HeaderProps}  */
 const mapProps = props => ({
   ...props,
-  navTree: mapNavTree(props.navTree),
+  navTree: ensureOnlyOneSelectedItem(mapNavTree(props.navTree)),
   universalNavbar: {
     renderStart: () => (
       <OfficialAthleticsSite

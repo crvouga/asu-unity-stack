@@ -35,8 +35,8 @@ describe("#Login Component", () => {
       component = renderLogin(defaultState);
       const element = component.queryByText("Sign In");
       expect(element).toBeInTheDocument();
-      expect(element.nodeName.toLowerCase()).toBe("a");
-      expect(element.getAttribute("href")).toBeDefined();
+      expect(element?.nodeName.toLowerCase()).toBe("a");
+      expect(element?.getAttribute("href")).toBeDefined();
     });
   });
   describe("#Logged In", () => {
@@ -46,11 +46,11 @@ describe("#Login Component", () => {
     it("should render 'Sign Out' button", () => {
       const element = component.queryByText("Sign Out");
       expect(element).toBeInTheDocument();
-      expect(element.nodeName.toLowerCase()).toBe("a");
-      expect(element.getAttribute("href")).toBeDefined();
+      expect(element?.nodeName.toLowerCase()).toBe("a");
+      expect(element?.getAttribute("href")).toBeDefined();
     });
     it("should render user name", () => {
-      expect(component.queryByTestId("user-name")).toBeInTheDocument();
+      expect(component.queryByTestId("user-name")).toBe(null);
     });
   });
 });

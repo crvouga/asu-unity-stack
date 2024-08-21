@@ -64,6 +64,7 @@ const NavbarContainer = forwardRef(
         showUniversalNavbar={showUniversalNavbar}
         navBarHeight={navBarHeight}
         hidden={hidden}
+        aria-hidden={hidden}
         universalNavbar={universalNavbar}
         mobile={mobile}
         universalNavbarHeight={universalNavbarHeight}

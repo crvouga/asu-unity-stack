@@ -146,7 +146,7 @@ const DropdownItem = forwardRef(
         // @ts-ignore
         breakpoint={breakpoint}
       >
-        {renderContent?.({ listId })}
+        {renderContent?.({ listId, onClickedLink })}
         {items?.length > 0 && (
           <div
             id={MULTIPLE_SUBMENUS ? listId : undefined}
@@ -160,7 +160,7 @@ const DropdownItem = forwardRef(
                   id={MULTIPLE_SUBMENUS ? `${listId}-${key}` : listId}
                   key={key}
                 >
-                  {item.map((link, index) => renderItem(link, index))}
+                  {item?.map?.((link, index) => renderItem(link, index))}
                 </ul>
               );
             })}
@@ -182,7 +182,6 @@ const DropdownItem = forwardRef(
             </div>
           </div>
         )}
-
         {showFooter &&
           footers &&
           footers.map((footer, index) => (

@@ -52,6 +52,9 @@ const Root = styled.button`
     background-color: #191919;
     color: #fafafa;
   }
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 /**

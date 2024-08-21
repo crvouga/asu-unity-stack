@@ -13,4 +13,6 @@ export const DropDownSurface = styled.div`
   overflow: hidden;
   height: 100%;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;

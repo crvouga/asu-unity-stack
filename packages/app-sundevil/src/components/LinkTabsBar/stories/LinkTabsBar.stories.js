@@ -259,9 +259,10 @@ DebugProps.args = {
       },
     },
     {
-      mobileLabel: "Coaches",
+      mobileLabel:
+        "Coaches Coaches Coaches Coaches Coaches Coaches Coaches Coaches",
       href: "http://example.com",
-      label: "Coaches",
+      label: "Coaches Coaches Coaches Coaches Coaches Coaches Coaches Coaches",
       active: false,
       icon: {
         icon_name: "",

@@ -32,6 +32,10 @@ const HeaderMain = () => {
     setMobileMenuOpen(prevState => !prevState);
   };
 
+  const toggleMobileMenu = () => {
+    handleChangeMenuVisibility();
+  };
+
   const handleClickMobileMenu = () => {
     handleChangeMenuVisibility();
     trackGAEvent({
@@ -81,7 +85,10 @@ const HeaderMain = () => {
                     }`}
                   >
                     {isPartner ? <Partner /> : <Title />}
-                    <NavbarContainer navBarHeight={navbarDimensions.height} />
+                    <NavbarContainer
+                      toggleMobileMenu={toggleMobileMenu}
+                      navBarHeight={navbarDimensions.height}
+                    />
                   </div>
                   <LogoSponsor />
                 </>
@@ -93,6 +100,7 @@ const HeaderMain = () => {
               // @ts-ignore
               ref={mobileNavContainerRef}
               hidden={!isMobile || !mobileMenuOpen}
+              toggleMobileMenu={toggleMobileMenu}
             />
           </div>
         </div>

@@ -49,11 +49,11 @@ const isHashHref = href =>
  */
 
 /**
- * @param {{ link: NavTreeProps, setItemOpened: Function, itemOpened: number }} props
+ * @param {{ link: NavTreeProps, setItemOpened: Function, itemOpened: number, toggleMobileMenu: Function }} props
  * @returns {JSX.Element}
  *
  */
-const NavItem = ({ link, setItemOpened, itemOpened }) => {
+const NavItem = ({ link, setItemOpened, itemOpened, toggleMobileMenu }) => {
   const clickRef = useRef(null);
   const opened = link.id === itemOpened;
   const { breakpoint, expandOnHover, title } = useAppContext();
@@ -165,6 +165,7 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
     const href = input?.href ?? input?.link?.href ?? input?.link?.url ?? "";
     if (isHashHref(href)) {
       setItemOpened(null);
+      toggleMobileMenu();
     }
   };
 
@@ -198,7 +199,6 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
       >
         {renderNavLinks}
       </a>
-
       {typeof link.renderContent === "function" && (
         <DropdownItem
           onClickedLink={onClickedLink}
@@ -217,7 +217,6 @@ const NavItem = ({ link, setItemOpened, itemOpened }) => {
           footers={link.footers}
         />
       )}
-
       {isDropdown && Array.isArray(link.items) && link.items.length > 0 && (
         <DropdownItem
           onClickedLink={onClickedLink}
@@ -243,6 +242,7 @@ NavItem.propTypes = {
   link: NavTreePropTypes,
   setItemOpened: PropTypes.func,
   itemOpened: PropTypes.number,
+  toggleMobileMenu: PropTypes.func,
 };
 
 export { NavItem };

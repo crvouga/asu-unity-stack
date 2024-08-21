@@ -13,95 +13,103 @@ import { Wrapper } from "./index.styles";
 import { NavItem } from "./NavItem";
 
 /**
- * @type {React.FC<{navBarHeight: number; hidden?: boolean}>}
+ * @type {React.FC<{navBarHeight: number; hidden?: boolean, toggleMobileMenu: () => void}>}
  */
-const NavbarContainer = forwardRef(({ navBarHeight, hidden = false }, ref) => {
-  const {
-    navTree,
-    mobileNavTree,
-    buttons,
-    breakpoint,
-    universalNavbar,
-    mobile,
-  } = useAppContext();
-  const isMobile = useIsMobile(breakpoint);
-  const [itemOpened, setItemOpened] = useState(undefined);
-  /** @type {React.MutableRefObject<HTMLElement | null} */
-  const universalNavbarRef = useRef(null);
-  const universalNavbarDimensions = useDimensions(universalNavbarRef);
-  const universalNavbarHeight = universalNavbarDimensions.height;
+const NavbarContainer = forwardRef(
+  ({ toggleMobileMenu, navBarHeight, hidden = false }, ref) => {
+    const {
+      navTree,
+      mobileNavTree,
+      buttons,
+      breakpoint,
+      universalNavbar,
+      mobile,
+    } = useAppContext();
+    const isMobile = useIsMobile(breakpoint);
+    const [itemOpened, setItemOpened] = useState(undefined);
+    /** @type {React.MutableRefObject<HTMLElement | null>} */
+    const universalNavbarRef = useRef(null);
+    const universalNavbarDimensions = useDimensions(universalNavbarRef);
+    const universalNavbarHeight = universalNavbarDimensions.height;
 
-  const handleSetItemOpened = itemId => {
-    setItemOpened(() => (itemOpened === itemId ? undefined : itemId));
-  };
+    const handleSetItemOpened = itemId => {
+      setItemOpened(() => (itemOpened === itemId ? undefined : itemId));
+    };
 
-  const renderItem = (link, index) => {
-    const item = { ...link, id: index };
-    const genKey = idGenerator(`${link.text}-${index}-`);
-    const key = genKey.next().value;
+    const renderItem = (link, index) => {
+      const item = { ...link, id: index };
+      const genKey = idGenerator(`${link.text}-${index}-`);
+      const key = genKey.next().value;
+      return (
+        <NavItem
+          key={key}
+          link={item}
+          setItemOpened={() => handleSetItemOpened(index)}
+          toggleMobileMenu={toggleMobileMenu}
+          // @ts-ignore
+          itemOpened={itemOpened}
+        />
+      );
+    };
+
+    const showUniversalNavbar = isMobile && !universalNavbar?.hideMobile;
+
     return (
-      <NavItem
-        key={key}
-        link={item}
-        setItemOpened={() => handleSetItemOpened(index)}
+      <Wrapper
+        ref={ref}
         // @ts-ignore
-        itemOpened={itemOpened}
-      />
+        breakpoint={breakpoint}
+        data-testid="navigation"
+        aria-label="Main"
+        showUniversalNavbar={showUniversalNavbar}
+        navBarHeight={navBarHeight}
+        hidden={hidden}
+        universalNavbar={universalNavbar}
+        mobile={mobile}
+        universalNavbarHeight={universalNavbarHeight}
+      >
+        {isMobile && typeof mobile?.drawer?.renderStart === "function"
+          ? mobile.drawer.renderStart()
+          : null}
+        {(navTree?.length || mobileNavTree?.length || buttons?.length) && (
+          <div className="content-container">
+            {(navTree?.length || mobileNavTree?.length) && (
+              <ul className="nav-list">
+                {!!mobileNavTree?.length && isMobile
+                  ? mobileNavTree?.map((link, i) => renderItem(link, i))
+                  : navTree?.map((link, i) => renderItem(link, i))}
+              </ul>
+            )}
+            {!!buttons?.length && (
+              <form
+                className="buttons-container"
+                data-testid="buttons-container"
+              >
+                {buttons?.map(button => (
+                  <Button
+                    {...button}
+                    key={button.text}
+                    onFocus={() => trackGAEvent({ text: button.text })}
+                  />
+                ))}
+              </form>
+            )}
+          </div>
+        )}
+        {/* Navbar Footer */}
+        {showUniversalNavbar && <UniversalNavbar ref={universalNavbarRef} />}
+      </Wrapper>
     );
-  };
-
-  const showUniversalNavbar = isMobile && !universalNavbar?.hideMobile;
-
-  return (
-    <Wrapper
-      ref={ref}
-      // @ts-ignore
-      breakpoint={breakpoint}
-      data-testid="navigation"
-      aria-label="Main"
-      showUniversalNavbar={showUniversalNavbar}
-      navBarHeight={navBarHeight}
-      hidden={hidden}
-      universalNavbar={universalNavbar}
-      mobile={mobile}
-      universalNavbarHeight={universalNavbarHeight}
-    >
-      {isMobile && typeof mobile?.drawer?.renderStart === "function"
-        ? mobile.drawer.renderStart()
-        : null}
-      {(navTree?.length || mobileNavTree?.length || buttons?.length) && (
-        <div className="content-container">
-          {(navTree?.length || mobileNavTree?.length) && (
-            <ul className="nav-list">
-              {!!mobileNavTree?.length && isMobile
-                ? mobileNavTree?.map((link, i) => renderItem(link, i))
-                : navTree?.map((link, i) => renderItem(link, i))}
-            </ul>
-          )}
-          {!!buttons?.length && (
-            <form className="buttons-container" data-testid="buttons-container">
-              {buttons?.map(button => (
-                <Button
-                  {...button}
-                  key={button.text}
-                  onFocus={() => trackGAEvent({ text: button.text })}
-                />
-              ))}
-            </form>
-          )}
-        </div>
-      )}
-      {/* Navbar Footer */}
-      {showUniversalNavbar && <UniversalNavbar ref={universalNavbarRef} />}
-    </Wrapper>
-  );
-});
+  }
+);
 
 NavbarContainer.propTypes = {
   // @ts-ignore
   navBarHeight: PropTypes.number,
   // @ts-ignore
   hidden: PropTypes.bool,
+  // @ts-ignore
+  toggleMobileMenu: PropTypes.func,
 };
 
 export { NavbarContainer };

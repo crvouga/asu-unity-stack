@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { APP_CONFIG } from "../../config";
 import { stringToFontWeight } from "../../utils/font-weight";
 import { useBreakpoint } from "../../utils/use-breakpoint";
+import { trackAdClickHandler } from "../Ads/ad-data-layers";
 import { Logo } from "./index.styles";
 import { JoinTheConversation, socialPropType } from "./JoinTheConversation";
 import { Tabs } from "./Tabs";
@@ -189,6 +190,10 @@ export const SectionHeader = forwardRef(
                     <SponsorBlock
                       href={sponsorBlock?.url}
                       className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
+                      onClick={trackAdClickHandler({
+                        adId: sponsorBlock?.adId,
+                        href: sponsorBlock?.url,
+                      })}
                     >
                       <SponsorBlockTitle
                         // @ts-ignore
@@ -252,6 +257,10 @@ export const SectionHeader = forwardRef(
                 <SponsorBlock
                   href={sponsorBlock?.url}
                   className="d-flex flex-row align-items-center justify-content-end gap-2"
+                  onClick={trackAdClickHandler({
+                    adId: sponsorBlock?.adId,
+                    href: sponsorBlock?.url,
+                  })}
                 >
                   <SponsorBlockTitle
                     // @ts-ignore
@@ -281,7 +290,7 @@ export const SectionHeader = forwardRef(
  * @property {Array<{ label: string, color: string; href: string, fontWeight: string; url: string }>} [subtitleLinks]
  * @property {Array<{ id: string, label: string, active: boolean }>} [tabs]
  * @property {Array<import("./JoinTheConversation").SocialProp>} [social]
- * @property {{name: string, logo: string, text: string, url: string}} [sponsorBlock]
+ * @property {{name: string, logo: string, text: string, url: string, adId?: string | number}} [sponsorBlock]
  * @property {boolean} [darkMode]
  * @property {Function} [onTabItemClick]
  * @property {React.CSSProperties} [style]
@@ -293,6 +302,7 @@ const sponsorBlockPropTypes = PropTypes.shape({
   logo: PropTypes.string,
   text: PropTypes.string,
   url: PropTypes.string,
+  adId: PropTypes.string,
 });
 
 export const sectionHeaderPropTypes = PropTypes.shape({

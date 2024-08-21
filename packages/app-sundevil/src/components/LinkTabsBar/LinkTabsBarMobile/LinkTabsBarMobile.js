@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
+import { trackAdClickHandler } from "../../Ads/ad-data-layers";
 import { linkTabsBarPropTypes } from "../link-tab-bar";
 import { LinkTabsBarDropDown } from "./LinkTabsBarDropDown";
 
@@ -49,7 +50,17 @@ const Content = styled.div`
 `;
 
 export const LinkTabsBarMobile = forwardRef(
-  ({ links = [], sponsorHref, sponsorLogoSrc, sponsorLogoAlt, style }, ref) => {
+  (
+    {
+      links = [],
+      sponsorAdId,
+      sponsorHref,
+      sponsorLogoSrc,
+      sponsorLogoAlt,
+      style,
+    },
+    ref
+  ) => {
     return (
       <Root ref={ref}>
         <Content style={style}>
@@ -67,7 +78,13 @@ export const LinkTabsBarMobile = forwardRef(
           </LinkTabsRoot>
           {typeof sponsorLogoSrc === "string" &&
             sponsorLogoSrc.trim().length > 0 && (
-              <SponsorRoot href={sponsorHref}>
+              <SponsorRoot
+                href={sponsorHref}
+                onClick={trackAdClickHandler({
+                  adId: sponsorAdId,
+                  href: sponsorHref,
+                })}
+              >
                 <SponsorImage
                   src={sponsorLogoSrc}
                   alt={sponsorLogoAlt ?? " "}

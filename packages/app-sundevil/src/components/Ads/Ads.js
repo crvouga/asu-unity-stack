@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 
-import { pushDataLayer } from "../../data-layers";
 import { Ad, adPropTypes } from "./ad";
+import { trackAdClick, trackAdImpression } from "./ad-data-layers";
 import { useCycleIndexOnLoad } from "./use-cycle-index-on-load";
 
 function useDataLayers({ ad, onMount }) {
@@ -19,10 +19,7 @@ function useDataLayers({ ad, onMount }) {
       };
     }
 
-    pushDataLayer({
-      event: "ad_impression",
-      ad_id: ad?.id,
-    });
+    trackAdImpression(ad?.id);
 
     return () => {
       //
@@ -30,10 +27,7 @@ function useDataLayers({ ad, onMount }) {
   }, [ad]);
 
   const onClickAd = () => {
-    pushDataLayer({
-      event: "ad_click",
-      ad_id: ad?.id,
-    });
+    trackAdClick(ad?.id);
   };
 
   return {

@@ -10,6 +10,7 @@ export const linkTabsBarPropTypes = PropTypes.shape({
   sponsorHref: PropTypes.string,
   sponsorLogoSrc: PropTypes.string,
   sponsorLogoAlt: PropTypes.string,
+  sponsorAdId: PropTypes.string,
   maxLinkCountBreakpoints: maxLinkCountBreakpointsPropType,
   disableActiveFromUrl: PropTypes.bool,
   stickyPosition: PropTypes.shape({

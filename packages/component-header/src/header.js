@@ -121,8 +121,11 @@ const ASUHeader = ({
         baseUrl,
         parentOrg,
         parentOrgUrl,
+        // @ts-ignore
         partnerLogo,
+        // @ts-ignore
         logo,
+        // @ts-ignore
         sponsorLogo,
         loggedIn,
         userName,

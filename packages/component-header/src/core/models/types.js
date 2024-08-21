@@ -13,6 +13,8 @@
  * @property {string | number} [height]
  * @property {string | number} [mobileWidth]
  * @property {string | number} [mobileHeight]
+ * @property {string} [adId]
+ * @property {function} [onClick]
  */
 
 /**

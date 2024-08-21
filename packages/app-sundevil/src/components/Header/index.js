@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import { ASUHeader } from "../../../../component-header/src";
+import { trackAdClickHandler } from "../Ads/ad-data-layers";
 import { HeaderContentSportLinks } from "../HeaderContentSportLinks";
 import { Icon } from "../Icon_";
 import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
@@ -231,6 +232,13 @@ const mapNavTree = navTree =>
 const mapProps = props => ({
   ...props,
   navTree: ensureOnlyOneSelectedItem(mapNavTree(props.navTree)),
+  sponsorLogo: {
+    ...props.sponsorLogo,
+    onClick: trackAdClickHandler({
+      adId: props.sponsorLogo?.adId,
+      href: props.sponsorLogo?.brandLink,
+    }),
+  },
   universalNavbar: {
     renderStart: () => (
       <OfficialAthleticsSite

@@ -22,6 +22,7 @@ const LogoSponsor = () => {
       className="navbar-brand"
       data-testid="logo"
       onFocus={() => trackGAEvent({ text: "asu logo" })}
+      onClick={sponsorLogo?.onClick}
     >
       <img
         className="vert"

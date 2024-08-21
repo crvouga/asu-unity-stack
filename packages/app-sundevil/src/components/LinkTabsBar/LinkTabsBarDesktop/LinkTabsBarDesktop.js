@@ -1,6 +1,7 @@
 import React, { forwardRef, useRef } from "react";
 import styled from "styled-components";
 
+import { trackAdClickHandler } from "../../Ads/ad-data-layers";
 import { linkTabsBarPropTypes } from "../link-tab-bar";
 import { useMaxLinkCount } from "../max-link-count";
 import { LinkTabs } from "./LinkTabs";
@@ -53,6 +54,7 @@ export const LinkTabsBarDesktop = forwardRef(
     {
       links = [],
       sponsorHref,
+      sponsorAdId,
       sponsorLogoSrc,
       sponsorLogoAlt,
       maxLinkCountBreakpoints,
@@ -83,7 +85,13 @@ export const LinkTabsBarDesktop = forwardRef(
 
           {typeof sponsorLogoSrc === "string" &&
             sponsorLogoSrc.trim().length > 0 && (
-              <SponsorRoot href={sponsorHref}>
+              <SponsorRoot
+                href={sponsorHref}
+                onClick={trackAdClickHandler({
+                  adId: sponsorAdId,
+                  href: sponsorHref,
+                })}
+              >
                 <SponsorImage
                   src={sponsorLogoSrc}
                   alt={sponsorLogoAlt ?? " "}

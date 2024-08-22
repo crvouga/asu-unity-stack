@@ -36,7 +36,7 @@ export const trackAdClick = adId => {
  * @type {(input?: {adId?: unknown, href?: unknown, target?: unknown}) => any}
  */
 export const trackAdClickHandler =
-  ({ adId = undefined, href = undefined, target = undefined } = {}) =>
+  ({ adId = undefined, href = undefined, target: _target = undefined } = {}) =>
   e => {
     if (typeof e?.preventDefault === "function") {
       e.preventDefault();
@@ -45,7 +45,6 @@ export const trackAdClickHandler =
     trackAdClick(adId);
 
     const finalHref = href ?? e?.currentTarget?.href;
-    const finalTarget = target ?? e?.currentTarget?.target;
 
-    window.open(finalHref, finalTarget);
+    window.location.href = finalHref;
   };

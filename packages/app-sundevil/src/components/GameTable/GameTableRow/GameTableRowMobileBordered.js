@@ -137,10 +137,17 @@ export const GameTableRowMobileBordered = forwardRef(
 
             {configLayout.includeCellTitle && (
               <TitleRoot>
-                <Title href={game?.titleHref}>{game?.title}</Title>
+                <Title
+                  href={game?.titleHref}
+                  dangerouslySetInnerHTML={{ __html: game?.title }}
+                />
                 <Subtitles>
-                  <Subtitle>{formatTimeAmPm(game?.time)}</Subtitle>
-                  <Subtitle>{game?.venue}</Subtitle>
+                  <Subtitle
+                    dangerouslySetInnerHTML={{
+                      __html: formatTimeAmPm(game?.time),
+                    }}
+                  />
+                  <Subtitle dangerouslySetInnerHTML={{ __html: game?.venue }} />
                 </Subtitles>
               </TitleRoot>
             )}

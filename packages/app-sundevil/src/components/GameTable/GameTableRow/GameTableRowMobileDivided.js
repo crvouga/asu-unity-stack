@@ -140,7 +140,10 @@ export const GameTableRowMobileDivided = forwardRef((props, ref) => {
           )}
           {configLayout.includeCellTitle && (
             <CellTitle>
-              <Title href={game?.titleHref}>{game?.title}</Title>
+              <Title
+                href={game?.titleHref}
+                dangerouslySetInnerHTML={{ __html: game?.title }}
+              />
               <Subtitles {...props} />
             </CellTitle>
           )}

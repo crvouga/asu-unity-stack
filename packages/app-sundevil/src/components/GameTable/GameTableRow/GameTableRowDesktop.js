@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 // @ts-check
 import React, { forwardRef, useRef } from "react";
 import styled from "styled-components";
@@ -182,9 +183,8 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
                   fontWeight: "bold",
                   lineHeight: "16px",
                 }}
-              >
-                {game?.dateMonth}.
-              </div>
+                dangerouslySetInnerHTML={{ __html: `${game?.dateMonth}.` }}
+              />
               <div
                 style={{
                   lineHeight: "40px",
@@ -193,9 +193,8 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
                   fontSize: "40px",
                   fontWeight: "bold",
                 }}
-              >
-                {game?.dateDay}
-              </div>
+                dangerouslySetInnerHTML={{ __html: game?.dateDay }}
+              />
             </CellDate>
           </Cell>
         )}
@@ -208,7 +207,12 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
                   <SportIcon
                     sportName={stringToClosestSportName(game?.sportId)}
                   />
-                  <p className="m-0">{idToLabel(game?.sportId)}</p>
+                  <p
+                    className="m-0"
+                    dangerouslySetInnerHTML={{
+                      __html: idToLabel(game?.sportId),
+                    }}
+                  />
                 </>
               )}
             </CellSportName>
@@ -234,7 +238,10 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
         {configLayout.includeCellTitle && (
           <Cell className="flex-1">
             <CellTitle>
-              <Title href={game?.titleHref}>{game?.title}</Title>
+              <Title
+                href={game?.titleHref}
+                dangerouslySetInnerHTML={{ __html: game?.title }}
+              />
 
               <Subtitles {...props} />
             </CellTitle>

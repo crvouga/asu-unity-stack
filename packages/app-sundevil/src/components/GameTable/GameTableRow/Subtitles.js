@@ -80,10 +80,16 @@ export const Subtitles = ({
     >
       {configCells.cellTitle.includeSubtitleChip &&
         isValidString(game?.subtitleChip) && (
-          <SubtitleChip>{game?.subtitleChip}</SubtitleChip>
+          <SubtitleChip
+            dangerouslySetInnerHTML={{ __html: game?.subtitleChip }}
+          />
         )}
-      <Subtitle>{formatTimeAmPm(game?.time)}</Subtitle>
-      <Subtitle>{game?.venue}</Subtitle>
+      <Subtitle
+        dangerouslySetInnerHTML={{
+          __html: formatTimeAmPm(game?.time),
+        }}
+      />
+      <Subtitle dangerouslySetInnerHTML={{ __html: game?.venue }} />
     </Root>
   );
 };

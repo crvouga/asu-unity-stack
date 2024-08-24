@@ -48,7 +48,7 @@ const games = [];
     awayTeamLogoSrc:
       "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
     time: "5:30pm",
-    venue: "Phoenix Muni Stadium",
+    venue: "Phoenix Muni Stadium AT&amp;T",
     subtitleChip: "Gameday",
     admissionCost:
       ALL_ADMISSION_COST[Math.floor(Math.random() * ALL_ADMISSION_COST.length)],

@@ -70,14 +70,17 @@
     <script>
       const props = {
         configNoData: {
-          hide: false,
-          hideBehavior: "initially-hidden", //  "initially-hidden" | "initially-visible" | null;
-          hideBasedOn: {},
+          hide: true,
+          hideBehavior: "initially-visible", //  "initially-hidden" | "initially-visible" | null;
+          hideBasedOn: {
+
+          },
           message: "No games found",
         },
         // This will just generate random games
         gameDataSource: {
           type: "mock",
+          // games: []
         },
         title: "Upcoming Games",
         emptyStateMessage: "No upcoming games",

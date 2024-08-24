@@ -141,10 +141,10 @@ import { GroupTicketMiniPlans } from "./components/SeasonsTicket/GroupTicketMini
 //   }))
 // );
 
-import { TicketsFooter } from "./components/SeasonsTicket/ticketsFooter";
-// const TicketsFooter = React.lazy(() =>
+import { GroupTicketsFooter } from "./components/SeasonsTicket/GroupTicketsFooter";
+// const GroupTicketsFooter = React.lazy(() =>
 //   import("./components/SeasonsTicket/ticketsFooter").then(module => ({
-//     default: module.TicketsFooter,
+//     default: module.GroupTicketsFooter,
 //   }))
 // );
 
@@ -297,12 +297,15 @@ export const initGroupsTicket = input => {
   });
 };
 
-export const initTicketsFooter = input => {
+export const initGroupTicketsFooter = input => {
   RenderReact({
     ...input,
-    component: TicketsFooter,
+    component: GroupTicketsFooter,
   });
 };
+
+// For backward compatibility
+export const initTicketsFooter = initGroupTicketsFooter;
 
 export const initGroupTicketBenefitSection = input => {
   RenderReact({

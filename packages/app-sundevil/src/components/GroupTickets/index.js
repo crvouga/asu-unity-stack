@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { TicketsFooter } from "../SeasonsTicket/ticketsFooter";
+import { GroupTicketsFooter } from "../SeasonsTicket/GroupTicketsFooter";
 import { CardGrid } from "./CardGrid";
 import { EnhanceExperience } from "./EnhanceExperience";
 import { PreviewSection } from "./PreviewSection";
@@ -34,7 +34,7 @@ export const GroupTickets = ({ faqs, sportsGroupCard, textImageBlock }) => {
         cta={textImageBlock.interestFormLink}
         image={textImageBlock}
       />
-      <TicketsFooter title="Group ticket FAQs" data={faqs} />
+      <GroupTicketsFooter title="Group ticket FAQs" data={faqs} />
     </Root>
   );
 };

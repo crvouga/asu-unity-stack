@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { GroupTicketBenefit } from "./GroupTicketBenefit";
 import { GroupTicketMiniPlans } from "./GroupTicketMiniPlans";
-import { TicketsFooter } from "./ticketsFooter";
+import { GroupTicketsFooter } from "./GroupTicketsFooter";
 
 const Root = styled.section`
   display: flex;
@@ -81,7 +81,7 @@ export const SeasonsTicket = ({
         cta={buildMiniPlanLink}
       />
 
-      <TicketsFooter title={footer.title} data={footer.data} />
+      <GroupTicketsFooter title={footer.title} data={footer.data} />
     </Root>
   );
 };

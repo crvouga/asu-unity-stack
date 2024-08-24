@@ -35,14 +35,14 @@ export const LinkTabsBarDropDown = ({ links }) => {
           label={activeLink?.label}
           icon={activeLink?.icon}
           renderIconEnd={() => (
-            <div open={isOpen}>
+            <div key={isOpen}>
               <CollapseIcon open={isOpen} />
             </div>
           )}
         />
       )}
-      renderContent={() => (
-        <DropDownSurface>
+      renderContent={({ referenceWidth }) => (
+        <DropDownSurface style={{ width: referenceWidth }}>
           {links?.map(link => (
             <DropDownItem
               as="a"

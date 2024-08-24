@@ -29,7 +29,8 @@ const StyledDropdownContent = styled.div`
   overflow-y: auto;
   border: 1px solid #d0d0d0;
   background-color: #fff;
-  max-width: 95vw;
+  /* full width minus scrollbar width */
+  max-width: calc(100vw - 16px);
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

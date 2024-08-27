@@ -38,8 +38,7 @@ const StyledDropdownContent = styled.div`
     switch (props.width) {
       case "screen": {
         return `
-          /* 100vw - 6px to account for scrollbar */
-          width: calc(100vw - 6px);
+          width: 100vw;
           max-width: ${APP_CONFIG.breakpointMobile};
         `;
       }

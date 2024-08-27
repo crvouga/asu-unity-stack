@@ -5,31 +5,32 @@ import styled from "styled-components";
 import { Icon, iconPropType } from "../Icon_";
 
 export const Root = styled.a`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 24px;
+  margin: 0 !important;
   color: #191919;
   text-decoration: none;
   cursor: pointer;
   height: 100%;
   font-weight: bold;
   background-color: transparent;
-  flex-wrap: nowrap;
   overlap: hidden;
   white-space: nowrap;
 
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
 
   outline: none !important;
-  border: 3px solid transparent;
+  border: 0px solid transparent;
   box-shadow: none !important;
-  box-sizing: border-box;
   &:focus {
     outline: none !important;
     box-shadow: none !important;
-    border: 3px solid transparent;
+    border: 0px solid transparent;
   }
   &:active {
     outline: none !important;
@@ -46,22 +47,6 @@ export const Root = styled.a`
       `;
     }
     return "";
-  }}
-  ${({ active }) => {
-    if (active) {
-      return `
-        border-bottom: 3px solid #fdc627;
-        &:active {
-          border-bottom: 3px solid #fdc627;
-        }
-        &:focus {
-          border-bottom: 3px solid #fdc627;
-        }
-      `;
-    }
-    return `
-      border-bottom: 3px solid transparent;
-    `;
   }}
 `;
 
@@ -80,6 +65,27 @@ const Label = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+`;
+
+const HighlightBar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  overlap: hidden;
+  white-space: nowrap;
+  overflow: hidden;
+  pointer-events: none;
+  border-bottom: 8px solid #fdc627;
 `;
 
 export const LinkTab = forwardRef(
@@ -121,6 +127,7 @@ export const LinkTab = forwardRef(
           {hasLabel && <Label>{label}</Label>}
         </LabelRoot>
         {renderIconEnd && renderIconEnd()}
+        {active && <HighlightBar />}
       </Root>
     );
   }

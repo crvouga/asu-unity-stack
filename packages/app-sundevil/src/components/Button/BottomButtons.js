@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import { Button } from "../../../../components-core/src/index";
-import { mergeIconProps } from "../Icon_";
+import { Icon } from "../Icon_";
 import { Skeleton } from "../Skeleton";
 import { buttonPropTypes } from "./button-prop";
 
@@ -23,16 +23,7 @@ const EndIcon = ({ button }) => {
   }
 
   if (button?.endIcon) {
-    const iconProps = mergeIconProps(
-      { style: { marginLeft: "8px" } },
-      button.endIcon
-    );
-    return (
-      <i
-        // eslint-disable-next-line react/jsx-props-no-spreading
-        {...iconProps}
-      />
-    );
+    return <Icon icon={button.endIcon} style={{ marginLeft: "8px" }} />;
   }
 
   return null;
@@ -57,6 +48,11 @@ export const BottomButtons = ({ buttons, skeleton }) => {
             label={button?.label}
             href={button?.href}
             target={button?.target}
+            renderIcon={() =>
+              button.icon ? (
+                <Icon style={{ marginRight: "8px" }} icon={button.icon} />
+              ) : null
+            }
             renderEndIcon={() => <EndIcon button={button} />}
           />
         </Skeleton>

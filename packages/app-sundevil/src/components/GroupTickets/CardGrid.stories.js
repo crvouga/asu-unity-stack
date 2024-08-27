@@ -71,7 +71,10 @@ GroupIntoAction.args = {
 
 export const GroupTicketsBySport = Template.bind({});
 GroupTicketsBySport.args = {
-  title: "Group tickets by sport",
+  sectionHeader: {
+    title: "Group tickets by sport",
+    subtitle: "Hello",
+  },
   cards: [
     {
       title: "Football",

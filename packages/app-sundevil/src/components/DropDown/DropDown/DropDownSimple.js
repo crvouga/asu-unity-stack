@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
+import { APP_CONFIG } from "../../../config";
+import { useElementContentDimensions } from "../../../utils/use-element-content-dimensions";
 import { propTypes } from "./drop-down-props";
 
 const StyledDropdownContent = styled.div`
@@ -29,11 +31,27 @@ const StyledDropdownContent = styled.div`
   overflow-y: auto;
   border: 1px solid #d0d0d0;
   background-color: #fff;
-  /* full width minus scrollbar width */
-  max-width: calc(100vw - 16px);
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  ${props => {
+    switch (props.width) {
+      case "screen": {
+        return `
+          /* 100vw - 6px to account for scrollbar */
+          width: calc(100vw - 6px);
+          max-width: ${APP_CONFIG.breakpointMobile};
+        `;
+      }
+
+      case "content":
+      default: {
+        return `
+          max-width: 100vw;
+        `;
+      }
+    }
+  }}
 `;
 
 /**
@@ -46,6 +64,7 @@ export const DropDownSimple = ({
   renderContent,
   renderReference,
   style,
+  width,
 }) => {
   const containerRef = useRef(null);
   const dropdownRef = useRef(null);
@@ -114,6 +133,8 @@ export const DropDownSimple = ({
     position: "relative",
   };
 
+  const containerDimensions = useElementContentDimensions(containerRef);
+
   return (
     <div ref={containerRef} style={containerStyle}>
       {renderReference({ open })}
@@ -122,10 +143,11 @@ export const DropDownSimple = ({
         open={open}
         position={position}
         maxHeight={maxHeight}
+        width={width}
       >
         {open &&
           renderContent({
-            referenceWidth: containerRef.current?.getBoundingClientRect().width,
+            referenceWidth: containerDimensions.width,
           })}
       </StyledDropdownContent>
     </div>

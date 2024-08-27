@@ -22,7 +22,7 @@ const propTypes = {
 const Root = styled.button`
   background-color: ${props => (props.active ? "#191919" : "transparent")};
   color: ${props => (props.active ? "#fafafa" : "#191919")};
-  min-width: 260px;
+  min-width: min(100%, 260px);
   padding: 0.5rem 1.5rem;
   text-align: left;
   outline: none !important;
@@ -55,6 +55,7 @@ const Root = styled.button`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  width: 100%;
 `;
 
 /**

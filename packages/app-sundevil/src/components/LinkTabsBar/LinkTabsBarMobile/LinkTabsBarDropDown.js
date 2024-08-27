@@ -21,6 +21,7 @@ export const LinkTabsBarDropDown = ({ links }) => {
         padding: "0",
         height: "100%",
       }}
+      width="screen"
       renderReference={({ ref, open: isOpen }) => (
         <LinkTab
           style={{
@@ -41,8 +42,8 @@ export const LinkTabsBarDropDown = ({ links }) => {
           )}
         />
       )}
-      renderContent={({ referenceWidth }) => (
-        <DropDownSurface style={{ width: referenceWidth }}>
+      renderContent={() => (
+        <DropDownSurface>
           {links?.map(link => (
             <DropDownItem
               as="a"

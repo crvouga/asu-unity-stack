@@ -317,7 +317,8 @@ DebugProps.args = {
     {
       mobileLabel: "Lorem Ipsum Dolor Sit",
       href: "http://example.com",
-      label: "Lorem Ipsum Dolor Sit",
+      label:
+        "Lorem Ipsum Dolor Sit Lorem Ipsum Dolor Sit Lorem Ipsum Dolor Sit",
       active: false,
       icon: {
         icon_name: "",
@@ -360,7 +361,7 @@ SportTickets.args = {
   title: "On this page:",
   links: [
     {
-      label: "Single Game",
+      label: "Single Game Single Game Single Game",
       href: "#",
     },
     {
@@ -407,7 +408,7 @@ YourGameDayGuide.args = {
       href: "#",
     },
     {
-      label: "Game Day Spirit",
+      label: "Game Day Spirit Game Day Spirit Game Day Spirit",
       href: "#",
     },
     {

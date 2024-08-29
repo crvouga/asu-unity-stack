@@ -14,6 +14,10 @@ const ensureArray = value => {
   return [value];
 };
 
+const ensureCleanArray = value => {
+  return ensureArray(value).filter(Boolean);
+};
+
 const Root = styled.div`
   display: flex;
   flex-direction: column;
@@ -46,6 +50,15 @@ const Content = styled.div`
   flex-direction: column;
   gap: 24px;
   z-index: 1;
+`;
+
+const CtaRoot = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
 `;
 
 /**
@@ -90,21 +103,25 @@ export const GroupTicketMiniPlans = ({
             </div>
           )}
 
-          {ensureArray(cta).map(ctaItem => {
-            if (!ctaItem) {
-              return null;
-            }
-            return (
-              <a
-                href={ctaItem?.href ?? ctaItem?.link}
-                style={{ alignSelf: "center", marginTop: "48px" }}
-                className="btn btn-default btn-gold"
-                target={ctaItem?.target}
-              >
-                {ctaItem?.label ?? ctaItem?.text}
-              </a>
-            );
-          })}
+          {ensureCleanArray(cta).length > 0 && (
+            <CtaRoot>
+              {ensureCleanArray(cta).map(ctaItem => {
+                if (!ctaItem) {
+                  return null;
+                }
+                return (
+                  <a
+                    href={ctaItem?.href ?? ctaItem?.link}
+                    style={{ alignSelf: "center", marginTop: "48px" }}
+                    className="btn btn-default btn-gold"
+                    target={ctaItem?.target}
+                  >
+                    {ctaItem?.label ?? ctaItem?.text}
+                  </a>
+                );
+              })}
+            </CtaRoot>
+          )}
         </Content>
       </ContentRoot>
     </Root>

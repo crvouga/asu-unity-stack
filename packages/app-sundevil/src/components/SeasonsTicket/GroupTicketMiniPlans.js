@@ -59,6 +59,31 @@ const CtaRoot = styled.div`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
+  ${props => {
+    const cleaned = props?.ctaAlign?.trim?.()?.toLowerCase?.() ?? "";
+
+    if (cleaned.includes("center")) {
+      return `
+        justify-content: center;
+      `;
+    }
+
+    if (cleaned.includes("end")) {
+      return `
+        justify-content: flex-end;
+      `;
+    }
+
+    if (cleaned.includes("start")) {
+      return `
+        justify-content: flex-start;
+      `;
+    }
+
+    return `
+      justify-content: flex-start;
+    `;
+  }}
 `;
 
 /**
@@ -69,6 +94,7 @@ export const GroupTicketMiniPlans = ({
   title,
   description,
   cta,
+  ctaAlign = "center",
   backgroundSrc = backgroundPattern,
   backgroundAlt = " ",
 }) => {
@@ -104,7 +130,7 @@ export const GroupTicketMiniPlans = ({
           )}
 
           {ensureCleanArray(cta).length > 0 && (
-            <CtaRoot>
+            <CtaRoot ctaAlign={ctaAlign}>
               {ensureCleanArray(cta).map(ctaItem => {
                 if (!ctaItem) {
                   return null;
@@ -139,6 +165,7 @@ GroupTicketMiniPlans.propTypes = {
   description: PropTypes.string,
   backgroundSrc: PropTypes.string,
   backgroundAlt: PropTypes.string,
+  ctaAlign: PropTypes.string,
   cta: PropTypes.arrayOf(
     PropTypes.shape({
       href: PropTypes.string,

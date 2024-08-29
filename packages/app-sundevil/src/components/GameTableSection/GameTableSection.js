@@ -347,6 +347,7 @@ const GameTableSectionInner = ({ ...props }) => {
             <div className="container">
               <SportsTabsDesktop
                 {...props}
+                {...props.sportTabsDesktop}
                 sports={sports}
                 onSportItemClick={onSportItemClick}
               />
@@ -408,6 +409,7 @@ const GameTableSectionInner = ({ ...props }) => {
 GameTableSectionInner.propTypes = {
   ...SectionHeader.propTypes, // TODO remove spread props. Use sectionHeader prop instead
   ...GameTable.propTypes, // TODO remove spread props. Use gameTable prop instead
+  sportTabsDesktop: SportsTabsDesktop.propTypes,
   disableUrlSportId: PropTypes.bool,
   sports: PropTypes.arrayOf(sportWithFooterPropTypes),
   loadMore: loadMorePropTypes,

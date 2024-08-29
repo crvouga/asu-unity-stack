@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
  * style?: React.CSSProperties
  * renderContent: (input: {referenceWidth: number}) => React.ReactNode
  * renderReference: (input: {open: boolean, ref: React.RefObject<HTMLElement>}) => React.ReactNode
- * width: "content" | "screen"
+ * width?: "content" | "screen"
  * }}  Props
  */
 

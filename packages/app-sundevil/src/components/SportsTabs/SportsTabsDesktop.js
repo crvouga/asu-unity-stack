@@ -17,7 +17,15 @@ import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 /**
  * @typedef {import("./sports-tabs").Sport} Sport
  * @typedef {import("./sports-tabs").BaseProps} BaseProps
- * @typedef {BaseProps & {moreTabOrientation?: "vertical" | "horizontal", moreTabColor?: "default" | "muted"; skeleton?: boolean; darkMode?: boolean; className?: string}} Props
+ * @typedef {BaseProps & {
+ * moreTabOrientation?: "vertical" | "horizontal",
+ * moreTabColor?: "default" | "muted";
+ * skeleton?: boolean;
+ * darkMode?: boolean;
+ * className?: string
+ * maxTabCountTablet?: number;
+ * maxTabCountDesktop?: number;
+ * }} Props
  */
 
 const Root = styled.div`
@@ -69,11 +77,13 @@ export const SportsTabsDesktop = ({
   skeleton,
   darkMode = false,
   className,
+  maxTabCountTablet = 6,
+  maxTabCountDesktop = 9,
 }) => {
   const sports = cleanSportTabs(propsSports);
 
   const isTablet = useBreakpoint(APP_CONFIG.breakpointTablet);
-  const maxTabCount = isTablet ? 6 : 9;
+  const maxTabCount = isTablet ? maxTabCountTablet : maxTabCountDesktop;
   // @ts-ignore
   const sportTabs = sports?.filter(sport => !sport.more)?.slice(0, maxTabCount);
 
@@ -204,4 +214,6 @@ SportsTabsDesktop.propTypes = {
   skeleton: PropTypes.bool,
   darkMode: PropTypes.bool,
   className: PropTypes.string,
+  maxTabCountTablet: PropTypes.number,
+  maxTabCountDesktop: PropTypes.number,
 };

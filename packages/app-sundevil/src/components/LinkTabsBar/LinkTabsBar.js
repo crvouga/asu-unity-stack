@@ -7,8 +7,8 @@ import { createPortal } from "react-dom";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
-import { isOverlapping } from "../../utils/is-overlapping";
 import { querySelectorSafe } from "../../utils/query-selector-safe";
+import { throttle } from "../../utils/throttle";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { linkTabsBarPropTypes } from "./link-tab-bar";
 import { LinkTabsBarDesktop } from "./LinkTabsBarDesktop/LinkTabsBarDesktop";
@@ -19,17 +19,31 @@ const LinkTabsBarResponsive = forwardRef((props, ref) => {
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
 
   if (isMobile) {
-    // @ts-ignore
-    const linksMobile = props.links.map(link => ({
-      ...link,
-      label: link.mobileLabel ?? link.label,
-    }));
-    // @ts-ignore
-    return <LinkTabsBarMobile {...props} links={linksMobile} ref={ref} />;
+    const linksMobile =
+      // @ts-ignore
+      props.links.map(link => ({
+        ...link,
+        label: link.mobileLabel ?? link.label,
+      }));
+
+    return (
+      <LinkTabsBarMobile
+        {...props}
+        // @ts-ignore
+        links={linksMobile}
+        ref={ref}
+      />
+    );
   }
 
-  // @ts-ignore
-  return <LinkTabsBarDesktop {...props} links={props.links} ref={ref} />;
+  return (
+    <LinkTabsBarDesktop
+      {...props}
+      // @ts-ignore
+      links={props.links}
+      ref={ref}
+    />
+  );
 });
 // @ts-ignore
 LinkTabsBarResponsive.propTypes = linkTabsBarPropTypes;
@@ -51,27 +65,46 @@ const fallbackFirstActiveLink = links => {
 };
 
 /**
+ * @param {HTMLElement} a
+ * @param {HTMLElement} b
+ * @returns {boolean}
+ */
+const hasScrolledOverOrPast = (a, b) => {
+  if (!a || !b) {
+    return false;
+  }
+
+  const aRect = a.getBoundingClientRect();
+  const bRect = b.getBoundingClientRect();
+
+  return aRect.bottom >= bRect.top;
+};
+
+/**
  * This will highlight section links on scroll
  */
 const useLinks = ({ links = [], linkTabsRef }) => {
   const getLinks = () => {
-    return fallbackFirstActiveLink(
-      links.reduce((acc, link) => {
-        const section = querySelectorSafe(link.href);
+    const activeLinks = links.reduce((acc, link) => {
+      const section = querySelectorSafe(link.href);
 
-        if (isOverlapping(linkTabsRef.current, section)) {
-          return [
-            ...acc.map(accLink => ({ ...accLink, active: false })),
-            {
-              ...link,
-              active: true,
-            },
-          ];
-        }
+      if (hasScrolledOverOrPast(linkTabsRef.current, section)) {
+        return [
+          ...acc.map(accLink => ({
+            ...accLink,
+            active: false,
+          })),
+          {
+            ...link,
+            active: true,
+          },
+        ];
+      }
 
-        return [...acc, { ...link, active: false }];
-      }, [])
-    );
+      return [...acc, { ...link, active: false }];
+    }, []);
+
+    return fallbackFirstActiveLink(activeLinks);
   };
 
   const [alteredLinks, setAlteredLinks] = useState(getLinks);
@@ -80,19 +113,15 @@ const useLinks = ({ links = [], linkTabsRef }) => {
     const onScroll = () => {
       setAlteredLinks(getLinks());
     };
-    let timeout;
-    const onScrollDebounced = () => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        onScroll();
-      }, 100);
-    };
 
-    window.addEventListener("scroll", onScrollDebounced, {
+    const onScrollThrottled = throttle(onScroll, 250);
+
+    window.addEventListener("scroll", onScrollThrottled, {
       passive: true,
     });
+
     return () => {
-      window.removeEventListener("scroll", onScrollDebounced);
+      window.removeEventListener("scroll", onScrollThrottled);
     };
   }, []);
 

@@ -54,6 +54,9 @@ const Template = args => (
         }}
       />
 
+      <div style={{ width: "100%", height: "24px" }} id="football-roster">
+        football-roster
+      </div>
       <div
         style={{
           width: "100%",
@@ -64,7 +67,6 @@ const Template = args => (
           alignItems: "center",
           color: "white",
         }}
-        id="football-roster"
       >
         Roster
       </div>
@@ -77,6 +79,9 @@ const Template = args => (
         }}
       />
 
+      <div style={{ width: "100%", height: "24px" }} id="football-news">
+        football-news
+      </div>
       <div
         style={{
           width: "100%",
@@ -87,7 +92,6 @@ const Template = args => (
           alignItems: "center",
           color: "white",
         }}
-        id="football-news"
       >
         News
       </div>
@@ -100,6 +104,9 @@ const Template = args => (
         }}
       />
 
+      <div style={{ width: "100%", height: "24px" }} id="football-coaches">
+        football-coaches
+      </div>
       <div
         style={{
           width: "100%",
@@ -110,7 +117,6 @@ const Template = args => (
           alignItems: "center",
           color: "white",
         }}
-        id="football-coaches"
       >
         Coaches
       </div>

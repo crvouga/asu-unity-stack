@@ -27,7 +27,9 @@ export class GameDataSourceStatic extends IGameDataSource {
       // @ts-ignore
       input.shouldLog;
     this.isAllId = isAllId;
-    this.stringToSportId = input?.stringToSportId ?? stringToSportId;
+    this.stringToSportId =
+      // @ts-ignore
+      input?.stringToSportId ?? stringToSportId;
   }
 
   log() {

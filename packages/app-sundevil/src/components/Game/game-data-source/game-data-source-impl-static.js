@@ -93,9 +93,15 @@ export class GameDataSourceStatic extends IGameDataSource {
             ? isEqual(cleanString, game?.eventType, input?.eventType)
             : true;
 
-        const matchedPresentOrFuture = game.startDate
-          ? isRightSameOrFutureDate(new Date(), game.startDate)
-          : true;
+        const matchedPresentOrFuture =
+          // @ts-ignore
+          game.startDate
+            ? isRightSameOrFutureDate(
+                new Date(),
+                // @ts-ignore
+                game.startDate
+              )
+            : true;
 
         const matched =
           matchedSportId &&

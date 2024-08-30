@@ -1,3 +1,4 @@
+import { stringToSportGender } from "./sport-gender";
 import { stringToSportId } from "./sport-id";
 
 describe("sportId", () => {
@@ -395,5 +396,32 @@ describe("sportId", () => {
     expect(stringToSportId("men's wrestling")).toBe("m-wrestling");
 
     expect(stringToSportId("women's wrestling")).toBe("w-wrestling");
+  });
+
+  test("real world use case -- volleyball", () => {
+    const url = "https://sundevils.com/sports/womens/volleyball";
+    const sportTag = "Volleyball";
+
+    const sportId = stringToSportId(sportTag, stringToSportGender(url));
+    const expected = "w-volleyball";
+    expect(sportId).toBe(expected);
+  });
+
+  test("real world use case -- triathlon", () => {
+    const url = "https://sundevils.com/sports/womens/triathlon";
+    const sportTag = "Triathlon";
+
+    const sportId = stringToSportId(sportTag, stringToSportGender(url));
+    const expected = "w-triathlon";
+    expect(sportId).toBe(expected);
+  });
+
+  test("real world use case -- gender neutral triathlon", () => {
+    const url = "https://sundevils.com/sports/triathlon";
+    const sportTag = "Triathlon";
+
+    const sportId = stringToSportId(sportTag, stringToSportGender(url));
+    const expected = "triathlon";
+    expect(sportId).toBe(expected);
   });
 });

@@ -433,4 +433,10 @@ describe("sportId", () => {
       "m-basketball"
     );
   });
+
+  test("men and women gender should be excluded", () => {
+    expect(stringToSportId("basketball", SportGender.MEN_AND_WOMEN)).toBe(
+      "basketball"
+    );
+  });
 });

@@ -1,4 +1,4 @@
-import { stringToSportGender } from "./sport-gender";
+import { SportGender, stringToSportGender } from "./sport-gender";
 import { stringToSportId } from "./sport-id";
 
 describe("sportId", () => {
@@ -423,5 +423,14 @@ describe("sportId", () => {
     const sportId = stringToSportId(sportTag, stringToSportGender(url));
     const expected = "triathlon";
     expect(sportId).toBe(expected);
+  });
+
+  test("ignore fallback gender if gender is present in string", () => {
+    expect(stringToSportId("womens basketball", SportGender.MEN)).toBe(
+      "w-basketball"
+    );
+    expect(stringToSportId("mens basketball", SportGender.WOMEN)).toBe(
+      "m-basketball"
+    );
   });
 });

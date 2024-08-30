@@ -1,3 +1,4 @@
+// @ts-check
 import { isAllId } from "../../../select-all-option";
 import { cleanString } from "../../../utils/clean-string";
 import { isEqual } from "../../../utils/is-equal";
@@ -22,9 +23,11 @@ export class GameDataSourceStatic extends IGameDataSource {
   constructor(input) {
     super();
     this.games = Array.isArray(input.games) ? input.games : [];
-    this.shouldLog = input.shouldLog;
+    this.shouldLog =
+      // @ts-ignore
+      input.shouldLog;
     this.isAllId = isAllId;
-    this.sportIdToString = input?.stringToSportId ?? stringToSportId;
+    this.stringToSportId = input?.stringToSportId ?? stringToSportId;
   }
 
   log() {

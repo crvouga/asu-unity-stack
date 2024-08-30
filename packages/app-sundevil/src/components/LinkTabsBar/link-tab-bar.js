@@ -21,4 +21,5 @@ export const linkTabsBarPropTypes = PropTypes.shape({
   anchorTitle: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
+  highlightOffset: PropTypes.number,
 });

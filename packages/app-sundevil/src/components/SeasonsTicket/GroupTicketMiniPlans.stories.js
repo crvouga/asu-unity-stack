@@ -27,6 +27,7 @@ const props = {
     text: "Build Your Mini Plan",
     target: "_blank",
   },
+  ctaAlign: "center",
 };
 const Template = args => <GroupTicketMiniPlans {...args} {...props} />;
 

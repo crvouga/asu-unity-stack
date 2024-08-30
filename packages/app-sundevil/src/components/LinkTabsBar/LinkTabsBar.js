@@ -7,6 +7,7 @@ import { createPortal } from "react-dom";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
+import { ensureNormalNumber } from "../../utils/ensure-number";
 import { querySelectorSafe } from "../../utils/query-selector-safe";
 import { throttle } from "../../utils/throttle";
 import { useBreakpoint } from "../../utils/use-breakpoint";
@@ -64,31 +65,34 @@ const fallbackFirstActiveLink = links => {
   return links;
 };
 
-/**
- * @param {HTMLElement} a
- * @param {HTMLElement} b
- * @returns {boolean}
- */
-const hasScrolledOverOrPast = (a, b) => {
-  if (!a || !b) {
+const hasScrolledOverOrPast = ({ linkTabs, section, highlightOffset }) => {
+  if (!linkTabs || !section) {
     return false;
   }
 
-  const aRect = a.getBoundingClientRect();
-  const bRect = b.getBoundingClientRect();
+  const highlightOffsetClean = ensureNormalNumber(highlightOffset, 0);
 
-  return aRect.bottom >= bRect.top;
+  const linkTabsRect = linkTabs.getBoundingClientRect();
+  const sectionRect = section.getBoundingClientRect();
+
+  return linkTabsRect.bottom >= sectionRect.top + highlightOffsetClean;
 };
 
 /**
  * This will highlight section links on scroll
  */
-const useLinks = ({ links = [], linkTabsRef }) => {
+const useLinks = ({ links = [], linkTabsRef, highlightOffset }) => {
   const getLinks = () => {
     const activeLinks = links.reduce((acc, link) => {
       const section = querySelectorSafe(link.href);
 
-      if (hasScrolledOverOrPast(linkTabsRef.current, section)) {
+      if (
+        hasScrolledOverOrPast({
+          linkTabs: linkTabsRef.current,
+          section,
+          highlightOffset,
+        })
+      ) {
         return [
           ...acc.map(accLink => ({
             ...accLink,

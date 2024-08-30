@@ -127,6 +127,7 @@ const Template = args => (
 export const Default = Template.bind({});
 Default.args = {
   disableActiveFromUrl: false,
+  highlightOffset: -48,
   maxLinkCountBreakpoints: {
     mobile: 2,
     tablet: 4,

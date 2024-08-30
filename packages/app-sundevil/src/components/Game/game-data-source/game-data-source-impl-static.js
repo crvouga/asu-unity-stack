@@ -24,6 +24,7 @@ export class GameDataSourceStatic extends IGameDataSource {
     this.games = Array.isArray(input.games) ? input.games : [];
     this.shouldLog = input.shouldLog;
     this.isAllId = isAllId;
+    this.sportIdToString = input?.stringToSportId ?? stringToSportId;
   }
 
   log() {
@@ -50,7 +51,7 @@ export class GameDataSourceStatic extends IGameDataSource {
           typeof input?.sportId === "string" &&
           input?.sportId?.length > 0 &&
           !this.isAllId(input?.sportId)
-            ? isEqual(stringToSportId, game?.sportId, input?.sportId)
+            ? isEqual(this.stringToSportId, game?.sportId, input?.sportId)
             : true;
 
         const matchedGameType =

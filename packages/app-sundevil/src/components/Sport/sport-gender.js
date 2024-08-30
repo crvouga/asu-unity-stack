@@ -1,3 +1,4 @@
+// @ts-check
 export const SportGender = {
   MEN: "men",
   WOMEN: "women",
@@ -79,7 +80,8 @@ export const getCurrentUrlSportGender = () => {
 };
 
 // @ts-ignore
+window.getCurrentUrlSportGender = getCurrentUrlSportGender;
+// @ts-ignore
 window.stringToSportGender = stringToSportGender;
 // @ts-ignore
 window.SportGender = SportGender;
-// @ts-ignore

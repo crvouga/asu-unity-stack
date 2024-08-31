@@ -67,6 +67,26 @@ const ensureGenderPrefix = (s, fallbackGender = SportGender.MEN) => {
   return `${fallbackGender} ${s}`;
 };
 
+export const removeDuplicateGenderPrefix = str => {
+  if (str.startsWith("m-w-")) {
+    return str.slice(2);
+  }
+
+  if (str.startsWith("w-m-")) {
+    return str.slice(2);
+  }
+
+  if (str.startsWith("m-m-")) {
+    return str.slice(2);
+  }
+
+  if (str.startsWith("w-w-")) {
+    return str.slice(2);
+  }
+
+  return str;
+};
+
 const clean = (s, fallbackGender = SportGender.MEN) => {
   if (typeof s !== "string" || s.length === 0) {
     return null;
@@ -85,7 +105,9 @@ const clean = (s, fallbackGender = SportGender.MEN) => {
     // remove leading and trailing hyphens
     s => s.replace(/^-|-$/g, ""),
     // convert to lowercase
-    s => s.toLowerCase()
+    s => s.toLowerCase(),
+
+    s => removeDuplicateGenderPrefix(s)
   );
 };
 

@@ -457,4 +457,36 @@ describe("sportId", () => {
     const expected = "m-wrestling";
     expect(actual).toBe(expected);
   });
+
+  test("sport gender mens", () => {
+    const sportTag = "M. Basketball";
+    const url = "https://sundevils.com/sports/mens/basketball";
+    const actual = stringToSportId(sportTag, stringToSportGender(url));
+    const expected = "m-basketball";
+    expect(actual).toBe(expected);
+  });
+
+  test("sport gender womens", () => {
+    const sportTag = "W. Basketball";
+    const url = "https://sundevils.com/sports/womens/basketball";
+    const actual = stringToSportId(sportTag, stringToSportGender(url));
+    const expected = "w-basketball";
+    expect(actual).toBe(expected);
+  });
+
+  test("sport gender  ignore mens fallback", () => {
+    const sportTag = "W. Basketball";
+    const url = "https://sundevils.com/sports/mens/basketball";
+    const actual = stringToSportId(sportTag, stringToSportGender(url));
+    const expected = "w-basketball";
+    expect(actual).toBe(expected);
+  });
+
+  test("sport gender ignore womens fallback", () => {
+    const sportTag = "M. Basketball";
+    const url = "https://sundevils.com/sports/womens/basketball";
+    const actual = stringToSportId(sportTag, stringToSportGender(url));
+    const expected = "m-basketball";
+    expect(actual).toBe(expected);
+  });
 });

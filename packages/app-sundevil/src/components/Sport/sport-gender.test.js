@@ -124,4 +124,11 @@ describe("stringToSportGender", () => {
   test("bad input too many arguments", () => {
     expect(stringToSportGender("m", "w")).toBe(SportGender.MEN);
   });
+
+  test("wrestling from url", () => {
+    const url = "https://sundevils.com/sports/mens/wrestling";
+    const actual = stringToSportGender(url);
+    const expected = SportGender.MEN;
+    expect(actual).toBe(expected);
+  });
 });

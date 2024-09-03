@@ -1,12 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 
-import { stringToSportId } from "./sport-id";
-
-const getCurrentUrlSportId = () => {
-  return stringToSportId(window.location.href);
-};
-// @ts-ignore
-window.getCurrentUrlSportId = getCurrentUrlSportId;
+import { getCurrentUrlSportId } from "./sport-id";
 
 /** @type {(callback?: (urlSportId: string | null) => void) => string | null} */
 export const useUrlSportId = callback => {

@@ -1,3 +1,4 @@
+// @ts-check
 import { isAllId } from "../../../select-all-option";
 import { cleanString } from "../../../utils/clean-string";
 import { isEqual } from "../../../utils/is-equal";
@@ -22,8 +23,13 @@ export class GameDataSourceStatic extends IGameDataSource {
   constructor(input) {
     super();
     this.games = Array.isArray(input.games) ? input.games : [];
-    this.shouldLog = input.shouldLog;
+    this.shouldLog =
+      // @ts-ignore
+      input.shouldLog;
     this.isAllId = isAllId;
+    this.stringToSportId =
+      // @ts-ignore
+      input?.stringToSportId ?? stringToSportId;
   }
 
   log() {
@@ -50,7 +56,7 @@ export class GameDataSourceStatic extends IGameDataSource {
           typeof input?.sportId === "string" &&
           input?.sportId?.length > 0 &&
           !this.isAllId(input?.sportId)
-            ? isEqual(stringToSportId, game?.sportId, input?.sportId)
+            ? isEqual(this.stringToSportId, game?.sportId, input?.sportId)
             : true;
 
         const matchedGameType =
@@ -87,9 +93,15 @@ export class GameDataSourceStatic extends IGameDataSource {
             ? isEqual(cleanString, game?.eventType, input?.eventType)
             : true;
 
-        const matchedPresentOrFuture = game.startDate
-          ? isRightSameOrFutureDate(new Date(), game.startDate)
-          : true;
+        const matchedPresentOrFuture =
+          // @ts-ignore
+          game.startDate
+            ? isRightSameOrFutureDate(
+                new Date(),
+                // @ts-ignore
+                game.startDate
+              )
+            : true;
 
         const matched =
           matchedSportId &&

@@ -99,6 +99,7 @@ export const GroupTicketsFooter = ({
   const hasGridTitle = isCleanString(gridTitle);
   const hasBottomButtons =
     Array.isArray(bottomButtons) && bottomButtons.length > 0;
+  const hasHeading = hasTitle || hasSubtitle;
   return (
     <Root
       style={{
@@ -108,7 +109,7 @@ export const GroupTicketsFooter = ({
       }}
     >
       <Content className="container">
-        {hasTitle && hasSubtitle && (
+        {hasHeading && (
           <HeadingSection>
             {hasTitle && <Title as={titleAs}>{title}</Title>}
 

@@ -1,7 +1,8 @@
+// @ts-check
 export const SportGender = {
-  MEN: "MEN",
-  WOMEN: "WOMEN",
-  MEN_AND_WOMEN: "MEN_AND_WOMEN",
+  MEN: "men",
+  WOMEN: "women",
+  MEN_AND_WOMEN: "men-and-women",
 };
 
 export const sportGenderToString = sportGender => {
@@ -21,18 +22,11 @@ export const sportGenderToString = sportGender => {
   }
 };
 
-const WOMAN_WORDS = ["woman", "women", "female", "girl", "lady", "gal", "w"];
+const WOMAN_WORDS = ["woman", "women", "female", "girl", "lady", "gal"];
 
-const MAN_WORDS = ["man", "men", "male", "boy", "guy", "dude", "m"];
+const MAN_WORDS = ["man", "men", "male", "boy", "guy", "dude"];
 
-const MEN_AND_WOMEN_WORDS = [
-  "mixed",
-  "coed",
-  "both",
-  "all",
-  "everyone",
-  "everybody",
-];
+const MEN_AND_WOMEN_WORDS = ["mixed", "coed", "both", "everyone", "everybody"];
 
 const removeWords = (words, string) => {
   return words.reduce((acc, word) => acc.replace(word, ""), string);
@@ -44,6 +38,14 @@ export const stringToSportGender = string => {
   }
 
   const cleaned = string.toLowerCase().trim();
+
+  if (cleaned === "m") {
+    return SportGender.MEN;
+  }
+
+  if (cleaned === "w") {
+    return SportGender.WOMEN;
+  }
 
   if (WOMAN_WORDS.some(word => cleaned.includes(word))) {
     const withoutWomanWords = removeWords(WOMAN_WORDS, cleaned);
@@ -65,3 +67,21 @@ export const stringToSportGender = string => {
 
   return SportGender.MEN_AND_WOMEN;
 };
+
+export const getCurrentUrlSportGender = () => {
+  if (
+    typeof window === "undefined" ||
+    typeof window.location !== "object" ||
+    typeof window.location.href !== "string"
+  ) {
+    return null;
+  }
+  return stringToSportGender(window.location.href);
+};
+
+// @ts-ignore
+window.getCurrentUrlSportGender = getCurrentUrlSportGender;
+// @ts-ignore
+window.stringToSportGender = stringToSportGender;
+// @ts-ignore
+window.SportGender = SportGender;

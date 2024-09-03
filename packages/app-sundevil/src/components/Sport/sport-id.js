@@ -1,3 +1,6 @@
+// @ts-check
+import { SportGender } from "./sport-gender";
+
 /* eslint-disable no-shadow */
 const REPLACEMENTS = {
   "mens": "m",
@@ -49,7 +52,7 @@ const isolateWords = (wordList, str) => {
 
 const pipe = (x, ...fns) => fns.reduce((acc, fn) => fn(acc), x);
 
-const ensureGenderPrefix = s => {
+const ensureGenderPrefix = (s, fallbackGender = SportGender.MEN) => {
   const genderWords = Object.keys(REPLACEMENTS);
   genderWords.sort((a, b) => b.length - a.length);
 
@@ -57,20 +60,40 @@ const ensureGenderPrefix = s => {
     return s;
   }
 
-  if (s.startsWith("m") || s.startsWith("w")) {
+  if (s.startsWith("m-") || s.startsWith("w-")) {
     return s;
   }
 
-  return `men ${s}`;
+  return `${fallbackGender} ${s}`;
 };
 
-const clean = s => {
+export const removeDuplicateGenderPrefix = str => {
+  if (str.startsWith("m-w-")) {
+    return str.slice(2);
+  }
+
+  if (str.startsWith("w-m-")) {
+    return str.slice(2);
+  }
+
+  if (str.startsWith("m-m-")) {
+    return str.slice(2);
+  }
+
+  if (str.startsWith("w-w-")) {
+    return str.slice(2);
+  }
+
+  return str;
+};
+
+const clean = (s, fallbackGender = SportGender.MEN) => {
   if (typeof s !== "string" || s.length === 0) {
     return null;
   }
   return pipe(
     s,
-    s => ensureGenderPrefix(s),
+    s => ensureGenderPrefix(s, fallbackGender),
 
     s => isolateWords(Object.keys(REPLACEMENTS), s).join(" "),
     // apply replacements first
@@ -82,7 +105,9 @@ const clean = s => {
     // remove leading and trailing hyphens
     s => s.replace(/^-|-$/g, ""),
     // convert to lowercase
-    s => s.toLowerCase()
+    s => s.toLowerCase(),
+
+    s => removeDuplicateGenderPrefix(s)
   );
 };
 
@@ -122,7 +147,7 @@ const removeDuplicateSlashes = str => {
   return str.replace(/\/{2,}/g, "/");
 };
 
-const cleanUrlLike = str => {
+const cleanUrlLike = (str, fallbackGender = SportGender.MEN) => {
   return pipe(
     str,
     //
@@ -133,6 +158,11 @@ const cleanUrlLike = str => {
       const path = url.pathname;
 
       const cleaned = Array.from(url.searchParams.entries()).reduce(
+        /**
+         * @param {string | null} cleaned
+         * @param {[string, string]} entry
+         * @returns {string | null}
+         */
         (cleaned, entry) => {
           if (typeof cleaned === "string" && cleaned.length > 0) {
             return cleaned;
@@ -144,9 +174,9 @@ const cleanUrlLike = str => {
           if (key === "sport") {
             if (value.endsWith("view")) {
               const withoutView = value.slice(0, -4);
-              return clean(withoutView);
+              return clean(withoutView, fallbackGender);
             }
-            return clean(value);
+            return clean(value, fallbackGender);
           }
 
           if (key === "view") {
@@ -155,7 +185,7 @@ const cleanUrlLike = str => {
 
           if (key.endsWith("view")) {
             const withoutView = key.slice(0, -4);
-            return clean(withoutView);
+            return clean(withoutView, fallbackGender);
           }
 
           return cleaned;
@@ -175,10 +205,10 @@ const cleanUrlLike = str => {
 
       if (twoLastPathSegments.includes("sports")) {
         const sport = twoLastPathSegments.split("/").slice(-1)[0];
-        return clean(sport);
+        return clean(sport, fallbackGender);
       }
 
-      return clean(twoLastPathSegments);
+      return clean(twoLastPathSegments, fallbackGender);
     }
   );
 };
@@ -207,16 +237,25 @@ function normalizeSpecialCharacters(str) {
   );
 }
 
-export function stringToSportId(str) {
+export function stringToSportId(
+  str,
+  fallbackGenderInput = SportGender.MEN_AND_WOMEN
+) {
   if (typeof str !== "string" || str.length === 0) {
     return null;
   }
+
+  const fallbackGender =
+    fallbackGenderInput === SportGender.MEN_AND_WOMEN
+      ? ""
+      : fallbackGenderInput;
+
   const simpleClean = normalizeSpecialCharacters(str.toLowerCase().trim());
 
   if (isUrlLike(simpleClean)) {
-    return cleanUrlLike(simpleClean);
+    return cleanUrlLike(simpleClean, fallbackGender);
   }
-  const output = clean(simpleClean);
+  const output = clean(simpleClean, fallbackGender);
   return output;
 }
 
@@ -231,6 +270,20 @@ export function stringToSportIdWithoutGender(str) {
   return sportId;
 }
 
+export const getCurrentUrlSportId = () => {
+  if (
+    typeof window === "undefined" ||
+    typeof window.location !== "object" ||
+    typeof window.location.href !== "string"
+  ) {
+    return null;
+  }
+  return stringToSportId(window.location.href);
+};
+
+// @ts-ignore
+window.getCurrentUrlSportId = getCurrentUrlSportId;
+// @ts-ignore
 window.stringToSportIdWithoutGender = stringToSportIdWithoutGender;
 // @ts-ignore
 window.stringToSportId = stringToSportId;

@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
 import { useBreakpoint } from "../../utils/use-breakpoint";
+import { Icon, iconPropType } from "../Icon_";
 import { SectionHeader } from "../SectionHeader";
 import backgroundPattern from "./background-pattern.svg";
 
@@ -138,11 +139,19 @@ export const GroupTicketMiniPlans = ({
                 return (
                   <a
                     href={ctaItem?.href ?? ctaItem?.link}
-                    style={{ alignSelf: "center", marginTop: "48px" }}
+                    style={{
+                      alignSelf: "center",
+                      marginTop: "48px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                    }}
                     className="btn btn-default btn-gold"
                     target={ctaItem?.target}
                   >
+                    {ctaItem?.startIcon && <Icon icon={ctaItem?.startIcon} />}
                     {ctaItem?.label ?? ctaItem?.text}
+                    {ctaItem?.endIcon && <Icon icon={ctaItem?.endIcon} />}
                   </a>
                 );
               })}
@@ -171,6 +180,8 @@ GroupTicketMiniPlans.propTypes = {
       href: PropTypes.string,
       target: PropTypes.string,
       label: PropTypes.string,
+      startIcon: iconPropType,
+      endIcon: iconPropType,
     })
   ),
 };

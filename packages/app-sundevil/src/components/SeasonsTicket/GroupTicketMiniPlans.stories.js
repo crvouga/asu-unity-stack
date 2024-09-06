@@ -26,8 +26,10 @@ const props = {
     href: "#",
     text: "Build Your Mini Plan",
     target: "_blank",
+    startIcon: "fa fas fa-ticket-alt",
+    endIcon: "fa fas fa-chevron-right",
   },
-  ctaAlign: "center",
+  ctaAlign: "start",
 };
 const Template = args => <GroupTicketMiniPlans {...args} {...props} />;
 

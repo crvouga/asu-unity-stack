@@ -36,6 +36,9 @@ const HeaderBody = styled.nav`
   width: 100%;
   gap: 48px;
   padding-top: 12px;
+  @media (max-width: ${APP_CONFIG.breakpointMobile}) {
+    padding-top: 32px;
+  }
 `;
 
 const SubtitleRoot = styled.div`

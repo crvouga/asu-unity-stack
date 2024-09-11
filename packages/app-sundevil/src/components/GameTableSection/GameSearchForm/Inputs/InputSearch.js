@@ -16,6 +16,7 @@ export const InputSearch = () => {
         placeholder={configInputs?.searchInput?.placeholder ?? ""}
         value={gameSearchForm.searchQuery}
         onChange={gameSearchForm.setSearchQuery}
+        uncontrolled
         renderEndIcon={({ style: iconStyle }) => (
           <i
             style={iconStyle}

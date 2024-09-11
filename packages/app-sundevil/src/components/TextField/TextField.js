@@ -63,6 +63,7 @@ export const TextField = ({
   renderEndIcon,
   style,
   darkMode,
+  uncontrolled,
 }) => {
   const inputRef = useRef(null);
   const focused = useFocus(inputRef);
@@ -84,7 +85,7 @@ export const TextField = ({
             style={inputStyle}
             id={id}
             type="text"
-            value={value}
+            value={uncontrolled ? undefined : value}
             onChange={e => onChange(e.target.value)}
           />
         </InputContainer>
@@ -103,4 +104,5 @@ TextField.propTypes = {
   style: PropTypes.object,
   renderEndIcon: PropTypes.func,
   darkMode: PropTypes.bool,
+  uncontrolled: PropTypes.bool,
 };

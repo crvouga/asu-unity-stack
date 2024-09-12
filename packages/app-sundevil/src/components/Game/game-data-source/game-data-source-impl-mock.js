@@ -47,14 +47,14 @@ const games = [];
     awayTeamName: "Arizona State Sun Devils",
     awayTeamLogoSrc:
       "https://1000logos.net/wp-content/uploads/2021/06/Arizona-State-Sun-Devils-logo.png",
-    time: "5:30pm",
-    venue: "Phoenix Muni Stadium AT&amp;T",
+    // time: "5:30pm",
+    // venue: "Phoenix Muni Stadium AT&amp;T",
     subtitleChip: "Gameday",
     admissionCost:
       ALL_ADMISSION_COST[Math.floor(Math.random() * ALL_ADMISSION_COST.length)],
     eventType:
       ALL_EVENT_TYPE[Math.floor(Math.random() * ALL_EVENT_TYPE.length)],
-    subtitles: ["Sub Title 1", "Sub Title 2"],
+    subtitles: ["Phoenix Muni Stadium AT&amp;T", "5:30pm"],
   });
 });
 

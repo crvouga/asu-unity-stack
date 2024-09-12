@@ -84,12 +84,28 @@ export const Subtitles = ({
             dangerouslySetInnerHTML={{ __html: game?.subtitleChip }}
           />
         )}
-      <Subtitle
-        dangerouslySetInnerHTML={{
-          __html: formatTimeAmPm(game?.time),
-        }}
-      />
-      <Subtitle dangerouslySetInnerHTML={{ __html: game?.venue }} />
+      {Array.isArray(game?.subtitles) &&
+        game?.subtitles.length > 0 &&
+        game?.subtitles?.map(
+          subtitle =>
+            typeof subtitle === "string" &&
+            subtitle.trim().length > 0 && (
+              <Subtitle
+                key={subtitle}
+                dangerouslySetInnerHTML={{ __html: subtitle }}
+              />
+            )
+        )}
+      {game?.time && (
+        <Subtitle
+          dangerouslySetInnerHTML={{
+            __html: formatTimeAmPm(game?.time),
+          }}
+        />
+      )}
+      {game?.venue && (
+        <Subtitle dangerouslySetInnerHTML={{ __html: game?.venue }} />
+      )}
     </Root>
   );
 };

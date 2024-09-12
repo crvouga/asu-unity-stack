@@ -22,6 +22,7 @@ export const gamePropTypes = PropTypes.shape({
   subtitleChip: PropTypes.string,
   admissionCost: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   eventType: PropTypes.string,
+  subtitles: PropTypes.arrayOf(PropTypes.string),
 });
 
 /**
@@ -62,6 +63,7 @@ export const isGameTicketed = game => {
  * @property {string} ticketText
  * @property {string} gameType
  * @property {string} subtitleChip
+ * @property {string[]} subtitles
  * @property {number} admissionCost
  * @property {string} eventType
  */

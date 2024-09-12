@@ -54,6 +54,7 @@ const games = [];
       ALL_ADMISSION_COST[Math.floor(Math.random() * ALL_ADMISSION_COST.length)],
     eventType:
       ALL_EVENT_TYPE[Math.floor(Math.random() * ALL_EVENT_TYPE.length)],
+    subtitles: ["Sub Title 1", "Sub Title 2"],
   });
 });
 

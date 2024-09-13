@@ -25,6 +25,9 @@ const Link = styled.a`
   padding: 0;
   color: #747474;
   font-size: 14px;
+  &:hover {
+    color: #8c1d40;
+  }
 `;
 
 /**
@@ -45,7 +48,7 @@ export const ContactUsCTAFooter = ({ footerLinksLabel, footerLinks }) => {
       {hasFooterLabel && <Label>{footerLinksLabel}</Label>}
 
       {footerLinks.map(link => (
-        <Link key={link?.label} href={link?.href}>
+        <Link key={link?.label} href={link?.href} {...link}>
           {link?.label}
         </Link>
       ))}

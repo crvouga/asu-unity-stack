@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { deepMergeLeft } from "../../../utils/deep-merge-left";
 import { isGameTicketed } from "../../Game/game";
+import { Icon } from "../../Icon_";
 import { Skeleton } from "../../Skeleton";
 import { defaultConfigLayout } from "./config-layout";
 import { gameTableRowPropTypes } from "./game-table-row";
@@ -155,7 +156,13 @@ export const GameTableRowMobileDivided = forwardRef((props, ref) => {
                 href={game?.ticketLink}
                 style={{ textDecoration: "none !important" }}
               >
-                {isGameTicketed(game) ? (
+                {/* eslint-disable-next-line no-nested-ternary */}
+                {game?.buttonIcon ? (
+                  <Icon
+                    style={{ textDecoration: "none !important" }}
+                    icon={game?.buttonIcon}
+                  />
+                ) : isGameTicketed(game) ? (
                   <i
                     style={{ textDecoration: "none !important" }}
                     className={TICKET_ICON_CLASS_NAME}

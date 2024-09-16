@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { deepMergeLeft } from "../../../utils/deep-merge-left";
 import { formatTimeAmPm } from "../../../utils/formatTime";
 import { isGameTicketed } from "../../Game/game";
+import { Icon } from "../../Icon_";
 import { Skeleton } from "../../Skeleton";
 import { defaultConfigCells } from "./config-cells";
 import { defaultConfigLayout } from "./config-layout";
@@ -159,7 +160,13 @@ export const GameTableRowMobileBordered = forwardRef(
                 href={game?.ticketLink}
                 style={{ textDecoration: "none !important" }}
               >
-                {isGameTicketed(game) ? (
+                {/* eslint-disable-next-line no-nested-ternary */}
+                {game?.buttonIcon ? (
+                  <Icon
+                    icon={game?.buttonIcon}
+                    style={{ textDecoration: "none !important" }}
+                  />
+                ) : isGameTicketed(game) ? (
                   <i
                     style={{ textDecoration: "none !important" }}
                     className={TICKET_ICON_CLASS_NAME}

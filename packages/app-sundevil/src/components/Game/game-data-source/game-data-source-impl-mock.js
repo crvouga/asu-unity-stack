@@ -21,6 +21,14 @@ const ALL_ADMISSION_COST = ["free", "price_varies"];
 
 const ALL_EVENT_TYPE = ["game", "practice", "scrimmage"];
 
+const icons = [
+  "fa fas fa-ticket-alt",
+  "fa fas fa-calendar-alt",
+  "fa fas fa-calendar-check",
+  "fa fas fa-calendar-day",
+  "fa fas fa-calendar-minus",
+];
+
 /**
  * @type {import("../game").Game[]}
  */
@@ -55,6 +63,7 @@ const games = [];
     eventType:
       ALL_EVENT_TYPE[Math.floor(Math.random() * ALL_EVENT_TYPE.length)],
     subtitles: ["Phoenix Muni Stadium AT&amp;T", "5:30pm"],
+    buttonIcon: icons[Math.floor(Math.random() * icons.length)],
   });
 });
 

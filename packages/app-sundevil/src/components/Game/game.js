@@ -1,5 +1,7 @@
 import PropTypes from "prop-types";
 
+import { iconPropType } from "../Icon_";
+
 export const gamePropTypes = PropTypes.shape({
   id: PropTypes.string,
   title: PropTypes.string,
@@ -15,6 +17,7 @@ export const gamePropTypes = PropTypes.shape({
   awayTeamLogoAlt: PropTypes.string,
   time: PropTypes.string.isRequired,
   venue: PropTypes.string.isRequired,
+  buttonIcon: iconPropType,
   ticketLink: PropTypes.string,
   ticketText: PropTypes.string,
   gameType: PropTypes.string, // "home" | "away"
@@ -66,4 +69,5 @@ export const isGameTicketed = game => {
  * @property {string[]} subtitles
  * @property {number} admissionCost
  * @property {string} eventType
+ * @property {unknown} buttonIcon
  */

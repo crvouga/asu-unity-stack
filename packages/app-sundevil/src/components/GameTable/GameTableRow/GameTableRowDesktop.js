@@ -9,6 +9,7 @@ import { idToLabel } from "../../../utils/id-to-label";
 import { useElementSetMaxDimensions } from "../../../utils/use-element-set-max-dimensions";
 import { useId } from "../../../utils/use-id";
 import { isGameNonTicketed, isGameTicketed } from "../../Game/game";
+import { Icon } from "../../Icon_";
 import { Skeleton } from "../../Skeleton";
 import { SportIcon } from "../../SportIcon";
 import { stringToClosestSportName } from "../../SportIcon/sport-name";
@@ -261,6 +262,10 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
                   paddingRight: "10px",
                   textDecoration: "none !important",
                 };
+
+                if (game?.buttonIcon) {
+                  return <Icon icon={game?.buttonIcon} style={iconStyle} />;
+                }
 
                 if (isGameTicketed(game)) {
                   return (

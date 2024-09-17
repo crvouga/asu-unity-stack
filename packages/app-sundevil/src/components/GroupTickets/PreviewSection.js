@@ -82,12 +82,6 @@ const ImageSectionMobile = ({
   imageLarge,
   imageSmallRight,
 }) => {
-  const [minHeight, setMinHeight] = useState(Infinity);
-
-  const onHeight = imageHeight => {
-    setMinHeight(currentMinHeight => Math.min(currentMinHeight, imageHeight));
-  };
-
   return (
     <div
       className="container"
@@ -101,51 +95,87 @@ const ImageSectionMobile = ({
             objectFit: "cover",
           }}
           alt={imageLarge.alt}
-          onHeight={onHeight}
         />
       )}
 
       <div
         style={{
           width: "100%",
-          height: `${minHeight}px`,
+          // height: `${minHeight}px`,
           overflow: "hidden",
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
           justifyContent: "center",
-          gap: "28px",
+          gap: "18px",
         }}
       >
+        {/* https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4946-10902&node-type=frame&t=QT4JPVm3iv8RyYEP-0 */}
         {isValidImage(imageSmallLeft) && (
-          <Image
-            src={imageSmallLeft.src}
-            style={{
-              width: "50%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-            alt={imageSmallLeft.alt}
-            onHeight={onHeight}
-          />
+          <div style={{ width: "50%", height: "fit-content" }}>
+            <MobileImageAspectRatio>
+              <Image
+                src={imageSmallLeft.src}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  maxHeight: "100%",
+                  objectFit: "cover",
+                }}
+                alt={imageSmallLeft.alt}
+              />
+            </MobileImageAspectRatio>
+          </div>
         )}
 
         {isValidImage(imageSmallRight) && (
-          <Image
-            src={imageSmallRight.src}
-            style={{
-              width: "50%",
-              height: "100%",
-              objectFit: "cover",
-            }}
-            alt={imageSmallRight.alt}
-            onHeight={onHeight}
-          />
+          <div style={{ width: "50%", height: "fit-content" }}>
+            <MobileImageAspectRatio>
+              <Image
+                src={imageSmallRight.src}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  maxHeight: "100%",
+                  objectFit: "cover",
+                }}
+                alt={imageSmallRight.alt}
+              />
+            </MobileImageAspectRatio>
+          </div>
         )}
       </div>
     </div>
   );
 };
+
+const MobileImageAspectRatio = ({ children }) => {
+  return (
+    <div
+      style={{
+        width: "100%",
+        paddingBottom: "125%",
+        position: "relative",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+};
+MobileImageAspectRatio.propTypes = {
+  children: PropTypes.node,
+};
+
 ImageSectionMobile.propTypes = {
   imageSmallLeft: imagePropTypes,
   imageLarge: imagePropTypes,

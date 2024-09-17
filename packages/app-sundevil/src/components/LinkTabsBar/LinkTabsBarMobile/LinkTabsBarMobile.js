@@ -31,6 +31,16 @@ const SponsorRoot = styled.a`
   padding: 12px 12px 12px 16px;
   border-left: 1px solid #d0d0d0;
   flex-shrink: 1;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  &:focus,
+  &:hover,
+  &:active {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
 `;
 
 const LinkTabsRoot = styled.div`

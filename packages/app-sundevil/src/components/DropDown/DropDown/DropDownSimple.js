@@ -98,6 +98,15 @@ export const DropDownSimple = ({
       }
     };
 
+    const handleFocusOutside = event => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
+        onClose();
+      }
+    };
+
     let timeout;
     const updateMaxHeightDebounced = () => {
       clearTimeout(timeout);
@@ -108,6 +117,7 @@ export const DropDownSimple = ({
 
     if (open) {
       document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("focusin", handleFocusOutside);
       updateMaxHeight();
       window.addEventListener("resize", updateMaxHeightDebounced);
       window.addEventListener("scroll", updateMaxHeightDebounced, {
@@ -116,12 +126,14 @@ export const DropDownSimple = ({
       });
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("focusin", handleFocusOutside);
       window.removeEventListener("resize", updateMaxHeightDebounced);
       window.removeEventListener("scroll", updateMaxHeightDebounced);
     }
 
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("focusin", handleFocusOutside);
       window.removeEventListener("resize", updateMaxHeightDebounced);
       window.removeEventListener("scroll", updateMaxHeightDebounced);
     };

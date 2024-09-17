@@ -31,16 +31,6 @@ const SponsorRoot = styled.a`
   height: 100%;
   padding: 12px 16px;
   flex-shrink: 0;
-  border: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-  &:focus,
-  &:hover,
-  &:active {
-    border: none !important;
-    outline: none !important;
-    box-shadow: none !important;
-  }
 `;
 
 const Content = styled.div`

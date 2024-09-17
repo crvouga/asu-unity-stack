@@ -25,19 +25,7 @@ const Root = styled.button`
   min-width: min(100%, 260px);
   padding: 0.5rem 1.5rem;
   text-align: left;
-  outline: none !important;
-  border: none !important;
   text-decoration: none;
-  &:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border: none !important;
-  }
-  &:active {
-    outline: none !important;
-    box-shadow: none !important;
-    border: none !important;
-  }
   &.inactive {
     background-color: transparent;
     color: #191919;

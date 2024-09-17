@@ -19,23 +19,10 @@ export const Root = styled.a`
   background-color: transparent;
   overlap: hidden;
   white-space: nowrap;
-
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-
-  outline: none !important;
   border: 0px solid transparent;
-  box-shadow: none !important;
-  &:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border: 0px solid transparent;
-  }
-  &:active {
-    outline: none !important;
-    box-shadow: none !important;
-  }
   &:hover {
     background-color: rgba(25, 25, 25, 0.1);
   }

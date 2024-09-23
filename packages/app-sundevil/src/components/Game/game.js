@@ -26,6 +26,8 @@ export const gamePropTypes = PropTypes.shape({
   admissionCost: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   eventType: PropTypes.string,
   subtitles: PropTypes.arrayOf(PropTypes.string),
+  // eslint-disable-next-line react/forbid-prop-types
+  subtitleStyle: PropTypes.object,
 });
 
 /**
@@ -70,4 +72,5 @@ export const isGameTicketed = game => {
  * @property {number} admissionCost
  * @property {string} eventType
  * @property {unknown} buttonIcon
+ * @property {import("react").CSSProperties} subtitleStyle
  */

@@ -32,7 +32,7 @@ const Subtitle = styled.p`
   flex-shrink: 1;
   /* color: #747474 */
   color: rgb(116, 116, 116);
-  min-width: 0;
+  min-width: 60px;
 `;
 
 const SubtitleChip = styled.div`
@@ -92,12 +92,14 @@ export const Subtitles = ({
             subtitle.trim().length > 0 && (
               <Subtitle
                 key={subtitle}
+                style={game?.subtitleStyle}
                 dangerouslySetInnerHTML={{ __html: subtitle }}
               />
             )
         )}
       {game?.time && (
         <Subtitle
+          style={{ minWidth: "60px" }}
           dangerouslySetInnerHTML={{
             __html: formatTimeAmPm(game?.time),
           }}

@@ -44,6 +44,19 @@ const Root = styled.button`
   white-space: nowrap;
   overflow: hidden;
   width: 100%;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  &:active {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  &:hover {
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
 `;
 
 /**

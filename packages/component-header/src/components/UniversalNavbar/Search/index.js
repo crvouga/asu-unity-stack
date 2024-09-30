@@ -10,12 +10,14 @@ import { useIsMobile } from "../../../core/hooks/isMobile";
 import { SearchWrapper } from "./index.styles";
 
 const SEARCH_GA_EVENT = {
+  // https://www.dropbox.com/scl/fo/gmkapav1avulctkge0w9q/AFF5UCx0jwCOHPhM8ZoaKOg/About%20ASU%20Sun%20Devil%20Athletics%20%20%20ASU%20Sun%20Devil%20Athletics.pdf?rlkey=le42w6mnh6hukls733k3ej41c&e=3&dl=0
   event: "search",
   action: "type",
   name: "onenter",
   type: "main search",
   region: "navbar",
   section: "topbar",
+  component: "search icon",
 };
 
 /** @type {(formRef: React.MutableRefObject<HTMLFormElement | null>) => React.FormEventHandler<HTMLFormElement>} */

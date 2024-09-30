@@ -8,8 +8,16 @@ import { Wrapper } from "./index.styles";
 import { Login } from "./Login";
 import { Search } from "./Search";
 
-const DEFAUL_GA_EVENT = {
+const DEFAULT_GA_EVENT = {
+  // https://www.dropbox.com/scl/fo/gmkapav1avulctkge0w9q/AFF5UCx0jwCOHPhM8ZoaKOg/About%20ASU%20Sun%20Devil%20Athletics%20%20%20ASU%20Sun%20Devil%20Athletics.pdf?rlkey=le42w6mnh6hukls733k3ej41c&e=3&dl=0
+  event: "link",
+  action: "click",
+  name: "onclick",
+  type: "internal link",
+  region: "navbar",
   section: "topbar",
+  text: "asu home",
+  component: "text",
 };
 
 function getURL() {
@@ -66,7 +74,7 @@ const UniversalNavbar = forwardRef((_props, ref) => {
                 className="nav-link"
                 href="https://asu.edu"
                 onFocus={() =>
-                  trackGAEvent({ ...DEFAUL_GA_EVENT, text: "asu home" })
+                  trackGAEvent({ ...DEFAULT_GA_EVENT, text: "asu home" })
                 }
               >
                 ASU Home
@@ -75,7 +83,7 @@ const UniversalNavbar = forwardRef((_props, ref) => {
                 className="nav-link"
                 href="https://my.asu.edu"
                 onFocus={() =>
-                  trackGAEvent({ ...DEFAUL_GA_EVENT, text: "my asu" })
+                  trackGAEvent({ ...DEFAULT_GA_EVENT, text: "my asu" })
                 }
               >
                 My ASU
@@ -85,7 +93,7 @@ const UniversalNavbar = forwardRef((_props, ref) => {
                 href="https://www.asu.edu/academics/colleges-schools"
                 onFocus={() =>
                   trackGAEvent({
-                    ...DEFAUL_GA_EVENT,
+                    ...DEFAULT_GA_EVENT,
                     text: "colleges and schools",
                   })
                 }

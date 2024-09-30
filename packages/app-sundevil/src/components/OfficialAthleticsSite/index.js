@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { trackGAEvent } from "../../track-ga-event";
+
 const Root = styled.p`
   margin: 0;
   font-size: 12px;
@@ -24,7 +26,23 @@ const OfficialAthleticsSite = ({
   return (
     <Root>
       {text}{" "}
-      <a style={hrefStyle} href={href}>
+      <a
+        style={hrefStyle}
+        href={href}
+        onClick={() => {
+          // https://www.dropbox.com/scl/fo/gmkapav1avulctkge0w9q/AFF5UCx0jwCOHPhM8ZoaKOg/About%20ASU%20Sun%20Devil%20Athletics%20%20%20ASU%20Sun%20Devil%20Athletics.pdf?rlkey=le42w6mnh6hukls733k3ej41c&e=3&dl=0
+          trackGAEvent({
+            event: "link",
+            action: "click",
+            name: "onclick",
+            type: "internal link",
+            region: "navbar",
+            section: "topbar",
+            text: "arizona state university",
+            component: "text",
+          });
+        }}
+      >
         {hrefText}
       </a>
     </Root>

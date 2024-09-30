@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import { ASUHeader } from "../../../../component-header/src";
+import { trackGAEvent } from "../../track-ga-event";
 import { trackAdClickHandler } from "../Ads/ad-data-layers";
 import { HeaderContentSportLinks } from "../HeaderContentSportLinks";
 import { Icon } from "../Icon_";
@@ -238,6 +239,18 @@ const mapProps = props => ({
       adId: props.sponsorLogo?.adId,
       href: props.sponsorLogo?.brandLink,
     }),
+    onFocus: () => {
+      trackGAEvent({
+        event: "link",
+        action: "click",
+        name: "onclick",
+        type: "external link",
+        region: "navbar",
+        section: "main navbar",
+        text: props.sponsorLogo?.alt ?? "sponsor logo",
+        component: "image",
+      });
+    },
   },
   universalNavbar: {
     renderStart: () => (
@@ -255,6 +268,22 @@ const mapProps = props => ({
     hideSignIn: true,
     ...props.universalNavbar,
   },
+  logo: {
+    ...props.logo,
+    onFocus: () => {
+      trackGAEvent({
+        event: "link",
+        action: "click",
+        name: "onclick",
+        type: "internal link",
+        region: "navbar",
+        section: "main navbar",
+        text: "asu sun devil athletics logo",
+        component: "image",
+      });
+    },
+  },
+
   mobile: {
     // we're now going to use the default hamburger button
     // hamburger: {

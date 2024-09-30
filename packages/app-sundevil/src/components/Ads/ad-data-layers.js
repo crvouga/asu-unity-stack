@@ -1,4 +1,4 @@
-import { pushDataLayer } from "../../data-layers";
+import { trackGAEvent } from "../../track-ga-event";
 
 export const trackAdImpression = adId => {
   if (typeof adId !== "string" || adId.trim().length === 0) {
@@ -10,7 +10,7 @@ export const trackAdImpression = adId => {
     return;
   }
 
-  pushDataLayer({
+  trackGAEvent({
     event: "ad_impression",
     ad_id: adId,
   });
@@ -26,7 +26,7 @@ export const trackAdClick = adId => {
     return;
   }
 
-  pushDataLayer({
+  trackGAEvent({
     event: "ad_click",
     ad_id: adId,
   });

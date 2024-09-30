@@ -17,9 +17,16 @@ import { NavItemWrapper } from "./index.styles";
 // eslint-disable-next-line no-unused-vars
 const DROPDOWN_CONTAINER_CLASS = "dropdown-container";
 
+// https://www.dropbox.com/scl/fo/gmkapav1avulctkge0w9q/AFF5UCx0jwCOHPhM8ZoaKOg/About%20ASU%20Sun%20Devil%20Athletics%20%20%20ASU%20Sun%20Devil%20Athletics.pdf?rlkey=le42w6mnh6hukls733k3ej41c&e=3&dl=0
 export const DROPDOWNS_GA_EVENTS = {
   event: "collapse",
   type: "click",
+  action: "open",
+  name: "onclick",
+  region: "navbar",
+  section: "main navbar",
+  text: "men's sports",
+  component: "text",
 };
 
 /**
@@ -120,18 +127,36 @@ const NavItem = ({ link, setItemOpened, itemOpened, toggleMobileMenu }) => {
   const dispatchGAEvent = () => {
     const action = opened ? "close" : "open";
     const { text } = link;
-    trackGAEvent(
-      // @ts-ignore
-      isDropdown
-        ? {
-            ...DROPDOWNS_GA_EVENTS,
-            action,
-            text,
-          }
-        : {
-            text: link.type === "icon-home" ? "home button" : text,
-          }
-    );
+
+    if (isDropdown) {
+      trackGAEvent({
+        ...DROPDOWNS_GA_EVENTS,
+        action,
+        text,
+      });
+      return;
+    }
+
+    const isHomeIcon = link.type === "icon-home";
+
+    if (isHomeIcon) {
+      // https://www.dropbox.com/scl/fo/gmkapav1avulctkge0w9q/AFF5UCx0jwCOHPhM8ZoaKOg/About%20ASU%20Sun%20Devil%20Athletics%20%20%20ASU%20Sun%20Devil%20Athletics.pdf?rlkey=le42w6mnh6hukls733k3ej41c&e=3&dl=0
+      trackGAEvent({
+        event: "link",
+        action: "click",
+        name: "onclick",
+        type: "internal link",
+        region: "navbar",
+        section: "main navbar",
+        text: "home icon",
+        component: "icon",
+      });
+      return;
+    }
+
+    trackGAEvent({
+      text,
+    });
   };
 
   const handleClick = e => {

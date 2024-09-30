@@ -15,6 +15,7 @@
  * @property {string | number} [mobileHeight]
  * @property {string} [adId]
  * @property {function} [onClick]
+ * @property {function} [onFocus]
  */
 
 /**

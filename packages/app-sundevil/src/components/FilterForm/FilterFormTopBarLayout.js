@@ -57,12 +57,12 @@ export const FilterFormTopBarLayout = ({
             <Title
               // @ts-ignore
               darkMode={darkMode}
-              key={darkMode}
+              key={`darkMode:${darkMode}`}
             >
               {title}
             </Title>
           )}
-          <div key={String(open)}>
+          <div key={`open:${open}`}>
             <CollapseIcon
               style={{
                 color: darkMode ? "#fff !important" : "#191919 !important",

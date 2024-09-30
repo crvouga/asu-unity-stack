@@ -56,6 +56,14 @@ const CellDate = styled.div`
   align-items: center;
 `;
 
+const CellDateContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: fit-content;
+`;
+
 const TicketButton = styled.a`
   padding: 0;
   margin: 0;
@@ -135,8 +143,10 @@ export const GameTableRowMobileDivided = forwardRef((props, ref) => {
         >
           {configLayout.includeCellDate && (
             <CellDate>
-              <DateMonth>{game?.dateMonth}.</DateMonth>
-              <DateDay>{game?.dateDay}</DateDay>
+              <CellDateContent>
+                <DateMonth>{game?.dateMonth}.</DateMonth>
+                <DateDay>{game?.dateDay}</DateDay>
+              </CellDateContent>
             </CellDate>
           )}
           {configLayout.includeCellTitle && (

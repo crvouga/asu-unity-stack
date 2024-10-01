@@ -20,7 +20,7 @@ import React from "react";
 import { sportNamePropTypes } from "./sport-name";
 
 const sportIconPropTypes = {
-  sportName: sportNamePropTypes.isRequired,
+  sportName: sportNamePropTypes,
 };
 
 /**

@@ -40,8 +40,8 @@ export const Image = ({ src, alt, className, style, onHeight }) => {
 };
 
 Image.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
+  src: PropTypes.string,
+  alt: PropTypes.string,
   className: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,

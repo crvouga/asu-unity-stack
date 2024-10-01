@@ -83,6 +83,6 @@ export const CardDesktop = ({ card, reverse }) => {
  */
 
 CardDesktop.propTypes = {
-  card: cardPropTypes.isRequired,
+  card: cardPropTypes,
   reverse: PropTypes.bool,
 };

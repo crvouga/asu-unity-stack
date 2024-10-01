@@ -63,6 +63,7 @@ export const SectionFooter = ({
               href={button.href ?? button.link}
               target={button.target}
               onClick={() => {
+                console.log("button", button);
                 trackGAEvent({
                   event: "link",
                   action: "click",

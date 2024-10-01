@@ -65,5 +65,5 @@ export const CardSimple = ({ card }) => {
  */
 
 CardSimple.propTypes = {
-  card: cardPropTypes.isRequired,
+  card: cardPropTypes,
 };

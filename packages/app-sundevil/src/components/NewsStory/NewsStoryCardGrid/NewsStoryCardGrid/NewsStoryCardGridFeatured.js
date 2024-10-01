@@ -111,5 +111,5 @@ NewsStoryCardGridFeatured.propTypes = {
   ...newsStoryCardGrid.propTypes,
   maxCards: PropTypes.number,
   layout: PropTypes.oneOf(["twoThirds", "fullWidth"]),
-  sectionName: PropTypes.string.isRequired,
+  sectionName: PropTypes.string,
 };

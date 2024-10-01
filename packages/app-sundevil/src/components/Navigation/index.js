@@ -14,9 +14,9 @@ import { NavItem } from "./index.styles";
  */
 
 export const sportPropTypes = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  icon: PropTypes.string,
   active: PropTypes.bool,
   position: PropTypes.number,
 });
@@ -83,7 +83,7 @@ const SportsNavigation = ({ sports, onSportItemClick }) => {
 };
 
 SportsNavigation.propTypes = {
-  sports: PropTypes.arrayOf(sportPropTypes).isRequired,
+  sports: PropTypes.arrayOf(sportPropTypes),
   onSportItemClick: PropTypes.func,
 };
 

@@ -91,7 +91,7 @@ export const Skeleton = forwardRef(
 );
 
 Skeleton.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   skeleton: PropTypes.bool,
   className: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types

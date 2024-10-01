@@ -163,14 +163,14 @@ export const NewsStoryCardCarousel = ({
   );
 };
 NewsStoryCardCarousel.propTypes = {
-  newsStories: PropTypes.arrayOf(NewsStory.newsStoryPropTypes).isRequired,
+  newsStories: PropTypes.arrayOf(NewsStory.newsStoryPropTypes),
   slidesOffsetAfter: PropTypes.number,
   slidesOffsetBefore: PropTypes.number,
   cardWidth: PropTypes.number,
-  renderBottomRightContent: PropTypes.func.isRequired,
+  renderBottomRightContent: PropTypes.func,
   skeleton: PropTypes.bool,
   empty: PropTypes.bool,
   emptyStateMessage: PropTypes.string,
   skeletonCount: PropTypes.number,
-  sectionName: PropTypes.string.isRequired,
+  sectionName: PropTypes.string,
 };

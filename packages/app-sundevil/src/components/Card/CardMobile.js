@@ -81,5 +81,5 @@ export const CardMobile = ({ card }) => {
  */
 
 CardMobile.propTypes = {
-  card: cardPropTypes.isRequired,
+  card: cardPropTypes,
 };

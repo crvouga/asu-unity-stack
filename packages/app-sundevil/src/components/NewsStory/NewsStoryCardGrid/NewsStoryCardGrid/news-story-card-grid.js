@@ -14,11 +14,11 @@ import * as NewsStory from "../../news-story";
  */
 
 export const propTypes = {
-  newsStories: PropTypes.arrayOf(NewsStory.newsStoryPropTypes).isRequired,
+  newsStories: PropTypes.arrayOf(NewsStory.newsStoryPropTypes),
   skeleton: PropTypes.bool,
   skeletonCount: PropTypes.number,
   emptyStateMessage: PropTypes.string,
   empty: PropTypes.bool,
   columns: PropTypes.number,
-  sectionName: PropTypes.string.isRequired,
+  sectionName: PropTypes.string,
 };

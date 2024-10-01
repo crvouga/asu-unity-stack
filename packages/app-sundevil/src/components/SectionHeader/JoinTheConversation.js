@@ -40,7 +40,7 @@ const SocialMediaIconsRoot = styled.div`
 
 export const socialPropType = PropTypes.shape({
   label: PropTypes.string,
-  url: PropTypes.string.isRequired,
+  url: PropTypes.string,
   faClassName: PropTypes.string,
   icon: iconPropType,
 });

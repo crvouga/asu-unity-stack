@@ -18,5 +18,5 @@ export const Boilerplate = ({ foo }) => {
  */
 
 Boilerplate.propTypes = {
-  foo: PropTypes.string.isRequired,
+  foo: PropTypes.string,
 };

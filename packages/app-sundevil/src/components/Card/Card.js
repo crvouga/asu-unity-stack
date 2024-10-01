@@ -27,6 +27,6 @@ export const Card = props => {
  */
 
 Card.propTypes = {
-  card: cardPropTypes.isRequired,
+  card: cardPropTypes,
   reverse: PropTypes.bool,
 };

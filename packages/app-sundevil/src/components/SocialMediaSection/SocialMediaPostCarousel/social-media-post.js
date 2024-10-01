@@ -1,10 +1,10 @@
 import PropsTypes from "prop-types";
 
 export const socialMediaPostPropTypes = PropsTypes.shape({
-  id: PropsTypes.string.isRequired,
-  imageSrc: PropsTypes.string.isRequired,
-  imageAlt: PropsTypes.string.isRequired,
-  username: PropsTypes.string.isRequired,
+  id: PropsTypes.string,
+  imageSrc: PropsTypes.string,
+  imageAlt: PropsTypes.string,
+  username: PropsTypes.string,
   caption: PropsTypes.string,
   avatarSrc: PropsTypes.string,
   avatarAlt: PropsTypes.string,

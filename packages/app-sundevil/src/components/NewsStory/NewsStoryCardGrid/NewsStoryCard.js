@@ -221,7 +221,7 @@ export const NewsStoryCard = ({
   );
 };
 NewsStoryCard.propTypes = {
-  newsStory: NewsStory.newsStoryPropTypes.isRequired,
+  newsStory: NewsStory.newsStoryPropTypes,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
   skeleton: PropTypes.bool,

@@ -15,9 +15,9 @@ import styled from "styled-components";
 
 const propTypes = {
   renderIcon: PropTypes.func,
-  name: PropTypes.string.isRequired,
-  open: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
+  name: PropTypes.string,
+  open: PropTypes.bool,
+  onClick: PropTypes.func,
   variant: PropTypes.oneOf(["bottom-bordered", "borderless"]),
 };
 

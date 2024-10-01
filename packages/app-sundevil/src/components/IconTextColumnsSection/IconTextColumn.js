@@ -146,8 +146,8 @@ export const IconTextColumn = ({
  */
 
 export const iconColumnPropType = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  title: PropTypes.string,
   icon: iconPropType,
   position: PropTypes.number,
   body: PropTypes.string,

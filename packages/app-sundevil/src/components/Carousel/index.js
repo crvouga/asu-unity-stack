@@ -105,9 +105,9 @@ export const Carousel = forwardRef((props, ref) => {
 });
 
 Carousel.propTypes = {
-  index: PropTypes.number.isRequired,
-  onIndexChanged: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired,
+  index: PropTypes.number,
+  onIndexChanged: PropTypes.func,
+  children: PropTypes.node,
   slidesPerView: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   initialSlide: PropTypes.number,
   loop: PropTypes.bool,
@@ -125,5 +125,5 @@ export function CarouselItem(props) {
 }
 
 CarouselItem.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };

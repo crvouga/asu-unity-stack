@@ -69,7 +69,7 @@ export const VideoSection = ({
     Boolean(sectionHeader) && Object.keys(sectionHeader).length > 0;
 
   const sectionHeaderProps = mapSectionHeaderProps(sectionHeader);
-  const sectionName = sectionHeaderProps?.sectionName ?? "";
+  const sectionName = sectionHeaderProps?.title ?? "";
 
   return (
     <Root hasSectionHeader={hasSectionHeader}>

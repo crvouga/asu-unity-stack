@@ -80,8 +80,8 @@ export const LabelledInputBase = forwardRef(
   }
 );
 LabelledInputBase.propTypes = {
-  label: PropTypes.string.isRequired,
-  renderInput: PropTypes.func.isRequired,
+  label: PropTypes.string,
+  renderInput: PropTypes.func,
   renderEndIcon: PropTypes.func,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,

@@ -23,7 +23,7 @@ import { iconPropType } from "../Icon_";
 export const newsStoryPropTypes = PropTypes.shape({
   id: PropTypes.string,
   href: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   newsType: PropTypes.string,
   imageSrc: PropTypes.string,
   imageAlt: PropTypes.string,

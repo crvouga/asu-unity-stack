@@ -270,12 +270,12 @@ const NewsStorySectionInner = ({
 
 NewsStorySectionInner.propTypes = {
   disableUrlSportId: PropTypes.bool,
-  footerButtons: PropTypes.arrayOf(footerButtonPropTypes.isRequired),
-  footerLinks: PropTypes.arrayOf(footerButtonPropTypes.isRequired),
+  footerButtons: PropTypes.arrayOf(footerButtonPropTypes),
+  footerLinks: PropTypes.arrayOf(footerButtonPropTypes),
   // @ts-ignore
   sectionHeader: SectionHeader.propTypes,
   // @ts-ignore
-  sports: PropTypes.arrayOf(sportWithFooterPropTypes).isRequired,
+  sports: PropTypes.arrayOf(sportWithFooterPropTypes),
   allStoriesLabel: PropTypes.string,
   allStoriesHref: PropTypes.string,
   skeleton: PropTypes.bool,

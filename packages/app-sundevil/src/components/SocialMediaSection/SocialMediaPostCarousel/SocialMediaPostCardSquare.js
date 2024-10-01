@@ -92,5 +92,5 @@ export const SocialMediaPostCardSquare = ({ socialMediaPost }) => {
 };
 
 SocialMediaPostCardSquare.propTypes = {
-  socialMediaPost: SocialMediaPost.socialMediaPostPropTypes.isRequired,
+  socialMediaPost: SocialMediaPost.socialMediaPostPropTypes,
 };

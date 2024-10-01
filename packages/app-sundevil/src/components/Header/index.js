@@ -304,6 +304,6 @@ export const SunDevilsHeader = props => {
 };
 SunDevilsHeader.propTypes = {
   ...ASUHeader.propTypes,
-  officialSiteHref: PropTypes.string.isRequired,
+  officialSiteHref: PropTypes.string,
   officialSite: OfficialAthleticsSite.propTypes,
 };

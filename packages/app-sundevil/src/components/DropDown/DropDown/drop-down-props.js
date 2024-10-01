@@ -13,10 +13,10 @@ import PropTypes from "prop-types";
  */
 
 export const propTypes = {
-  open: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  renderContent: PropTypes.func.isRequired,
-  renderReference: PropTypes.func.isRequired,
+  open: PropTypes.bool,
+  onClose: PropTypes.func,
+  renderContent: PropTypes.func,
+  renderReference: PropTypes.func,
   style: PropTypes.object,
   width: PropTypes.oneOf(["content", "screen"]),
   position: PropTypes.oneOf([

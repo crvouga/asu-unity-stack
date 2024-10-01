@@ -109,7 +109,7 @@ const NewsZoneSectionInner = ({
   const hasFooter = footerButtons?.length > 0 || footerLinks?.length > 0;
 
   const sectionHeaderProps = mapSectionHeaderProps(sectionHeader);
-  const sectionName = sectionHeaderProps?.sectionName ?? "";
+  const sectionName = sectionHeaderProps?.title ?? " ";
 
   const footer = hasFooter ? (
     <SectionFooter

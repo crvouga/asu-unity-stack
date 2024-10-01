@@ -14,8 +14,8 @@ import { footerButtonPropTypes, footerLinkPropTypes } from "../SectionFooter";
  */
 
 export const sportPropTypes = PropTypes.shape({
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  name: PropTypes.string,
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   active: PropTypes.bool,
   position: PropTypes.number,

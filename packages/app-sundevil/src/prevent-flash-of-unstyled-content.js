@@ -58,7 +58,7 @@ export const PreventFlashOfUnstyledContent = ({
 };
 
 PreventFlashOfUnstyledContent.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
   timeout: PropTypes.number,
   loadingIndicator: PropTypes.node,
   pollingInterval: PropTypes.number, // Optional: allow custom polling interval

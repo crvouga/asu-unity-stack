@@ -13,10 +13,10 @@ import { stringToClosestSportName } from "../SportIcon/sport-name";
 import { TicketmasterLogo } from "./TicketmasterLogo";
 
 const buttonPropTypes = PropTypes.shape({
-  label: PropTypes.string.isRequired,
-  href: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  faClassName: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  href: PropTypes.string,
+  color: PropTypes.string,
+  faClassName: PropTypes.string,
 });
 
 /**
@@ -28,8 +28,8 @@ const buttonPropTypes = PropTypes.shape({
  */
 
 const sportLinkItemPropTypes = PropTypes.shape({
-  label: PropTypes.string.isRequired,
-  url: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  url: PropTypes.string,
 });
 /**
  * @typedef {Object} SportLinkItem
@@ -38,8 +38,8 @@ const sportLinkItemPropTypes = PropTypes.shape({
  */
 
 const sportPropTypes = PropTypes.shape({
-  sportName: PropTypes.string.isRequired,
-  sportLinks: PropTypes.arrayOf(sportLinkItemPropTypes.isRequired).isRequired,
+  sportName: PropTypes.string,
+  sportLinks: PropTypes.arrayOf(sportLinkItemPropTypes),
   icon: iconPropType,
   href: PropTypes.string,
   onClickedLink: PropTypes.func,
@@ -88,7 +88,7 @@ const SportLinkItem = ({ sportLinkItem, onClick }) => {
 };
 SportLinkItem.propTypes = {
   onClick: PropTypes.func,
-  sportLinkItem: sportLinkItemPropTypes.isRequired,
+  sportLinkItem: sportLinkItemPropTypes,
 };
 
 const SportItemLinksRoot = styled.div`
@@ -127,7 +127,7 @@ const SportItemLinks = ({ sport, onClickedLink }) => {
 };
 SportItemLinks.propTypes = {
   onClickedLink: PropTypes.func,
-  sport: sportPropTypes.isRequired,
+  sport: sportPropTypes,
 };
 
 const SportGridListItemRoot = styled.div`
@@ -215,7 +215,7 @@ const SportGridListItem = ({ sport, borderBottom, onClickedLink }) => {
   );
 };
 SportGridListItem.propTypes = {
-  sport: sportPropTypes.isRequired,
+  sport: sportPropTypes,
   borderBottom: PropTypes.bool,
   onClickedLink: PropTypes.func,
 };
@@ -273,7 +273,7 @@ const Footer = ({ buttons }) => {
   );
 };
 Footer.propTypes = {
-  buttons: PropTypes.arrayOf(buttonPropTypes.isRequired).isRequired,
+  buttons: PropTypes.arrayOf(buttonPropTypes),
 };
 
 const FooterTicketMaster = styled.div`
@@ -358,10 +358,10 @@ const Root = styled.div`
 `;
 
 const propTypesPropTypes = {
-  sports: PropTypes.arrayOf(sportPropTypes.isRequired).isRequired,
-  buttons: PropTypes.arrayOf(buttonPropTypes.isRequired),
-  id: PropTypes.string.isRequired,
-  onClickedLink: PropTypes.func.isRequired,
+  sports: PropTypes.arrayOf(sportPropTypes),
+  buttons: PropTypes.arrayOf(buttonPropTypes),
+  id: PropTypes.string,
+  onClickedLink: PropTypes.func,
 };
 
 /**

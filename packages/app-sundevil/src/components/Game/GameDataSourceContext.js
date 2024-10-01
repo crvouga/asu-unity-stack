@@ -14,8 +14,8 @@ export const GameDataSourceProvider = ({ children, gameDataSource }) => {
   );
 };
 GameDataSourceProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-  gameDataSource: PropTypes.instanceOf(IGameDataSource).isRequired,
+  children: PropTypes.node,
+  gameDataSource: PropTypes.instanceOf(IGameDataSource),
 };
 
 /**

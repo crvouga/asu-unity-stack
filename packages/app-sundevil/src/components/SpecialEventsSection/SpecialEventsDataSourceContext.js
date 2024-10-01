@@ -18,9 +18,8 @@ export const SpecialEventsDataSourceProvider = ({
   );
 };
 SpecialEventsDataSourceProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-  specialEventsDataSource: PropTypes.instanceOf(ISpecialEventsDataSource)
-    .isRequired,
+  children: PropTypes.node,
+  specialEventsDataSource: PropTypes.instanceOf(ISpecialEventsDataSource),
 };
 
 /** @type {() => import("./special-events-data-source/special-events-data-source").ISpecialEventsDataSource} */

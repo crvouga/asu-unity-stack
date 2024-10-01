@@ -130,5 +130,5 @@ export const SocialMediaPostCardTall = ({ socialMediaPost }) => {
 };
 
 SocialMediaPostCardTall.propTypes = {
-  socialMediaPost: SocialMediaPost.socialMediaPostPropTypes.isRequired,
+  socialMediaPost: SocialMediaPost.socialMediaPostPropTypes,
 };

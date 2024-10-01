@@ -12,8 +12,8 @@ import { DropDownItem } from "../DropDown/DropDownItem";
  */
 
 const propTypes = {
-  label: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  label: PropTypes.string,
+  onClick: PropTypes.func,
   active: PropTypes.bool,
 };
 

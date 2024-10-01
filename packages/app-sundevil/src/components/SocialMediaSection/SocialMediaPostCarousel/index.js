@@ -8,7 +8,7 @@ import { socialMediaPostPropTypes } from "./social-media-post";
 import { SocialMediaPostCard } from "./SocialMediaPostCard";
 
 const propTypes = {
-  posts: PropTypes.arrayOf(socialMediaPostPropTypes.isRequired).isRequired,
+  posts: PropTypes.arrayOf(socialMediaPostPropTypes),
   loop: PropTypes.bool,
   slidesOffsetBefore: PropTypes.number,
   initialSlide: PropTypes.number,

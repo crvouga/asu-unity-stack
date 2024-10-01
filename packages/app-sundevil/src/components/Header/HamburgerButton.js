@@ -68,7 +68,7 @@ export const HamburgerButton = ({ open, onClick, hidden }) => {
   );
 };
 HamburgerButton.propTypes = {
-  open: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
+  open: PropTypes.bool,
+  onClick: PropTypes.func,
   hidden: PropTypes.bool,
 };

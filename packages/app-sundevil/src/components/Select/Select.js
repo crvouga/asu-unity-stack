@@ -182,7 +182,7 @@ export const includeAllOptionWhen = (
 };
 
 Select.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types

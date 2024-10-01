@@ -11,7 +11,7 @@ import { specialEventsSkeletonData } from "./special-events-skeleton-data";
 import { SpecialEventCard } from "./SpecialEventCard";
 
 const propTypes = {
-  cards: PropTypes.arrayOf(specialEventPropTypes.isRequired).isRequired,
+  cards: PropTypes.arrayOf(specialEventPropTypes),
   slidesOffsetBefore: PropTypes.number,
   cardWidth: PropTypes.number,
   skeleton: PropTypes.bool,

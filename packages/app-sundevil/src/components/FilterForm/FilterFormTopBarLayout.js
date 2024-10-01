@@ -98,6 +98,6 @@ export const FilterFormTopBarLayout = ({
 FilterFormTopBarLayout.propTypes = {
   title: PropTypes.string,
   darkMode: PropTypes.bool,
-  renderForm: PropTypes.func.isRequired,
+  renderForm: PropTypes.func,
   className: PropTypes.string,
 };

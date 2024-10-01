@@ -34,7 +34,7 @@ export const ArrowButtons = ({ onLeft, onRight, skeleton }) => {
   );
 };
 ArrowButtons.propTypes = {
-  onLeft: PropTypes.func.isRequired,
-  onRight: PropTypes.func.isRequired,
+  onLeft: PropTypes.func,
+  onRight: PropTypes.func,
   skeleton: PropTypes.bool,
 };

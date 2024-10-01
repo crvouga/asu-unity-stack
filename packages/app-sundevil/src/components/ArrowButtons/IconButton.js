@@ -55,8 +55,8 @@ export const IconButton = ({ children, onClick, label, skeleton }) => {
 };
 
 IconButton.propTypes = {
-  children: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired,
+  children: PropTypes.node,
+  onClick: PropTypes.func,
+  label: PropTypes.string,
   skeleton: PropTypes.bool,
 };

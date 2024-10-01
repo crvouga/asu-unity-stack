@@ -38,6 +38,6 @@ export const SidebarLayout = ({ className, renderSidebar, renderContent }) => {
 };
 SidebarLayout.propTypes = {
   className: PropTypes.string,
-  renderSidebar: PropTypes.func.isRequired,
-  renderContent: PropTypes.func.isRequired,
+  renderSidebar: PropTypes.func,
+  renderContent: PropTypes.func,
 };

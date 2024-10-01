@@ -9,7 +9,7 @@ import styled from "styled-components";
  */
 
 const propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
 };
 
 const Root = styled.div`

@@ -18,8 +18,8 @@ export const NewsStoryDataSourceProvider = ({
   );
 };
 NewsStoryDataSourceProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-  newsStoryDataSource: PropTypes.instanceOf(INewsStoryDataSource).isRequired,
+  children: PropTypes.node,
+  newsStoryDataSource: PropTypes.instanceOf(INewsStoryDataSource),
 };
 
 /** @type {() => import("./news-story-data-source/news-story-data-source").INewsStoryDataSource} */

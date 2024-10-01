@@ -108,8 +108,8 @@ export const PlayPauseButton = ({
  */
 
 PlayPauseButton.propTypes = {
-  isPlaying: PropTypes.bool.isRequired,
-  onToggle: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool,
+  onToggle: PropTypes.func,
   fill: PropTypes.string,
   opacity: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),

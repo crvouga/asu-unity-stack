@@ -74,7 +74,7 @@ export const SocialMediaIcon = ({ name, className, style }) => {
   }
 };
 SocialMediaIcon.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
   className: PropTypes.string,

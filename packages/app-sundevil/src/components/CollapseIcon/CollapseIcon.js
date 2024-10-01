@@ -16,7 +16,7 @@ export const CollapseIcon = ({ open, style }) => {
 };
 
 CollapseIcon.propTypes = {
-  open: PropTypes.bool.isRequired,
+  open: PropTypes.bool,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
 };

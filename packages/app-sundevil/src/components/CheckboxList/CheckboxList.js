@@ -62,7 +62,7 @@ const optionPropTypes = PropTypes.shape({
 });
 
 CheckboxList.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   onChange: PropTypes.func,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,

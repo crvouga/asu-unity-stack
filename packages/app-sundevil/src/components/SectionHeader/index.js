@@ -251,7 +251,7 @@ export const SectionHeader = forwardRef(
                     />
                   )}
                   {social && social.length > 0 && (
-                    <JoinTheConversation social={social} />
+                    <JoinTheConversation sectionName={title} social={social} />
                   )}
                 </HeaderBody>
               )}

@@ -160,10 +160,12 @@ const NewsStorySectionInner = ({
     />
   ) : null;
 
+  const sectionHeaderProps = mapSectionHeaderProps(sectionHeader);
+  const sectionName = sectionHeaderProps?.title ?? "";
   return (
     <Root>
       <SectionHeader
-        {...mapSectionHeaderProps(sectionHeader)}
+        {...sectionHeaderProps}
         ref={sectionHeaderRef}
         style={{ paddingBottom: "32px" }}
       />
@@ -198,6 +200,7 @@ const NewsStorySectionInner = ({
               empty={empty}
               emptyStateMessage={emptyStateMessage}
               skeleton={skeleton}
+              sectionName={sectionName}
             />
             <div style={{ paddingTop: "32px" }}>{footer}</div>
           </div>
@@ -230,6 +233,7 @@ const NewsStorySectionInner = ({
               empty={empty}
               emptyStateMessage={emptyStateMessage}
               renderBottomRightContent={() => footer}
+              sectionName={sectionName}
             />
           )}
 
@@ -242,6 +246,7 @@ const NewsStorySectionInner = ({
                 emptyStateMessage={emptyStateMessage}
                 columns={1}
                 skeletonCount={limit}
+                sectionName={sectionName}
               />
               {footer}
             </div>

@@ -291,6 +291,8 @@ const GameTableSectionInner = ({ ...props }) => {
     </GameTableRoot>
   );
 
+  const sectionHeaderProps = mapSectionHeaderProps(props);
+  const sectionName = sectionHeaderProps?.title;
   return (
     <Root
       style={{
@@ -321,7 +323,7 @@ const GameTableSectionInner = ({ ...props }) => {
         <div ref={headerRef}>
           {variant === "default" && (
             <SectionHeader
-              {...mapSectionHeaderProps(props)}
+              {...sectionHeaderProps}
               tabs={tabs}
               onTabItemClick={clickedGameType => () =>
                 gameSearchForm.update({ gameType: clickedGameType })}
@@ -396,6 +398,7 @@ const GameTableSectionInner = ({ ...props }) => {
 
         {hasFooter && (
           <SectionFooter
+            sectionName={sectionName}
             style={{ paddingTop: "48px" }}
             footerButtons={footerButtons}
             footerLinks={footerLinks}

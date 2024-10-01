@@ -105,11 +105,13 @@ export const IconTextColumnsSection = ({
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const isDesktop = !isMobile;
   const columnCount = isMobile ? mobileColumnCount ?? 2 : null;
+  const sectionName = sectionHeader?.title;
   return (
     <Root>
       <SectionHeader {...sectionHeader} />
       {isMobile && (
         <SectionFooter
+          sectionName={sectionName}
           footerButtons={footerButtons}
           footerLinks={footerLinks}
         />
@@ -137,6 +139,7 @@ export const IconTextColumnsSection = ({
       )}
       {isDesktop && (
         <SectionFooter
+          sectionName={sectionName}
           footerButtons={footerButtons}
           footerLinks={footerLinks}
         />

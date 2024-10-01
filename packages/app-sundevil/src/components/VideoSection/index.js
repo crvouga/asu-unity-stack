@@ -68,12 +68,12 @@ export const VideoSection = ({
   const hasSectionHeader =
     Boolean(sectionHeader) && Object.keys(sectionHeader).length > 0;
 
+  const sectionHeaderProps = mapSectionHeaderProps(sectionHeader);
+  const sectionName = sectionHeaderProps?.sectionName ?? "";
+
   return (
     <Root hasSectionHeader={hasSectionHeader}>
-      <SectionHeader
-        {...mapSectionHeaderProps(sectionHeader)}
-        ref={sectionHeaderRef}
-      />
+      <SectionHeader {...sectionHeaderProps} ref={sectionHeaderRef} />
       {isMobile && (
         <NewsStoryCardCarousel
           skeleton={Boolean(skeleton)}
@@ -82,8 +82,13 @@ export const VideoSection = ({
           slidesOffsetAfter={window.innerWidth - sectionHeaderPosition.right}
           cardWidth={cardWidth}
           renderBottomRightContent={() => (
-            <BottomButtons buttons={bottomButtons} skeleton={skeleton} />
+            <BottomButtons
+              sectionName={sectionName}
+              buttons={bottomButtons}
+              skeleton={skeleton}
+            />
           )}
+          sectionName={sectionName}
         />
       )}
       {isDesktop && (
@@ -93,9 +98,14 @@ export const VideoSection = ({
             newsStories={newsStoriesSliced}
             skeleton={Boolean(skeleton)}
             maxCards={maxCards}
+            sectionName={sectionName}
           />
           <BottomButtonsRoot>
-            <BottomButtons buttons={bottomButtons} skeleton={skeleton} />
+            <BottomButtons
+              sectionName={sectionName}
+              buttons={bottomButtons}
+              skeleton={skeleton}
+            />
           </BottomButtonsRoot>
         </div>
       )}

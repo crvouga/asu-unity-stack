@@ -51,6 +51,7 @@ export const CardSectionThreeColumn = ({
   footerButtons,
   footerLinks,
 }) => {
+  const sectionName = sectionHeader?.title;
   return (
     <Root>
       <SectionHeader {...sectionHeader} />
@@ -65,7 +66,11 @@ export const CardSectionThreeColumn = ({
           ))}
         </CardColumns>
       </CardSectionRoot>
-      <SectionFooter footerButtons={footerButtons} footerLinks={footerLinks} />
+      <SectionFooter
+        sectionName={sectionName}
+        footerButtons={footerButtons}
+        footerLinks={footerLinks}
+      />
     </Root>
   );
 };

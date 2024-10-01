@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { trackGAEvent } from "../../../track-ga-event";
 import { Alignment, alignmentPropTypes } from "../alignment";
 import { linkTabPropType, linkTabToKey } from "../link";
 import { LinkTab } from "../LinkTab";
@@ -50,6 +51,8 @@ const LinkTabsTitle = styled.div`
   white-space: nowrap;
 `;
 
+const isCleanString = str => typeof str === "string" && str.trim().length > 0;
+
 export const LinkTabs = ({
   title,
   links,
@@ -75,6 +78,32 @@ export const LinkTabs = ({
           iconAlt={link.iconAlt || link.label || link.mobileLabel || " "}
           label={link.label}
           iconTooltip={link.iconTooltip || iconTooltip}
+          onClick={() => {
+            const isIconTab = Boolean(link.icon) && !isCleanString(link.label);
+            if (isIconTab) {
+              trackGAEvent({
+                event: "link",
+                action: "click",
+                name: "onclick",
+                type: "internal link",
+                region: "main content",
+                section: "sticky navbar",
+                text: link.iconTooltip || iconTooltip,
+                component: "icon",
+              });
+              return;
+            }
+            trackGAEvent({
+              event: "link",
+              action: "click",
+              name: "onclick",
+              type: "internal link",
+              region: "main content",
+              section: "sticky navbar",
+              text: link.label || " ",
+              component: "text",
+            });
+          }}
         />
       ))}
       {Array.isArray(collapsedLinks) && collapsedLinks.length > 0 && (

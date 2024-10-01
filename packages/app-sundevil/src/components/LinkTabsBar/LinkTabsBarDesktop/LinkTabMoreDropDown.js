@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 
+import { trackGAEvent } from "../../../track-ga-event";
 import { CollapseIcon } from "../../CollapseIcon/CollapseIcon";
 import { DropDown, DropDownSurface } from "../../DropDown";
 import { DropDownItem } from "../../DropDown/DropDownItem";
@@ -20,7 +21,19 @@ export const LinkTabMoreDropDown = ({ links, moreTabLabel = "More" }) => {
           as="button"
           focused={isOpen}
           ref={ref}
-          onClick={() => setOpen(openPrev => !openPrev)}
+          onClick={() => {
+            setOpen(openPrev => !openPrev);
+            trackGAEvent({
+              event: "collapse",
+              action: isOpen ? "close" : "open",
+              name: "onclick",
+              type: "click",
+              region: "main content",
+              section: "sticky navbar",
+              text: moreTabLabel || "more",
+              component: "text",
+            });
+          }}
           label={moreTabLabel}
           renderIconEnd={() => (
             <div key={isOpen}>

@@ -5,6 +5,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../components-core/src/components/Button";
+import { trackGAEvent } from "../../track-ga-event";
 import { Icon } from "../Icon_";
 
 const FooterBlock = styled.footer`
@@ -35,6 +36,7 @@ export const SectionFooter = ({
   footerButtons,
   footerLinks,
   style,
+  sectionName,
 }) => {
   const hasFooterButtons =
     Array.isArray(footerButtons) && footerButtons.length > 0;
@@ -60,6 +62,18 @@ export const SectionFooter = ({
               size={button.size}
               href={button.href ?? button.link}
               target={button.target}
+              onClick={() => {
+                trackGAEvent({
+                  event: "link",
+                  action: "click",
+                  name: "onclick",
+                  type: "internal link",
+                  region: "main content",
+                  section: sectionName ?? " ",
+                  text: button.label ?? " ",
+                  component: "button",
+                });
+              }}
               renderIcon={() =>
                 button.icon ? (
                   <Icon style={{ marginRight: "0.5rem" }} icon={button.icon} />
@@ -85,6 +99,18 @@ export const SectionFooter = ({
               key={link.label}
               href={link.href}
               className={link?.class ?? link?.className}
+              onClick={() => {
+                trackGAEvent({
+                  event: "link",
+                  action: "click",
+                  name: "onclick",
+                  type: "internal link",
+                  region: "main content",
+                  section: sectionName ?? " ",
+                  text: link.label ?? " ",
+                  component: "link",
+                });
+              }}
             >
               {link.label}
             </FooterLink>
@@ -143,4 +169,5 @@ SectionFooter.propTypes = {
   footerLinks: PropTypes.arrayOf(footerLinkPropTypes),
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
+  sectionName: PropTypes.string,
 };

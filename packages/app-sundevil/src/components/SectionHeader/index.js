@@ -4,6 +4,7 @@ import React, { forwardRef } from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
+import { trackGAEvent } from "../../track-ga-event";
 import { stringToFontWeight } from "../../utils/font-weight";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { trackAdClickHandler } from "../Ads/ad-data-layers";
@@ -260,10 +261,22 @@ export const SectionHeader = forwardRef(
                 <SponsorBlock
                   href={sponsorBlock?.url}
                   className="d-flex flex-row align-items-center justify-content-end gap-2"
-                  onClick={trackAdClickHandler({
-                    adId: sponsorBlock?.adId,
-                    href: sponsorBlock?.url,
-                  })}
+                  onClick={() => {
+                    trackGAEvent({
+                      event: "link",
+                      action: "click",
+                      name: "onclick",
+                      type: "external link",
+                      region: "main content",
+                      section: sponsorBlock?.text ?? " ",
+                      text: sponsorBlock?.name ?? " ",
+                      component: "image",
+                    });
+                    trackAdClickHandler({
+                      adId: sponsorBlock?.adId,
+                      href: sponsorBlock?.url,
+                    })();
+                  }}
                 >
                   <SponsorBlockTitle
                     // @ts-ignore

@@ -40,6 +40,7 @@ const Inset0 = styled.div`
  * @property {boolean} [skeleton]
  * @property {'twoThirds' | 'fullWidth'} [layout='twoThirds']
  * @property {number} [maxCards=3]
+ * @property {string} sectionName
  */
 
 /** @type {React.FC<Props>} */
@@ -48,6 +49,7 @@ export const NewsStoryCardGridFeatured = ({
   skeleton,
   layout = "twoThirds",
   maxCards = 3,
+  sectionName,
 }) => {
   const newsStoriesFinal = skeleton
     ? range(maxCards).map(() => randomNewsStorySkeleton())
@@ -63,10 +65,15 @@ export const NewsStoryCardGridFeatured = ({
     return (
       <Root style={{ position: "relative" }}>
         {range(6).map(() => (
-          <NewsStoryCard newsStory={randomNewsStorySkeleton()} skeleton />
+          <NewsStoryCard
+            sectionName={sectionName}
+            newsStory={randomNewsStorySkeleton()}
+            skeleton
+          />
         ))}
         <Inset0>
           <NewsStoryCard
+            sectionName={sectionName}
             key={featuredStory?.id ?? featuredStory?.title}
             newsStory={featuredStory}
             skeleton={Boolean(skeleton)}
@@ -85,6 +92,7 @@ export const NewsStoryCardGridFeatured = ({
           newsStory={featuredStory}
           skeleton={Boolean(skeleton)}
           size="large"
+          sectionName={sectionName}
         />
       </FeaturedCard>
       {otherStories.map(newsStory => (
@@ -92,6 +100,7 @@ export const NewsStoryCardGridFeatured = ({
           key={newsStory?.id ?? newsStory?.title}
           newsStory={newsStory}
           skeleton={Boolean(skeleton)}
+          sectionName={sectionName}
         />
       ))}
     </Root>
@@ -102,4 +111,5 @@ NewsStoryCardGridFeatured.propTypes = {
   ...newsStoryCardGrid.propTypes,
   maxCards: PropTypes.number,
   layout: PropTypes.oneOf(["twoThirds", "fullWidth"]),
+  sectionName: PropTypes.string.isRequired,
 };

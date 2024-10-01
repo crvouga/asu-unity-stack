@@ -30,6 +30,7 @@ export const NewsStoryCardGrid = ({
   empty = false,
   columns = 3,
   skeletonCount = 6,
+  sectionName,
 }) => {
   return (
     <Root columns={columns}>
@@ -39,6 +40,7 @@ export const NewsStoryCardGrid = ({
             <NewsStoryCard
               key={newsStory?.id ?? newsStory?.title}
               newsStory={newsStory}
+              sectionName={sectionName}
             />
           ))}
         </>
@@ -51,6 +53,7 @@ export const NewsStoryCardGrid = ({
               key={newsStory?.id ?? newsStory?.title}
               newsStory={newsStory}
               skeleton
+              sectionName={sectionName}
             />
           ))}
         </>
@@ -63,6 +66,7 @@ export const NewsStoryCardGrid = ({
               key={newsStory?.id ?? newsStory?.title}
               newsStory={newsStory}
               empty
+              sectionName={sectionName}
             />
           ))}
           <EmptyStateMessage message={emptyStateMessage} />

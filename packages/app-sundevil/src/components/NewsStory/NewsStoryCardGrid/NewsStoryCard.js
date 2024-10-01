@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import styled from "styled-components";
 
+import { trackGAEvent } from "../../../track-ga-event";
 import { ensureNormalNumber } from "../../../utils/ensure-number";
 import { Icon } from "../../Icon_";
 import { Skeleton } from "../../Skeleton";
@@ -124,7 +125,7 @@ const ContentBottom = styled.div`
 `;
 
 /**
- * @typedef {{newsStory: NewsStory.NewsStory, style: StyleSheet; skeleton?: boolean, size?: "large" | "default" }} Props
+ * @typedef {{newsStory: NewsStory.NewsStory, style: StyleSheet; skeleton?: boolean, size?: "large" | "default"; sectionName: string }} Props
  */
 
 /**
@@ -140,6 +141,7 @@ export const NewsStoryCard = ({
   skeleton = false,
   size = "default",
   empty = false,
+  sectionName,
 }) => {
   const configCard = useNewsStoryCardConfig();
   const [isVideoOpen, setIsVideoOpen] = useState(false);
@@ -151,6 +153,8 @@ export const NewsStoryCard = ({
 
   const hasHref =
     typeof newsStory.href === "string" && newsStory.href.trim().length > 0;
+
+  const isClickable = Boolean(hasHref);
 
   return (
     <Skeleton
@@ -164,7 +168,21 @@ export const NewsStoryCard = ({
         href={newsStory.href}
         style={style}
         as={hasHref ? "a" : "div"}
-        clickable={hasHref}
+        clickable={isClickable}
+        onClick={() => {
+          if (isClickable) {
+            trackGAEvent({
+              event: "link",
+              action: "click",
+              name: "onclick",
+              type: "internal link",
+              region: "main content",
+              section: sectionName ?? "news zone",
+              text: newsStory?.title?.toLowerCase() ?? " ",
+              component: "card",
+            });
+          }
+        }}
       >
         <BackgroundImageSkeletonWrapper skeleton={!isImageLoaded}>
           <BackgroundImage
@@ -196,6 +214,7 @@ export const NewsStoryCard = ({
           youtubeVideoUrl={newsStory.youtubeVideoUrl}
           isVideoOpen={isVideoOpen}
           onClickPlay={() => setIsVideoOpen(true)}
+          sectionName={newsStory.title}
         />
       </Root>
     </Skeleton>
@@ -208,4 +227,5 @@ NewsStoryCard.propTypes = {
   skeleton: PropTypes.bool,
   size: PropTypes.oneOf(["large", "default"]),
   empty: PropTypes.bool,
+  sectionName: PropTypes.string,
 };

@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 
+import { trackGAEvent } from "../../../track-ga-event";
 import { CollapseIcon } from "../../CollapseIcon/CollapseIcon";
 import { DropDown, DropDownSurface } from "../../DropDown";
 import { DropDownItem } from "../../DropDown/DropDownItem";
@@ -32,7 +33,19 @@ export const LinkTabsBarDropDown = ({ links }) => {
           as="button"
           focused={isOpen}
           ref={ref}
-          onClick={() => setOpen(openPrev => !openPrev)}
+          onClick={() => {
+            setOpen(openPrev => !openPrev);
+            trackGAEvent({
+              event: "collapse",
+              action: isOpen ? "close" : "open",
+              name: "onclick",
+              type: "click",
+              region: "main content",
+              section: "sticky navbar",
+              text: activeLink?.icon || "more",
+              component: "text",
+            });
+          }}
           label={activeLink?.label}
           icon={activeLink?.icon}
           renderIconEnd={() => (
@@ -50,7 +63,9 @@ export const LinkTabsBarDropDown = ({ links }) => {
               key={linkTabToKey(link)}
               label={link.label}
               href={link.href}
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                setOpen(false);
+              }}
               active={link.active}
             />
           ))}

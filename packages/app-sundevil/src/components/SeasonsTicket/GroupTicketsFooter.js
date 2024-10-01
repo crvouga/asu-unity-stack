@@ -100,6 +100,7 @@ export const GroupTicketsFooter = ({
   const hasBottomButtons =
     Array.isArray(bottomButtons) && bottomButtons.length > 0;
   const hasHeading = hasTitle || hasSubtitle;
+  const sectionName = title;
   return (
     <Root
       style={{
@@ -143,7 +144,7 @@ export const GroupTicketsFooter = ({
 
         {hasBottomButtons && (
           <BottomButtonsRoot>
-            <BottomButtons buttons={bottomButtons} />
+            <BottomButtons sectionName={sectionName} buttons={bottomButtons} />
           </BottomButtonsRoot>
         )}
       </Content>

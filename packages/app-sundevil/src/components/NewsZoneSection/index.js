@@ -108,9 +108,13 @@ const NewsZoneSectionInner = ({
 
   const hasFooter = footerButtons?.length > 0 || footerLinks?.length > 0;
 
+  const sectionHeaderProps = mapSectionHeaderProps(sectionHeader);
+  const sectionName = sectionHeaderProps?.sectionName ?? "";
+
   const footer = hasFooter ? (
     <SectionFooter
       disablePadding
+      sectionName={sectionName}
       footerButtons={footerButtons}
       footerLinks={footerLinks}
     />
@@ -121,10 +125,7 @@ const NewsZoneSectionInner = ({
 
   return (
     <Root>
-      <SectionHeader
-        {...mapSectionHeaderProps(sectionHeader)}
-        ref={sectionHeaderRef}
-      />
+      <SectionHeader {...sectionHeaderProps} ref={sectionHeaderRef} />
 
       {showEmptyState && (
         <EmptyStateMessageRoot>
@@ -140,6 +141,7 @@ const NewsZoneSectionInner = ({
           cardWidth={cardWidth}
           renderBottomRightContent={() => footer}
           skeletonCount={maxCards}
+          sectionName={sectionName}
         />
       )}
       {isDesktop && (
@@ -148,6 +150,7 @@ const NewsZoneSectionInner = ({
             newsStories={newsStoriesSliced}
             skeleton={skeleton}
             skeletonCount={maxCards}
+            sectionName={sectionName}
           />
           {footer && <FooterRoot>{footer}</FooterRoot>}
         </div>

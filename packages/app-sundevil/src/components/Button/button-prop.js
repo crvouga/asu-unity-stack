@@ -11,6 +11,7 @@ export const buttonPropTypes = PropTypes.shape({
   target: PropTypes.string,
   className: PropTypes.string,
   link: PropTypes.string,
+  onClick: PropTypes.func,
 });
 
 /**
@@ -25,4 +26,5 @@ export const buttonPropTypes = PropTypes.shape({
  * @property {string} [class] Button class
  * @property {string} [className] Button class name
  * @property {string} [link] Button link
+ * @property {() => void} [onClick] Button on click
  */

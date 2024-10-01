@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
+import { trackGAEvent } from "../../../track-ga-event";
 import { toYoutubeVideoId } from "./to-youtube-video-id";
 
 const toYoutubeEmbedUrl = (youtubeVideoId, autoplay = 0) =>
@@ -60,6 +61,7 @@ export const EmbeddedYoutubeVideo = ({
   youtubeVideoUrl,
   isVideoOpen,
   onClickPlay,
+  sectionName,
 }) => {
   /** @type {React.MutableRefObject<HTMLElement | null>} */
   const videoRef = useRef(null);
@@ -95,7 +97,19 @@ export const EmbeddedYoutubeVideo = ({
       <Root>
         <PlayButton
           type="button"
-          onClick={onClickPlay}
+          onClick={() => {
+            onClickPlay?.();
+            trackGAEvent({
+              event: "link",
+              action: "click",
+              name: "onclick",
+              type: "internal link",
+              region: "main content",
+              section: sectionName,
+              text: "play button",
+              component: "video card",
+            });
+          }}
           aria-label="Play youtube video"
         >
           <i className="fas fa-play" />
@@ -123,4 +137,5 @@ EmbeddedYoutubeVideo.propTypes = {
   youtubeVideoUrl: PropTypes.string,
   isVideoOpen: PropTypes.bool,
   onClickPlay: PropTypes.func,
+  sectionName: PropTypes.string,
 };

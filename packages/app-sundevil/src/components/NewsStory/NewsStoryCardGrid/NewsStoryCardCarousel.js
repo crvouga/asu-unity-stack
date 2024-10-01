@@ -57,6 +57,7 @@ const WhitespaceFill = styled.div`
  * empty?: boolean;
  * emptyStateMessage?: string;
  * skeletonCount?: number;
+ * sectionName: string;
  * }} Props
  */
 
@@ -71,6 +72,7 @@ export const NewsStoryCardCarousel = ({
   skeleton = false,
   empty = false,
   skeletonCount = 6,
+  sectionName,
 }) => {
   const [carouselController] = React.useState(() => new CarouselController());
   const [index, setIndex] = React.useState(0);
@@ -102,6 +104,7 @@ export const NewsStoryCardCarousel = ({
                   <NewsStoryCard
                     skeleton={Boolean(skeleton)}
                     newsStory={newsStory}
+                    sectionName={sectionName}
                   />
                 </div>
               </CarouselItem>
@@ -116,7 +119,11 @@ export const NewsStoryCardCarousel = ({
                 style={{ width: "fit-content" }}
               >
                 <div style={{ width: cardWidth, height: "100%" }}>
-                  <NewsStoryCard skeleton newsStory={newsStory} />
+                  <NewsStoryCard
+                    sectionName={sectionName}
+                    skeleton
+                    newsStory={newsStory}
+                  />
                 </div>
               </CarouselItem>
             ))}
@@ -132,7 +139,11 @@ export const NewsStoryCardCarousel = ({
                   position: "relative",
                 }}
               >
-                <NewsStoryCard empty newsStory={newsStorySkeleton[0]} />
+                <NewsStoryCard
+                  sectionName={sectionName}
+                  empty
+                  newsStory={newsStorySkeleton[0]}
+                />
                 <EmptyStateMessage message={emptyStateMessage} />
               </div>
             </CarouselItem>
@@ -161,4 +172,5 @@ NewsStoryCardCarousel.propTypes = {
   empty: PropTypes.bool,
   emptyStateMessage: PropTypes.string,
   skeletonCount: PropTypes.number,
+  sectionName: PropTypes.string.isRequired,
 };

@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { trackGAEvent } from "../../track-ga-event";
 import { Icon, iconPropType, toIconName } from "../Icon_";
 import { SocialMediaIcon } from "./SocialMediaIcon";
 import { SocialMediaIconButton } from "./SocialMediaIconButton";
@@ -83,7 +84,7 @@ const StyledSocialIcon = styled(SocialIcon)`
   justify-content: center;
 `;
 
-export const JoinTheConversation = ({ social }) => {
+export const JoinTheConversation = ({ social, sectionName }) => {
   return (
     <Root id="social-media">
       <Title>Join the conversation:</Title>
@@ -98,6 +99,18 @@ export const JoinTheConversation = ({ social }) => {
               href={socialItem.url}
               aria-label={ariaLabel}
               title={ariaLabel}
+              onClick={() => {
+                trackGAEvent({
+                  event: "link",
+                  action: "click",
+                  name: "onclick",
+                  type: "external link",
+                  region: "main content",
+                  section: sectionName ?? " ",
+                  text: ariaLabel,
+                  component: "image",
+                });
+              }}
             >
               <StyledSocialIcon social={socialItem} />
             </SocialMediaIconButton>
@@ -109,4 +122,5 @@ export const JoinTheConversation = ({ social }) => {
 };
 JoinTheConversation.propTypes = {
   social: PropTypes.arrayOf(socialPropType),
+  sectionName: PropTypes.string,
 };

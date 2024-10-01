@@ -62,19 +62,7 @@ export const SectionFooter = ({
               size={button.size}
               href={button.href ?? button.link}
               target={button.target}
-              onClick={() => {
-                console.log("button", button);
-                trackGAEvent({
-                  event: "link",
-                  action: "click",
-                  name: "onclick",
-                  type: "internal link",
-                  region: "main content",
-                  section: sectionName ?? " ",
-                  text: button.label ?? " ",
-                  component: "button",
-                });
-              }}
+              cardTitle={sectionName}
               renderIcon={() =>
                 button.icon ? (
                   <Icon style={{ marginRight: "0.5rem" }} icon={button.icon} />

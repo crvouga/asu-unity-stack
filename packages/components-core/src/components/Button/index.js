@@ -5,13 +5,15 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import { trackGAEvent } from "../../../../../shared";
+import { isExternalLink } from "./is-external-link";
 
-const gaDefaultObject = {
+const GA_DEFAULT_OBJECT = {
   name: "onclick",
   event: "link",
   action: "click",
   type: "internal link",
   region: "main content",
+  component: "button",
 };
 
 /**
@@ -55,8 +57,16 @@ export const Button = ({
   }
 
   const handleClick = text => {
-    trackGAEvent({ ...gaDefaultObject, text, section: cardTitle });
-    onClick?.();
+    trackGAEvent({
+      ...GA_DEFAULT_OBJECT,
+      type: isExternalLink(href) ? "external link" : "internal link",
+      text,
+      section: cardTitle,
+    });
+
+    if (typeof onClick === "function") {
+      onClick?.();
+    }
   };
 
   return (

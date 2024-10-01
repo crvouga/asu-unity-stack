@@ -2,8 +2,6 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import { Button } from "../../../../components-core/src/index";
-import { trackGAEvent } from "../../track-ga-event";
-import { isExternalLink } from "../../utils/is-external-link";
 import { Icon } from "../Icon_";
 import { Skeleton } from "../Skeleton";
 import { buttonPropTypes } from "./button-prop";
@@ -50,22 +48,8 @@ export const BottomButtons = ({ buttons, skeleton, sectionName }) => {
             label={button?.label}
             href={button?.href}
             target={button?.target}
-            onClick={() => {
-              button?.onClick?.();
-
-              trackGAEvent({
-                event: "link",
-                action: "click",
-                name: "onclick",
-                type: isExternalLink(button?.href)
-                  ? "external link"
-                  : "internal link",
-                region: "main content",
-                section: sectionName ?? " ",
-                text: button?.label ?? " ",
-                component: "button",
-              });
-            }}
+            cardTitle={sectionName}
+            onClick={button?.onClick}
             renderIcon={() =>
               button.icon ? (
                 <Icon style={{ marginRight: "8px" }} icon={button.icon} />

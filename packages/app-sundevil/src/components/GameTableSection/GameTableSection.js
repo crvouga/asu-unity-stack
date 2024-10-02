@@ -325,8 +325,9 @@ const GameTableSectionInner = ({ ...props }) => {
             <SectionHeader
               {...sectionHeaderProps}
               tabs={tabs}
-              onTabItemClick={clickedGameType => () =>
-                gameSearchForm.update({ gameType: clickedGameType })}
+              onTabItemClick={clickedGameType => {
+                gameSearchForm.update({ gameType: clickedGameType });
+              }}
               style={{ paddingBottom: "32px" }}
             />
           )}

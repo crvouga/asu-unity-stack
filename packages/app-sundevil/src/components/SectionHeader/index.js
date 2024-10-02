@@ -259,10 +259,21 @@ export const SectionHeader = forwardRef(
                   {tabs && tabs.length > 0 && (
                     <Tabs
                       tabs={tabs}
-                      onTabItemClick={() => {
+                      onTabItemClick={(tabId, tab) => {
                         if (typeof onTabItemClick === "function") {
-                          onTabItemClick?.();
+                          onTabItemClick?.(tabId);
                         }
+
+                        trackGAEvent({
+                          event: "link",
+                          action: "click",
+                          name: "onclick",
+                          type: "internal link",
+                          region: "main content",
+                          section: sectionName,
+                          text: tab?.label?.toLowerCase() ?? "",
+                          component: "text",
+                        });
                       }}
                       stretch={isMobile}
                     />

@@ -72,7 +72,7 @@ const Tabs = ({ tabs, onTabItemClick, stretch = false }) => {
       <Root>
         {tabs.map((tab, index) => (
           <Tab
-            onClick={onTabItemClick?.(tab.id)}
+            onClick={() => onTabItemClick?.(tab.id, tab)}
             // @ts-ignore
             active={Boolean(tab.active)}
             key={tab.id ?? tab.label ?? index}

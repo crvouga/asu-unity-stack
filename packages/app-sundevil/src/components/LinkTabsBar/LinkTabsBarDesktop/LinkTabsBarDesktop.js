@@ -5,6 +5,7 @@ import { trackAdClickHandler } from "../../Ads/ad-data-layers";
 import { linkTabsBarPropTypes } from "../link-tab-bar";
 import { useMaxLinkCount } from "../max-link-count";
 import { LinkTabs } from "./LinkTabs";
+import { trackGAEvent } from "../../../track-ga-event";
 
 export const Root = styled.div`
   display: flex;
@@ -87,10 +88,22 @@ export const LinkTabsBarDesktop = forwardRef(
             sponsorLogoSrc.trim().length > 0 && (
               <SponsorRoot
                 href={sponsorHref}
-                onClick={trackAdClickHandler({
-                  adId: sponsorAdId,
-                  href: sponsorHref,
-                })}
+                onClick={() => {
+                  trackAdClickHandler({
+                    adId: sponsorAdId,
+                    href: sponsorHref,
+                  })();
+                  trackGAEvent({
+                    event: "link",
+                    action: "click",
+                    name: "onclick",
+                    type: "internal link",
+                    region: "main content",
+                    section: "sticky navbar",
+                    text: sponsorLogoAlt ?? " ",
+                    component: "image",
+                  });
+                }}
               >
                 <SponsorImage
                   src={sponsorLogoSrc}

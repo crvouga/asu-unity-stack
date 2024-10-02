@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
+import { trackGAEvent } from "../../../track-ga-event";
 import { deepMergeLeft } from "../../../utils/deep-merge-left";
 import { isGameTicketed } from "../../Game/game";
 import { Icon } from "../../Icon_";
@@ -165,6 +166,18 @@ export const GameTableRowMobileDivided = forwardRef((props, ref) => {
                 title={game?.ticketText}
                 href={game?.ticketLink}
                 style={{ textDecoration: "none !important" }}
+                onClick={() => {
+                  trackGAEvent({
+                    event: "link",
+                    action: "click",
+                    name: "onclick",
+                    type: "internal link",
+                    region: "main content",
+                    section: game?.title ?? " ",
+                    text: game?.ticketText ?? " ",
+                    component: "button",
+                  });
+                }}
               >
                 {/* eslint-disable-next-line no-nested-ternary */}
                 {game?.buttonIcon ? (

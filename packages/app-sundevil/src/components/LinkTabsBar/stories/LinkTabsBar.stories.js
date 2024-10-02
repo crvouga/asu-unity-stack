@@ -214,7 +214,7 @@ Default.args = {
   sponsorHref: "#",
   sponsorLogoSrc:
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfbwJU0mLkyyoKkok_jMppnBtEbsWNYJja3A&s",
-  sponsorLogoAlt: " ",
+  sponsorLogoAlt: "sponsor logo alt",
 };
 
 export const DebugProps = Template.bind({});
@@ -348,7 +348,7 @@ DebugProps.args = {
   sponsorHref: "#",
   sponsorLogoSrc:
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTfbwJU0mLkyyoKkok_jMppnBtEbsWNYJja3A&s",
-  sponsorLogoAlt: " ",
+  sponsorLogoAlt: "sponsor logo alt",
 };
 
 export const SportTickets = Template.bind({});
@@ -391,7 +391,7 @@ SportTickets.args = {
 
   sponsorHref: null,
   sponsorLogoSrc: " ",
-  sponsorLogoAlt: " ",
+  sponsorLogoAlt: "sponsor logo alt",
 };
 
 export const YourGameDayGuide = Template.bind({});
@@ -437,5 +437,5 @@ YourGameDayGuide.args = {
   ],
   sponsorHref: " ",
   sponsorLogoSrc: " ",
-  sponsorLogoAlt: " ",
+  sponsorLogoAlt: "sponsor logo alt",
 };

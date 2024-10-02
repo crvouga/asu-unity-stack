@@ -282,6 +282,7 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
                 return null;
               }}
               href={game?.ticketLink}
+              cardTitle={game?.title ?? " "}
               {...configCells?.cellTicketButton?.button}
             />
           </Cell>

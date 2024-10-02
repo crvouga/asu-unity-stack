@@ -1,6 +1,7 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
+import { trackGAEvent } from "../../../track-ga-event";
 import { deepMergeLeft } from "../../../utils/deep-merge-left";
 import { formatTimeAmPm } from "../../../utils/formatTime";
 import { isGameTicketed } from "../../Game/game";
@@ -159,6 +160,18 @@ export const GameTableRowMobileBordered = forwardRef(
                 title={game?.ticketText}
                 href={game?.ticketLink}
                 style={{ textDecoration: "none !important" }}
+                onClick={() => {
+                  trackGAEvent({
+                    event: "link",
+                    action: "click",
+                    name: "onclick",
+                    type: "internal link",
+                    region: "main content",
+                    section: game?.title ?? " ",
+                    text: game?.ticketText ?? " ",
+                    component: "button",
+                  });
+                }}
               >
                 {/* eslint-disable-next-line no-nested-ternary */}
                 {game?.buttonIcon ? (

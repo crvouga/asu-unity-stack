@@ -177,6 +177,8 @@ export const SectionHeader = forwardRef(
 
     const hasHeaderBody = hasSubtitle || hasTabs || hasSocial;
 
+    const sectionName = title;
+
     return (
       <div className="container" ref={ref} style={style}>
         {hasContent && (
@@ -234,6 +236,18 @@ export const SectionHeader = forwardRef(
                               // @ts-ignore
                               fontWeight={link?.fontWeight}
                               color={link?.color}
+                              onClick={() => {
+                                trackGAEvent({
+                                  event: "link",
+                                  action: "click",
+                                  name: "onclick",
+                                  type: "internal link",
+                                  region: "main content",
+                                  section: sectionName,
+                                  text: link?.label,
+                                  component: "text",
+                                });
+                              }}
                             >
                               {link?.label}
                             </SubtitleLink>
@@ -245,13 +259,19 @@ export const SectionHeader = forwardRef(
                   {tabs && tabs.length > 0 && (
                     <Tabs
                       tabs={tabs}
-                      // @ts-ignore
-                      onTabItemClick={onTabItemClick}
+                      onTabItemClick={() => {
+                        if (typeof onTabItemClick === "function") {
+                          onTabItemClick?.();
+                        }
+                      }}
                       stretch={isMobile}
                     />
                   )}
                   {social && social.length > 0 && (
-                    <JoinTheConversation sectionName={title} social={social} />
+                    <JoinTheConversation
+                      sectionName={sectionName}
+                      social={social}
+                    />
                   )}
                 </HeaderBody>
               )}
@@ -308,7 +328,7 @@ export const SectionHeader = forwardRef(
  * @property {Array<import("./JoinTheConversation").SocialProp>} [social]
  * @property {{name: string, logo: string, text: string, url: string, adId?: string | number}} [sponsorBlock]
  * @property {boolean} [darkMode]
- * @property {Function} [onTabItemClick]
+ * @property {(...params: any[]) => void} [onTabItemClick]
  * @property {React.CSSProperties} [style]
  *
  */

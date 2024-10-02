@@ -1,11 +1,11 @@
 import React, { forwardRef, useRef } from "react";
 import styled from "styled-components";
 
+import { trackGAEvent } from "../../../track-ga-event";
 import { trackAdClickHandler } from "../../Ads/ad-data-layers";
 import { linkTabsBarPropTypes } from "../link-tab-bar";
 import { useMaxLinkCount } from "../max-link-count";
 import { LinkTabs } from "./LinkTabs";
-import { trackGAEvent } from "../../../track-ga-event";
 
 export const Root = styled.div`
   display: flex;
@@ -100,7 +100,7 @@ export const LinkTabsBarDesktop = forwardRef(
                     type: "internal link",
                     region: "main content",
                     section: "sticky navbar",
-                    text: sponsorLogoAlt ?? " ",
+                    text: s ?? " ",
                     component: "image",
                   });
                 }}

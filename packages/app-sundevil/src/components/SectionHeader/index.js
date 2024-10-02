@@ -1,10 +1,11 @@
 // @ts-check
 import PropTypes from "prop-types";
-import React, { forwardRef } from "react";
+import React, { forwardRef, useRef } from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
 import { trackGAEvent } from "../../track-ga-event";
+import { useTrackChildClicks } from "../../track-ga-event-hooks";
 import { stringToFontWeight } from "../../utils/font-weight";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { trackAdClickHandler } from "../Ads/ad-data-layers";
@@ -179,6 +180,16 @@ export const SectionHeader = forwardRef(
 
     const sectionName = title;
 
+    /**
+     * @type {React.MutableRefObject<HTMLElement | null>}
+     */
+    const subtitleRef = useRef(null);
+
+    useTrackChildClicks({
+      ref: subtitleRef,
+      sectionName,
+    });
+
     return (
       <div className="container" ref={ref} style={style}>
         {hasContent && (
@@ -220,6 +231,8 @@ export const SectionHeader = forwardRef(
                   <SubtitleRoot>
                     {subtitle && (
                       <Subtitle
+                        // @ts-ignore
+                        ref={subtitleRef}
                         style={{
                           fontWeight: stringToFontWeight(subtitleFontWeight),
                         }}

@@ -21,6 +21,7 @@ export const CardSectionSingleColumn = ({ cards, alternate = true }) => {
     <Root className="container">
       {cards?.map((card, index) => (
         <Card
+          sectionName={card?.title ?? " "}
           key={card.title}
           card={card}
           reverse={alternate && index % 2 !== 0}

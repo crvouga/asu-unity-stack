@@ -1,7 +1,9 @@
-import React from "react";
+import PropTypes from "prop-types";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../components-core/src/components/Button";
+import { useTrackChildrenClicks } from "../../track-ga-event-hooks";
 import { Image } from "../Image";
 import { cardPropTypes } from "./card-prop";
 
@@ -52,7 +54,12 @@ const ButtonRoot = styled.div`
  * https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=5684-858&t=9IhK8Vy1oD4OHGJB-0
  * @type {React.FC<Props>}
  */
-export const CardMobile = ({ card }) => {
+export const CardMobile = ({ card, sectionName }) => {
+  const descriptionRef = useRef(null);
+  useTrackChildrenClicks({
+    ref: descriptionRef,
+    sectionName,
+  });
   return (
     <Root>
       <StyledImage src={card.imageSrc} alt={card.imageAlt} />
@@ -65,6 +72,7 @@ export const CardMobile = ({ card }) => {
               {...button}
               key={button.label ?? button.href}
               size={button.size ?? "small"}
+              cardTitle={sectionName}
               color={button.color ?? "maroon"}
             />
           ))}
@@ -77,9 +85,11 @@ export const CardMobile = ({ card }) => {
 /**
  * @typedef {{
  * card: import("./card-prop").CardProp
+ * sectionName: string
  * }} Props
  */
 
 CardMobile.propTypes = {
   card: cardPropTypes,
+  sectionName: PropTypes.string,
 };

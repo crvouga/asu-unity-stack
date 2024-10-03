@@ -13,6 +13,7 @@ import { CardMobile } from "./CardMobile";
  */
 export const Card = props => {
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
+
   if (isMobile) {
     return <CardMobile {...props} />;
   }
@@ -21,12 +22,14 @@ export const Card = props => {
 
 /**
  * @typedef {{
- * card: import("./card-prop").CardProp
- * reverse?: boolean
+ * card: import("./card-prop").CardProp;
+ * reverse?: boolean;
+ * sectionName: string;
  * }} Props
  */
 
 Card.propTypes = {
   card: cardPropTypes,
   reverse: PropTypes.bool,
+  sectionName: PropTypes.string,
 };

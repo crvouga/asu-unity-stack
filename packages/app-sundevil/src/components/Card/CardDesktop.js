@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../components-core/src/components/Button";
+import { useTrackChildrenClicks } from "../../track-ga-event-hooks";
 import { Image } from "../Image";
 import { cardPropTypes } from "./card-prop";
 
@@ -54,18 +55,27 @@ const ButtonRoot = styled.div`
  * https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=5684-858&t=9IhK8Vy1oD4OHGJB-0
  * @type {React.FC<Props>}
  */
-export const CardDesktop = ({ card, reverse }) => {
+export const CardDesktop = ({ card, reverse, sectionName }) => {
+  const descriptionRef = useRef(null);
+  useTrackChildrenClicks({
+    ref: descriptionRef,
+    sectionName,
+  });
   return (
     <Root reverse={reverse}>
       <StyledImage src={card.imageSrc} alt={card.imageAlt} />
       <Content>
         <Title>{card.title}</Title>
-        <Description dangerouslySetInnerHTML={{ __html: card.description }} />
+        <Description
+          ref={descriptionRef}
+          dangerouslySetInnerHTML={{ __html: card.description }}
+        />
         <ButtonRoot>
           {card.buttons.map(button => (
             <Button
               {...button}
               key={button.label ?? button.href}
+              cardTitle={card.title}
               color={button.color ?? "maroon"}
             />
           ))}
@@ -79,10 +89,12 @@ export const CardDesktop = ({ card, reverse }) => {
  * @typedef {{
  * card: import("./card-prop").CardProp
  * reverse?: boolean
+ * sectionName: string
  * }} Props
  */
 
 CardDesktop.propTypes = {
   card: cardPropTypes,
   reverse: PropTypes.bool,
+  sectionName: PropTypes.string,
 };

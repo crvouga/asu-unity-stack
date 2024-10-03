@@ -100,7 +100,7 @@ export const LinkTabsBarDesktop = forwardRef(
                     type: "internal link",
                     region: "main content",
                     section: "sticky navbar",
-                    text: s ?? " ",
+                    text: sponsorLogoAlt ?? " ",
                     component: "image",
                   });
                 }}

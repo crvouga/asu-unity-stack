@@ -49,16 +49,21 @@ const ASUHeader = ({
   const navTree = tryAddActivePage(rawNavTree);
   const mobileNavTree = tryAddActivePage(rawMobileNavTree);
 
+  /**
+   * @type {React.MutableRefObject<HTMLDivElement | null>}
+   */
   const headerRef = useRef(null);
 
   const handleWindowScroll = () => {
+    if (!headerRef.current) {
+      return;
+    }
+
     const curPos = window.scrollY;
-    // @ts-ignore
+
     if (curPos > headerRef.current.getBoundingClientRect().top) {
-      // @ts-ignore
       headerRef.current.classList.add("scrolled");
     } else {
-      // @ts-ignore
       headerRef.current.classList.remove("scrolled");
     }
   };

@@ -208,6 +208,10 @@ const ensureOnlyOneSelectedItem = navTree => {
   }
   const selectedItemIndex = navTree.findIndex(item => item?.selected);
 
+  if (selectedItemIndex === -1) {
+    return navTree;
+  }
+
   const navTreeNew = navTree.map((item, index) => {
     if (index === selectedItemIndex) {
       return {

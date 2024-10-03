@@ -2,7 +2,7 @@
 import React from "react";
 
 import { SunDevilsHeader } from "../../Header";
-import { testHeaderProps } from "../../Header/test-props";
+import { testHeaderProps } from "../../Header/props-test";
 import { LinkTabsBar } from "../index";
 
 export default {

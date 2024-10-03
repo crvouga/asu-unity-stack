@@ -22,7 +22,7 @@ const LogoSponsor = () => {
       className="navbar-brand"
       data-testid="logo"
       onFocus={
-        sponsorLogo.onFocus ?? (() => trackGAEvent({ text: "asu logo" }))
+        sponsorLogo?.onFocus ?? (() => trackGAEvent({ text: "asu logo" }))
       }
       onClick={sponsorLogo?.onClick}
     >

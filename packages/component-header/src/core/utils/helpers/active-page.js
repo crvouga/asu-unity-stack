@@ -1,3 +1,5 @@
+import { removeHash } from "./remove-hash";
+
 /**
  * Find match on top level navigation item 'href' or within submenu `items`
  * @param {array} navTree
@@ -7,10 +9,12 @@
 const getHrefMatchIndex = (navTree, path) =>
   navTree?.findIndex(
     item =>
-      item?.href === path ||
+      removeHash(item?.href) === removeHash(path) ||
       // !Some applications might send invalid items props as an empty string
       (Array.isArray(item.items) &&
-        item.items?.flat().find(({ href }) => href === path))
+        item.items
+          ?.flat()
+          .find(({ href }) => removeHash(href) === removeHash(path)))
   );
 /**
  * Check if selected prop already exists

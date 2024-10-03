@@ -70,4 +70,25 @@ describe("tryAddActivePage", () => {
     const navTree = [{ href: "/home" }, { href: "/about" }];
     expect(tryAddActivePage(navTree)).toEqual(navTree);
   });
+
+  it("should add selected prop to the matching submenu item with hash", () => {
+    delete window.location;
+    window.location = { pathname: "/services#SomeHash", search: "" };
+    const navTree = [
+      { href: "/home" },
+      {
+        href: "/about",
+        items: [{ href: "/services#SomeHash" }],
+      },
+    ];
+    const expectedTree = [
+      { href: "/home" },
+      {
+        href: "/about",
+        items: [{ href: "/services#SomeHash" }],
+        selected: true,
+      },
+    ];
+    expect(tryAddActivePage(navTree)).toEqual(expectedTree);
+  });
 });

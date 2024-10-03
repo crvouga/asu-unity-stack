@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
 import { trackGAEvent } from "../../track-ga-event";
-import { useTrackChildClicks } from "../../track-ga-event-hooks";
+import { useTrackChildrenClicks } from "../../track-ga-event-hooks";
 import { stringToFontWeight } from "../../utils/font-weight";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { trackAdClickHandler } from "../Ads/ad-data-layers";
@@ -185,7 +185,7 @@ export const SectionHeader = forwardRef(
      */
     const subtitleRef = useRef(null);
 
-    useTrackChildClicks({
+    useTrackChildrenClicks({
       ref: subtitleRef,
       sectionName,
     });

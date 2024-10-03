@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../../components-core/src/components/Button";
+import { useTrackChildrenClicks } from "../../../track-ga-event-hooks";
 import { buttonPropTypes } from "../../Button/button-prop";
 
 // APP_CONFIG.breakpointMobile;
@@ -79,17 +80,24 @@ export const ContactUsCTACardDesktop = ({
   imageAlt,
   imageSrc,
 }) => {
+  const sectionName = title;
+  const bodyRef = useRef(null);
+  useTrackChildrenClicks({
+    ref: bodyRef,
+    sectionName,
+  });
   return (
     <Root>
       <BackgroundImage src={imageSrc} alt={imageAlt ?? " "} />
       <Content>
         <Title>{title}</Title>
-        <Body dangerouslySetInnerHTML={{ __html: body }} />
+        <Body ref={bodyRef} dangerouslySetInnerHTML={{ __html: body }} />
         <ButtonRoot>
           {buttons.map(button => (
             <Button
               key={button?.label}
               classes={button.class}
+              cardTitle={sectionName}
               {...button}
               width="100%"
             />

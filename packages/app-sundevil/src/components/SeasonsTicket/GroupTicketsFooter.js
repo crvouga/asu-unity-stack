@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
+import { useTrackChildrenClicks } from "../../track-ga-event-hooks";
 import { BottomButtons } from "../Button/BottomButtons";
 import { buttonPropTypes } from "../Button/button-prop";
 
@@ -132,7 +133,10 @@ export const GroupTicketsFooter = ({
                 >
                   {datum.title}
                 </div>
-                <GridItemDescription description={datum.description} />
+                <GridItemDescription
+                  sectionName={sectionName}
+                  description={datum.description}
+                />
               </GridItem>
             ))}
           </Grid>
@@ -148,9 +152,12 @@ export const GroupTicketsFooter = ({
   );
 };
 
-const GridItemDescription = ({ description }) => {
+const GridItemDescription = ({ description, sectionName }) => {
   const ref = useRef(null);
-
+  useTrackChildrenClicks({
+    ref,
+    sectionName,
+  });
   return (
     <span
       ref={ref}
@@ -159,6 +166,10 @@ const GridItemDescription = ({ description }) => {
       dangerouslySetInnerHTML={{ __html: description }}
     />
   );
+};
+GridItemDescription.propTypes = {
+  description: PropTypes.string,
+  sectionName: PropTypes.string,
 };
 
 GroupTicketsFooter.propTypes = {

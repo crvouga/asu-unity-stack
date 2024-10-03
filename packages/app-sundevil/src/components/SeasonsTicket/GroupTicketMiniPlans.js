@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
+import { trackGAEvent } from "../../track-ga-event";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { Icon, iconPropType } from "../Icon_";
 import { SectionHeader } from "../SectionHeader";
@@ -148,6 +149,18 @@ export const GroupTicketMiniPlans = ({
                     }}
                     className="btn btn-default btn-gold"
                     target={ctaItem?.target}
+                    onClick={() => {
+                      trackGAEvent({
+                        event: "link",
+                        action: "click",
+                        name: "onclick",
+                        type: "internal link",
+                        region: "main content",
+                        section: "football mini plans",
+                        text: "build your mini plan",
+                        component: "button",
+                      });
+                    }}
                   >
                     {ctaItem?.startIcon && <Icon icon={ctaItem?.startIcon} />}
                     {ctaItem?.label ?? ctaItem?.text}

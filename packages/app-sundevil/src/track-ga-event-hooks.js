@@ -56,7 +56,7 @@ const isButton = element =>
  *
  * @param {input:{ref: React.MutableRefObject<HTMLElement | null> | null; sectionName: string}} input
  */
-export const useTrackChildClicks = ({ ref, sectionName }) => {
+export const useTrackChildrenClicks = ({ ref, sectionName }) => {
   useChildrenClickHandler(ref, event => {
     const isButtonVal =
       isButton(event?.target) || isButton(event?.currentTarget);

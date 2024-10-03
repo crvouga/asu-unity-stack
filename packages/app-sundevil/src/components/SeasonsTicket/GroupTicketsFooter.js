@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
@@ -132,11 +132,7 @@ export const GroupTicketsFooter = ({
                 >
                   {datum.title}
                 </div>
-                <span
-                  style={{ fontSize: "16px", fontWeight: "400" }}
-                  // eslint-disable-next-line react/no-danger
-                  dangerouslySetInnerHTML={{ __html: datum.description }}
-                />
+                <GridItemDescription description={datum.description} />
               </GridItem>
             ))}
           </Grid>
@@ -149,6 +145,19 @@ export const GroupTicketsFooter = ({
         )}
       </Content>
     </Root>
+  );
+};
+
+const GridItemDescription = ({ description }) => {
+  const ref = useRef(null);
+
+  return (
+    <span
+      ref={ref}
+      style={{ fontSize: "16px", fontWeight: "400" }}
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{ __html: description }}
+    />
   );
 };
 

@@ -36,6 +36,7 @@ const Root = styled.div`
  * className?: string;
  * darkMode?: boolean;
  * orientation?: "horizontal" | "vertical";
+ * sectionName: string;
  * }>}
  */
 export const NewsStorySearchForm = ({
@@ -47,6 +48,7 @@ export const NewsStorySearchForm = ({
   className,
   darkMode,
   orientation,
+  sectionName,
 }) => {
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
 
@@ -87,6 +89,7 @@ export const NewsStorySearchForm = ({
           placeholder={configInputs?.search?.placeholder ?? ""}
           value={newsStorySearchForm.searchQuery}
           onChange={newsStorySearchForm.setSearchQuery}
+          sectionName={sectionName}
           renderEndIcon={({ style: iconStyle }) => (
             <i
               style={iconStyle}
@@ -101,6 +104,7 @@ export const NewsStorySearchForm = ({
           darkMode={darkMode}
           style={inputStyle}
           label={configInputs?.newsType?.label ?? ""}
+          sectionName={sectionName}
           placeholder={configInputs?.newsType?.placeholder ?? ""}
           onChange={option =>
             newsStorySearchForm.update({
@@ -126,6 +130,7 @@ export const NewsStorySearchForm = ({
           style={inputStyle}
           label={configInputs?.sportType?.label ?? ""}
           placeholder={configInputs?.sportType?.placeholder ?? ""}
+          sectionName={sectionName}
           onChange={option =>
             newsStorySearchForm.update({
               sportId:
@@ -165,4 +170,6 @@ NewsStorySearchForm.propTypes = {
   orientation: PropTypes.oneOf(["horizontal", "vertical"]),
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
+  // @ts-ignore
+  sectionName: PropTypes.string,
 };

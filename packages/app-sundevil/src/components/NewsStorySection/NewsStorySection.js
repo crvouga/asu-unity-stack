@@ -177,6 +177,7 @@ const NewsStorySectionInner = ({
         configLayout={configLayout}
         configForm={configForm}
         sports={sportsWithSelectedTab}
+        sectionName={sectionName}
       />
 
       {isDesktop && (
@@ -259,6 +260,7 @@ const NewsStorySectionInner = ({
           <LoadButtonRoot>
             <LoadMoreButton
               {...loadMore}
+              sectionName={sectionName}
               onClick={newsStoryDataSourceLoader.loadNextPage}
               loading={newsStoryDataSourceLoader.isLoading}
             />
@@ -270,7 +272,9 @@ const NewsStorySectionInner = ({
 
 NewsStorySectionInner.propTypes = {
   disableUrlSportId: PropTypes.bool,
+  // @ts-ignore
   footerButtons: PropTypes.arrayOf(footerButtonPropTypes),
+  // @ts-ignore
   footerLinks: PropTypes.arrayOf(footerButtonPropTypes),
   // @ts-ignore
   sectionHeader: SectionHeader.propTypes,

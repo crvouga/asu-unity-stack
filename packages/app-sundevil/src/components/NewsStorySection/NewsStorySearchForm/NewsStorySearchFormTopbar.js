@@ -13,6 +13,7 @@ export const NewsStorySearchFormTopbar = ({
   darkMode,
   className,
   newsStorySearchForm,
+  sectionName,
 }) => {
   return (
     <FilterFormTopBarLayout
@@ -20,6 +21,7 @@ export const NewsStorySearchFormTopbar = ({
       title={configForm?.title}
       renderForm={() => (
         <NewsStorySearchForm
+          sectionName={sectionName}
           newsStorySearchForm={newsStorySearchForm}
           configInputs={configInputs}
           configLayout={configLayout}

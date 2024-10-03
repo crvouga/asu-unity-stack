@@ -17,8 +17,14 @@ export const DEFAULT_OPTIONS = Object.values(GameDataSourceSortBy).map(
 );
 
 export const InputSortBySelect = () => {
-  const { configInputs, configLayout, gameSearchForm, inputStyle, darkMode } =
-    useGameSearchFormContext();
+  const {
+    configInputs,
+    configLayout,
+    sectionName,
+    gameSearchForm,
+    inputStyle,
+    darkMode,
+  } = useGameSearchFormContext();
 
   const options = DEFAULT_OPTIONS;
 
@@ -31,6 +37,7 @@ export const InputSortBySelect = () => {
     configLayout.includeInputSortBySelect &&
     Array.isArray(options) && (
       <Select
+        sectionName={sectionName}
         darkMode={darkMode}
         style={inputStyle}
         label={configInputs.sortBySelect?.label ?? ""}

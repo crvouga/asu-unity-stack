@@ -28,6 +28,7 @@ export const GameSearchFormSidebar = ({
   sports,
   darkMode,
   className,
+  sectionName,
 }) => {
   return (
     <Root className={className}>
@@ -45,6 +46,7 @@ export const GameSearchFormSidebar = ({
         configLayout={configLayout}
         sports={sports}
         darkMode={darkMode}
+        sectionName={sectionName}
       />
     </Root>
   );

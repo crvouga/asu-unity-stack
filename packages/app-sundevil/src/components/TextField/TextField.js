@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import React, { useRef } from "react";
 import styled from "styled-components";
 
+import { trackGAEvent } from "../../track-ga-event";
 import { useFocus } from "../../utils/use-focus";
 import { LabelledInputBase } from "../InputBase/LabelledInputBase";
 
@@ -64,6 +65,7 @@ export const TextField = ({
   style,
   darkMode,
   uncontrolled,
+  sectionName,
 }) => {
   const inputRef = useRef(null);
   const focused = useFocus(inputRef);
@@ -86,7 +88,20 @@ export const TextField = ({
             id={id}
             type="text"
             value={uncontrolled ? undefined : value}
-            onChange={e => onChange(e.target.value)}
+            onChange={e => {
+              const valueNew = e.target.value;
+              trackGAEvent({
+                event: "search",
+                action: "type",
+                name: "onenter",
+                type: label,
+                region: "main content",
+                section: sectionName,
+                text: valueNew,
+                component: "search bar",
+              });
+              onChange(valueNew);
+            }}
           />
         </InputContainer>
       )}
@@ -100,6 +115,7 @@ TextField.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
+  sectionName: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
   renderEndIcon: PropTypes.func,

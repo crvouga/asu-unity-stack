@@ -261,6 +261,9 @@ const GameTableSectionInner = ({ ...props }) => {
     shouldLog: props.shouldLog,
   });
 
+  const sectionHeaderProps = mapSectionHeaderProps(props);
+  const sectionName = sectionHeaderProps?.title;
+
   const renderGameTable = ({ className = "" } = {}) => (
     <GameTableRoot className={className}>
       <GameTable
@@ -286,13 +289,12 @@ const GameTableSectionInner = ({ ...props }) => {
             {...props.loadMore}
             onClick={gameDataSourceLoader.loadNextPage}
             loading={gameDataSourceLoader.isLoading}
+            sectionName={sectionName}
           />
         )}
     </GameTableRoot>
   );
 
-  const sectionHeaderProps = mapSectionHeaderProps(props);
-  const sectionName = sectionHeaderProps?.title;
   return (
     <Root
       style={{
@@ -334,6 +336,7 @@ const GameTableSectionInner = ({ ...props }) => {
 
           {configLayout.variant === "default" && (
             <GameSearchFormTopbar
+              sectionName={sectionName}
               className="container"
               gameDataSourceLoader={props.gameDataSourceLoader ?? {}}
               gameSearchForm={gameSearchForm}
@@ -375,6 +378,7 @@ const GameTableSectionInner = ({ ...props }) => {
             className="container"
             renderSidebar={() => (
               <GameSearchFormSidebar
+                sectionName={sectionName}
                 gameDataSourceLoader={props.gameDataSourceLoader ?? {}}
                 gameSearchForm={gameSearchForm}
                 configInputs={configInputs}

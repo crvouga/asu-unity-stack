@@ -5,12 +5,19 @@ import { TextField } from "../../../TextField/TextField";
 import { useGameSearchFormContext } from "../GameSearchFormContext";
 
 export const InputSearch = () => {
-  const { configInputs, darkMode, configLayout, gameSearchForm, inputStyle } =
-    useGameSearchFormContext();
+  const {
+    configInputs,
+    sectionName,
+    darkMode,
+    configLayout,
+    gameSearchForm,
+    inputStyle,
+  } = useGameSearchFormContext();
   return (
     configLayout.includeInputSearch && (
       <TextField
         darkMode={darkMode}
+        sectionName={sectionName}
         style={{ ...inputStyle, flex: 2 }}
         label={configInputs?.searchInput?.label ?? ""}
         placeholder={configInputs?.searchInput?.placeholder ?? ""}

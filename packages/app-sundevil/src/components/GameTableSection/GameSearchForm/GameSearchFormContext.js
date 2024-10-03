@@ -17,6 +17,7 @@ import { initGameSearchFormInputOptions } from "./use-game-search-form-input-opt
  * inputStyle?: React.CSSProperties;
  * isDesktop?: boolean;
  * isMobile?: boolean;
+ * sectionName: string;
  * }} GameSearchFormContextValue
  */
 
@@ -35,6 +36,7 @@ const init = {
   inputStyle: {},
   isDesktop: true,
   isMobile: false,
+  sectionName: " ",
 };
 
 /**

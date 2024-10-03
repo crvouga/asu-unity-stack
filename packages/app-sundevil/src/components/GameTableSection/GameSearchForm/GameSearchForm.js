@@ -42,6 +42,7 @@ export const GameSearchForm = ({
   className,
   darkMode,
   orientation,
+  sectionName,
 }) => {
   const gameSearchFormInputOptions = useGameSearchFormInputOptions({
     gameDataSourceLoader,
@@ -72,6 +73,7 @@ export const GameSearchForm = ({
         inputStyle,
         isDesktop,
         isMobile,
+        sectionName,
       }}
     >
       <Root
@@ -113,6 +115,7 @@ export const GameSearchForm = ({
  * className?: string;
  * darkMode?: boolean;
  * orientation?: "horizontal" | "vertical";
+ * sectionName: string;
  * }} Props
  */
 GameSearchForm.propTypes = {
@@ -131,4 +134,6 @@ GameSearchForm.propTypes = {
   gameDataSourceLoader: findManyInputPropTypes,
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
+  // @ts-ignore
+  sectionName: PropTypes.string,
 };

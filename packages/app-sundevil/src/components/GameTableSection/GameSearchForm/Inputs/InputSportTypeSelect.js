@@ -17,6 +17,7 @@ export const InputSportTypeSelect = () => {
     gameSearchForm,
     inputStyle,
     gameSearchFormInputOptions,
+    sectionName,
   } = useGameSearchFormContext();
 
   const filteredSports = sports.filter(sport => {
@@ -48,6 +49,7 @@ export const InputSportTypeSelect = () => {
   return (
     configLayout.includeInputSportType && (
       <Select
+        sectionName={sectionName}
         darkMode={darkMode}
         style={inputStyle}
         label={configInputs.sportTypeSelect?.label ?? ""}

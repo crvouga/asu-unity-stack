@@ -13,6 +13,7 @@ import { DropDown, DropDownSurface } from "../DropDown";
 import { LabelledInputBase } from "../InputBase/LabelledInputBase";
 import { SelectOption } from "./SelectOption";
 import { SelectOptionEmpty } from "./SelectOptionEmpty";
+import { trackGAEvent } from "../../track-ga-event";
 
 const Button = styled.button`
   border: none !important;
@@ -57,6 +58,7 @@ export const Select = ({
   options,
   emptyStateMessage = "No options available",
   darkMode,
+  sectionName,
 }) => {
   const [open, setOpen] = useState(false);
   const active = options.find(option => option.active);
@@ -111,6 +113,16 @@ export const Select = ({
               onClick={() => {
                 setOpen(false);
                 onChange?.(option);
+                trackGAEvent({
+                  event: "select",
+                  action: "click",
+                  name: "onclick",
+                  type: `select ${label}`.toLowerCase(),
+                  region: "main content",
+                  section: sectionName,
+                  text: option?.label ?? " ",
+                  component: "dropdown",
+                });
               }}
               active={Boolean(option.active)}
             />
@@ -191,4 +203,5 @@ Select.propTypes = {
   options: PropTypes.arrayOf(optionPropTypes),
   emptyStateMessage: PropTypes.string,
   darkMode: PropTypes.bool,
+  sectionName: PropTypes.string,
 };

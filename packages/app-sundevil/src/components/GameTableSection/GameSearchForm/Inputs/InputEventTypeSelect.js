@@ -17,6 +17,7 @@ export const InputEventTypeSelect = () => {
     inputStyle,
     darkMode,
     gameSearchFormInputOptions,
+    sectionName,
   } = useGameSearchFormContext();
 
   const options = firstNonEmpty(
@@ -38,6 +39,7 @@ export const InputEventTypeSelect = () => {
     Array.isArray(options) && (
       <Select
         darkMode={darkMode}
+        sectionName={sectionName}
         style={inputStyle}
         label={configInputs.eventTypeSelect?.label ?? ""}
         placeholder={configInputs.eventTypeSelect?.placeholder ?? ""}

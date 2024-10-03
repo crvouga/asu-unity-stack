@@ -17,6 +17,7 @@ export const InputAdmissionCost = () => {
     inputStyle,
     darkMode,
     gameSearchFormInputOptions,
+    sectionName,
   } = useGameSearchFormContext();
 
   const options = firstNonEmpty(
@@ -41,14 +42,15 @@ export const InputAdmissionCost = () => {
         style={inputStyle}
         label={configInputs.admissionCostSelect?.label ?? ""}
         placeholder={configInputs.admissionCostSelect?.placeholder ?? ""}
-        onChange={option =>
+        sectionName={sectionName}
+        onChange={option => {
           gameSearchForm.update({
             admissionCost:
               option.value === gameSearchForm.admissionCost
                 ? null
                 : option.value,
-          })
-        }
+          });
+        }}
         options={optionsWithActive}
       />
     )

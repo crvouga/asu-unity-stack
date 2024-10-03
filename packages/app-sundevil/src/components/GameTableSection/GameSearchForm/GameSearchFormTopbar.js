@@ -15,6 +15,7 @@ export const GameSearchFormTopbar = ({
   sports,
   darkMode,
   className,
+  sectionName,
 }) => {
   return (
     <FilterFormTopBarLayout
@@ -29,6 +30,7 @@ export const GameSearchFormTopbar = ({
           configLayout={configLayout}
           sports={sports}
           darkMode={darkMode}
+          sectionName={sectionName}
         />
       )}
     />

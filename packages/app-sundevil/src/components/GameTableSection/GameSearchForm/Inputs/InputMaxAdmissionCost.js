@@ -5,8 +5,14 @@ import { includeAllOptionWhen, Select } from "../../../Select/Select";
 import { useGameSearchFormContext } from "../GameSearchFormContext";
 
 export const InputMaxAdmissionCost = () => {
-  const { configInputs, configLayout, gameSearchForm, inputStyle, darkMode } =
-    useGameSearchFormContext();
+  const {
+    configInputs,
+    configLayout,
+    sectionName,
+    gameSearchForm,
+    inputStyle,
+    darkMode,
+  } = useGameSearchFormContext();
 
   const options = includeAllOptionWhen(
     configInputs.maxAdmissionCostSelect?.options
@@ -21,6 +27,7 @@ export const InputMaxAdmissionCost = () => {
     configLayout.includeMaxAdmissionCostSelect &&
     Array.isArray(options) && (
       <Select
+        sectionName={sectionName}
         darkMode={darkMode}
         style={inputStyle}
         label={configInputs.maxAdmissionCostSelect?.label ?? ""}

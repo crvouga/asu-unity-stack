@@ -1,6 +1,8 @@
-import React from "react";
+import PropTypes from "prop-types";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
+import { useTrackChildrenClicks } from "../../track-ga-event-hooks";
 import { AspectRatio16by9 } from "../AspectRatio/AspectRatio16by9";
 import { Image } from "../Image";
 import { cardPropTypes } from "./card-prop";
@@ -44,7 +46,12 @@ const Description = styled.p`
  * https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4946-9655&t=RJ4gXIiQnKYmjiU7-0
  * @type {React.FC<Props>}
  */
-export const CardSimple = ({ card }) => {
+export const CardSimple = ({ card, sectionName }) => {
+  const descriptionRef = useRef(null);
+  useTrackChildrenClicks({
+    ref: descriptionRef,
+    sectionName,
+  });
   return (
     <Root>
       <AspectRatio16by9>
@@ -52,7 +59,10 @@ export const CardSimple = ({ card }) => {
       </AspectRatio16by9>
       <Content>
         <Title>{card.title}</Title>
-        <Description dangerouslySetInnerHTML={{ __html: card.description }} />
+        <Description
+          ref={descriptionRef}
+          dangerouslySetInnerHTML={{ __html: card.description }}
+        />
       </Content>
     </Root>
   );
@@ -61,9 +71,11 @@ export const CardSimple = ({ card }) => {
 /**
  * @typedef {{
  * card: import("./card-prop").CardProp
+ * sectionName: string
  * }} Props
  */
 
 CardSimple.propTypes = {
   card: cardPropTypes,
+  sectionName: PropTypes.string,
 };

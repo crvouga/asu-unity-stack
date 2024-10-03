@@ -62,7 +62,11 @@ export const CardSectionThreeColumn = ({
         )}
         <CardColumns>
           {cards?.map(card => (
-            <CardSimple key={card.title} card={card} />
+            <CardSimple
+              key={card.title}
+              card={card}
+              sectionName={sectionName}
+            />
           ))}
         </CardColumns>
       </CardSectionRoot>

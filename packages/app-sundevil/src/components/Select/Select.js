@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 import { ALL_ID, ALL_LABEL } from "../../select-all-option";
+import { trackGAEvent } from "../../track-ga-event";
 import { cleanString } from "../../utils/clean-string";
 import { ensureArray } from "../../utils/ensure-array";
 import { idToLabel } from "../../utils/id-to-label";
@@ -13,7 +14,6 @@ import { DropDown, DropDownSurface } from "../DropDown";
 import { LabelledInputBase } from "../InputBase/LabelledInputBase";
 import { SelectOption } from "./SelectOption";
 import { SelectOptionEmpty } from "./SelectOptionEmpty";
-import { trackGAEvent } from "../../track-ga-event";
 
 const Button = styled.button`
   border: none !important;

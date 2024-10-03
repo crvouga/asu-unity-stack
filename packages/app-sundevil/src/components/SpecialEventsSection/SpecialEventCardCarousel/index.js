@@ -15,6 +15,7 @@ const propTypes = {
   slidesOffsetBefore: PropTypes.number,
   cardWidth: PropTypes.number,
   skeleton: PropTypes.bool,
+  sectionName: PropTypes.string,
 };
 
 /**
@@ -23,6 +24,7 @@ const propTypes = {
  * @property {number} [cardWidth]
  * @property {boolean} [skeleton]
  * @property {number} [slidesOffsetBefore]
+ * @property {string} sectionName
  */
 
 const Root = styled.div`
@@ -65,6 +67,7 @@ export const SpecialEventCardCarousel = ({
   slidesOffsetBefore,
   cardWidth,
   skeleton,
+  sectionName,
 }) => {
   const [carouselController] = useState(() => new CarouselController());
   const [index, setIndex] = useState(0);
@@ -119,6 +122,7 @@ export const SpecialEventCardCarousel = ({
             skeleton={skeleton}
             onLeft={() => carouselController.slidePrev()}
             onRight={() => carouselController.slideNext()}
+            sectionName={sectionName}
           />
         </ArrowButtonsWrapper>
       )}

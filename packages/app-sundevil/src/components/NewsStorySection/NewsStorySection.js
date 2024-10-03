@@ -151,17 +151,19 @@ const NewsStorySectionInner = ({
       ? activeSport?.footerLinks
       : propsFooterLinks) ?? [];
 
+  const sectionHeaderProps = mapSectionHeaderProps(sectionHeader);
+  const sectionName = sectionHeaderProps?.title ?? "";
+
   const hasFooter = footerButtons.length > 0 || footerLinks.length > 0;
   const footer = hasFooter ? (
     <SectionFooter
       disablePadding={mobileVariant === "carousel"}
       footerButtons={footerButtons}
       footerLinks={footerLinks}
+      sectionName={sectionName}
     />
   ) : null;
 
-  const sectionHeaderProps = mapSectionHeaderProps(sectionHeader);
-  const sectionName = sectionHeaderProps?.title ?? "";
   return (
     <Root>
       <SectionHeader

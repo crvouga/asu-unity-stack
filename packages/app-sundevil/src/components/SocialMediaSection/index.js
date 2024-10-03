@@ -17,12 +17,12 @@ export const SocialMediaSection = ({ sectionHeader, postCarousel }) => {
   const sectionHeaderPosition = useElementXPosition(sectionHeaderRef);
   const shouldPreventJitter = sectionHeaderPosition.left > 0;
 
+  const sectionHeaderProps = mapSectionHeaderProps(sectionHeader);
+  const sectionName = sectionHeaderProps?.title ?? " ";
+
   return (
     <Root>
-      <SectionHeader
-        {...mapSectionHeaderProps(sectionHeader)}
-        ref={sectionHeaderRef}
-      />
+      <SectionHeader {...sectionHeaderProps} ref={sectionHeaderRef} />
 
       {shouldPreventJitter && (
         <SocialMediaPostCarousel
@@ -30,6 +30,7 @@ export const SocialMediaSection = ({ sectionHeader, postCarousel }) => {
           loop
           slidesOffsetBefore={sectionHeaderPosition.left}
           initialSlide={postCarousel.posts.length}
+          sectionName={sectionName}
         />
       )}
     </Root>

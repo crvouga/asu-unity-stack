@@ -110,6 +110,8 @@ export const SpecialEventCard = ({ specialEventCard, cardWidth, skeleton }) => {
   const cardRef = useRef();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
+  const sectionName = `special events - ${specialEventCard?.title ?? " "}`;
+
   return (
     <Skeleton skeleton={skeleton}>
       <CardRoot
@@ -156,6 +158,7 @@ export const SpecialEventCard = ({ specialEventCard, cardWidth, skeleton }) => {
                 href={button.href}
                 label={button.label}
                 size="small"
+                cardTitle={sectionName}
               />
             ))}
           </CardButtons>

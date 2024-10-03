@@ -13,6 +13,7 @@ const propTypes = {
   slidesOffsetBefore: PropTypes.number,
   initialSlide: PropTypes.number,
   variant: PropTypes.oneOf(["tall", "square"]),
+  sectionName: PropTypes.string,
 };
 
 /**
@@ -22,6 +23,7 @@ const propTypes = {
  * @property {number} [slidesOffsetBefore]
  * @property {number} [initialSlide]
  * @property {"tall" | "square"} variant
+ * @property {string} sectionName
  */
 
 const Root = styled.div`
@@ -59,6 +61,7 @@ export const SocialMediaPostCarousel = ({
   slidesOffsetBefore,
   initialSlide,
   variant,
+  sectionName,
 }) => {
   const [carouselController] = React.useState(() => new CarouselController());
   const [index, setIndex] = React.useState(initialSlide ?? 0);
@@ -98,6 +101,7 @@ export const SocialMediaPostCarousel = ({
         <ArrowButtons
           onLeft={() => carouselController.slidePrev()}
           onRight={() => carouselController.slideNext()}
+          sectionName={sectionName}
         />
       </ArrowButtonsWrapper>
     </Root>

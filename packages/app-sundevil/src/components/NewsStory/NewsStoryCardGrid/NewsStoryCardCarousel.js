@@ -155,6 +155,7 @@ export const NewsStoryCardCarousel = ({
           onLeft={() => carouselController.slidePrev()}
           onRight={() => carouselController.slideNext()}
           skeleton={Boolean(skeleton)}
+          sectionName={sectionName}
         />
         <WhitespaceFill />
         {renderBottomRightContent?.()}

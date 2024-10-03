@@ -39,19 +39,18 @@ const SpecialEventsSectionInner = ({ sectionHeader }) => {
     : DESKTOP_CARD_WIDTH;
 
   const shouldPreventJitter = sectionHeaderPosition.left > 0;
-
+  const sectionHeaderProps = mapSectionHeaderProps(sectionHeader);
+  const sectionName = sectionHeaderProps?.sectionName ?? "";
   return (
     <Root>
-      <SectionHeader
-        {...mapSectionHeaderProps(sectionHeader)}
-        ref={sectionHeaderRef}
-      />
+      <SectionHeader {...sectionHeaderProps} ref={sectionHeaderRef} />
       {shouldPreventJitter && (
         <SpecialEventCardCarousel
           cards={specialEvents}
           skeleton={isLoading}
           cardWidth={cardWidth}
           slidesOffsetBefore={sectionHeaderPosition.left}
+          sectionName={sectionName}
         />
       )}
     </Root>

@@ -2,6 +2,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
+import { trackGAEvent } from "../../track-ga-event";
 import { DropDown } from "../DropDown/DropDown";
 import { DropDownSurface } from "../DropDown/DropDownSurface";
 import { Icon } from "../Icon_";
@@ -13,7 +14,7 @@ import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
 /**
  * @typedef {import("./sports-tabs").Sport} Sport
  * @typedef {import("./sports-tabs").BaseProps} BaseProps
- * @typedef {BaseProps & {skeleton?: boolean; variant?: "bottom-bordered" | "borderless" | null | undefined; className?: string}} Props
+ * @typedef {BaseProps & {skeleton?: boolean; variant?: "bottom-bordered" | "borderless" | null | undefined; className?: string; sectionName: string}} Props
  */
 
 /**
@@ -25,6 +26,7 @@ export const SportsTabsMobile = ({
   skeleton,
   variant,
   className,
+  sectionName,
 }) => {
   const sports = cleanSportTabs(propsSports);
   const activeSport = sports.find(sport => Boolean(sport.active));
@@ -50,6 +52,7 @@ export const SportsTabsMobile = ({
             <SelectBase
               // @ts-ignore
               ref={input.ref}
+              sectionName={sectionName}
               variant={variant}
               renderIcon={props => (
                 <div // This probably fixes some font awesome issues
@@ -83,7 +86,17 @@ export const SportsTabsMobile = ({
                       ...currentState,
                       opened: null,
                     }));
-                    onSportItemClick(sport.id)();
+                    onSportItemClick(sport.id);
+                    trackGAEvent({
+                      event: "link",
+                      action: "click",
+                      name: "onclick",
+                      type: "internal link",
+                      region: "main content",
+                      section: sectionName,
+                      text: sport?.name ?? " ",
+                      component: "text",
+                    });
                   }}
                 />
               ))}

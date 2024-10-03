@@ -49,7 +49,7 @@ Default.args = {
     { label: "Twitter", url: "https://www.twitter.com" },
     { label: "Instagram", url: "https://www.instagram.com" },
   ],
-  onTabItemClick: tabId => () => {
+  onTabItemClick: tabId => {
     // eslint-disable-next-line no-console
     console.log(tabId);
   },

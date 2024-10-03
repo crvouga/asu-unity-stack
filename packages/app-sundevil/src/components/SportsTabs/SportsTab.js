@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { trackGAEvent } from "../../track-ga-event";
 import { AspectRatioSquare } from "../AspectRatio/AspectRatioSquare";
 
 const Root = styled.div`
@@ -88,6 +89,9 @@ const propsPropTypes = {
   darkMode: PropTypes.bool,
   empty: PropTypes.bool,
   className: PropTypes.string,
+  sectionName: PropTypes.string,
+  text: PropTypes.string,
+  event: PropTypes.string,
 };
 
 /**
@@ -100,6 +104,9 @@ const propsPropTypes = {
  * darkMode?: boolean;
  * empty?: boolean;
  * className?: string;
+ * text: string;
+ * sectionName: string;
+ * event?:string;
  * }} Props
  */
 
@@ -117,15 +124,35 @@ export const SportsTab = React.forwardRef(
       color,
       darkMode = false,
       className,
+      sectionName,
+      text,
+      event,
     },
     ref
   ) => {
     const classNameFinal = [className, active ? "active" : "inactive"]
       .filter(Boolean)
       .join(" ");
+
+    const onClickFinal = () => {
+      trackGAEvent({
+        event: event ?? "link",
+        action: "click",
+        name: "onclick",
+        type: "internal link",
+        region: "main content",
+        section: sectionName,
+        text,
+        component: "text",
+      });
+      if (typeof onClick === "function") {
+        onClick?.();
+      }
+    };
+
     return (
       <Root
-        onClick={onClick}
+        onClick={onClickFinal}
         className={classNameFinal}
         role="button"
         tabIndex={0}
@@ -145,11 +172,11 @@ export const SportsTab = React.forwardRef(
         }
         onKeyDown={e => {
           if (e.key === "Enter") {
-            onClick?.();
+            onClickFinal?.();
           }
           if (e.key === " ") {
             e.preventDefault();
-            onClick?.();
+            onClickFinal?.();
           }
         }}
       >

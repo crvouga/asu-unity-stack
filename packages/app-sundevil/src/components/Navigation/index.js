@@ -24,7 +24,7 @@ export const sportPropTypes = PropTypes.shape({
 /**
  * @type {React.FC<{
  *  sports: Sport[];
- *  onSportItemClick: (sportId: string) => () => void;
+ *  onSportItemClick: (sportId: string) =>  void;
  * }>}
  * */
 const SportsNavigation = ({ sports, onSportItemClick }) => {
@@ -44,7 +44,7 @@ const SportsNavigation = ({ sports, onSportItemClick }) => {
             .map(sport => (
               <NavItem
                 key={sport.id}
-                onClick={onSportItemClick(sport.id)}
+                onClick={() => onSportItemClick(sport.id)}
                 active={!!sport.active}
                 className={`nav-item nav-link ${sport.active ? "active" : ""}`}
                 href="#"
@@ -67,7 +67,10 @@ const SportsNavigation = ({ sports, onSportItemClick }) => {
               <ul className="dropdown-menu">
                 {moreSports.map(sport => (
                   <li key={sport.id} className="dropdown-item">
-                    <button type="button" onClick={onSportItemClick(sport.id)}>
+                    <button
+                      type="button"
+                      onClick={() => onSportItemClick(sport.id)}
+                    >
                       <span title={sport.name} className={sport.icon} />
                       <div>{sport.name}</div>
                     </button>

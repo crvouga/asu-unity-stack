@@ -208,8 +208,9 @@ const GameTableSectionInner = ({ ...props }) => {
     active: tab.id === gameSearchForm.gameType,
   }));
 
-  const onSportItemClick = clickedSportId => () =>
+  const onSportItemClick = clickedSportId => {
     gameSearchForm.update({ sportId: clickedSportId });
+  };
 
   const activeSport = sports?.find(sport => Boolean(sport?.active));
   const footerButtons =
@@ -356,6 +357,7 @@ const GameTableSectionInner = ({ ...props }) => {
                 {...props.sportTabsDesktop}
                 sports={sports}
                 onSportItemClick={onSportItemClick}
+                sectionName={sectionName}
               />
             </div>
           )}
@@ -369,6 +371,7 @@ const GameTableSectionInner = ({ ...props }) => {
               sports={sports}
               onSportItemClick={onSportItemClick}
               variant="borderless"
+              sectionName={sectionName}
             />
           </div>
         )}

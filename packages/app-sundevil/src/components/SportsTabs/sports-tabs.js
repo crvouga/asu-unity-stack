@@ -25,7 +25,7 @@ export const sportPropTypes = PropTypes.shape({
 /**
  * @typedef {{
  *  sports: Sport[];
- *  onSportItemClick: (sportId: string) => () => void;
+ *  onSportItemClick: (sportId: string) => void;
  * }} BaseProps
  */
 

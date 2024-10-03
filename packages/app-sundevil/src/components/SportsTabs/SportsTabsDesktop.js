@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
+import { trackGAEvent } from "../../track-ga-event";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { CollapseIcon } from "../CollapseIcon/CollapseIcon";
 import { DropDown, DropDownSurface } from "../DropDown";
@@ -25,6 +26,7 @@ import { SportsTabDropDownItem } from "./SportsTabDropDownItem";
  * className?: string
  * maxTabCountTablet?: number;
  * maxTabCountDesktop?: number;
+ * sectionName:string
  * }} Props
  */
 
@@ -79,6 +81,7 @@ export const SportsTabsDesktop = ({
   className,
   maxTabCountTablet = 6,
   maxTabCountDesktop = 9,
+  sectionName,
 }) => {
   const sports = cleanSportTabs(propsSports);
 
@@ -115,6 +118,8 @@ export const SportsTabsDesktop = ({
                 active={Boolean(sport.active)}
                 orientation="vertical"
                 darkMode={darkMode}
+                sectionName={sectionName}
+                text=" "
               />
             ))}
           </>
@@ -124,10 +129,12 @@ export const SportsTabsDesktop = ({
             {sportTabs.map(sport => (
               <StyledSportsTab
                 key={sport.id}
-                onClick={onSportItemClick(sport.id)}
+                onClick={() => onSportItemClick(sport.id)}
                 active={Boolean(sport.active)}
                 orientation="vertical"
                 darkMode={darkMode}
+                sectionName={sectionName}
+                text={sport?.name}
               >
                 <Icon
                   darkMode={darkMode}
@@ -141,7 +148,12 @@ export const SportsTabsDesktop = ({
             {sportsTabSkeletonData
               .slice(0, maxTabCount - sportTabs.length)
               .map(sport => (
-                <SportsTab key={sport.id} empty />
+                <SportsTab
+                  key={sport.id}
+                  empty
+                  sectionName={sectionName}
+                  text=" "
+                />
               ))}
             {moreSports.length > 0 && (
               <DropDown
@@ -153,6 +165,7 @@ export const SportsTabsDesktop = ({
                   setState(currentState => ({ ...currentState, opened: null }))
                 }
                 renderReference={input => {
+                  const text = "More";
                   return (
                     <StyledSportsTab
                       // @ts-ignore
@@ -170,12 +183,15 @@ export const SportsTabsDesktop = ({
                       active={isMoreSportsActive}
                       color={moreTabColor ?? "default"}
                       darkMode={darkMode}
+                      sectionName={sectionName}
+                      text={text}
+                      event="collapse"
                     >
                       <div key={String(input.open)}>
                         <CollapseIcon open={input.open} style={ICON_SIZE} />
                       </div>
 
-                      <div>More</div>
+                      <div>{text}</div>
                     </StyledSportsTab>
                   );
                 }}
@@ -192,7 +208,17 @@ export const SportsTabsDesktop = ({
                               ...currentState,
                               opened: null,
                             }));
-                            onSportItemClick(sport.id)();
+                            onSportItemClick(sport.id);
+                            trackGAEvent({
+                              event: "link",
+                              action: "click",
+                              name: "onclick",
+                              type: "internal link",
+                              region: "main content",
+                              section: sectionName,
+                              text: sport?.name ?? " ",
+                              component: "text",
+                            });
                           }}
                         />
                       ))}
@@ -216,4 +242,6 @@ SportsTabsDesktop.propTypes = {
   className: PropTypes.string,
   maxTabCountTablet: PropTypes.number,
   maxTabCountDesktop: PropTypes.number,
+  // @ts-ignore
+  sectionName: PropTypes.string,
 };

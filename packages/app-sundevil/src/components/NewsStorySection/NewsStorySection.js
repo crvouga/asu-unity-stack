@@ -187,10 +187,12 @@ const NewsStorySectionInner = ({
               <SportsTabsDesktop
                 skeleton={skeletonTabs}
                 sports={sportsFinal}
-                onSportItemClick={sportId => () =>
-                  newsStorySearchFrom.update({ sportId })}
+                onSportItemClick={sportId => {
+                  newsStorySearchFrom.update({ sportId });
+                }}
                 moreTabOrientation="horizontal"
                 moreTabColor="muted"
+                sectionName={sectionName}
               />
             </div>
           )}
@@ -214,9 +216,11 @@ const NewsStorySectionInner = ({
             <div className="container">
               <SportsTabsMobile
                 sports={sportsFinal}
-                onSportItemClick={sportId => () =>
-                  newsStorySearchFrom.update({ sportId })}
+                onSportItemClick={sportId => {
+                  newsStorySearchFrom.update({ sportId });
+                }}
                 skeleton={skeletonTabs}
+                sectionName={sectionName}
               />
             </div>
           )}

@@ -23,6 +23,7 @@ export const CardGrid = ({
   subtitle,
 }) => {
   const cardsFinal = firstNonEmpty(cards, sportsGroupCard, []);
+  const sectionName = sectionHeader?.title ?? title ?? " ";
   return (
     <Root>
       <SectionHeader title={title} subtitle={subtitle} {...sectionHeader} />
@@ -34,7 +35,7 @@ export const CardGrid = ({
                 className="col-12 col-md-4"
                 key={`${card?.title}${card?.body}${card?.description}`}
               >
-                <SingleCard card={card} />
+                <SingleCard sectionName={sectionName} card={card} />
               </div>
             );
           })}

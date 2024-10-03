@@ -21,7 +21,7 @@ const props = {
   },
   interestedSection: {
     title: "Interested?",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    description: `Lorem ipsum <a href="/">dolor</a> sit amet, consectetur adipiscing elit.`,
   },
 };
 

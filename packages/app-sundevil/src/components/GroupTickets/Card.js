@@ -68,7 +68,7 @@ const CardButtons = styled.div`
 const isCleanArray = array => Array.isArray(array) && array.length > 0;
 
 // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4946-10693&t=C3qkTw4K6TZjJmgN-0
-export const SingleCard = ({ card }) => {
+export const SingleCard = ({ card, sectionName }) => {
   const [isImageLoaded, setIsImageLoaded] = useState(false);
   const cardRef = useRef();
 
@@ -109,6 +109,7 @@ export const SingleCard = ({ card }) => {
                       href={button.href}
                       label={button.label}
                       size="small"
+                      cardTitle={sectionName}
                       renderEndIcon={() =>
                         button?.endIcon ? (
                           <Icon
@@ -166,4 +167,5 @@ export const cardPropTypes = PropTypes.shape({
 
 SingleCard.propTypes = {
   card: cardPropTypes,
+  sectionName: PropTypes.string,
 };

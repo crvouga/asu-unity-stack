@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { APP_CONFIG } from "../../config";
+import { useTrackChildrenClicks } from "../../track-ga-event-hooks";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { Image } from "../Image";
 import { SectionHeader } from "../SectionHeader";
@@ -26,6 +27,11 @@ export const PreviewSection = ({
   imageSmallRight,
 }) => {
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
+  const interestedDescriptionRef = useRef();
+  useTrackChildrenClicks({
+    ref: interestedDescriptionRef,
+    sectionName: interestedSection?.title ?? title ?? " ",
+  });
   return (
     <div
       style={{
@@ -67,6 +73,7 @@ export const PreviewSection = ({
             {interestedSection.title}
           </p>
           <p
+            ref={interestedDescriptionRef}
             style={{ fontSize: "16px", fontWeight: "400" }}
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{ __html: interestedSection.description }}

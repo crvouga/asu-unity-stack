@@ -54,6 +54,12 @@ const isButton = element =>
 
 const isCleanString = str => typeof str === "string" && str.trim().length > 0;
 
+const isHrefTel = href =>
+  typeof href === "string" && href.toLowerCase().startsWith("tel:");
+
+const isHrefMailTo = href =>
+  typeof href === "string" && href.toLowerCase().startsWith("mailto:");
+
 const toComponentName = ({ componentName, event }) => {
   if (isCleanString(componentName)) {
     return componentName;
@@ -63,6 +69,16 @@ const toComponentName = ({ componentName, event }) => {
 
   if (isButtonVal) {
     return "button";
+  }
+
+  const href = event.target.getAttribute("href") ?? " ";
+
+  if (isHrefTel(href)) {
+    return "phone";
+  }
+
+  if (isHrefMailTo(href)) {
+    return "email";
   }
 
   return "link";

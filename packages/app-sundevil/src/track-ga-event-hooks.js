@@ -52,15 +52,40 @@ const isButton = element =>
     element?.getAttribute("type") === "button" ||
     element?.getAttribute("class")?.includes?.("btm"));
 
+const isCleanString = str => typeof str === "string" && str.trim().length > 0;
+
+const toComponentName = ({ componentName, event }) => {
+  if (isCleanString(componentName)) {
+    return componentName;
+  }
+
+  const isButtonVal = isButton(event?.target) || isButton(event?.currentTarget);
+
+  if (isButtonVal) {
+    return "button";
+  }
+
+  return "link";
+};
+
+const toTypeName = ({ href }) => {
+  if (isExternalLink(href)) {
+    return "external link";
+  }
+
+  return "internal link";
+};
+
 /**
  *
- * @param {input:{ref: React.MutableRefObject<HTMLElement | null> | null; sectionName: string}} input
+ * @param {input:{ref: React.MutableRefObject<HTMLElement | null> | null; componentName?: string | null; sectionName: string}} input
  */
-export const useTrackChildrenClicks = ({ ref, sectionName }) => {
+export const useTrackChildrenClicks = ({
+  ref,
+  sectionName,
+  componentName = null,
+}) => {
   useChildrenClickHandler(ref, event => {
-    const isButtonVal =
-      isButton(event?.target) || isButton(event?.currentTarget);
-
     const href = event.target.getAttribute("href") ?? " ";
     const textContent = event.target.textContent ?? " ";
 
@@ -68,11 +93,14 @@ export const useTrackChildrenClicks = ({ ref, sectionName }) => {
       event: "link",
       action: "click",
       name: "onclick",
-      type: isExternalLink(href) ? "external link" : "internal link",
+      type: toTypeName({ href }),
       region: "main content",
       section: sectionName,
       text: textContent,
-      component: isButtonVal ? "button" : "link",
+      component: toComponentName({
+        componentName,
+        event,
+      }),
     });
   });
 };

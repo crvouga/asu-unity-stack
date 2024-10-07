@@ -157,6 +157,7 @@ const GridItemDescription = ({ description, sectionName }) => {
   useTrackChildrenClicks({
     ref,
     sectionName,
+    componentName: "text",
   });
   return (
     <span

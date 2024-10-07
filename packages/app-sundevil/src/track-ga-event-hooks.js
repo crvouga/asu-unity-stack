@@ -73,6 +73,8 @@ const toComponentName = ({ componentName, event }) => {
 
   const href = event.target.getAttribute("href") ?? " ";
 
+  console.log("href", href);
+
   if (isHrefTel(href)) {
     return "phone";
   }

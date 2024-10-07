@@ -7,7 +7,7 @@ import { ContactUsCTA } from "./ContactUsCTA";
 /** @type {import("./ContactUsCTA").Props} */
 const props = {
   title: "Interested? Have questions? We’re here to help.",
-  body: "If you have questions regarding Season Tickets or Mini Plans, or are interested in joining the Season Ticket Holder family, please call <a href='#'>480-727-0000</a> or email <a href='#'>seasontickets@asu.edu</a> to speak to a Sun Devil Ticket sales representative.",
+  body: '<p>If you have questions regarding season tickets or mini plans, or are interested in joining the season-ticket holder family, please call or text <a class="text-underline" href="tel:480-727-0000">480-727-0000</a> or email <a class="text-underline" href="mailto:seasontickets@asu.edu">seasontickets@asu.edu</a> to speak to a Sun Devil ticket sales representative.</p>',
   buttons: [
     {
       color: "gold",

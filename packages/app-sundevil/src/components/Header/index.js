@@ -259,11 +259,9 @@ const mapProps = props => ({
   universalNavbar: {
     renderStart: () => (
       <OfficialAthleticsSite
-        // @ts-ignore
-        hrefStyle={props.officialSiteHrefStyle}
-        // @ts-ignore
-        href={props.officialSiteHref}
         {...props.officialSite}
+        hrefStyle={props.officialSiteHrefStyle}
+        href={props.officialSiteHref}
       />
     ),
     hideMobile: false,
@@ -299,6 +297,9 @@ const mapProps = props => ({
       // renderStart: () => <MobileSearchBar />,
       height: "fit-content",
     },
+    includeOfficialSite: true,
+    title: props.title,
+    ...props.mobile,
   },
 });
 

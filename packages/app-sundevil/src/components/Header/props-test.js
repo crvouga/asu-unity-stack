@@ -2,7 +2,8 @@
 /** @type {import("../../../../component-header/src/header").HeaderProps} */
 export const testHeaderProps = {
   baseUrl: "https://web-sda.ddev.site:8443/",
-  title: "Sun Devils",
+  title: "ASU Sun Devil Athletics",
+
   parentOrg: "",
   parentOrgUrl: "",
   expandOnHover: false,
@@ -39,6 +40,12 @@ export const testHeaderProps = {
     },
     hrefText: "Arizona State University",
     text: "The official athletics site of",
+  },
+  mobile: {
+    title: "Sun Devil Athletics",
+  },
+  universalNavbar: {
+    hideMobile: false,
   },
   navTree: [
     {

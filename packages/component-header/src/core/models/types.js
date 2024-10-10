@@ -91,8 +91,10 @@
 
 /**
  * @typedef {object} MobileProps
+ * @property {string} [title]
  * @property {HamburgerProps} [hamburger]
  * @property {DrawerProps} [drawer]
+ * @property {boolean}  [includeOfficialSite]
  */
 
 /**

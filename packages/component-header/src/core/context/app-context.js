@@ -54,7 +54,7 @@ AppContextProvider.propTypes = {
 };
 
 /**
- * @returns {import("../models/types").HeaderProps}
+ * @returns {import("../models/types").HeaderProps & {hasNavigation?: boolean;}}
  */
 const useAppContext = () => {
   const context = useContext(AppContext);

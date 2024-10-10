@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { SunDevilsHeader } from ".";
 
-import { testHeaderProps } from "./props-debug";
+import { testHeaderProps } from "./props-test";
 
 export default {
   title: "Header/Sun Devils Header",

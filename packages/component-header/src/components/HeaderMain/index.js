@@ -14,14 +14,10 @@ import { LogoSponsor } from "./LogoSponsor";
 import { NavbarContainer } from "./NavbarContainer";
 import { Partner } from "./Partner";
 import { Title } from "./Title";
+import { MobileTitle } from "./Title/MobileTitle";
 
 const HeaderMain = () => {
-  const {
-    breakpoint,
-    isPartner,
-    // @ts-ignore
-    hasNavigation,
-  } = useAppContext();
+  const { breakpoint, isPartner, hasNavigation } = useAppContext();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile(breakpoint);
   const isDesktop = !isMobile;
@@ -56,6 +52,7 @@ const HeaderMain = () => {
   return (
     <>
       {isDesktop && <UniversalNavbar />}
+
       <HeaderMainWrapper
         // @ts-ignore
         breakpoint={breakpoint}
@@ -69,13 +66,6 @@ const HeaderMain = () => {
               ref={navbarRef}
             >
               {!isPartner && <Logo />}
-
-              <HamburgerButton
-                hidden={isDesktop}
-                key="hamburger-button"
-                onClick={handleClickMobileMenu}
-                open={mobileMenuOpen}
-              />
 
               {isDesktop && (
                 <>
@@ -93,6 +83,15 @@ const HeaderMain = () => {
                   <LogoSponsor />
                 </>
               )}
+
+              {isMobile && <MobileTitle />}
+
+              <HamburgerButton
+                hidden={isDesktop}
+                key="hamburger-button"
+                onClick={handleClickMobileMenu}
+                open={mobileMenuOpen}
+              />
             </div>
 
             <NavbarContainer

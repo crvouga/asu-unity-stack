@@ -17,10 +17,15 @@ const Title = () => {
       // If a custom baseUrl is passed in, it will be used to check for first page load
       let root = baseUrl === "/" ? window.location.hostname : baseUrl;
       // If relative baseURL given, append to the hostname for checking first page load
-      if (!root.includes(window.location.hostname) && root.indexOf("/") === 0) {
+      if (
+        root &&
+        !root.includes(window.location.hostname) &&
+        root.indexOf("/") === 0
+      ) {
         root = window.location.hostname + root;
       }
-      if (checkFirstLoad(root)) {
+
+      if (root && checkFirstLoad(root)) {
         setActive(true);
       }
     }

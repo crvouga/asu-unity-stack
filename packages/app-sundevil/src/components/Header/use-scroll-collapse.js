@@ -13,10 +13,16 @@ export const useScrollCollapse = ref => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, {
+      capture: true,
+      passive: true,
+    });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll, {
+        capture: true,
+        passive: true,
+      });
     };
   }, []);
 

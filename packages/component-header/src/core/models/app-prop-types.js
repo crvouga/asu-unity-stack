@@ -122,6 +122,7 @@ const HeaderPropTypes = {
   universalNavbar: UniversalNavbarPropTypes,
   footers: PropTypes.arrayOf(NavTreePropFooter),
   stickyPortalEntranceId: PropTypes.string,
+  renderTop: PropTypes.func,
 };
 
 export {

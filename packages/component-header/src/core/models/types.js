@@ -125,6 +125,7 @@
  * @property {string} renderDiv - Can be either "true" or "false".
  * @property {UniversalNavBarProps | null} [universalNavbar]
  * @property {string} [stickyPortalEntranceId]
+ * @property {Function} [renderTop]
  */
 
 export const JSDOC = "jsdoc";

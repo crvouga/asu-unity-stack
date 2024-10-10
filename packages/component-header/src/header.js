@@ -22,7 +22,6 @@ const ASUHeader = ({
   isPartner,
   navTree: rawNavTree,
   title,
-  mobileTitle,
   baseUrl,
   parentOrg,
   parentOrgUrl,
@@ -46,6 +45,7 @@ const ASUHeader = ({
   universalNavbar,
   mobile,
   stickyPortalEntranceId,
+  renderTop,
 }) => {
   const navTree = tryAddActivePage(rawNavTree);
   const mobileNavTree = tryAddActivePage(rawMobileNavTree);
@@ -124,7 +124,6 @@ const ASUHeader = ({
         isPartner,
         navTree,
         title,
-        mobileTitle,
         baseUrl,
         parentOrg,
         parentOrgUrl,
@@ -155,6 +154,8 @@ const ASUHeader = ({
         universalNavbar,
         // @ts-ignore
         mobile,
+        // @ts-ignore
+        renderTop,
       }}
     >
       {renderHeader()}

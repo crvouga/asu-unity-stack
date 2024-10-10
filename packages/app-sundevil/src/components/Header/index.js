@@ -8,6 +8,7 @@ import { trackAdClickHandler } from "../Ads/ad-data-layers";
 import { HeaderContentSportLinks } from "../HeaderContentSportLinks";
 import { Icon } from "../Icon_";
 import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
+import { UniversalNavMobile } from "./UniversalNavMobile";
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps} BaseHeaderProps */
 /** @typedef {BaseHeaderProps & {officialSiteHref: string; officialSiteHrefStyle?: Record<string, unknown>, officialSite: import("../OfficialAthleticsSite").OfficialAthleticsSiteProps}} HeaderProps */
@@ -300,6 +301,13 @@ const mapProps = props => ({
     includeOfficialSite: true,
     title: props.title,
     ...props.mobile,
+  },
+  renderTop: ({ isMobile }) => {
+    const includeOfficialSite = props.mobile?.includeOfficialSite ?? true;
+    if (isMobile && includeOfficialSite) {
+      return <UniversalNavMobile {...props} />;
+    }
+    return null;
   },
 });
 

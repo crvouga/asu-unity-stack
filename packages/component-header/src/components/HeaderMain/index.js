@@ -17,7 +17,7 @@ import { Title } from "./Title";
 import { MobileTitle } from "./Title/MobileTitle";
 
 const HeaderMain = () => {
-  const { breakpoint, isPartner, hasNavigation } = useAppContext();
+  const { breakpoint, isPartner, hasNavigation, renderTop } = useAppContext();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const isMobile = useIsMobile(breakpoint);
   const isDesktop = !isMobile;
@@ -51,8 +51,8 @@ const HeaderMain = () => {
 
   return (
     <>
+      {renderTop?.({ isMobile, isDesktop })}
       {isDesktop && <UniversalNavbar />}
-
       <HeaderMainWrapper
         // @ts-ignore
         breakpoint={breakpoint}

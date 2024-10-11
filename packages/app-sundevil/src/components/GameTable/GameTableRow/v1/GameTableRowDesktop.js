@@ -3,19 +3,19 @@
 import React, { forwardRef, useRef } from "react";
 import styled from "styled-components";
 
-import { Button } from "../../../../../components-core/src/components/Button";
-import { deepMergeLeft } from "../../../utils/deep-merge-left";
-import { idToLabel } from "../../../utils/id-to-label";
-import { useElementSetMaxDimensions } from "../../../utils/use-element-set-max-dimensions";
-import { useId } from "../../../utils/use-id";
-import { isGameNonTicketed, isGameTicketed } from "../../Game/game";
-import { Icon } from "../../Icon_";
-import { Skeleton } from "../../Skeleton";
-import { SportIcon } from "../../SportIcon";
-import { stringToClosestSportName } from "../../SportIcon/sport-name";
-import { defaultConfigCells } from "./config-cells";
-import { defaultConfigLayout } from "./config-layout";
-import { gameTableRowPropTypes } from "./game-table-row";
+import { Button } from "../../../../../../components-core/src/components/Button";
+import { deepMergeLeft } from "../../../../utils/deep-merge-left";
+import { idToLabel } from "../../../../utils/id-to-label";
+import { useElementSetMaxDimensions } from "../../../../utils/use-element-set-max-dimensions";
+import { useId } from "../../../../utils/use-id";
+import { isGameNonTicketed, isGameTicketed } from "../../../Game/game";
+import { Icon } from "../../../Icon_";
+import { Skeleton } from "../../../Skeleton";
+import { SportIcon } from "../../../SportIcon";
+import { stringToClosestSportName } from "../../../SportIcon/sport-name";
+import { defaultConfigCells } from "../config-cells";
+import { defaultConfigLayout } from "../config-layout";
+import { gameTableRowPropTypes } from "../game-table-row";
 import { INFO_ICON_CLASS_NAME, TICKET_ICON_CLASS_NAME } from "./icon";
 import { Subtitles } from "./Subtitles";
 
@@ -136,15 +136,15 @@ export const GameTableRowDesktop = forwardRef((props, ref) => {
     configCells: configCellsPartial,
   } = props;
 
-  /** @type {import("../../Game").Game} */
+  /** @type {import("../../../Game").Game} */
   const game = gameUntyped;
-  /** @type {import("./config-layout").ConfigLayout} */
+  /** @type {import("../config-layout").ConfigLayout} */
   const configLayout = deepMergeLeft(
     configLayoutPartial ?? {},
     defaultConfigLayout ?? {}
   );
 
-  /** @type {import("./config-cells").ConfigCells} */
+  /** @type {import("../config-cells").ConfigCells} */
   const configCells = deepMergeLeft(
     configCellsPartial ?? {},
     defaultConfigCells

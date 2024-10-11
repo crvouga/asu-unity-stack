@@ -1,5 +1,5 @@
+// https://docs.google.com/presentation/d/1BdLFyVy-C2Yf7uqnfNIuO6EwzWIjn7gngE-N4UrkTRA/edit#slide=id.g307e47f5282_0_37
 // @ts-check
-// @ts-ignore
 import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";

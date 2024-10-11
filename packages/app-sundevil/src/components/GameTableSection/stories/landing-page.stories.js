@@ -2,10 +2,7 @@
 import React from "react";
 
 import { ALL_ID } from "../../../select-all-option";
-import {
-  GameDataSourceMock,
-  IGameDataSource,
-} from "../../Game/game-data-source";
+import { GameDataSourceMockV2 } from "../../Game/game-data-source/game-data-source-impl-mock-v2";
 import { GameTableSection } from "../index";
 
 export default {
@@ -35,41 +32,12 @@ const Template = args => (
   </>
 );
 
-class CustomGameDataSource extends IGameDataSource {
-  constructor() {
-    super();
-    this.dataSource = new GameDataSourceMock({
-      timeout: 1000,
-    });
-  }
-
-  async findMany(input) {
-    const found = await this.dataSource.findMany(input);
-
-    if (Math.random() > 0.5) {
-      return {
-        ...input,
-        rows: [],
-        total: 0,
-      };
-    }
-
-    const rowsNew = found.rows.map(row => {
-      return {
-        ...row,
-        ticketText: Math.random() > 0.9 ? "Get tickets" : "More info",
-      };
-    });
-
-    return {
-      ...found,
-      rows: rowsNew,
-    };
-  }
-}
-
 export const LandingPage = Template.bind({});
 LandingPage.args = {
+  gameDataSource: {
+    type: "custom",
+    gameDataSource: new GameDataSourceMockV2(),
+  },
   title: "Upcoming games",
   subtitle: null,
   is_sport_type: "0",
@@ -425,9 +393,7 @@ LandingPage.args = {
     //   ],
     // },
   ],
-  gameDataSource: {
-    type: "mock",
-  },
+
   configNoData: {
     // hide: true,
     // hideBehavior: "initially-hidden",

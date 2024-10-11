@@ -1,20 +1,13 @@
-// @ts-check
-// @ts-ignore
 import React, { forwardRef } from "react";
 
-import { APP_CONFIG } from "../../../config";
-import { useBreakpoint } from "../../../utils/use-breakpoint";
-import { gameTableRowPropTypes } from "./game-table-row";
-import { GameTableRowDesktop } from "./GameTableRowDesktop";
-import { GameTableRowMobile } from "./GameTableRowMobile";
+import { GameTableRow as GameTableRowV1 } from "./v1/GameTableRow";
+import { GameTableRow as GameTableRowV2 } from "./v2/GameTableRow";
+
+const USE_V2 = true;
 
 export const GameTableRow = forwardRef((props, ref) => {
-  const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
-  if (isMobile) {
-    return <GameTableRowMobile {...props} ref={ref} />;
+  if (USE_V2) {
+    return <GameTableRowV2 {...props} ref={ref} />;
   }
-  return <GameTableRowDesktop {...props} ref={ref} />;
+  return <GameTableRowV1 {...props} ref={ref} />;
 });
-
-// @ts-ignore
-GameTableRow.propTypes = gameTableRowPropTypes;

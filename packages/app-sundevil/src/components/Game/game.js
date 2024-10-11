@@ -1,14 +1,56 @@
+/* eslint-disable react/forbid-prop-types */
 import PropTypes from "prop-types";
 
 import { iconPropType } from "../Icon_";
 
+// https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=9390-8911&node-type=frame&t=kdg8cgY0xCNAmoIL-0
 export const gamePropTypes = PropTypes.shape({
   id: PropTypes.string,
+  sportIcon: iconPropType,
+  sportName: PropTypes.string,
+  sportId: PropTypes.string,
   title: PropTypes.string,
   titleHref: PropTypes.string,
-  startDate: PropTypes.string,
   dateDay: PropTypes.string,
   dateMonth: PropTypes.string,
+  dateDayName: PropTypes.string,
+  dateTimeRange: PropTypes.string,
+  dateTimeZone: PropTypes.string,
+  venue: PropTypes.string,
+  venueHref: PropTypes.string,
+  teamLogoSrc: PropTypes.string,
+  teamLogoAlt: PropTypes.string,
+  chips: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      color: PropTypes.string,
+      href: PropTypes.string,
+      className: PropTypes.string,
+      style: PropTypes.object,
+    })
+  ),
+  supplementalLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string,
+      href: PropTypes.string,
+      className: PropTypes.string,
+      style: PropTypes.object,
+    })
+  ),
+  buttons: PropTypes.arrayOf(
+    PropTypes.shape({
+      startIcon: iconPropType,
+      color: PropTypes.string,
+      label: PropTypes.string,
+      href: PropTypes.string,
+      className: PropTypes.string,
+      style: PropTypes.object,
+    })
+  ),
+  admissionCost: PropTypes.string,
+  eventType: PropTypes.string,
+  gameType: PropTypes.string,
+  // DEPRECATED PROPERTIES
   homeTeamName: PropTypes.string,
   homeTeamLogoSrc: PropTypes.string,
   homeTeamLogoAlt: PropTypes.string,
@@ -16,18 +58,13 @@ export const gamePropTypes = PropTypes.shape({
   awayTeamLogoSrc: PropTypes.string,
   awayTeamLogoAlt: PropTypes.string,
   time: PropTypes.string,
-  venue: PropTypes.string,
   buttonIcon: iconPropType,
   ticketLink: PropTypes.string,
   ticketText: PropTypes.string,
-  gameType: PropTypes.string, // "home" | "away"
-  sportId: PropTypes.string,
   subtitleChip: PropTypes.string,
-  admissionCost: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  eventType: PropTypes.string,
   subtitles: PropTypes.arrayOf(PropTypes.string),
-  // eslint-disable-next-line react/forbid-prop-types
   subtitleStyle: PropTypes.object,
+  startDate: PropTypes.string,
 });
 
 /**
@@ -51,11 +88,29 @@ export const isGameTicketed = game => {
 
 /**
  * @typedef {object} Game
+ * @property {string} id
+ * @property {import("../Icon_").IconType} sportIcon
+ * @property {string} sportName
  * @property {string} sportId
  * @property {string} title
  * @property {string} titleHref
  * @property {string} dateDay
  * @property {string} dateMonth
+ * @property {string} dateDayName
+ * @property {string} dateTimeRange
+ * @property {string} dateTimeZone
+ * @property {string} venue
+ * @property {string} venueHref
+ * @property {string} teamLogoSrc
+ * @property {string} teamLogoAlt
+ * @property {{ label: string, color: string, href: string, className: string, style: import("react").CSSProperties }[]} chips
+ * @property {{ label: string, href: string, className: string, style: import("react").CSSProperties }[]} supplementalLinks
+ * @property {{ startIcon: import("../Icon_").IconType, color: string, label: string, href: string, className: string, style: import("react").CSSProperties }[]} buttons
+ * @property {string} admissionCost
+ * @property {string} eventType
+ * @property {string} gameType
+ *
+ * // DEPRECATED PROPERTIES
  * @property {string} homeTeamName
  * @property {string} homeTeamLogoSrc
  * @property {string} homeTeamLogoAlt
@@ -63,14 +118,11 @@ export const isGameTicketed = game => {
  * @property {string} awayTeamLogoSrc
  * @property {string} awayTeamLogoAlt
  * @property {string} time
- * @property {string} venue
+ * @property {unknown} buttonIcon
  * @property {string} ticketLink
  * @property {string} ticketText
- * @property {string} gameType
  * @property {string} subtitleChip
  * @property {string[]} subtitles
- * @property {number} admissionCost
- * @property {string} eventType
- * @property {unknown} buttonIcon
  * @property {import("react").CSSProperties} subtitleStyle
+ * @property {string} startDate
  */

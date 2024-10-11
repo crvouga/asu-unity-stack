@@ -2,12 +2,12 @@
 import React from "react";
 import styled from "styled-components";
 
-import { APP_CONFIG } from "../../../config";
-import { deepMergeLeft } from "../../../utils/deep-merge-left";
-import { formatTimeAmPm } from "../../../utils/formatTime";
-import { useBreakpoint } from "../../../utils/use-breakpoint";
-import { defaultConfigCells } from "./config-cells";
-import { gameTableRowPropTypes } from "./game-table-row";
+import { APP_CONFIG } from "../../../../config";
+import { deepMergeLeft } from "../../../../utils/deep-merge-left";
+import { formatTimeAmPm } from "../../../../utils/formatTime";
+import { useBreakpoint } from "../../../../utils/use-breakpoint";
+import { defaultConfigCells } from "../config-cells";
+import { gameTableRowPropTypes } from "../game-table-row";
 
 const Root = styled.div`
   display: flex;
@@ -57,10 +57,10 @@ export const Subtitles = ({
   // @ts-ignore
   configCells: configCellsPartial,
 }) => {
-  /** @type {import("../../Game").Game} */
+  /** @type {import("../../../Game").Game} */
   const game = gameUntyped;
 
-  /** @type {import("./config-cells").ConfigCells} */
+  /** @type {import("../config-cells").ConfigCells} */
   const configCells = deepMergeLeft(
     configCellsPartial ?? {},
     defaultConfigCells ?? {}

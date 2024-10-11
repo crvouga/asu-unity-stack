@@ -1,13 +1,13 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
-import { trackGAEvent } from "../../../track-ga-event";
-import { deepMergeLeft } from "../../../utils/deep-merge-left";
-import { isGameTicketed } from "../../Game/game";
-import { Icon } from "../../Icon_";
-import { Skeleton } from "../../Skeleton";
-import { defaultConfigLayout } from "./config-layout";
-import { gameTableRowPropTypes } from "./game-table-row";
+import { trackGAEvent } from "../../../../track-ga-event";
+import { deepMergeLeft } from "../../../../utils/deep-merge-left";
+import { isGameTicketed } from "../../../Game/game";
+import { Icon } from "../../../Icon_";
+import { Skeleton } from "../../../Skeleton";
+import { defaultConfigLayout } from "../config-layout";
+import { gameTableRowPropTypes } from "../game-table-row";
 import { INFO_ICON_CLASS_NAME, TICKET_ICON_CLASS_NAME } from "./icon";
 import { Subtitles } from "./Subtitles";
 

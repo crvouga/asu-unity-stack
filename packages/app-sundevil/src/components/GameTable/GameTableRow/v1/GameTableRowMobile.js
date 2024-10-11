@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
 
-import { gameTableRowPropTypes } from "./game-table-row";
+import { gameTableRowPropTypes } from "../game-table-row";
 import { GameTableRowMobileBordered } from "./GameTableRowMobileBordered";
 import { GameTableRowMobileDivided } from "./GameTableRowMobileDivided";
 

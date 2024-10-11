@@ -1,15 +1,15 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
-import { trackGAEvent } from "../../../track-ga-event";
-import { deepMergeLeft } from "../../../utils/deep-merge-left";
-import { formatTimeAmPm } from "../../../utils/formatTime";
-import { isGameTicketed } from "../../Game/game";
-import { Icon } from "../../Icon_";
-import { Skeleton } from "../../Skeleton";
-import { defaultConfigCells } from "./config-cells";
-import { defaultConfigLayout } from "./config-layout";
-import { gameTableRowPropTypes } from "./game-table-row";
+import { trackGAEvent } from "../../../../track-ga-event";
+import { deepMergeLeft } from "../../../../utils/deep-merge-left";
+import { formatTimeAmPm } from "../../../../utils/formatTime";
+import { isGameTicketed } from "../../../Game/game";
+import { Icon } from "../../../Icon_";
+import { Skeleton } from "../../../Skeleton";
+import { defaultConfigCells } from "../config-cells";
+import { defaultConfigLayout } from "../config-layout";
+import { gameTableRowPropTypes } from "../game-table-row";
 import { INFO_ICON_CLASS_NAME, TICKET_ICON_CLASS_NAME } from "./icon";
 
 const Root = styled.div`
@@ -107,12 +107,12 @@ export const GameTableRowMobileBordered = forwardRef(
     },
     ref
   ) => {
-    /** @type {import("./config-layout").ConfigLayout} */
+    /** @type {import("../config-layout").ConfigLayout} */
     const configLayout = deepMergeLeft(
       configLayoutPartial ?? {},
       defaultConfigLayout
     );
-    /** @type {import("./config-cells").ConfigCells} */
+    /** @type {import("../config-cells").ConfigCells} */
     // eslint-disable-next-line no-unused-vars
     const configCells = deepMergeLeft(
       configCellsPartial ?? {},

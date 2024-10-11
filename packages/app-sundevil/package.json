@@ -47,6 +47,7 @@
     "swiper": "^11.1.4"
   },
   "devDependencies": {
+    "@types/styled-components": "^5.3.0",
     "@babel/core": "^7.13.14",
     "@babel/plugin-syntax-jsx": "^7.14.5",
     "@babel/plugin-transform-react-jsx": "^7.13.12",

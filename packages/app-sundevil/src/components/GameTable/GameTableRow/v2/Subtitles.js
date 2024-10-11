@@ -3,10 +3,8 @@ import React from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../../../config";
-import { deepMergeLeft } from "../../../../utils/deep-merge-left";
 import { formatTimeAmPm } from "../../../../utils/formatTime";
 import { useBreakpoint } from "../../../../utils/use-breakpoint";
-import { defaultConfigCells } from "../config-cells";
 import { gameTableRowPropTypes } from "../game-table-row";
 
 const Root = styled.div`
@@ -51,21 +49,13 @@ const SubtitleChip = styled.div`
 const isValidString = value =>
   typeof value === "string" && value.trim().length > 0;
 
-export const Subtitles = ({
-  // @ts-ignore
-  game: gameUntyped,
-  // @ts-ignore
-  configCells: configCellsPartial,
-}) => {
-  /** @type {import("../../../Game").Game} */
-  const game = gameUntyped;
-
-  /** @type {import("../config-cells").ConfigCells} */
-  const configCells = deepMergeLeft(
-    configCellsPartial ?? {},
-    defaultConfigCells ?? {}
-  );
-
+export const Subtitles = (
+  /**
+   * @type {import("../game-table-row").GameTableRowProps}
+   */
+  props
+) => {
+  const { game, configCells } = props;
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
 
   return (
@@ -78,10 +68,10 @@ export const Subtitles = ({
             : "normal",
       }}
     >
-      {configCells.cellTitle.includeSubtitleChip &&
+      {configCells?.cellTitle.includeSubtitleChip &&
         isValidString(game?.subtitleChip) && (
           <SubtitleChip
-            dangerouslySetInnerHTML={{ __html: game?.subtitleChip }}
+            dangerouslySetInnerHTML={{ __html: game?.subtitleChip ?? "" }}
           />
         )}
       {Array.isArray(game?.subtitles) &&
@@ -112,5 +102,4 @@ export const Subtitles = ({
   );
 };
 
-// @ts-ignore
 Subtitles.propTypes = gameTableRowPropTypes;

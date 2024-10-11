@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 /**
  * @typedef {{
+ *  includeCellIcon: boolean
  *  includeCellDate: boolean
  *  includeCellSportName: boolean
  *  includeCellVersus: boolean
@@ -23,6 +24,7 @@ export const configLayoutPropTypes = PropTypes.shape({
  * @type {ConfigLayout}
  */
 export const defaultConfigLayout = {
+  includeCellIcon: true,
   includeCellDate: true,
   includeCellSportName: false,
   includeCellVersus: false,

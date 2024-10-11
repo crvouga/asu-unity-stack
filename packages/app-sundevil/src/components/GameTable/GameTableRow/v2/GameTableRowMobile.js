@@ -1,12 +1,11 @@
+/* eslint-disable no-nested-ternary */
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
 import { trackGAEvent } from "../../../../track-ga-event";
-import { deepMergeLeft } from "../../../../utils/deep-merge-left";
 import { isGameTicketed } from "../../../Game/game";
 import { Icon } from "../../../Icon_";
 import { Skeleton } from "../../../Skeleton";
-import { defaultConfigLayout } from "../config-layout";
 import { gameTableRowPropTypes } from "../game-table-row";
 import { INFO_ICON_CLASS_NAME, TICKET_ICON_CLASS_NAME } from "./icon";
 import { Subtitles } from "./Subtitles";
@@ -119,90 +118,91 @@ const DateMonth = styled.p`
   font-size: 12px;
   font-weight: bold;
 `;
-export const GameTableRowMobile = forwardRef((props, ref) => {
-  const { game, skeleton, empty, configLayout: configLayoutPartial } = props;
+export const GameTableRowMobile = forwardRef(
+  (
+    /**
+     * @type {import("../game-table-row").GameTableRowProps}
+     */
+    props,
+    ref
+  ) => {
+    const { game, skeleton, empty, configLayout } = props;
 
-  /** @type {import("./config-layout").ConfigLayout} */
-  const configLayout = deepMergeLeft(
-    configLayoutPartial ?? {},
-    defaultConfigLayout
-  );
-
-  return (
-    <Skeleton
-      skeleton={skeleton}
-      ref={ref}
-      style={{
-        height: "64px,",
-        maxHeight: "64px",
-      }}
-    >
-      <div className="container">
-        <Root
-          aria-hidden={empty}
-          style={empty ? { opacity: 0, userSelect: "none" } : {}}
-        >
-          {configLayout.includeCellDate && (
-            <CellDate>
-              <CellDateContent>
-                <DateMonth>{game?.dateMonth}.</DateMonth>
-                <DateDay>{game?.dateDay}</DateDay>
-              </CellDateContent>
-            </CellDate>
-          )}
-          {configLayout.includeCellTitle && (
-            <CellTitle>
-              <Title
-                href={game?.titleHref}
-                dangerouslySetInnerHTML={{ __html: game?.title }}
-              />
-              <Subtitles {...props} />
-            </CellTitle>
-          )}
-          {configLayout.includeCellTickets && (
-            <CellTicketButton>
-              <TicketButton
-                aria-label={game?.ticketText}
-                title={game?.ticketText}
-                href={game?.ticketLink}
-                style={{ textDecoration: "none !important" }}
-                onClick={() => {
-                  trackGAEvent({
-                    event: "link",
-                    action: "click",
-                    name: "onclick",
-                    type: "internal link",
-                    region: "main content",
-                    section: game?.title ?? " ",
-                    text: game?.ticketText ?? " ",
-                    component: "button",
-                  });
-                }}
-              >
-                {/* eslint-disable-next-line no-nested-ternary */}
-                {game?.buttonIcon ? (
-                  <Icon
-                    style={{ textDecoration: "none !important" }}
-                    icon={game?.buttonIcon}
-                  />
-                ) : isGameTicketed(game) ? (
-                  <i
-                    style={{ textDecoration: "none !important" }}
-                    className={TICKET_ICON_CLASS_NAME}
-                  />
-                ) : (
-                  <i
-                    style={{ textDecoration: "none !important" }}
-                    className={INFO_ICON_CLASS_NAME}
-                  />
-                )}
-              </TicketButton>
-            </CellTicketButton>
-          )}
-        </Root>
-      </div>
-    </Skeleton>
-  );
-});
+    return (
+      <Skeleton
+        skeleton={skeleton}
+        ref={ref}
+        style={{
+          height: "64px,",
+          maxHeight: "64px",
+        }}
+      >
+        <div className="container">
+          <Root
+            aria-hidden={empty}
+            style={empty ? { opacity: 0, userSelect: "none" } : {}}
+          >
+            {configLayout.includeCellDate && (
+              <CellDate>
+                <CellDateContent>
+                  <DateMonth>{game?.dateMonth}.</DateMonth>
+                  <DateDay>{game?.dateDay}</DateDay>
+                </CellDateContent>
+              </CellDate>
+            )}
+            {configLayout.includeCellTitle && (
+              <CellTitle>
+                <Title
+                  href={game?.titleHref}
+                  dangerouslySetInnerHTML={{ __html: game?.title }}
+                />
+                <Subtitles {...props} />
+              </CellTitle>
+            )}
+            {configLayout.includeCellTickets && (
+              <CellTicketButton>
+                <TicketButton
+                  aria-label={game?.ticketText}
+                  title={game?.ticketText}
+                  href={game?.ticketLink}
+                  style={{ textDecoration: "none !important" }}
+                  onClick={() => {
+                    trackGAEvent({
+                      event: "link",
+                      action: "click",
+                      name: "onclick",
+                      type: "internal link",
+                      region: "main content",
+                      section: game?.title ?? " ",
+                      text: game?.ticketText ?? " ",
+                      component: "button",
+                    });
+                  }}
+                >
+                  {game?.buttonIcon ? (
+                    <Icon
+                      style={{ textDecoration: "none !important" }}
+                      icon={game?.buttonIcon}
+                    />
+                  ) : isGameTicketed(game) ? (
+                    <i
+                      style={{ textDecoration: "none !important" }}
+                      className={TICKET_ICON_CLASS_NAME}
+                    />
+                  ) : (
+                    <i
+                      style={{ textDecoration: "none !important" }}
+                      className={INFO_ICON_CLASS_NAME}
+                    />
+                  )}
+                </TicketButton>
+              </CellTicketButton>
+            )}
+          </Root>
+        </div>
+      </Skeleton>
+    );
+  }
+);
 
 GameTableRowMobile.propTypes = gameTableRowPropTypes;

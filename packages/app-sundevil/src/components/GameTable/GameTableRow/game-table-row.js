@@ -8,12 +8,13 @@ import { configLayoutPropTypes } from "./config-layout";
 
 /**
  * @typedef {{
- * game: import("../../Game/game").Game,
+ * game?: import("../../Game/game").Game,
  * style?: React.CSSProperties,
  * skeleton?: boolean,
  * empty?: boolean,
- * configCells: import("./config-cells").ConfigCells,
- * configLayout: import("./config-layout").ConfigLayout,
+ * configCells?: import("./config-cells").ConfigCells,
+ * configLayout?: import("./config-layout").ConfigLayout,
+ * mobileRowVariant?: string,
  * }} GameTableRowProps
  */
 
@@ -24,4 +25,5 @@ export const gameTableRowPropTypes = {
   empty: PropTypes.bool,
   configCells: configCellsPropTypes,
   configLayout: configLayoutPropTypes,
+  mobileRowVariant: PropTypes.oneOf(["divided", "bordered"]),
 };

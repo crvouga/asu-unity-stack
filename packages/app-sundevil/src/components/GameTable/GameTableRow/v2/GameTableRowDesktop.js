@@ -1,10 +1,10 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-danger */
 // @ts-check
 import React, { forwardRef, useRef } from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../../../components-core/src/components/Button";
-import { deepMergeLeft } from "../../../../utils/deep-merge-left";
 import { idToLabel } from "../../../../utils/id-to-label";
 import { useElementSetMaxDimensions } from "../../../../utils/use-element-set-max-dimensions";
 import { useId } from "../../../../utils/use-id";
@@ -13,13 +13,9 @@ import { Icon } from "../../../Icon_";
 import { Skeleton } from "../../../Skeleton";
 import { SportIcon } from "../../../SportIcon";
 import { stringToClosestSportName } from "../../../SportIcon/sport-name";
-import { defaultConfigCells } from "../config-cells";
-import { defaultConfigLayout } from "../config-layout";
-import { gameTableRowPropTypes } from "../game-table-row";
 import { INFO_ICON_CLASS_NAME, TICKET_ICON_CLASS_NAME } from "./icon";
 import { Subtitles } from "./Subtitles";
 
-// @ts-ignore
 const Root = styled.div`
   width: 100%;
   display: flex;
@@ -38,7 +34,6 @@ const Root = styled.div`
   }
 `;
 
-// @ts-ignore
 const Cell = styled.div`
   display: flex;
   align-items: center;
@@ -46,7 +41,6 @@ const Cell = styled.div`
   flex-shrink: 0;
 `;
 
-// @ts-ignore
 const CellDate = styled.div`
   width: 96px;
   height: 96px;
@@ -58,7 +52,6 @@ const CellDate = styled.div`
   gap: 4px;
 `;
 
-// @ts-ignore
 const CellSportName = styled.div`
   width: 96px;
   height: 96px;
@@ -72,7 +65,6 @@ const CellSportName = styled.div`
   gap: 0.2rem;
 `;
 
-// @ts-ignore
 const CellVersus = styled.div`
   height: 96px;
   display: flex;
@@ -83,14 +75,12 @@ const CellVersus = styled.div`
   padding: 0 0.5em;
 `;
 
-// @ts-ignore
 const CellVersusLogo = styled.img`
   width: 64px;
   height: 64px;
   object-fit: cover;
 `;
 
-// @ts-ignore
 const CellVersusVS = styled.p`
   font-size: 16px;
   margin: 0;
@@ -98,7 +88,6 @@ const CellVersusVS = styled.p`
   letter-spacing: 2px;
 `;
 
-// @ts-ignore
 const CellTitle = styled.div`
   padding: 0 1.5rem;
   line-height: 28.8px;
@@ -110,7 +99,6 @@ const CellTitle = styled.div`
   overflow: hidden;
 `;
 
-// @ts-ignore
 const Title = styled.a`
   font-size: 24px;
   padding: 0;
@@ -141,26 +129,7 @@ export const GameTableRowDesktop = forwardRef(
     props,
     ref
   ) => {
-    const {
-      game,
-      skeleton,
-      empty,
-      configLayout: configLayoutPartial,
-      configCells: configCellsPartial,
-    } = props;
-
-    /** @type {import("../config-layout").ConfigLayout} */
-    const configLayout = deepMergeLeft(
-      configLayoutPartial ?? {},
-      defaultConfigLayout ?? {}
-    );
-
-    /** @type {import("../config-cells").ConfigCells} */
-    const configCells = deepMergeLeft(
-      configCellsPartial ?? {},
-      defaultConfigCells
-    );
-
+    const { game, configCells, configLayout, skeleton, empty } = props;
     const componentId = useId();
 
     const ticketCellRef = useRef(null);
@@ -184,7 +153,7 @@ export const GameTableRowDesktop = forwardRef(
           aria-hidden={empty}
           style={empty ? { opacity: 0, userSelect: "none" } : {}}
         >
-          {configLayout.includeCellDate && (
+          {configLayout?.includeCellDate && (
             <Cell>
               <CellDate>
                 <div
@@ -205,19 +174,19 @@ export const GameTableRowDesktop = forwardRef(
                     fontSize: "40px",
                     fontWeight: "bold",
                   }}
-                  dangerouslySetInnerHTML={{ __html: game?.dateDay }}
+                  dangerouslySetInnerHTML={{ __html: game?.dateDay ?? "" }}
                 />
               </CellDate>
             </Cell>
           )}
 
-          {configLayout.includeCellSportName && (
+          {configLayout?.includeCellSportName && (
             <Cell>
               <CellSportName>
                 {isCleanString(game?.sportId) && (
                   <>
                     <SportIcon
-                      sportName={stringToClosestSportName(game?.sportId)}
+                      sportName={stringToClosestSportName(game?.sportId ?? "")}
                     />
                     <p
                       className="m-0"
@@ -231,7 +200,7 @@ export const GameTableRowDesktop = forwardRef(
             </Cell>
           )}
 
-          {configLayout.includeCellVersus && (
+          {configLayout?.includeCellVersus && (
             <Cell>
               <CellVersus>
                 <CellVersusLogo
@@ -247,19 +216,19 @@ export const GameTableRowDesktop = forwardRef(
             </Cell>
           )}
 
-          {configLayout.includeCellTitle && (
+          {configLayout?.includeCellTitle && (
             <Cell className="flex-1">
               <CellTitle>
                 <Title
                   href={game?.titleHref}
-                  dangerouslySetInnerHTML={{ __html: game?.title }}
+                  dangerouslySetInnerHTML={{ __html: game?.title ?? "" }}
                 />
 
                 <Subtitles {...props} />
               </CellTitle>
             </Cell>
           )}
-          {configLayout.includeCellTickets && (
+          {configLayout?.includeCellTickets && (
             <Cell
               className="btn-ticket text-center align-middle px-2"
               ref={ticketCellRef}
@@ -278,13 +247,13 @@ export const GameTableRowDesktop = forwardRef(
                     return <Icon icon={game?.buttonIcon} style={iconStyle} />;
                   }
 
-                  if (isGameTicketed(game)) {
+                  if (game && isGameTicketed(game)) {
                     return (
                       <i className={TICKET_ICON_CLASS_NAME} style={iconStyle} />
                     );
                   }
 
-                  if (isGameNonTicketed(game)) {
+                  if (game && isGameNonTicketed(game)) {
                     return (
                       <i className={INFO_ICON_CLASS_NAME} style={iconStyle} />
                     );
@@ -303,6 +272,3 @@ export const GameTableRowDesktop = forwardRef(
     );
   }
 );
-
-// @ts-ignore
-GameTableRowDesktop.propTypes = gameTableRowPropTypes;

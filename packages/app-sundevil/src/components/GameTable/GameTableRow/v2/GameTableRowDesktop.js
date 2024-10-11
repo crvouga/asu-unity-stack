@@ -131,175 +131,178 @@ const Title = styled.a`
 
 const isCleanString = str => typeof str === "string" && str.trim().length > 0;
 
-export const GameTableRowDesktop = forwardRef((props, ref) => {
-  const {
-    // @ts-ignore
-    game: gameUntyped,
-    // @ts-ignore
-    skeleton,
-    // @ts-ignore
-    empty,
-    // @ts-ignore
-    configLayout: configLayoutPartial,
-    // @ts-ignore
-    configCells: configCellsPartial,
-  } = props;
+/**
+ * @typedef {React.FC<import("../game-table-row").GameTableRowProps>} Component
+ */
 
-  /** @type {import("../../../Game").Game} */
-  const game = gameUntyped;
-  /** @type {import("../config-layout").ConfigLayout} */
-  const configLayout = deepMergeLeft(
-    configLayoutPartial ?? {},
-    defaultConfigLayout ?? {}
-  );
+export const GameTableRowDesktop = forwardRef(
+  (
+    /**  @type {import("../game-table-row").GameTableRowProps} */
+    props,
+    ref
+  ) => {
+    const {
+      game,
+      skeleton,
+      empty,
+      configLayout: configLayoutPartial,
+      configCells: configCellsPartial,
+    } = props;
 
-  /** @type {import("../config-cells").ConfigCells} */
-  const configCells = deepMergeLeft(
-    configCellsPartial ?? {},
-    defaultConfigCells
-  );
+    /** @type {import("../config-layout").ConfigLayout} */
+    const configLayout = deepMergeLeft(
+      configLayoutPartial ?? {},
+      defaultConfigLayout ?? {}
+    );
 
-  const componentId = useId();
+    /** @type {import("../config-cells").ConfigCells} */
+    const configCells = deepMergeLeft(
+      configCellsPartial ?? {},
+      defaultConfigCells
+    );
 
-  const ticketCellRef = useRef(null);
-  const ticketCellMaxDimensions = useElementSetMaxDimensions({
-    elementRef: ticketCellRef,
-    elementSetId: "game-table-ticket-cell",
-    elementId: componentId,
-  });
+    const componentId = useId();
 
-  const ticketButtonLabel =
-    configCells?.cellTicketButton?.label ?? game?.ticketText;
+    const ticketCellRef = useRef(null);
+    const ticketCellMaxDimensions = useElementSetMaxDimensions({
+      elementRef: ticketCellRef,
+      elementSetId: "game-table-ticket-cell",
+      elementId: componentId,
+    });
 
-  return (
-    // @ts-ignore
-    <Skeleton
-      skeleton={skeleton}
-      ref={ref}
-      style={{ height: "96px", maxHeight: "96px" }}
-    >
-      <Root
-        aria-hidden={empty}
-        style={empty ? { opacity: 0, userSelect: "none" } : {}}
+    const ticketButtonLabel =
+      configCells?.cellTicketButton?.label ?? game?.ticketText;
+
+    return (
+      // @ts-ignore
+      <Skeleton
+        skeleton={skeleton}
+        ref={ref}
+        style={{ height: "96px", maxHeight: "96px" }}
       >
-        {configLayout.includeCellDate && (
-          <Cell>
-            <CellDate>
-              <div
-                style={{
-                  margin: 0,
-                  padding: 0,
-                  fontSize: "16px",
-                  fontWeight: "bold",
-                  lineHeight: "16px",
+        <Root
+          aria-hidden={empty}
+          style={empty ? { opacity: 0, userSelect: "none" } : {}}
+        >
+          {configLayout.includeCellDate && (
+            <Cell>
+              <CellDate>
+                <div
+                  style={{
+                    margin: 0,
+                    padding: 0,
+                    fontSize: "16px",
+                    fontWeight: "bold",
+                    lineHeight: "16px",
+                  }}
+                  dangerouslySetInnerHTML={{ __html: `${game?.dateMonth}.` }}
+                />
+                <div
+                  style={{
+                    lineHeight: "40px",
+                    margin: 0,
+                    padding: 0,
+                    fontSize: "40px",
+                    fontWeight: "bold",
+                  }}
+                  dangerouslySetInnerHTML={{ __html: game?.dateDay }}
+                />
+              </CellDate>
+            </Cell>
+          )}
+
+          {configLayout.includeCellSportName && (
+            <Cell>
+              <CellSportName>
+                {isCleanString(game?.sportId) && (
+                  <>
+                    <SportIcon
+                      sportName={stringToClosestSportName(game?.sportId)}
+                    />
+                    <p
+                      className="m-0"
+                      dangerouslySetInnerHTML={{
+                        __html: idToLabel(game?.sportId),
+                      }}
+                    />
+                  </>
+                )}
+              </CellSportName>
+            </Cell>
+          )}
+
+          {configLayout.includeCellVersus && (
+            <Cell>
+              <CellVersus>
+                <CellVersusLogo
+                  src={game?.homeTeamLogoSrc}
+                  alt={game?.homeTeamLogoAlt ?? " "}
+                />
+                <CellVersusVS>vs</CellVersusVS>
+                <CellVersusLogo
+                  src={game?.awayTeamLogoSrc}
+                  alt={game?.awayTeamLogoAlt ?? " "}
+                />
+              </CellVersus>
+            </Cell>
+          )}
+
+          {configLayout.includeCellTitle && (
+            <Cell className="flex-1">
+              <CellTitle>
+                <Title
+                  href={game?.titleHref}
+                  dangerouslySetInnerHTML={{ __html: game?.title }}
+                />
+
+                <Subtitles {...props} />
+              </CellTitle>
+            </Cell>
+          )}
+          {configLayout.includeCellTickets && (
+            <Cell
+              className="btn-ticket text-center align-middle px-2"
+              ref={ticketCellRef}
+              style={{ minWidth: ticketCellMaxDimensions.width }}
+            >
+              {/* @ts-ignore */}
+              <Button
+                label={ticketButtonLabel}
+                renderIcon={() => {
+                  const iconStyle = {
+                    paddingRight: "10px",
+                    textDecoration: "none !important",
+                  };
+
+                  if (game?.buttonIcon) {
+                    return <Icon icon={game?.buttonIcon} style={iconStyle} />;
+                  }
+
+                  if (isGameTicketed(game)) {
+                    return (
+                      <i className={TICKET_ICON_CLASS_NAME} style={iconStyle} />
+                    );
+                  }
+
+                  if (isGameNonTicketed(game)) {
+                    return (
+                      <i className={INFO_ICON_CLASS_NAME} style={iconStyle} />
+                    );
+                  }
+
+                  return null;
                 }}
-                dangerouslySetInnerHTML={{ __html: `${game?.dateMonth}.` }}
+                href={game?.ticketLink}
+                cardTitle={game?.title ?? " "}
+                {...configCells?.cellTicketButton?.button}
               />
-              <div
-                style={{
-                  lineHeight: "40px",
-                  margin: 0,
-                  padding: 0,
-                  fontSize: "40px",
-                  fontWeight: "bold",
-                }}
-                dangerouslySetInnerHTML={{ __html: game?.dateDay }}
-              />
-            </CellDate>
-          </Cell>
-        )}
-
-        {configLayout.includeCellSportName && (
-          <Cell>
-            <CellSportName>
-              {isCleanString(game?.sportId) && (
-                <>
-                  <SportIcon
-                    sportName={stringToClosestSportName(game?.sportId)}
-                  />
-                  <p
-                    className="m-0"
-                    dangerouslySetInnerHTML={{
-                      __html: idToLabel(game?.sportId),
-                    }}
-                  />
-                </>
-              )}
-            </CellSportName>
-          </Cell>
-        )}
-
-        {configLayout.includeCellVersus && (
-          <Cell>
-            <CellVersus>
-              <CellVersusLogo
-                src={game?.homeTeamLogoSrc}
-                alt={game?.homeTeamLogoAlt ?? " "}
-              />
-              <CellVersusVS>vs</CellVersusVS>
-              <CellVersusLogo
-                src={game?.awayTeamLogoSrc}
-                alt={game?.awayTeamLogoAlt ?? " "}
-              />
-            </CellVersus>
-          </Cell>
-        )}
-
-        {configLayout.includeCellTitle && (
-          <Cell className="flex-1">
-            <CellTitle>
-              <Title
-                href={game?.titleHref}
-                dangerouslySetInnerHTML={{ __html: game?.title }}
-              />
-
-              <Subtitles {...props} />
-            </CellTitle>
-          </Cell>
-        )}
-        {configLayout.includeCellTickets && (
-          <Cell
-            className="btn-ticket text-center align-middle px-2"
-            ref={ticketCellRef}
-            style={{ minWidth: ticketCellMaxDimensions.width }}
-          >
-            {/* @ts-ignore */}
-            <Button
-              label={ticketButtonLabel}
-              renderIcon={() => {
-                const iconStyle = {
-                  paddingRight: "10px",
-                  textDecoration: "none !important",
-                };
-
-                if (game?.buttonIcon) {
-                  return <Icon icon={game?.buttonIcon} style={iconStyle} />;
-                }
-
-                if (isGameTicketed(game)) {
-                  return (
-                    <i className={TICKET_ICON_CLASS_NAME} style={iconStyle} />
-                  );
-                }
-
-                if (isGameNonTicketed(game)) {
-                  return (
-                    <i className={INFO_ICON_CLASS_NAME} style={iconStyle} />
-                  );
-                }
-
-                return null;
-              }}
-              href={game?.ticketLink}
-              cardTitle={game?.title ?? " "}
-              {...configCells?.cellTicketButton?.button}
-            />
-          </Cell>
-        )}
-      </Root>
-    </Skeleton>
-  );
-});
+            </Cell>
+          )}
+        </Root>
+      </Skeleton>
+    );
+  }
+);
 
 // @ts-ignore
 GameTableRowDesktop.propTypes = gameTableRowPropTypes;

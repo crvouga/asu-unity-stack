@@ -15,7 +15,7 @@ const ALL_EVENT_TYPE = ["game", "practice", "scrimmage"];
 const games = [
   {
     id: Math.random().toString(36).substring(2, 9),
-    sportIcon: "fa fas fa-ticket-alt",
+    sportIcon: "fa fas fa-football-ball",
     sportName: "Football",
     sportId: "football",
     title: "Sun Devil Olympian Celebration",

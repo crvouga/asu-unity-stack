@@ -54,14 +54,13 @@ const SubtitleChip = styled.div`
 const isValidString = value =>
   typeof value === "string" && value.trim().length > 0;
 
-export const Subtitles = ({
-  // @ts-ignore
-  game: gameUntyped,
-  // @ts-ignore
-  configCells: configCellsPartial,
-}) => {
-  /** @type {import("../../../Game").Game} */
-  const game = gameUntyped;
+export const Subtitles = (
+  /**
+   * @type {import("../game-table-row").GameTableRowProps}
+   */
+  props
+) => {
+  const { game, configCells: configCellsPartial } = props;
 
   /** @type {import("../config-cells").ConfigCells} */
   const configCells = deepMergeLeft(
@@ -84,7 +83,7 @@ export const Subtitles = ({
       {configCells.cellTitle.includeSubtitleChip &&
         isValidString(game?.subtitleChip) && (
           <SubtitleChip
-            dangerouslySetInnerHTML={{ __html: game?.subtitleChip }}
+            dangerouslySetInnerHTML={{ __html: game?.subtitleChip ?? "" }}
           />
         )}
       {Array.isArray(game?.subtitles) &&

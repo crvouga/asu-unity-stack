@@ -20,8 +20,8 @@ const Root = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  height: 96px;
-  max-height: 96px;
+  height: 120px;
+  max-height: 120px;
   overflow: hidden;
   justify-content: center;
   align-items: stretch;
@@ -42,8 +42,8 @@ const Cell = styled.div`
 `;
 
 const CellDate = styled.div`
-  width: 96px;
-  height: 96px;
+  width: 120px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -53,8 +53,8 @@ const CellDate = styled.div`
 `;
 
 const CellSportName = styled.div`
-  width: 96px;
-  height: 96px;
+  width: 120px;
+  height: 120px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -66,7 +66,7 @@ const CellSportName = styled.div`
 `;
 
 const CellVersus = styled.div`
-  height: 96px;
+  height: 120px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -147,12 +147,34 @@ export const GameTableRowDesktop = forwardRef(
       <Skeleton
         skeleton={skeleton}
         ref={ref}
-        style={{ height: "96px", maxHeight: "96px" }}
+        style={{ height: "120px", maxHeight: "120px" }}
       >
         <Root
           aria-hidden={empty}
           style={empty ? { opacity: 0, userSelect: "none" } : {}}
         >
+          {configLayout?.includeCellIcon && (
+            <Cell
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "12px",
+                width: "120px",
+                height: "120px",
+              }}
+            >
+              <Icon icon={game?.sportIcon} style={{ width: "16px" }} />
+              <div
+                style={{
+                  fontWeight: "bold",
+                }}
+              >
+                {game?.sportName}
+              </div>
+            </Cell>
+          )}
+
           {configLayout?.includeCellDate && (
             <Cell>
               <CellDate>

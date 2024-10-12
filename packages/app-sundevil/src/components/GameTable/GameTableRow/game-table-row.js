@@ -15,10 +15,12 @@ import { configLayoutPropTypes } from "./config-layout";
  * configCells?: import("./config-cells").ConfigCells,
  * configLayout?: import("./config-layout").ConfigLayout,
  * mobileRowVariant?: string,
+ * version: "v1" | "v2",
  * }} GameTableRowProps
  */
 
 export const gameTableRowPropTypes = {
+  version: PropTypes.oneOf(["v1", "v2"]).isRequired,
   game: gamePropTypes,
   style: PropTypes.object,
   skeleton: PropTypes.bool,

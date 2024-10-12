@@ -412,6 +412,7 @@ LandingPage.args = {
   darkMode: true,
   shouldLog: true,
   gameTable: {
+    version: "v2",
     configCells: {
       cellTicketButton: {
         // label: "Get tickets override",

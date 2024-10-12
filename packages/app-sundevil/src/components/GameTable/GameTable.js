@@ -69,6 +69,7 @@ export const GameTable = ({
   configLayout,
   configCells,
   mobileRowVariant = "divided",
+  version,
 }) => {
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
 
@@ -87,8 +88,8 @@ export const GameTable = ({
             <BorderBottom>
               {range(skeletonRowCount).map(index => (
                 <GameTableRow
+                  version={version}
                   key={index}
-                  // @ts-ignore
                   skeleton
                   ref={index === 0 ? setFirstRowRef : null}
                   configLayout={configLayout}
@@ -103,8 +104,8 @@ export const GameTable = ({
             <Background>
               {games.map((game, index) => (
                 <GameTableRow
+                  version={version}
                   key={game.id}
-                  // @ts-ignore
                   game={game}
                   ref={index === 0 ? setFirstRowRef : null}
                   configLayout={configLayout}
@@ -120,7 +121,7 @@ export const GameTable = ({
               {range(emptyStateRowCount).map(index => (
                 <GameTableRow
                   key={index}
-                  // @ts-ignore
+                  version={version}
                   empty
                   ref={index === 0 ? setFirstRowRef : null}
                   configLayout={configLayout}
@@ -147,4 +148,5 @@ GameTable.propTypes = {
   setFirstRowRef: PropTypes.func,
   configLayout: configLayoutPropTypes,
   configCells: configCellsPropTypes,
+  version: PropTypes.oneOf(["v1", "v2"]).isRequired,
 };

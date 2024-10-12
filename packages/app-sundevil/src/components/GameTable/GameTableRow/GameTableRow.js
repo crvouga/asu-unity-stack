@@ -7,8 +7,6 @@ import { defaultConfigLayout } from "./config-layout";
 import { GameTableRow as GameTableRowV1 } from "./v1/GameTableRow";
 import { GameTableRow as GameTableRowV2 } from "./v2/GameTableRow";
 
-const USE_V2 = true;
-
 export const GameTableRow = forwardRef(
   (
     /**
@@ -43,7 +41,7 @@ export const GameTableRow = forwardRef(
       configCells,
     };
 
-    if (USE_V2) {
+    if (props?.version === "v2") {
       return <GameTableRowV2 {...propsNew} ref={ref} />;
     }
     return <GameTableRowV1 {...propsNew} ref={ref} />;

@@ -53,6 +53,16 @@ const Root = styled.div`
 
 export const Skeleton = forwardRef(
   (
+    /**
+     * @type {{
+     * skeleton?: boolean;
+     * children?: React.ReactNode;
+     * className?: string;
+     * style?: React.CSSProperties;
+     * fitContent?: boolean;
+     * component?: React.ElementType;
+     * }}
+     */
     { skeleton, children, className, style, fitContent, component = "div" },
     ref
   ) => {

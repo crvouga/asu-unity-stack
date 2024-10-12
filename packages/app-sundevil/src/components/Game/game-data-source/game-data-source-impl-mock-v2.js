@@ -23,10 +23,14 @@ const games = [
     dateDay: "11",
     dateMonth: "Oct.",
     dateDayName: "(Fri)",
-    dateTimeRange: "5:30pm - 7:30pm",
+    dateTimeRange: "5:30 p.m. - 7:30 p.m.",
     dateTimeZone: "(MST)",
-    venue: "Tempe Campus",
-    venueHref: "https://www.example.com",
+    dateLinks: [
+      {
+        label: "Tempe Campus",
+        href: "https://www.example.com/",
+      },
+    ],
     teamLogoSrc:
       "https://s3-alpha-sig.figma.com/img/bf55/5c94/70e477a3bd6a0a2da1fd9246042629cf?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aTIRR-u8V6~JcaXFwgRppQ7r0niR7sWWaRneOrJiGhMggGaAuCEUcyjQ9qy9qLDzo6f4uAq7AjjSAMdlPW0FGZMS-fWbU~OPNHq~VVPnZXKCWHDX-~JQtFuofMFR3jf9Vvb9XlXtEkYk8zIYDMKo5S6RMGE6gIlmcFKBFuaU-D6wqtU10VuviR1MBpjlQnMHjqebZVEVaFv7itWYUF~91s5DDal7dGCs9bgdeDrNylEU~Gcip9oal4rK3Y-YumKGW3FTJFiEbiPKitFH1Pbshvt9IAdn~WPc4cwBNOA5o3bEJBX6m4UDxcVz-VXnK9BZWQu3xFsYNjVKpoQCWDyvqw__",
     teamLogoAlt: " ",
@@ -79,7 +83,7 @@ const games = [
 ];
 
 export class GameDataSourceMockV2 extends IGameDataSource {
-  constructor({ timeout = 3000 } = {}) {
+  constructor({ timeout = 0 } = {}) {
     super();
     this.timeout = timeout;
     this.gameDataSource = new GameDataSourceStatic({ games });

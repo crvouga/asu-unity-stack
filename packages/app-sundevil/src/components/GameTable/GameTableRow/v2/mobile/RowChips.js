@@ -25,7 +25,7 @@ export const RowChips = props => {
         padding: "16px 0",
       }}
     >
-      {game?.chips.map(chip => (
+      {game?.chips?.map(chip => (
         <Chip key={chip.label} chip={chip} />
       ))}
     </div>

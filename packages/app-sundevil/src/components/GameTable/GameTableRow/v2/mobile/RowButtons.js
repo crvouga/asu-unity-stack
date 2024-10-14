@@ -31,7 +31,7 @@ export const RowButtons = props => {
         padding: "16px 0",
       }}
     >
-      {game?.buttons.map(button => {
+      {game?.buttons?.map?.(button => {
         const buttonProps = {
           ...configCells?.cellTicketButton?.button,
           color: stringToColor(button.color),

@@ -47,7 +47,7 @@ export const CellButtons = props => {
           gap: "12px",
         }}
       >
-        {game?.buttons.map(button => {
+        {game?.buttons?.map(button => {
           const buttonProps = {
             ...configCells?.cellTicketButton?.button,
             color: stringToColor(button.color),

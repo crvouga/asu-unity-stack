@@ -87,7 +87,7 @@ export const CellTitle = props => {
               ...STYLES_TRUNCATE,
             }}
           >
-            {game?.chips.map(chip => (
+            {game?.chips?.map(chip => (
               <Chip key={chip.label} chip={chip} />
             ))}
           </div>
@@ -110,7 +110,7 @@ export const CellTitle = props => {
               ...STYLES_TRUNCATE,
             }}
           >
-            {game?.supplementalLinks.map(link => (
+            {game?.supplementalLinks?.map(link => (
               <a
                 key={`${link.label}${link.href}`}
                 href={link.href}

@@ -93,27 +93,27 @@ export const isGameTicketed = game => {
 
 /**
  * @typedef {object} Game
- * @property {string} id
- * @property {import("../Icon_").IconType} sportIcon
- * @property {string} sportName
- * @property {string} sportId
- * @property {string} title
- * @property {string} titleHref
- * @property {string} dateDay
- * @property {string} dateMonth
- * @property {string} dateDayName
- * @property {string} dateTimeRange
- * @property {string} dateTimeZone
- * @property {{ label: string, href: string, className?: string, style?: import("react").CSSProperties }[]} dateLinks
- * @property {string} teamLogoSrc
- * @property {string} teamLogoAlt
- * @property {string} teamLogoHref
- * @property {{ label: string, href: string, className?: string, style?: import("react").CSSProperties }[]} chips
- * @property {{ label: string, href: string, className?: string, style?: import("react").CSSProperties }[]} supplementalLinks
- * @property {{ startIcon: import("../Icon_").IconType, color?: string, label: string, href: string, className?: string, style?: import("react").CSSProperties }[]} buttons
- * @property {string} admissionCost
- * @property {string} eventType
- * @property {string} gameType
+ * @property {string} {id}
+ * @property {import("../Icon_").IconType} [sportIcon]
+ * @property {string} [sportName]
+ * @property {string} [sportId]
+ * @property {string} [title]
+ * @property {string} [titleHref]
+ * @property {string} [dateDay]
+ * @property {string} [dateMonth]
+ * @property {string} [dateDayName]
+ * @property {string} [dateTimeRange]
+ * @property {string} [dateTimeZone]
+ * @property {{ label: string, href: string, className?: string, style?: import("react").CSSProperties }[]} [dateLinks]
+ * @property {string} [teamLogoSrc]
+ * @property {string} [teamLogoAlt]
+ * @property {string} [teamLogoHref]
+ * @property {{ label: string, href: string, className?: string, style?: import("react").CSSProperties }[]} [chips]
+ * @property {{ label: string, href: string, className?: string, style?: import("react").CSSProperties }[]} [supplementalLinks]
+ * @property {{ startIcon: import("../Icon_").IconType, color?: string, label: string, href: string, className?: string, style?: import("react").CSSProperties }[]} [buttons]
+ * @property {string} [admissionCost]
+ * @property {string} [eventType]
+ * @property {string} [gameType]
  *
  * DEPRECATED PROPERTIES
  * @property {string} [venue]

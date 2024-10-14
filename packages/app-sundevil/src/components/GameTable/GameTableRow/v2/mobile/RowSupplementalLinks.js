@@ -23,7 +23,7 @@ export const RowSupplementalLinks = props => {
         padding: "16px 0",
       }}
     >
-      {game?.supplementalLinks.map(link => (
+      {game?.supplementalLinks?.map(link => (
         <a
           key={`${link.label}${link.href}`}
           href={link.href}

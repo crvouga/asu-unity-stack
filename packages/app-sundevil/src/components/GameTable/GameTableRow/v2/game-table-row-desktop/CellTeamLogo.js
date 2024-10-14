@@ -3,6 +3,8 @@
 // @ts-check
 import React from "react";
 
+import { APP_CONFIG } from "../../../../../config";
+import { useBreakpoint } from "../../../../../utils/use-breakpoint";
 import { Cell, isCleanString, STYLES_TRUNCATE } from "./shared";
 
 /**
@@ -10,6 +12,11 @@ import { Cell, isCleanString, STYLES_TRUNCATE } from "./shared";
  */
 export const CellTeamLogo = props => {
   const { game, configLayout } = props;
+  const isTablet = useBreakpoint(APP_CONFIG.breakpointTablet);
+
+  if (isTablet) {
+    return null;
+  }
 
   return (
     configLayout?.includeCellTitle && (

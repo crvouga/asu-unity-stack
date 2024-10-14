@@ -14,12 +14,10 @@ export const CellTeamLogo = props => {
   const { game, configLayout } = props;
   const isTablet = useBreakpoint(APP_CONFIG.breakpointTablet);
 
-  if (isTablet) {
-    return null;
-  }
-
   return (
-    configLayout?.includeCellTitle && (
+    configLayout?.includeCellTitle &&
+    isCleanString(game?.teamLogoHref) &&
+    !isTablet && (
       <Cell
         style={{
           ...STYLES_TRUNCATE,
@@ -32,11 +30,7 @@ export const CellTeamLogo = props => {
           width: "112px",
         }}
       >
-        <a
-          href={
-            isCleanString(game?.teamLogoHref) ? game?.teamLogoHref : undefined
-          }
-        >
+        <a href={game?.teamLogoHref}>
           <img
             width="100%"
             height="100%"

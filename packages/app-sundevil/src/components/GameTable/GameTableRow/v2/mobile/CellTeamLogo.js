@@ -13,7 +13,7 @@ export const CellTeamLogo = props => {
 
   return (
     configLayout?.includeCellTitle &&
-    isCleanString(game?.teamLogoHref) && (
+    isCleanString(game?.teamLogoSrc) && (
       <Cell
         style={{
           ...STYLES_TRUNCATE,

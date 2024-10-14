@@ -52,13 +52,13 @@ export const GameTableRowMobile = forwardRef(
             justifyContent: "center",
             alignItems: "center",
             width: "100%",
-            overflow: "hidden",
             flexWrap: "nowrap",
             maxWidth: "100%",
             height: "54px",
             maxHeight: "54px",
             opacity: empty ? 0 : 1,
             userSelect: empty ? "none" : "auto",
+            overflow: "hidden",
           }}
         >
           <CellIcon {...props} />

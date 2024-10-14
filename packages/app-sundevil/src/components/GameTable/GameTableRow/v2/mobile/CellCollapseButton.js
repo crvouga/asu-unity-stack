@@ -6,11 +6,14 @@ import styled from "styled-components";
 import { CollapseIcon } from "../../../../CollapseIcon/CollapseIcon";
 
 const Root = styled.button`
-  &:focus,
-  &:active {
-    border: none !important;
+  outline: none;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  &:focus {
     outline: none !important;
     box-shadow: none !important;
+    border: 2px solid black;
   }
 `;
 
@@ -32,11 +35,12 @@ export const CellCollapseButton = (
         width: "48px",
         height: "100%",
         flexDirection: "column",
-        outline: "none",
-        border: "none",
         background: "transparent",
         cursor: "pointer",
       }}
+      aria-label={open ? "Collapse" : "Expand"}
+      aria-expanded={open}
+      aria-controls="collapse"
     >
       <CollapseIcon open={open} />
     </Root>

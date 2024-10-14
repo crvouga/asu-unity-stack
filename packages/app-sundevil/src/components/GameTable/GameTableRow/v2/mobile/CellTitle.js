@@ -32,7 +32,7 @@ export const CellTitle = props => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          alignItems: "center",
+          alignItems: "flex-start",
           overflow: "hidden",
           flex: 1,
           height: "100%",
@@ -47,7 +47,7 @@ export const CellTitle = props => {
             margin: 0,
             fontSize: "16px",
             fontWeight: "bold",
-            width: "100%",
+            width: "fit-content",
           }}
           dangerouslySetInnerHTML={{ __html: game?.title }}
         />

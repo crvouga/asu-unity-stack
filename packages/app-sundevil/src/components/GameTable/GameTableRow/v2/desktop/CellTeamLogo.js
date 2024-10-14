@@ -14,10 +14,13 @@ export const CellTeamLogo = props => {
   const { game, configLayout } = props;
   const isTablet = useBreakpoint(APP_CONFIG.breakpointTablet);
 
+  if (isTablet) {
+    return null;
+  }
+
   return (
     configLayout?.includeCellTitle &&
-    isCleanString(game?.teamLogoHref) &&
-    !isTablet && (
+    isCleanString(game?.teamLogoSrc) && (
       <Cell
         style={{
           ...STYLES_TRUNCATE,

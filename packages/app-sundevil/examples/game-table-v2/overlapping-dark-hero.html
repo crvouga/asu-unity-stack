@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Load React. -->
+    <script
+      src="https://unpkg.com/react@17/umd/react.production.min.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"
+      crossorigin
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://unity.web.asu.edu/@asu/bootstrap4-theme/css/bootstrap-asu.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://asu.github.io/asu-unity-stack/@asu/unity-bootstrap-theme/css/unity-bootstrap-theme.bundle.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/63c5db143d.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- *************************************************************** -->
+    <!-- include bundled scripts from packages -->
+    <script src="../dist/vendor.umd.js"></script>
+    <script src="../dist/sunDevil.umd.js"></script>
+    <style>
+      #hero {
+        background-color: black;
+        background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)),
+          url("./sun-devils-hero.png") no-repeat center center;
+        background-size: cover;
+        height: 800px;
+      }
+      #section-container {
+        padding-bottom: 500px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="hero"></div>
+    <div id="section-container">
+      <div>This will be removed</div>
+      <div class="contextual"></div>
+    </div>
+    <script>
+      const ALL_GAME_TYPE = [ALL_ID, "home", "away"];
+
+      const ALL_ADMISSION_COST = ["free", "price_varies"];
+
+      const ALL_EVENT_TYPE = ["game", "practice", "scrimmage"];
+
+      const games = [
+        {
+          id: Math.random().toString(36).substring(2, 9),
+          sportIcon: "fa fas fa-football-ball",
+          sportName: "Football",
+          sportId: "football",
+          title: "Sun Devil Olympian Celebration",
+          titleHref: "https://www.example.com",
+          dateDay: "11",
+          dateMonth: "Oct.",
+          dateDayName: "(Fri)",
+          dateTimeRange: "5:30 p.m. - 7:30 p.m.",
+          dateTimeZone: "(MST)",
+          dateLinks: [
+            {
+              label: "Tempe Campus",
+              href: "https://www.example.com/",
+            },
+          ],
+          teamLogoSrc:
+            "https://s3-alpha-sig.figma.com/img/bf55/5c94/70e477a3bd6a0a2da1fd9246042629cf?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aTIRR-u8V6~JcaXFwgRppQ7r0niR7sWWaRneOrJiGhMggGaAuCEUcyjQ9qy9qLDzo6f4uAq7AjjSAMdlPW0FGZMS-fWbU~OPNHq~VVPnZXKCWHDX-~JQtFuofMFR3jf9Vvb9XlXtEkYk8zIYDMKo5S6RMGE6gIlmcFKBFuaU-D6wqtU10VuviR1MBpjlQnMHjqebZVEVaFv7itWYUF~91s5DDal7dGCs9bgdeDrNylEU~Gcip9oal4rK3Y-YumKGW3FTJFiEbiPKitFH1Pbshvt9IAdn~WPc4cwBNOA5o3bEJBX6m4UDxcVz-VXnK9BZWQu3xFsYNjVKpoQCWDyvqw__",
+          teamLogoAlt: " ",
+          supplementalLinks: [
+            {
+              label: "Supplemental Link",
+              href: "https://www.example.com/1",
+            },
+            {
+              label: "Supplemental Link",
+              href: "https://www.example.com/2",
+            },
+            {
+              label: "Supplemental Link",
+              href: "https://www.example.com/3",
+            },
+          ],
+          chips: [
+            {
+              label: "Featured",
+              color: "gray",
+            },
+            {
+              label: "Free",
+              color: "gray",
+            },
+            {
+              label: "Wear Maroon",
+              color: "maroon",
+            },
+            {
+              label: "Wear Gold",
+              color: "gold",
+            },
+          ],
+          buttons: [
+            {
+              startIcon: "fa fas fa-ticket-alt",
+              color: "dark",
+              label: "Buy tickets",
+              href: "https://www.example.com",
+            },
+            {
+              startIcon: "fa fas fa-calendar-alt",
+              color: "gray",
+              label: "Event details",
+              href: "https://www.example.com",
+            },
+          ],
+          admissionCost:
+            ALL_ADMISSION_COST[
+              Math.floor(Math.random() * ALL_ADMISSION_COST.length)
+            ],
+          eventType:
+            ALL_EVENT_TYPE[Math.floor(Math.random() * ALL_EVENT_TYPE.length)],
+          gameType:
+            ALL_GAME_TYPE[Math.floor(Math.random() * ALL_GAME_TYPE.length)],
+
+          //
+          // DEPRECATED FIELDS
+          //
+          venue: "Sun Devil Stadium",
+          homeTeamName: "Arizona State",
+          homeTeamLogoSrc: "https://upload.wikimedia.org/wikipedia/en/9/9d/Arizona_State_Sun_Devils_logo.svg",
+          homeTeamLogoAlt: "Arizona State Sun Devils",
+          awayTeamName: "USC",
+          awayTeamLogoSrc: "https://upload.wikimedia.org/wikipedia/commons/9/9e/USC_Trojans_logo.svg",
+          awayTeamLogoAlt: "USC Trojans",
+          time: "5:30 p.m. - 7:30 p.m. (MST)",
+          buttonIcon: "fa fas fa-ticket-alt",
+          ticketLink: "https://www.example.com",
+          ticketText: "Buy tickets",
+          subtitleChip: "Free",
+          subtitles:[
+            "Sun Devil Stadium",
+            "Arizona State vs. USC",
+            "Wear Maroon",
+          ],
+          subtitleStyle: {
+            color: "maroon",
+          },
+          startDate: null,
+        },
+      ];
+
+      class GameDataSourceMockV2 extends IGameDataSource {
+        async findMany(input) {
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          const gameDataSource = new GameDataSourceStatic({ games, shouldLog: true });
+          const found = await gameDataSource.findMany(input);
+          return found
+        }
+      }
+
+      const props = {
+        gameTable: {
+          version: "v2",
+        },
+        gameDataSource: {
+          type: "custom",
+          gameDataSource: new GameDataSourceMockV2(),
+        },
+        configNoData: {
+          hide: false,
+          hideBehavior: "initially-hidden", //  "initially-hidden" | "initially-visible" | null;
+          hideBasedOn: {},
+          message: "No games found",
+        },
+
+        title: "Upcoming Games",
+        darkMode: true,
+        configOverlap: "sport-tabs-with-hero",
+        configLayout: {
+          includeSportsTabs: true,
+        },
+        sports: [
+          {
+            name: "All Sports",
+            icon: "fas fa-sync-alt",
+            active: true,
+            position: 1,
+            id: "all",
+          },
+          {
+            name: "Football",
+            icon: "fas fa-football-ball",
+            position: 2,
+            id: "football",
+            footerButtons: [
+              {
+                color: "gold",
+                label: "Full schedule - Football",
+                size: "small",
+                href: "#",
+              },
+              {
+                color: "maroon",
+                label: "Gear up for the game - Football",
+                size: "small",
+                href: "#",
+              },
+            ],
+            footerLinks: [
+              {
+                label: "See past game scores - Football",
+                href: "#",
+              },
+            ],
+          },
+          {
+            name: "M. Basketball",
+            icon: "fas fa-basketball-ball",
+            position: 3,
+            id: "basketball",
+          },
+          {
+            name: "Hockey",
+            icon: "fas fa-hockey-puck",
+            position: 4,
+            id: "hockey",
+          },
+          {
+            name: "Baseball",
+            icon: "fas fa-baseball-ball",
+            position: 5,
+            id: "baseball",
+          },
+          {
+            name: "W. Basketball",
+            icon: "fas fa-basketball-ball",
+            id: "w-basketball",
+          },
+          {
+            name: "Softball",
+            icon: "fas fa-futbol",
+            id: "softball",
+          },
+          {
+            name: "Soccer",
+            icon: "fas fa-baseball-ball",
+            id: "soccer",
+          },
+          {
+            name: "Swimming",
+            icon: "fas fa-swimmer",
+            id: "swimming",
+          },
+          {
+            name: "Golf",
+            icon: "fas fa-golf-ball",
+            id: "golf",
+          },
+        ],
+        sponsorBlock: {
+          text: "Presented By",
+          name: "Ford",
+          logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg",
+          url: "https://www.ford.com/",
+        },
+        footerButtons: [
+          {
+            color: "gold",
+            label: "Full schedule",
+            size: "small",
+          },
+          {
+            color: "maroon",
+            label: "Gear up for the game",
+            size: "small",
+          },
+        ],
+        footerLinks: [
+          {
+            label: "See past game scores",
+            href: "#",
+          },
+        ],
+      };
+
+      initGameTableSection({
+        targetSelector: "#section-container",
+        props,
+        renderWithinChildWhiteList: [".contextual"],
+      });
+    </script>
+  </body>
+</html>

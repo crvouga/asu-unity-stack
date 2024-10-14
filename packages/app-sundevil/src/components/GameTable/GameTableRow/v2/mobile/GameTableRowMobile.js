@@ -32,7 +32,9 @@ export const GameTableRowMobile = forwardRef(
     ref
   ) => {
     const { skeleton, empty } = props;
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
+
+    const isOpen = open && !empty && !skeleton;
 
     return (
       <Skeleton
@@ -68,7 +70,7 @@ export const GameTableRowMobile = forwardRef(
             onClick={() => setOpen(prev => !prev)}
           />
         </Root>
-        {open && (
+        {isOpen && (
           <Surface>
             <RowIcon {...props} />
             <RowDate {...props} />

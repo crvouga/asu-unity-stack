@@ -6,7 +6,7 @@ import { APP_CONFIG } from "../../../../config";
 import { useBreakpoint } from "../../../../utils/use-breakpoint";
 import { gameTableRowPropTypes } from "../game-table-row";
 import { GameTableRowDesktop } from "./desktop";
-import { GameTableRowMobile } from "./GameTableRowMobile";
+import { GameTableRowMobile } from "./mobile";
 
 export const GameTableRow = forwardRef(
   (

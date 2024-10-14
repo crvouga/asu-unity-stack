@@ -2,8 +2,23 @@
 /* eslint-disable react/no-danger */
 // @ts-check
 import React from "react";
+import styled from "styled-components";
 
 import { Cell, STYLES_TRUNCATE } from "./shared";
+
+const DateLink = styled.a`
+  color: #747474;
+  font-size: 14px;
+  /** Max 2 lines then truncate */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  line-height: 1.4;
+  overflow: hidden;
+  white-space: normal;
+  word-break: break-word;
+`;
 
 /**
  * @type {import("./shared").CellComponent}
@@ -88,9 +103,16 @@ export const CellDate = ({ game, configLayout }) => {
             </div>
           </div>
         </div>
-        <div style={{ width: "100%" }}>
+        <div
+          style={{
+            width: "100%",
+            flexShrink: 1,
+            display: "flex",
+            flexWrap: "wrap",
+          }}
+        >
           {game?.dateLinks?.map(link => (
-            <a
+            <DateLink
               key={`${link.href}${link.label}`}
               href={link.href}
               style={{
@@ -99,7 +121,7 @@ export const CellDate = ({ game, configLayout }) => {
               }}
             >
               {link.label}
-            </a>
+            </DateLink>
           ))}
         </div>
       </Cell>

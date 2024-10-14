@@ -27,7 +27,7 @@ const games = [
     dateTimeZone: "(MST)",
     dateLinks: [
       {
-        label: "Tempe Campus",
+        label: "Tempe Campus Tempe Campus Tempe Campus Tempe Campus",
         href: "https://www.example.com/",
       },
     ],

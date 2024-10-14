@@ -10,8 +10,10 @@ import { CellDate } from "./CellDate";
 import { CellIcon } from "./CellIcon";
 import { CellTeamLogo } from "./CellTeamLogo";
 import { CellTitle } from "./CellTitle";
+import { RowChips } from "./RowChips";
 import { RowDate } from "./RowDate";
 import { RowIcon } from "./RowIcon";
+import { RowSupplementalLinks } from "./RowSupplementalLinks";
 import { Surface } from "./Surface";
 
 const Root = styled.div`
@@ -69,6 +71,8 @@ export const GameTableRowMobile = forwardRef(
           <Surface>
             <RowIcon {...props} />
             <RowDate {...props} />
+            <RowChips {...props} />
+            <RowSupplementalLinks {...props} />
           </Surface>
         )}
       </Skeleton>

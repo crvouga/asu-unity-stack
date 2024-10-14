@@ -49,7 +49,7 @@ export const CellButtons = props => {
       >
         {game?.buttons?.map(button => {
           const buttonProps = {
-            ...configCells?.cellTicketButton?.button,
+            ...button,
             color: stringToColor(button.color),
             target: stringToTarget(
               configCells?.cellTicketButton?.button?.target
@@ -57,10 +57,12 @@ export const CellButtons = props => {
             size: stringToSize(configCells?.cellTicketButton?.button?.size),
             icon: [],
             label: button.label,
+            onClick: button.onClick,
+            cardTitle: game?.title ?? " ",
           };
           return (
             <Button
-              key={button.href}
+              key={button.href ?? button.label}
               renderIcon={() => {
                 return (
                   <Icon
@@ -72,8 +74,6 @@ export const CellButtons = props => {
                   />
                 );
               }}
-              href={game?.ticketLink}
-              cardTitle={game?.title ?? " "}
               {...buttonProps}
             />
           );

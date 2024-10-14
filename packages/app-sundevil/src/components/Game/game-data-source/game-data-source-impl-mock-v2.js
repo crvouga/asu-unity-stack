@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=189-1578&node-type=canvas&t=kdg8cgY0xCNAmoIL-0
 import { ALL_ID } from "../../../select-all-option";
 import { IGameDataSource } from "./game-data-source";
@@ -67,17 +68,26 @@ const games = [
       },
     ],
     buttons: [
-      {
-        startIcon: "fa fas fa-ticket-alt",
-        color: "dark",
-        label: "Buy tickets",
-        href: "https://www.example.com",
-      },
+      Math.random() > 0.5
+        ? {
+            startIcon: "fa fas fa-ticket-alt",
+            color: "dark",
+            label: "Buy tickets",
+            href: "https://www.example.com",
+          }
+        : {
+            startIcon: "fa fas fa-calendar-alt",
+            color: "gray",
+            label: "Event details",
+            href: "https://www.example.com",
+          },
       {
         startIcon: "fa fas fa-calendar-alt",
         color: "gray",
-        label: "Event details",
-        href: "https://www.example.com",
+        label: "Add to calendar",
+        onClick: () => {
+          console.log("Add to calendar");
+        },
       },
     ],
     admissionCost:

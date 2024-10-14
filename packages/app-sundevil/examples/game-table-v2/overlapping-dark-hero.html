@@ -130,17 +130,26 @@
           ],
 
           buttons: [
-            {
-              startIcon: "fa fas fa-ticket-alt",
-              color: "dark",
-              label: "Buy tickets",
-              href: "https://www.example.com",
-            },
+            Math.random() > 0.5
+              ? {
+                  startIcon: "fa fas fa-ticket-alt",
+                  color: "dark",
+                  label: "Buy tickets",
+                  href: "https://www.example.com",
+                }
+              : {
+                  startIcon: "fa fas fa-calendar-alt",
+                  color: "gray",
+                  label: "Event details",
+                  href: "https://www.example.com",
+                },
             {
               startIcon: "fa fas fa-calendar-alt",
               color: "gray",
-              label: "Event details",
-              href: "https://www.example.com",
+              label: "Add to calendar",
+              onClick: () => {
+                console.log("Add to calendar");
+              },
             },
           ],
           admissionCost:
@@ -157,17 +166,19 @@
           //
           venue: "Sun Devil Stadium",
           homeTeamName: "Arizona State",
-          homeTeamLogoSrc: "https://upload.wikimedia.org/wikipedia/en/9/9d/Arizona_State_Sun_Devils_logo.svg",
+          homeTeamLogoSrc:
+            "https://upload.wikimedia.org/wikipedia/en/9/9d/Arizona_State_Sun_Devils_logo.svg",
           homeTeamLogoAlt: "Arizona State Sun Devils",
           awayTeamName: "USC",
-          awayTeamLogoSrc: "https://upload.wikimedia.org/wikipedia/commons/9/9e/USC_Trojans_logo.svg",
+          awayTeamLogoSrc:
+            "https://upload.wikimedia.org/wikipedia/commons/9/9e/USC_Trojans_logo.svg",
           awayTeamLogoAlt: "USC Trojans",
           time: "5:30 p.m. - 7:30 p.m. (MST)",
           buttonIcon: "fa fas fa-ticket-alt",
           ticketLink: "https://www.example.com",
           ticketText: "Buy tickets",
           subtitleChip: "Free",
-          subtitles:[
+          subtitles: [
             "Sun Devil Stadium",
             "Arizona State vs. USC",
             "Wear Maroon",
@@ -182,15 +193,18 @@
       class GameDataSourceMockV2 extends IGameDataSource {
         async findMany(input) {
           await new Promise(resolve => setTimeout(resolve, 1000));
-          const gameDataSource = new GameDataSourceStatic({ games, shouldLog: true });
+          const gameDataSource = new GameDataSourceStatic({
+            games,
+            shouldLog: true,
+          });
           const found = await gameDataSource.findMany(input);
-          return found
+          return found;
         }
       }
 
       const props = {
         gameTable: {
-          version: "v2",
+          version: "v2", // This will render the new version of the game table
         },
         gameDataSource: {
           type: "custom",

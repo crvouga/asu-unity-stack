@@ -33,16 +33,18 @@ export const RowButtons = props => {
     >
       {game?.buttons?.map?.(button => {
         const buttonProps = {
-          ...configCells?.cellTicketButton?.button,
+          ...button,
           color: stringToColor(button.color),
           target: stringToTarget(configCells?.cellTicketButton?.button?.target),
           size: stringToSize(configCells?.cellTicketButton?.button?.size),
           icon: [],
           label: button.label,
+          onClick: button.onClick,
+          cardTitle: game?.title ?? " ",
         };
         return (
           <Button
-            key={button.href}
+            key={button.href ?? button.label}
             renderIcon={() => {
               return (
                 <Icon
@@ -54,8 +56,6 @@ export const RowButtons = props => {
                 />
               );
             }}
-            href={game?.ticketLink}
-            cardTitle={game?.title ?? " "}
             {...buttonProps}
           />
         );

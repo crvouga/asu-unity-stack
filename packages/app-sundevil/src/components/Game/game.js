@@ -38,6 +38,7 @@ export const gamePropTypes = PropTypes.shape({
       href: PropTypes.string,
       className: PropTypes.string,
       style: PropTypes.object,
+      onClick: PropTypes.func,
     })
   ),
   admissionCost: PropTypes.string,
@@ -110,7 +111,7 @@ export const isGameTicketed = game => {
  * @property {string} [teamLogoHref]
  * @property {{ label: string, href: string, className?: string, style?: import("react").CSSProperties }[]} [chips]
  * @property {{ label: string, href: string, className?: string, style?: import("react").CSSProperties }[]} [supplementalLinks]
- * @property {{ startIcon: import("../Icon_").IconType, color?: string, label: string, href: string, className?: string, style?: import("react").CSSProperties }[]} [buttons]
+ * @property {{ startIcon: import("../Icon_").IconType, color?: string, label: string, href: string, className?: string, style?: import("react").CSSProperties; onClick?: () => void }[]} [buttons]
  * @property {string} [admissionCost]
  * @property {string} [eventType]
  * @property {string} [gameType]

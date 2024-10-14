@@ -45,8 +45,8 @@
 
     <!-- *************************************************************** -->
     <!-- include bundled scripts from packages -->
-    <script src="../../dist/vendor.umd.js"></script>
-    <script src="../../dist/sunDevil.umd.js"></script>
+    <script src="../dist/vendor.umd.js"></script>
+    <script src="../dist/sunDevil.umd.js"></script>
   </head>
 
   <body>
@@ -60,7 +60,8 @@
         title: "Mini Plans",
         description:
           "Mini plans are now available for the 2024 Sun Devil Football season.Choose one of each option within the categories below to create your plan.",
-        backgroundSrc: "https://dev-web-sda.ws.asu.edu/sites/default/files/1131cd6dc80fd86597dbc11acfb398e0.svg ",
+        backgroundSrc:
+          "https://dev-web-sda.ws.asu.edu/sites/default/files/1131cd6dc80fd86597dbc11acfb398e0.svg ",
         backgroundAlt: " ",
         miniPlans: [
           {
@@ -76,14 +77,24 @@
             description: "UCF or BYU",
           },
         ],
-        ctaAlign: 'start', // "start" |  "center" | "end"
-        cta: {
-          href: "#",
-          text: "Build Your Mini Plan",
-          target: "_blank",
-          startIcon: "fa fas fa-ticket-alt",
-          endIcon: "fa fas fa-chevron-right",
-        },
+        ctaAlign: "start", // "start" |  "center" | "end"
+        cta: [
+          {
+            href: "#",
+            text: "Build Your Mini Plan",
+            target: "_blank",
+            startIcon: "fa fas fa-ticket-alt",
+            endIcon: "fa fas fa-chevron-right",
+          },
+          {
+            href: "#",
+            text: "Pricing map",
+            target: "_blank",
+            color: "dark",
+            startIcon: "fa fas fa-ticket-alt",
+            endIcon: "fa fas fa-chevron-right",
+          },
+        ],
       };
       initGroupTicketMiniPlans({
         targetSelector: "#section-container",

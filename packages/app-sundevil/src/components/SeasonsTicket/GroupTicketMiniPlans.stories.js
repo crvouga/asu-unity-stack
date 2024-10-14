@@ -23,13 +23,23 @@ const props = {
       description: "UCF or BYU",
     },
   ],
-  cta: {
-    href: "#",
-    text: "Build Your Mini Plan",
-    target: "_blank",
-    startIcon: "fa fas fa-ticket-alt",
-    endIcon: "fa fas fa-chevron-right",
-  },
+  cta: [
+    {
+      href: "#",
+      text: "Build Your Mini Plan",
+      target: "_blank",
+      startIcon: "fa fas fa-ticket-alt",
+      endIcon: "fa fas fa-chevron-right",
+    },
+    {
+      href: "#/hello",
+      text: "Hello",
+      target: "_blank",
+      color: "dark",
+      startIcon: "fa fas fa-ticket-alt",
+      endIcon: "fa fas fa-chevron-right",
+    },
+  ],
   ctaAlign: "start",
 };
 const Template = args => <GroupTicketMiniPlans {...args} {...props} />;

@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
+import { Button } from "../../../../components-core/src";
 import { APP_CONFIG } from "../../config";
-import { trackGAEvent } from "../../track-ga-event";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { Icon, iconPropType } from "../Icon_";
 import { SectionHeader } from "../SectionHeader";
@@ -138,7 +138,14 @@ export const GroupTicketMiniPlans = ({
                   return null;
                 }
                 return (
-                  <a
+                  <Button
+                    {...ctaItem}
+                    key={
+                      ctaItem?.href ??
+                      ctaItem?.link ??
+                      ctaItem?.label ??
+                      ctaItem?.text
+                    }
                     href={ctaItem?.href ?? ctaItem?.link}
                     style={{
                       alignSelf: "center",
@@ -147,25 +154,21 @@ export const GroupTicketMiniPlans = ({
                       alignItems: "center",
                       gap: "8px",
                     }}
-                    className="btn btn-default btn-gold"
                     target={ctaItem?.target}
-                    onClick={() => {
-                      trackGAEvent({
-                        event: "link",
-                        action: "click",
-                        name: "onclick",
-                        type: "internal link",
-                        region: "main content",
-                        section: "football mini plans",
-                        text: "build your mini plan",
-                        component: "button",
-                      });
+                    cardTitle={title}
+                    color={ctaItem?.color ?? "gold"}
+                    renderIcon={() => {
+                      return ctaItem?.startIcon ? (
+                        <Icon icon={ctaItem?.startIcon} />
+                      ) : null;
                     }}
-                  >
-                    {ctaItem?.startIcon && <Icon icon={ctaItem?.startIcon} />}
-                    {ctaItem?.label ?? ctaItem?.text}
-                    {ctaItem?.endIcon && <Icon icon={ctaItem?.endIcon} />}
-                  </a>
+                    renderEndIcon={() => {
+                      return ctaItem?.endIcon ? (
+                        <Icon icon={ctaItem?.endIcon} />
+                      ) : null;
+                    }}
+                    label={ctaItem?.label ?? ctaItem?.text}
+                  />
                 );
               })}
             </CtaRoot>

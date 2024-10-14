@@ -32,6 +32,7 @@ export const CellSportName = props => {
           fontSize: "12px",
           fontWeight: "bold",
           gap: "0.2rem",
+          flexShrink: 0,
         }}
       >
         {isCleanString(game?.sportId) && (

@@ -37,7 +37,10 @@ export const CellTickets = props => {
       <Cell
         className="btn-ticket text-center align-middle px-2"
         ref={ticketCellRef}
-        style={{ minWidth: ticketCellMaxDimensions.width }}
+        style={{
+          minWidth: ticketCellMaxDimensions.width,
+          flexShrink: 0,
+        }}
       >
         {/* @ts-ignore */}
         <Button

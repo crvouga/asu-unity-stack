@@ -8,6 +8,7 @@ const linkPropTypes = PropTypes.shape({
   href: PropTypes.string,
   className: PropTypes.string,
   style: PropTypes.object,
+  color: PropTypes.string,
 });
 
 // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=9390-8911&node-type=frame&t=kdg8cgY0xCNAmoIL-0
@@ -79,6 +80,15 @@ export const isGameNonTicketed = game => {
 export const isGameTicketed = game => {
   return !isGameNonTicketed(game);
 };
+
+/**
+ * @typedef {object} Link
+ * @property {string} label
+ * @property {string} href
+ * @property {string} [className]
+ * @property {import("react").CSSProperties} [style]
+ * @property {string} [color]
+ */
 
 /**
  * @typedef {object} Game

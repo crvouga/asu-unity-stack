@@ -27,6 +27,7 @@ export const CellIcon = props => {
           width: "120px",
           height: "120px",
           flexDirection: "column",
+          flexShrink: 0,
         }}
       >
         <Icon icon={game?.sportIcon} style={{ width: "16px" }} />

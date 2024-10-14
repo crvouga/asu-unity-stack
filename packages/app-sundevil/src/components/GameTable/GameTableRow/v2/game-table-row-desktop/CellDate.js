@@ -20,6 +20,7 @@ export const CellDate = ({ game, configLayout }) => {
           justifyContent: "center",
           alignItems: "center",
           padding: "16px",
+          flexShrink: 0,
         }}
       >
         <div

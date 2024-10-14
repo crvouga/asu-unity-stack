@@ -10,6 +10,7 @@ import { CellDate } from "./CellDate";
 import { CellIcon } from "./CellIcon";
 import { CellTeamLogo } from "./CellTeamLogo";
 import { CellTitle } from "./CellTitle";
+import { RowButtons } from "./RowButtons";
 import { RowChips } from "./RowChips";
 import { RowDate } from "./RowDate";
 import { RowIcon } from "./RowIcon";
@@ -73,6 +74,7 @@ export const GameTableRowMobile = forwardRef(
             <RowDate {...props} />
             <RowChips {...props} />
             <RowSupplementalLinks {...props} />
+            <RowButtons {...props} />
           </Surface>
         )}
       </Skeleton>

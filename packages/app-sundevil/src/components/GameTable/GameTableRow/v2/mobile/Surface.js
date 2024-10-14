@@ -13,6 +13,7 @@ const Root = styled.div`
   border-top: 1px solid #d0d0d0;
   & > *:not(:last-child) {
     border-bottom: 1px solid #d0d0d0;
+    width: 100%;
   }
   padding: 0 18px;
   background-color: #e8e8e8;

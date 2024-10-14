@@ -4,11 +4,11 @@ import React, { forwardRef } from "react";
 import styled from "styled-components";
 
 import { Skeleton } from "../../../../Skeleton";
+import { CellButtons } from "./CellButtons";
 import { CellDate } from "./CellDate";
 import { CellIcon } from "./CellIcon";
 import { CellSportName } from "./CellSportName";
 import { CellTeamLogo } from "./CellTeamLogo";
-import { CellTickets } from "./CellTickets";
 import { CellTitle } from "./CellTitle";
 
 const Root = styled.div`
@@ -56,7 +56,7 @@ export const GameTableRowDesktop = forwardRef(
           <CellSportName {...props} />
           <CellTitle {...props} />
           <CellTeamLogo {...props} />
-          <CellTickets {...props} />
+          <CellButtons {...props} />
         </Root>
       </Skeleton>
     );

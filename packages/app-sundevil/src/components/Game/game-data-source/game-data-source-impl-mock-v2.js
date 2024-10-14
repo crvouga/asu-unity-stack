@@ -69,8 +69,14 @@ const games = [
     buttons: [
       {
         startIcon: "fa fas fa-ticket-alt",
+        color: "dark",
+        label: "Buy tickets",
+        href: "https://www.example.com",
+      },
+      {
+        startIcon: "fa fas fa-calendar-alt",
         color: "gray",
-        label: "Event Details",
+        label: "Event details",
         href: "https://www.example.com",
       },
     ],

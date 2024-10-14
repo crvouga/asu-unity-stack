@@ -6,14 +6,7 @@ import styled from "styled-components";
 
 import { APP_CONFIG } from "../../../../../config";
 import { useBreakpoint } from "../../../../../utils/use-breakpoint";
-import { STYLES_TRUNCATE } from "./shared";
-
-const Cell = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-`;
+import { Cell, STYLES_TRUNCATE } from "./shared";
 
 const Title = styled.a`
   font-size: 24px;

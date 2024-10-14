@@ -27,6 +27,7 @@ export const gamePropTypes = PropTypes.shape({
   dateLinks: PropTypes.arrayOf(linkPropTypes),
   teamLogoSrc: PropTypes.string,
   teamLogoAlt: PropTypes.string,
+  teamLogoHref: PropTypes.string,
   chips: PropTypes.arrayOf(linkPropTypes),
   supplementalLinks: PropTypes.arrayOf(linkPropTypes),
   buttons: PropTypes.arrayOf(
@@ -106,6 +107,7 @@ export const isGameTicketed = game => {
  * @property {{ label: string, href: string, className?: string, style?: import("react").CSSProperties }[]} dateLinks
  * @property {string} teamLogoSrc
  * @property {string} teamLogoAlt
+ * @property {string} teamLogoHref
  * @property {{ label: string, href: string, className?: string, style?: import("react").CSSProperties }[]} chips
  * @property {{ label: string, href: string, className?: string, style?: import("react").CSSProperties }[]} supplementalLinks
  * @property {{ startIcon: import("../Icon_").IconType, color?: string, label: string, href: string, className?: string, style?: import("react").CSSProperties }[]} buttons

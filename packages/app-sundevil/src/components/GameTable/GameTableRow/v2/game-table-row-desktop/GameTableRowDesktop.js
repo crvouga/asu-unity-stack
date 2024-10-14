@@ -7,6 +7,7 @@ import { Skeleton } from "../../../../Skeleton";
 import { CellDate } from "./CellDate";
 import { CellIcon } from "./CellIcon";
 import { CellSportName } from "./CellSportName";
+import { CellTeamLogo } from "./CellTeamLogo";
 import { CellTickets } from "./CellTickets";
 import { CellTitle } from "./CellTitle";
 
@@ -54,6 +55,7 @@ export const GameTableRowDesktop = forwardRef(
           <CellDate {...props} />
           <CellSportName {...props} />
           <CellTitle {...props} />
+          <CellTeamLogo {...props} />
           <CellTickets {...props} />
         </Root>
       </Skeleton>

@@ -41,8 +41,9 @@ export const CellCollapseButton = (
       aria-label={open ? "Collapse" : "Expand"}
       aria-expanded={open}
       aria-controls="collapse"
+      key={open ? "collapse" : "expand"}
     >
-      <CollapseIcon open={open} />
+      <CollapseIcon open={open} key={open ? "collapse" : "expand"} />
     </Root>
   );
 };

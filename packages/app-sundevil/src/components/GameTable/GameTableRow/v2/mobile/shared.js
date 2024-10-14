@@ -18,5 +18,9 @@ export const STYLES_TRUNCATE = {
  * @typedef {React.FC<import("../../game-table-row").GameTableRowProps>} CellComponent
  */
 
+/**
+ * @typedef {React.FC<import("../../game-table-row").GameTableRowProps>} RowComponent
+ */
+
 export const isCleanString = str =>
   typeof str === "string" && str.trim().length > 0;

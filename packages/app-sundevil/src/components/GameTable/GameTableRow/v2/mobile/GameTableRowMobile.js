@@ -10,6 +10,9 @@ import { CellDate } from "./CellDate";
 import { CellIcon } from "./CellIcon";
 import { CellTeamLogo } from "./CellTeamLogo";
 import { CellTitle } from "./CellTitle";
+import { RowDate } from "./RowDate";
+import { RowIcon } from "./RowIcon";
+import { Surface } from "./Surface";
 
 const Root = styled.div`
   & > *:not(:last-child) {
@@ -26,7 +29,7 @@ export const GameTableRowMobile = forwardRef(
     ref
   ) => {
     const { skeleton, empty } = props;
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
 
     return (
       <Skeleton
@@ -63,14 +66,10 @@ export const GameTableRowMobile = forwardRef(
           />
         </Root>
         {open && (
-          <div
-            style={{
-              width: "100%",
-              borderTop: "1px solid #d0d0d0",
-            }}
-          >
-            Surface
-          </div>
+          <Surface>
+            <RowIcon {...props} />
+            <RowDate {...props} />
+          </Surface>
         )}
       </Skeleton>
     );

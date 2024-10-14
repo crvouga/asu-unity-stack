@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 import { APP_CONFIG } from "../../../../../config";
 import { useBreakpoint } from "../../../../../utils/use-breakpoint";
+import { Chip } from "../Chip";
 import { Cell, STYLES_TRUNCATE } from "./shared";
 
 const Title = styled.a`
@@ -128,52 +129,5 @@ export const CellTitle = props => {
         )}
       </Cell>
     )
-  );
-};
-
-const toColorStyles = color => {
-  switch (color) {
-    case "maroon": {
-      return {
-        backgroundColor: "#8C1D40",
-        color: "#ffffff",
-      };
-    }
-    case "gold": {
-      return {
-        backgroundColor: "#FFC628",
-      };
-    }
-    default: {
-      return {};
-    }
-  }
-};
-
-const Chip = (
-  /**
-   * @type {{chip: import("../../../../Game/game").Link}}
-   */
-  props
-) => {
-  const { chip } = props;
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "0 6px",
-        borderRadius: "1px",
-        backgroundColor: "#d0d0d0",
-        color: "#484848",
-        fontSize: "12px",
-        fontWeight: "bold",
-        height: "18px",
-        ...toColorStyles(chip.color),
-      }}
-    >
-      {chip.label}
-    </div>
   );
 };

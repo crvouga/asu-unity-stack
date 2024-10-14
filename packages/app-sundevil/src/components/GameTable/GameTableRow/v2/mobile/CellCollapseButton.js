@@ -3,84 +3,42 @@
 import React from "react";
 import styled from "styled-components";
 
-import { trackGAEvent } from "../../../../../track-ga-event";
-import { isGameTicketed } from "../../../../Game/game";
-import { Icon } from "../../../../Icon_";
-import { INFO_ICON_CLASS_NAME, TICKET_ICON_CLASS_NAME } from "../icon";
+import { CollapseIcon } from "../../../../CollapseIcon/CollapseIcon";
 
-const TicketButton = styled.a`
-  padding: 0;
-  margin: 0;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  background-color: #000;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  flex-shrink: 0;
-  text-decoration: none !important;
+const Root = styled.button`
+  &:focus,
+  &:active {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
 `;
 
-const CellTicketButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 64px;
-  width: 64px;
-  min-width: 64px;
-  flex-shrink: 0;
-`;
-
-/**
- * @type {import("./shared").CellComponent}
- */
-export const CellCollapseButton = props => {
-  const { game, configLayout } = props;
-
+export const CellCollapseButton = (
+  /**
+   * @type {{ open: boolean; onClick: () => void; }}
+   */
+  { open, onClick }
+) => {
   return (
-    configLayout.includeCellTickets && (
-      <CellTicketButton>
-        <TicketButton
-          aria-label={game?.ticketText}
-          title={game?.ticketText}
-          href={game?.ticketLink}
-          style={{ textDecoration: "none !important" }}
-          onClick={() => {
-            trackGAEvent({
-              event: "link",
-              action: "click",
-              name: "onclick",
-              type: "internal link",
-              region: "main content",
-              section: game?.title ?? " ",
-              text: game?.ticketText ?? " ",
-              component: "button",
-            });
-          }}
-        >
-          {game?.buttonIcon ? (
-            <Icon
-              style={{ textDecoration: "none !important" }}
-              icon={game?.buttonIcon}
-            />
-          ) : isGameTicketed(game) ? (
-            <i
-              style={{ textDecoration: "none !important" }}
-              className={TICKET_ICON_CLASS_NAME}
-            />
-          ) : (
-            <i
-              style={{ textDecoration: "none !important" }}
-              className={INFO_ICON_CLASS_NAME}
-            />
-          )}
-        </TicketButton>
-      </CellTicketButton>
-    )
+    <Root
+      type="button"
+      onClick={onClick}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "6px",
+        width: "48px",
+        height: "100%",
+        flexDirection: "column",
+        outline: "none",
+        border: "none",
+        background: "transparent",
+        cursor: "pointer",
+      }}
+    >
+      <CollapseIcon open={open} />
+    </Root>
   );
 };

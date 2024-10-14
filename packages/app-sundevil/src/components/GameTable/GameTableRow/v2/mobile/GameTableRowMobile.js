@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
 
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import styled from "styled-components";
 
 import { Skeleton } from "../../../../Skeleton";
@@ -26,14 +26,15 @@ export const GameTableRowMobile = forwardRef(
     ref
   ) => {
     const { skeleton, empty } = props;
+    const [open, setOpen] = useState(false);
 
     return (
       <Skeleton
         skeleton={skeleton}
         ref={ref}
         style={{
-          height: "54px",
-          maxHeight: "54px",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         <Root
@@ -56,8 +57,21 @@ export const GameTableRowMobile = forwardRef(
           <CellDate {...props} />
           <CellTitle {...props} />
           <CellTeamLogo {...props} />
-          <CellCollapseButton {...props} />
+          <CellCollapseButton
+            open={open}
+            onClick={() => setOpen(prev => !prev)}
+          />
         </Root>
+        {open && (
+          <div
+            style={{
+              width: "100%",
+              borderTop: "1px solid #d0d0d0",
+            }}
+          >
+            Surface
+          </div>
+        )}
       </Skeleton>
     );
   }

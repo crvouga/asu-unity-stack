@@ -23,15 +23,6 @@ export const useShowPortalElement = options => {
       return;
     }
 
-    // Ideally we would use this logic but it causes an infinite loop. Commenting out for now.
-    // if (showPortalElement) {
-    //   const shouldShow = navbarPortal.bottom > stickyElement.bottom;
-    //   if (shouldShow !== showPortalElement) {
-    //     setShowPortalElementThrottled(shouldShow);
-    //   }
-    //   return;
-    // }
-
     const shouldShow = navbarPortal.bottom > stickyElement.top;
 
     if (shouldShow !== showPortalElement) {
@@ -45,7 +36,9 @@ export const useShowPortalElement = options => {
     window.addEventListener("scroll", checkOverlap, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", checkOverlap);
+      window.removeEventListener("scroll", checkOverlap, {
+        passive: true,
+      });
     };
   }, [checkOverlap]);
 

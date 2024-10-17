@@ -204,8 +204,12 @@
     <script>
       const headerProps = {
         topBanner: {
-          html: `<div style="background-color: gray; color: black; height: 130px; width: 100%;"><button onclick="alert('hello')">hello</button></div> `,
+          html: `<div style="color: black; width: 100%;"><button onclick="alert('hello')">hello</button></div> `,
           height: "131px",
+          heightAbove: "131px",
+          heightBelow: "115px",
+          maxWidthBreakpoint: "992px",
+          contentStyles: {}
         },
         baseUrl: "https://web-sda.ddev.site:8443/",
         title: "Sun Devils",
@@ -1486,7 +1490,6 @@
     </style>
     <script>
       const props = {
-
         title: "Upcoming games",
         subtitle: null,
         is_sport_type: "0",

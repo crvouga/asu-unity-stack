@@ -6,11 +6,7 @@ export const useScrollCollapse = ({ ref, height }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY === 0) {
-        setIsCollapsed(false);
-      } else {
-        setIsCollapsed(true);
-      }
+      setIsCollapsed(window.scrollY !== 0);
     };
 
     window.addEventListener("scroll", handleScroll, {

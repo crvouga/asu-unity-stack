@@ -94,7 +94,7 @@ export const isGameTicketed = game => {
 
 /**
  * @typedef {object} Game
- * @property {string} {id}
+ * @property {string} [id]
  * @property {import("../Icon_").IconType} [sportIcon]
  * @property {string} [sportName]
  * @property {string} [sportId]

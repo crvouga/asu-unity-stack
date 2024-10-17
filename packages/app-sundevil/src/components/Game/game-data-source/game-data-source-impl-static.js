@@ -162,7 +162,7 @@ export class GameDataSourceStatic extends IGameDataSource {
       const gameIdFreq = this.games.reduce(
         (acc, game) => ({
           ...acc,
-          [game.id]: (acc[game.id] ?? 0) + 1,
+          [game?.id ?? ""]: (acc[game?.id ?? ""] ?? 0) + 1,
         }),
         {}
       );

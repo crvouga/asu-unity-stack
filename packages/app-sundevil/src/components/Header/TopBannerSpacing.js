@@ -26,7 +26,7 @@ export const topBannerSpacingPropTypes = PropTypes.shape({
  * @type {React.FC<Props>}
  */
 export const TopBannerSpacing = ({
-  enabled = true,
+  enabled = false,
   heightAbove = "131px",
   heightBelow = "115px",
   maxWidthBreakpoint = "992px",

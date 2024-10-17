@@ -179,12 +179,12 @@
       </div>
     </div>
 
-    <div style="position: fixed; top:0; left: 0; width: 100%; height: 131px; background-color: tomato;">
+    <!-- <div style="position: fixed; top:0; left: 0; width: 100%; height: 131px; background-color: tomato;">
       My banner
       <button onclick="alert('hello')">
         Click me
       </button>
-    </div>
+    </div> -->
 
     <!--  -->
     <!--  -->
@@ -203,11 +203,9 @@
     </div>
     <script>
       const headerProps = {
-        topBannerSpacing: {
-          enabled: true,
-          heightAbove: "131px",
-          heightBelow: "115px",
-          maxWidthBreakpoint: "992px",
+        topBanner: {
+          html: `<div style="background-color: gray; color: black; height: 130px; width: 100%;">hello</div> `,
+          height: "131px",
         },
         baseUrl: "https://web-sda.ddev.site:8443/",
         title: "Sun Devils",

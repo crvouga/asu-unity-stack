@@ -102,7 +102,7 @@ const ASUHeader = ({
         ref={headerRef}
         // @ts-ignore
         breakpoint={breakpoint}
-        style={{ pointerEvents: "none" }}
+        style={{ pointerEvents: "none" }} // Important when adding top banner spacing in renderTop prop
       >
         <HeaderMain />
         {typeof stickyPortalEntranceId === "string" &&

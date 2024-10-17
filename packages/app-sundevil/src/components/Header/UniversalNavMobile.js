@@ -21,6 +21,7 @@ export const UniversalNavMobile = props => {
         justifyContent: "start",
         alignItems: "center",
         paddingLeft: "20px",
+        pointerEvents: "auto",
       }}
     >
       <OfficialAthleticsSite

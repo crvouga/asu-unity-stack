@@ -292,14 +292,7 @@ const mapProps = props => ({
   },
 
   mobile: {
-    // we're now going to use the default hamburger button
-    // hamburger: {
-    //   render: ({ open, onClick, hidden }) => (
-    //     <HamburgerButton hidden={hidden} open={open} onClick={onClick} />
-    //   ),
-    // },
     drawer: {
-      // renderStart: () => <MobileSearchBar />,
       height: "fit-content",
     },
     includeOfficialSite: true,

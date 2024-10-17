@@ -36,12 +36,20 @@ export const useDimensions = ref => {
 
     updateDimensions();
 
-    window.addEventListener("resize", updateDimensions);
-    window.addEventListener("scroll", updateDimensions);
+    window.addEventListener("resize", updateDimensions, {
+      passive: true,
+    });
+    window.addEventListener("scroll", updateDimensions, {
+      passive: true,
+    });
 
     return () => {
-      window.removeEventListener("resize", updateDimensions);
-      window.removeEventListener("scroll", updateDimensions);
+      window.removeEventListener("resize", updateDimensions, {
+        passive: true,
+      });
+      window.removeEventListener("scroll", updateDimensions, {
+        passive: true,
+      });
     };
   }, [ref]);
 

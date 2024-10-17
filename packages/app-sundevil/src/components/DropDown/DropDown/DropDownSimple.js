@@ -128,7 +128,10 @@ export const DropDownSimple = ({
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("focusin", handleFocusOutside);
       window.removeEventListener("resize", updateMaxHeightDebounced);
-      window.removeEventListener("scroll", updateMaxHeightDebounced);
+      window.removeEventListener("scroll", updateMaxHeightDebounced, {
+        capture: true,
+        passive: true,
+      });
     }
 
     return () => {

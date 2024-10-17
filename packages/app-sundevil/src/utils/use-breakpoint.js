@@ -1,5 +1,5 @@
 // @ts-check
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 /**
  * @param {string} breakpoint // String breakpoint with "px"
@@ -12,7 +12,7 @@ export const useBreakpoint = breakpoint => {
 
   const [isMatch, setIsMatch] = useState(query?.matches);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!query) {
       setQuery(window?.matchMedia(`(max-width: ${breakpoint})`));
     }
@@ -22,7 +22,7 @@ export const useBreakpoint = breakpoint => {
     setIsMatch(e.matches);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!query) {
       return () => {};
     }

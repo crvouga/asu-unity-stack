@@ -8,10 +8,14 @@ import { trackAdClickHandler } from "../Ads/ad-data-layers";
 import { HeaderContentSportLinks } from "../HeaderContentSportLinks";
 import { Icon } from "../Icon_";
 import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
+import {
+  TopBannerSpacing,
+  topBannerSpacingPropTypes,
+} from "./TopBannerSpacing";
 import { UniversalNavMobile } from "./UniversalNavMobile";
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps} BaseHeaderProps */
-/** @typedef {BaseHeaderProps & {officialSiteHref: string; officialSiteHrefStyle?: Record<string, unknown>, officialSite: import("../OfficialAthleticsSite").OfficialAthleticsSiteProps}} HeaderProps */
+/** @typedef {BaseHeaderProps & {officialSiteHref: string; officialSiteHrefStyle?: Record<string, unknown>, officialSite: import("../OfficialAthleticsSite").OfficialAthleticsSiteProps; topBannerSpacing: import("./TopBannerSpacing").Props}} HeaderProps */
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps['navTree'][0]} NavTreeItem */
 
@@ -304,10 +308,16 @@ const mapProps = props => ({
   },
   renderTop: ({ isMobile }) => {
     const includeOfficialSite = props.mobile?.includeOfficialSite ?? true;
+
     if (isMobile && includeOfficialSite) {
-      return <UniversalNavMobile {...props} />;
+      return (
+        <>
+          <TopBannerSpacing {...props.topBannerSpacing} />
+          <UniversalNavMobile {...props} />
+        </>
+      );
     }
-    return null;
+    return <TopBannerSpacing {...props.topBannerSpacing} />;
   },
 });
 
@@ -319,4 +329,5 @@ SunDevilsHeader.propTypes = {
   ...ASUHeader.propTypes,
   officialSiteHref: PropTypes.string,
   officialSite: OfficialAthleticsSite.propTypes,
+  topBannerSpacing: topBannerSpacingPropTypes,
 };

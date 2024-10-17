@@ -60,13 +60,12 @@ const ASUHeader = ({
       return;
     }
 
-    const curPos = window.scrollY;
-
-    if (curPos > headerRef.current.getBoundingClientRect().top) {
+    if (window.scrollY > 0) {
       headerRef.current.classList.add("scrolled");
-    } else {
-      headerRef.current.classList.remove("scrolled");
+      return;
     }
+
+    headerRef.current.classList.remove("scrolled");
   };
 
   useEffect(() => {

@@ -1,5 +1,7 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 
+import { throttleFn } from "../../../../../shared";
+
 export const useDimensionsBody = () => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
@@ -40,18 +42,14 @@ export const useDimensions = ref => {
 
     updateDimensions();
 
-    window.addEventListener("resize", updateDimensions, {
-      passive: true,
-    });
-    window.addEventListener("scroll", updateDimensions, {
+    const updateDimensionsThrottled = throttleFn(updateDimensions, 250);
+
+    window.addEventListener("resize", updateDimensionsThrottled, {
       passive: true,
     });
 
     return () => {
-      window.removeEventListener("resize", updateDimensions, {
-        passive: true,
-      });
-      window.removeEventListener("scroll", updateDimensions, {
+      window.removeEventListener("resize", updateDimensionsThrottled, {
         passive: true,
       });
     };

@@ -1,6 +1,7 @@
 // @ts-check
 import React, { useEffect, useRef } from "react";
 
+import { throttleFn } from "../../../shared";
 import trackReactComponent from "../../../shared/services/componentDatalayer";
 import { HeaderMain } from "./components/HeaderMain";
 import { AppContextProvider } from "./core/context/app-context";
@@ -55,7 +56,7 @@ const ASUHeader = ({
    */
   const headerRef = useRef(null);
 
-  const handleWindowScroll = () => {
+  const onWindowScroll = () => {
     if (!headerRef.current) {
       return;
     }
@@ -88,8 +89,14 @@ const ASUHeader = ({
   }, []);
 
   useEffect(() => {
-    window?.addEventListener("scroll", handleWindowScroll);
-    return () => window.removeEventListener("scroll", handleWindowScroll);
+    const onWindowScrollThrottled = throttleFn(onWindowScroll, 300);
+
+    window?.addEventListener("scroll", onWindowScrollThrottled, {
+      passive: true,
+    });
+    return () => {
+      window.removeEventListener("scroll", onWindowScrollThrottled);
+    };
   }, []);
 
   const renderHeader = () => {

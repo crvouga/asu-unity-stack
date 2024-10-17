@@ -17,6 +17,26 @@ const throttle = (callback, time) => {
   }, time);
 };
 
+const throttleFn = (func, limit) => {
+  let lastFunc;
+  let lastRan;
+
+  return function throttled(...args) {
+    if (!lastRan) {
+      func.apply(this, args);
+      lastRan = Date.now();
+    } else {
+      clearTimeout(lastFunc);
+      lastFunc = setTimeout(() => {
+        if (Date.now() - lastRan >= limit) {
+          func.apply(this, args);
+          lastRan = Date.now();
+        }
+      }, limit - (Date.now() - lastRan));
+    }
+  };
+};
+
 /**
  *
  * @param {function} callback
@@ -29,4 +49,4 @@ const debounce = (callback, time) => {
   debounceTimer = window.setTimeout(callback, time);
 };
 
-export { throttle, debounce };
+export { throttle, debounce, throttleFn };

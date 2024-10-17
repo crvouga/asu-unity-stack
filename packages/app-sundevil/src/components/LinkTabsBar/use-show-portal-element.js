@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import { querySelectorSafe } from "../../utils/query-selector-safe";
+import { throttle } from "../../utils/throttle";
 
 /**
  * @param {{
@@ -33,10 +34,11 @@ export const useShowPortalElement = options => {
   useEffect(() => {
     checkOverlap();
 
-    window.addEventListener("scroll", checkOverlap, { passive: true });
+    const checkOverlapThrottled = throttle(checkOverlap, 250);
+    window.addEventListener("scroll", checkOverlapThrottled, { passive: true });
 
     return () => {
-      window.removeEventListener("scroll", checkOverlap, {
+      window.removeEventListener("scroll", checkOverlapThrottled, {
         passive: true,
       });
     };

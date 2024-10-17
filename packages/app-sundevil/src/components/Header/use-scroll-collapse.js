@@ -1,21 +1,25 @@
 /* eslint-disable no-param-reassign */
 import { useEffect, useState } from "react";
 
+import { throttle } from "../../utils/throttle";
+
 export const useScrollCollapse = ({ ref, height }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const onScroll = () => {
       setIsCollapsed(window.scrollY !== 0);
     };
 
-    window.addEventListener("scroll", handleScroll, {
+    const onScrollThrottled = throttle(onScroll, 300);
+
+    window.addEventListener("scroll", onScrollThrottled, {
       capture: true,
       passive: true,
     });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll, {
+      window.removeEventListener("scroll", onScrollThrottled, {
         capture: true,
         passive: true,
       });

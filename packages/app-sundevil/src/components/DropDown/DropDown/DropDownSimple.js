@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../../config";
+import { throttle } from "../../../utils/throttle";
 import { useElementContentDimensions } from "../../../utils/use-element-content-dimensions";
 import { propTypes } from "./drop-down-props";
 
@@ -107,28 +108,22 @@ export const DropDownSimple = ({
       }
     };
 
-    let timeout;
-    const updateMaxHeightDebounced = () => {
-      clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        updateMaxHeight();
-      }, 200);
-    };
+    const updateMaxHeightThrottled = throttle(updateMaxHeight, 250);
 
     if (open) {
       document.addEventListener("mousedown", handleClickOutside);
       document.addEventListener("focusin", handleFocusOutside);
       updateMaxHeight();
-      window.addEventListener("resize", updateMaxHeightDebounced);
-      window.addEventListener("scroll", updateMaxHeightDebounced, {
+      window.addEventListener("resize", updateMaxHeightThrottled);
+      window.addEventListener("scroll", updateMaxHeightThrottled, {
         capture: true,
         passive: true,
       });
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("focusin", handleFocusOutside);
-      window.removeEventListener("resize", updateMaxHeightDebounced);
-      window.removeEventListener("scroll", updateMaxHeightDebounced, {
+      window.removeEventListener("resize", updateMaxHeightThrottled);
+      window.removeEventListener("scroll", updateMaxHeightThrottled, {
         capture: true,
         passive: true,
       });
@@ -137,8 +132,8 @@ export const DropDownSimple = ({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("focusin", handleFocusOutside);
-      window.removeEventListener("resize", updateMaxHeightDebounced);
-      window.removeEventListener("scroll", updateMaxHeightDebounced);
+      window.removeEventListener("resize", updateMaxHeightThrottled);
+      window.removeEventListener("scroll", updateMaxHeightThrottled);
     };
   }, [open, onClose]);
 

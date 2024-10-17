@@ -1,12 +1,11 @@
 // @ts-check
 import PropTypes from "prop-types";
-import React, { forwardRef, useRef, useState } from "react";
+import React, { forwardRef, useState } from "react";
 
 import { idGenerator, trackGAEvent } from "../../../../../../shared";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { useAppContext } from "../../../core/context/app-context";
 import { useIsMobile } from "../../../core/hooks/isMobile";
-import { useDimensions } from "../../../core/utils/use-dimensions";
 import { Button } from "../../Button";
 import { UniversalNavbar } from "../../UniversalNavbar";
 import { Wrapper } from "./index.styles";
@@ -27,10 +26,6 @@ const NavbarContainer = forwardRef(
     } = useAppContext();
     const isMobile = useIsMobile(breakpoint);
     const [itemOpened, setItemOpened] = useState(undefined);
-    /** @type {React.MutableRefObject<HTMLElement | null>} */
-    const universalNavbarRef = useRef(null);
-    const universalNavbarDimensions = useDimensions(universalNavbarRef);
-    const universalNavbarHeight = universalNavbarDimensions.height;
 
     const handleSetItemOpened = itemId => {
       setItemOpened(() => (itemOpened === itemId ? undefined : itemId));
@@ -67,7 +62,6 @@ const NavbarContainer = forwardRef(
         aria-hidden={hidden}
         universalNavbar={universalNavbar}
         mobile={mobile}
-        universalNavbarHeight={universalNavbarHeight}
       >
         {isMobile && typeof mobile?.drawer?.renderStart === "function"
           ? mobile.drawer.renderStart()
@@ -98,7 +92,7 @@ const NavbarContainer = forwardRef(
           </div>
         )}
         {/* Navbar Footer */}
-        {showUniversalNavbar && <UniversalNavbar ref={universalNavbarRef} />}
+        {showUniversalNavbar && <UniversalNavbar />}
       </Wrapper>
     );
   }

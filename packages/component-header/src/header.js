@@ -1,5 +1,5 @@
 // @ts-check
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 
 import { throttleFn } from "../../../shared";
 import trackReactComponent from "../../../shared/services/componentDatalayer";
@@ -56,19 +56,6 @@ const ASUHeader = ({
    */
   const headerRef = useRef(null);
 
-  const onWindowScroll = () => {
-    if (!headerRef.current) {
-      return;
-    }
-
-    if (window.scrollY > 0) {
-      headerRef.current.classList.add("scrolled");
-      return;
-    }
-
-    headerRef.current.classList.remove("scrolled");
-  };
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       trackReactComponent({
@@ -88,7 +75,22 @@ const ASUHeader = ({
     }
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    const onWindowScroll = () => {
+      if (!headerRef.current) {
+        return;
+      }
+
+      if (window.scrollY > 0) {
+        headerRef.current.classList.add("scrolled");
+        return;
+      }
+
+      headerRef.current.classList.remove("scrolled");
+    };
+
+    onWindowScroll();
+
     const onWindowScrollThrottled = throttleFn(onWindowScroll, 300);
 
     window?.addEventListener("scroll", onWindowScrollThrottled, {

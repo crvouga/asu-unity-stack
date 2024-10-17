@@ -8,7 +8,10 @@ import { useScrollCollapse } from "./use-scroll-collapse";
 export const UniversalNavMobile = props => {
   const ref = useRef(null);
   const height = "24px";
-  useScrollCollapse({ ref, height });
+  useScrollCollapse({
+    ref,
+    height,
+  });
   return (
     <div
       ref={ref}

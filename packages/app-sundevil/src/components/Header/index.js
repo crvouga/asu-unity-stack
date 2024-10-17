@@ -8,10 +8,18 @@ import { trackAdClickHandler } from "../Ads/ad-data-layers";
 import { HeaderContentSportLinks } from "../HeaderContentSportLinks";
 import { Icon } from "../Icon_";
 import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
+import { TopBanner, topBannerPropTypes } from "./TopBanner";
 import { UniversalNavMobile } from "./UniversalNavMobile";
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps} BaseHeaderProps */
-/** @typedef {BaseHeaderProps & {officialSiteHref: string; officialSiteHrefStyle?: Record<string, unknown>, officialSite: import("../OfficialAthleticsSite").OfficialAthleticsSiteProps}} HeaderProps */
+/**
+ * @typedef {BaseHeaderProps & {
+ * officialSiteHref: string;
+ * officialSiteHrefStyle?: Record<string, unknown>,
+ * officialSite: import("../OfficialAthleticsSite").OfficialAthleticsSiteProps;
+ * topBanner: import("./TopBanner").Props
+ * }} HeaderProps
+ * */
 
 /** @typedef {import("../../../../component-header/src/header").HeaderProps['navTree'][0]} NavTreeItem */
 
@@ -288,14 +296,7 @@ const mapProps = props => ({
   },
 
   mobile: {
-    // we're now going to use the default hamburger button
-    // hamburger: {
-    //   render: ({ open, onClick, hidden }) => (
-    //     <HamburgerButton hidden={hidden} open={open} onClick={onClick} />
-    //   ),
-    // },
     drawer: {
-      // renderStart: () => <MobileSearchBar />,
       height: "fit-content",
     },
     includeOfficialSite: true,
@@ -304,10 +305,16 @@ const mapProps = props => ({
   },
   renderTop: ({ isMobile }) => {
     const includeOfficialSite = props.mobile?.includeOfficialSite ?? true;
+
     if (isMobile && includeOfficialSite) {
-      return <UniversalNavMobile {...props} />;
+      return (
+        <>
+          <TopBanner {...props.topBanner} />
+          <UniversalNavMobile {...props} />
+        </>
+      );
     }
-    return null;
+    return <TopBanner {...props.topBanner} />;
   },
 });
 
@@ -319,4 +326,5 @@ SunDevilsHeader.propTypes = {
   ...ASUHeader.propTypes,
   officialSiteHref: PropTypes.string,
   officialSite: OfficialAthleticsSite.propTypes,
+  topBanner: topBannerPropTypes,
 };

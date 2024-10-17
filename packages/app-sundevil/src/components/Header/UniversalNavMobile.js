@@ -7,19 +7,21 @@ import { useScrollCollapse } from "./use-scroll-collapse";
 
 export const UniversalNavMobile = props => {
   const ref = useRef(null);
-  useScrollCollapse(ref);
+  const height = "24px";
+  useScrollCollapse({ ref, height });
   return (
     <div
       ref={ref}
       style={{
         overflow: "hidden",
-        height: "24px",
+        height,
         width: "100%",
         backgroundColor: "#E8E8E8",
         display: "flex",
         justifyContent: "start",
         alignItems: "center",
         paddingLeft: "20px",
+        pointerEvents: "auto",
       }}
     >
       <OfficialAthleticsSite

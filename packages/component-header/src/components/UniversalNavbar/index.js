@@ -45,6 +45,7 @@ const UniversalNavbar = forwardRef((_props, ref) => {
       data-elastic-exclude="data-elastic-exclude"
       universalNavbar={universalNavbar}
       ref={ref}
+      style={{ pointerEvents: "auto" }}
     >
       <div className="container-xl">
         <div className="header-top">

@@ -56,6 +56,7 @@ const HeaderMain = () => {
       <HeaderMainWrapper
         // @ts-ignore
         breakpoint={breakpoint}
+        style={{ pointerEvents: "auto" }}
       >
         <div className="container-xl">
           <div className="header-main">

@@ -102,6 +102,7 @@ const ASUHeader = ({
         ref={headerRef}
         // @ts-ignore
         breakpoint={breakpoint}
+        style={{ pointerEvents: "none" }}
       >
         <HeaderMain />
         {typeof stickyPortalEntranceId === "string" &&

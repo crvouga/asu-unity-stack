@@ -32,7 +32,7 @@ export const topBannerPropTypes = PropTypes.shape({
  * @type {React.FC<Props>}
  */
 export const TopBanner = ({
-  // html,
+  html,
   height,
   heightAbove,
   heightBelow,
@@ -51,27 +51,6 @@ export const TopBanner = ({
     ref,
     height: heightFinal,
   });
-
-  const html = `
-  <div class="text-center">
-      <div class="d-lg-block d-md-none d-none">
-          <!-- /23203588234/FY25_SDA_all_ads_970x66_universal_nav -->
-          <div style="min-height:66px;min-width:970px;" id="div-gpt-ad-1729113360808-0">
-              <script>
-                googletag.cmd.push(function() { googletag.display("div-gpt-ad-1729113360808-0"); });
-              </script>
-          </div>
-      </div>
-      <div class="d-lg-none d-md-block d-block">
-          <!-- /23203588234/FY25_SDA_all_ads_320x50_universal-nav -->
-          <div style="min-height:50px;min-width:300px;" id="div-gpt-ad-1729113295920-0">
-              <script>
-                googletag.cmd.push(function() { googletag.display("div-gpt-ad-1729113295920-0"); });
-              </script>
-          </div>
-      </div>
-  </div>
-  `;
 
   if (!html) {
     return null;

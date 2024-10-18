@@ -45,8 +45,8 @@
 
     <!-- *************************************************************** -->
     <!-- include bundled scripts from packages -->
-    <script src="../../dist/vendor.umd.js"></script>
-    <script src="../../dist/sunDevil.umd.js"></script>
+    <script src="../dist/vendor.umd.js"></script>
+    <script src="../dist/sunDevil.umd.js"></script>
   </head>
 
   <body>
@@ -63,17 +63,18 @@
         // height: 66,
         // storage: window.localStorage, // or window.sessionStorage
         storageKey: "sun-devils-ads-1", //Important to provide unique storageKey so ad component instances can cycle independently
-        onMount: (payload) => {
-          // Custom data layer code can be added here
-          console.log('onMount', payload);
-        },
-        onClickAd: (payload) => {
-          // Custom data layer code can be added here
-          console.log('onClickAd', payload);
-        },
+        // onMount: (payload) => {
+        //   // Custom data layer code can be added here
+        //   console.log('onMount', payload);
+        // },
+        // onClickAd: (payload) => {
+        //   // Custom data layer code can be added here
+        //   console.log('onClickAd', payload);
+        // },
 
         ads: [
           {
+            id: "ad-1",
             imageSrc:
               "https://tpc.googlesyndication.com/simgad/15906690503191566407",
             imageAlt: "Placeholder",
@@ -82,6 +83,7 @@
             // height: 66,
           },
           {
+            id: "ad-2",
             imageSrc:
               "https://tpc.googlesyndication.com/simgad/4947683613591479131",
             imageAlt: "Placeholder",
@@ -90,6 +92,7 @@
             // height: 66,
           },
           {
+            id: "ad-3",
             imageSrc:
               "https://tpc.googlesyndication.com/simgad/8450655694590921544",
             imageAlt: "Placeholder",

@@ -98,15 +98,19 @@ export const Ads = ({
  * }} Props
  */
 
-Ads.propTypes = {
-  id: PropTypes.string,
+export const adsPropTypes = PropTypes.shape({
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   ads: PropTypes.arrayOf(adPropTypes),
   storageKey: PropTypes.string,
-  target: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   storage: PropTypes.object,
+  target: PropTypes.string,
+  id: PropTypes.string,
   onMount: PropTypes.func,
   onClickAd: PropTypes.func,
+});
+
+Ads.propTypes = {
+  ...adsPropTypes,
 };

@@ -1,3 +1,13 @@
+const key = "shouldLogDataLayers";
+const toggleLogDataLayers = () => {
+  const got = localStorage.getItem(key);
+  const shouldLogDataLayers = got === "true" ? "false" : "true";
+  localStorage.setItem(key, shouldLogDataLayers);
+};
+
+// @ts-ignore
+window.toggleLogDataLayers = toggleLogDataLayers;
+
 /**
  * @param {{
  *  event?: string
@@ -19,9 +29,11 @@ export const trackGAEvent = ({
   text = "",
   region = "",
   component = "",
+  ...rest
 }) => {
   const { dataLayer } = window;
   const e = {
+    ...rest,
     event: event.toLowerCase(),
     action: action.toLowerCase(),
     name: name.toLowerCase(),
@@ -31,6 +43,10 @@ export const trackGAEvent = ({
     text: text.toLowerCase(),
     component: component.toLowerCase(),
   };
+  if (localStorage.getItem(key) === "true") {
+    // eslint-disable-next-line no-console
+    console.log("trackGAEvent", e);
+  }
   if (dataLayer) {
     dataLayer.push(e);
   }

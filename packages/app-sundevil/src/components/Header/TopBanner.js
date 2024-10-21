@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import React, { useRef } from "react";
 
 import { useBreakpoint } from "../../utils/use-breakpoint";
-import { Ads } from "../Ads/Ads";
 import { useScrollCollapse } from "./use-scroll-collapse";
 
 export const topBannerPropTypes = PropTypes.shape({
@@ -39,7 +38,8 @@ export const TopBanner = ({
   heightBelow,
   maxWidthBreakpoint,
   contentStyles,
-  ads,
+  // ads,
+  html,
 } = {}) => {
   const ref = useRef(null);
 
@@ -76,9 +76,8 @@ export const TopBanner = ({
           justifyCenter: "center",
           ...(contentStyles ?? {}),
         }}
-      >
-        <Ads {...ads} />
-      </div>
+        dangerouslySetInnerHTML={html ? { __html: html } : {}}
+      />
     </div>
   );
 };

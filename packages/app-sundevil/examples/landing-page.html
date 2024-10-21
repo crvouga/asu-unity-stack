@@ -52,20 +52,6 @@
         padding-bottom: 500px;
       }
     </style>
-  </head>
-
-  <body>
-    <div id="header-container"></div>
-
-    <!--  -->
-    <!--  -->
-    <!--  -->
-    <!--  -->
-    <!--  -->
-    <!--  -->
-    <!--  -->
-    <!--  -->
-
     <!-- https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4051-12639&t=llhijNvVuVxWfsbn-0 -->
     <style>
       .hero__root {
@@ -153,59 +139,56 @@
         }
       }
     </style>
+    <style>
+      .my-button {
+        background-color: tomato !important;
+      }
+    </style>
+  </head>
 
-    <div class="hero__root">
-      <div class="hero__title-root">
-        <div>Gameday.</div>
-        <img
-          class="hero__pitchfork"
-          src="./sun-devils-pitch-fork.svg"
-          alt="Sun Devils Pitchfork"
-        />
-        <div>Everyday.</div>
+  <body style="overflow: hidden; display: flex; flex-direction: column; width: 100%; height: 100dvh;">
+    <div id="header-container"></div>
+
+    <div style="width: 100%; overflow-y: auto; flex: 1">
+      <div class="hero__root">
+        <div class="hero__title-root">
+          <div>Gameday.</div>
+          <img
+            class="hero__pitchfork"
+            src="./sun-devils-pitch-fork.svg"
+            alt="Sun Devils Pitchfork"
+          />
+          <div>Everyday.</div>
+        </div>
+        <div class="hero__subtitle">
+          Just for you. With more than 20 sports plus signature events for the
+          whole family, there's something here we know you'll love. Onward to
+          victory!
+        </div>
+        <div class="hero__button-root hero__button-root--mobile">
+          <button class="btn btn-maroon btn-md">Buy tickets</button>
+          <button class="btn btn-gold btn-md">Game schedule</button>
+        </div>
+        <div class="hero__button-root hero__button-root--desktop">
+          <button class="btn btn-maroon">Buy tickets</button>
+          <button class="btn btn-gold">Game schedule</button>
+        </div>
       </div>
-      <div class="hero__subtitle">
-        Just for you. With more than 20 sports plus signature events for the
-        whole family, there's something here we know you'll love. Onward to
-        victory!
-      </div>
-      <div class="hero__button-root hero__button-root--mobile">
-        <button class="btn btn-maroon btn-md">Buy tickets</button>
-        <button class="btn btn-gold btn-md">Game schedule</button>
-      </div>
-      <div class="hero__button-root hero__button-root--desktop">
-        <button class="btn btn-maroon">Buy tickets</button>
-        <button class="btn btn-gold">Game schedule</button>
+
+      <div id="section-container">
+        <div>This will be removed</div>
+        <div class="contextual"></div>
       </div>
     </div>
 
-    <!-- <div style="position: fixed; top:0; left: 0; width: 100%; height: 131px; background-color: tomato;">
-      My banner
-      <button onclick="alert('hello')">
-        Click me
-      </button>
-    </div> -->
-
-    <!--  -->
-    <!--  -->
-    <!--  -->
-    <!--  -->
-    <!--  -->
-    <!--  -->
-    <!--  -->
-    <!--  -->
-    <!--  -->
-    <!--  -->
-
-    <div id="section-container">
-      <div>This will be removed</div>
-      <div class="contextual"></div>
-    </div>
     <script>
       const headerProps = {
+        styles: {
+          position: "static",
+        },
         topBanner: {
           // This is disabled now
-          // html: `<div style="color: tomato; width: 100%;"><button style="background-color: tomato;" onclick="alert('hello')">hello</button></div> `,
+          html: `<div style="color: tomato; width: 100%;"><button style="background-color: tomato;" onclick="alert('hello')">hello</button></div> `,
           height: "131px",
           heightAbove: "131px",
           heightBelow: "115px",
@@ -1532,12 +1515,6 @@
         renderWithinChildWhiteList: [".contextual"],
       });
     </script>
-
-    <style>
-      .my-button {
-        background-color: tomato !important;
-      }
-    </style>
     <script>
       const props = {
         title: "Upcoming games",

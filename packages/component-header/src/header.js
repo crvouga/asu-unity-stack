@@ -47,6 +47,7 @@ const ASUHeader = ({
   mobile,
   stickyPortalEntranceId,
   renderTop,
+  styles = {},
 }) => {
   const navTree = tryAddActivePage(rawNavTree);
   const mobileNavTree = tryAddActivePage(rawMobileNavTree);
@@ -107,6 +108,7 @@ const ASUHeader = ({
 
     return (
       <Wrapper
+        styles={styles}
         id="asuHeader"
         ref={headerRef}
         // @ts-ignore
@@ -164,6 +166,7 @@ const ASUHeader = ({
         mobile,
         // @ts-ignore
         renderTop,
+        styles,
       }}
     >
       {renderHeader()}

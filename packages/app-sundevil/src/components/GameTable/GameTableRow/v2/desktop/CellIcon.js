@@ -28,10 +28,13 @@ export const CellIcon = props => {
           height: "120px",
           flexDirection: "column",
           flexShrink: 0,
+          padding: "12px",
         }}
       >
         <Icon icon={game?.sportIcon} style={{ width: "16px" }} />
-        <div style={{ fontWeight: "bold", fontSize: "16px" }}>
+        <div
+          style={{ fontWeight: "bold", fontSize: "16px", textAlign: "center" }}
+        >
           {game?.sportName}
         </div>
       </Cell>

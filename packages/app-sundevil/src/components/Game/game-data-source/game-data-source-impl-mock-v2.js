@@ -17,7 +17,7 @@ const games = [
   {
     id: Math.random().toString(36).substring(2, 9),
     sportIcon: "fa fas fa-football-ball",
-    sportName: "Football",
+    sportName: "Football Football Football",
     sportId: "football",
     title: "Sun Devil Olympian Celebration",
     titleHref: "https://www.example.com",

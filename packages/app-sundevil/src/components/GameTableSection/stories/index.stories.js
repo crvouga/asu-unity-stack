@@ -209,6 +209,15 @@ SingleSport.args = {
     hideBasedOn: {
       // sportId: "w-swimming",
     },
+    message: "No upcoming games",
+  },
+  configAddToCalender: {
+    enabled: true,
+    label: "My Add to Calendar",
+    onClick: payload => {
+      // eslint-disable-next-line no-console
+      console.log("Add to calendar", payload);
+    },
   },
   gameDataSourceLoader: {
     limit: 5,
@@ -234,40 +243,51 @@ SingleSport.args = {
       },
     },
   },
-  title: "Upcoming Games",
-  subtitle:
-    "From the fall football season to the Maroon and Gold Spring game and at Camp Tontozona,\n there are football games and events throughout the year.",
-  emptyStateMessage: "No upcoming games",
-  subtitleFontWeight: "bold",
-  subtitleLinks: [
-    {
-      label: "See Past Game Scores",
-      href: "#",
-      fontWeight: "bold",
+  sectionHeader: {
+    title: "Upcoming Games",
+    subtitle:
+      "From the fall football season to the Maroon and Gold Spring game and at Camp Tontozona,\n there are football games and events throughout the year.",
+    // subtitleFontWeight: "bold",
+    subtitleLinks: [
+      {
+        label: "See Past Game Scores",
+        href: "#",
+        // fontWeight: "bold",
+      },
+    ],
+    subtitleButtons: [
+      // {
+      //   label: "My Button",
+      //   size: "xsmall",
+      //   color: "gray",
+      //   onClick: () => {
+      //     alert("Button clicked");
+      //   },
+      // },
+    ],
+    tabs: [
+      {
+        label: "All Games",
+        active: true,
+        id: ALL_ID,
+      },
+      {
+        label: "Home",
+        active: false,
+        id: "home",
+      },
+      {
+        label: "Away",
+        active: false,
+        id: "away",
+      },
+    ],
+    sponsorBlock: {
+      text: "Presented By",
+      name: "Ford",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg",
+      url: "https://www.ford.com/",
     },
-  ],
-  tabs: [
-    {
-      label: "All Games",
-      active: true,
-      id: ALL_ID,
-    },
-    {
-      label: "Home",
-      active: false,
-      id: "home",
-    },
-    {
-      label: "Away",
-      active: false,
-      id: "away",
-    },
-  ],
-  sponsorBlock: {
-    text: "Presented By",
-    name: "Ford",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Ford_logo_flat.svg",
-    url: "https://www.ford.com/",
   },
   loadMore: {
     label: "Load More",

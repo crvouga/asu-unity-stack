@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { APP_CONFIG } from "../../config";
 import { ALL_ID } from "../../select-all-option";
 import { deepMergeLeft } from "../../utils/deep-merge-left";
+import { ensureArray } from "../../utils/ensure-array";
 import { ensureObject } from "../../utils/ensure-object";
 import { firstCleanString } from "../../utils/first-clean-string";
 import { isEqual } from "../../utils/is-equal";
@@ -16,7 +17,10 @@ import {
   buildGameDataSource,
   gameDataSourcePropTypes,
 } from "../Game/game-data-source/game-data-source-impl";
-import { GameDataSourceProvider } from "../Game/GameDataSourceContext";
+import {
+  GameDataSourceProvider,
+  useGameDataSource,
+} from "../Game/GameDataSourceContext";
 import { useGameDataSourceLoader } from "../Game/use-game-data-source-loader";
 import { GameTable } from "../GameTable/GameTable";
 import {
@@ -25,13 +29,14 @@ import {
 } from "../LoadMoreButton/LoadMoreButton";
 import { SectionFooter } from "../SectionFooter";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
-import {
-  stringToSportId,
-  stringToSportIdWithoutGender,
-} from "../Sport/sport-id";
+import { stringToSportId } from "../Sport/sport-id";
 import { useUrlSportId } from "../Sport/use-url-sport-id";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportWithFooterPropTypes } from "../SportsTabs/sports-tabs";
+import {
+  addAddToCalendarToSectionHeaderProps,
+  configAddToCalendarPropTypes,
+} from "./config-add-to-calendar";
 import { configInputsPropTypes, defaultConfigInputs } from "./config-inputs";
 import { configLayoutPropTypes, defaultConfigLayout } from "./config-layout";
 import {
@@ -75,32 +80,6 @@ const Root = styled.div`
   overflow: hidden;
   */
 `;
-
-export const useUrlSportIdWithFallback = (sports, onSportId) => {
-  useUrlSportId(urlSportId => {
-    const existingWithSameId = sports?.find(sport =>
-      isEqual(stringToSportId, sport.id, urlSportId)
-    );
-
-    if (existingWithSameId) {
-      onSportId(existingWithSameId.id);
-      return null;
-    }
-
-    const existingWithSameSport = sports?.find(sport =>
-      isEqual(stringToSportIdWithoutGender, sport.id, urlSportId)
-    );
-
-    if (existingWithSameSport) {
-      onSportId({
-        sportId: existingWithSameSport.id,
-      });
-      return null;
-    }
-
-    return null;
-  });
-};
 
 const GameTableSectionInner = ({ ...props }) => {
   // eslint-disable-next-line no-console
@@ -191,21 +170,22 @@ const GameTableSectionInner = ({ ...props }) => {
     });
   });
 
-  const gameDataSourceLoader = useGameDataSourceLoader({
+  /**
+   * @type {import("../Game/game-data-source/game-data-source").FindManyInput}
+   */
+  const gameDataSourceFindManyInput = {
     limit: 5,
     searchQuery: gameSearchForm.debouncedSearchQuery,
     ...gameSearchForm,
     ...props.gameDataSourceLoader,
-  });
+  };
+  const gameDataSourceLoader = useGameDataSourceLoader(
+    gameDataSourceFindManyInput
+  );
 
   const sports = props.sports?.map(sport => ({
     ...sport,
     active: isEqual(stringToSportId, sport.id, gameSearchForm.sportId),
-  }));
-
-  const tabs = props.tabs?.map(tab => ({
-    ...tab,
-    active: tab.id === gameSearchForm.gameType,
   }));
 
   const onSportItemClick = clickedSportId => {
@@ -262,7 +242,22 @@ const GameTableSectionInner = ({ ...props }) => {
     shouldLog: props.shouldLog,
   });
 
-  const sectionHeaderProps = mapSectionHeaderProps(props);
+  const gameDataSource = useGameDataSource();
+  const sectionHeaderProps = addAddToCalendarToSectionHeaderProps({
+    configAddToCalender: props.configAddToCalender,
+    isMobile,
+    sectionHeaderProps: mapSectionHeaderProps({
+      ...props?.sectionHeader,
+      ...props,
+    }),
+    gameDataSource,
+    gameDataSourceFindManyInput,
+  });
+  const tabs = ensureArray(sectionHeaderProps?.tabs)?.map(tab => ({
+    ...tab,
+    active: tab.id === gameSearchForm.gameType,
+  }));
+
   const sectionName = sectionHeaderProps?.title;
 
   const renderGameTable = ({ className = "" } = {}) => (
@@ -304,9 +299,9 @@ const GameTableSectionInner = ({ ...props }) => {
     >
       {variant === "hero" && (
         <GameTableHero
-          title={props.title}
-          subtitle={props.subtitle}
-          subtitleLinks={props.subtitleLinks}
+          title={sectionHeaderProps.title}
+          subtitle={sectionHeaderProps.subtitle}
+          subtitleLinks={sectionHeaderProps.subtitleLinks}
           style={getHeroOverlapStyles({
             configOverlap: props.configOverlap,
             headerDimensions,
@@ -371,7 +366,7 @@ const GameTableSectionInner = ({ ...props }) => {
               sports={sports}
               onSportItemClick={onSportItemClick}
               variant="borderless"
-              sectionName={sectionName}
+              sectionName={sectionName ?? " "}
             />
           </div>
         )}
@@ -435,6 +430,7 @@ GameTableSectionInner.propTypes = {
   gameDataSource: gameDataSourcePropTypes,
   configNoData: configNoDataPropTypes,
   shouldLog: PropTypes.bool,
+  configAddToCalender: configAddToCalendarPropTypes,
 };
 
 //

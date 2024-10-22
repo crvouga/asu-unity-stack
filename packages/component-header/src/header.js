@@ -15,6 +15,42 @@ import { Header, HeaderDiv } from "./header.styles";
 
 /**
  *
+ * @param {{headerRef: React.MutableRefObject<HTMLDivElement | null>, scrollTarget: HTMLElement | Window}} input
+ */
+function useScrollCollapse({ headerRef, scrollTarget = window }) {
+  useLayoutEffect(() => {
+    const onScroll = () => {
+      if (!headerRef.current) {
+        return;
+      }
+
+      const scrollYPosition =
+        scrollTarget instanceof Window
+          ? scrollTarget.scrollY
+          : scrollTarget.scrollTop;
+
+      if (scrollYPosition > 0) {
+        headerRef.current.classList.add("scrolled");
+      } else {
+        headerRef.current.classList.remove("scrolled");
+      }
+    };
+
+    onScroll();
+
+    const onWindowScrollThrottled = throttleFn(onScroll, 300);
+
+    scrollTarget?.addEventListener("scroll", onWindowScrollThrottled, {
+      passive: true,
+    });
+    return () => {
+      scrollTarget.removeEventListener("scroll", onWindowScrollThrottled);
+    };
+  }, [headerRef, scrollTarget]);
+}
+
+/**
+ *
  * @param {HeaderProps} props
  * @returns {JSX.Element}
  */
@@ -47,7 +83,8 @@ const ASUHeader = ({
   mobile,
   stickyPortalEntranceId,
   renderTop,
-  styles = {},
+  style = {},
+  scrollTarget,
 }) => {
   const navTree = tryAddActivePage(rawNavTree);
   const mobileNavTree = tryAddActivePage(rawMobileNavTree);
@@ -76,31 +113,10 @@ const ASUHeader = ({
     }
   }, []);
 
-  useLayoutEffect(() => {
-    const onWindowScroll = () => {
-      if (!headerRef.current) {
-        return;
-      }
-
-      if (window.scrollY > 0) {
-        headerRef.current.classList.add("scrolled");
-        return;
-      }
-
-      headerRef.current.classList.remove("scrolled");
-    };
-
-    onWindowScroll();
-
-    const onWindowScrollThrottled = throttleFn(onWindowScroll, 300);
-
-    window?.addEventListener("scroll", onWindowScrollThrottled, {
-      passive: true,
-    });
-    return () => {
-      window.removeEventListener("scroll", onWindowScrollThrottled);
-    };
-  }, []);
+  useScrollCollapse({
+    headerRef,
+    scrollTarget: scrollTarget || window,
+  });
 
   const renderHeader = () => {
     // Determine the wrapper based on renderDiv value
@@ -108,7 +124,7 @@ const ASUHeader = ({
 
     return (
       <Wrapper
-        styles={styles}
+        style={style}
         id="asuHeader"
         ref={headerRef}
         // @ts-ignore
@@ -166,7 +182,7 @@ const ASUHeader = ({
         mobile,
         // @ts-ignore
         renderTop,
-        styles,
+        style,
       }}
     >
       {renderHeader()}

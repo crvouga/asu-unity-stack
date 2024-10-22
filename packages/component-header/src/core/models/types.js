@@ -126,7 +126,8 @@
  * @property {UniversalNavBarProps | null} [universalNavbar]
  * @property {string} [stickyPortalEntranceId]
  * @property {Function} [renderTop]
- * @property {import("react").CSSProperties} styles
+ * @property {import("react").CSSProperties} style
+ * @property {HTMLElement | null} [scrollTarget]
  */
 
 export const JSDOC = "jsdoc";

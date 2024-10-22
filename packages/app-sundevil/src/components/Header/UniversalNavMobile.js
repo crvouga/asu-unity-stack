@@ -11,6 +11,7 @@ export const UniversalNavMobile = props => {
   useScrollCollapse({
     ref,
     height,
+    scrollTarget: props.scrollTarget,
   });
   return (
     <div

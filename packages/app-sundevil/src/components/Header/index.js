@@ -309,12 +309,12 @@ const mapProps = props => ({
     if (isMobile && includeOfficialSite) {
       return (
         <>
-          <TopBanner {...props.topBanner} />
-          <UniversalNavMobile {...props} />
+          <TopBanner {...props.topBanner} scrollTarget={props.scrollTarget} />
+          <UniversalNavMobile {...props} scrollTarget={props.scrollTarget} />
         </>
       );
     }
-    return <TopBanner {...props.topBanner} />;
+    return <TopBanner {...props.topBanner} scrollTarget={props.scrollTarget} />;
   },
 });
 

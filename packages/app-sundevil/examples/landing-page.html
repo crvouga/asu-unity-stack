@@ -149,7 +149,13 @@
   <body style="overflow: hidden; display: flex; flex-direction: column; width: 100%; height: 100dvh;">
     <div id="header-container"></div>
 
-    <div style="width: 100%; overflow-y: auto; flex: 1">
+    <div id="main" style="width: 100%; overflow-y: auto; flex: 1">
+
+
+      <div id="my-ad" style="width: 100%; max-width: 800px; max-height: 72px; height: 100%; background-color: tomato; display: flex; align-items: center; justify-content: center;">
+        Some Ad
+      </div>
+
       <div class="hero__root">
         <div class="hero__title-root">
           <div>Gameday.</div>
@@ -182,67 +188,22 @@
     </div>
 
     <script>
+      const scrollTarget = document.getElementById("main");
+
+
       const headerProps = {
-        styles: {
+        scrollTarget: scrollTarget,
+        style: {
           position: "static",
         },
         topBanner: {
           // This is disabled now
-          html: `<div style="color: tomato; width: 100%;"><button style="background-color: tomato;" onclick="alert('hello')">hello</button></div> `,
+          html: `<div id="my-ad-portal-exit"></div>`,
           height: "131px",
           heightAbove: "131px",
           heightBelow: "115px",
           maxWidthBreakpoint: "992px",
           contentStyles: {},
-          // These callbacks will override the builtin data layers
-          //   onMount: (payload) => {
-          //   // Custom data layer code can be added here
-          //   console.log('onMount', payload);
-          // },
-          // onClickAd: (payload) => {
-          //   // Custom data layer code can be added here
-          //   console.log('onClickAd', payload);
-          // },
-          ads: {
-            // width: 970,
-            // height: 66,
-            storage: window.localStorage,
-            storageKey: "sun-devils-ads",
-            id: "root-ad",
-            target: "_blank",
-            ads: [
-              {
-                id: "some-ad-id-1",
-                imageSrc:
-                  "https://tpc.googlesyndication.com/simgad/15906690503191566407",
-                imageAlt: "Placeholder",
-                href: "https://www.example.com",
-                target: "_blank",
-                // width: 970,
-                // height: 66,
-              },
-              {
-                id: "some-ad-id-2",
-                imageSrc:
-                  "https://tpc.googlesyndication.com/simgad/4947683613591479131",
-                imageAlt: "Placeholder",
-                href: "https://www.example.com",
-                target: "_blank",
-                // width: 970,
-                // height: 66,
-              },
-              {
-                id: "some-ad-id-3",
-                imageSrc:
-                  "https://tpc.googlesyndication.com/simgad/8450655694590921544",
-                imageAlt: "Placeholder",
-                href: "https://www.example.com",
-                target: "_blank",
-                // width: 728,
-                // height: 90,
-              },
-            ],
-          },
         },
         baseUrl: "https://web-sda.ddev.site:8443/",
         title: "Sun Devils",
@@ -1513,6 +1474,22 @@
         targetSelector: "#header-container",
         props: headerProps,
         renderWithinChildWhiteList: [".contextual"],
+      });
+
+
+
+      function portal({targetSelector, sourceSelector}) {
+        const target = document.querySelector(targetSelector);
+        const source = document.querySelector(sourceSelector);
+
+        if (target && source) {
+          target.appendChild(source);
+        }
+      }
+
+      portal({
+        targetSelector: "#my-ad-portal-exit",
+        sourceSelector: "#my-ad",
       });
     </script>
     <script>

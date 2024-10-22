@@ -26,6 +26,7 @@ export const topBannerPropTypes = PropTypes.shape({
  * heightBelow: string;
  * contentStyles: { [key: string]: string | number };
  * ads: import("../Ads/Ads").Props;
+ * scrollTarget: HTMLElement | Window | null | undefined;
  * }} Props
  */
 
@@ -40,6 +41,7 @@ export const TopBanner = ({
   contentStyles,
   // ads,
   html,
+  scrollTarget = window,
 } = {}) => {
   const ref = useRef(null);
 
@@ -52,6 +54,7 @@ export const TopBanner = ({
   useScrollCollapse({
     ref,
     height: heightFinal,
+    scrollTarget,
   });
 
   return (

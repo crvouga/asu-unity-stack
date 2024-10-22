@@ -3,11 +3,23 @@ import { useLayoutEffect } from "react";
 
 import { throttle } from "../../utils/throttle";
 
-export const useScrollCollapse = ({ ref, height }) => {
+/**
+ *
+ * @param {{
+ * ref: React.MutableRefObject<HTMLDivElement | null>,
+ * height: string | number,
+ * scrollTarget?: HTMLElement | Window
+ * }} input
+ */
+export const useScrollCollapse = ({ ref, height, scrollTarget = window }) => {
   useLayoutEffect(() => {
     const onScroll = () => {
       if (ref.current) {
-        if (window.scrollY === 0) {
+        const scrollYPosition =
+          scrollTarget instanceof Window
+            ? scrollTarget.scrollY
+            : scrollTarget.scrollTop;
+        if (scrollYPosition === 0) {
           ref.current.style.height = height;
         } else {
           ref.current.style.height = "0px";

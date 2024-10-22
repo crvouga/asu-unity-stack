@@ -94,7 +94,6 @@ const MobilePropTypes = PropTypes.shape({
 });
 
 const HeaderPropTypes = {
-  styles: PropTypes.object,
   isPartner: PropTypes.bool,
   navTree: PropTypes.arrayOf(NavTreePropTypes),
   partnerLogo: PropTypes.shape(LogoPropTypes),
@@ -124,6 +123,8 @@ const HeaderPropTypes = {
   footers: PropTypes.arrayOf(NavTreePropFooter),
   stickyPortalEntranceId: PropTypes.string,
   renderTop: PropTypes.func,
+  style: PropTypes.object,
+  scrollTarget: PropTypes.object,
 };
 
 export {

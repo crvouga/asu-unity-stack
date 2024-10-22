@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 
 import { deepMergeLeft } from "../../utils/deep-merge-left";
 import { ensureObject } from "../../utils/ensure-object";
-import { withDefault } from "../../utils/result";
 
 /**
  * @typedef {{

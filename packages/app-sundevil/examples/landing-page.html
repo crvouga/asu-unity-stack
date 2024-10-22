@@ -201,16 +201,12 @@
 
       function portalAdToBanner() {
         portal({
-          targetSelector: "#my-ad-portal-exit",
-          sourceSelector: "#my-ad",
+          targetSelector: "#my-ad-portal-exit", // Drupal block id
+          sourceSelector: "#my-ad", // html passed into top banner react component
         });
       }
 
       const headerProps = {
-        scrollTarget: scrollTarget,
-        style: {
-          position: "static",
-        },
         topBanner: {
           // This is disabled now
           html: `<div id="my-ad-portal-exit"></div>`,
@@ -219,6 +215,10 @@
           heightBelow: "115px",
           maxWidthBreakpoint: "992px",
           contentStyles: {},
+        },
+        scrollTarget: scrollTarget,
+        style: {
+          position: "static",
         },
         baseUrl: "https://web-sda.ddev.site:8443/",
         title: "Sun Devils",

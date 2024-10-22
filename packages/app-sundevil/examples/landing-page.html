@@ -190,6 +190,21 @@
     <script>
       const scrollTarget = document.getElementById("main");
 
+      function portal({targetSelector, sourceSelector}) {
+        const target = document.querySelector(targetSelector);
+        const source = document.querySelector(sourceSelector);
+
+        if (target && source) {
+          target.appendChild(source);
+        }
+      }
+
+      function portalAdToBanner() {
+        portal({
+          targetSelector: "#my-ad-portal-exit",
+          sourceSelector: "#my-ad",
+        });
+      }
 
       const headerProps = {
         scrollTarget: scrollTarget,
@@ -1478,19 +1493,7 @@
 
 
 
-      function portal({targetSelector, sourceSelector}) {
-        const target = document.querySelector(targetSelector);
-        const source = document.querySelector(sourceSelector);
-
-        if (target && source) {
-          target.appendChild(source);
-        }
-      }
-
-      portal({
-        targetSelector: "#my-ad-portal-exit",
-        sourceSelector: "#my-ad",
-      });
+      portalAdToBanner()
     </script>
     <script>
       const props = {

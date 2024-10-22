@@ -45,7 +45,8 @@ const HeaderMain = () => {
   /** @type {React.MutableRefObject<HTMLElement | null>} */
   const mobileNavContainerRef = useRef(null);
   useDisableParentScrolling({
-    disabled: mobileMenuOpen && isMobile,
+    // TODO This is causing bugs on iOS where it loses scroll position when disabled. Disabling for now
+    disabled: mobileMenuOpen && isMobile && false,
     elementRef: mobileNavContainerRef,
   });
 

@@ -79,7 +79,7 @@ export const TopBanner = ({
           justifyCenter: "center",
           ...(contentStyles ?? {}),
         }}
-        dangerouslySetInnerHTML={html ? { __html: html } : {}}
+        dangerouslySetInnerHTML={{ __html: html }}
       />
     </div>
   );

@@ -2,7 +2,7 @@
  * @template {TState}
  * @param {boolean} enableLeft
  * @param {TState} initialState
- * @returns {[TState, Function]}
+ * @returns {[TState, (value: TState) => void]}
  */
 export const useStateSwitch = (
   enableLeft,

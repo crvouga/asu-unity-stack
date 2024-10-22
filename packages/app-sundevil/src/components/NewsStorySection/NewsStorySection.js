@@ -1,3 +1,4 @@
+// https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4801-44287&node-type=canvas&t=Rka52ZSBxzrMg7eA-0
 // @ts-check
 import PropTypes from "prop-types";
 import React, { useMemo } from "react";
@@ -82,10 +83,19 @@ const NewsStorySectionInner = ({
     defaultConfigInputs
   );
 
+  const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
+  const isDesktop = !isMobile;
+
   const newsStorySearchFrom = useNewsStorySearchForm({
-    enableUrlState: false,
-    sportId: sports.find(sport => sport.active)?.id ?? ALL_ID,
-    ...configForm.initialState,
+    initialState: {
+      sportId: sports.find(sport => sport.active)?.id ?? ALL_ID,
+      ...configForm.initialState,
+    },
+    config: {
+      enableUrlState: false,
+      // eslint-disable-next-line no-constant-condition
+      mode: isMobile && false ? "draft" : "instant",
+    },
   });
 
   useUrlSportId(urlSportId => {
@@ -97,7 +107,7 @@ const NewsStorySectionInner = ({
 
   const sportsWithSelectedTab = sports.map(sport => ({
     ...sport,
-    active: sport.id === newsStorySearchFrom.sportId,
+    active: sport.id === newsStorySearchFrom.state.sportId,
   }));
 
   const sectionHeaderRef = React.useRef();
@@ -106,18 +116,15 @@ const NewsStorySectionInner = ({
     sectionHeaderPosition.left - sectionHeaderPosition.right
   );
 
-  const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
-  const isDesktop = !isMobile;
-
   const { allSportIds } = useSportIdsLoader();
 
   const newsStoryDataSourceLoader = useNewsStoryDataSourceLoader({
     limit,
-    searchQuery: newsStorySearchFrom.debouncedSearchQuery,
-    newsType: newsStorySearchFrom.newsType,
-    sportId: isAllId(newsStorySearchFrom.sportId)
+    searchQuery: newsStorySearchFrom.debouncedSearchQueryApplied,
+    newsType: newsStorySearchFrom.stateApplied.newsType,
+    sportId: isAllId(newsStorySearchFrom.stateApplied.sportId)
       ? null
-      : newsStorySearchFrom.sportId,
+      : newsStorySearchFrom.stateApplied.sportId,
   });
 
   const skeleton = newsStoryDataSourceLoader.isLoadingInitial;

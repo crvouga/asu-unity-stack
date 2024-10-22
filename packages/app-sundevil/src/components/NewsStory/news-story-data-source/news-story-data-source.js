@@ -10,6 +10,14 @@ import PropTypes from "prop-types";
  * @property {string | null | undefined} [newsType]
  */
 
+export function isFindManyInputEqual(a, b) {
+  return (
+    a?.sportId === b?.sportId &&
+    a?.searchQuery === b?.searchQuery &&
+    a?.newsType === b?.newsType
+  );
+}
+
 export const findManyInputPropTypes = PropTypes.shape({
   limit: PropTypes.number,
   offset: PropTypes.number,

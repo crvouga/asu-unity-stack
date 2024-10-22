@@ -1,3 +1,4 @@
+// https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4801-44287&node-type=canvas&t=Rka52ZSBxzrMg7eA-0
 // @ts-check
 import PropTypes from "prop-types";
 import React from "react";
@@ -15,6 +16,7 @@ import { sportPropTypes } from "../../SportsTabs/sports-tabs";
 import { TextField } from "../../TextField/TextField";
 import { configInputsPropTypes } from "../config-inputs";
 import { configLayoutPropTypes } from "../config-layout";
+import { ApplyClearButtons } from "./ApplyClearButtons";
 import { newsStorySearchFormPropTypes } from "./use-news-story-search-form";
 
 const Root = styled.div`
@@ -22,6 +24,14 @@ const Root = styled.div`
   align-items: center;
   width: 100%;
   padding-bottom: 3rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+`;
+
+const RootInputs = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
   gap: 1rem;
   flex-wrap: wrap;
 `;
@@ -81,75 +91,85 @@ export const NewsStorySearchForm = ({
       // @ts-ignore
       orientation={orientation}
     >
-      {configLayout.includeInputSearch && (
-        <TextField
-          darkMode={darkMode}
-          style={{ ...inputStyle, flex: 2 }}
-          label={configInputs?.search?.label ?? ""}
-          placeholder={configInputs?.search?.placeholder ?? ""}
-          value={newsStorySearchForm.searchQuery}
-          onChange={newsStorySearchForm.setSearchQuery}
-          sectionName={sectionName}
-          renderEndIcon={({ style: iconStyle }) => (
-            <i
-              style={iconStyle}
-              className="fa fas fa-solid fa-magnifying-glass"
-            />
-          )}
-        />
-      )}
+      <RootInputs>
+        {configLayout.includeInputSearch && (
+          <TextField
+            darkMode={darkMode}
+            style={{ ...inputStyle, flex: 2 }}
+            label={configInputs?.search?.label ?? ""}
+            placeholder={configInputs?.search?.placeholder ?? ""}
+            value={newsStorySearchForm.searchQuery}
+            onChange={newsStorySearchForm.updateSearchQuery}
+            sectionName={sectionName}
+            renderEndIcon={({ style: iconStyle }) => (
+              <i
+                style={iconStyle}
+                className="fa fas fa-solid fa-magnifying-glass"
+              />
+            )}
+          />
+        )}
 
-      {configLayout.includeInputNewsType && (
-        <Select
-          darkMode={darkMode}
-          style={inputStyle}
-          label={configInputs?.newsType?.label ?? ""}
-          sectionName={sectionName}
-          placeholder={configInputs?.newsType?.placeholder ?? ""}
-          onChange={option =>
-            newsStorySearchForm.update({
-              newsType:
+        {configLayout.includeInputNewsType && (
+          <Select
+            darkMode={darkMode}
+            style={inputStyle}
+            label={configInputs?.newsType?.label ?? ""}
+            sectionName={sectionName}
+            placeholder={configInputs?.newsType?.placeholder ?? ""}
+            onChange={option =>
+              newsStorySearchForm.update({
+                newsType:
+                  cleanString(option.id) ===
+                  cleanString(newsStorySearchForm.state.newsType)
+                    ? null
+                    : option.id,
+              })
+            }
+            options={newsTypeOptions.map(option => ({
+              ...option,
+              active:
                 cleanString(option.id) ===
-                cleanString(newsStorySearchForm.newsType)
-                  ? null
-                  : option.id,
-            })
-          }
-          options={newsTypeOptions.map(option => ({
-            ...option,
-            active:
-              cleanString(option.id) ===
-              cleanString(newsStorySearchForm.newsType),
-          }))}
-        />
-      )}
+                cleanString(newsStorySearchForm.state.newsType),
+            }))}
+          />
+        )}
 
-      {configLayout.includeInputSportType && (
-        <Select
-          darkMode={darkMode}
-          style={inputStyle}
-          label={configInputs?.sportType?.label ?? ""}
-          placeholder={configInputs?.sportType?.placeholder ?? ""}
-          sectionName={sectionName}
-          onChange={option =>
-            newsStorySearchForm.update({
-              sportId:
-                stringToSportId(option.id) ===
-                stringToSportId(newsStorySearchForm.sportId)
-                  ? null
-                  : option.id,
-            })
-          }
-          options={sports.map(sport => ({
-            label: sport.name,
-            id: sport.id,
-            active:
-              stringToSportId(sport.id) ===
-              stringToSportId(newsStorySearchForm.sportId),
-            renderStart: ({ style: iconStyle }) => (
-              <Icon icon={sport.icon} style={iconStyle} />
-            ),
-          }))}
+        {configLayout.includeInputSportType && (
+          <Select
+            darkMode={darkMode}
+            style={inputStyle}
+            label={configInputs?.sportType?.label ?? ""}
+            placeholder={configInputs?.sportType?.placeholder ?? ""}
+            sectionName={sectionName}
+            onChange={option =>
+              newsStorySearchForm.update({
+                sportId:
+                  stringToSportId(option.id) ===
+                  stringToSportId(newsStorySearchForm.state.sportId)
+                    ? null
+                    : option.id,
+              })
+            }
+            options={sports.map(sport => ({
+              label: sport.name,
+              id: sport.id,
+              active:
+                stringToSportId(sport.id) ===
+                stringToSportId(newsStorySearchForm.state.sportId),
+              renderStart: ({ style: iconStyle }) => (
+                <Icon icon={sport.icon} style={iconStyle} />
+              ),
+            }))}
+          />
+        )}
+      </RootInputs>
+      {newsStorySearchForm.mode === "draft" && (
+        <ApplyClearButtons
+          canApply={newsStorySearchForm.canApply}
+          onApply={newsStorySearchForm.apply}
+          canClear={newsStorySearchForm.canClear}
+          onClear={newsStorySearchForm.clear}
         />
       )}
     </Root>

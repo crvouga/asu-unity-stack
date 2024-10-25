@@ -2,7 +2,9 @@
 import React from "react";
 
 const toColorStyles = color => {
-  switch (color) {
+  const cleanedColor =
+    typeof color === "string" ? color.toLowerCase().trim() : color;
+  switch (cleanedColor) {
     case "maroon": {
       return {
         backgroundColor: "#8C1D40",
@@ -14,6 +16,25 @@ const toColorStyles = color => {
         backgroundColor: "#FFC628",
       };
     }
+    case "black": {
+      return {
+        backgroundColor: "#000000",
+        color: "#ffffff",
+      };
+    }
+    case "pink": {
+      return {
+        backgroundColor: "#FFC0CB",
+      };
+    }
+
+    case "white": {
+      return {
+        backgroundColor: "#ffffff",
+        color: "#000000",
+      };
+    }
+
     default: {
       return {};
     }

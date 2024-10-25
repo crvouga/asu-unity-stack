@@ -32,53 +32,51 @@ export const CellButtons = props => {
     elementId: componentId,
   });
 
-  return (
-    configLayout?.includeCellTickets && (
-      <Cell
-        className="btn-ticket text-center align-middle px-2"
-        ref={ticketCellRef}
-        style={{
-          minWidth: ticketCellMaxDimensions.width,
-          flexShrink: 0,
-          display: "flex",
-          alignItems: "flex-start",
-          justifyContent: "center",
-          flexDirection: "column",
-          gap: "12px",
-        }}
-      >
-        {game?.buttons?.map(button => {
-          const buttonProps = {
-            ...button,
-            color: stringToColor(button.color),
-            target: stringToTarget(
-              configCells?.cellTicketButton?.button?.target
-            ),
-            size: stringToSize(configCells?.cellTicketButton?.button?.size),
-            icon: [],
-            label: button.label,
-            onClick: button.onClick,
-            cardTitle: game?.title ?? " ",
-          };
-          return (
-            <Button
-              key={button.href ?? button.label}
-              renderIcon={() => {
-                return (
-                  <Icon
-                    icon={button.startIcon}
-                    style={{
-                      paddingRight: "4px",
-                      textDecoration: "none !important",
-                    }}
-                  />
-                );
-              }}
-              {...buttonProps}
-            />
-          );
-        })}
-      </Cell>
-    )
-  );
+  const hasContent = Array.isArray(game?.buttons) && game?.buttons.length > 0;
+
+  return configLayout?.includeCellTickets && hasContent ? (
+    <Cell
+      className="btn-ticket text-center align-middle px-2"
+      ref={ticketCellRef}
+      style={{
+        minWidth: ticketCellMaxDimensions.width,
+        flexShrink: 0,
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "center",
+        flexDirection: "column",
+        gap: "12px",
+      }}
+    >
+      {game?.buttons?.map(button => {
+        const buttonProps = {
+          ...button,
+          color: stringToColor(button.color),
+          target: stringToTarget(configCells?.cellTicketButton?.button?.target),
+          size: stringToSize(configCells?.cellTicketButton?.button?.size),
+          icon: [],
+          label: button.label,
+          onClick: button.onClick,
+          cardTitle: game?.title ?? " ",
+        };
+        return (
+          <Button
+            key={button.href ?? button.label}
+            renderIcon={() => {
+              return (
+                <Icon
+                  icon={button.startIcon}
+                  style={{
+                    paddingRight: "4px",
+                    textDecoration: "none !important",
+                  }}
+                />
+              );
+            }}
+            {...buttonProps}
+          />
+        );
+      })}
+    </Cell>
+  ) : null;
 };

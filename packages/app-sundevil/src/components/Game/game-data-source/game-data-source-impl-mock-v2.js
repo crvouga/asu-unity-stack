@@ -66,6 +66,14 @@ const games = [
         label: "Wear Gold",
         color: "gold",
       },
+      {
+        label: "Wear Pink",
+        color: "pink",
+      },
+      {
+        label: "Wear Black",
+        color: "black",
+      },
     ],
     buttons: [
       Math.random() > 0.5

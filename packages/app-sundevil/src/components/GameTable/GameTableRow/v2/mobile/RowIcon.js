@@ -17,25 +17,23 @@ export const RowIcon = props => {
 
   const hasContent = game?.sportIcon || game?.sportName;
 
-  return (
-    hasContent && (
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-start",
-          gap: "12px",
-          width: "100%",
-          padding: "12px 0",
-          fontSize: "12px",
-          fontWeight: "bold",
-        }}
-      >
-        {game?.sportIcon && (
-          <Icon icon={game?.sportIcon} style={{ width: "12px" }} />
-        )}
-        {game?.sportName}
-      </div>
-    )
-  );
+  return hasContent ? (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        gap: "12px",
+        width: "100%",
+        padding: "12px 0",
+        fontSize: "12px",
+        fontWeight: "bold",
+      }}
+    >
+      {game?.sportIcon && (
+        <Icon icon={game?.sportIcon} style={{ width: "12px" }} />
+      )}
+      {game?.sportName}
+    </div>
+  ) : null;
 };

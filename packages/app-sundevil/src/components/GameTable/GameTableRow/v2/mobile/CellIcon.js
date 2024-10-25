@@ -16,23 +16,20 @@ import { Cell } from "./shared";
 export const CellIcon = props => {
   const { game, configLayout } = props;
 
-  return (
-    configLayout?.includeCellIcon &&
-    game?.sportIcon && (
-      <Cell
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "6px",
-          width: "48px",
-          height: "100%",
-          flexDirection: "column",
-          flexShrink: 0,
-        }}
-      >
-        <Icon icon={game?.sportIcon} style={{ width: "12px" }} />
-      </Cell>
-    )
-  );
+  return configLayout?.includeCellIcon && game?.sportIcon ? (
+    <Cell
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "6px",
+        width: "48px",
+        height: "100%",
+        flexDirection: "column",
+        flexShrink: 0,
+      }}
+    >
+      <Icon icon={game?.sportIcon} style={{ width: "12px" }} />
+    </Cell>
+  ) : null;
 };

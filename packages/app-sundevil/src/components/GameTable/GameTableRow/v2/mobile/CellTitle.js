@@ -26,36 +26,33 @@ export const CellTitle = props => {
   const { game, configLayout } = props;
 
   const hasContent = game?.title;
-  return (
-    configLayout.includeCellTitle &&
-    hasContent && (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          overflow: "hidden",
-          flex: 1,
-          height: "100%",
-          minWidth: 0,
-          padding: "0 1rem",
-        }}
-      >
-        {game?.title && (
-          <Title
-            href={game?.titleHref}
-            style={{
-              padding: 0,
-              margin: 0,
-              fontSize: "16px",
-              fontWeight: "bold",
-              width: "fit-content",
-            }}
-            dangerouslySetInnerHTML={{ __html: game?.title }}
-          />
-        )}
-      </div>
-    )
-  );
+  return configLayout.includeCellTitle && hasContent ? (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        overflow: "hidden",
+        flex: 1,
+        height: "100%",
+        minWidth: 0,
+        padding: "0 1rem",
+      }}
+    >
+      {game?.title && (
+        <Title
+          href={game?.titleHref}
+          style={{
+            padding: 0,
+            margin: 0,
+            fontSize: "16px",
+            fontWeight: "bold",
+            width: "fit-content",
+          }}
+          dangerouslySetInnerHTML={{ __html: game?.title }}
+        />
+      )}
+    </div>
+  ) : null;
 };

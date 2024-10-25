@@ -25,8 +25,10 @@ const Title = styled.a`
 export const CellTitle = props => {
   const { game, configLayout } = props;
 
+  const hasContent = game?.title;
   return (
-    configLayout.includeCellTitle && (
+    configLayout.includeCellTitle &&
+    hasContent && (
       <div
         style={{
           display: "flex",
@@ -40,17 +42,19 @@ export const CellTitle = props => {
           padding: "0 1rem",
         }}
       >
-        <Title
-          href={game?.titleHref}
-          style={{
-            padding: 0,
-            margin: 0,
-            fontSize: "16px",
-            fontWeight: "bold",
-            width: "fit-content",
-          }}
-          dangerouslySetInnerHTML={{ __html: game?.title }}
-        />
+        {game?.title && (
+          <Title
+            href={game?.titleHref}
+            style={{
+              padding: 0,
+              margin: 0,
+              fontSize: "16px",
+              fontWeight: "bold",
+              width: "fit-content",
+            }}
+            dangerouslySetInnerHTML={{ __html: game?.title }}
+          />
+        )}
       </div>
     )
   );

@@ -13,31 +13,37 @@ import React from "react";
 export const RowSupplementalLinks = props => {
   const { game } = props;
 
+  const hasContent =
+    Array.isArray(game?.supplementalLinks) &&
+    game?.supplementalLinks?.length > 0;
+
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
-        gap: "12px",
-        padding: "16px 0",
-      }}
-    >
-      {game?.supplementalLinks?.map(link => (
-        <a
-          key={`${link.label}${link.href}`}
-          href={link.href}
-          className={link.className}
-          style={{
-            color: "#747474",
-            fontSize: "14px",
-            fontWeight: "400",
-            ...link.style,
-          }}
-        >
-          {link.label}
-        </a>
-      ))}
-    </div>
+    hasContent && (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          gap: "12px",
+          padding: "16px 0",
+        }}
+      >
+        {game?.supplementalLinks?.map(link => (
+          <a
+            key={`${link.label}${link.href}`}
+            href={link.href}
+            className={link.className}
+            style={{
+              color: "#747474",
+              fontSize: "14px",
+              fontWeight: "400",
+              ...link.style,
+            }}
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    )
   );
 };

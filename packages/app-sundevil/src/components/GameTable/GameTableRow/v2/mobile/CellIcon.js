@@ -17,7 +17,8 @@ export const CellIcon = props => {
   const { game, configLayout } = props;
 
   return (
-    configLayout?.includeCellIcon && (
+    configLayout?.includeCellIcon &&
+    game?.sportIcon && (
       <Cell
         style={{
           display: "flex",

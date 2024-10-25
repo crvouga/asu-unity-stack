@@ -8,8 +8,10 @@ import React from "react";
 export const CellDate = props => {
   const { game, configLayout } = props;
 
+  const hasContent = game?.dateMonth || game?.dateDay;
   return (
-    configLayout.includeCellDate && (
+    configLayout.includeCellDate &&
+    hasContent && (
       <div
         style={{
           padding: 0,
@@ -34,27 +36,31 @@ export const CellDate = props => {
             width: "fit-content",
           }}
         >
-          <div
-            style={{
-              margin: 0,
-              marginBottom: "-8px",
-              padding: 0,
-              fontSize: "12px",
-              fontWeight: "bold",
-            }}
-          >
-            {game?.dateMonth}
-          </div>
-          <div
-            style={{
-              margin: 0,
-              padding: 0,
-              fontSize: "24px",
-              fontWeight: "bold",
-            }}
-          >
-            {game?.dateDay}
-          </div>
+          {game?.dateMonth && (
+            <div
+              style={{
+                margin: 0,
+                marginBottom: "-8px",
+                padding: 0,
+                fontSize: "12px",
+                fontWeight: "bold",
+              }}
+            >
+              {game?.dateMonth}
+            </div>
+          )}
+          {game?.dateDay && (
+            <div
+              style={{
+                margin: 0,
+                padding: 0,
+                fontSize: "24px",
+                fontWeight: "bold",
+              }}
+            >
+              {game?.dateDay}
+            </div>
+          )}
         </div>
       </div>
     )

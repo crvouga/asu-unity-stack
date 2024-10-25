@@ -15,21 +15,27 @@ import { Icon } from "../../../../Icon_";
 export const RowIcon = props => {
   const { game } = props;
 
+  const hasContent = game?.sportIcon || game?.sportName;
+
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        gap: "12px",
-        width: "100%",
-        padding: "12px 0",
-        fontSize: "12px",
-        fontWeight: "bold",
-      }}
-    >
-      <Icon icon={game?.sportIcon} style={{ width: "12px" }} />
-      {game?.sportName}
-    </div>
+    hasContent && (
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          gap: "12px",
+          width: "100%",
+          padding: "12px 0",
+          fontSize: "12px",
+          fontWeight: "bold",
+        }}
+      >
+        {game?.sportIcon && (
+          <Icon icon={game?.sportIcon} style={{ width: "12px" }} />
+        )}
+        {game?.sportName}
+      </div>
+    )
   );
 };

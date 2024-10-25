@@ -11,9 +11,11 @@ import { Cell, isCleanString, STYLES_TRUNCATE } from "./shared";
 export const CellTeamLogo = props => {
   const { game, configLayout } = props;
 
+  const hasContent = isCleanString(game?.teamLogoSrc);
+
   return (
     configLayout?.includeCellTitle &&
-    isCleanString(game?.teamLogoSrc) && (
+    hasContent && (
       <Cell
         style={{
           ...STYLES_TRUNCATE,

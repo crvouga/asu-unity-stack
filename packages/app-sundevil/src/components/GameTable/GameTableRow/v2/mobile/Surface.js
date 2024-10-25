@@ -20,5 +20,6 @@ const Root = styled.div`
 `;
 
 export const Surface = ({ children }) => {
-  return <Root>{children}</Root>;
+  const hasAllTruthyChildren = React.Children.toArray(children).every(Boolean);
+  return hasAllTruthyChildren && <Root>{children}</Root>;
 };

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-danger */
 // @ts-check
@@ -29,6 +30,7 @@ export const RowSupplementalLinks = props => {
     >
       {game?.supplementalLinks?.map(link => (
         <a
+          {...link}
           key={`${link.label}${link.href}`}
           href={link.href}
           className={link.className}

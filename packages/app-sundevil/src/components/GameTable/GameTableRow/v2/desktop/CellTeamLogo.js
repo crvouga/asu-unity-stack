@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-danger */
 // @ts-check
-import React from "react";
+import React, { useState } from "react";
 
 import { APP_CONFIG } from "../../../../../config";
 import { useBreakpoint } from "../../../../../utils/use-breakpoint";
@@ -13,8 +13,13 @@ import { Cell, isCleanString, STYLES_TRUNCATE } from "./shared";
 export const CellTeamLogo = props => {
   const { game, configLayout } = props;
   const isTablet = useBreakpoint(APP_CONFIG.breakpointTablet);
+  const [err, setErr] = useState(false);
 
   if (isTablet) {
+    return null;
+  }
+
+  if (err) {
     return null;
   }
 
@@ -37,6 +42,7 @@ export const CellTeamLogo = props => {
           <img
             width="100%"
             height="100%"
+            onError={() => setErr(true)}
             src={game?.teamLogoSrc}
             alt={game?.teamLogoAlt ?? " "}
           />

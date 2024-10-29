@@ -38,7 +38,13 @@ export const CellTeamLogo = props => {
           width: "112px",
         }}
       >
-        <a href={game?.teamLogoHref}>
+        <a
+          href={game?.teamLogoHref}
+          style={{
+            width: "80px",
+            height: "80px",
+          }}
+        >
           <img
             width="100%"
             height="100%"

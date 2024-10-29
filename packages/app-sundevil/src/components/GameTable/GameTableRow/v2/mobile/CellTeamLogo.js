@@ -19,7 +19,7 @@ export const CellTeamLogo = props => {
         ...STYLES_TRUNCATE,
         display: "flex",
         alignItems: "center",
-        justifyContent: "flex-start",
+        justifyContent: "center",
         flexDirection: "row",
         flexShrink: 0,
         minWidth: "0",

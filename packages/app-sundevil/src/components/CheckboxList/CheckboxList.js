@@ -40,7 +40,7 @@ export const CheckboxList = ({
           onClick={() => {
             onChange?.(option);
           }}
-          active={Boolean(option.active)}
+          active={Boolean(option?.active)}
         />
       ))}
       {options.length === 0 && (

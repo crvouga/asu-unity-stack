@@ -126,19 +126,20 @@ const GameTableSectionInner = ({ ...props }) => {
 
       admissionCost:
         configGameTableForm?.initialState?.admissionCost ??
-        configInputs.admissionCostSelect?.options?.find(option => option.active)
-          ?.value ??
+        configInputs.admissionCostSelect?.options?.find(
+          option => option?.active
+        )?.value ??
         ALL_ID,
 
       eventType:
         configGameTableForm?.initialState?.eventType ??
-        configInputs.eventTypeSelect?.options?.find(option => option.active)
+        configInputs.eventTypeSelect?.options?.find(option => option?.active)
           ?.value ??
         ALL_ID,
 
       venueId:
         configGameTableForm?.initialState?.venueId ??
-        configInputs.venueSelect?.options?.find(option => option.active)
+        configInputs.venueSelect?.options?.find(option => option?.active)
           ?.value ??
         ALL_ID,
 
@@ -146,7 +147,7 @@ const GameTableSectionInner = ({ ...props }) => {
         configGameTableForm?.initialState?.maxAdmissionCost ??
         Number(
           configInputs.maxAdmissionCostSelect?.options?.find(
-            option => option.active
+            option => option?.active
           )?.value ?? null
         ),
     },

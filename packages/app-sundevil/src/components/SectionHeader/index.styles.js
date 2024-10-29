@@ -32,8 +32,8 @@ const TabItem = styled.div`
   cursor: pointer;
   font-size: 16px;
   color: #000;
-  background-color: ${props => (props.active ? "#000" : "#fff")};
-  color: ${props => (props.active ? "#fff" : "#000")};
+  background-color: ${props => (props?.active ? "#000" : "#fff")};
+  color: ${props => (props?.active ? "#fff" : "#000")};
   border: 1px solid #ddd;
   transition: background-color 0.3s, color 0.3s;
 

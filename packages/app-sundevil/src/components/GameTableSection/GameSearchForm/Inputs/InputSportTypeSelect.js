@@ -38,9 +38,9 @@ export const InputSportTypeSelect = () => {
     configInputs.sportTypeSelect?.includeAllOption,
     filteredSports
   ).map(sport => ({
-    label: sport.name,
-    id: sport.id,
-    active: sport.active,
+    label: sport?.name,
+    id: sport?.id,
+    active: sport?.active,
     renderStart: ({ style: iconStyle }) => (
       <Icon icon={sport.icon} style={iconStyle} />
     ),

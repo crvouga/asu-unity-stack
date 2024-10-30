@@ -33,7 +33,8 @@ const games = [
       },
     ],
     teamLogoSrc:
-      "https://dev-web-sda.ws.asu.edu/sites/default/files/arkansasstatelogo.webp",
+      "https://dev-web-sda.ws.asu.edu/sites/default/files/Screenshot%25202024-10-21%2520at%252011.10.46%25E2%2580%25AFAM.webp",
+    // "https://dev-web-sda.ws.asu.edu/sites/default/files/arkansasstatelogo.webp",
     teamLogoAlt: " ",
     supplementalLinks: [
       {

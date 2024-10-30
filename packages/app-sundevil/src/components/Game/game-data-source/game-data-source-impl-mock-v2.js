@@ -13,9 +13,9 @@ const ALL_EVENT_TYPE = ["game", "practice", "scrimmage"];
 /**
  * @type {import("../game").Game[]}
  */
-const games = [
+const games = [1, 2, 3, 4, 5].flatMap(id => [
   {
-    id: Math.random().toString(36).substring(2, 9),
+    id,
     sportIcon: "fa fas fa-football-ball",
     sportName: "Football Football Football",
     sportId: "football",
@@ -105,7 +105,7 @@ const games = [
       ALL_EVENT_TYPE[Math.floor(Math.random() * ALL_EVENT_TYPE.length)],
     gameType: ALL_GAME_TYPE[Math.floor(Math.random() * ALL_GAME_TYPE.length)],
   },
-];
+]);
 
 export class GameDataSourceMockV2 extends IGameDataSource {
   constructor({ timeout = 0 } = {}) {

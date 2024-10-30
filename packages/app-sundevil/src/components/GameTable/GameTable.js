@@ -34,11 +34,17 @@ const Background = styled.div`
     border-bottom: 1px solid #d0d0d0;
   }
   background-color: #fff;
-  /*
-  & > div:nth-child(even) {
-    background-color: #fafafa;
-  }
-  */
+  ${props => {
+    // @ts-ignore
+    if (props.alternatingBackground) {
+      return `
+      & > div:nth-child(even) {
+        background-color: #fafafa;
+      }
+      `;
+    }
+    return "";
+  }}
 `;
 
 const Root = styled.div`
@@ -72,6 +78,7 @@ export const GameTable = ({
   version,
 }) => {
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
+  const isDesktop = !isMobile;
 
   const isSkeleton = skeleton && games.length === 0;
 
@@ -101,7 +108,10 @@ export const GameTable = ({
           )}
 
           {isRow && (
-            <Background>
+            <Background
+              // @ts-ignore
+              alternatingBackground={isDesktop}
+            >
               {games.map((game, index) => (
                 <GameTableRow
                   version={version}

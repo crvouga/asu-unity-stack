@@ -35,13 +35,15 @@ export const CellTeamLogo = props => {
         href={game?.teamLogoHref}
         style={{
           width: "40px",
-          // height: "40px",
         }}
       >
         <img
           onError={() => setErr(true)}
           width="100%"
           height="100%"
+          style={{
+            backgroundColor: "transparent",
+          }}
           src={game?.teamLogoSrc}
           alt={game?.teamLogoAlt ?? " "}
         />

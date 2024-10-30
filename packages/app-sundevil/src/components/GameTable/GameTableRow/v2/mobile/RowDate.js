@@ -14,13 +14,15 @@ import { isCleanString } from "./shared";
  */
 export const RowDate = props => {
   const { game } = props;
-  const dateString = [game?.dateMonth, game?.dateDay, game?.dateDayName]
-    .filter(Boolean)
-    .join(" ");
+  const dateString = [game?.dateMonth, game?.dateDay].filter(Boolean).join(" ");
 
   const hasDateString = isCleanString(dateString);
 
-  const hasContent = hasDateString || game?.dateTimeRange || game?.dateLinks;
+  const hasContent =
+    hasDateString ||
+    game?.dateDayName ||
+    game?.dateTimeRange ||
+    game?.dateLinks;
 
   return hasContent ? (
     <div
@@ -47,6 +49,16 @@ export const RowDate = props => {
             }}
           >
             {dateString}
+          </div>
+        )}
+        {game?.dateTimeRange && (
+          <div
+            style={{
+              fontWeight: "normal",
+              paddingLeft: "4px",
+            }}
+          >
+            {game?.dateDayName}
           </div>
         )}
         {game?.dateTimeRange && (

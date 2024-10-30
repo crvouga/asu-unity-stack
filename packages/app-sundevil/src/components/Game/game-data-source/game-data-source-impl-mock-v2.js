@@ -33,7 +33,7 @@ const games = [
       },
     ],
     teamLogoSrc:
-      "https://s3-alpha-sig.figma.com/img/bf55/5c94/70e477a3bd6a0a2da1fd9246042629cf?Expires=1729468800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=aTIRR-u8V6~JcaXFwgRppQ7r0niR7sWWaRneOrJiGhMggGaAuCEUcyjQ9qy9qLDzo6f4uAq7AjjSAMdlPW0FGZMS-fWbU~OPNHq~VVPnZXKCWHDX-~JQtFuofMFR3jf9Vvb9XlXtEkYk8zIYDMKo5S6RMGE6gIlmcFKBFuaU-D6wqtU10VuviR1MBpjlQnMHjqebZVEVaFv7itWYUF~91s5DDal7dGCs9bgdeDrNylEU~Gcip9oal4rK3Y-YumKGW3FTJFiEbiPKitFH1Pbshvt9IAdn~WPc4cwBNOA5o3bEJBX6m4UDxcVz-VXnK9BZWQu3xFsYNjVKpoQCWDyvqw__",
+      "https://dev-web-sda.ws.asu.edu/sites/default/files/arkansasstatelogo.webp",
     teamLogoAlt: " ",
     supplementalLinks: [
       {

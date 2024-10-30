@@ -75,6 +75,7 @@ export const CellTitle = props => {
               padding: "16px",
               paddingBottom: "0",
             }}
+            href={game?.titleHref}
             dangerouslySetInnerHTML={{ __html: game?.title ?? "" }}
           />
           <div

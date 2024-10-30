@@ -16,8 +16,9 @@ import { Cell, isCleanString } from "./shared";
 export const CellIcon = props => {
   const { game, configLayout } = props;
 
-  const hasContent = game?.sportIcon || game?.sportName;
-  return configLayout?.includeCellIcon && hasContent ? (
+  // const hasContent = game?.sportIcon || game?.sportName;
+
+  return configLayout?.includeCellIcon ? (
     <Cell
       style={{
         display: "flex",

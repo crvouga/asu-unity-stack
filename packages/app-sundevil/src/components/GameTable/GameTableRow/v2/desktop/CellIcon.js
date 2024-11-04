@@ -33,7 +33,7 @@ export const CellIcon = props => {
       }}
     >
       {game?.sportIcon && (
-        <Icon icon={game?.sportIcon} style={{ width: "16px" }} />
+        <Icon icon={game?.sportIcon} style={{ width: "18px" }} />
       )}
       {isCleanString(game?.sportName) && (
         <div

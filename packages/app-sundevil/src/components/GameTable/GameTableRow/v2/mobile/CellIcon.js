@@ -29,7 +29,7 @@ export const CellIcon = props => {
         flexShrink: 0,
       }}
     >
-      <Icon icon={game?.sportIcon} style={{ width: "12px" }} />
+      <Icon icon={game?.sportIcon} style={{ width: "16px" }} />
     </Cell>
   ) : null;
 };

@@ -3,6 +3,7 @@
 // @ts-check
 import React from "react";
 
+import { LinkBase } from "../../../../Link/LinkBase";
 import { isCleanString } from "./shared";
 
 /**
@@ -80,7 +81,7 @@ export const RowDate = props => {
           }}
         >
           {game?.dateLinks?.map(link => (
-            <a
+            <LinkBase
               key={link.href}
               href={link.href}
               style={{
@@ -89,7 +90,7 @@ export const RowDate = props => {
               }}
             >
               {link.label}
-            </a>
+            </LinkBase>
           ))}
         </div>
       )}

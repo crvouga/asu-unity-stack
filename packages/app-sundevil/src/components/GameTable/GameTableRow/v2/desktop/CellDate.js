@@ -4,9 +4,10 @@
 import React from "react";
 import styled from "styled-components";
 
+import { LinkBase } from "../../../../Link/LinkBase";
 import { Cell, STYLES_TRUNCATE } from "./shared";
 
-const DateLink = styled.a`
+const DateLink = styled(LinkBase)`
   color: #747474;
   font-size: 14px;
   /** Max 2 lines then truncate */

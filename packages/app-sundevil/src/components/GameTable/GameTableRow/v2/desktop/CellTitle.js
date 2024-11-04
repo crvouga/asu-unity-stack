@@ -7,6 +7,7 @@ import styled from "styled-components";
 
 import { APP_CONFIG } from "../../../../../config";
 import { useBreakpoint } from "../../../../../utils/use-breakpoint";
+import { LinkBase } from "../../../../Link/LinkBase";
 import { Chip } from "../Chip";
 import { Cell, STYLES_TRUNCATE } from "./shared";
 
@@ -113,7 +114,7 @@ export const CellTitle = props => {
             }}
           >
             {game?.supplementalLinks?.map(link => (
-              <a
+              <LinkBase
                 {...link}
                 key={`${link.label}${link.href}`}
                 href={link.href}
@@ -126,7 +127,7 @@ export const CellTitle = props => {
                 }}
               >
                 {link.label}
-              </a>
+              </LinkBase>
             ))}
           </div>
         )}

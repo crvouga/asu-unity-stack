@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
 
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 
+import { Store, useStore } from "../../../../../utils/store";
 import { Skeleton } from "../../../../Skeleton";
 import { CellCollapseButton } from "./CellCollapseButton";
 import { CellDate } from "./CellDate";
@@ -23,6 +24,10 @@ const Root = styled.div`
   }
 `;
 
+const store = Store({
+  openId: null,
+});
+
 export const GameTableRowMobile = forwardRef(
   (
     /**
@@ -32,7 +37,14 @@ export const GameTableRowMobile = forwardRef(
     ref
   ) => {
     const { skeleton, empty } = props;
-    const [open, setOpen] = useState(false);
+    const id = props.game?.id;
+
+    const state = useStore(store);
+
+    const open = state.openId === id;
+    const toggleOpen = () => {
+      store.setState({ openId: open ? null : id });
+    };
 
     const isOpen = open && !empty && !skeleton;
 
@@ -65,10 +77,7 @@ export const GameTableRowMobile = forwardRef(
           <CellDate {...props} />
           <CellTitle {...props} />
           <CellTeamLogo {...props} />
-          <CellCollapseButton
-            open={open}
-            onClick={() => setOpen(prev => !prev)}
-          />
+          <CellCollapseButton open={open} onClick={toggleOpen} />
         </Root>
         {isOpen && (
           <Surface>

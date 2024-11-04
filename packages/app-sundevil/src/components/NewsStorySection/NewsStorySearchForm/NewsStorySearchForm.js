@@ -16,8 +16,8 @@ import { sportPropTypes } from "../../SportsTabs/sports-tabs";
 import { TextField } from "../../TextField/TextField";
 import { configInputsPropTypes } from "../config-inputs";
 import { configLayoutPropTypes } from "../config-layout";
-import { ApplyClearButtons } from "./ApplyClearButtons";
 import { newsStorySearchFormPropTypes } from "./use-news-story-search-form";
+import { ApplyClearButtons } from "../../ApplyClearButtons";
 
 const Root = styled.div`
   display: flex;
@@ -164,6 +164,7 @@ export const NewsStorySearchForm = ({
           />
         )}
       </RootInputs>
+
       {newsStorySearchForm.mode === "draft" && (
         <ApplyClearButtons
           canApply={newsStorySearchForm.canApply}

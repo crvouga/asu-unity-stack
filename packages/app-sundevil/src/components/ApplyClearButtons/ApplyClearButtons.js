@@ -2,8 +2,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { Button } from "../../../../../components-core/src";
-import { Icon } from "../../Icon_";
+import { Button } from "../../../../components-core/src";
+import { Icon } from "../Icon_";
 
 const Root = styled.div`
   display: flex;

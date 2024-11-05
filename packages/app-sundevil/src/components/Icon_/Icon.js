@@ -27,7 +27,7 @@ export const toIconName = icon => {
   return " ";
 };
 
-const isValidImageSrc = maybeImageSrc => {
+const isValidUrl = maybeImageSrc => {
   if (!maybeImageSrc || typeof maybeImageSrc !== "string") {
     return false;
   }
@@ -47,6 +47,18 @@ const isValidImageSrc = maybeImageSrc => {
   } catch (err) {
     return false;
   }
+};
+
+const isValidDataUrl = maybeImageSrc => {
+  if (!maybeImageSrc || typeof maybeImageSrc !== "string") {
+    return false;
+  }
+
+  return maybeImageSrc.startsWith("data:image/");
+};
+
+const isValidImageSrc = maybeImageSrc => {
+  return isValidUrl(maybeImageSrc) || isValidDataUrl(maybeImageSrc);
 };
 
 const iconToImageSrc = icon => {

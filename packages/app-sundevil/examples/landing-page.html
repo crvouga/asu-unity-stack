@@ -146,13 +146,31 @@
     </style>
   </head>
 
-  <body style="overflow: hidden; display: flex; flex-direction: column; width: 100%; height: 100dvh;">
+  <body
+    style="
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100dvh;
+    "
+  >
     <div id="header-container"></div>
 
     <div id="main" style="width: 100%; overflow-y: auto; flex: 1">
-
-
-      <div id="my-ad" style="width: 100%; max-width: 800px; max-height: 72px; height: 100%; background-color: tomato; display: flex; align-items: center; justify-content: center;">
+      <div
+        id="my-ad"
+        style="
+          width: 100%;
+          max-width: 800px;
+          max-height: 72px;
+          height: 100%;
+          background-color: tomato;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
         This ad was teleported to the header
       </div>
 
@@ -190,7 +208,7 @@
     <script>
       const scrollTarget = document.getElementById("main");
 
-      function portal({targetSelector, sourceSelector}) {
+      function portal({ targetSelector, sourceSelector }) {
         const target = document.querySelector(targetSelector);
         const source = document.querySelector(sourceSelector);
 
@@ -1491,9 +1509,7 @@
         renderWithinChildWhiteList: [".contextual"],
       });
 
-
-
-      portalAdToBanner()
+      portalAdToBanner();
     </script>
     <script>
       const props = {
@@ -1510,6 +1526,36 @@
           },
         ],
         sports: [
+          {
+            id: "general",
+            active: true,
+            name: "General",
+            position: 0,
+            icon: {
+              // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=9390-8911&node-type=frame&t=xwWuyfmZaiUECEcb-0
+              svg_icon: `data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDE2IDI0IiBmaWxsPSJub25lIj4KPHBhdGggZD0iTTkuODA4MzEgMC44MDE2QzkuNDQzODkgMC43MTg3NjggOS4xNDQ1OCAwLjc1MjkxOCA4LjkxOTU3IDAuOTAzMDgxQzguNjcyMTIgMS4wNjgyNiA4LjU5MzI1IDEuMzI1MjMgOC41NzY2MSAxLjM5MTExTDguNTc3MzMgMS4zOTQwMkw4LjU3MDU4IDEuNDE3MjdDOC41NjUyNyAxLjQzNjQgNy44NDA1NCAzLjkwNDg4IDcuNDM4NDkgNS4yMTM3Mkw3LjQxMDI3IDUuMzA3NjlDNy4wMDg5NSA2LjYxNzc0IDYuNTk0MTMgNy45NzE4NiA2LjM0MTg2IDguODkwNzZMNi4zMzMxNyA4LjkyMjczTDguMjgxNDEgOS43NTYxNEM4LjI4MTQxIDkuNzU2MTQgOS4wNjgxMyA3LjIxODYzIDkuNDQ2MDYgNS45MDAxTDkuNDkxODggNS43MzEyOUM5LjgwNTY1IDQuNjMzNjUgMTAuMzkxIDIuNjU0MTcgMTAuNTYzIDIuMDczNjJMMTAuNjUxNSAxLjc0NzM4QzEwLjY1MjkgMS43NDI1NCAxMC43MTkyIDEuNTA5NzkgMTAuNTc4OSAxLjI2OTI4QzEwLjQ0ODQgMS4wNDU3MyAxMC4xODg5IDAuODg4NTQ5IDkuODA4MzEgMC44MDIwODRWMC44MDE2WiIgZmlsbD0iIzE5MTkxOSIvPgo8cGF0aCBkPSJNMTEuMTY4OCA4LjU0Mzk0QzEwLjk2ODQgOC4zNzE3MyAxMC42OTQ2IDguMjY4OCAxMC40MzY4IDguMjY4OEMxMC4zMjEzIDguMjY4OCAxMC4wMzE0IDguMjkyMjkgOS44MzY1MiA4LjUwOTA2TDkuNTMzODQgOC44NDM1M0M5LjIyNDkgOS4xODI2MSA4LjYyOTQzIDkuOTIxNTYgOC42Mjk0MyA5LjkyMTU2TDguNjg2NTkgOS45NDk2NUM4Ljk0MTc1IDEwLjA2MzcgOC45ODc1OCAxMC4wODQzIDkuMDY4NjEgMTAuMTcyNUM5LjE1NjE2IDEwLjI2NzIgOS4xODc1MSAxMC41NTIyIDkuMTM3MTEgMTAuNzk1MkM5LjAyMTgyIDExLjM1NTQgOC43NjU5MyAxMi4wMjU1IDcuODAxMjIgMTIuMjM0M0M3LjYwNTE1IDEyLjI3NjIgNy40MzI0NiAxMi4zMDI0IDcuMjcyOCAxMi4zMTQyTDcuMjMzNDkgMTIuMzE3MUw3LjIzODMxIDEyLjM1NjZDNy4yNjMxNSAxMi41NDk5IDcuMzYwODMgMTIuNzU2MiA3LjQ3NjEyIDEyLjg1ODJDNy42MDQxOCAxMi45NzA4IDcuOTc3NTIgMTMuMTcyMyA4LjE1NjI0IDEzLjIxMDhDOC4xOTcyNCAxMy4yMjA1IDguMjQyMSAxMy4yMjU0IDguMjkxMDYgMTMuMjI1NEM4LjU4ODE5IDEzLjIyNTQgOC45NTk2IDEzLjA0MyA5LjEzNjE0IDEyLjgxMDNMMTAuNjY5MSAxMC43OTg2QzEwLjg3MDIgMTAuNTMzNiAxMS4xMjU5IDEwLjE5NjkgMTEuNDc1MSA5LjczOTE4QzExLjU2MTIgOS42MjcwNCAxMS42MDY1IDkuNDkxNjYgMTEuNjA2NSA5LjM0ODAzQzExLjYwNjUgOS4wNzMzOCAxMS40NTEyIDguNzg3ODMgMTEuMTY5MyA4LjU0MzY5TDExLjE2ODggOC41NDM5NFoiIGZpbGw9IiMxOTE5MTkiLz4KPHBhdGggZD0iTTQuODQ2NTUgNS4wMzQ3M0M0Ljg0NjU1IDUuMDM0NzMgNC4zMDY1NiAxLjQ5NzY4IDQuMzAzNjYgMS40Nzg1NEM0LjMwMjk0IDEuNDcxNzYgNC4yNzIwNyAxLjE5Mjc1IDQuMDI1MzQgMC45OTI5MzZDMy44MTYgMC44MjMxNTUgMy41MTgzOSAwLjc1ODk3MyAzLjE0MTQzIDAuODAxNkMyLjc3MjE4IDAuODQzMjU4IDIuNTA0MjMgMC45NzEzOCAyLjM0NDMzIDEuMTgyODJDMi4xNDUxMiAxLjQ0NjU3IDIuMTkxOTEgMS43NDczOCAyLjE5MjM5IDEuNzUwMjlDMi4xOTIzOSAxLjc1MDI5IDIuNjU0OTcgNC4zODAwNyAyLjg1MzIyIDUuNDY5NDhDMi45ODU2MiA2LjE5MzQxIDMuMTE0MTcgNi45MDAzOCAzLjIzNDc2IDcuNTc5OTlMMy4yMzgzOCA3LjYwMDA5TDUuMzc1MjIgOC41MTI0NUw1LjM2NjUzIDguNDQ2ODJDNS4yMTc5NyA3LjMzNjU4IDUuMDI5MzcgNi4xNjY1MiA0Ljg0NjU1IDUuMDM0OTdWNS4wMzQ3M1oiIGZpbGw9IiMxOTE5MTkiLz4KPHBhdGggZD0iTTE1LjI3NTggNy4wNjMzOEMxNS4wMzIyIDYuOTA1MjIgMTQuNzk0NyA2Ljg1MDQ5IDE0LjU2ODIgNi45MDE1OUMxNC4yNTg4IDYuOTcxODMgMTQuMDggNy4yMjA1NyAxNC4wNDcgNy4yNjk3M0MxNC4wMDk2IDcuMzE1OTkgMTMuMjM5OCA4LjI1MTYgMTIuOTE2NCA4LjY2MDQzQzExLjk2MzcgOS44NTkzMSAxMS41NjYgMTAuMzYzOCAxMC44NDMgMTEuMzE3MUwxMC4yIDEyLjE0NDRDMTAuMDIzIDEyLjM3NSA5LjgxMzg1IDEyLjY0OCA5LjQ4NDQgMTMuMDc5NkM5LjIzMDIgMTMuNDE0IDguNzE2OTggMTMuNjY2NCA4LjI5MDMzIDEzLjY2NjRDOC4yMTk5MSAxMy42NjY0IDguMTQ2NTkgMTMuNjU4NCA4LjA2NjI4IDEzLjY0MkM3Ljc5MzUxIDEzLjU4MzMgNy4zNjEwNyAxMy4zNDU1IDcuMTg0MDUgMTMuMTg3MUM2Ljk2NzIzIDEyLjk5NTUgNi44MDk3NCAxMi42NTE2IDYuNzkyNjIgMTIuMzMxOUw2Ljc4OSAxMi4yNjhMNi43MjU4MSAxMi4yNTkyQzYuMDUxNzIgMTIuMTY2NSA1LjI5MTA0IDExLjc3MzIgNC4wMTI1NiAxMC44NTY5TDMuOTQyODYgMTAuODA3TDMuNTE2MjIgMTEuNTYwM0wzLjYwMTU5IDExLjU5MThDNS41OTEwNyAxMi4zMjkgNi45NDQwOCAxMy45MTY5IDcuNjIyOTkgMTYuMzExQzcuNjM2MjYgMTYuMzU5OSA3LjYyOTk5IDE2LjQwOTYgNy42MDYxMSAxNi40NTE3QzcuNTgyNDcgMTYuNDkzNiA3LjU0MjQ0IDE2LjUyNDggNy40OTYxMyAxNi41Mzc0TDcuNDM5NyAxNi41NTIyQzcuMzU1NzcgMTYuNTc1IDcuMjY3MDEgMTYuNTI0NiA3LjI0MzYyIDE2LjQ0MDFDNi4yNzY3NCAxMy4wMDQ1IDQuMTEgMTIuMjA2NSAzLjM5NzggMTEuOTQ0NEMzLjE1NzEgMTEuODU1MyAzLjA0MTEgMTEuODA2MSAzLjAzMjY1IDExLjY2MDFDMy4wMzI2NSAxMS42NDEyIDMuMDM3NDggMTEuNTg2NyAzLjEwNDA0IDExLjQ3NzJMMy44MTcyMSAxMC4yMTk1TDMuOTk2ODggMTAuMzUxOUM1LjQ1MDk0IDExLjQxMzcgNi4yMzk2IDExLjgyNzcgNi45MDY0NSAxMS44NzkyQzcuMDM5ODIgMTEuODg5NyA3LjE4MDE5IDExLjg4NiA3LjMzNjcxIDExLjg2OTFDNy40NTU2MiAxMS44NTI2IDcuNTY4OTcgMTEuODMyMyA3LjcxMDU0IDExLjgwMzJDOC40MjEyOSAxMS42NTA0IDguNjA5ODkgMTEuMTg1MyA4LjcwNzU3IDEwLjcwNThDOC43Mjg3OSAxMC42MDA0IDguNzMyNjUgMTAuNTEzIDguNzE4OTEgMTAuNDUzMkw4LjcwOTk4IDEwLjQxNDRMMi45MDA3MyA3LjkzNTI5QzIuNzU2NTEgNy44NzY0NCAyLjU5Mjk5IDcuOTMxOSAyLjUwMzc1IDguMDcwNDRMMC40NTk3NjkgMTEuOTUwOUMwLjQ0MTY4MSAxMS45ODQ4IDAuMjg1MTU2IDEyLjMxNCAwLjI4NTE1NiAxMi41NjMyQzAuMjg1MTU2IDEyLjc5MjEgMC40MzEzMSAxMy4wNiAwLjQzMTMxIDEzLjA2QzAuOTA1NDY2IDEzLjgyOCAyLjYzNTQzIDE2LjI0NDYgNC4xMDE4IDE3LjcwNzVDNC4yMjgxNyAxNy44MzQ0IDQuMTYwNjQgMTguMjgyOSAzLjk5NTkyIDE5LjMwMzFDMy45NDgxNyAxOS41OTgzIDMuODk2MDcgMTkuOTE2OCAzLjg0NzU5IDIwLjI1MTNDMy42Njc2OCAyMS40OTM4IDMuNTQ4MjkgMjIuODgwNiAzLjUxODg3IDIzLjI0TDkuNzYyIDIzLjI0MjRDOS43ODM0NiAyMi44MzU4IDkuODcxMjUgMjAuODg3NSA5LjcwMzE1IDE4Ljk2NzRDOS42ODc5NiAxOC43ODUgOS43NDk0NiAxOC41NjU0IDkuODQ5MzEgMTguNDQ0NUMxMS4wMTk1IDE3LjA1MzYgMTEuNDg3NiAxNC44MDI4IDExLjYzNDcgMTMuODk5N0wxMS42NDEgMTMuODU5N0MxMS42NjQyIDEzLjcwNzggMTEuNjk1OCAxMy40OTk1IDExLjc1MzYgMTMuMzM5N0wxMS43Njk2IDEzLjMwNzdDMTEuNzg0NSAxMy4yNzc3IDExLjc5NzEgMTMuMjUzNyAxMS44MTE1IDEzLjIzMjZMMTEuOTcwNSAxMi45OTU1QzEyLjUyMyAxMi4xNjk2IDEyLjg4NjUgMTEuNjI2NiAxMy41NjUxIDEwLjc3ODJDMTQuMjQwNyA5LjkzMTk3IDE1LjUzMjQgOC4xOTY4NyAxNS41NDIzIDguMTgzM0MxNS41NTUzIDguMTY3OCAxNS43NDk3IDcuOTQxODMgMTUuNzA4NyA3LjY0NDE3QzE1LjY3ODMgNy40MjU3MSAxNS41MzI5IDcuMjMwNSAxNS4yNzU2IDcuMDYzNjJMMTUuMjc1OCA3LjA2MzM4WiIgZmlsbD0iIzE5MTkxOSIvPgo8L3N2Zz4=`,
+            },
+            footerButtons: [
+              {
+                href: "https://dev-web-sda.ws.asu.edu/sports/schedule",
+                label: "Full schedule",
+                class: "btn-default btn-gold btn",
+                target: "_self",
+              },
+              {
+                href: "https://dev-web-sda.ws.asu.edu/shop",
+                label: "Gear up for the game",
+                class: "btn-default btn-maroon btn",
+                target: "_self",
+              },
+            ],
+            footerLinks: [
+              {
+                label: "See past game scores",
+                href: "https://dev-web-sda.ws.asu.edu/sports/stats",
+              },
+            ],
+          },
           {
             id: "all",
             active: true,

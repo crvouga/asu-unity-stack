@@ -8,6 +8,7 @@ import { APP_CONFIG } from "../../../config";
 import { cleanString } from "../../../utils/clean-string";
 import { firstNonEmpty } from "../../../utils/first-non-empty";
 import { useBreakpoint } from "../../../utils/use-breakpoint";
+import { ApplyClearButtons } from "../../ApplyClearButtons";
 import { Icon } from "../../Icon_";
 import { useNewsTypesLoader } from "../../NewsStory/use-news-types-loader";
 import { Select, stringsToOptions } from "../../Select/Select";
@@ -17,7 +18,6 @@ import { TextField } from "../../TextField/TextField";
 import { configInputsPropTypes } from "../config-inputs";
 import { configLayoutPropTypes } from "../config-layout";
 import { newsStorySearchFormPropTypes } from "./use-news-story-search-form";
-import { ApplyClearButtons } from "../../ApplyClearButtons";
 
 const Root = styled.div`
   display: flex;
@@ -98,10 +98,13 @@ export const NewsStorySearchForm = ({
             style={{ ...inputStyle, flex: 2 }}
             label={configInputs?.search?.label ?? ""}
             placeholder={configInputs?.search?.placeholder ?? ""}
-            value={newsStorySearchForm.searchQuery}
-            onChange={newsStorySearchForm.updateSearchQuery}
+            value={newsStorySearchForm.state.searchQuery}
+            onChange={searchQueryNew =>
+              newsStorySearchForm.update({ searchQuery: searchQueryNew })
+            }
             sectionName={sectionName}
             debounce={500}
+            uncontrolled
             renderEndIcon={({ style: iconStyle }) => (
               <i
                 style={iconStyle}

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 
 import { trackGAEvent } from "../../track-ga-event";
@@ -72,7 +72,7 @@ export const TextField = ({
   const inputRef = useRef(null);
   const focused = useFocus(inputRef);
   const timeoutRef = useRef(null);
-  const [hasValue, setHasValue] = React.useState(Boolean(value));
+  const [hasValue, setHasValue] = useState(Boolean(value));
   const hasValueFinal = Boolean(value) || hasValue;
   return (
     <LabelledInputBase
@@ -94,19 +94,20 @@ export const TextField = ({
             value={uncontrolled ? undefined : value}
             onChange={e => {
               const valueNew = e.target.value;
-              trackGAEvent({
-                event: "search",
-                action: "type",
-                name: "onenter",
-                type: label,
-                region: "main content",
-                section: sectionName,
-                text: valueNew,
-                component: "search bar",
-              });
-              clearTimeout(timeoutRef.current);
               setHasValue(Boolean(valueNew));
+
+              clearTimeout(timeoutRef.current);
               timeoutRef.current = setTimeout(() => {
+                trackGAEvent({
+                  event: "search",
+                  action: "type",
+                  name: "onenter",
+                  type: label,
+                  region: "main content",
+                  section: sectionName,
+                  text: valueNew,
+                  component: "search bar",
+                });
                 onChange(valueNew);
               }, ensureNormalNumber(debounce));
             }}

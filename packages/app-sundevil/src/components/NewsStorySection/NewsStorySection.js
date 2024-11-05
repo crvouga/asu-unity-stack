@@ -120,7 +120,7 @@ const NewsStorySectionInner = ({
 
   const newsStoryDataSourceLoader = useNewsStoryDataSourceLoader({
     limit,
-    searchQuery: newsStorySearchFrom.debouncedSearchQueryApplied,
+    searchQuery: newsStorySearchFrom.stateApplied?.searchQuery ?? "",
     newsType: newsStorySearchFrom.stateApplied.newsType,
     sportId: isAllId(newsStorySearchFrom.stateApplied.sportId)
       ? null

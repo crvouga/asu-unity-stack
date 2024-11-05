@@ -3,7 +3,6 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 
-import { useDebouncedValue } from "../../../utils/use-debounced-value";
 import { createUseQueryState } from "../../../utils/use-query-state";
 import { useStateSwitch } from "../../../utils/use-state-switch";
 import {
@@ -17,15 +16,8 @@ import {
 
 export const newsStoryFormStatePropTypes = findManyInputPropTypes;
 
-const SEARCH_QUERY_DEBOUNCE_MS = 500;
-
 const useQueryState = createUseQueryState({
   queryKey: "newsStorySearchForm",
-});
-
-const useSearchQueryState = createUseQueryState({
-  queryKey: "newsStorySearchFormSearchQuery",
-  debouncePushMs: SEARCH_QUERY_DEBOUNCE_MS,
 });
 
 /**
@@ -39,49 +31,6 @@ const useSearchQueryState = createUseQueryState({
  * @param {{initialState: Partial<NewsStorySearchFormState>; config: Config}} input
  */
 export const useNewsStorySearchForm = ({ initialState, config }) => {
-  //
-  //
-  //
-  // Search Query State
-  //
-  //
-  //
-
-  const [searchQueryApplied, setSearchQueryApplied] = useStateSwitch(
-    config.enableUrlState,
-    "",
-    useSearchQueryState,
-    useState
-  );
-
-  const [searchQueryDraft, setSearchQueryDraft] = useState(searchQueryApplied);
-
-  useEffect(() => {
-    setSearchQueryDraft(searchQueryApplied);
-  }, [searchQueryApplied]);
-
-  const updateSearchQuery = value => {
-    switch (config.mode) {
-      case "draft": {
-        setSearchQueryDraft(value);
-        break;
-      }
-      case "instant":
-      default: {
-        setSearchQueryApplied(value);
-        break;
-      }
-    }
-  };
-
-  const debouncedSearchQueryApplied = useDebouncedValue(
-    searchQueryApplied,
-    SEARCH_QUERY_DEBOUNCE_MS
-  );
-
-  const searchQuery =
-    config.mode === "draft" ? searchQueryDraft : searchQueryApplied;
-
   //
   //
   //
@@ -132,28 +81,17 @@ export const useNewsStorySearchForm = ({ initialState, config }) => {
 
   const apply = () => {
     setStateApplied(stateDraft);
-    setSearchQueryApplied(searchQueryDraft);
   };
 
-  const canApply = !isFindManyInputEqual(
-    { ...stateDraft, searchQuery: searchQueryDraft },
-    { ...stateApplied, searchQuery: searchQueryApplied }
-  );
+  const canApply = !isFindManyInputEqual(stateDraft, stateApplied);
 
   const clear = () => {
     setStateApplied(initialState);
-    setSearchQueryApplied("");
   };
 
   const canClear =
-    !isFindManyInputEqual(
-      { ...stateDraft, searchQuery: searchQueryDraft },
-      { ...initialState, searchQuery: "" }
-    ) ||
-    !isFindManyInputEqual(
-      { ...stateApplied, searchQuery: searchQueryApplied },
-      { ...initialState, searchQuery: "" }
-    );
+    !isFindManyInputEqual(stateDraft, initialState) ||
+    !isFindManyInputEqual(stateApplied, initialState);
 
   return {
     state,
@@ -165,12 +103,6 @@ export const useNewsStorySearchForm = ({ initialState, config }) => {
     apply,
     canClear,
     clear,
-    //
-    searchQuery,
-    searchQueryDraft,
-    searchQueryApplied,
-    debouncedSearchQueryApplied,
-    updateSearchQuery,
     //
     config,
     mode: config.mode,

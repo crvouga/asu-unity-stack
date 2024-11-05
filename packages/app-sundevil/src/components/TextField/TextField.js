@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import styled from "styled-components";
 
 import { trackGAEvent } from "../../track-ga-event";
@@ -74,6 +74,26 @@ export const TextField = ({
   const timeoutRef = useRef(null);
   const [hasValue, setHasValue] = useState(Boolean(value));
   const hasValueFinal = Boolean(value) || hasValue;
+
+  const onChangeFinal = e => {
+    const valueNew = e.target.value;
+    setHasValue(Boolean(valueNew));
+
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      trackGAEvent({
+        event: "search",
+        action: "type",
+        name: "onenter",
+        type: label,
+        region: "main content",
+        section: sectionName,
+        text: valueNew,
+        component: "search bar",
+      });
+      onChange(valueNew);
+    }, ensureNormalNumber(debounce));
+  };
   return (
     <LabelledInputBase
       label={label}
@@ -92,25 +112,7 @@ export const TextField = ({
             id={id}
             type="text"
             value={uncontrolled ? undefined : value}
-            onChange={e => {
-              const valueNew = e.target.value;
-              setHasValue(Boolean(valueNew));
-
-              clearTimeout(timeoutRef.current);
-              timeoutRef.current = setTimeout(() => {
-                trackGAEvent({
-                  event: "search",
-                  action: "type",
-                  name: "onenter",
-                  type: label,
-                  region: "main content",
-                  section: sectionName,
-                  text: valueNew,
-                  component: "search bar",
-                });
-                onChange(valueNew);
-              }, ensureNormalNumber(debounce));
-            }}
+            onChange={onChangeFinal}
           />
         </InputContainer>
       )}

@@ -88,7 +88,7 @@ const NewsStorySectionInner = ({
 
   const newsStorySearchFrom = useNewsStorySearchForm({
     initialState: {
-      sportId: sports.find(sport => sport.active)?.id ?? ALL_ID,
+      sportId: sports?.find(sport => sport?.active)?.id ?? ALL_ID,
       ...configForm.initialState,
     },
     config: {

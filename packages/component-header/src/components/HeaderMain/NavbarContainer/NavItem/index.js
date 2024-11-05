@@ -66,7 +66,7 @@ const NavItem = ({ link, setItemOpened, itemOpened, toggleMobileMenu }) => {
   const { breakpoint, expandOnHover, title } = useAppContext();
   const isMobile = useIsMobile(breakpoint);
   const isDesktop = !isMobile;
-  const { refs, floatingStyles, y } = useFloating({
+  const { refs, floatingStyles, y, update } = useFloating({
     strategy: "fixed",
     // placement: 'bottom-start',
     whileElementsMounted: autoUpdate,
@@ -77,6 +77,11 @@ const NavItem = ({ link, setItemOpened, itemOpened, toggleMobileMenu }) => {
       }),
     ],
   });
+  useEffect(() => {
+    if (itemOpened) {
+      update();
+    }
+  }, [update, itemOpened]);
   const bodyDimensions = useDimensionsBody();
   const dropdownStyles = isDesktop
     ? {

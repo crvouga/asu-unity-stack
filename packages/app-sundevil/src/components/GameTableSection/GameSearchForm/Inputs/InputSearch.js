@@ -13,6 +13,7 @@ export const InputSearch = () => {
     gameSearchForm,
     inputStyle,
   } = useGameSearchFormContext();
+
   return (
     configLayout.includeInputSearch && (
       <TextField
@@ -22,7 +23,10 @@ export const InputSearch = () => {
         label={configInputs?.searchInput?.label ?? ""}
         placeholder={configInputs?.searchInput?.placeholder ?? ""}
         value={gameSearchForm.searchQuery}
-        onChange={gameSearchForm.setSearchQuery}
+        debounce={500}
+        onChange={searchQueryNew =>
+          gameSearchForm.update({ searchQuery: searchQueryNew })
+        }
         uncontrolled
         renderEndIcon={({ style: iconStyle }) => (
           <i

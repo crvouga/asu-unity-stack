@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { trackGAEvent } from "../../track-ga-event";
+import { ensureNormalNumber } from "../../utils/ensure-number";
 import { useFocus } from "../../utils/use-focus";
 import { LabelledInputBase } from "../InputBase/LabelledInputBase";
 
@@ -66,10 +67,13 @@ export const TextField = ({
   darkMode,
   uncontrolled,
   sectionName,
+  debounce,
 }) => {
   const inputRef = useRef(null);
   const focused = useFocus(inputRef);
-
+  const timeoutRef = useRef(null);
+  const [hasValue, setHasValue] = React.useState(Boolean(value));
+  const hasValueFinal = Boolean(value) || hasValue;
   return (
     <LabelledInputBase
       label={label}
@@ -79,7 +83,7 @@ export const TextField = ({
       onClick={() => inputRef.current.focus()}
       renderInput={({ id, style: inputStyle }) => (
         <InputContainer>
-          <Placeholder inputStyle={inputStyle} hasValue={Boolean(value)}>
+          <Placeholder inputStyle={inputStyle} hasValue={hasValueFinal}>
             <PlaceholderText>{placeholder}</PlaceholderText>
           </Placeholder>
           <Input
@@ -100,7 +104,11 @@ export const TextField = ({
                 text: valueNew,
                 component: "search bar",
               });
-              onChange(valueNew);
+              clearTimeout(timeoutRef.current);
+              setHasValue(Boolean(valueNew));
+              timeoutRef.current = setTimeout(() => {
+                onChange(valueNew);
+              }, ensureNormalNumber(debounce));
             }}
           />
         </InputContainer>
@@ -121,4 +129,5 @@ TextField.propTypes = {
   renderEndIcon: PropTypes.func,
   darkMode: PropTypes.bool,
   uncontrolled: PropTypes.bool,
+  debounce: PropTypes.number,
 };

@@ -1,15 +1,16 @@
 export const safeEncode = input => {
   try {
-    return btoa(JSON.stringify(input));
+    const json = JSON.stringify(input);
+    try {
+      return btoa(json);
+    } catch (error) {
+      return json;
+    }
   } catch (error) {
     try {
-      return JSON.stringify(input);
-    } catch (_error) {
-      try {
-        return String(input);
-      } catch (__error) {
-        return "";
-      }
+      return String(input);
+    } catch (__error) {
+      return "";
     }
   }
 };

@@ -101,6 +101,7 @@ export const NewsStorySearchForm = ({
             value={newsStorySearchForm.searchQuery}
             onChange={newsStorySearchForm.updateSearchQuery}
             sectionName={sectionName}
+            debounce={500}
             renderEndIcon={({ style: iconStyle }) => (
               <i
                 style={iconStyle}

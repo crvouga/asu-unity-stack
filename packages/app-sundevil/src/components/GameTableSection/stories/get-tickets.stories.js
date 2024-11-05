@@ -23,13 +23,13 @@ const Template = args => (
   </>
 );
 
-const gameDataSource = {
-  type: "special-events",
-};
-
 // const gameDataSource = {
-//   type: "mock",
+//   type: "special-events",
 // };
+
+const gameDataSource = {
+  type: "mock",
+};
 
 export const GetTickets = Template.bind({});
 GetTickets.args = {

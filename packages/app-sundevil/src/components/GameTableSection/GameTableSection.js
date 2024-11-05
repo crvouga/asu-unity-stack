@@ -176,7 +176,6 @@ const GameTableSectionInner = ({ ...props }) => {
    */
   const gameDataSourceFindManyInput = {
     limit: 5,
-    searchQuery: gameSearchForm.debouncedSearchQuery,
     ...gameSearchForm,
     ...props.gameDataSourceLoader,
   };

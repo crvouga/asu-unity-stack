@@ -41,7 +41,8 @@ export const CellTeamLogo = props => {
         <a
           href={game?.teamLogoHref}
           style={{
-            width: "80px",
+            height: "80px",
+            // Let width be dynamic to prevent image warping
           }}
         >
           <img

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styled from "styled-components";
 
 import { trackGAEvent } from "../../track-ga-event";

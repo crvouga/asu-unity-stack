@@ -3,6 +3,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { decodeHtml } from "../../../../../utils/decode-html";
+
 const Title = styled.a`
   color: #191919 !important;
   text-decoration: none !important;
@@ -50,7 +52,7 @@ export const CellTitle = props => {
             fontWeight: "bold",
             width: "fit-content",
           }}
-          dangerouslySetInnerHTML={{ __html: game?.title }}
+          dangerouslySetInnerHTML={{ __html: decodeHtml(game?.title ?? "") }}
         />
       )}
     </div>

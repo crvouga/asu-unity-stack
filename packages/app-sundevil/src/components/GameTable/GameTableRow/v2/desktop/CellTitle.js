@@ -6,6 +6,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../../../../config";
+import { decodeHtml } from "../../../../../utils/decode-html";
 import { useBreakpoint } from "../../../../../utils/use-breakpoint";
 import { LinkBase } from "../../../../Link/LinkBase";
 import { Chip } from "../Chip";
@@ -77,7 +78,7 @@ export const CellTitle = props => {
               paddingBottom: "0",
             }}
             href={game?.titleHref}
-            dangerouslySetInnerHTML={{ __html: game?.title ?? "" }}
+            dangerouslySetInnerHTML={{ __html: decodeHtml(game?.title ?? "") }}
           />
           <div
             style={{

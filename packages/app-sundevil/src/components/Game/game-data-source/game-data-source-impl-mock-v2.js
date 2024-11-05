@@ -19,7 +19,7 @@ const games = [1, 2, 3, 4, 5].flatMap(id => [
     sportIcon: "fa fas fa-football-ball",
     sportName: "Football Football Football",
     sportId: "football",
-    title: "Sun Devil Olympian Celebration",
+    title: "ITA Master&amp;#039;s Championships",
     titleHref: "https://www.example.com",
     dateDay: "11",
     dateMonth: "Oct.",

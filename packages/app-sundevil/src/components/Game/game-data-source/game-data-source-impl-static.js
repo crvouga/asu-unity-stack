@@ -48,9 +48,15 @@ export class GameDataSourceStatic extends IGameDataSource {
     const filtered = matchSort({
       searchQuery: input?.searchQuery ?? "",
       toText: game =>
-        `${game?.title ?? ""} ${game?.gameType ?? ""} ${game?.venue ?? ""} ${
-          game?.sport?.name ?? ""
-        }`,
+        [
+          game?.title,
+          game?.gameType,
+          game?.venue,
+          game?.sportName,
+          game?.sportId,
+        ]
+          .filter(Boolean)
+          .join(" "),
       items: this.games.filter(game => {
         const matchedSportId =
           typeof input?.sportId === "string" &&

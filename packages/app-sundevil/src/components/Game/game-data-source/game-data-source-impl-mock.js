@@ -42,7 +42,7 @@ const games = [];
     gameType,
     ticketLink: "https://www.example.com",
     ticketText: "Buy Tickets",
-    title: `Sun Devils vs Wildcats ${sportId}`,
+    title: `Sun Devils vs Wildcats`,
     titleHref: "https://www.example.com",
     dateDay: "25",
     dateMonth: "Nov",

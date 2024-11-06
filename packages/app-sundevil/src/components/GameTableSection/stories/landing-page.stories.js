@@ -35,8 +35,7 @@ const Template = args => (
 export const LandingPage = Template.bind({});
 LandingPage.args = {
   gameDataSource: {
-    type: "custom",
-    gameDataSource: new GameDataSourceMockV2(),
+    type: "mock-v2",
   },
   title: "Upcoming games",
   subtitle: null,

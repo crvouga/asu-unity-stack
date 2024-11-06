@@ -75,6 +75,22 @@ const games = [1, 2, 3, 4, 5].flatMap(id => [
         label: "Wear Black",
         color: "black",
       },
+      {
+        label: "Featured 1 ",
+        color: "gray",
+      },
+      {
+        label: "Free 1",
+        color: "gray",
+      },
+      {
+        label: "Featured 2",
+        color: "gray",
+      },
+      {
+        label: "Free 2",
+        color: "gray",
+      },
     ],
     buttons: [
       Math.random() > 0.5

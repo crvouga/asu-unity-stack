@@ -76,6 +76,7 @@ export const CellTitle = props => {
               ...STYLES_TRUNCATE,
               padding: "16px",
               paddingBottom: "0",
+              flexShrink: 0,
             }}
             href={game?.titleHref}
             dangerouslySetInnerHTML={{ __html: decodeHtml(game?.title ?? "") }}
@@ -87,6 +88,7 @@ export const CellTitle = props => {
               flexWrap: "wrap",
               gap: "8px",
               padding: "16px",
+              paddingRight: "0px",
               paddingTop: "0px",
               ...STYLES_TRUNCATE,
             }}
@@ -106,9 +108,10 @@ export const CellTitle = props => {
               justifyContent: "flex-start",
               flexDirection: "column",
               padding: "16px",
+              paddingLeft: "4px",
+              paddingRight: "48px",
               gap: "6px",
               minWidth: "0",
-              paddingRight: "48px",
               flexShrink: 1,
               flexWrap: "wrap",
               ...STYLES_TRUNCATE,

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-nested-ternary */
 import React from "react";
@@ -43,9 +44,10 @@ export const CellDate = props => {
               fontSize: "12px",
               fontWeight: "bold",
             }}
-          >
-            {game?.dateMonth}
-          </div>
+            dangerouslySetInnerHTML={{
+              __html: game?.dateMonth,
+            }}
+          />
         )}
         {game?.dateDay && (
           <div
@@ -55,9 +57,10 @@ export const CellDate = props => {
               fontSize: "24px",
               fontWeight: "bold",
             }}
-          >
-            {game?.dateDay}
-          </div>
+            dangerouslySetInnerHTML={{
+              __html: game?.dateDay,
+            }}
+          />
         )}
       </div>
     </div>

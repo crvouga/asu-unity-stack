@@ -126,9 +126,10 @@ export const CellTitle = props => {
                   fontWeight: "400",
                   ...link.style,
                 }}
-              >
-                {link.label}
-              </LinkBase>
+                dangerouslySetInnerHTML={{
+                  __html: link.label,
+                }}
+              />
             ))}
           </div>
         )}

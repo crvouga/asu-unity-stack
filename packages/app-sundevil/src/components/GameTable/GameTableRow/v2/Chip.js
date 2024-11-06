@@ -62,8 +62,10 @@ export const Chip = (
         height: "18px",
         ...toColorStyles(chip.color),
       }}
-    >
-      {chip.label}
-    </div>
+      // eslint-disable-next-line react/no-danger
+      dangerouslySetInnerHTML={{
+        __html: chip.label,
+      }}
+    />
   );
 };

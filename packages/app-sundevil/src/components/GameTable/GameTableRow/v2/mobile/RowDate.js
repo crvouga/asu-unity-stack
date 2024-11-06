@@ -48,28 +48,31 @@ export const RowDate = props => {
             style={{
               fontWeight: "bold",
             }}
-          >
-            {dateString}
-          </div>
+            dangerouslySetInnerHTML={{
+              __html: dateString,
+            }}
+          />
         )}
-        {game?.dateTimeRange && (
+        {game?.dateDayName && (
           <div
             style={{
               fontWeight: "normal",
               paddingLeft: "4px",
             }}
-          >
-            {game?.dateDayName}
-          </div>
+            dangerouslySetInnerHTML={{
+              __html: game?.dateDayName ?? "",
+            }}
+          />
         )}
         {game?.dateTimeRange && (
           <div
             style={{
               fontWeight: "normal",
             }}
-          >
-            {[",", game?.dateTimeRange].filter(Boolean).join(" ")}
-          </div>
+            dangerouslySetInnerHTML={{
+              __html: [",", game?.dateTimeRange].filter(Boolean).join(" "),
+            }}
+          />
         )}
       </div>
       {game?.dateLinks && (
@@ -88,9 +91,10 @@ export const RowDate = props => {
                 color: "#747474",
                 width: "fit-content",
               }}
-            >
-              {link.label}
-            </LinkBase>
+              dangerouslySetInnerHTML={{
+                __html: link.label,
+              }}
+            />
           ))}
         </div>
       )}

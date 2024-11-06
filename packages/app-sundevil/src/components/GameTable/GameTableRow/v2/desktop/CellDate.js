@@ -72,9 +72,10 @@ export const CellDate = ({ game, configLayout }) => {
               style={{
                 fontSize: "12px",
               }}
-            >
-              {game?.dateDayName}
-            </div>
+              dangerouslySetInnerHTML={{
+                __html: game?.dateDayName ?? "",
+              }}
+            />
           </div>
           <div
             style={{
@@ -99,9 +100,10 @@ export const CellDate = ({ game, configLayout }) => {
               style={{
                 fontSize: "12px",
               }}
-            >
-              {game?.dateTimeZone}
-            </div>
+              dangerouslySetInnerHTML={{
+                __html: game?.dateTimeZone ?? "",
+              }}
+            />
           </div>
         </div>
         <div
@@ -120,9 +122,10 @@ export const CellDate = ({ game, configLayout }) => {
                 color: "#747474",
                 fontSize: "14px",
               }}
-            >
-              {link.label}
-            </DateLink>
+              dangerouslySetInnerHTML={{
+                __html: link.label,
+              }}
+            />
           ))}
         </div>
       </Cell>

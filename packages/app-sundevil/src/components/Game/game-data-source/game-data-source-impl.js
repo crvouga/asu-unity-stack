@@ -5,6 +5,7 @@ import { gamePropTypes } from "../game";
 import { IGameDataSource } from "./game-data-source";
 import { GameDataSourceAsuEvents } from "./game-data-source-impl-asu-events";
 import { GameDataSourceMock } from "./game-data-source-impl-mock";
+import { GameDataSourceMockV2 } from "./game-data-source-impl-mock-v2";
 import { GameDataSourceSpecialEvents } from "./game-data-source-impl-special-events";
 import { GameDataSourceStatic } from "./game-data-source-impl-static";
 
@@ -15,6 +16,9 @@ export const gameDataSourcePropTypes = PropTypes.oneOfType([
   }),
   PropTypes.shape({
     type: PropTypes.oneOf(["mock"]),
+  }),
+  PropTypes.shape({
+    type: PropTypes.oneOf(["mock-v2"]),
   }),
   PropTypes.shape({
     type: PropTypes.oneOf(["asu-events"]),
@@ -47,6 +51,9 @@ export const buildGameDataSource = input => {
     }
     case "custom": {
       return input.gameDataSource;
+    }
+    case "mock-v2": {
+      return new GameDataSourceMockV2(input);
     }
     default: {
       return new GameDataSourceStatic({ games: [] });

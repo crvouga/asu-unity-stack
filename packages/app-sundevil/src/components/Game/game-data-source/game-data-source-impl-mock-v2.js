@@ -141,4 +141,4 @@ export class GameDataSourceMockV2 extends IGameDataSource {
 }
 
 // @ts-ignore
-window.GameDataSourceMock = GameDataSourceMockV2;
+window.GameDataSourceMockV2 = GameDataSourceMockV2;

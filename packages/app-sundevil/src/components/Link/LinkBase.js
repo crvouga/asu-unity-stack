@@ -1,7 +1,11 @@
 import styled from "styled-components";
 
-export const LinkBase = styled.a`
+const GRAY = "#747474";
+const MAROON = "#8c1d40";
+
+export const MaroonLinkBase = styled.a`
+  color: ${GRAY} !important;
   &:hover {
-    color: #8c1d40 !important;
+    color: ${MAROON} !important;
   }
 `;

@@ -3,7 +3,7 @@
 // @ts-check
 import React from "react";
 
-import { LinkBase } from "../../../../Link/LinkBase";
+import { MaroonLinkBase } from "../../../../Link/LinkBase";
 import { isCleanString } from "./shared";
 
 /**
@@ -84,11 +84,10 @@ export const RowDate = props => {
           }}
         >
           {game?.dateLinks?.map(link => (
-            <LinkBase
+            <MaroonLinkBase
               key={link.href}
               href={link.href}
               style={{
-                color: "#747474",
                 width: "fit-content",
               }}
               dangerouslySetInnerHTML={{

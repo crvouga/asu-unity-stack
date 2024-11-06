@@ -4,7 +4,7 @@
 // @ts-check
 import React from "react";
 
-import { LinkBase } from "../../../../Link/LinkBase";
+import { MaroonLinkBase } from "../../../../Link/LinkBase";
 
 /**
  * @typedef {React.FC<import("../../game-table-row").GameTableRowProps>} Component
@@ -31,13 +31,12 @@ export const RowSupplementalLinks = props => {
       }}
     >
       {game?.supplementalLinks?.map(link => (
-        <LinkBase
+        <MaroonLinkBase
           {...link}
           key={`${link.label}${link.href}`}
           href={link.href}
           className={link.className}
           style={{
-            color: "#747474",
             fontSize: "14px",
             fontWeight: "400",
             ...link.style,

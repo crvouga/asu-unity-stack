@@ -35,7 +35,7 @@ export const CellTeamLogo = props => {
         href={game?.teamLogoHref}
         style={{
           height: "40px",
-          // Let width be dynamic to prevent image warping
+          width: "40px",
         }}
       >
         <img
@@ -44,6 +44,7 @@ export const CellTeamLogo = props => {
           height="100%"
           style={{
             backgroundColor: "transparent",
+            objectFit: "contain",
           }}
           src={game?.teamLogoSrc}
           alt={game?.teamLogoAlt ?? " "}

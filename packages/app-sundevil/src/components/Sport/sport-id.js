@@ -87,6 +87,16 @@ export const removeDuplicateGenderPrefix = str => {
   return str;
 };
 
+const DELIMITER = "-";
+
+const UNIMPORTANT_WORDS = ["and", "&"];
+const removeUnimportantWords = str => {
+  return str
+    .split(DELIMITER)
+    .filter(word => !UNIMPORTANT_WORDS.includes(word))
+    .join(DELIMITER);
+};
+
 const clean = (s, fallbackGender = SportGender.MEN) => {
   if (typeof s !== "string" || s.length === 0) {
     return null;
@@ -99,15 +109,17 @@ const clean = (s, fallbackGender = SportGender.MEN) => {
     // apply replacements first
     s => applyReplacements(REPLACEMENTS, s),
     // replace with hyphens
-    s => s.replace(/[^a-zA-Z0-9-]/g, "-"),
+    s => s.replace(/[^a-zA-Z0-9-]/g, DELIMITER),
     // remove duplicate hyphens
-    s => s.replace(/-+/g, "-"),
+    s => s.replace(/-+/g, DELIMITER),
     // remove leading and trailing hyphens
     s => s.replace(/^-|-$/g, ""),
     // convert to lowercase
     s => s.toLowerCase(),
-
-    s => removeDuplicateGenderPrefix(s)
+    //
+    s => removeDuplicateGenderPrefix(s),
+    //
+    s => removeUnimportantWords(s)
   );
 };
 

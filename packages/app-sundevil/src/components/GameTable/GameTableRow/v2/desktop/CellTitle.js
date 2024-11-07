@@ -14,6 +14,7 @@ import { Cell, STYLES_TRUNCATE } from "./shared";
 
 const Title = styled.a`
   font-size: 24px;
+  line-height: 24px;
   padding: 0;
   margin: 0;
   overflow: hidden;
@@ -66,7 +67,7 @@ export const CellTitle = props => {
             justifyContent: "flex-start",
             flexDirection: "column",
             flex: 1,
-            gap: "6px",
+            gap: "14px",
             flexShrink: 0,
             ...STYLES_TRUNCATE,
           }}

@@ -46,7 +46,7 @@ export const CellDate = ({ game, configLayout }) => {
             flex: 1,
             display: "flex",
             flexDirection: "column",
-            gap: "4px",
+            gap: "6px",
           }}
         >
           <div
@@ -60,9 +60,9 @@ export const CellDate = ({ game, configLayout }) => {
           >
             <div
               style={{
-                fontSize: "20px",
+                fontSize: "24px",
                 fontWeight: "bold",
-                lineHeight: "20px",
+                lineHeight: "24px",
               }}
               dangerouslySetInnerHTML={{
                 __html: [game?.dateMonth ?? "", game?.dateDay ?? ""].join(" "),

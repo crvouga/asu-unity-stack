@@ -513,4 +513,22 @@ describe("sportId", () => {
     );
     expect(actual).toBe(expected);
   });
+
+  test("real swimming and diving", () => {
+    const url = "https://dev-web-sda.ws.asu.edu/sports/womens/swimming-diving";
+    const expected = "w-swimming-diving";
+    const actual = stringToSportId(url);
+    const id = "womens-swimming-and-diving";
+    expect(stringToSportId(url)).toEqual(stringToSportId(id));
+    expect(actual).toBe(expected);
+  });
+
+  test("real swimming and diving 2", () => {
+    const url = "https://dev-web-sda.ws.asu.edu/sports/womens/swimming-diving";
+    const expected = "w-swimming-diving";
+    const actual = stringToSportId(url);
+    const id = "women-swimming-&-diving";
+    expect(stringToSportId(url)).toEqual(stringToSportId(id));
+    expect(actual).toBe(expected);
+  });
 });

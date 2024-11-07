@@ -8,7 +8,7 @@ import styled from "styled-components";
 import { APP_CONFIG } from "../../../../../config";
 import { decodeHtml } from "../../../../../utils/decode-html";
 import { useBreakpoint } from "../../../../../utils/use-breakpoint";
-import { MaroonLinkBase } from "../../../../Link/LinkBase";
+import { LinkBase } from "../../../../Link/LinkBase";
 import { Chip } from "../Chip";
 import { Cell, STYLES_TRUNCATE } from "./shared";
 
@@ -118,7 +118,7 @@ export const CellTitle = props => {
             }}
           >
             {game?.supplementalLinks?.map(link => (
-              <MaroonLinkBase
+              <LinkBase
                 {...link}
                 key={`${link.label}${link.href}`}
                 href={link.href}

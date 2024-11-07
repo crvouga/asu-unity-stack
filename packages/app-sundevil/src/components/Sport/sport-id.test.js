@@ -503,4 +503,14 @@ describe("sportId", () => {
     const actual = stringToSportId(sportTag);
     expect(actual).toBe(expected);
   });
+
+  test("real womens sport", () => {
+    const url = "https://dev-web-sda.ws.asu.edu/sports/womens/swimming-diving";
+    const expected = "w-swimming-diving";
+    const actual = stringToSportId(
+      "Swimming & Diving",
+      stringToSportGender(url)
+    );
+    expect(actual).toBe(expected);
+  });
 });

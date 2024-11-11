@@ -24,7 +24,9 @@ const toColorStyles = color => {
     }
     case "pink": {
       return {
-        backgroundColor: "#FFC0CB",
+        // backgroundColor: "#FFC0CB",
+        backgroundColor: "#E74973",
+        color: "#FAFAFA",
       };
     }
 

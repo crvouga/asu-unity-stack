@@ -132,7 +132,7 @@ describe("sportId", () => {
     // URLs with encoded characters
     expect(
       stringToSportId("example.com/sports?sport=track%20and%20field")
-    ).toBe("track-and-field");
+    ).toBe("track-field");
 
     // Malformed URLs
     expect(stringToSportId("http:////example.com/sports/womens/golf")).toBe(
@@ -197,7 +197,7 @@ describe("sportId", () => {
   test("stringToSportId additional missing cases", () => {
     // Sport names with hyphens or underscores
     expect(stringToSportId("example.com/sports?sport=track-and-field")).toBe(
-      "track-and-field"
+      "track-field"
     );
     expect(stringToSportId("example.com/sports?sport=cross_country")).toBe(
       "cross-country"
@@ -487,6 +487,48 @@ describe("sportId", () => {
     const url = "https://sundevils.com/sports/womens/basketball";
     const actual = stringToSportId(sportTag, stringToSportGender(url));
     const expected = "m-basketball";
+    expect(actual).toBe(expected);
+  });
+
+  test("remove words like 'and' from sport name", () => {
+    const sportTag = "swimming-and-diving";
+    const expected = "swimming-diving";
+    const actual = stringToSportId(sportTag);
+    expect(actual).toBe(expected);
+  });
+
+  test("remove words like '&' from sport name", () => {
+    const sportTag = "swimming-&-diving";
+    const expected = "swimming-diving";
+    const actual = stringToSportId(sportTag);
+    expect(actual).toBe(expected);
+  });
+
+  test("real womens sport", () => {
+    const url = "https://dev-web-sda.ws.asu.edu/sports/womens/swimming-diving";
+    const expected = "w-swimming-diving";
+    const actual = stringToSportId(
+      "Swimming & Diving",
+      stringToSportGender(url)
+    );
+    expect(actual).toBe(expected);
+  });
+
+  test("real swimming and diving", () => {
+    const url = "https://dev-web-sda.ws.asu.edu/sports/womens/swimming-diving";
+    const expected = "w-swimming-diving";
+    const actual = stringToSportId(url);
+    const id = "womens-swimming-and-diving";
+    expect(stringToSportId(url)).toEqual(stringToSportId(id));
+    expect(actual).toBe(expected);
+  });
+
+  test("real swimming and diving 2", () => {
+    const url = "https://dev-web-sda.ws.asu.edu/sports/womens/swimming-diving";
+    const expected = "w-swimming-diving";
+    const actual = stringToSportId(url);
+    const id = "women-swimming-&-diving";
+    expect(stringToSportId(url)).toEqual(stringToSportId(id));
     expect(actual).toBe(expected);
   });
 });

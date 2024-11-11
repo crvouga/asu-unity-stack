@@ -127,18 +127,18 @@ const games = [1, 2, 3, 4, 5].flatMap(id => [
         label: "Sports",
         color: "gray",
       },
-      {
-        label: "Family friendly",
-        color: "gray",
-      },
-      {
-        label: "Open to the public",
-        color: "gray",
-      },
-      {
-        label: "Salute to Service",
-        color: "gray",
-      },
+      // {
+      //   label: "Family friendly",
+      //   color: "gray",
+      // },
+      // {
+      //   label: "Open to the public",
+      //   color: "gray",
+      // },
+      // {
+      //   label: "Salute to Service",
+      //   color: "gray",
+      // },
     ],
     buttons: [
       {
@@ -206,7 +206,7 @@ const games = [1, 2, 3, 4, 5].flatMap(id => [
         href: "https://www.example.com/1",
       },
       {
-        label: "Supplemental Link",
+        label: "Supplemental Link Supp le mental Link",
         href: "https://www.example.com/2",
       },
       {
@@ -235,26 +235,26 @@ const games = [1, 2, 3, 4, 5].flatMap(id => [
         label: "Wear Pink",
         color: "pink",
       },
-      {
-        label: "Wear Black",
-        color: "black",
-      },
-      {
-        label: "Featured 1 ",
-        color: "gray",
-      },
-      {
-        label: "Free 1",
-        color: "gray",
-      },
-      {
-        label: "Featured 2",
-        color: "gray",
-      },
-      {
-        label: "Free 2",
-        color: "gray",
-      },
+      // {
+      //   label: "Wear Black",
+      //   color: "black",
+      // },
+      // {
+      //   label: "Featured 1 ",
+      //   color: "gray",
+      // },
+      // {
+      //   label: "Free 1",
+      //   color: "gray",
+      // },
+      // {
+      //   label: "Featured 2",
+      //   color: "gray",
+      // },
+      // {
+      //   label: "Free 2",
+      //   color: "gray",
+      // },
     ],
     buttons: [
       Math.random() > 0.5

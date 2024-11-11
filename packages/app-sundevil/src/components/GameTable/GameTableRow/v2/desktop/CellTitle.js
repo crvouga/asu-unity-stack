@@ -110,11 +110,10 @@ export const CellTitle = props => {
               flexDirection: "column",
               padding: "16px",
               paddingLeft: "4px",
-              paddingRight: "48px",
               gap: "6px",
               minWidth: "0",
               flexShrink: 1,
-              flexWrap: "wrap",
+              width: "187px",
               ...STYLES_TRUNCATE,
             }}
           >
@@ -125,8 +124,11 @@ export const CellTitle = props => {
                 href={link.href}
                 className={link.className}
                 style={{
+                  width: "100%",
                   fontSize: "14px",
                   fontWeight: "400",
+                  whiteSpace: "normal",
+                  wordWrap: "break-word",
                   ...link.style,
                 }}
                 dangerouslySetInnerHTML={{

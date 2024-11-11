@@ -15,7 +15,11 @@ export const GameTableRow = forwardRef(
     ref
   ) => {
     const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
+    const isTablet = useBreakpoint(APP_CONFIG.breakpointTablet);
     if (isMobile) {
+      return <GameTableRowMobile {...props} ref={ref} />;
+    }
+    if (isTablet) {
       return <GameTableRowMobile {...props} ref={ref} />;
     }
     return <GameTableRowDesktop {...props} ref={ref} />;

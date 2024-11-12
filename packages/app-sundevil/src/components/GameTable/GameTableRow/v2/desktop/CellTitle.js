@@ -113,7 +113,7 @@ export const CellTitle = props => {
               gap: "6px",
               minWidth: "0",
               flexShrink: 1,
-              width: "187px",
+              width: "144px",
               ...STYLES_TRUNCATE,
             }}
           >

@@ -88,9 +88,7 @@ export const CellTitle = props => {
               flexDirection: "row",
               flexWrap: "wrap",
               gap: "8px",
-              padding: "16px",
-              paddingRight: "0px",
-              paddingTop: "0px",
+              margin: "0px 0px 16px 16px",
               ...STYLES_TRUNCATE,
             }}
           >

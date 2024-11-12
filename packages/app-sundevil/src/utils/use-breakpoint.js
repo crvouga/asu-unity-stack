@@ -18,14 +18,13 @@ export const useBreakpoint = breakpoint => {
     }
   }, [breakpoint]);
 
-  const setMatch = e => {
-    setIsMatch(e.matches);
-  };
-
   useLayoutEffect(() => {
     if (!query) {
       return () => {};
     }
+    const setMatch = e => {
+      setIsMatch(e.matches);
+    };
     query.addEventListener("change", setMatch);
     return () => {
       query.removeEventListener("change", setMatch);

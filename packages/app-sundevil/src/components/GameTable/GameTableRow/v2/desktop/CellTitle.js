@@ -103,18 +103,18 @@ export const CellTitle = props => {
             style={{
               height: "100%",
               display: "flex",
-              alignItems: "flex-start",
+              alignItems: "center",
               justifyContent: "flex-start",
               flexDirection: "column",
-              padding: "16px",
-              paddingLeft: "4px",
-              gap: "6px",
+              gap: "3px",
               minWidth: "0",
               flexShrink: 1,
               width: "144px",
+              maxHeight: "100%",
               ...STYLES_TRUNCATE,
             }}
           >
+            <div style={{ width: "100%", height: "13px" }} />
             {game?.supplementalLinks?.map(link => (
               <LinkBase
                 {...link}

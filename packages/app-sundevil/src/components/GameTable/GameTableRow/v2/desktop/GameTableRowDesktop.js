@@ -10,7 +10,7 @@ import { CellDate } from "./CellDate";
 import { CellIcon } from "./CellIcon";
 import { CellSportName } from "./CellSportName";
 import { CellTeamLogo } from "./CellTeamLogo";
-import { CellTitle } from "./CellTitle";
+import { CellTitle } from "./CellTitle/CellTitle";
 
 const Root = styled.div`
   width: 100%;

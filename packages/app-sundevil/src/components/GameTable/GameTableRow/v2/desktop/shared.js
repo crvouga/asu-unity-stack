@@ -14,7 +14,11 @@ export const STYLES_TRUNCATE = {
 };
 
 /**
- * @typedef {React.FC<import("../../game-table-row").GameTableRowProps>} CellComponent
+ * @typedef {import("../../game-table-row").GameTableRowProps} CellProps
+ */
+
+/**
+ * @typedef {React.FC<CellProps>} CellComponent
  */
 
 export const isCleanString = str =>

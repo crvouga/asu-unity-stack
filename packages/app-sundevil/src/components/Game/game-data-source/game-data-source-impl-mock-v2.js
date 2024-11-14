@@ -33,27 +33,35 @@ const games = [1, 2, 3, 4, 5].flatMap((id, index) => [
       },
     ],
     teamLogoSrc:
-      "https://dev-web-sda.ws.asu.edu/sites/default/files/Screenshot%25202024-10-21%2520at%252011.10.46%25E2%2580%25AFAM.webp",
+      Math.random() < 0.5
+        ? null
+        : "https://dev-web-sda.ws.asu.edu/sites/default/files/Screenshot%25202024-10-21%2520at%252011.10.46%25E2%2580%25AFAM.webp",
     // "https://dev-web-sda.ws.asu.edu/sites/default/files/arkansasstatelogo.webp",
     teamLogoAlt: " ",
     supplementalLinks: [
       {
+        id: "2",
+        label:
+          "History History History History History History History History ",
+        href: "https://www.example.com/1",
+      },
+      {
+        id: "1",
         label: "History",
         href: "https://www.example.com/1",
       },
       {
+        id: "3",
         label: "History",
         href: "https://www.example.com/1",
       },
       {
+        id: "4",
         label: "History",
         href: "https://www.example.com/1",
       },
       {
-        label: "History",
-        href: "https://www.example.com/1",
-      },
-      {
+        id: "5",
         label: "History",
         href: "https://www.example.com/1",
       },

@@ -10,7 +10,7 @@ import { SupplementalLinks } from "./SupplementalLinks";
 import { Title } from "./Title";
 
 /**
- * @type {import("../shared").CellComponent}
+ * @type {React.FC<import("../shared").CellProps>}
  */
 export const CellTitle = props => {
   const { configLayout } = props;

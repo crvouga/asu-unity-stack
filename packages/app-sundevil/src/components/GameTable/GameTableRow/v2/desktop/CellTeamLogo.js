@@ -1,63 +1,60 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-danger */
 // @ts-check
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { APP_CONFIG } from "../../../../../config";
-import { useBreakpoint } from "../../../../../utils/use-breakpoint";
 import { Cell, isCleanString, STYLES_TRUNCATE } from "./shared";
 
+export const CELL_TEAM_LOGO_WIDTH = 112;
+
 /**
- * @type {import("./shared").CellComponent}
+ * @type {React.FC<import("./shared").CellProps & {onHasContent: (val: boolean) => void}>}
  */
 export const CellTeamLogo = props => {
-  const { game, configLayout } = props;
-  const isTablet = useBreakpoint(APP_CONFIG.breakpointTablet);
+  const { game, configLayout, onHasContent } = props;
+
   const [err, setErr] = useState(false);
 
-  if (isTablet) {
-    return null;
-  }
+  const hasContent = Boolean(
+    !err && configLayout?.includeCellTitle && isCleanString(game?.teamLogoSrc)
+  );
 
-  if (err) {
-    return null;
-  }
+  useEffect(() => {
+    onHasContent(hasContent);
+  }, [hasContent]);
 
-  return (
-    configLayout?.includeCellTitle &&
-    isCleanString(game?.teamLogoSrc) && (
-      <Cell
+  return hasContent ? (
+    <Cell
+      style={{
+        ...STYLES_TRUNCATE,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "row",
+        flexShrink: 0,
+        minWidth: "0",
+        width: `${CELL_TEAM_LOGO_WIDTH}px`,
+      }}
+    >
+      <a
+        href={game?.teamLogoHref}
         style={{
-          ...STYLES_TRUNCATE,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "row",
-          flexShrink: 0,
-          minWidth: "0",
-          width: "112px",
+          height: "80px",
+          width: "80px",
         }}
       >
-        <a
-          href={game?.teamLogoHref}
+        <img
+          width="100%"
+          height="100%"
           style={{
-            height: "80px",
-            width: "80px",
+            backgroundColor: "transparent",
+            objectFit: "contain",
           }}
-        >
-          <img
-            width="100%"
-            height="100%"
-            style={{
-              backgroundColor: "transparent",
-              objectFit: "contain",
-            }}
-            onError={() => setErr(true)}
-            src={game?.teamLogoSrc}
-            alt={game?.teamLogoAlt ?? " "}
-          />
-        </a>
-      </Cell>
-    )
-  );
+          onError={() => setErr(true)}
+          src={game?.teamLogoSrc}
+          alt={game?.teamLogoAlt ?? " "}
+        />
+      </a>
+    </Cell>
+  ) : null;
 };

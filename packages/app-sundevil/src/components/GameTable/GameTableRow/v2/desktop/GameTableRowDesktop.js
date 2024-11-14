@@ -11,6 +11,7 @@ import { CellIcon } from "./CellIcon";
 import { CellSportName } from "./CellSportName";
 import { CellTeamLogo } from "./CellTeamLogo";
 import { CellTitle } from "./CellTitle/CellTitle";
+import { gameTableRowStore } from "./store";
 
 const Root = styled.div`
   width: 100%;
@@ -56,7 +57,18 @@ export const GameTableRowDesktop = forwardRef(
           <CellDate {...props} />
           <CellSportName {...props} />
           <CellTitle {...props} />
-          <CellTeamLogo {...props} />
+          <CellTeamLogo
+            {...props}
+            onHasContent={hasContent => {
+              gameTableRowStore.setState(prevState => ({
+                ...prevState,
+                hasTeamLogoByGameId: {
+                  ...prevState.hasTeamLogoByGameId,
+                  [props.game?.id ?? ""]: hasContent,
+                },
+              }));
+            }}
+          />
           <CellButtons {...props} />
         </Root>
       </Skeleton>

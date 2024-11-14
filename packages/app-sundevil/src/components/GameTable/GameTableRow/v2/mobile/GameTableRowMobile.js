@@ -43,7 +43,7 @@ export const GameTableRowMobile = forwardRef(
 
     const open = state.openId === id;
     const toggleOpen = () => {
-      store.setState({ openId: open ? null : id });
+      store.setState(prevState => ({ ...prevState, openId: open ? null : id }));
     };
 
     const isOpen = open && !empty && !skeleton;

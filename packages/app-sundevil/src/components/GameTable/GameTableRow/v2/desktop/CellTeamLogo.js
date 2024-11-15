@@ -3,6 +3,7 @@
 // @ts-check
 import React, { useEffect, useState } from "react";
 
+import { Anchor } from "../../Anchor";
 import { Cell, isCleanString, STYLES_TRUNCATE } from "./shared";
 
 export const CELL_TEAM_LOGO_WIDTH = 112;
@@ -36,7 +37,7 @@ export const CellTeamLogo = props => {
         width: `${CELL_TEAM_LOGO_WIDTH}px`,
       }}
     >
-      <a
+      <Anchor
         href={game?.teamLogoHref}
         style={{
           height: "80px",
@@ -54,7 +55,7 @@ export const CellTeamLogo = props => {
           src={game?.teamLogoSrc}
           alt={game?.teamLogoAlt ?? " "}
         />
-      </a>
+      </Anchor>
     </Cell>
   ) : null;
 };

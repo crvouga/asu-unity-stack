@@ -3,6 +3,7 @@
 // @ts-check
 import React, { useState } from "react";
 
+import { Anchor } from "../../Anchor";
 import { Cell, isCleanString, STYLES_TRUNCATE } from "./shared";
 
 /**
@@ -31,7 +32,7 @@ export const CellTeamLogo = props => {
         width: "48px",
       }}
     >
-      <a
+      <Anchor
         href={game?.teamLogoHref}
         style={{
           height: "40px",
@@ -49,7 +50,7 @@ export const CellTeamLogo = props => {
           src={game?.teamLogoSrc}
           alt={game?.teamLogoAlt ?? " "}
         />
-      </a>
+      </Anchor>
     </Cell>
   ) : null;
 };

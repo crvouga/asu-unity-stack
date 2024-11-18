@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import { deepMergeLeft } from "../../utils/deep-merge-left";
 import { ensureObject } from "../../utils/ensure-object";
+import { ensureSerializable } from "../../utils/ensure-serializable";
 
 /**
  * @typedef {{
@@ -68,13 +69,14 @@ export const addAddToCalendarToSectionHeaderProps = ({
       limit: Infinity,
       offset: 0,
     });
-    configAddToCalenderFinal.onClick({
+    const payload = ensureSerializable({
       found,
       games: found.rows,
       gameDataSource,
       gameDataSourceFindManyInput,
       gameTableForm,
     });
+    configAddToCalenderFinal.onClick(payload);
   };
 
   if (isMobile) {

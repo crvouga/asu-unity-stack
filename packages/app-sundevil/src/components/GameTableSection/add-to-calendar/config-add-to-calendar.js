@@ -3,11 +3,11 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 
+import { CallbackRegistry } from "../../../utils/callback-registry";
 import { deepMergeLeft } from "../../../utils/deep-merge-left";
 import { ensureObject } from "../../../utils/ensure-object";
 import { ensureSerializable } from "../../../utils/ensure-serializable";
 import { useGameDataSource } from "../../Game/GameDataSourceContext";
-import { AddToCalendarCallbackRegistry } from "./add-to-calendar-callback-registry";
 
 /**
  * @typedef {{
@@ -16,7 +16,7 @@ import { AddToCalendarCallbackRegistry } from "./add-to-calendar-callback-regist
  * onClick: (payload: unknown) => void;
  * color?: string;
  * fontWeight?: string;
- * callbackRegistry: import("./add-to-calendar-callback-registry").AddToCalendarCallbackRegistry;
+ * callbackRegistry: import("../../../utils/callback-registry").CallbackRegistry;
  * }} ConfigAddToCalendar
  */
 
@@ -29,7 +29,7 @@ export const defaultConfigAddToCalendar = {
   onClick: () => {},
   color: "maroon",
   fontWeight: "bold",
-  callbackRegistry: new AddToCalendarCallbackRegistry(),
+  callbackRegistry: new CallbackRegistry(),
 };
 
 export const configAddToCalendarPropTypes = PropTypes.shape({

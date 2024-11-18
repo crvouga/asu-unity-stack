@@ -1,4 +1,8 @@
-export class AddToCalendarCallbackRegistry {
+/**
+ * Registry for callbacks
+ * This is used for extracting state from react components
+ */
+export class CallbackRegistry {
   constructor() {
     this.callback = null;
   }
@@ -15,4 +19,4 @@ export class AddToCalendarCallbackRegistry {
   }
 }
 
-window.AddToCalendarCallbackRegistry = AddToCalendarCallbackRegistry;
+window.CallbackRegistry = CallbackRegistry;

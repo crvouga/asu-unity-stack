@@ -2,12 +2,8 @@
 import React from "react";
 
 import { ALL_ID } from "../../../select-all-option";
-import {
-  GameDataSourceMock,
-  IGameDataSource,
-} from "../../Game/game-data-source";
+import { CallbackRegistry } from "../../../utils/callback-registry";
 import { GameTableSection } from "../index";
-import { AddToCalendarCallbackRegistry } from "../add-to-calendar/add-to-calendar-callback-registry";
 
 export default {
   title: "Game Table / Game Table Section",
@@ -170,7 +166,7 @@ AllSports.args = {
   },
 };
 
-const addToCalendarCallbackRegistry = new AddToCalendarCallbackRegistry();
+const addToCalendarCallbackRegistry = new CallbackRegistry();
 
 export const SingleSport = Template.bind({});
 SingleSport.args = {

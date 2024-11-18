@@ -1,5 +1,10 @@
-function isObject(item) {
-  return item && typeof item === "object" && !Array.isArray(item);
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-restricted-syntax */
+/**
+ * Helper function to check if a value is an object.
+ */
+function isObject(value) {
+  return value && typeof value === "object" && !Array.isArray(value);
 }
 
 /**
@@ -10,19 +15,16 @@ export function deepMergeLeft(target, source) {
     return target;
   }
 
-  const result = { ...source }; // Start with a shallow copy of the source
+  const result = { ...source };
 
-  Object.keys(target).forEach(key => {
+  for (const key in target) {
     if (isObject(target[key])) {
-      if (!(key in source)) {
-        Object.assign(result, { [key]: target[key] });
-      } else {
-        result[key] = deepMergeLeft(target[key], source[key]);
-      }
+      result[key] =
+        key in source ? deepMergeLeft(target[key], source[key]) : target[key];
     } else {
-      Object.assign(result, { [key]: target[key] });
+      result[key] = target[key];
     }
-  });
+  }
 
   return result;
 }

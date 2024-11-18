@@ -41,9 +41,16 @@ export const GameTableRow = forwardRef(
       configCells,
     };
 
-    if (props?.version === "v2") {
-      return <GameTableRowV2 {...propsNew} ref={ref} />;
+    switch (props?.version) {
+      case "v1": {
+        return <GameTableRowV1 {...propsNew} ref={ref} />;
+      }
+      case "v2": {
+        return <GameTableRowV2 {...propsNew} ref={ref} />;
+      }
+      default: {
+        return <GameTableRowV2 {...propsNew} ref={ref} />;
+      }
     }
-    return <GameTableRowV1 {...propsNew} ref={ref} />;
   }
 );

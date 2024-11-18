@@ -51,7 +51,12 @@ export const useAddToCalendarCallbackRegistry = ({
 }) => {
   const gameDataSource = useGameDataSource();
   useEffect(() => {
-    if (typeof configAddToCalender.callbackRegistry?.register !== "function") {
+    if (
+      !configAddToCalender ||
+      !configAddToCalender.callbackRegistry ||
+      !configAddToCalender.callbackRegistry.register ||
+      typeof configAddToCalender.callbackRegistry.register !== "function"
+    ) {
       return;
     }
     configAddToCalender.callbackRegistry?.register?.(async () => {

@@ -55,6 +55,7 @@
       <div class="contextual"></div>
     </div>
     <script>
+      const addToCalenderCallbackRegistry = new CallbackRegistry();
       const props = {
         // gameDataSource: {
         //   type: "asu-events",
@@ -67,20 +68,14 @@
           message: "No upcoming games",
         },
         configAddToCalender: {
-          enabled: true,
-          label: "Add to Calendar",
-          onClick: payload => {
-            // eslint-disable-next-line no-console
-            console.log("Add to calendar", payload);
-            alert("Check console for payload");
-          },
+          callbackRegistry: addToCalenderCallbackRegistry,
         },
         gameDataSourceLoader: {
           limit: 5,
           sportId: "football",
         },
         gameDataSource: {
-          type: "mock",
+          type: "mock-v2",
           timeout: 0,
         },
         gameTable: {
@@ -108,7 +103,16 @@
             {
               label: "See Past Game Scores",
               href: "#",
-              // fontWeight: "bold",
+              fontWeight: "bold",
+            },
+            {
+              label: "Add to calendar",
+              fontWeight: "bold",
+              onClick: async () => {
+                const payload = await addToCalenderCallbackRegistry.call();
+                console.log("Add to calendar", payload);
+                alert("Check console for payload");
+              },
             },
           ],
           subtitleButtons: [

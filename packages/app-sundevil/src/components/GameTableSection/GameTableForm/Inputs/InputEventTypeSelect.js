@@ -7,22 +7,22 @@ import {
   Select,
   stringsToOptions,
 } from "../../../Select/Select";
-import { useGameSearchFormContext } from "../GameSearchFormContext";
+import { useGameTableFormContext } from "../GameTableFormContext";
 
 export const InputEventTypeSelect = () => {
   const {
     configInputs,
     configLayout,
-    gameSearchForm,
+    gameTableForm,
     inputStyle,
     darkMode,
-    gameSearchFormInputOptions,
+    gameTableFormInputOptions,
     sectionName,
-  } = useGameSearchFormContext();
+  } = useGameTableFormContext();
 
   const options = firstNonEmpty(
     configInputs.eventTypeSelect?.options,
-    stringsToOptions(gameSearchFormInputOptions.allEventTypes),
+    stringsToOptions(gameTableFormInputOptions.allEventTypes),
     []
   );
 
@@ -31,7 +31,7 @@ export const InputEventTypeSelect = () => {
     options
   ).map(option => ({
     ...option,
-    active: option.value === gameSearchForm.eventType,
+    active: option.value === gameTableForm.eventType,
   }));
 
   return (
@@ -44,9 +44,9 @@ export const InputEventTypeSelect = () => {
         label={configInputs.eventTypeSelect?.label ?? ""}
         placeholder={configInputs.eventTypeSelect?.placeholder ?? ""}
         onChange={option =>
-          gameSearchForm.update({
+          gameTableForm.update({
             eventType:
-              option.value === gameSearchForm.eventType ? null : option.value,
+              option.value === gameTableForm.eventType ? null : option.value,
           })
         }
         options={optionsWithActive}

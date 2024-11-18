@@ -10,6 +10,8 @@ import { ensureObject } from "../../utils/ensure-object";
  * enabled: boolean;
  * label: string;
  * onClick: (payload: unknown) => void;
+ * color?: string;
+ * fontWeight?: string;
  * }} ConfigAddToCalendar
  */
 
@@ -20,6 +22,8 @@ export const defaultConfigAddToCalendar = {
   enabled: false,
   label: "Add to calendar",
   onClick: () => {},
+  color: "maroon",
+  fontWeight: "bold",
 };
 
 export const configAddToCalendarPropTypes = PropTypes.shape({
@@ -34,6 +38,7 @@ export const configAddToCalendarPropTypes = PropTypes.shape({
  * isMobile: boolean;
  * gameDataSourceFindManyInput: import("../Game/game-data-source/game-data-source").FindManyInput;
  * gameDataSource: import("../Game/game-data-source/game-data-source").IGameDataSource;
+ * gameTableForm: import("./GameTableForm/use-game-table-form").GameTableForm;
  * }} input
  * @returns {import("../SectionHeader").SectionHeaderProps}
  */
@@ -43,6 +48,7 @@ export const addAddToCalendarToSectionHeaderProps = ({
   isMobile,
   gameDataSourceFindManyInput,
   gameDataSource,
+  gameTableForm,
 }) => {
   /**
    * @type {import("./config-add-to-calendar").ConfigAddToCalendar}
@@ -67,6 +73,7 @@ export const addAddToCalendarToSectionHeaderProps = ({
       games: found.rows,
       gameDataSource,
       gameDataSourceFindManyInput,
+      gameTableForm,
     });
   };
 
@@ -90,6 +97,7 @@ export const addAddToCalendarToSectionHeaderProps = ({
     subtitleLinks: [
       ...(sectionHeaderProps.subtitleLinks || []),
       {
+        ...configAddToCalenderFinal,
         label: configAddToCalenderFinal.label,
         onClick,
       },

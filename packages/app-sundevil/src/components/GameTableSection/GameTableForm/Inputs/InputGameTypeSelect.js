@@ -7,7 +7,7 @@ import {
   Select,
   stringsToOptions,
 } from "../../../Select/Select";
-import { useGameSearchFormContext } from "../GameSearchFormContext";
+import { useGameTableFormContext } from "../GameTableFormContext";
 
 const DEFAULT_OPTIONS = [
   {
@@ -26,16 +26,16 @@ export const InputGameTypeSelect = () => {
   const {
     configInputs,
     configLayout,
-    gameSearchForm,
+    gameTableForm,
     inputStyle,
     darkMode,
-    gameSearchFormInputOptions,
+    gameTableFormInputOptions,
     sectionName,
-  } = useGameSearchFormContext();
+  } = useGameTableFormContext();
 
   const options = firstNonEmpty(
     configInputs.homeOrAwaySelect?.options,
-    stringsToOptions(gameSearchFormInputOptions.allGameTypes),
+    stringsToOptions(gameTableFormInputOptions.allGameTypes),
     DEFAULT_OPTIONS,
     []
   );
@@ -45,7 +45,7 @@ export const InputGameTypeSelect = () => {
     options
   ).map(option => ({
     ...option,
-    active: option.value === gameSearchForm.gameType,
+    active: option.value === gameTableForm.gameType,
   }));
 
   return (
@@ -58,9 +58,9 @@ export const InputGameTypeSelect = () => {
         label={configInputs.homeOrAwaySelect?.label ?? ""}
         placeholder={configInputs.homeOrAwaySelect?.placeholder ?? ""}
         onChange={option =>
-          gameSearchForm.update({
+          gameTableForm.update({
             gameType:
-              option.value === gameSearchForm.gameType ? null : option.value,
+              option.value === gameTableForm.gameType ? null : option.value,
           })
         }
         options={optionsWithActive}

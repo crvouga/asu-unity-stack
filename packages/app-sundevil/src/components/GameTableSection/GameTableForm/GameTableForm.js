@@ -9,7 +9,7 @@ import { findManyInputPropTypes } from "../../Game/game-data-source";
 import { sportPropTypes } from "../../SportsTabs/sports-tabs";
 import { configInputsPropTypes } from "../config-inputs";
 import { configLayoutPropTypes, shouldIncludeForm } from "../config-layout";
-import { GameSearchFormContext } from "./GameSearchFormContext";
+import { GameTableFormContext } from "./GameTableFormContext";
 import { InputAdmissionCost } from "./Inputs/InputAdmissionCost";
 import { InputEventTypeSelect } from "./Inputs/InputEventTypeSelect";
 import { InputGameTypeSelect } from "./Inputs/InputGameTypeSelect";
@@ -19,8 +19,8 @@ import { InputSortBySelect } from "./Inputs/InputSortBySelect";
 import { InputSportTypeCheckboxList } from "./Inputs/InputSportTypeCheckboxList";
 import { InputSportTypeSelect } from "./Inputs/InputSportTypeSelect";
 import { InputVenueSelect } from "./Inputs/InputVenueSelect";
-import { gameSearchFormPropTypes } from "./use-game-search-form";
-import { useGameSearchFormInputOptions } from "./use-game-search-form-input-options";
+import { gameTableFormPropTypes } from "./use-game-table-form";
+import { useGameTableFormInputOptions } from "./use-game-table-form-input-options";
 
 const Root = styled.div`
   display: flex;
@@ -32,9 +32,9 @@ const Root = styled.div`
 `;
 
 /** @type {React.FC<Props>} */
-export const GameSearchForm = ({
+export const GameTableForm = ({
   style,
-  gameSearchForm,
+  gameTableForm,
   gameDataSourceLoader,
   configLayout,
   configInputs,
@@ -44,7 +44,7 @@ export const GameSearchForm = ({
   orientation,
   sectionName,
 }) => {
-  const gameSearchFormInputOptions = useGameSearchFormInputOptions({
+  const gameTableFormInputOptions = useGameTableFormInputOptions({
     gameDataSourceLoader,
   });
   const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
@@ -61,13 +61,13 @@ export const GameSearchForm = ({
   }
 
   return (
-    <GameSearchFormContext.Provider
+    <GameTableFormContext.Provider
       value={{
         configInputs,
         configLayout,
         darkMode,
-        gameSearchForm,
-        gameSearchFormInputOptions,
+        gameTableForm,
+        gameTableFormInputOptions,
         sports,
         orientation,
         inputStyle,
@@ -100,14 +100,14 @@ export const GameSearchForm = ({
 
         <InputSortBySelect />
       </Root>
-    </GameSearchFormContext.Provider>
+    </GameTableFormContext.Provider>
   );
 };
 
 /**
  * @typedef {{
  * style?: React.CSSProperties;
- * gameSearchForm: import("./use-game-search-form").GameSearchForm;
+ * gameTableForm: import("./use-game-table-form").GameTableForm;
  * gameDataSourceLoader: import("../../Game/game-data-source/game-data-source").FindManyInput;
  * configLayout: import("../config-layout").ConfigLayout;
  * configInputs: import("../config-inputs").ConfigInputs;
@@ -118,9 +118,9 @@ export const GameSearchForm = ({
  * sectionName: string;
  * }} Props
  */
-GameSearchForm.propTypes = {
+GameTableForm.propTypes = {
   // @ts-ignore
-  gameSearchForm: gameSearchFormPropTypes,
+  gameTableForm: gameTableFormPropTypes,
   // @ts-ignore
   configLayout: configLayoutPropTypes,
   // @ts-ignore

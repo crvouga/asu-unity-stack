@@ -200,9 +200,9 @@ SingleSport.args = {
   //   type: "asu-events",
   //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
   // },
-  // gameDataSource: {
-  //   type: "mock",
-  // },
+  gameDataSource: {
+    type: "mock-v2",
+  },
   configNoData: {
     hide: true,
     hideBehavior: "initially-hidden",
@@ -214,6 +214,8 @@ SingleSport.args = {
   configAddToCalender: {
     enabled: true,
     label: "My Add to Calendar",
+    fontWeight: "normal",
+    color: "gray",
     onClick: payload => {
       // eslint-disable-next-line no-console
       console.log("Add to calendar", payload);
@@ -223,10 +225,7 @@ SingleSport.args = {
     limit: 5,
     sportId: "football",
   },
-  gameDataSource: {
-    type: "custom",
-    gameDataSource: new CustomGameDataSource(),
-  },
+
   gameTable: {
     configLayout: {
       includeSportNameCell: true,

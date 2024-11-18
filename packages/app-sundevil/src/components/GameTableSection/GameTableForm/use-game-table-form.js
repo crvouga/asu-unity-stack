@@ -6,19 +6,19 @@ import { useStateSwitch } from "../../../utils/use-state-switch";
 import { findManyInputPropTypes } from "../../Game/game-data-source";
 
 /**
- * @typedef {import("../../Game/game-data-source/game-data-source").FindManyInput} GameSearchFormState
+ * @typedef {import("../../Game/game-data-source/game-data-source").FindManyInput} GameTableFormState
  */
 
-export const gameSearchFormStatePropTypes = findManyInputPropTypes;
+export const gameTableFormStatePropTypes = findManyInputPropTypes;
 
 const useQueryState = createUseQueryState({
   queryKey: "gameTableForm",
 });
 
 /**
- * @param {{initialState: Partial<GameSearchFormState>, enableUrlState: boolean}} input
+ * @param {{initialState: Partial<GameTableFormState>, enableUrlState: boolean}} input
  */
-export const useGameSearchForm = input => {
+export const useGameTableForm = input => {
   const { enableUrlState, initialState } = input;
 
   const [state, setState] = useStateSwitch(
@@ -42,10 +42,10 @@ export const useGameSearchForm = input => {
 };
 
 /**
- * @typedef {GameSearchFormState & {update: (state: Partial<GameSearchFormState>) => void; setSearchQuery: (searchQueryNew: string) => void}} GameSearchForm
+ * @typedef {GameTableFormState & {update: (state: Partial<GameTableFormState>) => void;}} GameTableForm
  */
-export const gameSearchFormPropTypes = PropTypes.shape({
+
+export const gameTableFormPropTypes = PropTypes.shape({
   ...findManyInputPropTypes,
-  setSearchQuery: PropTypes.func,
   update: PropTypes.func,
 });

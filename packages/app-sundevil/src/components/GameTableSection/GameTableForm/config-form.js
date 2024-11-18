@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 
-import { gameSearchFormStatePropTypes } from "./use-game-search-form";
+import { gameTableFormStatePropTypes } from "./use-game-table-form";
 
 export const configFormPropTypes = PropTypes.shape({
   title: PropTypes.string,
-  initialState: gameSearchFormStatePropTypes,
+  initialState: gameTableFormStatePropTypes,
   enableUrlState: PropTypes.bool,
 });
 
@@ -12,7 +12,7 @@ export const configFormPropTypes = PropTypes.shape({
  * @typedef {{
  * title?: string;
  * enableUrlState?: boolean;
- * initialState?: import("./use-game-search-form").GameSearchFormState;
+ * initialState?: import("./use-game-table-form").GameTableFormState;
  * }} ConfigForm
  */
 

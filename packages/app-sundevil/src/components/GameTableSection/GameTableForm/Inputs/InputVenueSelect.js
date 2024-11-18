@@ -7,22 +7,22 @@ import {
   Select,
   stringsToOptions,
 } from "../../../Select/Select";
-import { useGameSearchFormContext } from "../GameSearchFormContext";
+import { useGameTableFormContext } from "../GameTableFormContext";
 
 export const InputVenueSelect = () => {
   const {
     configInputs,
     darkMode,
     configLayout,
-    gameSearchForm,
-    gameSearchFormInputOptions,
+    gameTableForm,
+    gameTableFormInputOptions,
     inputStyle,
     sectionName,
-  } = useGameSearchFormContext();
+  } = useGameTableFormContext();
 
   const options = firstNonEmpty(
     configInputs.venueSelect?.options,
-    stringsToOptions(gameSearchFormInputOptions.allVenues).map(option => ({
+    stringsToOptions(gameTableFormInputOptions.allVenues).map(option => ({
       ...option,
       // Rare case where the id is the proper label
       label: option.id.toString(),
@@ -35,7 +35,7 @@ export const InputVenueSelect = () => {
     options
   ).map(option => ({
     ...option,
-    active: option.value === gameSearchForm.venueId,
+    active: option.value === gameTableForm.venueId,
   }));
 
   return (
@@ -48,8 +48,8 @@ export const InputVenueSelect = () => {
         label={configInputs.venueSelect?.label ?? ""}
         placeholder={configInputs.venueSelect?.placeholder ?? ""}
         onChange={option =>
-          gameSearchForm.update({
-            venueId: option.id === gameSearchForm.venueId ? null : option.id,
+          gameTableForm.update({
+            venueId: option.id === gameTableForm.venueId ? null : option.id,
           })
         }
         options={optionsWithActive}

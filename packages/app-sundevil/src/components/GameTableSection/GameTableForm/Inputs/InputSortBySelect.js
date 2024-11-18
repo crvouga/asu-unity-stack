@@ -6,7 +6,7 @@ import {
   gameDataSourceSortByToLabel,
 } from "../../../Game/game-data-source";
 import { Select } from "../../../Select/Select";
-import { useGameSearchFormContext } from "../GameSearchFormContext";
+import { useGameTableFormContext } from "../GameTableFormContext";
 
 export const DEFAULT_OPTIONS = Object.values(GameDataSourceSortBy).map(
   sortBy => ({
@@ -21,16 +21,16 @@ export const InputSortBySelect = () => {
     configInputs,
     configLayout,
     sectionName,
-    gameSearchForm,
+    gameTableForm,
     inputStyle,
     darkMode,
-  } = useGameSearchFormContext();
+  } = useGameTableFormContext();
 
   const options = DEFAULT_OPTIONS;
 
   const optionsWithActive = options.map(option => ({
     ...option,
-    active: option.value === gameSearchForm.sortBy,
+    active: option.value === gameTableForm.sortBy,
   }));
 
   return (
@@ -43,9 +43,8 @@ export const InputSortBySelect = () => {
         label={configInputs.sortBySelect?.label ?? ""}
         placeholder={configInputs.sortBySelect?.placeholder ?? ""}
         onChange={option => {
-          gameSearchForm.update({
-            sortBy:
-              option.value === gameSearchForm.sortBy ? null : option.value,
+          gameTableForm.update({
+            sortBy: option.value === gameTableForm.sortBy ? null : option.value,
           });
         }}
         options={optionsWithActive}

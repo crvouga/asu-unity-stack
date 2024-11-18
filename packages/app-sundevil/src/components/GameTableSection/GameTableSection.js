@@ -52,10 +52,10 @@ import {
 import {
   configFormPropTypes,
   defaultConfigForm,
-} from "./GameSearchForm/config-form";
-import { GameSearchFormSidebar } from "./GameSearchForm/GameSearchFormSidebar";
-import { GameSearchFormTopbar } from "./GameSearchForm/GameSearchFormTopbar";
-import { useGameSearchForm } from "./GameSearchForm/use-game-search-form";
+} from "./GameTableForm/config-form";
+import { GameTableFormSidebar } from "./GameTableForm/GameTableFormSidebar";
+import { GameTableFormTopbar } from "./GameTableForm/GameTableFormTopbar";
+import { useGameTableForm } from "./GameTableForm/use-game-table-form";
 import { GameTableHero } from "./GameTableHero/GameTableHero";
 import { SidebarLayout } from "./SidebarLayout";
 
@@ -87,7 +87,7 @@ const GameTableSectionInner = ({ ...props }) => {
 
   const variant = props.variant ?? "default";
 
-  /** @type {import("./GameSearchForm/config-form").ConfigForm} */
+  /** @type {import("./GameTableForm/config-form").ConfigForm} */
   const configGameTableForm = deepMergeLeft(
     ensureObject(props.configGameTableForm),
     defaultConfigForm
@@ -111,7 +111,7 @@ const GameTableSectionInner = ({ ...props }) => {
     defaultConfigNoData
   );
 
-  const gameSearchForm = useGameSearchForm({
+  const gameTableForm = useGameTableForm({
     enableUrlState: configGameTableForm?.enableUrlState ?? false,
     initialState: {
       gameType:
@@ -153,6 +153,7 @@ const GameTableSectionInner = ({ ...props }) => {
     },
   });
 
+  // TODO: Move this out of component. Make caller responsible for initial state from url
   useUrlSportId(urlSportId => {
     if (props?.disableUrlSportId) {
       return;
@@ -165,7 +166,7 @@ const GameTableSectionInner = ({ ...props }) => {
       });
     }
 
-    gameSearchForm.update({
+    gameTableForm.update({
       sportId:
         urlSportId ?? configGameTableForm?.initialState?.sportId ?? ALL_ID,
     });
@@ -176,7 +177,7 @@ const GameTableSectionInner = ({ ...props }) => {
    */
   const gameDataSourceFindManyInput = {
     limit: 5,
-    ...gameSearchForm,
+    ...gameTableForm,
     ...props.gameDataSourceLoader,
   };
   const gameDataSourceLoader = useGameDataSourceLoader(
@@ -185,11 +186,11 @@ const GameTableSectionInner = ({ ...props }) => {
 
   const sports = props.sports?.map(sport => ({
     ...sport,
-    active: isEqual(stringToSportId, sport.id, gameSearchForm.sportId),
+    active: isEqual(stringToSportId, sport.id, gameTableForm.sportId),
   }));
 
   const onSportItemClick = clickedSportId => {
-    gameSearchForm.update({ sportId: clickedSportId });
+    gameTableForm.update({ sportId: clickedSportId });
   };
 
   const activeSport = sports?.find(sport => Boolean(sport?.active));
@@ -252,10 +253,11 @@ const GameTableSectionInner = ({ ...props }) => {
     }),
     gameDataSource,
     gameDataSourceFindManyInput,
+    gameTableForm,
   });
   const tabs = ensureArray(sectionHeaderProps?.tabs)?.map(tab => ({
     ...tab,
-    active: tab.id === gameSearchForm.gameType,
+    active: tab.id === gameTableForm.gameType,
   }));
 
   const sectionName = sectionHeaderProps?.title;
@@ -324,18 +326,18 @@ const GameTableSectionInner = ({ ...props }) => {
               {...sectionHeaderProps}
               tabs={tabs}
               onTabItemClick={clickedGameType => {
-                gameSearchForm.update({ gameType: clickedGameType });
+                gameTableForm.update({ gameType: clickedGameType });
               }}
               style={{ paddingBottom: "32px" }}
             />
           )}
 
           {configLayout.variant === "default" && (
-            <GameSearchFormTopbar
+            <GameTableFormTopbar
               sectionName={sectionName}
               className="container"
               gameDataSourceLoader={props.gameDataSourceLoader ?? {}}
-              gameSearchForm={gameSearchForm}
+              gameTableForm={gameTableForm}
               configInputs={configInputs}
               configLayout={configLayout}
               sports={sports}
@@ -375,10 +377,10 @@ const GameTableSectionInner = ({ ...props }) => {
           <SidebarLayout
             className="container"
             renderSidebar={() => (
-              <GameSearchFormSidebar
+              <GameTableFormSidebar
                 sectionName={sectionName}
                 gameDataSourceLoader={props.gameDataSourceLoader ?? {}}
-                gameSearchForm={gameSearchForm}
+                gameTableForm={gameTableForm}
                 configInputs={configInputs}
                 configLayout={configLayout}
                 sports={sports}

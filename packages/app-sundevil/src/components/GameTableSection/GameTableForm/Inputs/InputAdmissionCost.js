@@ -7,22 +7,22 @@ import {
   Select,
   stringsToOptions,
 } from "../../../Select/Select";
-import { useGameSearchFormContext } from "../GameSearchFormContext";
+import { useGameTableFormContext } from "../GameTableFormContext";
 
 export const InputAdmissionCost = () => {
   const {
     configInputs,
     configLayout,
-    gameSearchForm,
+    gameTableForm,
     inputStyle,
     darkMode,
-    gameSearchFormInputOptions,
+    gameTableFormInputOptions,
     sectionName,
-  } = useGameSearchFormContext();
+  } = useGameTableFormContext();
 
   const options = firstNonEmpty(
     configInputs.admissionCostSelect?.options,
-    stringsToOptions(gameSearchFormInputOptions.allAdmissionCost),
+    stringsToOptions(gameTableFormInputOptions.allAdmissionCost),
     []
   );
 
@@ -31,7 +31,7 @@ export const InputAdmissionCost = () => {
     options
   ).map(option => ({
     ...option,
-    active: option.value === gameSearchForm.admissionCost,
+    active: option.value === gameTableForm.admissionCost,
   }));
 
   return (
@@ -44,9 +44,9 @@ export const InputAdmissionCost = () => {
         placeholder={configInputs.admissionCostSelect?.placeholder ?? ""}
         sectionName={sectionName}
         onChange={option => {
-          gameSearchForm.update({
+          gameTableForm.update({
             admissionCost:
-              option.value === gameSearchForm.admissionCost
+              option.value === gameTableForm.admissionCost
                 ? null
                 : option.value,
           });

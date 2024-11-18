@@ -27,13 +27,13 @@ const toCleanUniqueStrings = strings => {
  *  allEventTypes: string[];
  *  allAdmissionCost: string[];
  *  allSportId: string[];
- * }} GameSearchFormInputOptions
+ * }} GameTableFormInputOptions
  */
 
 /**
- * @type {GameSearchFormInputOptions}
+ * @type {GameTableFormInputOptions}
  */
-export const initGameSearchFormInputOptions = {
+export const initGameTableFormInputOptions = {
   allEventTypes: [],
   allGameTypes: [],
   allVenues: [],
@@ -44,11 +44,11 @@ export const initGameSearchFormInputOptions = {
 /**
  *
  * @param {import("../../Game/game").Game[]} games
- * @returns {typeof initGameSearchFormInputOptions}
+ * @returns {typeof initGameTableFormInputOptions}
  */
 const gamesToState = games => {
   if (!Array.isArray(games)) {
-    return initGameSearchFormInputOptions;
+    return initGameTableFormInputOptions;
   }
 
   const allVenues = toCleanUniqueStrings(games.map(game => game.venue));
@@ -72,9 +72,9 @@ const gamesToState = games => {
 /**
  * @param {{gameDataSourceLoader: import("../../Game/game-data-source/game-data-source").FindManyInput}} input
  */
-export const useGameSearchFormInputOptions = ({ gameDataSourceLoader }) => {
+export const useGameTableFormInputOptions = ({ gameDataSourceLoader }) => {
   const gameDataSource = useGameDataSource();
-  const [state, setState] = useState(initGameSearchFormInputOptions);
+  const [state, setState] = useState(initGameTableFormInputOptions);
 
   const load = async () => {
     const found = await gameDataSource.findMany({

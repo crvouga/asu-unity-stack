@@ -2,7 +2,7 @@
 import React from "react";
 
 import { TextField } from "../../../TextField/TextField";
-import { useGameSearchFormContext } from "../GameSearchFormContext";
+import { useGameTableFormContext } from "../GameTableFormContext";
 
 export const InputSearch = () => {
   const {
@@ -10,9 +10,9 @@ export const InputSearch = () => {
     sectionName,
     darkMode,
     configLayout,
-    gameSearchForm,
+    gameTableForm,
     inputStyle,
-  } = useGameSearchFormContext();
+  } = useGameTableFormContext();
 
   return (
     configLayout.includeInputSearch && (
@@ -22,10 +22,10 @@ export const InputSearch = () => {
         style={{ ...inputStyle, flex: 2 }}
         label={configInputs?.searchInput?.label ?? ""}
         placeholder={configInputs?.searchInput?.placeholder ?? ""}
-        value={gameSearchForm.searchQuery}
+        value={gameTableForm.searchQuery}
         debounce={500}
         onChange={searchQueryNew =>
-          gameSearchForm.update({ searchQuery: searchQueryNew })
+          gameTableForm.update({ searchQuery: searchQueryNew })
         }
         uncontrolled
         renderEndIcon={({ style: iconStyle }) => (

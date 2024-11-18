@@ -6,22 +6,22 @@ import { CheckboxList } from "../../../CheckboxList/CheckboxList";
 import { Icon } from "../../../Icon_";
 import { includeAllOptionWhen } from "../../../Select/Select";
 import { stringToSportId } from "../../../Sport/sport-id";
-import { useGameSearchFormContext } from "../GameSearchFormContext";
+import { useGameTableFormContext } from "../GameTableFormContext";
 
 export const InputSportTypeCheckboxList = () => {
   const {
     sports,
     configInputs,
     configLayout,
-    gameSearchFormInputOptions,
-    gameSearchForm,
+    gameTableFormInputOptions,
+    gameTableForm,
     inputStyle,
     isDesktop,
-  } = useGameSearchFormContext();
+  } = useGameTableFormContext();
 
   const filteredSports = sports.filter(sport => {
     if (configInputs.sportTypeSelect?.filterOptionsAvailableInDataSource) {
-      return gameSearchFormInputOptions?.allSportId?.some(sportId =>
+      return gameTableFormInputOptions?.allSportId?.some(sportId =>
         isEqual(stringToSportId, sportId, sport?.id)
       );
     }
@@ -47,8 +47,8 @@ export const InputSportTypeCheckboxList = () => {
         style={inputStyle}
         label={configInputs.sportTypeCheckboxList?.label ?? ""}
         onChange={option =>
-          gameSearchForm.update({
-            sportId: option.id === gameSearchForm.sportId ? null : option.id,
+          gameTableForm.update({
+            sportId: option.id === gameTableForm.sportId ? null : option.id,
           })
         }
         options={options}

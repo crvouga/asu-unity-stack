@@ -3,12 +3,12 @@ import React, { useContext } from "react";
 
 import { defaultConfigInputs } from "../config-inputs";
 import { defaultConfigLayout } from "../config-layout";
-import { initGameSearchFormInputOptions } from "./use-game-search-form-input-options";
+import { initGameTableFormInputOptions } from "./use-game-table-form-input-options";
 
 /**
  * @typedef {{
- * gameSearchForm: import("./use-game-search-form").GameSearchForm;
- * gameSearchFormInputOptions: import("./use-game-search-form-input-options").GameSearchFormInputOptions;
+ * gameTableForm: import("./use-game-table-form").GameTableForm;
+ * gameTableFormInputOptions: import("./use-game-table-form-input-options").GameTableFormInputOptions;
  * configLayout: import("../config-layout").ConfigLayout;
  * configInputs: import("../config-inputs").ConfigInputs;
  * sports: import("../../SportsTabs/sports-tabs").Sport[];
@@ -18,18 +18,17 @@ import { initGameSearchFormInputOptions } from "./use-game-search-form-input-opt
  * isDesktop?: boolean;
  * isMobile?: boolean;
  * sectionName: string;
- * }} GameSearchFormContextValue
+ * }} GameTableFormContextValue
  */
 
-/** @type {GameSearchFormContextValue} */
+/** @type {GameTableFormContextValue} */
 const init = {
   configInputs: defaultConfigInputs,
   configLayout: defaultConfigLayout,
-  gameSearchForm: {
-    setSearchQuery: () => {},
+  gameTableForm: {
     update: () => {},
   },
-  gameSearchFormInputOptions: initGameSearchFormInputOptions,
+  gameTableFormInputOptions: initGameTableFormInputOptions,
   sports: [],
   darkMode: false,
   orientation: "horizontal",
@@ -40,13 +39,13 @@ const init = {
 };
 
 /**
- * @type {React.Context<GameSearchFormContextValue>}
+ * @type {React.Context<GameTableFormContextValue>}
  */
-export const GameSearchFormContext = React.createContext(init);
+export const GameTableFormContext = React.createContext(init);
 
 /**
- * @returns {GameSearchFormContextValue}
+ * @returns {GameTableFormContextValue}
  */
-export const useGameSearchFormContext = () => {
-  return useContext(GameSearchFormContext);
+export const useGameTableFormContext = () => {
+  return useContext(GameTableFormContext);
 };

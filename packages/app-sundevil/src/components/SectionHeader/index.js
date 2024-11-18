@@ -73,6 +73,7 @@ const SubtitleLinks = styled.div`
 `;
 
 const SubtitleLink = styled.a`
+  cursor: pointer;
   max-width: fit-content;
   ${({ color }) => {
     if (color === "muted") {

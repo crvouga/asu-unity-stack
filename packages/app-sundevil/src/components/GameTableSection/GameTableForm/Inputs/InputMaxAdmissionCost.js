@@ -2,22 +2,22 @@
 import React from "react";
 
 import { includeAllOptionWhen, Select } from "../../../Select/Select";
-import { useGameSearchFormContext } from "../GameSearchFormContext";
+import { useGameTableFormContext } from "../GameTableFormContext";
 
 export const InputMaxAdmissionCost = () => {
   const {
     configInputs,
     configLayout,
     sectionName,
-    gameSearchForm,
+    gameTableForm,
     inputStyle,
     darkMode,
-  } = useGameSearchFormContext();
+  } = useGameTableFormContext();
 
   const options = includeAllOptionWhen(
     configInputs.maxAdmissionCostSelect?.options
   ).map(option => ({
-    active: option.value === gameSearchForm.maxAdmissionCost,
+    active: option.value === gameTableForm.maxAdmissionCost,
     id: option.id,
     label: option.label,
     value: option.value,
@@ -33,9 +33,9 @@ export const InputMaxAdmissionCost = () => {
         label={configInputs.maxAdmissionCostSelect?.label ?? ""}
         placeholder={configInputs.maxAdmissionCostSelect?.placeholder ?? ""}
         onChange={option =>
-          gameSearchForm.update({
+          gameTableForm.update({
             maxAdmissionCost:
-              option.value === gameSearchForm.maxAdmissionCost
+              option.value === gameTableForm.maxAdmissionCost
                 ? null
                 : option.value,
           })

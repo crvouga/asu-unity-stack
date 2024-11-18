@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { findManyInputPropTypes } from "../../Game/game-data-source";
 import { configFormPropTypes } from "./config-form";
-import { GameSearchForm } from "./GameSearchForm";
+import { GameTableForm } from "./GameTableForm";
 
 const Root = styled.div`
   display: flex;
@@ -19,10 +19,10 @@ const Title = styled.div`
   padding: 0;
 `;
 
-export const GameSearchFormSidebar = ({
+export const GameTableFormSidebar = ({
   configGameTableForm,
   gameDataSourceLoader,
-  gameSearchForm,
+  gameTableForm,
   configInputs,
   configLayout,
   sports,
@@ -36,12 +36,12 @@ export const GameSearchFormSidebar = ({
         configGameTableForm?.title.length > 0 && (
           <Title>{configGameTableForm?.title}</Title>
         )}
-      <GameSearchForm
+      <GameTableForm
         style={{
           gap: "2.5rem",
         }}
         gameDataSourceLoader={gameDataSourceLoader}
-        gameSearchForm={gameSearchForm}
+        gameTableForm={gameTableForm}
         configInputs={configInputs}
         configLayout={configLayout}
         sports={sports}
@@ -52,8 +52,8 @@ export const GameSearchFormSidebar = ({
   );
 };
 
-GameSearchFormSidebar.propTypes = {
-  ...GameSearchForm.propTypes,
+GameTableFormSidebar.propTypes = {
+  ...GameTableForm.propTypes,
   gameDataSourceLoader: findManyInputPropTypes,
   configGameTableForm: configFormPropTypes,
 };

@@ -4,7 +4,7 @@
 import React, { useState } from "react";
 
 import { Anchor } from "../../Anchor";
-import { Cell, isCleanString, STYLES_TRUNCATE } from "./shared";
+import { Cell, isCleanString, STYLES_TRUNCATE, toTeamLogoAlt } from "./shared";
 
 /**
  * @type {import("./shared").CellComponent}
@@ -48,7 +48,7 @@ export const CellTeamLogo = props => {
             objectFit: "contain",
           }}
           src={game?.teamLogoSrc}
-          alt={game?.teamLogoAlt ?? " "}
+          alt={toTeamLogoAlt(props)}
         />
       </Anchor>
     </Cell>

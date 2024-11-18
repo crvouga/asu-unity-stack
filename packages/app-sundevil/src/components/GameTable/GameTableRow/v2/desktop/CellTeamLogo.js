@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 
 import { Anchor } from "../../Anchor";
 import { Cell, isCleanString, STYLES_TRUNCATE } from "./shared";
+import { toTeamLogoAlt } from "../mobile/shared";
 
 export const CELL_TEAM_LOGO_WIDTH = 112;
 
@@ -53,7 +54,7 @@ export const CellTeamLogo = props => {
           }}
           onError={() => setErr(true)}
           src={game?.teamLogoSrc}
-          alt={game?.teamLogoAlt ?? " "}
+          alt={toTeamLogoAlt(props)}
         />
       </Anchor>
     </Cell>

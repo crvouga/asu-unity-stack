@@ -15,12 +15,25 @@ export const STYLES_TRUNCATE = {
 };
 
 /**
- * @typedef {React.FC<import("../../game-table-row").GameTableRowProps>} CellComponent
+ * @typedef {import("../../game-table-row").GameTableRowProps}  Props
  */
 
 /**
- * @typedef {React.FC<import("../../game-table-row").GameTableRowProps>} RowComponent
+ * @typedef {React.FC<Props>} CellComponent
+ */
+
+/**
+ * @typedef {React.FC<Props>} RowComponent
  */
 
 export const isCleanString = str =>
   typeof str === "string" && str.trim().length > 0;
+
+/**
+ * @param {Props} props
+ * @returns {string}
+ */
+export const toTeamLogoAlt = props => {
+  const alt = props.game.teamLogoAlt;
+  return isCleanString(alt) ? alt : "Opponent Logo";
+};

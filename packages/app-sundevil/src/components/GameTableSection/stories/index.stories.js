@@ -7,6 +7,7 @@ import {
   IGameDataSource,
 } from "../../Game/game-data-source";
 import { GameTableSection } from "../index";
+import { AddToCalendarCallbackRegistry } from "../add-to-calendar/add-to-calendar-callback-registry";
 
 export default {
   title: "Game Table / Game Table Section",
@@ -169,37 +170,10 @@ AllSports.args = {
   },
 };
 
-class CustomGameDataSource extends IGameDataSource {
-  constructor() {
-    super();
-    this.dataSource = new GameDataSourceMock({
-      timeout: 1000,
-    });
-  }
-
-  async findMany(input) {
-    const found = await this.dataSource.findMany(input);
-
-    const rowsNew = found.rows.map(row => {
-      return {
-        ...row,
-        ticketText: Math.random() > 0.9 ? "Get tickets" : "More info",
-      };
-    });
-
-    return {
-      ...found,
-      rows: rowsNew,
-    };
-  }
-}
+const addToCalendarCallbackRegistry = new AddToCalendarCallbackRegistry();
 
 export const SingleSport = Template.bind({});
 SingleSport.args = {
-  // gameDataSource: {
-  //   type: "asu-events",
-  //   url: "https://asuevents.asu.edu/feed-json/sun_devil_athletics",
-  // },
   gameDataSource: {
     type: "mock-v2",
   },
@@ -212,14 +186,7 @@ SingleSport.args = {
     message: "No upcoming games",
   },
   configAddToCalender: {
-    enabled: true,
-    label: "My Add to Calendar",
-    fontWeight: "normal",
-    color: "gray",
-    onClick: payload => {
-      // eslint-disable-next-line no-console
-      console.log("Add to calendar", payload);
-    },
+    callbackRegistry: addToCalendarCallbackRegistry,
   },
   gameDataSourceLoader: {
     limit: 5,
@@ -253,16 +220,30 @@ SingleSport.args = {
         href: "#",
         // fontWeight: "bold",
       },
+      {
+        enabled: true,
+        label: "My Add to Calendar",
+        fontWeight: "normal",
+        color: "gray",
+        onClick: async () => {
+          const payload = await addToCalendarCallbackRegistry.call();
+          // eslint-disable-next-line no-console
+          console.log("Add to calendar", payload);
+        },
+      },
     ],
     subtitleButtons: [
-      // {
-      //   label: "My Button",
-      //   size: "xsmall",
-      //   color: "gray",
-      //   onClick: () => {
-      //     alert("Button clicked");
-      //   },
-      // },
+      {
+        enabled: true,
+        label: "My Add to Calendar",
+        fontWeight: "normal",
+        color: "gray",
+        onClick: async () => {
+          const payload = await addToCalendarCallbackRegistry.call();
+          // eslint-disable-next-line no-console
+          console.log("Add to calendar", payload);
+        },
+      },
     ],
     tabs: [
       {

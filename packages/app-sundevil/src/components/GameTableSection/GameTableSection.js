@@ -36,7 +36,8 @@ import { sportWithFooterPropTypes } from "../SportsTabs/sports-tabs";
 import {
   addAddToCalendarToSectionHeaderProps,
   configAddToCalendarPropTypes,
-} from "./config-add-to-calendar";
+  useAddToCalendarCallbackRegistry,
+} from "./add-to-calendar/config-add-to-calendar";
 import { configInputsPropTypes, defaultConfigInputs } from "./config-inputs";
 import { configLayoutPropTypes, defaultConfigLayout } from "./config-layout";
 import {
@@ -244,6 +245,14 @@ const GameTableSectionInner = ({ ...props }) => {
   });
 
   const gameDataSource = useGameDataSource();
+
+  useAddToCalendarCallbackRegistry({
+    configAddToCalender: props.configAddToCalender,
+    gameDataSourceFindManyInput,
+    gameTableForm,
+  });
+
+  // TODO: move to use add to calender callback register
   const sectionHeaderProps = addAddToCalendarToSectionHeaderProps({
     configAddToCalender: props.configAddToCalender,
     isMobile,

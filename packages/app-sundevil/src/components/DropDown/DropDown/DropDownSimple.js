@@ -145,7 +145,7 @@ export const DropDownSimple = ({
   const containerDimensions = useElementContentDimensions(containerRef);
 
   return (
-    <div ref={containerRef} style={containerStyle} aria-checked={open}>
+    <div ref={containerRef} style={containerStyle}>
       {renderReference({ open })}
       <StyledDropdownContent
         ref={dropdownRef}

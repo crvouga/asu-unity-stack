@@ -17,10 +17,7 @@ import {
   buildGameDataSource,
   gameDataSourcePropTypes,
 } from "../Game/game-data-source/game-data-source-impl";
-import {
-  GameDataSourceProvider,
-  useGameDataSource,
-} from "../Game/GameDataSourceContext";
+import { GameDataSourceProvider } from "../Game/GameDataSourceContext";
 import { useGameDataSourceLoader } from "../Game/use-game-data-source-loader";
 import { GameTable } from "../GameTable/GameTable";
 import {
@@ -34,7 +31,6 @@ import { useUrlSportId } from "../Sport/use-url-sport-id";
 import { SportsTabsDesktop, SportsTabsMobile } from "../SportsTabs";
 import { sportWithFooterPropTypes } from "../SportsTabs/sports-tabs";
 import {
-  addAddToCalendarToSectionHeaderProps,
   configAddToCalendarPropTypes,
   useAddToCalendarCallbackRegistry,
 } from "./add-to-calendar/config-add-to-calendar";
@@ -244,25 +240,15 @@ const GameTableSectionInner = ({ ...props }) => {
     shouldLog: props.shouldLog,
   });
 
-  const gameDataSource = useGameDataSource();
-
   useAddToCalendarCallbackRegistry({
     configAddToCalender: props.configAddToCalender,
     gameDataSourceFindManyInput,
     gameTableForm,
   });
 
-  // TODO: move to use add to calender callback register
-  const sectionHeaderProps = addAddToCalendarToSectionHeaderProps({
-    configAddToCalender: props.configAddToCalender,
-    isMobile,
-    sectionHeaderProps: mapSectionHeaderProps({
-      ...props?.sectionHeader,
-      ...props,
-    }),
-    gameDataSource,
-    gameDataSourceFindManyInput,
-    gameTableForm,
+  const sectionHeaderProps = mapSectionHeaderProps({
+    ...props?.sectionHeader,
+    ...props,
   });
   const tabs = ensureArray(sectionHeaderProps?.tabs)?.map(tab => ({
     ...tab,

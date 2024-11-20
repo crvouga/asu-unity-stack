@@ -34,13 +34,16 @@ const Title = styled.div`
 `;
 
 /**
- * @type {React.FC<import("./props").SectionHeaderProps>}
+ * @type {React.FC<import("./props").SectionHeaderProps & {mobile: boolean}>}
  */
-export const SponsorBlock = ({ sponsorBlock, darkMode = false }) => {
+export const SponsorBlock = ({ sponsorBlock, mobile, darkMode = false }) => {
+  const className = mobile
+    ? "d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
+    : "d-flex flex-row align-items-center justify-content-end gap-2";
   return (
     <Root
       href={sponsorBlock?.url}
-      className="d-flex flex-row align-items-center justify-content-end gap-2"
+      className={className}
       onClick={() => {
         trackGAEvent({
           event: "link",

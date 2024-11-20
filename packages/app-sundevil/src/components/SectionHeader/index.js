@@ -13,13 +13,13 @@ import { useTrackChildrenClicks } from "../../track-ga/track-ga-event-hooks";
 import { ensureArray } from "../../utils/ensure-array";
 import { stringToFontWeight } from "../../utils/font-weight";
 import { useBreakpoint } from "../../utils/use-breakpoint";
-import { trackAdClickHandler } from "../Ads/ad-data-layers";
 import {
   stringToColor,
   stringToSize,
   stringToTarget,
 } from "../Button/core-button-props";
 import { JoinTheConversation } from "./JoinTheConversation";
+import { SponsorBlock } from "./SponsorBlock";
 import { Tabs } from "./Tabs";
 
 const Subtitle = styled.p`
@@ -33,12 +33,6 @@ const Subtitle = styled.p`
     margin: 0;
     padding: 0;
   }
-`;
-
-const SponsorBlock = styled.a`
-  color: #191919;
-  text-decoration: none;
-  width: fit-content;
 `;
 
 const HeaderBody = styled.nav`
@@ -101,8 +95,17 @@ const SubtitleLink = styled.a`
   }}
 `;
 
-const Logo = styled.img`
-  max-height: 40px;
+const Title = styled.div`
+  color: ${({
+    // @ts-ignore
+    darkMode,
+  }) => (darkMode ? "#fff" : "#191919")};
+  font-weight: bold;
+  font-size: 40px;
+
+  @media (max-width: ${APP_CONFIG.breakpointMobile}) {
+    font-size: 24px;
+  }
 `;
 
 export const mapPropsSponsorBlock = props => {
@@ -143,35 +146,6 @@ export const mapPropsSponsorBlock = props => {
 export const mapSectionHeaderProps = props => {
   return mapPropsSponsorBlock(props);
 };
-
-const Title = styled.div`
-  color: ${({
-    // @ts-ignore
-    darkMode,
-  }) => (darkMode ? "#fff" : "#191919")};
-  font-weight: bold;
-  font-size: 40px;
-
-  @media (max-width: ${APP_CONFIG.breakpointMobile}) {
-    font-size: 24px;
-  }
-`;
-
-const SponsorBlockTitle = styled.div`
-  color: ${({
-    // @ts-ignore
-    darkMode,
-  }) => (darkMode ? "#fff" : "#191919")};
-  font-weight: bold;
-  font-size: 16px;
-  text-align: left;
-
-  @media (max-width: ${APP_CONFIG.breakpointMobile}) {
-    font-size: 12px;
-  }
-
-  white-space: nowrap;
-`;
 
 /**
  * @type {React.FC<import("./props").SectionHeaderProps>}
@@ -233,27 +207,7 @@ export const SectionHeader = forwardRef((props, ref) => {
                 {title}
               </Title>
               <div className="mt-auto d-flex d-sm-flex d-md-none align-items-start justify-content-end">
-                {sponsorBlock?.logo && (
-                  <SponsorBlock
-                    href={sponsorBlock?.url}
-                    className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
-                    onClick={trackAdClickHandler({
-                      adId: sponsorBlock?.adId,
-                      href: sponsorBlock?.url,
-                    })}
-                  >
-                    <SponsorBlockTitle
-                      // @ts-ignore
-                      darkMode={darkMode}
-                    >
-                      {sponsorBlock?.text}
-                    </SponsorBlockTitle>
-                    <Logo
-                      src={sponsorBlock?.logo}
-                      alt={sponsorBlock?.name ?? " "}
-                    />
-                  </SponsorBlock>
-                )}
+                {sponsorBlock?.logo && <SponsorBlock mobile {...props} />}
               </div>
             </div>
             {hasHeaderBody && (
@@ -368,39 +322,7 @@ export const SectionHeader = forwardRef((props, ref) => {
             )}
           </div>
           <div className="col-md-4 col-sm-0 mt-auto d-none d-sm-none d-md-flex justify-content-end">
-            {sponsorBlock?.logo && (
-              <SponsorBlock
-                href={sponsorBlock?.url}
-                className="d-flex flex-row align-items-center justify-content-end gap-2"
-                onClick={() => {
-                  trackGAEvent({
-                    event: "link",
-                    action: "click",
-                    name: "onclick",
-                    type: "external link",
-                    region: "main content",
-                    section: sponsorBlock?.text ?? " ",
-                    text: sponsorBlock?.name ?? " ",
-                    component: "image",
-                  });
-                  trackAdClickHandler({
-                    adId: sponsorBlock?.adId,
-                    href: sponsorBlock?.url,
-                  })();
-                }}
-              >
-                <SponsorBlockTitle
-                  // @ts-ignore
-                  darkMode={darkMode}
-                >
-                  {sponsorBlock?.text}
-                </SponsorBlockTitle>
-                <Logo
-                  src={sponsorBlock?.logo}
-                  alt={sponsorBlock?.name ?? " "}
-                />
-              </SponsorBlock>
-            )}
+            {sponsorBlock?.logo && <SponsorBlock mobile={false} {...props} />}
           </div>
         </div>
       )}

@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { trackGAEvent } from "../../../track-ga-event";
+import { trackGAEvent } from "../../../track-ga/track-ga-event";
 import { Alignment, alignmentPropTypes } from "../alignment";
 import { linkTabPropType, linkTabToKey } from "../link";
 import { LinkTab } from "../LinkTab";

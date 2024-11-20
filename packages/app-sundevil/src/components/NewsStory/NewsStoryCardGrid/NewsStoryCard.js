@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useState } from "react";
 import styled from "styled-components";
 
-import { trackGAEvent } from "../../../track-ga-event";
+import { trackGAEvent } from "../../../track-ga/track-ga-event";
 import { ensureNormalNumber } from "../../../utils/ensure-number";
 import { Icon } from "../../Icon_";
 import { Skeleton } from "../../Skeleton";

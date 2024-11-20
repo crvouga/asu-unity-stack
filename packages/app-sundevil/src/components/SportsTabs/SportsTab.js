@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import styled from "styled-components";
 
-import { trackGAEvent } from "../../track-ga-event";
+import { trackGAEvent } from "../../track-ga/track-ga-event";
 import { AspectRatioSquare } from "../AspectRatio/AspectRatioSquare";
 
 const Root = styled.div`

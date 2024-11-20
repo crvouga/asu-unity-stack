@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../components-core/src/components/Button";
-import { useTrackChildrenClicks } from "../../track-ga-event-hooks";
+import { useTrackChildrenClicks } from "../../track-ga/track-ga-event-hooks";
 import { Image } from "../Image";
 import { cardPropTypes } from "./card-prop";
 

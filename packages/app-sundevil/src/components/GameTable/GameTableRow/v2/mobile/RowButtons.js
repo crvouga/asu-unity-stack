@@ -4,7 +4,7 @@
 import React from "react";
 
 import { Button } from "../../../../../../../components-core/src";
-import { TYPE_INTERNAL_LINK } from "../../../../../track-ga-event";
+import { TYPE_INTERNAL_LINK } from "../../../../../track-ga/track-ga-event";
 import {
   stringToColor,
   stringToSize,

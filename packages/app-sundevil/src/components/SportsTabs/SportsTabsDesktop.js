@@ -4,7 +4,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
-import { trackGAEvent } from "../../track-ga-event";
+import { trackGAEvent } from "../../track-ga/track-ga-event";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { CollapseIcon } from "../CollapseIcon/CollapseIcon";
 import { DropDown, DropDownSurface } from "../DropDown";

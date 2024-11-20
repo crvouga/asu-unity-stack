@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useRef, useState } from "react";
 
 import { APP_CONFIG } from "../../config";
-import { useTrackChildrenClicks } from "../../track-ga-event-hooks";
+import { useTrackChildrenClicks } from "../../track-ga/track-ga-event-hooks";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { Image } from "../Image";
 import { SectionHeader } from "../SectionHeader";

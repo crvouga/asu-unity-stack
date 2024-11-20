@@ -5,8 +5,11 @@ import styled from "styled-components";
 
 import { Button } from "../../../../components-core/src";
 import { APP_CONFIG } from "../../config";
-import { trackGAEvent, TYPE_INTERNAL_LINK } from "../../track-ga-event";
-import { useTrackChildrenClicks } from "../../track-ga-event-hooks";
+import {
+  trackGAEvent,
+  TYPE_INTERNAL_LINK,
+} from "../../track-ga/track-ga-event";
+import { useTrackChildrenClicks } from "../../track-ga/track-ga-event-hooks";
 import { ensureArray } from "../../utils/ensure-array";
 import { stringToFontWeight } from "../../utils/font-weight";
 import { useBreakpoint } from "../../utils/use-breakpoint";

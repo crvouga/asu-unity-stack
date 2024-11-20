@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
-import { trackGAEvent } from "../../../track-ga-event";
+import { trackGAEvent } from "../../../track-ga/track-ga-event";
 import { trackAdClickHandler } from "../../Ads/ad-data-layers";
 import { linkTabsBarPropTypes } from "../link-tab-bar";
 import { LinkTabsBarDropDown } from "./LinkTabsBarDropDown";

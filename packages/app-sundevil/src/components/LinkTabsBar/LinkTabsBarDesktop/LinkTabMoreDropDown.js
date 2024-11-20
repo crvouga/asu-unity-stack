@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 
-import { trackGAEvent } from "../../../track-ga-event";
+import { trackGAEvent } from "../../../track-ga/track-ga-event";
 import { CollapseIcon } from "../../CollapseIcon/CollapseIcon";
 import { DropDown, DropDownSurface } from "../../DropDown";
 import { DropDownItem } from "../../DropDown/DropDownItem";

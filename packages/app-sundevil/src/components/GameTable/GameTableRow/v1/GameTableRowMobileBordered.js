@@ -1,7 +1,7 @@
 import React, { forwardRef } from "react";
 import styled from "styled-components";
 
-import { trackGAEvent } from "../../../../track-ga-event";
+import { trackGAEvent } from "../../../../track-ga/track-ga-event";
 import { deepMergeLeft } from "../../../../utils/deep-merge-left";
 import { formatTimeAmPm } from "../../../../utils/formatTime";
 import { isGameTicketed } from "../../../Game/game";

@@ -5,7 +5,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../components-core/src/components/Button";
-import { trackGAEvent } from "../../track-ga-event";
+import { trackGAEvent } from "../../track-ga/track-ga-event";
 import { Icon } from "../Icon_";
 
 const FooterBlock = styled.footer`

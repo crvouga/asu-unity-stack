@@ -2,7 +2,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 
-import { trackGAEvent } from "../../track-ga-event";
+import { trackGAEvent } from "../../track-ga/track-ga-event";
 import { DropDown } from "../DropDown/DropDown";
 import { DropDownSurface } from "../DropDown/DropDownSurface";
 import { Icon } from "../Icon_";

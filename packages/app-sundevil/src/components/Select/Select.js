@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 import { ALL_ID, ALL_LABEL } from "../../select-all-option";
-import { trackGAEvent } from "../../track-ga-event";
+import { trackGAEvent } from "../../track-ga/track-ga-event";
 import { cleanString } from "../../utils/clean-string";
 import { ensureArray } from "../../utils/ensure-array";
 import { idToLabel } from "../../utils/id-to-label";

@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import { ASUHeader } from "../../../../component-header/src";
-import { trackGAEvent } from "../../track-ga-event";
+import { trackGAEvent } from "../../track-ga/track-ga-event";
 import { trackAdClickHandler } from "../Ads/ad-data-layers";
 import { HeaderContentSportLinks } from "../HeaderContentSportLinks";
 import { Icon } from "../Icon_";

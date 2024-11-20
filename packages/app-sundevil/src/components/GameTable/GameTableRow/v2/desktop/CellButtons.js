@@ -4,7 +4,7 @@
 import React, { useRef } from "react";
 
 import { Button } from "../../../../../../../components-core/src/components/Button";
-import { TYPE_INTERNAL_LINK } from "../../../../../track-ga-event";
+import { TYPE_INTERNAL_LINK } from "../../../../../track-ga/track-ga-event";
 import { useElementSetMaxDimensions } from "../../../../../utils/use-element-set-max-dimensions";
 import { useId } from "../../../../../utils/use-id";
 import {

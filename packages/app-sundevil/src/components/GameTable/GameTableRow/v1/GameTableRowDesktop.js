@@ -4,7 +4,7 @@ import React, { forwardRef, useRef } from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../../../components-core/src/components/Button";
-import { TYPE_INTERNAL_LINK } from "../../../../track-ga-event";
+import { TYPE_INTERNAL_LINK } from "../../../../track-ga/track-ga-event";
 import { deepMergeLeft } from "../../../../utils/deep-merge-left";
 import { idToLabel } from "../../../../utils/id-to-label";
 import { useElementSetMaxDimensions } from "../../../../utils/use-element-set-max-dimensions";

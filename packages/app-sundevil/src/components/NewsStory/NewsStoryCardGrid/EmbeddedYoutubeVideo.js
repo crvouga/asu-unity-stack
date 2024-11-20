@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
-import { trackGAEvent } from "../../../track-ga-event";
+import { trackGAEvent } from "../../../track-ga/track-ga-event";
 import { toYoutubeVideoId } from "./to-youtube-video-id";
 
 const toYoutubeEmbedUrl = (youtubeVideoId, autoplay = 0) =>

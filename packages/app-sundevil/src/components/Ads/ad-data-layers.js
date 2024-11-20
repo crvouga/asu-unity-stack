@@ -1,4 +1,4 @@
-import { trackGAEvent } from "../../track-ga-event";
+import { trackGAEvent } from "../../track-ga/track-ga-event";
 
 export const trackAdImpression = adId => {
   if (typeof adId !== "string" || adId.trim().length === 0) {

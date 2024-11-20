@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useRef } from "react";
 import styled from "styled-components";
 
-import { useTrackChildrenClicks } from "../../track-ga-event-hooks";
+import { useTrackChildrenClicks } from "../../track-ga/track-ga-event-hooks";
 import { AspectRatio16by9 } from "../AspectRatio/AspectRatio16by9";
 import { Image } from "../Image";
 import { cardPropTypes } from "./card-prop";

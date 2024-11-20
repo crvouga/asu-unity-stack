@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 // @ts-check
-import PropTypes from "prop-types";
 import React, { forwardRef, useRef } from "react";
 import styled from "styled-components";
 
@@ -14,14 +14,12 @@ import { ensureArray } from "../../utils/ensure-array";
 import { stringToFontWeight } from "../../utils/font-weight";
 import { useBreakpoint } from "../../utils/use-breakpoint";
 import { trackAdClickHandler } from "../Ads/ad-data-layers";
-import { buttonPropTypes } from "../Button/button-prop";
 import {
   stringToColor,
   stringToSize,
   stringToTarget,
 } from "../Button/core-button-props";
-import { Logo } from "./index.styles";
-import { JoinTheConversation, socialPropType } from "./JoinTheConversation";
+import { JoinTheConversation } from "./JoinTheConversation";
 import { Tabs } from "./Tabs";
 
 const Subtitle = styled.p`
@@ -103,6 +101,10 @@ const SubtitleLink = styled.a`
   }}
 `;
 
+const Logo = styled.img`
+  max-height: 40px;
+`;
+
 export const mapPropsSponsorBlock = props => {
   const sponsorBlock = props?.sponsorBlock;
   if (Array.isArray(sponsorBlock) && sponsorBlock?.[0]) {
@@ -172,298 +174,236 @@ const SponsorBlockTitle = styled.div`
 `;
 
 /**
- * @type {React.FC<SectionHeaderProps>}
+ * @type {React.FC<import("./props").SectionHeaderProps>}
  */
-export const SectionHeader = forwardRef(
-  (
-    {
-      title,
-      subtitle,
-      tabs,
-      sponsorBlock,
-      social,
-      onTabItemClick,
-      darkMode = false,
-      subtitleFontWeight = "normal",
-      subtitleLinks = [],
-      subtitleButtons = [],
-      style,
-    },
-    ref
-  ) => {
-    const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
-    const hasContent = Boolean(
-      title || subtitle || tabs || social || sponsorBlock
-    );
+export const SectionHeader = forwardRef((props, ref) => {
+  const {
+    title,
+    subtitle,
+    tabs,
+    sponsorBlock,
+    social,
+    onTabItemClick,
+    darkMode = false,
+    subtitleFontWeight = "normal",
+    subtitleLinks = [],
+    subtitleButtons = [],
+    style,
+  } = props;
 
-    const hasSubtitle =
-      Boolean(subtitle) ||
-      Boolean(Array.isArray(subtitleLinks) && subtitleLinks.length > 0) ||
-      Boolean(Array.isArray(subtitleButtons) && subtitleButtons.length > 0);
+  const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
+  const hasContent = Boolean(
+    title || subtitle || tabs || social || sponsorBlock
+  );
 
-    const hasTabs = Boolean(tabs && tabs.length > 0);
+  const hasSubtitle =
+    Boolean(subtitle) ||
+    Boolean(Array.isArray(subtitleLinks) && subtitleLinks.length > 0) ||
+    Boolean(Array.isArray(subtitleButtons) && subtitleButtons.length > 0);
 
-    const hasSocial = Boolean(social && social.length > 0);
+  const hasTabs = Boolean(tabs && tabs.length > 0);
 
-    const hasHeaderBody = hasSubtitle || hasTabs || hasSocial;
+  const hasSocial = Boolean(social && social.length > 0);
 
-    const sectionName = title;
+  const hasHeaderBody = hasSubtitle || hasTabs || hasSocial;
 
-    /**
-     * @type {React.MutableRefObject<HTMLElement | null>}
-     */
-    const subtitleRef = useRef(null);
+  const sectionName = title;
 
-    useTrackChildrenClicks({
-      ref: subtitleRef,
-      sectionName: sectionName ?? " ",
-      type: TYPE_INTERNAL_LINK,
-    });
+  /**
+   * @type {React.MutableRefObject<HTMLElement | null>}
+   */
+  const subtitleRef = useRef(null);
 
-    return (
-      <div className="container" ref={ref} style={style}>
-        {hasContent && (
-          <div className="row">
-            <div className="col-md-8 col-sm-12">
-              <div className="d-flex flex-row align-items-end justify-content-between gap-2 pt-2">
-                <Title
+  useTrackChildrenClicks({
+    ref: subtitleRef,
+    sectionName: sectionName ?? " ",
+    type: TYPE_INTERNAL_LINK,
+  });
+
+  return (
+    <div className="container" ref={ref} style={style}>
+      {hasContent && (
+        <div className="row">
+          <div className="col-md-8 col-sm-12">
+            <div className="d-flex flex-row align-items-end justify-content-between gap-2 pt-2">
+              <Title
+                // @ts-ignore
+                darkMode={darkMode}
+              >
+                {title}
+              </Title>
+              <div className="mt-auto d-flex d-sm-flex d-md-none align-items-start justify-content-end">
+                {sponsorBlock?.logo && (
+                  <SponsorBlock
+                    href={sponsorBlock?.url}
+                    className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
+                    onClick={trackAdClickHandler({
+                      adId: sponsorBlock?.adId,
+                      href: sponsorBlock?.url,
+                    })}
+                  >
+                    <SponsorBlockTitle
+                      // @ts-ignore
+                      darkMode={darkMode}
+                    >
+                      {sponsorBlock?.text}
+                    </SponsorBlockTitle>
+                    <Logo
+                      src={sponsorBlock?.logo}
+                      alt={sponsorBlock?.name ?? " "}
+                    />
+                  </SponsorBlock>
+                )}
+              </div>
+            </div>
+            {hasHeaderBody && (
+              <HeaderBody>
+                <SubtitleRoot>
+                  {subtitle && (
+                    <Subtitle
+                      // @ts-ignore
+                      ref={subtitleRef}
+                      style={{
+                        fontWeight: stringToFontWeight(subtitleFontWeight),
+                      }}
+                      dangerouslySetInnerHTML={{ __html: subtitle }}
+                    />
+                  )}
+                  {Array.isArray(subtitleLinks) && subtitleLinks.length > 0 && (
+                    <SubtitleLinks>
+                      {subtitleLinks.map((link, index) => {
+                        const isLast = index === subtitleLinks.length - 1;
+                        const key = link?.href ?? link?.url ?? link?.label;
+                        return (
+                          <>
+                            <SubtitleLink
+                              key={key}
+                              href={link?.href ?? link?.url}
+                              // @ts-ignore
+                              fontWeight={link?.fontWeight}
+                              color={link?.color}
+                              onClick={() => {
+                                if (typeof link.onClick === "function") {
+                                  link.onClick?.();
+                                }
+                                trackGAEvent({
+                                  event: "link",
+                                  action: "click",
+                                  name: "onclick",
+                                  type: "internal link",
+                                  region: "main content",
+                                  section: sectionName,
+                                  text: link?.label,
+                                  component: "text",
+                                });
+                              }}
+                            >
+                              {link?.label}
+                            </SubtitleLink>
+                            {!isLast && (
+                              // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=6146-13841&node-type=frame&t=hwMmzQHF1CbjJnXH-0
+                              <div
+                                key={[key, "divider"].join("-")}
+                                style={{
+                                  width: "2px",
+                                  height: "18px",
+                                  backgroundColor: "#191919",
+                                }}
+                              />
+                            )}
+                          </>
+                        );
+                      })}
+                    </SubtitleLinks>
+                  )}
+
+                  {Array.isArray(subtitleButtons) &&
+                    subtitleButtons.length > 0 && (
+                      <SubtitleButtons>
+                        {subtitleButtons.map(button => (
+                          <Button
+                            {...button}
+                            label={button.label}
+                            icon={ensureArray(button.icon)}
+                            color={stringToColor(button.color)}
+                            size={stringToSize(button.size)}
+                            target={stringToTarget(button.target)}
+                            key={[button.label, button.link].join("-")}
+                            cardTitle={sectionName}
+                          />
+                        ))}
+                      </SubtitleButtons>
+                    )}
+                </SubtitleRoot>
+
+                {tabs && tabs.length > 0 && (
+                  <Tabs
+                    tabs={tabs}
+                    onTabItemClick={(tabId, tab) => {
+                      if (typeof onTabItemClick === "function") {
+                        onTabItemClick?.(tabId);
+                      }
+
+                      trackGAEvent({
+                        event: "link",
+                        action: "click",
+                        name: "onclick",
+                        type: "internal link",
+                        region: "main content",
+                        section: sectionName,
+                        text: tab?.label?.toLowerCase() ?? "",
+                        component: "text",
+                      });
+                    }}
+                    stretch={isMobile}
+                  />
+                )}
+                {social && social.length > 0 && (
+                  <JoinTheConversation
+                    sectionName={sectionName}
+                    social={social}
+                  />
+                )}
+              </HeaderBody>
+            )}
+          </div>
+          <div className="col-md-4 col-sm-0 mt-auto d-none d-sm-none d-md-flex justify-content-end">
+            {sponsorBlock?.logo && (
+              <SponsorBlock
+                href={sponsorBlock?.url}
+                className="d-flex flex-row align-items-center justify-content-end gap-2"
+                onClick={() => {
+                  trackGAEvent({
+                    event: "link",
+                    action: "click",
+                    name: "onclick",
+                    type: "external link",
+                    region: "main content",
+                    section: sponsorBlock?.text ?? " ",
+                    text: sponsorBlock?.name ?? " ",
+                    component: "image",
+                  });
+                  trackAdClickHandler({
+                    adId: sponsorBlock?.adId,
+                    href: sponsorBlock?.url,
+                  })();
+                }}
+              >
+                <SponsorBlockTitle
                   // @ts-ignore
                   darkMode={darkMode}
                 >
-                  {title}
-                </Title>
-                <div className="mt-auto d-flex d-sm-flex d-md-none align-items-start justify-content-end">
-                  {sponsorBlock?.logo && (
-                    <SponsorBlock
-                      href={sponsorBlock?.url}
-                      className="d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
-                      onClick={trackAdClickHandler({
-                        adId: sponsorBlock?.adId,
-                        href: sponsorBlock?.url,
-                      })}
-                    >
-                      <SponsorBlockTitle
-                        // @ts-ignore
-                        darkMode={darkMode}
-                      >
-                        {sponsorBlock?.text}
-                      </SponsorBlockTitle>
-                      <Logo
-                        src={sponsorBlock?.logo}
-                        alt={sponsorBlock?.name ?? " "}
-                      />
-                    </SponsorBlock>
-                  )}
-                </div>
-              </div>
-              {hasHeaderBody && (
-                <HeaderBody>
-                  <SubtitleRoot>
-                    {subtitle && (
-                      <Subtitle
-                        // @ts-ignore
-                        ref={subtitleRef}
-                        style={{
-                          fontWeight: stringToFontWeight(subtitleFontWeight),
-                        }}
-                        dangerouslySetInnerHTML={{ __html: subtitle }}
-                      />
-                    )}
-                    {Array.isArray(subtitleLinks) &&
-                      subtitleLinks.length > 0 && (
-                        <SubtitleLinks>
-                          {subtitleLinks.map((link, index) => {
-                            const isLast = index === subtitleLinks.length - 1;
-                            const key = link?.href ?? link?.url ?? link?.label;
-                            return (
-                              <>
-                                <SubtitleLink
-                                  key={key}
-                                  href={link?.href ?? link?.url}
-                                  // @ts-ignore
-                                  fontWeight={link?.fontWeight}
-                                  color={link?.color}
-                                  onClick={() => {
-                                    if (typeof link.onClick === "function") {
-                                      link.onClick?.();
-                                    }
-                                    trackGAEvent({
-                                      event: "link",
-                                      action: "click",
-                                      name: "onclick",
-                                      type: "internal link",
-                                      region: "main content",
-                                      section: sectionName,
-                                      text: link?.label,
-                                      component: "text",
-                                    });
-                                  }}
-                                >
-                                  {link?.label}
-                                </SubtitleLink>
-                                {!isLast && (
-                                  // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=6146-13841&node-type=frame&t=hwMmzQHF1CbjJnXH-0
-                                  <div
-                                    key={[key, "divider"].join("-")}
-                                    style={{
-                                      width: "2px",
-                                      height: "18px",
-                                      backgroundColor: "#191919",
-                                    }}
-                                  />
-                                )}
-                              </>
-                            );
-                          })}
-                        </SubtitleLinks>
-                      )}
-
-                    {Array.isArray(subtitleButtons) &&
-                      subtitleButtons.length > 0 && (
-                        <SubtitleButtons>
-                          {subtitleButtons.map(button => (
-                            <Button
-                              {...button}
-                              label={button.label}
-                              icon={ensureArray(button.icon)}
-                              color={stringToColor(button.color)}
-                              size={stringToSize(button.size)}
-                              target={stringToTarget(button.target)}
-                              key={[button.label, button.link].join("-")}
-                              cardTitle={sectionName}
-                            />
-                          ))}
-                        </SubtitleButtons>
-                      )}
-                  </SubtitleRoot>
-
-                  {tabs && tabs.length > 0 && (
-                    <Tabs
-                      tabs={tabs}
-                      onTabItemClick={(tabId, tab) => {
-                        if (typeof onTabItemClick === "function") {
-                          onTabItemClick?.(tabId);
-                        }
-
-                        trackGAEvent({
-                          event: "link",
-                          action: "click",
-                          name: "onclick",
-                          type: "internal link",
-                          region: "main content",
-                          section: sectionName,
-                          text: tab?.label?.toLowerCase() ?? "",
-                          component: "text",
-                        });
-                      }}
-                      stretch={isMobile}
-                    />
-                  )}
-                  {social && social.length > 0 && (
-                    <JoinTheConversation
-                      sectionName={sectionName}
-                      social={social}
-                    />
-                  )}
-                </HeaderBody>
-              )}
-            </div>
-            <div className="col-md-4 col-sm-0 mt-auto d-none d-sm-none d-md-flex justify-content-end">
-              {sponsorBlock?.logo && (
-                <SponsorBlock
-                  href={sponsorBlock?.url}
-                  className="d-flex flex-row align-items-center justify-content-end gap-2"
-                  onClick={() => {
-                    trackGAEvent({
-                      event: "link",
-                      action: "click",
-                      name: "onclick",
-                      type: "external link",
-                      region: "main content",
-                      section: sponsorBlock?.text ?? " ",
-                      text: sponsorBlock?.name ?? " ",
-                      component: "image",
-                    });
-                    trackAdClickHandler({
-                      adId: sponsorBlock?.adId,
-                      href: sponsorBlock?.url,
-                    })();
-                  }}
-                >
-                  <SponsorBlockTitle
-                    // @ts-ignore
-                    darkMode={darkMode}
-                  >
-                    {sponsorBlock?.text}
-                  </SponsorBlockTitle>
-                  <Logo
-                    src={sponsorBlock?.logo}
-                    alt={sponsorBlock?.name ?? " "}
-                  />
-                </SponsorBlock>
-              )}
-            </div>
+                  {sponsorBlock?.text}
+                </SponsorBlockTitle>
+                <Logo
+                  src={sponsorBlock?.logo}
+                  alt={sponsorBlock?.name ?? " "}
+                />
+              </SponsorBlock>
+            )}
           </div>
-        )}
-      </div>
-    );
-  }
-);
-
-/**
- * @typedef {Object} SectionHeaderProps
- * @property {string} [title]
- * @property {string} [subtitle]
- * @property {string} [subtitleFontWeight]
- * @property {Array<{ label: string, color?: string; onClick?: () => void; href?: string, fontWeight?: string; url?: string }>} [subtitleLinks]
- * @property {Array<import("../Button/button-prop").ButtonProp>} [subtitleButtons]
- * @property {Array<{ id: string, label: string, active: boolean }>} [tabs]
- * @property {Array<import("./JoinTheConversation").SocialProp>} [social]
- * @property {{name: string, logo: string, text: string, url: string, adId?: string | number}} [sponsorBlock]
- * @property {boolean} [darkMode]
- * @property {(...params: any[]) => void} [onTabItemClick]
- * @property {React.CSSProperties} [style]
- *
- */
-
-const sponsorBlockPropTypes = PropTypes.shape({
-  name: PropTypes.string,
-  logo: PropTypes.string,
-  text: PropTypes.string,
-  url: PropTypes.string,
-  adId: PropTypes.string,
+        </div>
+      )}
+    </div>
+  );
 });
-
-export const sectionHeaderPropTypes = PropTypes.shape({
-  title: PropTypes.string,
-  subtitle: PropTypes.string,
-  subtitleFontWeight: PropTypes.string,
-  subtitleLinks: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string,
-      href: PropTypes.string,
-      fontWeight: PropTypes.string,
-      url: PropTypes.string,
-      color: PropTypes.string,
-    })
-  ),
-  subtitleButtons: PropTypes.arrayOf(buttonPropTypes),
-  sponsorBlock: sponsorBlockPropTypes,
-  tabs: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      label: PropTypes.string,
-      active: PropTypes.bool,
-    })
-  ),
-  social: PropTypes.arrayOf(socialPropType),
-  onTabItemClick: PropTypes.func,
-  darkMode: PropTypes.bool,
-  // eslint-disable-next-line react/forbid-prop-types
-  style: PropTypes.object,
-});
-
-// @ts-ignore
-SectionHeader.propTypes = {
-  ...sectionHeaderPropTypes,
-};

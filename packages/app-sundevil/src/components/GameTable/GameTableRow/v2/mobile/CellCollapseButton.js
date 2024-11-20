@@ -26,7 +26,11 @@ export const CellCollapseButton = (
   return (
     <Root
       type="button"
-      onClick={onClick}
+      onClick={() => {
+        if (typeof onClick === "function") {
+          onClick?.();
+        }
+      }}
       style={{
         display: "flex",
         alignItems: "center",

@@ -4,6 +4,7 @@
 import React, { useRef } from "react";
 
 import { Button } from "../../../../../../../components-core/src/components/Button";
+import { TYPE_INTERNAL_LINK } from "../../../../../track-ga-event";
 import { useElementSetMaxDimensions } from "../../../../../utils/use-element-set-max-dimensions";
 import { useId } from "../../../../../utils/use-id";
 import {
@@ -58,6 +59,9 @@ export const CellButtons = props => {
           label: button.label,
           onClick: button.onClick,
           cardTitle: game?.title ?? " ",
+          trackingOverrides: {
+            type: TYPE_INTERNAL_LINK,
+          },
         };
         return (
           <Button

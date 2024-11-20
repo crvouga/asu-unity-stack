@@ -4,6 +4,7 @@
 import React from "react";
 
 import { Button } from "../../../../../../../components-core/src";
+import { TYPE_INTERNAL_LINK } from "../../../../../track-ga-event";
 import {
   stringToColor,
   stringToSize,
@@ -43,6 +44,9 @@ export const RowButtons = props => {
           label: button.label,
           onClick: button.onClick,
           cardTitle: game?.title ?? " ",
+          trackingOverrides: {
+            type: TYPE_INTERNAL_LINK,
+          },
         };
         return (
           <Button

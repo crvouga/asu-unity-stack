@@ -18,6 +18,7 @@
  * @property {"default"|"small"|"xsmall"}   [size]
  * @property {"gold"|"maroon"|"gray"|"dark"} [color]
  * @property {"_blank"|"_self"|"_top"|"_parent"} [target]
+ * @property {Object} [trackingOverrides]
  */
 
 /**

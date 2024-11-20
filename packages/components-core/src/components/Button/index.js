@@ -41,6 +41,7 @@ export const Button = ({
   target,
   renderIcon,
   renderEndIcon,
+  trackingOverrides,
   ...props
 }) => {
   const btnClasses = classNames("btn", {
@@ -62,6 +63,7 @@ export const Button = ({
       type: isExternalLink(href) ? "external link" : "internal link",
       text,
       section: cardTitle,
+      ...trackingOverrides,
     });
 
     if (typeof onClick === "function") {
@@ -174,6 +176,11 @@ Button.propTypes = {
    * Function to render an icon at the end of the button
    */
   renderEndIcon: PropTypes.func,
+  /**
+   * Object to override default tracking values
+   */
+  // eslint-disable-next-line react/forbid-prop-types
+  trackingOverrides: PropTypes.object,
 };
 
 Button.defaultProps = {

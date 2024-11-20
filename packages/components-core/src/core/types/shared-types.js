@@ -79,6 +79,7 @@
 /**
  * @typedef {Object} AccordionProps
  * @property {AccordionCard[]} cards
+ * @property {string} sectionName
  * @property {number} [openedCard]
  */
 

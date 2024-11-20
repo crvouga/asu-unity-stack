@@ -27,7 +27,7 @@ const AVAILABLE_GA_ACTIONS = {
  * @param {AccordionProps} props
  * @returns {JSX.Element}
  */
-const Accordion = ({ cards, openedCard }) => {
+const Accordion = ({ cards, sectionName, openedCard }) => {
   const [currentOpenCard, setCurrentOpenCard] = useState(openedCard);
 
   const trackEvent = (cardTitle, action) => {
@@ -35,6 +35,8 @@ const Accordion = ({ cards, openedCard }) => {
       ...defaultGAEvent,
       action,
       text: cardTitle,
+      section: sectionName,
+      component: "accordion",
     });
   };
 
@@ -87,6 +89,10 @@ Accordion.propTypes = {
    * Opened card based on rendered card position
    */
   openedCard: PropTypes.number,
+  /**
+   * Section name to track the accordion component
+   */
+  sectionName: PropTypes.string.isRequired,
 };
 
 export { Accordion };

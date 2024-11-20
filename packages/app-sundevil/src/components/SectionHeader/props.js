@@ -57,7 +57,7 @@ export const sectionHeaderPropTypes = PropTypes.shape({
   style: PropTypes.object,
 });
 
-export const mapPropsSponsorBlock = props => {
+const mapPropsSponsorBlock = props => {
   const sponsorBlock = props?.sponsorBlock;
   if (Array.isArray(sponsorBlock) && sponsorBlock?.[0]) {
     return {
@@ -73,19 +73,16 @@ export const mapPropsSponsorBlock = props => {
     };
   }
 
-  // eslint-disable-next-line camelcase
-  const sponsor_block = props?.sponsor_block;
-
-  if (Array.isArray(sponsor_block) && sponsor_block?.[0]) {
+  if (Array.isArray(props?.sponsor_block) && props?.sponsor_block?.[0]) {
     return {
       ...props,
-      sponsorBlock: sponsor_block[0],
+      sponsorBlock: props?.sponsor_block[0],
     };
   }
 
   return {
     ...props,
-    sponsorBlock: sponsor_block,
+    sponsorBlock: props?.sponsor_block,
   };
 };
 

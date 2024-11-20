@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
+import { useTrackChildrenClicks } from "../../track-ga-event-hooks";
 import { EmbeddedCode } from "../../utils/embed-code";
 import { mapSectionHeaderProps, SectionHeader } from "../SectionHeader";
 
@@ -12,10 +13,17 @@ const Root = styled.section`
 `;
 
 export const SocialMediaSectionEmbedded = ({ sectionHeader, embedCode }) => {
+  const sectionHeaderProps = mapSectionHeaderProps(sectionHeader);
+  const sectionName = sectionHeaderProps.title;
+  const embedCodeRef = useRef();
+  useTrackChildrenClicks({
+    ref: embedCodeRef,
+    sectionName,
+  });
   return (
     <Root>
-      <SectionHeader {...mapSectionHeaderProps(sectionHeader)} />
-      <EmbeddedCode embedCode={embedCode} />
+      <SectionHeader {...sectionHeaderProps} />
+      <EmbeddedCode ref={embedCodeRef} embedCode={embedCode} />
     </Root>
   );
 };

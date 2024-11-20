@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useEffect, useRef } from "react";
+import React, { forwardRef, useEffect, useRef } from "react";
 
 export const useEmbeddedCode = ({ embedCode, ref }) => {
   useEffect(() => {
@@ -24,8 +24,9 @@ const isEmbedCodeValid = embedCode => {
   );
 };
 
-export const EmbeddedCode = ({ embedCode }) => {
-  const ref = useRef();
+export const EmbeddedCode = forwardRef(({ embedCode }, propsRef) => {
+  const internalRef = useRef();
+  const ref = propsRef || internalRef;
   useEmbeddedCode({ embedCode, ref });
 
   if (!isEmbedCodeValid(embedCode)) {
@@ -33,7 +34,7 @@ export const EmbeddedCode = ({ embedCode }) => {
   }
 
   return <div ref={ref} />;
-};
+});
 EmbeddedCode.propTypes = {
   embedCode: PropTypes.string,
 };

@@ -1,8 +1,21 @@
 // https://cdn-icons-png.flaticon.com/512/94/94107.png
 /** @type {import("../../../../component-header/src/header").HeaderProps} */
 export const testHeaderProps = {
+  topBanner: {
+    // This is disabled now
+    html: `<div id="my-ad-portal-exit"></div>`,
+    height: "131px",
+    heightAbove: "131px",
+    heightBelow: "115px",
+    maxWidthBreakpoint: "992px",
+    contentStyles: {},
+  },
+  scrollTarget: null,
+  style: {
+    position: "static",
+  },
   baseUrl: "https://web-sda.ddev.site:8443/",
-  title: "ASU Sun Devil Athletics",
+  title: "Sun Devils",
 
   parentOrg: "",
   parentOrgUrl: "",

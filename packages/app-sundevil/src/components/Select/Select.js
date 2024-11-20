@@ -121,7 +121,8 @@ export const Select = ({
                   region: "main content",
                   section: sectionName,
                   text: option?.label ?? " ",
-                  component: "dropdown",
+                  // component: "dropdown",
+                  component: "text",
                 });
               }}
               active={Boolean(option.active)}

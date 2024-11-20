@@ -8,6 +8,8 @@ const toggleLogDataLayers = () => {
 // @ts-ignore
 window.toggleLogDataLayers = toggleLogDataLayers;
 
+export const TYPE_INTERNAL_LINK = "internal link";
+
 /**
  * @param {{
  *  event?: string

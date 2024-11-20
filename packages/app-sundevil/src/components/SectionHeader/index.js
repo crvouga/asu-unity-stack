@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { Button } from "../../../../components-core/src";
 import { APP_CONFIG } from "../../config";
-import { trackGAEvent } from "../../track-ga-event";
+import { trackGAEvent, TYPE_INTERNAL_LINK } from "../../track-ga-event";
 import { useTrackChildrenClicks } from "../../track-ga-event-hooks";
 import { ensureArray } from "../../utils/ensure-array";
 import { stringToFontWeight } from "../../utils/font-weight";
@@ -213,7 +213,8 @@ export const SectionHeader = forwardRef(
 
     useTrackChildrenClicks({
       ref: subtitleRef,
-      sectionName,
+      sectionName: sectionName ?? " ",
+      type: TYPE_INTERNAL_LINK,
     });
 
     return (

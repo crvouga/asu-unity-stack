@@ -73,8 +73,6 @@ const toComponentName = ({ componentName, event }) => {
 
   const href = event.target.getAttribute("href") ?? " ";
 
-  console.log("href", href);
-
   if (isHrefTel(href)) {
     return "phone";
   }
@@ -96,10 +94,16 @@ const toTypeName = ({ href }) => {
 
 /**
  *
- * @param {input:{ref: React.MutableRefObject<HTMLElement | null> | null; componentName?: string | null; sectionName: string}} input
+ * @param {{
+ * ref: React.MutableRefObject<HTMLElement | null> | null;
+ * sectionName: string
+ * componentName?: string | null;
+ * type?: string | null
+ * }} input
  */
 export const useTrackChildrenClicks = ({
   ref,
+  type,
   sectionName,
   componentName = null,
 }) => {
@@ -111,7 +115,7 @@ export const useTrackChildrenClicks = ({
       event: "link",
       action: "click",
       name: "onclick",
-      type: toTypeName({ href }),
+      type: type ?? toTypeName({ href }),
       region: "main content",
       section: sectionName,
       text: textContent,

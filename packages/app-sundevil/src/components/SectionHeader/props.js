@@ -2,19 +2,19 @@
 import PropTypes from "prop-types";
 
 import { buttonPropTypes } from "../Button/button-prop";
-import { socialPropType } from "./JoinTheConversation";
+import { socialPropType } from "./SocialSection";
 
 /**
  * @typedef {Object} SponsorBlockProps
- * @property {string} name
- * @property {string} logo
- * @property {string} text
- * @property {string} url
+ * @property {string} [name]
+ * @property {string} [logo]
+ * @property {string} [text]
+ * @property {string} [url]
  * @property {string} [adId]
  * @property {string} [googleAdHead]
  * @property {string} [googleAdBody]
- * @property {string} [width]
- * @property {string} [height]
+ * @property {string} [googleAdWidth]
+ * @property {string} [googleAdHeight]
  *
  */
 
@@ -26,8 +26,8 @@ export const sponsorBlockPropTypes = PropTypes.shape({
   adId: PropTypes.string,
   googleAdHead: PropTypes.string,
   googleAdBody: PropTypes.string,
-  width: PropTypes.string,
-  height: PropTypes.string,
+  googleAdWidth: PropTypes.string,
+  googleAdHeight: PropTypes.string,
 });
 
 const mapPropsSponsorBlock = props => {
@@ -99,7 +99,7 @@ const tabProps = PropTypes.shape({
  * @property {Array<LinkProps>} [subtitleLinks]
  * @property {Array<import("../Button/button-prop").ButtonProp>} [subtitleButtons]
  * @property {Array<TabProps>} [tabs]
- * @property {Array<import("./JoinTheConversation").SocialProp>} [social]
+ * @property {Array<import("./SocialSection").SocialProp>} [social]
  * @property {SponsorBlockProps} [sponsorBlock]
  * @property {boolean} [darkMode]
  * @property {(...params: any[]) => void} [onTabItemClick]

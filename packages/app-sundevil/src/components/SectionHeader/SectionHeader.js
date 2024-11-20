@@ -4,12 +4,10 @@ import React, { forwardRef } from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
-import { trackGAEvent } from "../../track-ga/track-ga-event";
-import { useBreakpoint } from "../../utils/use-breakpoint";
-import { JoinTheConversation } from "./JoinTheConversation";
+import { SocialSection } from "./SocialSection";
 import { SponsorBlock } from "./SponsorBlock";
 import { SubtitleSection } from "./SubtitleSection";
-import { Tabs } from "./Tabs";
+import { TabsSection } from "./TabsSection";
 
 const HeaderBody = styled.nav`
   display: flex;
@@ -45,14 +43,12 @@ export const SectionHeader = forwardRef((props, ref) => {
     tabs,
     sponsorBlock,
     social,
-    onTabItemClick,
     darkMode = false,
     subtitleLinks = [],
     subtitleButtons = [],
     style,
   } = props;
 
-  const isMobile = useBreakpoint(APP_CONFIG.breakpointMobile);
   const hasContent = Boolean(
     title || subtitle || tabs || social || sponsorBlock
   );
@@ -91,33 +87,10 @@ export const SectionHeader = forwardRef((props, ref) => {
               <HeaderBody>
                 <SubtitleSection {...props} />
 
-                {tabs && tabs.length > 0 && (
-                  <Tabs
-                    tabs={tabs}
-                    onTabItemClick={(tabId, tab) => {
-                      if (typeof onTabItemClick === "function") {
-                        onTabItemClick?.(tabId);
-                      }
+                {tabs && tabs.length > 0 && <TabsSection {...props} />}
 
-                      trackGAEvent({
-                        event: "link",
-                        action: "click",
-                        name: "onclick",
-                        type: "internal link",
-                        region: "main content",
-                        section: sectionName,
-                        text: tab?.label?.toLowerCase() ?? "",
-                        component: "text",
-                      });
-                    }}
-                    stretch={isMobile}
-                  />
-                )}
                 {social && social.length > 0 && (
-                  <JoinTheConversation
-                    sectionName={sectionName}
-                    social={social}
-                  />
+                  <SocialSection sectionName={sectionName} social={social} />
                 )}
               </HeaderBody>
             )}

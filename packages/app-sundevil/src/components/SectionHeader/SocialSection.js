@@ -84,7 +84,7 @@ const StyledSocialIcon = styled(SocialIcon)`
   justify-content: center;
 `;
 
-export const JoinTheConversation = ({ social, sectionName }) => {
+export const SocialSection = ({ social, sectionName }) => {
   return (
     <Root id="social-media">
       <Title>Join the conversation:</Title>
@@ -120,7 +120,7 @@ export const JoinTheConversation = ({ social, sectionName }) => {
     </Root>
   );
 };
-JoinTheConversation.propTypes = {
+SocialSection.propTypes = {
   social: PropTypes.arrayOf(socialPropType),
   sectionName: PropTypes.string,
 };

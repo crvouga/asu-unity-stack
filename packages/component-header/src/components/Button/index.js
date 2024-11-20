@@ -21,6 +21,7 @@ const Button = ({
   onClick,
   onFocus,
   renderStartIcon,
+  style,
 }) => {
   return (
     // @ts-ignore
@@ -29,6 +30,7 @@ const Button = ({
       className={`button-${color} ${classes ?? ""}`}
       onClick={onClick}
       onFocus={onFocus}
+      style={style}
     >
       {renderStartIcon && renderStartIcon?.()}
       <span>{text}</span>

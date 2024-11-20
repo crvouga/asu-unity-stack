@@ -27,6 +27,7 @@
  * @property {function} [renderStartIcon]
  * @property {function} [onClick]
  * @property {function} [onFocus]
+ * @property {import("react").CSSProperties} [style]
  */
 
 /**

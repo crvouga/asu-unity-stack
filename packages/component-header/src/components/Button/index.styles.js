@@ -13,6 +13,9 @@ const ButtonWrapper = styled.a`
   font-size: 0.875rem;
   transition: 0.03s ease-in-out;
   cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   & + a {
     margin-left: 1rem;
   }

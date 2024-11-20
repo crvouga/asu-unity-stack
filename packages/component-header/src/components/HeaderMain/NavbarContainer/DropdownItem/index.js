@@ -3,6 +3,7 @@
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import React, { forwardRef, useEffect, useRef, useState } from "react";
+import styled from "styled-components";
 
 import { idGenerator, trackGAEvent } from "../../../../../../../shared";
 import { useAppContext } from "../../../../core/context/app-context";
@@ -31,6 +32,14 @@ import { DropdownWrapper } from "./index.styles";
  *  onClickedLink?: Function
  * }} DropdownItemProps
  */
+
+const ButtonsRoot = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
+`;
 
 /**
  * @type {React.ForwardRefExoticComponent<DropdownItemProps>}
@@ -168,7 +177,7 @@ const DropdownItem = forwardRef(
         )}
         {Array.isArray(buttons) && buttons.length > 0 && (
           <div className="dropdown-button-container">
-            <div>
+            <ButtonsRoot>
               {buttons.map((button, index) => (
                 <Button
                   renderStartIcon={button.renderStartIcon}
@@ -177,9 +186,10 @@ const DropdownItem = forwardRef(
                   text={button.text}
                   href={button.href}
                   onClick={stopPropagation}
+                  style={{ marginLeft: 0 }}
                 />
               ))}
-            </div>
+            </ButtonsRoot>
           </div>
         )}
         {showFooter &&

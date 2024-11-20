@@ -245,17 +245,27 @@ export const testHeaderProps = {
         ],
       ],
       buttons: [
-        {
-          href: "#tickets",
-          text: "Buy tickets",
-          color: "gold",
+        // {
+        //   href: "#tickets",
+        //   text: "Buy tickets",
+        //   color: "gold",
 
-          icon: {
-            icon_name: "ticket",
-            style: "fa-fas",
-            settings:
-              'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
-          },
+        //   icon: {
+        //     icon_name: "ticket",
+        //     style: "fa-fas",
+        //     settings:
+        //       'a:2:{s:7:"masking";a:2:{s:4:"mask";s:0:"";s:5:"style";s:6:"fa-fas";}s:16:"power_transforms";a:3:{s:5:"scale";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_y";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}s:10:"position_x";a:2:{s:4:"type";s:0:"";s:5:"value";s:0:"";}}}',
+        //   },
+        // },
+        {
+          href: "#see",
+          text: "See all ticketing info",
+          color: "gold",
+        },
+        {
+          href: "#bowl",
+          text: "Bowl game tickets",
+          color: "maroon",
         },
       ],
       is_sports_type: true,

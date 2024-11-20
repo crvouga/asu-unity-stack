@@ -59,6 +59,8 @@ const Wrapper = styled.nav`
       align-items: center;
       padding: 1rem 2rem;
       width: 100%;
+      flex-wrap: wrap;
+      flex-direction: row;
     }
   }
 `;

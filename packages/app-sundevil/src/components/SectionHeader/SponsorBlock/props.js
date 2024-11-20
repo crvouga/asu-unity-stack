@@ -60,7 +60,7 @@ export const mapPropsSponsorBlock = props => {
 export const isSponsorBlockStatic = sponsorBlock => {
   return (
     typeof sponsorBlock?.logo === "string" &&
-    sponsorBlock?.logo.length.trim() > 0
+    sponsorBlock?.logo.trim().length > 0
   );
 };
 

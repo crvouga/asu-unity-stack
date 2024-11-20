@@ -121,7 +121,7 @@ export const SubtitleSection = props => {
         <SubtitleLinks>
           {subtitleLinks.map((link, index) => {
             const isLast = index === subtitleLinks.length - 1;
-            const key = link?.href ?? link?.url ?? link?.label;
+            const key = [link?.href, link?.url, link?.label].join("-");
             return (
               <>
                 <SubtitleLink

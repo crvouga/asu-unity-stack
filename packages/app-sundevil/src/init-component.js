@@ -197,12 +197,15 @@ export const initGameTableComponent = input => {
 };
 
 /** @type {InitComponent} */
-export const initHeaderComponent = input => {
+export const initSectionHeader = input => {
   RenderReact({
     ...input,
     component: SectionHeader,
   });
 };
+
+// for backward compatibility
+export const initHeaderComponent = initSectionHeader;
 
 /** @type {InitComponent} */
 export const initGameTableSection = input => {

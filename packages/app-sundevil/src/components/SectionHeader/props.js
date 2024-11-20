@@ -56,3 +56,42 @@ export const sectionHeaderPropTypes = PropTypes.shape({
   // eslint-disable-next-line react/forbid-prop-types
   style: PropTypes.object,
 });
+
+export const mapPropsSponsorBlock = props => {
+  const sponsorBlock = props?.sponsorBlock;
+  if (Array.isArray(sponsorBlock) && sponsorBlock?.[0]) {
+    return {
+      ...props,
+      sponsorBlock: sponsorBlock?.[0],
+    };
+  }
+
+  if (sponsorBlock) {
+    return {
+      ...props,
+      sponsorBlock,
+    };
+  }
+
+  // eslint-disable-next-line camelcase
+  const sponsor_block = props?.sponsor_block;
+
+  if (Array.isArray(sponsor_block) && sponsor_block?.[0]) {
+    return {
+      ...props,
+      sponsorBlock: sponsor_block[0],
+    };
+  }
+
+  return {
+    ...props,
+    sponsorBlock: sponsor_block,
+  };
+};
+
+/**
+ * Used for drupal integration. Drupal team sends weird props so we'll fix them here.
+ */
+export const mapSectionHeaderProps = props => {
+  return mapPropsSponsorBlock(props);
+};

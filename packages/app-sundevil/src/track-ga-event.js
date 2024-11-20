@@ -3,12 +3,22 @@ const toggleLogDataLayers = () => {
   const got = localStorage.getItem(key);
   const shouldLogDataLayers = got === "true" ? "false" : "true";
   localStorage.setItem(key, shouldLogDataLayers);
+  // eslint-disable-next-line no-console
+  console.log("shouldLogDataLayers", shouldLogDataLayers);
 };
 
 // @ts-ignore
 window.toggleLogDataLayers = toggleLogDataLayers;
 
 export const TYPE_INTERNAL_LINK = "internal link";
+
+function ensureString(value) {
+  return typeof value === "string" ? value : "";
+}
+
+function cleanValue(value) {
+  return ensureString(value).toLowerCase();
+}
 
 /**
  * @param {{
@@ -36,14 +46,14 @@ export const trackGAEvent = ({
   const { dataLayer } = window;
   const e = {
     ...rest,
-    event: event.toLowerCase(),
-    action: action.toLowerCase(),
-    name: name.toLowerCase(),
-    type: type.toLowerCase(),
-    region: region.toLowerCase(),
-    section: section.toLowerCase(),
-    text: text.toLowerCase(),
-    component: component.toLowerCase(),
+    event: cleanValue(event),
+    action: cleanValue(action),
+    name: cleanValue(name),
+    type: cleanValue(type),
+    region: cleanValue(region),
+    section: cleanValue(section),
+    text: cleanValue(text),
+    component: cleanValue(component),
   };
   if (localStorage.getItem(key) === "true") {
     // eslint-disable-next-line no-console

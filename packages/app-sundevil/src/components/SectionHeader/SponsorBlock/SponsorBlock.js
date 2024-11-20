@@ -3,18 +3,15 @@
 import React from "react";
 import styled from "styled-components";
 
-import { APP_CONFIG } from "../../config";
-import { trackGAEvent } from "../../track-ga/track-ga-event";
-import { trackAdClickHandler } from "../Ads/ad-data-layers";
+import { APP_CONFIG } from "../../../config";
+import { trackGAEvent } from "../../../track-ga/track-ga-event";
+import { trackAdClickHandler } from "../../Ads/ad-data-layers";
+import { Variant } from "./Variant";
 
 const Root = styled.a`
   color: #191919;
   text-decoration: none;
   width: fit-content;
-`;
-
-const Logo = styled.img`
-  max-height: 40px;
 `;
 
 const Title = styled.div`
@@ -33,10 +30,14 @@ const Title = styled.div`
   white-space: nowrap;
 `;
 
+const isCleanString = str => typeof str === "string" && str.trim().length > 0;
+
 /**
- * @type {React.FC<import("./props").SectionHeaderProps & {mobile: boolean}>}
+ * @type {React.FC<import("../props").SectionHeaderProps & {mobile: boolean}>}
  */
-export const SponsorBlock = ({ sponsorBlock, mobile, darkMode = false }) => {
+export const SponsorBlock = props => {
+  const { sponsorBlock, mobile, darkMode = false } = props;
+
   const className = mobile
     ? "d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
     : "d-flex flex-row align-items-center justify-content-end gap-2";
@@ -61,13 +62,15 @@ export const SponsorBlock = ({ sponsorBlock, mobile, darkMode = false }) => {
         })();
       }}
     >
-      <Title
-        // @ts-ignore
-        darkMode={darkMode}
-      >
-        {sponsorBlock?.text}
-      </Title>
-      <Logo src={sponsorBlock?.logo} alt={sponsorBlock?.name ?? " "} />
+      {isCleanString(sponsorBlock?.text) && (
+        <Title
+          // @ts-ignore
+          darkMode={darkMode}
+        >
+          {sponsorBlock?.text}
+        </Title>
+      )}
+      <Variant {...props} />
     </Root>
   );
 };

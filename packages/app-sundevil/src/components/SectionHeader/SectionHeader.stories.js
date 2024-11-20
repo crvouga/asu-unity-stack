@@ -71,6 +71,7 @@ export const GoogleAd = Template.bind({});
 GoogleAd.args = {
   ...baseProps,
   sponsorBlock: {
+    text: "Presented By: ",
     googleAdHead: `
 <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
 <script>
@@ -102,6 +103,7 @@ export const GoogleAdEmpty = Template.bind({});
 GoogleAd.args = {
   ...baseProps,
   sponsorBlock: {
+    text: "Presented By: ",
     googleAdHead: `
 <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
 <script>

@@ -5,7 +5,8 @@ import styled from "styled-components";
 
 import { APP_CONFIG } from "../../config";
 import { SocialSection } from "./SocialSection";
-import { SponsorBlock } from "./SponsorBlock";
+import { isSponsorBlockValid } from "./SponsorBlock";
+import { SponsorBlock } from "./SponsorBlock/SponsorBlock";
 import { SubtitleSection } from "./SubtitleSection";
 import { TabsSection } from "./TabsSection";
 
@@ -79,7 +80,9 @@ export const SectionHeader = forwardRef((props, ref) => {
                 {title}
               </Title>
               <div className="mt-auto d-flex d-sm-flex d-md-none align-items-start justify-content-end">
-                {sponsorBlock?.logo && <SponsorBlock mobile {...props} />}
+                {isSponsorBlockValid(sponsorBlock) && (
+                  <SponsorBlock mobile {...props} />
+                )}
               </div>
             </div>
 
@@ -96,7 +99,9 @@ export const SectionHeader = forwardRef((props, ref) => {
             )}
           </div>
           <div className="col-md-4 col-sm-0 mt-auto d-none d-sm-none d-md-flex justify-content-end">
-            {sponsorBlock?.logo && <SponsorBlock mobile={false} {...props} />}
+            {isSponsorBlockValid(sponsorBlock) && (
+              <SponsorBlock mobile={false} {...props} />
+            )}
           </div>
         </div>
       )}

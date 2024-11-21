@@ -21,6 +21,7 @@ const FALLBACK_COLOR = colorToHex.gold;
 const AccordionItem = styled.div`
   border-top: 1px solid #d0d0d0;
   border-bottom: 1px solid #d0d0d0;
+  border-right: 1px solid #d0d0d0;
   overflow: hidden;
   margin-top: 1.5rem !important;
   ${props =>
@@ -71,10 +72,10 @@ const AccordionBody = styled.div`
   transition: max-height 0.3s ease;
   max-height: ${props => (props.isOpen ? `${props.contentHeight}px` : "0")};
   background-color: #fafafa;
-  border-top: 1px solid #d0d0d0;
 `;
 
 const AccordionContent = styled.div`
+  border-top: 1px solid #d0d0d0;
   padding: 24px;
   padding-top: 0;
   white-space: normal; /* Ensure text wraps correctly */

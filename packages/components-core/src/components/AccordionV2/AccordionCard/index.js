@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
 import styled from "styled-components";
 
 import { sanitizeDangerousMarkup } from "../../../../../../shared";
@@ -45,16 +45,6 @@ const AccordionHeaderLink = styled.a`
   align-items: center;
   justify-content: space-between;
   padding: 16px 24px;
-  outline: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  &:focus,
-  &:active,
-  &:hover {
-    box-shadow: none !important;
-    outline: none !important;
-    border: none !important;
-  }
   color: #191919;
   &:hover {
     text-decoration: none;
@@ -78,20 +68,26 @@ const Chevron = styled.i`
 
 const AccordionBody = styled.div`
   overflow: hidden;
-  padding: 0 24px 24px;
   transition: max-height 0.3s ease;
+  max-height: ${props => (props.isOpen ? `${props.contentHeight}px` : "0")};
   background-color: #fafafa;
   border-top: 1px solid #d0d0d0;
 `;
 
 const AccordionContent = styled.div`
-  padding: 0px;
-  background-color: transparent;
-
-  p:last-child {
-    margin-bottom: 0;
-  }
+  padding: 24px;
+  padding-top: 0;
+  white-space: normal; /* Ensure text wraps correctly */
+  word-wrap: break-word; /* Handle long words gracefully */
 `;
+
+function debounce(func, wait) {
+  let timeout;
+  return function debounced(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, args), wait);
+  };
+}
 
 /**
  * @param {AccordionCardItemProps} props
@@ -99,6 +95,28 @@ const AccordionContent = styled.div`
  */
 export const AccordionCard = ({ id, item, openCard, onClick }) => {
   const isOpen = openCard === id;
+
+  const [contentHeight, setContentHeight] = useState(0);
+  const contentRef = useRef(null);
+
+  useEffect(() => {
+    const updateHeight = () => {
+      if (contentRef.current) {
+        setContentHeight(contentRef.current.scrollHeight);
+      }
+    };
+
+    updateHeight();
+
+    const debouncedUpdate = debounce(updateHeight, 100);
+    window.addEventListener("resize", debouncedUpdate);
+    window.addEventListener("orientationchange", debouncedUpdate);
+
+    return () => {
+      window.removeEventListener("resize", debouncedUpdate);
+      window.removeEventListener("orientationchange", debouncedUpdate);
+    };
+  }, [item.content?.body]);
 
   const toggleAccordion = e => {
     e.preventDefault();
@@ -115,7 +133,6 @@ export const AccordionCard = ({ id, item, openCard, onClick }) => {
             aria-expanded={isOpen}
             aria-controls={`card-body-${id}`}
             onClick={toggleAccordion}
-            collapsed={!isOpen}
           >
             {item.content?.icon ? (
               <AccordionIconRoot>
@@ -131,9 +148,10 @@ export const AccordionCard = ({ id, item, openCard, onClick }) => {
           </AccordionHeaderLink>
         </AccordionHeaderContent>
       </AccordionHeader>
-      {item.content?.body && isOpen && (
-        <AccordionBody>
+      {item.content?.body && (
+        <AccordionBody isOpen={isOpen} contentHeight={contentHeight}>
           <AccordionContent
+            ref={contentRef}
             dangerouslySetInnerHTML={sanitizeDangerousMarkup(item.content.body)}
           />
         </AccordionBody>

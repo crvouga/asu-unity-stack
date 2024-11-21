@@ -3,12 +3,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import { Accordion } from "../../components/Accordion";
+import { AccordionV2 } from "../../components/AccordionV2";
 import { AnchorMenu } from "../../components/AnchorMenu";
 import { Article } from "../../components/Article";
 import { Button } from "../../components/Button";
 import { ButtonIconOnly } from "../../components/ButtonIconOnly";
 import { ButtonTag } from "../../components/ButtonTag";
-// eslint-disable-next-line import/no-cycle
 import { Card } from "../../components/Card";
 import { Hero } from "../../components/Hero";
 import { Image } from "../../components/Image";
@@ -37,6 +37,12 @@ const RenderReact = (component, props, target) => {
  */
 export const initAccordion = ({ targetSelector, props }) =>
   RenderReact(Accordion, props, document.querySelector(targetSelector));
+
+/**
+ * @param {ComponentProps} props
+ */
+export const initAccordionV2 = ({ targetSelector, props }) =>
+  RenderReact(AccordionV2, props, document.querySelector(targetSelector));
 
 /**
  * @param {ComponentProps} props

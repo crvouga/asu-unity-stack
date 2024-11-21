@@ -27,7 +27,7 @@ const AVAILABLE_GA_ACTIONS = {
  * @param {AccordionProps} props
  * @returns {JSX.Element}
  */
-const Accordion = ({ cards, sectionName, openedCard }) => {
+const AccordionV2 = ({ cards, sectionName, openedCard }) => {
   const [currentOpenCard, setCurrentOpenCard] = useState(openedCard);
 
   const trackEvent = (cardTitle, action) => {
@@ -80,7 +80,7 @@ const Accordion = ({ cards, sectionName, openedCard }) => {
   );
 };
 
-Accordion.propTypes = {
+AccordionV2.propTypes = {
   /**
    * Cards to show in the accordion component
    */
@@ -95,4 +95,4 @@ Accordion.propTypes = {
   sectionName: PropTypes.string.isRequired,
 };
 
-export { Accordion };
+export { AccordionV2 };

@@ -1,11 +1,11 @@
 /* eslint react/jsx-props-no-spreading: "off" */
 import React from "react";
 
-import { Accordion } from ".";
+import { AccordionV2 } from ".";
 
 export default {
   title: "UDS/AccordionV2",
-  component: Accordion,
+  component: AccordionV2,
   parameters: {
     docs: {
       description: {
@@ -24,7 +24,7 @@ export default {
   },
 };
 
-const Template = args => <Accordion {...args} />;
+const Template = args => <AccordionV2 {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

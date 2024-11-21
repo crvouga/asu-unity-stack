@@ -2,7 +2,7 @@
 import { render, fireEvent, cleanup } from "@testing-library/react";
 import React from "react";
 
-import { Accordion } from "./index";
+import { AccordionV2 } from "./index";
 
 const defaultArgs = {
   cards: [
@@ -16,7 +16,13 @@ const defaultArgs = {
 };
 
 const renderAccordion = args => {
-  return render(<Accordion cards={args.cards} openedCard={args.openedCard} />);
+  return render(
+    <AccordionV2
+      sectionName=""
+      cards={args.cards}
+      openedCard={args.openedCard}
+    />
+  );
 };
 
 describe("#Accordion", () => {

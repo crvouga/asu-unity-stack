@@ -137,7 +137,9 @@ export const GroupTicketMiniPlans = ({
                 if (!ctaItem) {
                   return null;
                 }
-                const classes = [ctaItem?.class].filter(Boolean);
+                const classes = [ctaItem?.classes, ctaItem?.class].filter(
+                  Boolean
+                );
                 return (
                   <Button
                     {...ctaItem}

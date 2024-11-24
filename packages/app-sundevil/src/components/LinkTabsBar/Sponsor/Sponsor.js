@@ -5,23 +5,7 @@ import styled from "styled-components";
 import { trackGAEvent } from "../../../track-ga/track-ga-event";
 import { trackAdClickHandler } from "../../Ads/ad-data-layers";
 
-export const Root = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 62px;
-  max-height: 62px;
-  border-bottom: 1px solid #d0d0d0;
-  background-color: #fff;
-`;
-
-const SponsorImage = styled.img`
-  max-height: 100%;
-  object-fit: cover;
-`;
-
-const SponsorRoot = styled.a`
+const Root = styled.a`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,15 +14,28 @@ const SponsorRoot = styled.a`
   height: 100%;
   padding: 12px 16px;
   flex-shrink: 0;
+  ${({ borderLeft }) => (borderLeft ? "border-left: 1px solid #d0d0d0;" : "")}
+`;
+
+const SponsorImage = styled.img`
+  max-height: 100%;
+  object-fit: cover;
 `;
 
 export const Sponsor = forwardRef(
-  ({ sponsorHref, sponsorAdId, sponsorLogoSrc, sponsorLogoAlt }) => {
+  ({
+    sponsorHref,
+    sponsorAdId,
+    sponsorLogoSrc,
+    sponsorLogoAlt,
+    borderLeft,
+  }) => {
     return (
       typeof sponsorLogoSrc === "string" &&
       sponsorLogoSrc.trim().length > 0 && (
-        <SponsorRoot
+        <Root
           href={sponsorHref}
+          borderLeft={borderLeft}
           onClick={() => {
             trackAdClickHandler({
               adId: sponsorAdId,
@@ -57,7 +54,7 @@ export const Sponsor = forwardRef(
           }}
         >
           <SponsorImage src={sponsorLogoSrc} alt={sponsorLogoAlt ?? " "} />
-        </SponsorRoot>
+        </Root>
       )
     );
   }

@@ -2,10 +2,10 @@
 import React from "react";
 
 import { trackGAEvent } from "../../track-ga/track-ga-event";
-import { trackAdClickHandler } from "../Ads/ad-data-layers";
 import { HeaderContentSportLinks } from "../HeaderContentSportLinks";
 import { Icon } from "../Icon_";
 import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
+import { mapSponsorLogoProps } from "./sponsor-logo/props-map";
 import { TopBanner } from "./TopBanner";
 import { UniversalNavMobile } from "./UniversalNavMobile";
 
@@ -234,29 +234,7 @@ const mapNavTree = navTree =>
 export const mapProps = props => ({
   ...props,
   navTree: ensureOnlyOneSelectedItem(mapNavTree(props.navTree)),
-  sponsorLogo: {
-    ...props.sponsorLogo,
-    onClick: trackAdClickHandler({
-      adId: props.sponsorLogo?.adId,
-      href: props.sponsorLogo?.brandLink,
-    }),
-    onFocus: () => {
-      trackGAEvent({
-        event: "link",
-        action: "click",
-        name: "onclick",
-        type: "external link",
-        region: "navbar",
-        section: "main navbar",
-        text: props.sponsorLogo?.alt ?? "sponsor logo",
-        component: "image",
-      });
-    },
-
-    // render: () => {
-    //   return <div>Sponsor</div>;
-    // },
-  },
+  sponsorLogo: mapSponsorLogoProps(props?.sponsorLogo ?? {}),
   universalNavbar: {
     renderStart: () => (
       <OfficialAthleticsSite

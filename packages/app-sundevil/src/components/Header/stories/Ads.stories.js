@@ -1,10 +1,10 @@
 // @ts-check
 import React from "react";
 
-import { SunDevilsHeader } from "../SunDevilsHeader";
-import { HEADER_TEST_PROPS } from "./test-props";
-import { Content } from "./Content";
 import { GOOGLE_ADS_TEST_PROPS } from "../../../google-ads/test-props";
+import { SunDevilsHeader } from "../SunDevilsHeader";
+import { Content } from "./Content";
+import { HEADER_TEST_PROPS } from "./test-props";
 
 export default {
   title: "Header / Sun Devils Header Ads",
@@ -21,7 +21,7 @@ export default {
 const Template = args => {
   return (
     <>
-      <SunDevilsHeader {...{ ...args, ...HEADER_TEST_PROPS }} />
+      <SunDevilsHeader {...{ ...HEADER_TEST_PROPS, ...args }} />
       <Content />
       <Content />
     </>

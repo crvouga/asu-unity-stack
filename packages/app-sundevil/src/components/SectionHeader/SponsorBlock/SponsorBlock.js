@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
 // @ts-check
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../../config";
 import { trackGAEvent } from "../../../track-ga/track-ga-event";
 import { trackAdClickHandler } from "../../Ads/ad-data-layers";
 import { Variant } from "./Variant";
+import { useWatchPredicate } from "../../../utils/use-watch-predicate";
 
 const Root = styled.a`
   color: #191919;
@@ -41,10 +42,31 @@ export const SponsorBlock = props => {
   const className = mobile
     ? "d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
     : "d-flex flex-row align-items-center justify-content-end gap-2";
+
+  /** @type {React.MutableRefObject<HTMLDivElement | undefined>} */
+  const variantRef = useRef();
+
+  const hasImageElement = useWatchPredicate({
+    ref: variantRef,
+    predicate: node => {
+      const isImageElement = node.tagName.toUpperCase().includes("IMG");
+      const containsImageElement = node.querySelector("img") !== null;
+      return isImageElement || containsImageElement;
+    },
+  });
+
   return (
     <Root
       href={sponsorBlock?.url}
       className={className}
+      style={
+        hasImageElement
+          ? {}
+          : {
+              opacity: 0,
+              pointerEvents: "none",
+            }
+      }
       onClick={() => {
         trackGAEvent({
           event: "link",
@@ -70,7 +92,11 @@ export const SponsorBlock = props => {
           {sponsorBlock?.text}
         </Title>
       )}
-      <Variant {...props} />
+      <Variant
+        {...props}
+        // @ts-ignore
+        ref={variantRef}
+      />
     </Root>
   );
 };

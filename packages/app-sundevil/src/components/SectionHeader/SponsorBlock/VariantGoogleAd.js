@@ -1,19 +1,20 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-undef */
 /* eslint-disable react/no-danger */
 /* eslint-disable react/prop-types */
 
-import React, { useEffect, useRef } from "react";
+import React, { forwardRef, useEffect, useRef } from "react";
 
 /**
- * @type {React.FC<import("../props").SectionHeaderProps >}
+ *
+ * @param {{
+ * ref: React.MutableRefObject<HTMLDivElement | undefined>,
+ * sponsorBlock: import("../props").SponsorBlock
+ * }} input
  */
-export const VariantGoogleAd = props => {
-  const { sponsorBlock } = props;
-  /** @type {React.MutableRefObject<HTMLDivElement | undefined>} */
-  const rootRef = useRef();
-
+const useGoogleAds = ({ ref, sponsorBlock }) => {
   const run = async () => {
     const htmlString = sponsorBlock.googleAdHead;
 
@@ -40,14 +41,26 @@ export const VariantGoogleAd = props => {
       await loadPromise;
     }
 
-    if (rootRef.current) {
-      rootRef.current.innerHTML = sponsorBlock.googleAdBody;
+    if (ref.current) {
+      ref.current.innerHTML = sponsorBlock.googleAdBody;
     }
   };
 
   useEffect(() => {
     run();
   }, []);
-
-  return <div ref={rootRef} />;
 };
+
+/**
+ * @type {React.FC<import("../props").SectionHeaderProps >}
+ */
+export const VariantGoogleAd = forwardRef((props, propsRef) => {
+  const { sponsorBlock } = props;
+  /** @type {React.MutableRefObject<HTMLDivElement | undefined>} */
+  const rootRef = useRef();
+  const ref = propsRef ?? rootRef;
+
+  useGoogleAds({ ref, sponsorBlock });
+
+  return <div ref={ref} />;
+});

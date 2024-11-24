@@ -102,31 +102,31 @@ GoogleAd.args = {
  * @type {{ args: ComponentType, parameters: object}}
  */
 export const GoogleAdEmpty = Template.bind({});
-GoogleAd.args = {
+GoogleAdEmpty.args = {
   ...baseProps,
   sponsorBlock: {
     text: "Presented By: ",
     googleAdHead: `
-<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
-<script>
-console.log('googleAdHead');
-  window.googletag = window.googletag || {cmd: []};
-  googletag.cmd.push(function() {
-    googletag.defineSlot('/23203588234/SLQA-blank', [135, 38], 'div-gpt-ad-1731610274809-0').addService(googletag.pubads());
-    googletag.pubads().enableSingleRequest();
-    googletag.pubads().collapseEmptyDivs();
-    googletag.enableServices();
-  });
-</script>
-`,
-    googleAdBody: `
-<!-- /23203588234/SLQA-blank -->
-<div id='div-gpt-ad-1731610274809-0' style='min-width: 135px; min-height: 38px;'>
+  <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
   <script>
-  console.log('googleAdBody');
-    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1731610274809-0'); });
+  console.log('googleAdHead');
+    window.googletag = window.googletag || {cmd: []};
+    googletag.cmd.push(function() {
+      googletag.defineSlot('/23203588234/SLQA-blank', [135, 38], 'div-gpt-ad-1731610274809-0').addService(googletag.pubads());
+      googletag.pubads().enableSingleRequest();
+      googletag.pubads().collapseEmptyDivs();
+      googletag.enableServices();
+    });
   </script>
-</div>
-`,
+  `,
+    googleAdBody: `
+  <!-- /23203588234/SLQA-blank -->
+  <div id='div-gpt-ad-1731610274809-0' style='min-width: 135px; min-height: 38px;'>
+    <script>
+    console.log('googleAdBody');
+      googletag.cmd.push(function() { googletag.display('div-gpt-ad-1731610274809-0'); });
+    </script>
+  </div>
+  `,
   },
 };

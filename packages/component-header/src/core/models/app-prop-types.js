@@ -13,6 +13,8 @@ const LogoPropTypes = {
   mobileHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   adId: PropTypes.string,
   onClick: PropTypes.func,
+  onFocus: PropTypes.func,
+  render: PropTypes.func,
 };
 
 const TitlePropTypes = {

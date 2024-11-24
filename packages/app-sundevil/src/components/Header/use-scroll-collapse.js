@@ -14,7 +14,7 @@ import { throttle } from "../../utils/throttle";
 export const useScrollCollapse = ({ ref, height, scrollTarget = window }) => {
   useLayoutEffect(() => {
     const onScroll = () => {
-      if (ref.current) {
+      if (ref.current && scrollTarget) {
         const scrollYPosition =
           scrollTarget instanceof Window
             ? scrollTarget.scrollY

@@ -16,6 +16,7 @@
  * @property {string} [adId]
  * @property {function} [onClick]
  * @property {function} [onFocus]
+ * @property {function} [render]
  */
 
 /**

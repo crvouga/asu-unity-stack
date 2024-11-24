@@ -1,6 +1,6 @@
 // https://cdn-icons-png.flaticon.com/512/94/94107.png
-/** @type {import("../../../../component-header/src/header").HeaderProps} */
-export const testHeaderProps = {
+/** @type {import("../../../../../component-header/src/header").HeaderProps} */
+export const baseProps = {
   topBanner: {
     // This is disabled now
     html: `<div id="my-ad-portal-exit"></div>`,

@@ -16,6 +16,10 @@ const LogoSponsor = () => {
     return null;
   }
 
+  if (typeof sponsorLogo.render === "function") {
+    return sponsorLogo.render();
+  }
+
   return (
     <LogoSponsorWrapper
       href={sponsorLogo?.brandLink ?? "https://asu.edu"}

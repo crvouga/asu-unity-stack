@@ -24,6 +24,12 @@ function useScrollCollapse({ headerRef, scrollTarget = window }) {
         return;
       }
 
+      if (!scrollTarget) {
+        return;
+      }
+
+      console.log("scrollTarget", scrollTarget);
+
       const scrollYPosition =
         scrollTarget instanceof Window
           ? scrollTarget.scrollY

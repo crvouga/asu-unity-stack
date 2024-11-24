@@ -1,61 +1,27 @@
 /* eslint-disable react/prop-types */
 import React, { forwardRef } from "react";
-import styled from "styled-components";
 
-import { trackGAEvent } from "../../../track-ga/track-ga-event";
-import { trackAdClickHandler } from "../../Ads/ad-data-layers";
+import { isGoogleAd, isStaticAd } from "./props";
+import { VariantGoogleAd } from "./VariantGoogleAd";
+import { VariantStatic } from "./VariantStatic";
 
-const Root = styled.a`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-  height: 100%;
-  padding: 12px 16px;
-  flex-shrink: 0;
-  ${({ borderLeft }) => (borderLeft ? "border-left: 1px solid #d0d0d0;" : "")}
-`;
-
-const SponsorImage = styled.img`
-  max-height: 100%;
-  object-fit: cover;
-`;
-
-export const Sponsor = forwardRef(
-  ({
-    sponsorHref,
-    sponsorAdId,
-    sponsorLogoSrc,
-    sponsorLogoAlt,
-    borderLeft,
-  }) => {
-    return (
-      typeof sponsorLogoSrc === "string" &&
-      sponsorLogoSrc.trim().length > 0 && (
-        <Root
-          href={sponsorHref}
-          borderLeft={borderLeft}
-          onClick={() => {
-            trackAdClickHandler({
-              adId: sponsorAdId,
-              href: sponsorHref,
-            })();
-            trackGAEvent({
-              event: "link",
-              action: "click",
-              name: "onclick",
-              type: "internal link",
-              region: "main content",
-              section: "sticky navbar",
-              text: sponsorLogoAlt ?? " ",
-              component: "image",
-            });
-          }}
-        >
-          <SponsorImage src={sponsorLogoSrc} alt={sponsorLogoAlt ?? " "} />
-        </Root>
-      )
-    );
+/**
+ * @type {React.FC<import("./props").SponsorProps>}
+ */
+export const Sponsor = forwardRef((props, ref) => {
+  /**
+   * @type {React.CSSProperties}
+   */
+  const style = props.borderLeft
+    ? {
+        borderLeft: "1px solid #d0d0d0",
+      }
+    : {};
+  if (isGoogleAd(props)) {
+    return <VariantGoogleAd {...props} ref={ref} style={style} />;
   }
-);
+  if (isStaticAd(props)) {
+    return <VariantStatic {...props} ref={ref} style={style} />;
+  }
+  return <VariantStatic {...props} ref={ref} style={style} />;
+});

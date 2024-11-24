@@ -2,8 +2,8 @@
 import React from "react";
 
 import { SunDevilsHeader } from "../SunDevilsHeader";
-import { baseProps } from "./base-props";
 import { Content } from "./Content";
+import { HEADER_TEST_PROPS } from "./test-props";
 
 export default {
   title: "Header / Sun Devils Header",
@@ -20,7 +20,7 @@ export default {
 const Template = args => {
   return (
     <>
-      <SunDevilsHeader {...{ ...args, ...baseProps }} />
+      <SunDevilsHeader {...{ ...args, ...HEADER_TEST_PROPS }} />
       <Content />
       <Content />
     </>

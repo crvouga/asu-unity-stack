@@ -2,6 +2,7 @@
 import React from "react";
 
 import { LinkTabsBar } from "../index";
+import { GOOGLE_ADS_TEST_PROPS } from "../../../google-ads/test-props";
 
 export default {
   title: "Link Tabs / Link Tabs Bar Ads",
@@ -124,7 +125,7 @@ const Template = args => (
   </div>
 );
 
-const baseProps = {
+const BASE_PROPS = {
   disableActiveFromUrl: false,
   highlightOffset: -48,
   maxLinkCountBreakpoints: {
@@ -220,7 +221,7 @@ const baseProps = {
 
 export const Default = Template.bind({});
 Default.args = {
-  ...baseProps,
+  ...BASE_PROPS,
 };
 
 /**
@@ -229,30 +230,9 @@ Default.args = {
  */
 export const GoogleAd = Template.bind({});
 GoogleAd.args = {
-  ...baseProps,
-
-  sponsorGoogleAdHead: `
-<script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
-<script>
-  console.log('googleAdHead');
-  window.googletag = window.googletag || {cmd: []};
-  googletag.cmd.push(function() {
-    googletag.defineSlot('/23203588234/LSQA', [135, 38], 'div-gpt-ad-1731610205689-0').addService(googletag.pubads());
-    googletag.pubads().enableSingleRequest();
-    googletag.pubads().collapseEmptyDivs();
-    googletag.enableServices();
-  });
-</script>
-`,
-  sponsorGoogleAdBody: `
-<!-- /23203588234/LSQA -->
-<div id='div-gpt-ad-1731610205689-0' style='min-width: 135px; min-height: 38px;'>
-  <script>
-    console.log('googleAdBody');
-    googletag.cmd.push(function() { googletag.display('div-gpt-ad-1731610205689-0'); });
-  </script>
-</div>
-`,
+  ...BASE_PROPS,
+  sponsorGoogleAdHead: GOOGLE_ADS_TEST_PROPS.nonEmpty.googleAdHead,
+  sponsorGoogleAdBody: GOOGLE_ADS_TEST_PROPS.nonEmpty.googleAdBody,
 };
 
 /**
@@ -261,27 +241,7 @@ GoogleAd.args = {
  */
 export const GoogleAdEmpty = Template.bind({});
 GoogleAdEmpty.args = {
-  ...baseProps,
-  sponsorGoogleAdHead: `
-  <script async src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script>
-  <script>
-  console.log('googleAdHead');
-    window.googletag = window.googletag || {cmd: []};
-    googletag.cmd.push(function() {
-      googletag.defineSlot('/23203588234/SLQA-blank', [135, 38], 'div-gpt-ad-1731610274809-0').addService(googletag.pubads());
-      googletag.pubads().enableSingleRequest();
-      googletag.pubads().collapseEmptyDivs();
-      googletag.enableServices();
-    });
-  </script>
-  `,
-  sponsorGoogleAdBody: `
-  <!-- /23203588234/SLQA-blank -->
-  <div id='div-gpt-ad-1731610274809-0' style='min-width: 135px; min-height: 38px;'>
-    <script>
-    console.log('googleAdBody');
-      googletag.cmd.push(function() { googletag.display('div-gpt-ad-1731610274809-0'); });
-    </script>
-  </div>
-  `,
+  ...BASE_PROPS,
+  sponsorGoogleAdHead: GOOGLE_ADS_TEST_PROPS.empty.googleAdHead,
+  sponsorGoogleAdBody: GOOGLE_ADS_TEST_PROPS.empty.googleAdBody,
 };

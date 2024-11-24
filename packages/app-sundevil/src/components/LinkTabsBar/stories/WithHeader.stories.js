@@ -2,7 +2,7 @@
 import React from "react";
 
 import { SunDevilsHeader } from "../../Header";
-import { baseProps } from "../../Header/stories/base-props";
+import { HEADER_TEST_PROPS } from "../../Header/stories/test-props";
 import { LinkTabsBar } from "../index";
 
 export default {
@@ -20,7 +20,10 @@ export default {
 const Template = args => (
   <div style={{ width: "100%", maxHeight: "100%" }}>
     <div id="navbar">
-      <SunDevilsHeader {...baseProps} stickyPortalEntranceId="navbar-portal" />
+      <SunDevilsHeader
+        {...HEADER_TEST_PROPS}
+        stickyPortalEntranceId="navbar-portal"
+      />
     </div>
     <div
       style={{ width: "100%", height: "500px", backgroundColor: "#efefef" }}

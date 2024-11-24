@@ -1,5 +1,5 @@
 // https://cdn-icons-png.flaticon.com/512/94/94107.png
-/** @type {import("../../../../../component-header/src/header").HeaderProps} */
+/** @type {import("../props").HeaderProps} */
 export const baseProps = {
   topBanner: {
     // This is disabled now
@@ -16,7 +16,6 @@ export const baseProps = {
   },
   baseUrl: "https://web-sda.ddev.site:8443/",
   title: "Sun Devils",
-
   parentOrg: "",
   parentOrgUrl: "",
   expandOnHover: false,

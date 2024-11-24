@@ -4,10 +4,10 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../../config";
+import { useHideAdProps } from "../../../google-ads/use-should-hide-ad";
 import { trackGAEvent } from "../../../track-ga/track-ga-event";
 import { trackAdClickHandler } from "../../Ads/ad-data-layers";
 import { Variant } from "./Variant";
-import { useWatchPredicate } from "../../../utils/use-watch-predicate";
 
 const Root = styled.a`
   color: #191919;
@@ -46,27 +46,16 @@ export const SponsorBlock = props => {
   /** @type {React.MutableRefObject<HTMLDivElement | undefined>} */
   const variantRef = useRef();
 
-  const hasImageElement = useWatchPredicate({
+  const hideProps = useHideAdProps({
     ref: variantRef,
-    predicate: node => {
-      const isImageElement = node.tagName.toUpperCase().includes("IMG");
-      const containsImageElement = node.querySelector("img") !== null;
-      return isImageElement || containsImageElement;
-    },
   });
-
   return (
     <Root
+      style={hideProps.style}
+      tabIndex={hideProps.tabIndex}
+      aria-hidden={hideProps["aria-hidden"]}
       href={sponsorBlock?.url}
       className={className}
-      style={
-        hasImageElement
-          ? {}
-          : {
-              opacity: 0,
-              pointerEvents: "none",
-            }
-      }
       onClick={() => {
         trackGAEvent({
           event: "link",

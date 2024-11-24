@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import React, { forwardRef } from "react";
+import React, { forwardRef, useRef } from "react";
 import styled from "styled-components";
 
+import { useHideAdProps } from "../../../google-ads/use-should-hide-ad";
 import { trackGAEvent } from "../../../track-ga/track-ga-event";
 import { trackAdClickHandler } from "../../Ads/ad-data-layers";
 import { Variant } from "./Variant";
@@ -23,10 +24,26 @@ const isCleanString = str => typeof str === "string" && str.trim().length > 0;
 /**
  * @type {React.FC<import("./props").SponsorProps>}
  */
-export const Sponsor = forwardRef((props, ref) => {
+export const Sponsor = forwardRef((props, propsRef) => {
   const { sponsorHref, sponsorAdId, sponsorLogoAlt, borderLeft } = props;
+  /**
+   * @type {React.MutableRefObject<HTMLElement | undefined>}
+   */
+  const componentRef = useRef();
+  /**
+   * @type {React.MutableRefObject<HTMLElement | undefined>}
+   */
+  const ref = propsRef ?? componentRef;
+
+  const hideProps = useHideAdProps({
+    ref,
+  });
+
   return (
     <Root
+      style={hideProps.style}
+      tabIndex={hideProps.tabIndex}
+      aria-hidden={hideProps["aria-hidden"]}
       href={sponsorHref}
       borderLeft={borderLeft}
       onClick={() => {

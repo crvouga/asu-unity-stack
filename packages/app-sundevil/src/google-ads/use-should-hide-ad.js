@@ -23,7 +23,9 @@ export const useHideAdProps = ({ ref }) => {
       ? {
           opacity: 0,
           pointerEvents: "none",
-          position: "absolute",
+          position: "fixed",
+          top: "-10000px",
+          left: "-10000px",
         }
       : {},
     "aria-hidden": shouldHide,

@@ -9,6 +9,7 @@ import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
 import { mapSponsorLogoProps } from "./SponsorLogo/props-map";
 import { TopBanner } from "./TopBanner";
 import { UniversalNavMobile } from "./UniversalNavMobile";
+import { DropdownItemFooterGoogleAd } from "./DropdownItemFooter/DropdownItemFooterGoogleAd";
 
 /** @typedef {import("./props").HeaderProps['navTree'][0]} NavTreeItem */
 
@@ -186,9 +187,12 @@ const mapNavTreeFooters = navTreeItem => {
             return {
               ...footer,
               type: "render",
-              render: () => {
-                return <div>some google ad</div>;
-              },
+              render: () => (
+                <DropdownItemFooterGoogleAd
+                  googleAdHead={extraSection.googleAdHead}
+                  googleAdBody={extraSection.googleAdBody}
+                />
+              ),
             };
           }
           case "button-with-text":

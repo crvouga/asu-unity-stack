@@ -145,7 +145,11 @@ export const AccordionCard = ({ id, item, openCard, onClick }) => {
             ) : (
               item.content?.header
             )}
-            <Chevron className="fas fa-chevron-down" isOpen={isOpen} />
+            <Chevron
+              key={[id, isOpen, item.content?.header].join("-")}
+              className="fas fa-chevron-down"
+              isOpen={isOpen}
+            />
           </AccordionHeaderLink>
         </AccordionHeaderContent>
       </AccordionHeader>

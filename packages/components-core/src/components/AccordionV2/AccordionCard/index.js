@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
 import { sanitizeDangerousMarkup } from "../../../../../../shared";
@@ -62,9 +62,7 @@ const AccordionIconRoot = styled.span`
 `;
 
 const Chevron = styled.i`
-  transition: transform 0.3s ease;
   font-size: 20px;
-  transform: ${props => (props.isOpen ? "rotate(180deg)" : "rotate(0)")};
 `;
 
 const AccordionBody = styled.div`
@@ -77,7 +75,7 @@ const AccordionBody = styled.div`
 const AccordionContent = styled.div`
   border-top: 1px solid #d0d0d0;
   padding: 24px;
-  padding-top: 0;
+  /* padding-top: 0; */
   white-space: normal; /* Ensure text wraps correctly */
   word-wrap: break-word; /* Handle long words gracefully */
 `;
@@ -124,6 +122,23 @@ export const AccordionCard = ({ id, item, openCard, onClick }) => {
     onClick(e, id, item.content?.header);
   };
 
+  /**
+   * @type {React.MutableRefObject<HTMLSpanElement>}
+   * Why? Using props for rotating isn't working in the deployed site, so we'll use refs instead.
+   */
+  const chevronRef = useRef();
+  useLayoutEffect(() => {
+    if (!chevronRef.current) {
+      return;
+    }
+    chevronRef.current.style.transition = "transform 0.3s ease";
+    if (isOpen) {
+      chevronRef.current.style.transform = "rotate(180deg)";
+      return;
+    }
+    chevronRef.current.style.transform = "rotate(0)";
+  }, [isOpen]);
+
   return (
     <AccordionItem color={item.color}>
       <AccordionHeader>
@@ -145,11 +160,8 @@ export const AccordionCard = ({ id, item, openCard, onClick }) => {
             ) : (
               item.content?.header
             )}
-            <Chevron
-              key={[id, isOpen, item.content?.header].join("-")}
-              className="fas fa-chevron-down"
-              isOpen={isOpen}
-            />
+
+            <Chevron ref={chevronRef} className="fas fa-chevron-down" />
           </AccordionHeaderLink>
         </AccordionHeaderContent>
       </AccordionHeader>

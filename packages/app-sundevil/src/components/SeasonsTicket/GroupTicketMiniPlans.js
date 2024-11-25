@@ -137,9 +137,13 @@ export const GroupTicketMiniPlans = ({
                 if (!ctaItem) {
                   return null;
                 }
+                const classes = [ctaItem?.classes, ctaItem?.class].filter(
+                  Boolean
+                );
                 return (
                   <Button
                     {...ctaItem}
+                    classes={classes.length > 0 ? classes : undefined}
                     key={
                       ctaItem?.href ??
                       ctaItem?.link ??

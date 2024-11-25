@@ -46,7 +46,7 @@ const tabProps = PropTypes.shape({
  * @property {Array<import("../Button/button-prop").ButtonProp>} [subtitleButtons]
  * @property {Array<TabProps>} [tabs]
  * @property {Array<import("./SocialSection").SocialProp>} [social]
- * @property {SponsorBlockProps} [sponsorBlock]
+ * @property {import("./SponsorBlock").SponsorBlockProps} [sponsorBlock]
  * @property {boolean} [darkMode]
  * @property {(...params: any[]) => void} [onTabItemClick]
  * @property {React.CSSProperties} [style]

@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 // @ts-check
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { APP_CONFIG } from "../../../config";
+import { useHideAdProps } from "../../../google-ads/use-should-hide-ad";
 import { trackGAEvent } from "../../../track-ga/track-ga-event";
 import { trackAdClickHandler } from "../../Ads/ad-data-layers";
 import { Variant } from "./Variant";
@@ -41,8 +42,18 @@ export const SponsorBlock = props => {
   const className = mobile
     ? "d-flex flex-column flex-sm-column flex-md-row align-items-center gap-1"
     : "d-flex flex-row align-items-center justify-content-end gap-2";
+
+  /** @type {React.MutableRefObject<HTMLDivElement | undefined>} */
+  const variantRef = useRef();
+
+  const hideProps = useHideAdProps({
+    ref: variantRef,
+  });
   return (
     <Root
+      style={hideProps.style}
+      tabIndex={hideProps.tabIndex}
+      aria-hidden={hideProps["aria-hidden"]}
       href={sponsorBlock?.url}
       className={className}
       onClick={() => {
@@ -70,7 +81,11 @@ export const SponsorBlock = props => {
           {sponsorBlock?.text}
         </Title>
       )}
-      <Variant {...props} />
+      <Variant
+        {...props}
+        // @ts-ignore
+        ref={variantRef}
+      />
     </Root>
   );
 };

@@ -1,6 +1,6 @@
 // https://cdn-icons-png.flaticon.com/512/94/94107.png
-/** @type {import("../../../../component-header/src/header").HeaderProps} */
-export const testHeaderProps = {
+/** @type {import("../props").HeaderProps} */
+export const HEADER_TEST_PROPS = {
   topBanner: {
     // This is disabled now
     html: `<div id="my-ad-portal-exit"></div>`,
@@ -16,7 +16,6 @@ export const testHeaderProps = {
   },
   baseUrl: "https://web-sda.ddev.site:8443/",
   title: "Sun Devils",
-
   parentOrg: "",
   parentOrgUrl: "",
   expandOnHover: false,
@@ -287,11 +286,8 @@ export const testHeaderProps = {
           url: "https://cdn.freebiesupply.com/logos/large/2x/ticketmaster-5-logo-black-and-white.png",
           type: "image_only",
           href: "#image-only",
-
           alt: " ",
-
           image_width: "175",
-
           image_height: "25",
         },
       ],
@@ -558,11 +554,8 @@ export const testHeaderProps = {
           url: "https://cdn.freebiesupply.com/logos/large/2x/ticketmaster-5-logo-black-and-white.png",
           type: "image_only",
           href: "#image-only",
-
           alt: " ",
-
           image_width: "175",
-
           image_height: "25",
         },
       ],
@@ -1201,7 +1194,6 @@ export const testHeaderProps = {
     {
       href: "/about",
       text: "About",
-
       items: [
         [
           {
@@ -1283,9 +1275,7 @@ export const testHeaderProps = {
           type: "image_only",
           href: "#image-only",
           alt: " ",
-
           image_width: "203",
-
           image_height: "64",
         },
       ],

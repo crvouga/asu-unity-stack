@@ -4,14 +4,15 @@ import React, { forwardRef } from "react";
 import { GoogleAd } from "../../../google-ads/GoogleAd";
 
 /**
- * @type {React.FC<import("../props").SectionHeaderProps >}
+ * @type {React.FC<import("./props").SponsorProps>}
  */
 export const VariantGoogleAd = forwardRef((props, ref) => {
   return (
     <GoogleAd
+      style={props.style}
       ref={ref}
-      googleAdBody={props?.sponsorBlock?.googleAdBody}
-      googleAdHead={props?.sponsorBlock?.googleAdHead}
+      googleAdBody={props.sponsorGoogleAdBody}
+      googleAdHead={props.sponsorGoogleAdHead}
     />
   );
 });

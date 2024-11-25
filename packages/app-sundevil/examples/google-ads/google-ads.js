@@ -219,10 +219,10 @@ const HEADER_PROPS = {
   ],
 };
 
-initSunDevilsHeader({
-  targetSelector: "#header",
-  props: HEADER_PROPS,
-});
+// initSunDevilsHeader({
+//   targetSelector: "#header",
+//   props: HEADER_PROPS,
+// });
 
 const LINKS_TAB_BAR_PROPS = {
   sponsorHref: "#",
@@ -258,10 +258,11 @@ const LINKS_TAB_BAR_PROPS = {
     },
   ],
 };
-initLinkTabsBar({
-  targetSelector: "#link-tabs-bar",
-  props: LINKS_TAB_BAR_PROPS,
-});
+
+// initLinkTabsBar({
+//   targetSelector: "#link-tabs-bar",
+//   props: LINKS_TAB_BAR_PROPS,
+// });
 
 const SECTION_HEADER_PROPS = {
   title: "Upcoming Games",

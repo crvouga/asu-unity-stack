@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // @ts-check
-import React, { useRef } from "react";
+import React, { Fragment, useRef } from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../components-core/src";
@@ -121,11 +121,9 @@ export const SubtitleSection = props => {
         <SubtitleLinks>
           {subtitleLinks.map((link, index) => {
             const isLast = index === subtitleLinks.length - 1;
-            const key = [link?.href, link?.url, link?.label].join("-");
             return (
-              <>
+              <Fragment key={[link?.href, link?.url, link?.label].join("-")}>
                 <SubtitleLink
-                  key={key}
                   href={link?.href ?? link?.url}
                   // @ts-ignore
                   fontWeight={link?.fontWeight}
@@ -151,7 +149,6 @@ export const SubtitleSection = props => {
                 {!isLast && (
                   // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=6146-13841&node-type=frame&t=hwMmzQHF1CbjJnXH-0
                   <div
-                    key={[key, "divider"].join("-")}
                     style={{
                       width: "2px",
                       height: "18px",
@@ -159,7 +156,7 @@ export const SubtitleSection = props => {
                     }}
                   />
                 )}
-              </>
+              </Fragment>
             );
           })}
         </SubtitleLinks>

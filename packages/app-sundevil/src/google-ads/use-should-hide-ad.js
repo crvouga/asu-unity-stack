@@ -13,7 +13,16 @@ export const useHideAdProps = ({ ref }) => {
     predicate: node => {
       const isImageElement = node.tagName.toUpperCase().includes("IMG");
       const containsImageElement = node.querySelector("img") !== null;
-      return isImageElement || containsImageElement;
+
+      const isIFrameElement = node.tagName.toUpperCase().includes("IFRAME");
+      const containsIFrameElement = node.querySelector("iframe") !== null;
+
+      return (
+        isImageElement ||
+        containsImageElement ||
+        isIFrameElement ||
+        containsIFrameElement
+      );
     },
   });
 

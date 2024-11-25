@@ -41,17 +41,6 @@ export function setInnerHTML(element, html) {
   return appendInnerHTML(element, html);
 }
 
-function waitForElementById(id) {
-  return new Promise(resolve => {
-    const interval = setInterval(() => {
-      if (document.getElementById(id)) {
-        clearInterval(interval);
-        resolve();
-      }
-    }, 100);
-  });
-}
-
 /**
  *
  * @param {{

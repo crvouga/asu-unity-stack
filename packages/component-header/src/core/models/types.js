@@ -40,7 +40,7 @@
 
 /**
  * @typedef {object} NavTreePropFooter
- * @property {"button-with-text" | "image-only"} [type]
+ * @property {"button-with-text" | "image-only" | "render"} [type]
  * @property {string} [text]
  * @property {string} [imageSrc]
  * @property {string} [imageAlt]
@@ -48,6 +48,7 @@
  * @property {string} [imageWidth]
  * @property {string} [buttonHref]
  * @property {string} [buttonText]
+ * @property {function} [render]
  */
 
 /**

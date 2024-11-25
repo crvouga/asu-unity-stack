@@ -11,7 +11,7 @@ import { topBannerPropTypes } from "./TopBanner";
  * officialSiteHrefStyle?: Record<string, unknown>,
  * officialSite: import("../OfficialAthleticsSite").OfficialAthleticsSiteProps;
  * topBanner: import("./TopBanner").Props
- * sponsorLogo: import("./sponsor-logo/props").SponsorLogoProps
+ * sponsorLogo: import("./SponsorLogo/props").SponsorLogoProps
  * }} HeaderProps
  * */
 

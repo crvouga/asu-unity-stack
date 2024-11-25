@@ -53,39 +53,54 @@ const ButtonWithTextRoot = styled.div`
  */
 export const DropdownItemFooter = ({ footer }) => {
   const footerType = footer.type ?? "button-with-text";
-  return (
-    <Root as={typeof footer.href === "string" ? "a" : "div"} href={footer.href}>
-      {footerType === "image-only" && (
-        <ImageOnlyRoot>
-          <img
-            width={footer.imageWidth}
-            height={footer.imageHeight ?? null}
-            style={{
-              maxWidth: "100%",
-              objectFit: "contain",
-              height: "auto",
-            }}
-            src={footer.imageSrc}
-            alt={footer.imageAlt}
-          />
-        </ImageOnlyRoot>
-      )}
-
-      {footerType === "button-with-text" && (
-        <ButtonWithTextRoot>
-          <Text>{footer.text}</Text>
-          {footer.buttonText && (
-            <Button
-              color="gold"
-              href={footer.buttonHref}
-              label={footer.buttonText}
-              size="small"
+  switch (footerType) {
+    case "render": {
+      return footer.render?.();
+    }
+    case "image-only": {
+      return (
+        <Root
+          as={typeof footer.href === "string" ? "a" : "div"}
+          href={footer.href}
+        >
+          <ImageOnlyRoot>
+            <img
+              width={footer.imageWidth}
+              height={footer.imageHeight ?? null}
+              style={{
+                maxWidth: "100%",
+                objectFit: "contain",
+                height: "auto",
+              }}
+              src={footer.imageSrc}
+              alt={footer.imageAlt}
             />
-          )}
-        </ButtonWithTextRoot>
-      )}
-    </Root>
-  );
+          </ImageOnlyRoot>
+        </Root>
+      );
+    }
+    case "button-with-text":
+    default: {
+      return (
+        <Root
+          as={typeof footer.href === "string" ? "a" : "div"}
+          href={footer.href}
+        >
+          <ButtonWithTextRoot>
+            <Text>{footer.text}</Text>
+            {footer.buttonText && (
+              <Button
+                color="gold"
+                href={footer.buttonHref}
+                label={footer.buttonText}
+                size="small"
+              />
+            )}
+          </ButtonWithTextRoot>
+        </Root>
+      );
+    }
+  }
 };
 
 DropdownItemFooter.propTypes = {

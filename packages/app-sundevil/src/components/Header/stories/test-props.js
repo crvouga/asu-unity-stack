@@ -286,11 +286,8 @@ export const HEADER_TEST_PROPS = {
           url: "https://cdn.freebiesupply.com/logos/large/2x/ticketmaster-5-logo-black-and-white.png",
           type: "image_only",
           href: "#image-only",
-
           alt: " ",
-
           image_width: "175",
-
           image_height: "25",
         },
       ],
@@ -557,11 +554,8 @@ export const HEADER_TEST_PROPS = {
           url: "https://cdn.freebiesupply.com/logos/large/2x/ticketmaster-5-logo-black-and-white.png",
           type: "image_only",
           href: "#image-only",
-
           alt: " ",
-
           image_width: "175",
-
           image_height: "25",
         },
       ],
@@ -1200,7 +1194,6 @@ export const HEADER_TEST_PROPS = {
     {
       href: "/about",
       text: "About",
-
       items: [
         [
           {
@@ -1282,9 +1275,7 @@ export const HEADER_TEST_PROPS = {
           type: "image_only",
           href: "#image-only",
           alt: " ",
-
           image_width: "203",
-
           image_height: "64",
         },
       ],

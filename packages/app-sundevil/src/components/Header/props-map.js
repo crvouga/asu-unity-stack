@@ -2,10 +2,11 @@
 import React from "react";
 
 import { trackGAEvent } from "../../track-ga/track-ga-event";
+import { isCleanString } from "../../utils/is-clean-string";
 import { HeaderContentSportLinks } from "../HeaderContentSportLinks";
 import { Icon } from "../Icon_";
 import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
-import { mapSponsorLogoProps } from "./sponsor-logo/props-map";
+import { mapSponsorLogoProps } from "./SponsorLogo/props-map";
 import { TopBanner } from "./TopBanner";
 import { UniversalNavMobile } from "./UniversalNavMobile";
 
@@ -123,9 +124,20 @@ const mapNavTreeItemItems = navTreeItem => {
   };
 };
 
-/** @type {(extraSection: unknown) => "image-only" | "button-with-text"} */
+/** @type {(extraSection: unknown) => "image-only" | "button-with-text" | "google-ad"} */
 const extraSectionToFooterType = extraSection => {
   // Drupal team passing weird props
+  if (
+    typeof extraSection === "object" &&
+    extraSection &&
+    "googleAdHead" in extraSection &&
+    "googleAdBody" in extraSection &&
+    isCleanString(extraSection.googleAdHead) &&
+    isCleanString(extraSection.googleAdBody)
+  ) {
+    return "google-ad";
+  }
+
   if (
     typeof extraSection === "object" &&
     extraSection &&
@@ -155,10 +167,11 @@ const mapNavTreeFooters = navTreeItem => {
   ) {
     return {
       ...navTreeItem,
-      footers: navTreeItem.extra_section.map(extraSection => {
-        return {
+      footers: ensureArray(navTreeItem?.extra_section)?.map(extraSection => {
+        const type = extraSectionToFooterType(extraSection);
+        const footer = {
           ...extraSection,
-          type: extraSectionToFooterType(extraSection),
+          type,
           text: extraSection?.extra_text,
           buttonHref: extraSection?.button_uri,
           buttonText: extraSection?.button_text,
@@ -168,6 +181,22 @@ const mapNavTreeFooters = navTreeItem => {
           imageHeight: extraSection?.image_height,
           imageAlt: extraSection?.alt,
         };
+        switch (type) {
+          case "google-ad": {
+            return {
+              ...footer,
+              type: "render",
+              render: () => {
+                return <div>some google ad</div>;
+              },
+            };
+          }
+          case "button-with-text":
+          case "image-only":
+          default: {
+            return footer;
+          }
+        }
       }),
     };
   }

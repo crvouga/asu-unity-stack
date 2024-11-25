@@ -309,14 +309,18 @@ export const mapProps = props => ({
   renderTop: ({ isMobile }) => {
     const includeOfficialSite = props.mobile?.includeOfficialSite ?? true;
 
+    const topBanner = props.topBanner ? (
+      <TopBanner {...props.topBanner} scrollTarget={props.scrollTarget} />
+    ) : null;
+
     if (isMobile && includeOfficialSite) {
       return (
         <>
-          <TopBanner {...props.topBanner} scrollTarget={props.scrollTarget} />
+          {topBanner}
           <UniversalNavMobile {...props} scrollTarget={props.scrollTarget} />
         </>
       );
     }
-    return <TopBanner {...props.topBanner} scrollTarget={props.scrollTarget} />;
+    return topBanner;
   },
 });

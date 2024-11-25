@@ -11,18 +11,19 @@ import { VariantStatic } from "./VariantStatic";
  */
 export const Variant = forwardRef((props, ref) => {
   const { sponsorBlock } = props;
-  if (isSponsorBlockStatic(sponsorBlock)) {
+  if (isSponsorGoogleAd(sponsorBlock)) {
     return (
-      <VariantStatic
+      <VariantGoogleAd
         {...props}
         // @ts-ignore
         ref={ref}
       />
     );
   }
-  if (isSponsorGoogleAd(sponsorBlock)) {
+
+  if (isSponsorBlockStatic(sponsorBlock)) {
     return (
-      <VariantGoogleAd
+      <VariantStatic
         {...props}
         // @ts-ignore
         ref={ref}

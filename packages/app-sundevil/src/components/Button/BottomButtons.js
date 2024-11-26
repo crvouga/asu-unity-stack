@@ -41,6 +41,7 @@ export const BottomButtons = ({ buttons, skeleton, sectionName }) => {
       {buttons.map(button => (
         <Skeleton skeleton={Boolean(skeleton)} fitContent key={button?.label}>
           <Button
+            {...button}
             ariaLabel={button?.label}
             classes={button.class ? [button.class] : []}
             color={button?.color}

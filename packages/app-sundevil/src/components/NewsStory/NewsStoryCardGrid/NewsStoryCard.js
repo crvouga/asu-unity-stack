@@ -205,9 +205,11 @@ export const NewsStoryCard = ({
             {newsStory.showNewsType && newsStory.newsType && (
               <Category>{newsStory.newsType}</Category>
             )}
-            <Title configCard={configCard} size={size}>
-              {newsStory.title}
-            </Title>
+            <Title
+              configCard={configCard}
+              size={size}
+              dangerouslySetInnerHTML={{ __html: newsStory.title }}
+            />
           </ContentBottom>
         </Content>
         <EmbeddedYoutubeVideo

@@ -59,14 +59,6 @@ const onSubmit =
 
     if (form) {
       setTimeout(() => {
-        const input = inputRef.current;
-        if (input) {
-          input.value = formatQueryParamValue(
-            universalNavbar?.searchUrlQueryParamValueFormat,
-            input.value
-          );
-        }
-
         // This is crashing in drupal site
         const eventTarget = e?.target;
         if (eventTarget instanceof HTMLFormElement) {
@@ -165,7 +157,7 @@ const Search = ({
                 ref={inputRef}
                 className="form-control"
                 type="search"
-                name={universalNavbar?.searchUrlQueryParam ?? "q"}
+                name={undefined}
                 value={inputValue}
                 onChange={onInputChanged}
                 aria-labelledby="header-top-search"
@@ -191,7 +183,7 @@ const Search = ({
             ref={inputRef}
             className="form-control"
             type="search"
-            name="q"
+            name={undefined}
             aria-labelledby="header-top-search"
             placeholder={placeholder ?? "Search asu.edu"}
             required
@@ -205,6 +197,14 @@ const Search = ({
           </span>
         </label>
       )}
+      <input
+        name={universalNavbar?.searchUrlQueryParam ?? "q"}
+        value={formatQueryParamValue(
+          universalNavbar?.searchUrlQueryParamValueFormat,
+          inputValue
+        )}
+        type="hidden"
+      />
       <input name="url_host" value={site} type="hidden" />
       <input name="site" value="default_collection" type="hidden" />
       <input name="sort" value="date:D:L:d1" type="hidden" />

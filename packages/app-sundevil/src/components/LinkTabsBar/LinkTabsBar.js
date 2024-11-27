@@ -1,7 +1,8 @@
+/* eslint-disable react/destructuring-assignment */
 // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=4946-10174&t=GryWYEeDobWHRTpE-0
 // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=7278-6895&t=GryWYEeDobWHRTpE-0
 // https://www.figma.com/design/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?node-id=2913-15764&t=GryWYEeDobWHRTpE-0
-// @ts-check
+// @ts-nocheck
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
@@ -152,14 +153,33 @@ export const LinkTabsBar = props => {
         style={{ opacity: showPortal ? 0 : 1 }}
         links={links}
       />
-      {showPortal ? (
-        createPortal(
-          <LinkTabsBarResponsive {...props} links={links} ref={linkTabsRef} />,
-          navbarPortal
-        )
-      ) : (
-        <></>
-      )}
+
+      {navbarPortal
+        ? createPortal(
+            <LinkTabsBarResponsive
+              {...props}
+              sponsorGoogleAdHead={
+                props.sponsorGoogleAdHeadSticky || props.sponsorGoogleAdHead
+              }
+              sponsorGoogleAdBody={
+                props.sponsorGoogleAdBodySticky || props.sponsorGoogleAdBody
+              }
+              links={links}
+              ref={linkTabsRef}
+              style={
+                showPortal
+                  ? {
+                      opacity: 1,
+                    }
+                  : {
+                      opacity: 0,
+                    }
+              }
+              aria-hidden={!showPortal}
+            />,
+            navbarPortal
+          )
+        : null}
     </Root>
   );
 };

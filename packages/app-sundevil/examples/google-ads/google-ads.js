@@ -6,6 +6,7 @@ const VARIANT = {
   HEADER_SPONSOR: "HEADER_SPONSOR",
   HEADER_DROPDOWN_FOOTER: "HEADER_DROPDOWN_FOOTER",
   LINKS_TAB_BAR: "LINKS_TAB_BAR",
+  LINKS_TAB_BAR_STICKY: "LINKS_TAB_BAR_STICKY",
   SECTION_HEADER: "SECTION_HEADER",
 };
 
@@ -250,6 +251,17 @@ function initExample({ variant = VARIANT.SECTION_HEADER } = {}) {
           sponsorGoogleAdHead: GOOGLE_ADS_TEST_PROPS.nonEmpty.googleAdHead,
           // NEW PROP
           sponsorGoogleAdBody: GOOGLE_ADS_TEST_PROPS.nonEmpty.googleAdBody,
+        }
+      : {}),
+
+    ...(variant === VARIANT.LINKS_TAB_BAR_STICKY
+      ? {
+          // NEW PROP
+          sponsorGoogleAdHeadSticky:
+            GOOGLE_ADS_TEST_PROPS.nonEmpty.googleAdHead,
+          // NEW PROP
+          sponsorGoogleAdBodySticky:
+            GOOGLE_ADS_TEST_PROPS.nonEmpty.googleAdBody,
         }
       : {}),
 

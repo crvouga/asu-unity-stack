@@ -35,7 +35,7 @@ const Content = styled.div`
 export const LinkTabsBarMobile = forwardRef((props, ref) => {
   const { links = [], style } = props;
   return (
-    <Root ref={ref}>
+    <Root ref={ref} style={props.style}>
       <Content style={style}>
         <LinkTabsRoot>
           <div

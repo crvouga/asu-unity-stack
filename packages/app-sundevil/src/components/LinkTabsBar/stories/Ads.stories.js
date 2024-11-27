@@ -1,8 +1,8 @@
 // @ts-nocheck
 import React from "react";
 
-import { LinkTabsBar } from "../index";
 import { GOOGLE_ADS_TEST_PROPS } from "../../../google-ads/test-props";
+import { LinkTabsBar } from "../index";
 
 export default {
   title: "Link Tabs / Link Tabs Bar Ads",
@@ -217,6 +217,8 @@ const BASE_PROPS = {
   sponsorLogoAlt: "sponsor logo alt",
   sponsorGoogleAdHead: "",
   sponsorGoogleAdBody: "",
+  sponsorGoogleAdHeadSticky: "",
+  sponsorGoogleAdBodySticky: "",
 };
 
 export const Default = Template.bind({});
@@ -233,6 +235,17 @@ GoogleAd.args = {
   ...BASE_PROPS,
   sponsorGoogleAdHead: GOOGLE_ADS_TEST_PROPS.nonEmpty.googleAdHead,
   sponsorGoogleAdBody: GOOGLE_ADS_TEST_PROPS.nonEmpty.googleAdBody,
+};
+
+/**
+ * https://docs.google.com/document/d/1vsrmv9ClEcYa25FgPHT5zl9FQW-sbcbOgAxEx3jGh6o/edit?tab=t.eu6mundvmnbh
+ * @type {{ args: ComponentType, parameters: object}}
+ */
+export const GoogleAdSticky = Template.bind({});
+GoogleAdSticky.args = {
+  ...BASE_PROPS,
+  sponsorGoogleAdHeadSticky: GOOGLE_ADS_TEST_PROPS.nonEmpty.googleAdHead,
+  sponsorGoogleAdBodySticky: GOOGLE_ADS_TEST_PROPS.nonEmpty.googleAdBody,
 };
 
 /**

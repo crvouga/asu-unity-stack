@@ -76,6 +76,8 @@
  * @property {string} [searchPlaceholder]
  * @property {boolean} [disableTopGradient]
  * @property {boolean} [hideSignIn]
+ * @property {string} [searchUrlQueryParam]
+ * @property {string} [searchUrlQueryParamValueFormat]
  */
 
 /**

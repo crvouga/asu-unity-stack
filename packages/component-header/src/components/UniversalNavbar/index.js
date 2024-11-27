@@ -103,7 +103,7 @@ const UniversalNavbar = forwardRef((_props, ref) => {
               </a>
               <Login />
             </div>
-            <Search placeholder={universalNavbar?.searchPlaceholder ?? null} />
+            <Search />
           </nav>
         </div>
       </div>

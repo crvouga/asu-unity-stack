@@ -20,47 +20,78 @@ const SEARCH_GA_EVENT = {
   component: "search icon",
 };
 
-/** @type {(formRef: React.MutableRefObject<HTMLFormElement | null>) => React.FormEventHandler<HTMLFormElement>} */
-const onSubmit = formRef => e => {
-  e.preventDefault();
-  /**
-   * Issue: Callback not currently available
-   * We need to ensure dataLayer events are being logged correctly
-   * Solution might be in GA4 settings with a form event targeting the element ID
-   *
-   * This solution does not guarantee the event is logged before the page
-   * redirects.
-   * Preventing form submission with arbitrary timeout is always bad, but this
-   * may be small enough to not degrade the experience
-   *
-   * TODO: UDS-1612
-   */
-  setTimeout(() => {
-    // This is crashing in drupal site
-    const eventTarget = e?.target;
-    if (eventTarget instanceof HTMLFormElement) {
-      eventTarget?.submit?.();
-    }
-    // Trying this if the above line doesn't work
-    formRef?.current?.submit();
-  }, 100);
+function formatQueryParamValue(format, str) {
+  if (typeof format === "string" && format.includes("x-www-form-urlencoded")) {
+    return encodeURIComponent(str)
+      .replace(/%20/g, "+")
+      .replace(/%2B/g, "+")
+      .trim();
+  }
 
-  return trackGAEvent({
-    ...SEARCH_GA_EVENT,
-    // @ts-ignore
-    text: e.target?.elements?.q?.value,
-  });
-};
+  if (typeof str === "string") {
+    return str.trim();
+  }
+
+  return str;
+}
+
+/** @type {(input:{universalNavbar?: import("../../../core/models/types").UniversalNavBarProps | null, inputRef: React.MutableRefObject<HTMLInputElement | null>; formRef: React.MutableRefObject<HTMLFormElement | null>}) => React.FormEventHandler<HTMLFormElement>} */
+
+const onSubmit =
+  ({ universalNavbar, formRef, inputRef }) =>
+  e => {
+    e.preventDefault();
+    /**
+     * Issue: Callback not currently available
+     * We need to ensure dataLayer events are being logged correctly
+     * Solution might be in GA4 settings with a form event targeting the element ID
+     *
+     * This solution does not guarantee the event is logged before the page
+     * redirects.
+     * Preventing form submission with arbitrary timeout is always bad, but this
+     * may be small enough to not degrade the experience
+     *
+     * TODO: UDS-1612
+     */
+    // Get the input element and encode its value
+
+    const form = formRef.current;
+
+    if (form) {
+      setTimeout(() => {
+        const input = inputRef.current;
+        if (input) {
+          input.value = formatQueryParamValue(
+            universalNavbar?.searchUrlQueryParamValueFormat,
+            input.value
+          );
+        }
+
+        // This is crashing in drupal site
+        const eventTarget = e?.target;
+        if (eventTarget instanceof HTMLFormElement) {
+          eventTarget?.submit?.();
+        }
+        // Trying this if the above line doesn't work
+        formRef?.current?.submit();
+      }, 100);
+    }
+
+    return trackGAEvent({
+      ...SEARCH_GA_EVENT,
+      text: inputRef.current?.value ?? "",
+    });
+  };
 
 const Search = ({
   disablePadding = false,
   renderIconEnd = (_input = {}) => null,
-  placeholder = null,
 } = {}) => {
   /** @type {React.MutableRefObject<HTMLFormElement | null>} */
   const formRef = useRef(null);
-  const { breakpoint, searchUrl, site } = useAppContext();
+  const { universalNavbar, breakpoint, searchUrl, site } = useAppContext();
   const isMobile = useIsMobile(breakpoint);
+  const placeholder = universalNavbar?.searchPlaceholder ?? "Search asu.edu";
   /** @type {React.MutableRefObject<HTMLInputElement | null>} */
   const inputRef = useRef(null);
   const [open, setOpen] = useState(false);
@@ -109,7 +140,7 @@ const Search = ({
       // @ts-ignore
       breakpoint={breakpoint}
       action={searchUrl}
-      onSubmit={onSubmit(formRef)}
+      onSubmit={onSubmit({ universalNavbar, formRef, inputRef })}
       method="get"
       name="gs"
       className={open ? "open-search" : ""}
@@ -120,7 +151,7 @@ const Search = ({
         <>
           <button
             type="button"
-            aria-label="Search asu.edu"
+            aria-label={placeholder ?? "Search asu.edu"}
             onClick={handleChangeVisibility}
             className="search-button"
             data-testid="search-button"
@@ -130,10 +161,11 @@ const Search = ({
           {open && (
             <>
               <input
+                id="search-input"
                 ref={inputRef}
                 className="form-control"
                 type="search"
-                name="q"
+                name={universalNavbar?.searchUrlQueryParam ?? "q"}
                 value={inputValue}
                 onChange={onInputChanged}
                 aria-labelledby="header-top-search"
@@ -187,7 +219,6 @@ const Search = ({
 Search.propTypes = {
   disablePadding: PropTypes.bool,
   renderIconEnd: PropTypes.func,
-  placeholder: PropTypes.string,
 };
 
 const UniversalNavbarSearch = Search;

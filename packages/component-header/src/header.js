@@ -81,6 +81,7 @@ const ASUHeader = ({
   expandOnHover,
   mobileNavTree: rawMobileNavTree,
   searchUrl,
+  searchUrlQueryParam,
   site,
   renderDiv = "false",
   universalNavbar,
@@ -179,6 +180,7 @@ const ASUHeader = ({
         mobileNavTree,
         hasNavigation: !!navTree?.length || !!mobileNavTree?.length,
         searchUrl,
+        searchUrlQueryParam,
         site,
         // @ts-ignore
         universalNavbar,

@@ -1,6 +1,14 @@
 // https://cdn-icons-png.flaticon.com/512/94/94107.png
+
 /** @type {import("../props").HeaderProps} */
 export const HEADER_TEST_PROPS = {
+  searchUrl: "https://search.asu.edu/search",
+  // searchUrl: `${new URL(window.location.href).origin}/search`,
+  universalNavbar: {
+    hideMobile: false,
+    searchUrlQueryParam: "search_query",
+    searchUrlQueryParamValueFormat: "application/x-www-form-urlencoded",
+  },
   topBanner: {
     // This is disabled now
     html: `<div id="my-ad-portal-exit"></div>`,
@@ -42,7 +50,6 @@ export const HEADER_TEST_PROPS = {
     mobileWidth: "67",
     mobileHeight: "47",
   },
-  searchUrl: "https://search.asu.edu/search",
   site: "web-sda.ddev.site",
   officialSiteHref: "#",
   officialSite: {
@@ -56,9 +63,7 @@ export const HEADER_TEST_PROPS = {
   mobile: {
     title: "Sun Devil Athletics",
   },
-  universalNavbar: {
-    hideMobile: false,
-  },
+
   navTree: [
     {
       href: "/",

@@ -89,7 +89,8 @@ export const TextField = ({
         region: "main content",
         section: sectionName,
         text: valueNew,
-        component: "search bar",
+        // component: "search bar",
+        component: "text",
       });
       onChange(valueNew);
     }, ensureNormalNumber(debounce));

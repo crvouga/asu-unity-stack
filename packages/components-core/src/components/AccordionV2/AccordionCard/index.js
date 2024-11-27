@@ -65,6 +65,11 @@ const Chevron = styled.i`
   font-size: 20px;
 `;
 
+const ChevronContainer = styled.div`
+  transition: transform 0.3s ease;
+  transform: ${props => (props.isOpen ? "rotate(180deg)" : "rotate(0)")};
+`;
+
 const AccordionBody = styled.div`
   overflow: hidden;
   transition: max-height 0.3s ease;
@@ -122,23 +127,6 @@ export const AccordionCard = ({ id, item, openCard, onClick }) => {
     onClick(e, id, item.content?.header);
   };
 
-  /**
-   * @type {React.MutableRefObject<HTMLSpanElement>}
-   * Why? Using props for rotating isn't working in the deployed site, so we'll use refs instead.
-   */
-  const chevronRef = useRef();
-  useLayoutEffect(() => {
-    if (!chevronRef.current) {
-      return;
-    }
-    chevronRef.current.style.transition = "transform 0.3s ease";
-    if (isOpen) {
-      chevronRef.current.style.transform = "rotate(180deg)";
-      return;
-    }
-    chevronRef.current.style.transform = "rotate(0)";
-  }, [isOpen]);
-
   return (
     <AccordionItem color={item.color}>
       <AccordionHeader>
@@ -161,7 +149,9 @@ export const AccordionCard = ({ id, item, openCard, onClick }) => {
               item.content?.header
             )}
 
-            <Chevron ref={chevronRef} className="fas fa-chevron-down" />
+            <ChevronContainer isOpen={isOpen}>
+              <Chevron className="fas fa-chevron-down" />
+            </ChevronContainer>
           </AccordionHeaderLink>
         </AccordionHeaderContent>
       </AccordionHeader>

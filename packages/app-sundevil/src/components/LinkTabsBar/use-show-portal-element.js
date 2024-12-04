@@ -7,6 +7,7 @@ import { throttle } from "../../utils/throttle";
  * @param {{
  *  stickyElementSelector?: string
  *  navbarPortalSelector?: string
+ *  scrollTarget?: HTMLElement
  * }} options
  */
 export const useShowPortalElement = options => {
@@ -32,13 +33,18 @@ export const useShowPortalElement = options => {
   }, [showPortalElement, options]);
 
   useEffect(() => {
+    console.log("useEffect");
+    const scrollTarget = options?.scrollTarget || window;
+
     checkOverlap();
 
     const checkOverlapThrottled = throttle(checkOverlap, 250);
-    window.addEventListener("scroll", checkOverlapThrottled, { passive: true });
+    scrollTarget.addEventListener("scroll", checkOverlapThrottled, {
+      passive: true,
+    });
 
     return () => {
-      window.removeEventListener("scroll", checkOverlapThrottled, {
+      scrollTarget.removeEventListener("scroll", checkOverlapThrottled, {
         passive: true,
       });
     };

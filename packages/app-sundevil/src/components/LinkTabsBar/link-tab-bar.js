@@ -20,6 +20,7 @@ export const linkTabsBarPropTypes = PropTypes.shape({
   stickyPosition: PropTypes.shape({
     navbarPortalSelector: PropTypes.string,
     stickyElementSelector: PropTypes.string,
+    scrollTarget: PropTypes.instanceOf(HTMLElement),
   }),
   alignment: alignmentPropTypes,
   anchorTitle: PropTypes.string,

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // @ts-check
 import PropTypes from "prop-types";
 import React from "react";
@@ -58,11 +59,13 @@ const OfficialAthleticsSite = ({
  *
  */
 
-OfficialAthleticsSite.propTypes = {
+export const officialAthleticsSitePropTypes = PropTypes.shape({
   href: PropTypes.string,
   text: PropTypes.string,
   hrefText: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   hrefStyle: PropTypes.object,
-};
+});
+
+OfficialAthleticsSite.propTypes = officialAthleticsSitePropTypes;
 export { OfficialAthleticsSite };

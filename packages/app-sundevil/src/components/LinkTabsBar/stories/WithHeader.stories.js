@@ -1,5 +1,6 @@
+/* eslint-disable react/destructuring-assignment */
 // @ts-nocheck
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { SunDevilsHeader } from "../../Header";
 import { HEADER_TEST_PROPS } from "../../Header/stories/test-props";
@@ -17,55 +18,109 @@ export default {
   },
 };
 
-const Template = args => (
-  <div style={{ width: "100%", maxHeight: "100%" }}>
-    <div id="navbar">
-      <SunDevilsHeader
-        {...HEADER_TEST_PROPS}
-        stickyPortalEntranceId="navbar-portal"
-      />
-    </div>
-    <div
-      style={{ width: "100%", height: "500px", backgroundColor: "#efefef" }}
-    />
+const Story = args => {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    const i = setInterval(() => {
+      setCount(prev => prev + 1);
+    }, 1000);
+    return () => {
+      clearInterval(i);
+    };
+  }, []);
 
-    <div>
-      <div>
+  return (
+    <div
+      style={{
+        width: "100%",
+        maxHeight: "100dvh",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      count={count}
+      <div id="navbar">
+        <SunDevilsHeader
+          {...{
+            ...HEADER_TEST_PROPS,
+            scrollTarget: document.getElementById("content"),
+          }}
+          stickyPortalEntranceId="navbar-portal"
+        />
+      </div>
+      <div id="content" style={{ width: "100%", flex: 1, overflowY: "scroll" }}>
+        <div
+          style={{
+            width: "100%",
+            height: "500px",
+            backgroundColor: "#efefef",
+          }}
+        />
         <div>
-          <div id="link-tabs">
-            <LinkTabsBar {...args} />
+          <div>
+            <div>
+              <div id="link-tabs">
+                <LinkTabsBar
+                  {...{
+                    ...args,
+                    stickyPosition: {
+                      ...args.stickyPosition,
+                      scrollTarget: document.getElementById("content"),
+                    },
+                  }}
+                />
+              </div>
+            </div>
           </div>
+        </div>
+
+        <div
+          style={{
+            width: "100%",
+            height: "3000px",
+          }}
+        >
+          <div
+            style={{
+              width: "100%",
+              height: "200px",
+              backgroundColor: "transparent",
+            }}
+          />
+
+          <div
+            style={{
+              width: "100%",
+              height: "200px",
+              backgroundColor: "tomato",
+            }}
+          />
+
+          <div
+            style={{
+              width: "100%",
+              height: "200px",
+              backgroundColor: "transparent",
+            }}
+          />
+
+          <div
+            style={{
+              width: "100%",
+              height: "200px",
+              backgroundColor: "tomato",
+            }}
+          />
         </div>
       </div>
     </div>
+  );
+};
 
-    <div style={{ width: "100%", height: "3000px" }}>
-      <div
-        style={{
-          width: "100%",
-          height: "200px",
-          backgroundColor: "transparent",
-        }}
-      />
-
-      <div
-        style={{ width: "100%", height: "200px", backgroundColor: "tomato" }}
-      />
-
-      <div
-        style={{
-          width: "100%",
-          height: "200px",
-          backgroundColor: "transparent",
-        }}
-      />
-
-      <div
-        style={{ width: "100%", height: "200px", backgroundColor: "tomato" }}
-      />
-    </div>
-  </div>
-);
+const Template = args => {
+  return <Story {...args} />;
+};
 
 export const Default = Template.bind({});
 Default.args = {

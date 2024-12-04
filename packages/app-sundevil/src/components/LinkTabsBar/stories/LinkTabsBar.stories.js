@@ -16,7 +16,16 @@ export default {
 };
 
 const Template = args => (
-  <div style={{ width: "100%", maxHeight: "100%" }}>
+  <div
+    style={{
+      width: "100vw",
+      maxHeight: "100dvh",
+      height: "100%",
+      overflow: "hidden",
+      display: "flex",
+      flexDirection: "column",
+    }}
+  >
     <div
       id="navbar"
       style={{
@@ -37,88 +46,99 @@ const Template = args => (
       />
       <div id="navbar-portal" />
     </div>
+
     <div
-      style={{ width: "100%", height: "500px", backgroundColor: "#efefef" }}
-    />
-
-    <div id="link-tabs">
-      <LinkTabsBar {...args} />
-    </div>
-
-    <div style={{ width: "100%", height: "3000px" }}>
+      style={{
+        width: "100%",
+        flex: 1,
+        display: "flex",
+        flexDirection: "column",
+        overflowY: "scroll",
+      }}
+    >
       <div
-        style={{
-          width: "100%",
-          height: "200px",
-          backgroundColor: "transparent",
-        }}
+        style={{ width: "100%", height: "500px", backgroundColor: "#efefef" }}
       />
 
-      <div style={{ width: "100%", height: "24px" }} id="football-roster">
-        football-roster
-      </div>
-      <div
-        style={{
-          width: "100%",
-          height: "200px",
-          backgroundColor: "tomato",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "white",
-        }}
-      >
-        Roster
+      <div id="link-tabs">
+        <LinkTabsBar {...args} />
       </div>
 
-      <div
-        style={{
-          width: "100%",
-          height: "200px",
-          backgroundColor: "transparent",
-        }}
-      />
+      <div style={{ width: "100%", height: "3000px" }}>
+        <div
+          style={{
+            width: "100%",
+            height: "200px",
+            backgroundColor: "transparent",
+          }}
+        />
 
-      <div style={{ width: "100%", height: "24px" }} id="football-news">
-        football-news
-      </div>
-      <div
-        style={{
-          width: "100%",
-          height: "200px",
-          backgroundColor: "tomato",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "white",
-        }}
-      >
-        News
-      </div>
+        <div style={{ width: "100%", height: "24px" }} id="football-roster">
+          football-roster
+        </div>
+        <div
+          style={{
+            width: "100%",
+            height: "200px",
+            backgroundColor: "tomato",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "white",
+          }}
+        >
+          Roster
+        </div>
 
-      <div
-        style={{
-          width: "100%",
-          height: "200px",
-          backgroundColor: "transparent",
-        }}
-      />
+        <div
+          style={{
+            width: "100%",
+            height: "200px",
+            backgroundColor: "transparent",
+          }}
+        />
 
-      <div style={{ width: "100%", height: "24px" }} id="football-coaches">
-        football-coaches
-      </div>
-      <div
-        style={{
-          width: "100%",
-          height: "200px",
-          backgroundColor: "tomato",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          color: "white",
-        }}
-      >
-        Coaches
+        <div style={{ width: "100%", height: "24px" }} id="football-news">
+          football-news
+        </div>
+        <div
+          style={{
+            width: "100%",
+            height: "200px",
+            backgroundColor: "tomato",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "white",
+          }}
+        >
+          News
+        </div>
+
+        <div
+          style={{
+            width: "100%",
+            height: "200px",
+            backgroundColor: "transparent",
+          }}
+        />
+
+        <div style={{ width: "100%", height: "24px" }} id="football-coaches">
+          football-coaches
+        </div>
+        <div
+          style={{
+            width: "100%",
+            height: "200px",
+            backgroundColor: "tomato",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            color: "white",
+          }}
+        >
+          Coaches
+        </div>
       </div>
     </div>
   </div>

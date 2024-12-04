@@ -9,16 +9,16 @@ export interface RFIProps {
   studentType?: string;
   areaOfInterest?: string;
   programOfInterest?: string;
-  programOfInterestOptional?: boolean
-  isCertMinor?: boolean
-  country?: string
-  stateProvince?: string
-  successMsg?: string
-  test?: boolean
-  dataSourceDegreeSearch?: string
-  dataSourceAsuOnline?: string
-  dataSourceCountriesStates?: string
-  submissionUrl: string
+  programOfInterestOptional?: boolean;
+  isCertMinor?: boolean;
+  country?: string;
+  stateProvince?: string;
+  successMsg?: string;
+  test?: boolean;
+  dataSourceDegreeSearch?: string;
+  dataSourceAsuOnline?: string;
+  dataSourceCountriesStates?: string;
+  submissionUrl: string;
 }
 
-export const AsuRfi: React.FunctionComponent<RFIProps>
+export const AsuRfi: React.FunctionComponent<RFIProps>;

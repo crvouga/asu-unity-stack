@@ -1,7 +1,7 @@
 /* eslint-disable react/forbid-foreign-prop-types */
 import PropTypes from "prop-types";
 
-import { OfficialAthleticsSite } from "../OfficialAthleticsSite";
+import { officialAthleticsSitePropTypes } from "../OfficialAthleticsSite";
 import { basePropTypes } from "./base-props";
 import { topBannerPropTypes } from "./TopBanner";
 
@@ -18,7 +18,7 @@ import { topBannerPropTypes } from "./TopBanner";
 export const headerPropTypes = {
   ...basePropTypes,
   officialSiteHref: PropTypes.string,
-  officialSite: OfficialAthleticsSite.propTypes,
+  officialSite: officialAthleticsSitePropTypes,
   topBanner: topBannerPropTypes,
 };
 

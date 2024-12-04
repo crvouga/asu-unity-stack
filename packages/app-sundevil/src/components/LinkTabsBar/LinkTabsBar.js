@@ -173,6 +173,9 @@ export const LinkTabsBar = props => {
                     }
                   : {
                       opacity: 0,
+                      position: "fixed",
+                      top: -1000,
+                      left: -1000,
                     }
               }
               aria-hidden={!showPortal}

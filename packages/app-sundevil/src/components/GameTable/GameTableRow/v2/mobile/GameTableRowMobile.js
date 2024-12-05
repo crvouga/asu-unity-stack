@@ -84,7 +84,7 @@ export const GameTableRowMobile = forwardRef(
           <CellDate {...props} />
           <CellTitle {...props} />
           <CellTeamLogo {...props} />
-          <CellCollapseButton open={open} onClick={toggleOpen} />
+          <CellCollapseButton {...props} open={open} onClick={toggleOpen} />
         </Root>
         {isOpen && (
           <Surface>

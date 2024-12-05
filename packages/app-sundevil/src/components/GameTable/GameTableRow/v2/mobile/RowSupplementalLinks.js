@@ -4,6 +4,7 @@
 // @ts-check
 import React from "react";
 
+import { trackGAEvent } from "../../../../../track-ga/track-ga-event";
 import { LinkBase } from "../../../../Link/LinkBase";
 
 /**
@@ -14,7 +15,7 @@ import { LinkBase } from "../../../../Link/LinkBase";
  * @type {import("./shared").RowComponent}
  */
 export const RowSupplementalLinks = props => {
-  const { game } = props;
+  const { game, sectionName } = props;
 
   const hasContent =
     Array.isArray(game?.supplementalLinks) &&
@@ -43,6 +44,18 @@ export const RowSupplementalLinks = props => {
           }}
           dangerouslySetInnerHTML={{
             __html: link.label,
+          }}
+          onClick={() => {
+            trackGAEvent({
+              event: "link",
+              action: "click",
+              name: "onclick",
+              type: "internal link",
+              region: "main content",
+              section: sectionName,
+              text: link.label,
+              component: "text",
+            });
           }}
         />
       ))}

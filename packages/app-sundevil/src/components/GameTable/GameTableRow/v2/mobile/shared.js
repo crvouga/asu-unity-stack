@@ -15,7 +15,7 @@ export const STYLES_TRUNCATE = {
 };
 
 /**
- * @typedef {import("../../game-table-row").GameTableRowProps}  Props
+ * @typedef {import("../../game-table-row").GameTableRowProps & {sectionName:string}}  Props
  */
 
 /**

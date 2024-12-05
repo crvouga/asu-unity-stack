@@ -1,9 +1,11 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-danger */
 // @ts-check
 import React from "react";
 import styled from "styled-components";
 
+import { trackGAEvent } from "../../../../../track-ga/track-ga-event";
 import { LinkBase } from "../../../../Link/LinkBase";
 import { Cell, STYLES_TRUNCATE } from "./shared";
 
@@ -24,7 +26,8 @@ const DateLink = styled(LinkBase)`
 /**
  * @type {import("./shared").CellComponent}
  */
-export const CellDate = ({ game, configLayout }) => {
+export const CellDate = props => {
+  const { game, configLayout } = props;
   return (
     configLayout?.includeCellDate && (
       <Cell
@@ -124,6 +127,18 @@ export const CellDate = ({ game, configLayout }) => {
               }}
               dangerouslySetInnerHTML={{
                 __html: link.label,
+              }}
+              onClick={() => {
+                trackGAEvent({
+                  event: "link",
+                  action: "click",
+                  name: "onclick",
+                  type: "internal link",
+                  region: "main content",
+                  section: props.sectionName,
+                  text: link.label,
+                  component: "text",
+                });
               }}
             />
           ))}

@@ -33,9 +33,16 @@ export const GameTableRowMobile = forwardRef(
     /**
      * @type {import("../../game-table-row").GameTableRowProps}
      */
-    props,
+    propsInput,
     ref
   ) => {
+    /**
+     * @type {import("./shared").Props}
+     */
+    const props = {
+      ...propsInput,
+      sectionName: propsInput?.game?.title,
+    };
     const { skeleton, empty } = props;
     const id = props.game?.id;
 

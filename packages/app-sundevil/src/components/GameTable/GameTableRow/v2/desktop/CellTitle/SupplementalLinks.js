@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable no-continue */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable react/jsx-props-no-spreading */
@@ -6,6 +7,7 @@
 // @ts-check
 import React, { useEffect, useRef, useState } from "react";
 
+import { trackGAEvent } from "../../../../../../track-ga/track-ga-event";
 import { isNonEmptyArray } from "../../../../../../utils/is-non-empty-array";
 import { useStore } from "../../../../../../utils/store";
 import { LinkBase } from "../../../../../Link/LinkBase";
@@ -100,6 +102,18 @@ export const SupplementalLinks = props => {
             }}
             dangerouslySetInnerHTML={{
               __html: link.label,
+            }}
+            onClick={() => {
+              trackGAEvent({
+                event: "link",
+                action: "click",
+                name: "onclick",
+                type: "internal link",
+                region: "main content",
+                section: props.sectionName,
+                text: game?.title,
+                component: "text",
+              });
             }}
           />
         ))}

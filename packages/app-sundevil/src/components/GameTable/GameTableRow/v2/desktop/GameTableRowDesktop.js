@@ -38,9 +38,16 @@ const Root = styled.div`
 export const GameTableRowDesktop = forwardRef(
   (
     /**  @type {import("../../game-table-row").GameTableRowProps} */
-    props,
+    propsInput,
     ref
   ) => {
+    /**
+     * @type {import("./shared").CellProps}
+     */
+    const props = {
+      ...propsInput,
+      sectionName: propsInput?.game?.title ?? " ",
+    };
     const { skeleton, empty } = props;
 
     return (

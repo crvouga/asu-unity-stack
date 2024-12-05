@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-danger */
@@ -5,6 +6,7 @@
 import React from "react";
 import styled from "styled-components";
 
+import { trackGAEvent } from "../../../../../../track-ga/track-ga-event";
 import { decodeHtml } from "../../../../../../utils/decode-html";
 import { STYLES_TRUNCATE } from "../shared";
 
@@ -46,6 +48,18 @@ export const Title = props => {
       }}
       href={game?.titleHref}
       dangerouslySetInnerHTML={{ __html: decodeHtml(game?.title ?? "") }}
+      onClick={() => {
+        trackGAEvent({
+          event: "link",
+          action: "click",
+          name: "onclick",
+          type: "internal link",
+          region: "main content",
+          section: props.sectionName,
+          text: game?.title,
+          component: "text",
+        });
+      }}
     />
   );
 };

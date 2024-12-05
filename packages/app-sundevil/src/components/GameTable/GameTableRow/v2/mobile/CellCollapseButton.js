@@ -19,7 +19,7 @@ const Root = styled.button`
 
 export const CellCollapseButton = (
   /**
-   * @type {{ open: boolean; onClick: () => void; }}
+   * @type {{ sectionName:string, open: boolean; onClick: () => void; }}
    */
   { open, onClick }
 ) => {

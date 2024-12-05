@@ -20,7 +20,7 @@ import { Icon } from "../../../../Icon_";
  * @type {import("./shared").RowComponent}
  */
 export const RowButtons = props => {
-  const { game, configCells } = props;
+  const { game, configCells, sectionName } = props;
 
   const hasContent = Array.isArray(game?.buttons) && game?.buttons?.length > 0;
 
@@ -43,7 +43,7 @@ export const RowButtons = props => {
           icon: [],
           label: button.label,
           onClick: button.onClick,
-          cardTitle: game?.title ?? " ",
+          cardTitle: sectionName ?? game?.title ?? " ",
           trackingOverrides: {
             type: TYPE_INTERNAL_LINK,
           },

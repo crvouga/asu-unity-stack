@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { decodeHtml } from "../../../../../utils/decode-html";
+import { trackGAEvent } from "../../../../../track-ga/track-ga-event";
 
 const Title = styled.a`
   color: #191919 !important;
@@ -25,7 +26,7 @@ const Title = styled.a`
  * @type {import("./shared").CellComponent}
  */
 export const CellTitle = props => {
-  const { game, configLayout } = props;
+  const { game, configLayout, sectionName } = props;
 
   const hasContent = game?.title;
   return configLayout.includeCellTitle && hasContent ? (
@@ -53,6 +54,18 @@ export const CellTitle = props => {
             width: "fit-content",
           }}
           dangerouslySetInnerHTML={{ __html: decodeHtml(game?.title ?? "") }}
+          onClick={() => {
+            trackGAEvent({
+              event: "link",
+              action: "click",
+              name: "onclick",
+              type: "internal link",
+              region: "main content",
+              section: sectionName,
+              text: game?.title,
+              component: "text",
+            });
+          }}
         />
       )}
     </div>

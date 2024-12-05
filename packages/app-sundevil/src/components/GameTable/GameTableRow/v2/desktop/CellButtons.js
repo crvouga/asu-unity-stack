@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-danger */
 // @ts-check
@@ -58,7 +59,7 @@ export const CellButtons = props => {
           icon: [],
           label: button.label,
           onClick: button.onClick,
-          cardTitle: game?.title ?? " ",
+          cardTitle: props.sectionName ?? game?.title ?? " ",
           trackingOverrides: {
             type: TYPE_INTERNAL_LINK,
           },

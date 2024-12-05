@@ -1,8 +1,10 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-danger */
 // @ts-check
 import React from "react";
 
+import { trackGAEvent } from "../../../../../track-ga/track-ga-event";
 import { LinkBase } from "../../../../Link/LinkBase";
 import { isCleanString } from "./shared";
 
@@ -14,7 +16,7 @@ import { isCleanString } from "./shared";
  * @type {import("./shared").RowComponent}
  */
 export const RowDate = props => {
-  const { game } = props;
+  const { game, sectionName } = props;
   const dateString = [game?.dateMonth, game?.dateDay].filter(Boolean).join(" ");
 
   const hasDateString = isCleanString(dateString);
@@ -92,6 +94,18 @@ export const RowDate = props => {
               }}
               dangerouslySetInnerHTML={{
                 __html: link.label,
+              }}
+              onClick={() => {
+                trackGAEvent({
+                  event: "link",
+                  action: "click",
+                  name: "onclick",
+                  type: "internal link",
+                  region: "main content",
+                  section: sectionName,
+                  text: link.label,
+                  component: "text",
+                });
               }}
             />
           ))}

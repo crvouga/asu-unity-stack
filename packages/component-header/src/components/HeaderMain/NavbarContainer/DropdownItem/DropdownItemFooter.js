@@ -1,7 +1,10 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from "react";
 import styled from "styled-components";
 
 import { Button } from "../../../../../../components-core/src";
+import { trackHeaderInternalLink } from "../../../../core/data-layers";
 import { NavTreePropFooter } from "../../../../core/models/app-prop-types";
 
 const Root = styled.div`
@@ -51,7 +54,7 @@ const ButtonWithTextRoot = styled.div`
  * @type {React.FC<{footer: import("../../../../core/models/types").NavTreePropFooter}>}
  * @link https://www.figma.com/proto/PwIiWs2qYfAm73B4n5UTgU/ASU-Athletics?page-id=728%3A24523&node-id=929-7691&viewport=1748%2C1505%2C0.29&t=0Uxkiwcg69QwaV7S-1&scaling=scale-down-width
  */
-export const DropdownItemFooter = ({ footer }) => {
+export const DropdownItemFooter = ({ footer, sectionName }) => {
   const footerType = footer.type ?? "button-with-text";
   switch (footerType) {
     case "render": {
@@ -62,6 +65,14 @@ export const DropdownItemFooter = ({ footer }) => {
         <Root
           as={typeof footer.href === "string" ? "a" : "div"}
           href={footer.href}
+          onClick={() => {
+            if (typeof footer.href === "string") {
+              trackHeaderInternalLink({
+                text: footer.buttonText,
+                section: sectionName,
+              });
+            }
+          }}
         >
           <ImageOnlyRoot>
             <img
@@ -92,6 +103,7 @@ export const DropdownItemFooter = ({ footer }) => {
               <Button
                 color="gold"
                 href={footer.buttonHref}
+                cardTitle={sectionName}
                 label={footer.buttonText}
                 size="small"
               />

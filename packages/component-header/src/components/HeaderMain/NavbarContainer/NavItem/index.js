@@ -194,6 +194,7 @@ const NavItem = ({ link, setItemOpened, itemOpened, toggleMobileMenu }) => {
   const onClickedLink = (input = {}) => {
     const href =
       input?.href ?? input?.url ?? input?.link?.href ?? input?.link?.url ?? "";
+
     if (isHashHref(href)) {
       setItemOpened(null);
       toggleMobileMenu();

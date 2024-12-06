@@ -1,8 +1,8 @@
 // @ts-check
 import React, { useEffect, useState } from "react";
 
-import { trackGAEvent } from "../../../../../../shared";
 import { useAppContext } from "../../../core/context/app-context";
+import { trackHeaderInternalLink } from "../../../core/data-layers";
 import { TitlePropTypes } from "../../../core/models/app-prop-types";
 import { checkFirstLoad } from "../../../core/utils/helpers/title";
 import { TitleWrapper } from "./index.styles";
@@ -42,7 +42,7 @@ const Title = () => {
         <a
           className="unit-name"
           href={parentOrgUrl}
-          onFocus={() => trackGAEvent({ text: parentOrg })}
+          onFocus={() => trackHeaderInternalLink({ text: parentOrg })}
           title={`${parentOrg} home page`}
         >
           {parentOrg}
@@ -50,7 +50,7 @@ const Title = () => {
         <a
           className={`subunit-name ${active ? "active" : ""}`}
           href={baseUrl}
-          onFocus={() => trackGAEvent({ text: title })}
+          onFocus={() => trackHeaderInternalLink({ text: title })}
           title={`${title} home page`}
         >
           {title}
@@ -68,7 +68,7 @@ const Title = () => {
       <a
         className={`title-subunit-name ${active ? "active" : ""}`}
         href={baseUrl}
-        onFocus={() => trackGAEvent({ text: title })}
+        onFocus={() => trackHeaderInternalLink({ text: title })}
         title={`${title} home page`}
       >
         {title}

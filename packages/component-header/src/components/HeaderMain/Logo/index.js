@@ -1,8 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from "react";
 
-import { getCurrentScriptPath, trackGAEvent } from "../../../../../../shared";
+import { getCurrentScriptPath } from "../../../../../../shared";
 import { useAppContext } from "../../../core/context/app-context";
+import { trackHeaderInternalLink } from "../../../core/data-layers";
 import { LogoWrapper } from "./index.styles";
 
 const currentScriptPath = getCurrentScriptPath();
@@ -17,7 +18,9 @@ const Logo = () => {
       href={logo?.brandLink ?? "https://asu.edu"}
       className="navbar-brand"
       data-testid="logo"
-      onFocus={logo?.onFocus ?? (() => trackGAEvent({ text: "asu logo" }))}
+      onFocus={
+        logo?.onFocus ?? (() => trackHeaderInternalLink({ text: "asu logo" }))
+      }
       onClick={logo?.onClick}
     >
       <img

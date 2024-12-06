@@ -5,8 +5,9 @@ import PropTypes from "prop-types";
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 
-import { idGenerator, trackGAEvent } from "../../../../../../../shared";
+import { idGenerator } from "../../../../../../../shared";
 import { useAppContext } from "../../../../core/context/app-context";
+import { trackHeaderInternalLink } from "../../../../core/data-layers";
 import { useIsMobile } from "../../../../core/hooks/isMobile";
 import {
   ButtonPropTypes,
@@ -111,7 +112,10 @@ const DropdownItem = forwardRef(
               href={link.href}
               onClick={stopPropagation}
               onFocus={() =>
-                trackGAEvent({ text: link.text, component: dropdownName })
+                trackHeaderInternalLink({
+                  text: link.text,
+                  component: dropdownName,
+                })
               }
             />
           </li>
@@ -132,7 +136,10 @@ const DropdownItem = forwardRef(
               stopPropagation?.(e);
             }}
             onFocus={() =>
-              trackGAEvent({ text: link.text, component: dropdownName })
+              trackHeaderInternalLink({
+                text: link.text,
+                component: dropdownName,
+              })
             }
           >
             {link?.renderStartIcon?.()}
@@ -155,7 +162,18 @@ const DropdownItem = forwardRef(
         // @ts-ignore
         breakpoint={breakpoint}
       >
-        {renderContent?.({ listId, onClickedLink })}
+        {renderContent?.({
+          listId,
+          onClickedLink: (...args) => {
+            trackHeaderInternalLink({
+              section: dropdownName,
+              text: args[0]?.label ?? args[0]?.text,
+            });
+            if (typeof onClickedLink === "function") {
+              onClickedLink(...args);
+            }
+          },
+        })}
         {items?.length > 0 && (
           <div
             id={MULTIPLE_SUBMENUS ? listId : undefined}
@@ -185,7 +203,12 @@ const DropdownItem = forwardRef(
                   color={button.color}
                   text={button.text}
                   href={button.href}
-                  onClick={stopPropagation}
+                  onClick={e => {
+                    stopPropagation(e);
+                    trackHeaderInternalLink({
+                      text: button.text,
+                    });
+                  }}
                   style={{ marginLeft: 0 }}
                 />
               ))}
@@ -199,6 +222,8 @@ const DropdownItem = forwardRef(
               // eslint-disable-next-line react/no-array-index-key
               key={`${footer.text}${index}`}
               footer={footer}
+              // @ts-ignore
+              sectionName={dropdownName}
             />
           ))}
       </DropdownWrapper>

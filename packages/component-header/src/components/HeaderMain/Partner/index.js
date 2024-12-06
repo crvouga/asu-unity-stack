@@ -4,6 +4,7 @@ import React from "react";
 import { getCurrentScriptPath, trackGAEvent } from "../../../../../../shared";
 // @ts-check
 import { useAppContext } from "../../../core/context/app-context";
+import { trackHeaderInternalLink } from "../../../core/data-layers";
 import { PartnerLogosWrapper } from "./index.styles";
 
 const currentScriptPath = getCurrentScriptPath();
@@ -34,7 +35,7 @@ const Partner = () => {
       </a>
       <a
         href={asuLogo?.brandLink ?? "https://asu.edu"}
-        onFocus={() => trackGAEvent({ text: "asu logo" })}
+        onFocus={() => trackHeaderInternalLink({ text: "asu logo" })}
       >
         <img
           className="vert"

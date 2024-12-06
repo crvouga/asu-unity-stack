@@ -2,8 +2,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import { trackGAEvent } from "../../../../../../shared";
 import { useAppContext } from "../../../core/context/app-context";
+import { trackHeaderInternalLink } from "../../../core/data-layers";
 import { TitlePropTypes } from "../../../core/models/app-prop-types";
 
 // @ts-ignore
@@ -44,7 +44,10 @@ export const MobileTitle = () => {
 
   return (
     <MobileTitleWrapper title={`${mobileTitle} home page`}>
-      <a href={baseUrl} onFocus={() => trackGAEvent({ text: mobileTitle })}>
+      <a
+        href={baseUrl}
+        onFocus={() => trackHeaderInternalLink({ text: mobileTitle })}
+      >
         {mobileTitle}
       </a>
     </MobileTitleWrapper>

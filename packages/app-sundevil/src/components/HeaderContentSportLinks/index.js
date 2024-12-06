@@ -117,6 +117,9 @@ const SportItemLinks = ({ sport, onClickedLink }) => {
           onClick={e => {
             onClickedLink?.({
               e,
+              ...sportLinkItem,
+              sportLinkItem,
+              label: sportLinkItem.label,
               href: sportLinkItem.url,
             });
           }}
@@ -194,7 +197,10 @@ const SportGridListItem = ({ sport, borderBottom, onClickedLink }) => {
         href={sport.href}
         onClick={e => {
           onClickedLink?.({
+            ...sport,
             e,
+            label: sport.sportName,
+            text: sport.sportName,
             href: sport?.href,
           });
         }}
@@ -273,6 +279,7 @@ const Footer = ({ buttons }) => {
   );
 };
 Footer.propTypes = {
+  // @ts-ignore
   buttons: PropTypes.arrayOf(buttonPropTypes),
 };
 

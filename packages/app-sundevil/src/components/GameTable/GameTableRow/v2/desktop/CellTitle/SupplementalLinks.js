@@ -111,7 +111,7 @@ export const SupplementalLinks = props => {
                 type: "internal link",
                 region: "main content",
                 section: props.sectionName,
-                text: game?.title,
+                text: link.label,
                 component: "text",
               });
             }}

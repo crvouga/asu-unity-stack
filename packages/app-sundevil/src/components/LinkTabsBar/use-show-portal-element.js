@@ -33,7 +33,6 @@ export const useShowPortalElement = options => {
   }, [showPortalElement, options]);
 
   useEffect(() => {
-    console.log("useEffect");
     const scrollTarget = options?.scrollTarget || window;
 
     checkOverlap();

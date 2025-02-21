@@ -4,7 +4,7 @@ import React from "react";
 import { Button } from "../../../../components-core/src/index";
 import { Icon } from "../Icon_";
 import { Skeleton } from "../Skeleton";
-import { buttonPropTypes } from "./button-prop";
+import { buttonPropTypes, isValidButtonProp } from "./button-prop";
 
 /**
  * @type {React.FC<{button: import("./button-prop").ButtonProp}>}
@@ -38,7 +38,7 @@ EndIcon.propTypes = {
 export const BottomButtons = ({ buttons, skeleton, sectionName }) => {
   return (
     <>
-      {buttons.map(button => (
+      {buttons.filter(isValidButtonProp).map(button => (
         <Skeleton skeleton={Boolean(skeleton)} fitContent key={button?.label}>
           <Button
             {...button}

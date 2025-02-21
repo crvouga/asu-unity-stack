@@ -29,6 +29,13 @@ export const buttonPropTypes = PropTypes.shape({
  * @property {() => void} [onClick] Button on click
  */
 
+/**
+ * Validates if a button prop object has a valid label
+ * @param {ButtonProp} buttonProp - The button prop object to validate
+ * @returns {boolean} True if the button prop has a valid non-empty label string
+ */
 export const isValidButtonProp = buttonProp => {
-  return typeof buttonProp?.label === 'string' && buttonProp.label.trim().length > 0;
+  return (
+    typeof buttonProp?.label === "string" && buttonProp.label.trim().length > 0
+  );
 };

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { APP_CONFIG } from "../../config";
 import { useTrackChildrenClicks } from "../../track-ga/track-ga-event-hooks";
 import { BottomButtons } from "../Button/BottomButtons";
-import { buttonPropTypes } from "../Button/button-prop";
+import { buttonPropTypes, isValidButtonProp } from "../Button/button-prop";
 
 const Title = styled.p`
   font-size: 32px;
@@ -98,8 +98,8 @@ export const GroupTicketsFooter = ({
   const hasTitle = isCleanString(title);
   const hasSubtitle = isCleanString(subtitle);
   const hasGridTitle = isCleanString(gridTitle);
-  const hasBottomButtons =
-    Array.isArray(bottomButtons) && bottomButtons.length > 0;
+  const validBottomButtons = (Array.isArray(bottomButtons) ? bottomButtons : []).filter(isValidButtonProp);
+  const hasBottomButtons = validBottomButtons.length > 0;
   const hasHeading = hasTitle || hasSubtitle;
   const sectionName = title;
   return (
@@ -188,3 +188,4 @@ GroupTicketsFooter.propTypes = {
   gridTitleAs: PropTypes.string,
   bottomButtons: PropTypes.arrayOf(buttonPropTypes),
 };
+

@@ -28,3 +28,7 @@ export const buttonPropTypes = PropTypes.shape({
  * @property {string} [link] Button link
  * @property {() => void} [onClick] Button on click
  */
+
+export const isValidButtonProp = buttonProp => {
+  return typeof buttonProp?.label === 'string' && buttonProp.label.trim().length > 0;
+};

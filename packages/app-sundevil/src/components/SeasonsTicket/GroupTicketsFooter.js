@@ -104,6 +104,7 @@ export const GroupTicketsFooter = ({
   const sectionName = title;
   return (
     <Root
+      data-react-component-name="GroupTicketsFooter"
       style={{
         backgroundColor: "#E8E8E8",
         paddingTop: "96px",
